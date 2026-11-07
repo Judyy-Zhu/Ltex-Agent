@@ -1,0 +1,207 @@
+{
+  "at": "2026-10-13T01:53:41.067337+00:00",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised 2008",
+  "book_definition_counts": {
+    "1": 23,
+    "2": 2,
+    "3": 11,
+    "4": 7,
+    "5": 18,
+    "6": 3
+  },
+  "definitions_total": 64,
+  "book1_postulates": 5,
+  "book1_common_notions": 5,
+  "foundations_total": 74,
+  "completed_foundations": 5,
+  "book1_foundations_count": 33,
+  "later_definition_items_count": 41,
+  "numbered_propositions_total": 173,
+  "canonically_checked_numbered_propositions": 65,
+  "corollaries": "Included in scope; comprehensive source inventory and completion audit remain pending",
+  "scope_note": "Foundation inventory is not formalization completion. Book VI count is for the supplied revised-2008 edition.",
+  "latest_cold_receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/receipt.json",
+  "later_book_source_session_accepted": {
+    "3": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19
+    ]
+  },
+  "later_book_cold_checked": {
+    "3": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19
+    ]
+  },
+  "book1_contiguous_cold_prefix": 44,
+  "latest_additional_cold_receipt": ".draft/book03-tangent-integration-checkpoint/receipt.json",
+  "completed_foundation_items": [
+    "I.Def23",
+    "II.Def1",
+    "III.Def2",
+    "III.Def4",
+    "III.Def5"
+  ],
+  "latest_foundation_cold_receipt": ".draft/book03-first-fifteen-checkpoint/receipt.json",
+  "draft_source_session_accepted": {
+    "3": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      28
+    ],
+    "1": [
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41
+    ]
+  },
+  "draft_partial_source_items": {
+    "III16": "Straight-line clause and complete tangent corollary strict checked; curved-angle/no-intervening clauses unfinished",
+    "III31": "Three rectilinear clauses and three consumers strict PASS18; two curved-angle OF segment conclusions unfinished. Not counted."
+  },
+  "completed_corollaries": 2,
+  "draft_independent_checkpoints": {
+    "I35": ".draft/book01-proposition35-source-checkpoint/receipt.json",
+    "III25": ".draft/book03-proposition25-source-checkpoint/receipt.json",
+    "III26": ".draft/book03-proposition26-source-checkpoint/receipt.json",
+    "III31_rectilinear_only": ".draft/book03-proposition31-rectilinear-checkpoint/receipt.json",
+    "I37": ".draft/book01-proposition37-source-checkpoint/receipt.json",
+    "III28": {
+      "status": "PASS91",
+      "receipt": ".draft/book03-proposition28-source-checkpoint/receipt.json",
+      "counted_in_canonical": false
+    },
+    "I39": {
+      "status": "PASS4",
+      "receipt": ".draft/book01-proposition39-source-checkpoint/receipt.json",
+      "counted_in_canonical": false
+    },
+    "I38": {
+      "status": "PASS9",
+      "receipt": ".draft/book01-proposition38-source-checkpoint2/receipt.json",
+      "counted_in_canonical": false
+    },
+    "I40": {
+      "status": "PASS13",
+      "receipt": ".draft/book01-proposition40-source-checkpoint/receipt.json",
+      "counted_in_canonical": false
+    }
+  },
+  "coverage_update_note": "Canonical count remains52. I35/I37/I38/I39/I40 and III28 independently strict checked; I36 independent gate running; I41 source Session passed; I42 full source pending.",
+  "recovery_2026_10_17": {
+    "historical_receipts_reconciled": [
+      ".draft/book01-proposition36-source-checkpoint/receipt.json",
+      ".draft/book01-proposition40-source-checkpoint/receipt.json",
+      ".draft/book03-through26-audited-candidate/receipt.json"
+    ],
+    "source_hashes_match": true,
+    "historical_binary": "absent",
+    "current_binary": "1.1.1-beta; fresh verification running",
+    "I44": "prepared, syntax-only preflight passes; semantic check pending",
+    "canonical_increment": 0
+  },
+  "current_binary_validation_2026_10_18": {
+    "binary": "1.1.1-beta",
+    "historical_canonical_count_unchanged": 52,
+    "book02_draft_original_context": "PASS114 includes actualII1-13 constructions, originalgeometry/angle/parallel/area interfaces; integration pending",
+    "book01_full_import": "III26 gate stopped on14 rejected declarations in originalbook01 module; I4 first root under diagnosis",
+    "book03_through26_current": "0 target statements executed in latestfullgate; not current full acceptance",
+    "triangle_region_dissection": "PASS25 standalone stable",
+    "area_scalar_helpers": "PASS3 standalone stable",
+    "no_complete_book_claim": true
+  },
+  "book1_additional_cold_checked": [
+    46,
+    47,
+    48
+  ],
+  "book1_missing_numbered_propositions": [
+    45
+  ],
+  "book1_promotion": {
+    "at": "2026-10-18T08:04:43.126315+00:00",
+    "target": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+    "source_candidate": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-constructions-through-area-current-candidate.lit",
+    "backup": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-canonical-before-area-promotion.lit",
+    "old_sha256": "6e1f575bda93368df8785b6a4e0e6024d12974481bc3679289b24e0cf4b08596",
+    "new_sha256": "34c17398f11b3952e8f412ddcdf48584528f187a022dc050a0250541be2d5650",
+    "verification_receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/receipt.json",
+    "strict_statement_count": 74,
+    "verified_binary_sha256": "d0fc4de52bac20e67baac8d7131abc748bd2a2db39c7c1baa16b904f58415e17",
+    "current_disk_binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+    "existing_theorem_headers_changed": false,
+    "new_numbered_propositions": [
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      46,
+      47,
+      48
+    ],
+    "remaining_numbered_propositions": [
+      45
+    ],
+    "canonical_book1_numbered_propositions": 47,
+    "version_scope": "Verified by the recorded old binary; no claim of replay under the externally updated disk executable. Live authoring Sessions retained."
+  },
+  "active_scope": {
+    "books": [
+      1,
+      2,
+      3,
+      4,
+      6
+    ],
+    "numbered_propositions": 148,
+    "book5": "necessary lemmas only; standalone scope excluded"
+  }
+}

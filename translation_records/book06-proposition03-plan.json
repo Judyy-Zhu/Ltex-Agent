@@ -1,0 +1,29 @@
+{
+  "source": {
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "book": 6,
+    "proposition": 3,
+    "lines": [
+      6789,
+      6841
+    ]
+  },
+  "scope": "Both directions of the internal angle-bisector theorem for a strict cut of a nondegenerate triangle base; actual positive length ratios and source equimultiple formulation.",
+  "proof_spine": [
+    "Use VI2 interior affine parameter for the base cut: AD=(1-t)AB+t AC.",
+    "Read angle equality via the existing normalized cosine interface; factor each positive angle denominator into side length times AD length.",
+    "Bilinearity gives the two numerators. Their normalized difference factors as ((1-t)*AB-t*AC)*(AB*AC-dot(AB,AC))/(AB*AC).",
+    "The second factor is nonzero by Gram identity and noncollinearity; cancel it for the forward direction.",
+    "The reverse ratio makes the first factor zero, so normalized cosines and therefore the source angles agree.",
+    "Use actual segment scaling for BD/DC=t/(1-t), then reuse only required equimultiple lemmas."
+  ],
+  "reuse": [
+    "interior_segment_affine_parameter",
+    "angle_measure::segment_length",
+    "angle_measure::angle_relation_implies_equal_cosine",
+    "angle_measure::equal_cosines_imply_angle_relation",
+    "geometry::main::dot_squared_plus_det_squared"
+  ],
+  "status": "Both directions and equimultiple forms independently strict31 checked, including I.9 construction consumer; canonical integration pending.",
+  "trust_added": 0
+}

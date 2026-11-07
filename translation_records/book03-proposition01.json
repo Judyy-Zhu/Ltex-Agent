@@ -1,0 +1,17 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    69,
+    70
+  ],
+  "source_statement": "Find the center of a given circle",
+  "canonical": "textbook/book03-circles.lit",
+  "proof_route": "circumference point set -> noncollinear triple -> two perpendicular-bisector equations -> Cramer coordinate construction -> uniquely determined center",
+  "source_proof_difference": "Euclid uses a chord midpoint, its perpendicular diameter, and that diameter midpoint; this implementation uses an alternative coordinate construction",
+  "session_status": "accepted in8786",
+  "strict_cold": "PASS",
+  "corollary": "canonical strict cold PASS",
+  "numbered_count_increment": true,
+  "trust_added": 0,
+  "cold_receipt": ".draft/book03-first-three-checkpoint/receipt.json"
+}

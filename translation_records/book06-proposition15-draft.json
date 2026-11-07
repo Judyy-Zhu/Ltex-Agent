@@ -1,0 +1,22 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 15,
+    "mathematics": "Equal triangles with one congruent angle \u2194 reciprocal sides about that angle (squared-length products)."
+  },
+  "status": "both_directions_independent_gate_passed",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "main_sha256": "c52ff26356041f15d621da0a0e7282016d43aea5d24f8410879269b36059e880",
+  "forward": {
+    "request": 9901
+  },
+  "converse": {
+    "request": 9902
+  },
+  "core_gate": {
+    "stmts": 33,
+    "accepted": 33
+  },
+  "trust_added": 0,
+  "canonical_completion_increment": 0
+}

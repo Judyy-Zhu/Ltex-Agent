@@ -1,0 +1,33 @@
+{
+  "book": 4,
+  "proposition": 12,
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_start_line": 5034,
+  "required_statement": "Circumscribe a simple equilateral and equiangular pentagon about an arbitrary given positive-radius circle.",
+  "construction": [
+    "Let t be the positive golden cut parameter and u=(1+t)/2. Prove u>0 and u^2=1-(2-t)/4.",
+    "Construct the IV11 pentagon on the concentric outer circle with radius R=given_radius/u.",
+    "Use the five finite side midpoints as contacts. Existing BookIII chord_midpoint_radius_identity gives their squared radius R^2-R^2*(2-t)/4=given_radius^2.",
+    "Reuse circle_chord_midpoint_is_foot and the accepted radius-perpendicular tangency certificate.",
+    "Retain the simple convex polygon, equal sides and equal angles, plus strict center-side orientation and finite contact membership; do not count tangency to five unrelated lines as circumscription."
+  ],
+  "existing_interfaces": [
+    {
+      "path": "textbook/book03-circles.lit",
+      "theorem": "chord_midpoint_radius_identity",
+      "line": 1825
+    },
+    {
+      "path": "textbook/book03-circles.lit",
+      "theorem": "circle_chord_midpoint_is_foot",
+      "line": 1929
+    },
+    {
+      "path": ".draft/resume-2026-10-17/radius-perpendicular-line-contact-candidate2.lit",
+      "theorem": "radius_perpendicular_at_line_point_gives_tangency"
+    }
+  ],
+  "context_caution": "Canonical BookIII helper spellings use geometry::is_on_circle and is_foot; align with the current local predicates and inspect dependency acceptance before replay. No new kernel or geometry assumptions.",
+  "status": "IV11 theorem and consumer accepted in retained strict Session. IV12 outer-radius lemma accepted2164; midpoint metric and contact geometry submitted2165/2166.",
+  "canonical_increment": 0
+}

@@ -1,0 +1,39 @@
+{
+  "source": "Fitzpatrick revised2008, Elements.pdf BookII Proposition2, PDF zero-based50–51, lines1956–1987",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "status": "source statement and actual-figure construction accepted in persistent selected-dependency context; no canonical completion claim",
+  "mathematics": "For a strict interior cut C of AB, actual rectangles with adjacent side lengths AB/AC and AB/CB have areas summing to the actual square on AB. The construction theorem supplies both rectangles and the square for every such cut.",
+  "interfaces": [
+    "has_parallelogram_area with positive actual area",
+    "right angle at rectangle vertex",
+    "distance_sq equalities identify positive side lengths",
+    "is_square on the original AB",
+    "exact source is_on_segment declaration replayed locally for authoring; qualification restored on canonical integration"
+  ],
+  "proof_spine": [
+    "Obtain the segment parameter and exclude0 and1 using distinct cut endpoints.",
+    "Affine distance identities and positive square roots prove AC+CB=AB.",
+    "Gram determinant and actual parallelogram area prove rectangle area=side product.",
+    "Use I.46 and proper_square_area_exists for the square and actual_rectangle_from_positive_lengths for both rectangles.",
+    "Distribute AB*(AC+CB) and use square area=AB squared."
+  ],
+  "accepted_requests": {
+    "rectangle_area": "0015",
+    "rectangle_construction": "0018",
+    "nonnegative_distance_claim": "0020",
+    "cut_length_addition": "0022",
+    "affine_form": "0023",
+    "source_segment_definition": "0024",
+    "strict_cut_parameter": "0026",
+    "source_statement": "0027",
+    "constructed_figures": "0028",
+    "interior_consumer": "0029",
+    "reversed_consumer": "0030"
+  },
+  "remaining": [
+    "full original-module integration and source audit"
+  ],
+  "trust": "No new axiom, assume, abstract_prop, or kernel change.",
+  "negative": "0031 rejects exact c!=a at endpoint while segment-membership witness succeeds",
+  "clean_gate": "II2-geometric-checkpoint/receipt.json PASS33 native0"
+}

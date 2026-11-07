@@ -1,0 +1,36 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "source_pages_zero_based": [
+    49,
+    50
+  ],
+  "source_lines": [
+    1906,
+    1955
+  ],
+  "status": "Original geometry and interfaces full checkpoint PASS114 native0 stable source/binary hashes; canonical integration pending",
+  "scope": "Arbitrary n N+, two proper given segments, strict ordered affine cutpoints with endpoints fixed, actual positive-area rectangle for every piece, and sum of areas equals whole rectangle. Not a fixed two/three-piece instance.",
+  "representation": "Total integer-index functions extend finite input data; only indices0..n encode cutpoints,1..n encode pieces. Chosen rectangles are coordinate representatives with the right lengths, not a claim that these representatives themselves form a non-overlapping physical dissection.",
+  "verified": [
+    "coordinate rectangle0136",
+    "finite segment partition0138",
+    "arbitraryn scaled telescoping0139",
+    "positive piece length0140",
+    "actual rectangle family0141",
+    "actual rectangle family andsum0142",
+    "source theorem0143",
+    "General repeated-cut exclusion theorem0148 accepted: equal adjacent parameters contradict strict partition, no trust."
+  ],
+  "pending": [
+    "canonical module integration andsourceaudit"
+  ],
+  "verifier_note": "Anonymous callback identity/alias transport rejected0135/0137. Named callback with explicit pointwise equality proved by ordinary induction0139; no trust or kernel edits.",
+  "consumers": "nonuniform4pieces0145 and reversed0146 accepted; zero-width0147 rejects exactu!=v",
+  "full_original_gate": {
+    "receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/II1-13-original-context-checkpoint/receipt.json",
+    "statement_count": 114,
+    "exit_code": 0,
+    "sources_and_binary_stable": true
+  }
+}

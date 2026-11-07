@@ -1,0 +1,296 @@
+{
+  "kind": "run",
+  "run_result": "success",
+  "target": "file",
+  "path": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/main.lit",
+  "detail": "normal",
+  "language": "en",
+  "statement_results": [
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::vec",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::vec $in fn (A, B cart(R, R)) cart(R, R)",
+        "m0::f0::vec = fn (A, B cart(R, R)) cart(R, R){((B(1) - A(1)), (B(2) - A(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::det",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::det $in fn (u, v cart(R, R)) R",
+        "m0::f0::det = fn (u, v cart(R, R)) R{((u(1) * v(2)) - (u(2) * v(1)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::dot",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::dot $in fn (u, v cart(R, R)) R",
+        "m0::f0::dot = fn (u, v cart(R, R)) R{((u(1) * v(1)) + (u(2) * v(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::distance_sq",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::distance_sq $in fn (a, b cart(R, R)) R",
+        "m0::f0::distance_sq = fn (a, b cart(R, R)) R{m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, b))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f4::triangle_area",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f4::triangle_area $in fn (a, b, c cart(R, R): $m0::f0::is_triangle(a, b, c)) R+",
+        "forall a, b, c cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    =>:\n        $f4::has_triangle_area(a, b, c, f4::triangle_area(a, b, c))",
+        "forall a, b, c cart(R, R), area R+:\n    $m0::f0::is_triangle(a, b, c)\n    $f4::has_triangle_area(a, b, c, area)\n    =>:\n        area = f4::triangle_area(a, b, c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_num",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_num $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_num = fn (p, q, r cart(R, R): p != q, r != q) R{m0::f0::dot(m0::f0::vec(q, p), m0::f0::vec(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_den",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_den $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_den = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f0::angle_cosine",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f0::angle_cosine $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "f0::angle_cosine = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::angle_cos_num(p, q, r) / sqrt (m0::f0::angle_cos_den(p, q, r)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::circle",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::circle $in fn (o cart(R, R), r R+) power_set(cart(R, R))",
+        "m0::f0::circle = fn (o cart(R, R), r R+) power_set(cart(R, R)){{p cart(R, R): m0::f0::distance_sq(o, p) = (r * r)}}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::line_through_points",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::line_through_points $in fn (a, b cart(R, R): a != b) power_set(cart(R, R))",
+        "m0::f0::line_through_points = fn (a, b cart(R, R): a != b) power_set(cart(R, R)){{p cart(R, R): m0::f0::det(m0::f0::vec(a, p), m0::f0::vec(a, b)) = 0}}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "claim:\n    ? forall a, b cart(R, R):\n        m0::f0::distance_sq(a, b) >= 0\n    release thm m0::f0::distance_sq_nonnegative(a, b)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Claim",
+        "message": "Prove a claim block and store its conclusions"
+      },
+      "stores": [
+        "forall a, b cart(R, R):\n    m0::f0::distance_sq(a, b) >= 0"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm dot_coordinate_formula:\n    ? forall u, v cart(R, R):\n        m0::f0::dot(u, v) = ((u(1) * v(1)) + (u(2) * v(2)))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall u, v cart(R, R):\n    m0::f0::dot(u, v) = ((u(1) * v(1)) + (u(2) * v(2)))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm angle_numerator_is_negative_edge_turn:\n    ? forall a, b, c cart(R, R):\n        a != b\n        c != b\n        =>:\n            m0::f0::angle_cos_num(a, b, c) = (-m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)))\n    release thm m0::f0::vec_coordinate_formula(b, a)\n    release thm m0::f0::vec_coordinate_formula(a, b)\n    release thm m0::f0::vec_coordinate_formula(b, c)\n    release thm dot_coordinate_formula(m0::f0::vec(b, a), m0::f0::vec(b, c))\n    release thm dot_coordinate_formula(m0::f0::vec(a, b), m0::f0::vec(b, c))\n    m0::f0::vec(b, a)(1) = (a(1) - b(1)) = (-(b(1) - a(1))) = (-m0::f0::vec(a, b)(1))\n    m0::f0::vec(b, a)(2) = (a(2) - b(2)) = (-(b(2) - a(2))) = (-m0::f0::vec(a, b)(2))\n    m0::f0::vec(b, a)(1) = (-m0::f0::vec(a, b)(1))\n    m0::f0::vec(b, a)(2) = (-m0::f0::vec(a, b)(2))\n    m0::f0::angle_cos_num(a, b, c) = m0::f0::dot(m0::f0::vec(b, a), m0::f0::vec(b, c)) = ((m0::f0::vec(b, a)(1) * m0::f0::vec(b, c)(1)) + (m0::f0::vec(b, a)(2) * m0::f0::vec(b, c)(2))) = (((-m0::f0::vec(a, b)(1)) * m0::f0::vec(b, c)(1)) + (m0::f0::vec(b, a)(2) * m0::f0::vec(b, c)(2))) = (((-m0::f0::vec(a, b)(1)) * m0::f0::vec(b, c)(1)) + ((-m0::f0::vec(a, b)(2)) * m0::f0::vec(b, c)(2))) = (-((m0::f0::vec(a, b)(1) * m0::f0::vec(b, c)(1)) + (m0::f0::vec(a, b)(2) * m0::f0::vec(b, c)(2)))) = (-m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c cart(R, R):\n    a != b\n    c != b\n    =>:\n        m0::f0::angle_cos_num(a, b, c) = (-m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm congruent_equal_arm_angles_have_equal_numerators:\n    ? forall p, q, r, a, b, c cart(R, R), side_sq R+:\n        $m0::f0::are_angles_congruent(p, q, r, a, b, c)\n        m0::f0::distance_sq(q, p) = side_sq\n        m0::f0::distance_sq(q, r) = side_sq\n        m0::f0::distance_sq(b, a) = side_sq\n        m0::f0::distance_sq(b, c) = side_sq\n        =>:\n            m0::f0::angle_cos_num(p, q, r) = m0::f0::angle_cos_num(a, b, c)\n    by def $m0::f0::are_angles_congruent(p, q, r, a, b, c)\n    m0::f0::angle_cos_den(p, q, r) = (m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r)) = (side_sq * side_sq) = (side_sq ^ 2)\n    m0::f0::angle_cos_den(a, b, c) = (m0::f0::distance_sq(b, a) * m0::f0::distance_sq(b, c)) = (side_sq * side_sq) = (side_sq ^ 2)\n    have first R = m0::f0::angle_cos_num(p, q, r)\n    have second R = m0::f0::angle_cos_num(a, b, c)\n    ((first ^ 2) * (side_sq ^ 2)) = ((m0::f0::angle_cos_num(p, q, r) ^ 2) * m0::f0::angle_cos_den(a, b, c)) = ((m0::f0::angle_cos_num(a, b, c) ^ 2) * m0::f0::angle_cos_den(p, q, r)) = ((second ^ 2) * (side_sq ^ 2))\n    (first ^ 2) = (((first ^ 2) * (side_sq ^ 2)) / (side_sq ^ 2)) = (((second ^ 2) * (side_sq ^ 2)) / (side_sq ^ 2)) = (second ^ 2)\n    (first * second) = (m0::f0::angle_cos_num(p, q, r) * m0::f0::angle_cos_num(a, b, c)) >= 0\n    release thm f1::same_square_and_sign_gives_equality(first, second)\n    m0::f0::angle_cos_num(p, q, r) = first = second = m0::f0::angle_cos_num(a, b, c)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall p, q, r, a, b, c cart(R, R), side_sq R+:\n    $m0::f0::are_angles_congruent(p, q, r, a, b, c)\n    m0::f0::distance_sq(q, p) = side_sq\n    m0::f0::distance_sq(q, r) = side_sq\n    m0::f0::distance_sq(b, a) = side_sq\n    m0::f0::distance_sq(b, c) = side_sq\n    =>:\n        m0::f0::angle_cos_num(p, q, r) = m0::f0::angle_cos_num(a, b, c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_side_turns_have_equal_determinants:\n    ? forall u, v, w cart(R, R), side_sq R+, turn_dot R:\n        m0::f0::dot(u, u) = side_sq\n        m0::f0::dot(v, v) = side_sq\n        m0::f0::dot(w, w) = side_sq\n        m0::f0::dot(u, v) = turn_dot\n        m0::f0::dot(v, w) = turn_dot\n        m0::f0::det(u, v) > 0\n        m0::f0::det(v, w) > 0\n        =>:\n            m0::f0::det(u, v) = m0::f0::det(v, w)\n    release thm m0::f0::dot_squared_plus_det_squared(u, v)\n    release thm m0::f0::dot_squared_plus_det_squared(v, w)\n    (m0::f0::det(u, v) ^ 2) = (((m0::f0::dot(u, v) ^ 2) + (m0::f0::det(u, v) ^ 2)) - (m0::f0::dot(u, v) ^ 2)) = ((m0::f0::dot(u, u) * m0::f0::dot(v, v)) - (m0::f0::dot(u, v) ^ 2)) = ((side_sq * m0::f0::dot(v, v)) - (m0::f0::dot(u, v) ^ 2)) = ((side_sq * side_sq) - (m0::f0::dot(u, v) ^ 2)) = ((side_sq ^ 2) - (m0::f0::dot(u, v) ^ 2)) = ((side_sq ^ 2) - (turn_dot ^ 2))\n    (m0::f0::det(v, w) ^ 2) = (((m0::f0::dot(v, w) ^ 2) + (m0::f0::det(v, w) ^ 2)) - (m0::f0::dot(v, w) ^ 2)) = ((m0::f0::dot(v, v) * m0::f0::dot(w, w)) - (m0::f0::dot(v, w) ^ 2)) = ((side_sq * m0::f0::dot(w, w)) - (m0::f0::dot(v, w) ^ 2)) = ((side_sq * side_sq) - (m0::f0::dot(v, w) ^ 2)) = ((side_sq ^ 2) - (m0::f0::dot(v, w) ^ 2)) = ((side_sq ^ 2) - (turn_dot ^ 2))\n    have first R+ = m0::f0::det(u, v)\n    have second R+ = m0::f0::det(v, w)\n    (first ^ 2) = (m0::f0::det(u, v) ^ 2) = ((side_sq ^ 2) - (turn_dot ^ 2)) = (m0::f0::det(v, w) ^ 2) = (second ^ 2)\n    (first + second) > 0\n    ((first - second) * (first + second)) = ((first ^ 2) - (second ^ 2)) = 0\n    (first - second) = (((first - second) * (first + second)) / (first + second)) = (0 / (first + second)) = 0\n    first = second\n    m0::f0::det(u, v) = first = second = m0::f0::det(v, w)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall u, v, w cart(R, R), side_sq R+, turn_dot R:\n    m0::f0::dot(u, u) = side_sq\n    m0::f0::dot(v, v) = side_sq\n    m0::f0::dot(w, w) = side_sq\n    m0::f0::dot(u, v) = turn_dot\n    m0::f0::dot(v, w) = turn_dot\n    m0::f0::det(u, v) > 0\n    m0::f0::det(v, w) > 0\n    =>:\n        m0::f0::det(u, v) = m0::f0::det(v, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_turn_coordinate_recurrence:\n    ? forall u1, u2, v1, v2, w1, w2, turn_dot R, side_sq R+:\n        ((v1 ^ 2) + (v2 ^ 2)) = side_sq\n        ((u1 * v1) + (u2 * v2)) = turn_dot\n        ((v1 * w1) + (v2 * w2)) = turn_dot\n        ((u1 * v2) - (u2 * v1)) = ((v1 * w2) - (v2 * w1))\n        =>:\n            (u1 + w1) = (((2 * turn_dot) / side_sq) * v1)\n            (u2 + w2) = (((2 * turn_dot) / side_sq) * v2)\n    have dot_sum R = (((u1 * v1) + (u2 * v2)) + ((v1 * w1) + (v2 * w2)))\n    dot_sum = (turn_dot + ((v1 * w1) + (v2 * w2))) = (turn_dot + turn_dot) = (2 * turn_dot)\n    have det_difference R = (((u1 * v2) - (u2 * v1)) - ((v1 * w2) - (v2 * w1)))\n    det_difference = 0\n    ((v1 * dot_sum) + (v2 * det_difference)) = ((v1 * (((u1 * v1) + (u2 * v2)) + ((v1 * w1) + (v2 * w2)))) + (v2 * det_difference)) = ((v1 * (((u1 * v1) + (u2 * v2)) + ((v1 * w1) + (v2 * w2)))) + (v2 * (((u1 * v2) - (u2 * v1)) - ((v1 * w2) - (v2 * w1))))) = (((v1 ^ 2) + (v2 ^ 2)) * (u1 + w1))\n    ((v1 * dot_sum) + (v2 * det_difference)) = ((v1 * (2 * turn_dot)) + (v2 * det_difference)) = ((v1 * (2 * turn_dot)) + (v2 * 0)) = ((2 * turn_dot) * v1)\n    (side_sq * (u1 + w1)) = (((v1 ^ 2) + (v2 ^ 2)) * (u1 + w1)) = ((v1 * dot_sum) + (v2 * det_difference)) = ((2 * turn_dot) * v1)\n    (u1 + w1) = ((side_sq * (u1 + w1)) / side_sq) = (((2 * turn_dot) * v1) / side_sq) = (((2 * turn_dot) / side_sq) * v1)\n    ((v2 * dot_sum) - (v1 * det_difference)) = ((v2 * (((u1 * v1) + (u2 * v2)) + ((v1 * w1) + (v2 * w2)))) - (v1 * det_difference)) = ((v2 * (((u1 * v1) + (u2 * v2)) + ((v1 * w1) + (v2 * w2)))) - (v1 * (((u1 * v2) - (u2 * v1)) - ((v1 * w2) - (v2 * w1))))) = (((v1 ^ 2) + (v2 ^ 2)) * (u2 + w2))\n    ((v2 * dot_sum) - (v1 * det_difference)) = ((v2 * (2 * turn_dot)) - (v1 * det_difference)) = ((v2 * (2 * turn_dot)) - (v1 * 0)) = ((2 * turn_dot) * v2)\n    (side_sq * (u2 + w2)) = (((v1 ^ 2) + (v2 ^ 2)) * (u2 + w2)) = ((v2 * dot_sum) - (v1 * det_difference)) = ((2 * turn_dot) * v2)\n    (u2 + w2) = ((side_sq * (u2 + w2)) / side_sq) = (((2 * turn_dot) * v2) / side_sq) = (((2 * turn_dot) / side_sq) * v2)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall u1, u2, v1, v2, w1, w2, turn_dot R, side_sq R+:\n    ((v1 ^ 2) + (v2 ^ 2)) = side_sq\n    ((u1 * v1) + (u2 * v2)) = turn_dot\n    ((v1 * w1) + (v2 * w2)) = turn_dot\n    ((u1 * v2) - (u2 * v1)) = ((v1 * w2) - (v2 * w1))\n    =>:\n        (u1 + w1) = (((2 * turn_dot) / side_sq) * v1)\n        (u2 + w2) = (((2 * turn_dot) / side_sq) * v2)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_side_equal_turn_vector_recurrence:\n    ? forall u, v, w cart(R, R), side_sq R+, turn_dot R:\n        m0::f0::dot(u, u) = side_sq\n        m0::f0::dot(v, v) = side_sq\n        m0::f0::dot(w, w) = side_sq\n        m0::f0::dot(u, v) = turn_dot\n        m0::f0::dot(v, w) = turn_dot\n        m0::f0::det(u, v) > 0\n        m0::f0::det(v, w) > 0\n        =>:\n            (u(1) + w(1)) = (((2 * turn_dot) / side_sq) * v(1))\n            (u(2) + w(2)) = (((2 * turn_dot) / side_sq) * v(2))\n    release thm equal_side_turns_have_equal_determinants(u, v, w, side_sq, turn_dot)\n    release thm dot_coordinate_formula(v, v)\n    release thm dot_coordinate_formula(u, v)\n    release thm dot_coordinate_formula(v, w)\n    ((v(1) ^ 2) + (v(2) ^ 2)) = ((v(1) * v(1)) + (v(2) * v(2))) = m0::f0::dot(v, v) = side_sq\n    ((u(1) * v(1)) + (u(2) * v(2))) = m0::f0::dot(u, v) = turn_dot\n    ((v(1) * w(1)) + (v(2) * w(2))) = m0::f0::dot(v, w) = turn_dot\n    release thm m0::f0::det_coordinate_formula(u, v)\n    release thm m0::f0::det_coordinate_formula(v, w)\n    ((u(1) * v(2)) - (u(2) * v(1))) = m0::f0::det(u, v) = m0::f0::det(v, w) = ((v(1) * w(2)) - (v(2) * w(1)))\n    release thm equal_turn_coordinate_recurrence(u(1), u(2), v(1), v(2), w(1), w(2), turn_dot, side_sq)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall u, v, w cart(R, R), side_sq R+, turn_dot R:\n    m0::f0::dot(u, u) = side_sq\n    m0::f0::dot(v, v) = side_sq\n    m0::f0::dot(w, w) = side_sq\n    m0::f0::dot(u, v) = turn_dot\n    m0::f0::dot(v, w) = turn_dot\n    m0::f0::det(u, v) > 0\n    m0::f0::det(v, w) > 0\n    =>:\n        (u(1) + w(1)) = (((2 * turn_dot) / side_sq) * v(1))\n        (u(2) + w(2)) = (((2 * turn_dot) / side_sq) * v(2))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_sides_congruent_angles_have_equal_turns:\n    ? forall a, b, c, d cart(R, R), side_sq R+:\n        m0::f0::distance_sq(a, b) = side_sq\n        m0::f0::distance_sq(b, c) = side_sq\n        m0::f0::distance_sq(c, d) = side_sq\n        $m0::f0::are_angles_congruent(a, b, c, b, c, d)\n        =>:\n            m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)) = m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d))\n    by def $m0::f0::are_angles_congruent(a, b, c, b, c, d)\n    release thm m0::f0::distance_sq_symmetric(a, b)\n    release thm m0::f0::distance_sq_symmetric(b, c)\n    release thm congruent_equal_arm_angles_have_equal_numerators(a, b, c, b, c, d, side_sq)\n    release thm angle_numerator_is_negative_edge_turn(a, b, c)\n    release thm angle_numerator_is_negative_edge_turn(b, c, d)\n    m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)) = (-(-m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)))) = (-m0::f0::angle_cos_num(a, b, c)) = (-m0::f0::angle_cos_num(b, c, d)) = (-(-m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d)))) = m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R), side_sq R+:\n    m0::f0::distance_sq(a, b) = side_sq\n    m0::f0::distance_sq(b, c) = side_sq\n    m0::f0::distance_sq(c, d) = side_sq\n    $m0::f0::are_angles_congruent(a, b, c, b, c, d)\n    =>:\n        m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)) = m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_turn_center_extension_scalar:\n    ? forall x, y, u1, u2, v1, v2, w1, w2, turn_dot R, side_sq R+:\n        ((u1 ^ 2) + (u2 ^ 2)) = side_sq\n        ((v1 ^ 2) + (v2 ^ 2)) = side_sq\n        ((w1 ^ 2) + (w2 ^ 2)) = side_sq\n        ((v1 * w1) + (v2 * w2)) = turn_dot\n        (u1 + w1) = (((2 * turn_dot) / side_sq) * v1)\n        (u2 + w2) = (((2 * turn_dot) / side_sq) * v2)\n        (((x + u1) ^ 2) + ((y + u2) ^ 2)) = ((x ^ 2) + (y ^ 2))\n        (((x - v1) ^ 2) + ((y - v2) ^ 2)) = ((x ^ 2) + (y ^ 2))\n        =>:\n            ((((x - v1) - w1) ^ 2) + (((y - v2) - w2) ^ 2)) = ((x ^ 2) + (y ^ 2))\n    (2 * ((x * u1) + (y * u2))) = (((((x + u1) ^ 2) + ((y + u2) ^ 2)) - ((x ^ 2) + (y ^ 2))) - ((u1 ^ 2) + (u2 ^ 2))) = ((((x ^ 2) + (y ^ 2)) - ((x ^ 2) + (y ^ 2))) - ((u1 ^ 2) + (u2 ^ 2))) = (-((u1 ^ 2) + (u2 ^ 2))) = (-side_sq)\n    (2 * ((x * v1) + (y * v2))) = ((((x ^ 2) + (y ^ 2)) + ((v1 ^ 2) + (v2 ^ 2))) - (((x - v1) ^ 2) + ((y - v2) ^ 2))) = ((((x ^ 2) + (y ^ 2)) + side_sq) - (((x - v1) ^ 2) + ((y - v2) ^ 2))) = ((((x ^ 2) + (y ^ 2)) + side_sq) - ((x ^ 2) + (y ^ 2))) = side_sq\n    w1 = ((u1 + w1) - u1) = ((((2 * turn_dot) / side_sq) * v1) - u1)\n    w2 = ((u2 + w2) - u2) = ((((2 * turn_dot) / side_sq) * v2) - u2)\n    (2 * ((x * w1) + (y * w2))) = (2 * ((x * ((((2 * turn_dot) / side_sq) * v1) - u1)) + (y * w2))) = (2 * ((x * ((((2 * turn_dot) / side_sq) * v1) - u1)) + (y * ((((2 * turn_dot) / side_sq) * v2) - u2)))) = ((((2 * turn_dot) / side_sq) * (2 * ((x * v1) + (y * v2)))) - (2 * ((x * u1) + (y * u2)))) = ((((2 * turn_dot) / side_sq) * side_sq) - (2 * ((x * u1) + (y * u2)))) = ((2 * turn_dot) - (2 * ((x * u1) + (y * u2)))) = ((2 * turn_dot) - (-side_sq)) = ((2 * turn_dot) + side_sq)\n    (2 * (((x - v1) * w1) + ((y - v2) * w2))) = ((2 * ((x * w1) + (y * w2))) - (2 * ((v1 * w1) + (v2 * w2)))) = (((2 * turn_dot) + side_sq) - (2 * ((v1 * w1) + (v2 * w2)))) = (((2 * turn_dot) + side_sq) - (2 * turn_dot)) = side_sq\n    ((((x - v1) - w1) ^ 2) + (((y - v2) - w2) ^ 2)) = (((((x - v1) ^ 2) + ((y - v2) ^ 2)) + ((w1 ^ 2) + (w2 ^ 2))) - (2 * (((x - v1) * w1) + ((y - v2) * w2)))) = (((((x - v1) ^ 2) + ((y - v2) ^ 2)) + side_sq) - (2 * (((x - v1) * w1) + ((y - v2) * w2)))) = (((((x - v1) ^ 2) + ((y - v2) ^ 2)) + side_sq) - side_sq) = (((x - v1) ^ 2) + ((y - v2) ^ 2)) = ((x ^ 2) + (y ^ 2))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall x, y, u1, u2, v1, v2, w1, w2, turn_dot R, side_sq R+:\n    ((u1 ^ 2) + (u2 ^ 2)) = side_sq\n    ((v1 ^ 2) + (v2 ^ 2)) = side_sq\n    ((w1 ^ 2) + (w2 ^ 2)) = side_sq\n    ((v1 * w1) + (v2 * w2)) = turn_dot\n    (u1 + w1) = (((2 * turn_dot) / side_sq) * v1)\n    (u2 + w2) = (((2 * turn_dot) / side_sq) * v2)\n    (((x + u1) ^ 2) + ((y + u2) ^ 2)) = ((x ^ 2) + (y ^ 2))\n    (((x - v1) ^ 2) + ((y - v2) ^ 2)) = ((x ^ 2) + (y ^ 2))\n    =>:\n        ((((x - v1) - w1) ^ 2) + (((y - v2) - w2) ^ 2)) = ((x ^ 2) + (y ^ 2))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_turn_circumcenter_extension:\n    ? forall a, b, c, d, center cart(R, R), side_sq R+, turn_dot R:\n        m0::f0::distance_sq(a, b) = side_sq\n        m0::f0::distance_sq(b, c) = side_sq\n        m0::f0::distance_sq(c, d) = side_sq\n        m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)) = turn_dot\n        m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d)) = turn_dot\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(b, c)) > 0\n        m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(c, d)) > 0\n        m0::f0::distance_sq(a, center) = m0::f0::distance_sq(b, center)\n        m0::f0::distance_sq(c, center) = m0::f0::distance_sq(b, center)\n        =>:\n            m0::f0::distance_sq(d, center) = m0::f0::distance_sq(b, center)\n    have u cart(R, R) = m0::f0::vec(a, b)\n    have v cart(R, R) = m0::f0::vec(b, c)\n    have w cart(R, R) = m0::f0::vec(c, d)\n    release thm m0::f0::vec_dot_self_is_distance(a, b)\n    release thm m0::f0::vec_dot_self_is_distance(b, c)\n    release thm m0::f0::vec_dot_self_is_distance(c, d)\n    m0::f0::det(u, v) = m0::f0::det(m0::f0::vec(a, b), v) = m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(b, c)) > 0\n    m0::f0::det(v, w) = m0::f0::det(m0::f0::vec(b, c), w) = m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(c, d)) > 0\n    release thm equal_side_equal_turn_vector_recurrence(u, v, w, side_sq, turn_dot)\n    release thm dot_coordinate_formula(u, u)\n    release thm dot_coordinate_formula(v, v)\n    release thm dot_coordinate_formula(w, w)\n    release thm dot_coordinate_formula(v, w)\n    ((u(1) ^ 2) + (u(2) ^ 2)) = ((u(1) * u(1)) + (u(2) * u(2))) = m0::f0::dot(u, u) = side_sq\n    ((v(1) ^ 2) + (v(2) ^ 2)) = ((v(1) * v(1)) + (v(2) * v(2))) = m0::f0::dot(v, v) = side_sq\n    ((w(1) ^ 2) + (w(2) ^ 2)) = ((w(1) * w(1)) + (w(2) * w(2))) = m0::f0::dot(w, w) = side_sq\n    ((v(1) * w(1)) + (v(2) * w(2))) = m0::f0::dot(v, w) = turn_dot\n    release thm m0::f0::vec_coordinate_formula(a, b)\n    release thm m0::f0::vec_coordinate_formula(b, c)\n    release thm m0::f0::vec_coordinate_formula(c, d)\n    u(1) = (b(1) - a(1))\n    u(2) = (b(2) - a(2))\n    v(1) = (c(1) - b(1))\n    v(2) = (c(2) - b(2))\n    w(1) = (d(1) - c(1))\n    w(2) = (d(2) - c(2))\n    have x R = (center(1) - b(1))\n    have y R = (center(2) - b(2))\n    (x + u(1)) = ((center(1) - b(1)) + (b(1) - a(1))) = (center(1) - a(1))\n    (y + u(2)) = ((center(2) - b(2)) + (b(2) - a(2))) = (center(2) - a(2))\n    (x - v(1)) = ((center(1) - b(1)) - (c(1) - b(1))) = (center(1) - c(1))\n    (y - v(2)) = ((center(2) - b(2)) - (c(2) - b(2))) = (center(2) - c(2))\n    ((x - v(1)) - w(1)) = ((center(1) - c(1)) - (d(1) - c(1))) = (center(1) - d(1))\n    ((y - v(2)) - w(2)) = ((center(2) - c(2)) - (d(2) - c(2))) = (center(2) - d(2))\n    release thm m0::f0::distance_sq_coordinate_formula(a, center)\n    release thm m0::f0::distance_sq_coordinate_formula(b, center)\n    release thm m0::f0::distance_sq_coordinate_formula(c, center)\n    release thm m0::f0::distance_sq_coordinate_formula(d, center)\n    ((x ^ 2) + (y ^ 2)) = (((center(1) - b(1)) ^ 2) + ((center(2) - b(2)) ^ 2)) = m0::f0::distance_sq(b, center)\n    (((x + u(1)) ^ 2) + ((y + u(2)) ^ 2)) = (((center(1) - a(1)) ^ 2) + ((center(2) - a(2)) ^ 2)) = m0::f0::distance_sq(a, center) = m0::f0::distance_sq(b, center) = ((x ^ 2) + (y ^ 2))\n    (((x - v(1)) ^ 2) + ((y - v(2)) ^ 2)) = (((center(1) - c(1)) ^ 2) + ((center(2) - c(2)) ^ 2)) = m0::f0::distance_sq(c, center) = m0::f0::distance_sq(b, center) = ((x ^ 2) + (y ^ 2))\n    release thm equal_turn_center_extension_scalar(x, y, u(1), u(2), v(1), v(2), w(1), w(2), turn_dot, side_sq)\n    m0::f0::distance_sq(d, center) = (((center(1) - d(1)) ^ 2) + ((center(2) - d(2)) ^ 2)) = ((((x - v(1)) - w(1)) ^ 2) + (((y - v(2)) - w(2)) ^ 2)) = ((x ^ 2) + (y ^ 2)) = m0::f0::distance_sq(b, center)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d, center cart(R, R), side_sq R+, turn_dot R:\n    m0::f0::distance_sq(a, b) = side_sq\n    m0::f0::distance_sq(b, c) = side_sq\n    m0::f0::distance_sq(c, d) = side_sq\n    m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)) = turn_dot\n    m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d)) = turn_dot\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(b, c)) > 0\n    m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(c, d)) > 0\n    m0::f0::distance_sq(a, center) = m0::f0::distance_sq(b, center)\n    m0::f0::distance_sq(c, center) = m0::f0::distance_sq(b, center)\n    =>:\n        m0::f0::distance_sq(d, center) = m0::f0::distance_sq(b, center)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_turn_five_point_chain_has_circumcircle:\n    ? forall a, b, c, d, fifth cart(R, R), side_sq R+:\n        $m0::f0::is_triangle(a, b, c)\n        m0::f0::distance_sq(a, b) = side_sq\n        m0::f0::distance_sq(b, c) = side_sq\n        m0::f0::distance_sq(c, d) = side_sq\n        m0::f0::distance_sq(d, fifth) = side_sq\n        $m0::f0::are_angles_congruent(a, b, c, b, c, d)\n        $m0::f0::are_angles_congruent(b, c, d, c, d, fifth)\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(b, c)) > 0\n        m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(c, d)) > 0\n        m0::f0::det(m0::f0::vec(c, d), m0::f0::vec(d, fifth)) > 0\n        =>:\n            exist center cart(R, R), radius R+ st {a $in m0::f0::circle(center, radius), b $in m0::f0::circle(center, radius), c $in m0::f0::circle(center, radius), d $in m0::f0::circle(center, radius), fifth $in m0::f0::circle(center, radius)}\n    release thm f6::book04_proposition_5(a, b, c)\n    obtain center, radius from exist o cart(R, R), radius R+ st {a $in m0::f0::circle(o, radius), b $in m0::f0::circle(o, radius), c $in m0::f0::circle(o, radius)}\n    m0::f0::circle(center, radius) = {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)}\n    a $in m0::f0::circle(center, radius)\n    b $in m0::f0::circle(center, radius)\n    c $in m0::f0::circle(center, radius)\n    a $in {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)}\n    b $in {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)}\n    c $in {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)}\n    release thm set_builder_member(a, {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)})\n    release thm set_builder_member(b, {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)})\n    release thm set_builder_member(c, {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)})\n    release thm m0::f0::distance_sq_symmetric(a, center)\n    release thm m0::f0::distance_sq_symmetric(b, center)\n    release thm m0::f0::distance_sq_symmetric(c, center)\n    m0::f0::distance_sq(a, center) = m0::f0::distance_sq(center, a) = (radius * radius) = m0::f0::distance_sq(center, b) = m0::f0::distance_sq(b, center)\n    m0::f0::distance_sq(c, center) = m0::f0::distance_sq(center, c) = (radius * radius) = m0::f0::distance_sq(center, b) = m0::f0::distance_sq(b, center)\n    release thm equal_sides_congruent_angles_have_equal_turns(a, b, c, d, side_sq)\n    release thm equal_turn_circumcenter_extension(a, b, c, d, center, side_sq, m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(b, c)))\n    release thm m0::f0::distance_sq_symmetric(d, center)\n    m0::f0::distance_sq(center, d) = m0::f0::distance_sq(d, center) = m0::f0::distance_sq(b, center) = (radius * radius)\n    release thm equal_sides_congruent_angles_have_equal_turns(b, c, d, fifth, side_sq)\n    m0::f0::distance_sq(b, center) = m0::f0::distance_sq(c, center)\n    m0::f0::distance_sq(d, center) = m0::f0::distance_sq(b, center) = m0::f0::distance_sq(c, center)\n    release thm equal_turn_circumcenter_extension(b, c, d, fifth, center, side_sq, m0::f0::dot(m0::f0::vec(b, c), m0::f0::vec(c, d)))\n    release thm m0::f0::distance_sq_symmetric(fifth, center)\n    m0::f0::distance_sq(center, fifth) = m0::f0::distance_sq(fifth, center) = m0::f0::distance_sq(c, center) = (radius * radius)\n    d $in {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)}\n    fifth $in {p cart(R, R): m0::f0::distance_sq(center, p) = (radius * radius)}\n    d $in m0::f0::circle(center, radius)\n    fifth $in m0::f0::circle(center, radius)\n    witness exist o cart(R, R), r R+ st {a $in m0::f0::circle(o, r), b $in m0::f0::circle(o, r), c $in m0::f0::circle(o, r), d $in m0::f0::circle(o, r), fifth $in m0::f0::circle(o, r)} from center, radius",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d, fifth cart(R, R), side_sq R+:\n    $m0::f0::is_triangle(a, b, c)\n    m0::f0::distance_sq(a, b) = side_sq\n    m0::f0::distance_sq(b, c) = side_sq\n    m0::f0::distance_sq(c, d) = side_sq\n    m0::f0::distance_sq(d, fifth) = side_sq\n    $m0::f0::are_angles_congruent(a, b, c, b, c, d)\n    $m0::f0::are_angles_congruent(b, c, d, c, d, fifth)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(b, c)) > 0\n    m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(c, d)) > 0\n    m0::f0::det(m0::f0::vec(c, d), m0::f0::vec(d, fifth)) > 0\n    =>:\n        exist center cart(R, R), radius R+ st {a $in m0::f0::circle(center, radius), b $in m0::f0::circle(center, radius), c $in m0::f0::circle(center, radius), d $in m0::f0::circle(center, radius), fifth $in m0::f0::circle(center, radius)}"
+      ],
+      "infers": []
+    }
+  ],
+  "session_terminated": false,
+  "termination": null
+}

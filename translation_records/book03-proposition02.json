@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book_number": 3,
+    "proposition": 2,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "pdf_zero_based_pages": [
+      70,
+      71
+    ]
+  },
+  "meaning": "every point of finite proper chord lies in closed disk; strictly interior chord points lie in strict disk interior",
+  "source_route": "triangle inequalities/exterior angle contradiction",
+  "checked_route": "affine squared-norm identity with strictly positive t(1-t)|AB|^2; endpoints split separately",
+  "canonical_source": "scripts/Euclid_Elements/textbook/book03-circles.lit",
+  "status": "Both complete source conclusions and actual/endpoint use passed, independent strict cold file PASS (4 target statements,425.964s monotonic, stable hashes)",
+  "source_order_note": "III1 center recovery independently unfinished; not a completed contiguous book prefix",
+  "trust_added": 0,
+  "cold_receipt": "scripts/Euclid_Elements/.draft/book03-chord-checkpoint/receipt.json",
+  "evidence": [
+    "proof_journals/books02-03/III02-chord-interior7-accepted.json",
+    "proof_journals/books02-03/III02-closed-chord2-accepted.json",
+    "proof_journals/books02-03/III02-actual-and-boundary.json"
+  ],
+  "cold_passed": true
+}

@@ -1,0 +1,23 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 6,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint",
+  "statement_count": 28,
+  "hashes_stable": true,
+  "accepted_statements": [
+    9183,
+    9184
+  ],
+  "positive_scaled_construction_consumer": 9185,
+  "negative_wrong_included_angle": 9187,
+  "negative_obligation": "$are_angles_congruent(b,a,c,v,u,w)",
+  "mathematics": "Proportional adjacent actual positive side lengths and equal included angles imply AAA; quotient and equimultiple forms.",
+  "proof_route": "Source constructs an auxiliary triangle using VI4/I4; checked analytic route uses cosine law to supply the third squared side scale, then the checked three-side criterion.",
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical module integration and final chapter proof-liveness audit."
+}

@@ -1,0 +1,35 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "pages_zero_based": [
+    89,
+    90,
+    91
+  ],
+  "candidate_sha256": "68dc089aa2c2ae98cbd90fe6e985d01a19090e701cea8d15814015066242c1ce",
+  "reviewed_at": "2026-10-13T02:29:21.633455+00:00",
+  "source_semantics": {
+    "III20": "Same intercepted arc gives central angle twice inscribed angle. Chosen-side branch retains minor, semicircle, and reflex central angles.",
+    "III21": "Same circle and chord; positive vertex-side product expresses a common open arc. Both signs covered.",
+    "III22": "Four distinct cyclically ordered vertices; strict diagonal separation excludes crossed quadrilaterals. Both opposite pairs sum to pi."
+  },
+  "conventions": [
+    "Points are real coordinate pairs; angles are radians.",
+    "Radii positive; nonzero arms required by the ray-angle interface.",
+    "Analytic proofs preserve statements, not the original synthetic proof route."
+  ],
+  "consumer_coverage": [
+    "minor pi/4",
+    "major 3pi/4",
+    "semicircle pi/2",
+    "two vertices on a shared arc",
+    "nonrectangle cyclic quadrilateral with diameter boundary"
+  ],
+  "source_semantics_review": "passed",
+  "strict_joint_receipt": ".draft/book03-inscribed-angle-integration-checkpoint/receipt.json",
+  "proof_liveness_audit": "not yet completed; independent and joint checks alone do not establish minimality",
+  "promotion": "pending remaining proof liveness audit; joint strict and source semantics review passed",
+  "trust_added": 0,
+  "joint_native_success": true,
+  "joint_statement_count": 140
+}

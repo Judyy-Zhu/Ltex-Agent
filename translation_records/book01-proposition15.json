@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 15,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/15.txt"
+  },
+  "problem": "Two distinct intersecting straight lines make both pairs of vertically opposite angles equal.",
+  "proof_idea": {
+    "original": "The source applies I.13 to two adjacent sums and subtracts the common angle using C.N.3.",
+    "analytic": "Reuse independently checked metric vertical-angle relation, prove its measure bridge, or use opposite-ray supplemental sums and subtraction."
+  },
+  "litex_code": "# Book I.15: both pairs of vertical angles at a genuine line intersection are equal.\nthm proposition_15:\n    ? forall a, b, c, d, o cart(R, R):\n        a != b\n        c != d\n        $geometry::main::is_on_segment(o, a, b)\n        a != o\n        b != o\n        $geometry::main::is_on_segment(o, c, d)\n        c != o\n        d != o\n        not $geometry::main::is_collinear(a, o, c)\n        =>:\n            ray_angle(a, o, c) = ray_angle(b, o, d)\n            ray_angle(a, o, d) = ray_angle(b, o, c)\n    release thm vertical_angles_equal(a, b, c, d, o)\n    by thm angle_relation_implies_equal_measure(a, o, c, b, o, d) => ray_angle(a, o, c) = ray_angle(b, o, d)\n    release thm segment_membership_reverses_endpoints(o, c, d)\n    release thm vertical_angles_equal(a, b, d, c, o)\n    by thm angle_relation_implies_equal_measure(a, o, d, b, o, c) => ray_angle(a, o, d) = ray_angle(b, o, c)\n",
+  "comments": {
+    "status": "canonical strict full-source first-seventeen gate passed",
+    "ideal_statement": "forall a,b,c,d,o in R2: O strictly interior to AB and CD, det(OA,OC)!=0 => ray_angle(a,o,c)=ray_angle(d,o,b) and ray_angle(c,o,b)=ray_angle(a,o,d).",
+    "boundary_and_next_obligation": "Replay five original metric/affine theorem bodies and segment endpoint symmetry; prove both pairs using the checked original-relation -> principal-measure bridge.",
+    "trust_added": 0,
+    "canonical_proposition_count_effect": 0,
+    "source_corollary_audit": "Fitzpatrick PDF pages 19\u201320 (zero-based 18\u201319), lines 644\u2013673: I.15 ends and I.16 starts directly, no separate corollary in this edition."
+  },
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "accepted_session_id": 55623,
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-seventeen-checkpoint/receipt.json"
+}

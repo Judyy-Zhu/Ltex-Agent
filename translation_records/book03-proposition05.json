@@ -1,0 +1,16 @@
+{
+  "source_item": "III.5",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pdf_zero_page": 73,
+  "source": ".draft/books02-03/III05-cutting-circles1.lit",
+  "crossing_interface": "distinct circumference sets and two distinct common points; positive radii intrinsic",
+  "proof_route": "same center and one common point imply equal positive radii and identical circumference sets, contradicting distinctness",
+  "session_status": "accepted in8786",
+  "actual_use": "III05-cutting-use1 accepted: centers(0,0),(6,0), radii5, common points(3,4),(3,-4), distinctness via(-5,0)",
+  "cold_status": "PASS",
+  "trust_added": 0,
+  "cold_receipt": ".draft/III05-checkpoint/receipt.json",
+  "canonical_promotion": "complete; joint strict cold PASS",
+  "canonical": "textbook/book03-circles.lit",
+  "canonical_cold_receipt": ".draft/book03-first-six-checkpoint/receipt.json"
+}

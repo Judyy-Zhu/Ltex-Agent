@@ -1,0 +1,23 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 18,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/18.txt"
+  },
+  "problem": "In any nondegenerate triangle the greater side subtends the greater angle.",
+  "proof_idea": {
+    "original": "Cut the greater side to the smaller length, use isosceles base angles and the exterior-angle comparison.",
+    "analytic": "Strict Lagrange bound and cosine law give a positive factorization of the cosine difference; principal arccos strict decrease gives the angle order."
+  },
+  "litex_code": "# Book I.18: a greater triangle side subtends a greater angle.\n# Positive lengths and their squares have the same strict order.\nthm proposition_18:\n    ? forall a, b, c cart(R, R):\n        a != b\n        a != c\n        b != c\n        $geometry::main::is_triangle(a, b, c)\n        geometry::main::distance_sq(a, c) > geometry::main::distance_sq(a, b)\n        =>:\n            ray_angle(a, b, c) > ray_angle(a, c, b)\n    release thm greater_side_has_smaller_opposite_cosine(a, b, c)\n    release thm angle_cosine_bounded(a, b, c)\n    release thm angle_cosine_bounded(a, c, b)\n    release thm arccos_strictly_decreasing(angles::angle_cosine(a, b, c), angles::angle_cosine(a, c, b))\n    ray_angle(a, b, c) = arccos(angles::angle_cosine(a, b, c)) > arccos(angles::angle_cosine(a, c, b)) = ray_angle(a, c, b)\n",
+  "comments": {
+    "status": "canonical strict first-twenty file gate passed",
+    "trust_added": 0,
+    "side_quantity": "Squared distance order is equivalent to positive length order; the positive-root strict-order bridge is independently checked."
+  },
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-twenty-checkpoint/receipt.json"
+}

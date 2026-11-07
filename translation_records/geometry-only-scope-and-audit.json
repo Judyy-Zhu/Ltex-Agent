@@ -1,0 +1,31 @@
+{
+  "updated_at": "2026-10-20T02:30:00+00:00",
+  "authority": "User explicitly confirmed: Books I–IV plus VI; BookV only necessary lemmas; continue according to skills in same Session.",
+  "included_books": [
+    1,
+    2,
+    3,
+    4,
+    6
+  ],
+  "excluded_book": 5,
+  "numbered_propositions": 148,
+  "book_counts": {
+    "1": 48,
+    "2": 14,
+    "3": 37,
+    "4": 16,
+    "6": 33
+  },
+  "decision": "Do not continue Book V as a standalone deliverable or implement its pending magnitude model. Preserve existing numerical proofs; reuse only if required by included geometry.",
+  "audit": {
+    "book1": "Exact strict74 verified candidate promoted to canonical local file;47 numbered propositions, I45 absent. Receipt records old executable hash; disk executable changed externally afterward.",
+    "book2": "II1–13 actual canonical-prefix strict114 passed with stable b74d9f0c7e11 binary/source hashes (v2 receipt); II14 and foundation gaps remain.",
+    "book3": "18 canonical historical propositions;20–26 and28 have draft/historical checks.16 incomplete;27,29–37 not fully complete (31 rectilinear clauses only). Current-version integration still needed.",
+    "book4": "IV1–12 Session accepted; IV11–12 independent strict51 v3 passed with stable hashes in selected geometry context. IV13/14 five-point circumcircle prerequisites independently strict21 passed, but source orientation/interior and incircle obligations remain. IV13–16 incomplete; canonical integration pending.",
+    "book6": "VI1–7 independent strict checkpoints passed with stable pinned source/binary hashes (29,30,31,24,28,28,35 statements). VI8 Session-accepted geometric foot-interior and right-angle congruence helpers; altitude right angles / AAA similarities / mean-proportional corollary and VI8–33 plus canonical integration remain."
+  },
+  "rough_remaining_numbered_items": 43,
+  "count_caveat": "Generous drafting-progress count, not a count of fully integrated/current-version verified deliverables. Definitions and corollaries add further work.",
+  "all_geometry_complete": false
+}

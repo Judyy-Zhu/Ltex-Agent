@@ -1,0 +1,55 @@
+{
+  "source": {
+    "book_number": 1,
+    "definition": 23,
+    "following_source_propositions": [
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "carrier_audit": {
+    "source_concept": "two distinct infinite straight lines in the real plane, represented by proper endpoint pairs",
+    "existing_surface": "geometry::main::line_through_points and geometry::main::is_parallel",
+    "chosen_form": "source-facing prop on endpoint pairs; reuse actual line sets for a disjointness certificate",
+    "rejected_nearest": "unqualified existing is_parallel, because it allows coincident lines"
+  },
+  "name_audit": {
+    "kind": "prop",
+    "selected": "are_parallel_lines",
+    "meaning": "actual source parallel lines, with nondegenerate defining endpoint pairs and transverse separation",
+    "existing_name_preserved": "geometry::main::is_parallel remains unchanged as the existing direction relation"
+  },
+  "litex_code": "# Proposed Book I Definition 23 model: two proper coplanar lines have\n# parallel directions and a nonzero transverse separation.\n# Equivalence with disjoint infinite line sets is a pending proof obligation.\nrelease obj def geometry::main::vec\nrelease obj def geometry::main::det\n\nprop are_parallel_lines(a, b, c, d cart(R, R)):\n    a != b\n    c != d\n    $geometry::main::is_parallel(a, b, c, d)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0\n",
+  "status": "canonical strict cold gate passed; source Definition 23 equivalence and actual probes checked",
+  "required_probes": [
+    "two distinct horizontal lines accept",
+    "same horizontal line rejects",
+    "zero direction rejects",
+    "prove equivalence with nonintersection of the infinite line sets"
+  ],
+  "trust_added": 0,
+  "probe_evidence": [
+    "proof_journals/library-replay/parallel-lines-positive2-accepted.json",
+    "proof_journals/library-replay/parallel-lines-coincident-control2.json",
+    "proof_journals/library-replay/parallel-lines-zero-direction-control.json"
+  ],
+  "unfinished_bridge": {
+    "status": "both source-definition equivalence directions Session checked; no unresolved mathematical bridge, cold replay pending",
+    "source": ".draft/authoring-angles/two-nonparallel-lines-intersect5.lit",
+    "remaining_scope": [
+      "no common point for direction/separation model",
+      "nonparallel intersection constructor",
+      "converse source-definition equivalence"
+    ]
+  },
+  "forward_bridge_evidence": "proof_journals/library-replay/parallel-lines-disjoint8-accepted.json",
+  "intersection_constructor_evidence": "proof_journals/library-replay/two-nonparallel-lines-intersect4-accepted.json",
+  "converse_bridge_evidence": "proof_journals/library-replay/disjoint-lines-converse1-accepted.json",
+  "canonical_source": "textbook/parallel-interface.lit",
+  "intersection_use_evidence": "proof_journals/library-replay/nonparallel-intersection-use1-accepted.json",
+  "canonical_receipt": ".draft/parallel-interface-checkpoint/receipt.json"
+}

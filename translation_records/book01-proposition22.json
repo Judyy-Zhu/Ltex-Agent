@@ -1,0 +1,33 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 22,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/22.txt"
+  },
+  "problem": "Construct a nondegenerate triangle with three prescribed positive side lengths satisfying all three strict triangle inequalities.",
+  "proof_idea": {
+    "original": "Place copies of the given lengths on a line, draw circles with two prescribed radii, join an intersection to their centers.",
+    "analytic": "Use a normalized base from (0,0) to (r,0), with apex x=(r^2+s^2-t^2)/(2r), h=sqrt(s^2-x^2). Positive four-factor discriminant proves h>0; certify two squared distances and actual circle membership before selecting the triangle witness."
+  },
+  "litex_code": "# Book I.22: construct a triangle equal to three prescribed nonzero segments.\nthm proposition_22:\n    ? forall a1, a2, b1, b2, c1, c2 cart(R, R):\n        a1 != a2\n        b1 != b2\n        c1 != c2\n        angle_measure::segment_length(a1, a2) + angle_measure::segment_length(b1, b2) > angle_measure::segment_length(c1, c2)\n        angle_measure::segment_length(a1, a2) + angle_measure::segment_length(c1, c2) > angle_measure::segment_length(b1, b2)\n        angle_measure::segment_length(b1, b2) + angle_measure::segment_length(c1, c2) > angle_measure::segment_length(a1, a2)\n        =>:\n            exist p, q, w cart(R, R) st {$geometry::main::is_triangle(p, q, w), $geometry::main::are_segments_congruent(p, q, a1, a2), $geometry::main::are_segments_congruent(p, w, b1, b2), $geometry::main::are_segments_congruent(q, w, c1, c2)}\n    have r R+ = angle_measure::segment_length(a1, a2)\n    have s R+ = angle_measure::segment_length(b1, b2)\n    have t R+ = angle_measure::segment_length(c1, c2)\n    r + s = angle_measure::segment_length(a1, a2) + angle_measure::segment_length(b1, b2) > angle_measure::segment_length(c1, c2) = t\n    r + t = angle_measure::segment_length(a1, a2) + angle_measure::segment_length(c1, c2) > angle_measure::segment_length(b1, b2) = s\n    s + t = angle_measure::segment_length(b1, b2) + angle_measure::segment_length(c1, c2) > angle_measure::segment_length(a1, a2) = r\n    release thm angle_measure::three_positive_sides_triangle_witness(r, s, t)\n    obtain p, q, w from exist aa, bb, cc cart(R, R) st {$geometry::main::is_triangle(aa, bb, cc), geometry::main::distance_sq(aa, bb) = r^2, geometry::main::distance_sq(aa, cc) = s^2, geometry::main::distance_sq(bb, cc) = t^2, cc $in geometry::main::circle(aa, s), cc $in geometry::main::circle(bb, t)}\n    release thm angle_measure::segment_length_square_is_squared_distance(a1, a2)\n    release thm angle_measure::segment_length_square_is_squared_distance(b1, b2)\n    release thm angle_measure::segment_length_square_is_squared_distance(c1, c2)\n    geometry::main::distance_sq(p, q) = r^2 = angle_measure::segment_length(a1, a2)^2 = geometry::main::distance_sq(a1, a2)\n    geometry::main::distance_sq(p, w) = s^2 = angle_measure::segment_length(b1, b2)^2 = geometry::main::distance_sq(b1, b2)\n    geometry::main::distance_sq(q, w) = t^2 = angle_measure::segment_length(c1, c2)^2 = geometry::main::distance_sq(c1, c2)\n    by def $geometry::main::are_segments_congruent(p, q, a1, a2)\n    by def $geometry::main::are_segments_congruent(p, w, b1, b2)\n    by def $geometry::main::are_segments_congruent(q, w, c1, c2)\n    witness exist aa, bb, cc cart(R, R) st {$geometry::main::is_triangle(aa, bb, cc), $geometry::main::are_segments_congruent(aa, bb, a1, a2), $geometry::main::are_segments_congruent(aa, cc, b1, b2), $geometry::main::are_segments_congruent(bb, cc, c1, c2)} from p, q, w\n",
+  "comments": {
+    "status": "strict canonical cold file gate passed; positive and degenerate constructor probes passed",
+    "trust_added": 0,
+    "required_outputs": [
+      "actual apex",
+      "all three side lengths",
+      "genuine nondegenerate triangle",
+      "two prescribed circle memberships"
+    ],
+    "nearest_boundary": "A side-sum equality produces a degenerate height and must not satisfy the constructor signature.",
+    "probe_evidence": [
+      "proof_journals/library-replay/three-side-345-use3-accepted.json",
+      "proof_journals/library-replay/three-side-degenerate-control.json"
+    ],
+    "canonical_receipt": ".draft/first-twenty-two-checkpoint/receipt.json"
+  },
+  "accepted_session_id": 55623
+}

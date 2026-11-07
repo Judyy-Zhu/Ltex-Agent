@@ -1,0 +1,22 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pdf_zero_page": 70,
+  "source_lines": [
+    2776,
+    2780
+  ],
+  "statement": "A line that bisects a chord at right angles contains the circle center",
+  "status": "canonical strict cold PASS",
+  "planned_dependencies": [
+    "equal_distances_give_center_equation",
+    "proper chord",
+    "perpendicular line through chord midpoint"
+  ],
+  "full_book_scope": "included, not waived by alternative proof of III1",
+  "source": ".draft/books02-03/III01-corollary1.lit",
+  "ordinary_chord_use": "accepted",
+  "diameter_case": "accepted",
+  "cold_receipt": ".draft/III01-corollary-checkpoint/receipt.json",
+  "cold_status": "PASS",
+  "canonical_receipt": ".draft/book03-first-three-checkpoint/receipt.json"
+}

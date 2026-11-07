@@ -1,0 +1,55 @@
+release obj def geometry::main::vec
+
+release obj def geometry::main::det
+
+# Proper cyclic quadrilateral for I.34 and the later area propositions.
+
+prop is_proper_parallelogram(a, b, c, d cart(R, R)):
+    $parallel::are_parallel_lines(a, b, d, c)
+    $parallel::are_parallel_lines(a, d, b, c)
+
+# Positive unsigned area of an actual nondegenerate triangle.
+
+prop has_triangle_area(a, b, c cart(R, R), area R+):
+    $geometry::main::is_triangle(a, b, c)
+    2*area = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2)
+
+# A proper real-plane triangle has one positive unsigned area value.
+
+thm triangle_area_exists_uniquely:
+    ? forall a, b, c cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            exist! area R+ st {$has_triangle_area(a, b, c, area)}
+    by def $geometry::main::is_triangle(a, b, c)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2) > 0
+    have chosen_area R+ = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2)/2
+    2*chosen_area = 2*(sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2)/2) = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2)
+    by def $has_triangle_area(a, b, c, chosen_area)
+    claim:
+        ? forall u, v R+:
+            $has_triangle_area(a, b, c, u)
+            $has_triangle_area(a, b, c, v)
+            =>:
+                u = v
+        by def $has_triangle_area(a, b, c, u)
+        by def $has_triangle_area(a, b, c, v)
+        2*u = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2) = 2*v
+        u = (2*u)/2 = (2*v)/2 = v
+    witness exist! area R+ st {$has_triangle_area(a, b, c, area)} from chosen_area
+
+# Interface comes from the checked positive area existence/uniqueness theorem.
+
+have fn triangle_area by exist!:
+    ? forall a, b, c cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            exist! area R+ st {$has_triangle_area(a, b, c, area)}
+
+# Unsigned content of a proper cyclic parallelogram, via its DB diagonal.
+
+prop has_parallelogram_area(a, b, c, d cart(R, R), total R+):
+    $is_proper_parallelogram(a, b, c, d)
+    exist first, second R+ st {$has_triangle_area(a, b, d, first), $has_triangle_area(b, c, d, second), total = first+second}

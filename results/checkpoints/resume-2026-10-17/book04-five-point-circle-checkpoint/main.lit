@@ -1,0 +1,301 @@
+release obj def geometry::main::vec
+
+
+release obj def geometry::main::det
+
+
+release obj def geometry::main::dot
+
+
+
+release obj def geometry::main::distance_sq
+
+
+
+release obj def area::triangle_area
+
+
+
+release obj def geometry::main::angle_cos_num
+
+
+release obj def geometry::main::angle_cos_den
+
+
+release obj def angles::angle_cosine
+
+
+release obj def geometry::main::circle
+
+# Euclid IV.Def3 and IV.Def6 describe the same incidence relation in opposite directions.
+# Finite simple polygon boundary and positive circle radius are part of its domain.
+
+
+release obj def geometry::main::line_through_points
+
+
+claim:
+    ? forall a,b cart(R,R):
+        geometry::main::distance_sq(a,b) >= 0
+    release thm geometry::main::distance_sq_nonnegative(a,b)
+
+
+thm dot_coordinate_formula:
+    ? forall u, v cart(R, R):
+        geometry::main::dot(u, v) = u(1) * v(1) + u(2) * v(2)
+
+
+thm angle_numerator_is_negative_edge_turn:
+    ? forall a,b,c cart(R,R):
+        a != b
+        c != b
+        =>:
+            geometry::main::angle_cos_num(a,b,c) = -geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c))
+    release thm geometry::main::vec_coordinate_formula(b,a)
+    release thm geometry::main::vec_coordinate_formula(a,b)
+    release thm geometry::main::vec_coordinate_formula(b,c)
+    release thm dot_coordinate_formula(geometry::main::vec(b,a),geometry::main::vec(b,c))
+    release thm dot_coordinate_formula(geometry::main::vec(a,b),geometry::main::vec(b,c))
+    geometry::main::vec(b,a)(1) = a(1)-b(1) = -(b(1)-a(1)) = -geometry::main::vec(a,b)(1)
+    geometry::main::vec(b,a)(2) = a(2)-b(2) = -(b(2)-a(2)) = -geometry::main::vec(a,b)(2)
+    geometry::main::vec(b,a)(1) = -geometry::main::vec(a,b)(1)
+    geometry::main::vec(b,a)(2) = -geometry::main::vec(a,b)(2)
+    geometry::main::angle_cos_num(a,b,c) = geometry::main::dot(geometry::main::vec(b,a),geometry::main::vec(b,c)) = geometry::main::vec(b,a)(1)*geometry::main::vec(b,c)(1)+geometry::main::vec(b,a)(2)*geometry::main::vec(b,c)(2) = (-geometry::main::vec(a,b)(1))*geometry::main::vec(b,c)(1)+geometry::main::vec(b,a)(2)*geometry::main::vec(b,c)(2) = (-geometry::main::vec(a,b)(1))*geometry::main::vec(b,c)(1)+(-geometry::main::vec(a,b)(2))*geometry::main::vec(b,c)(2) = -(geometry::main::vec(a,b)(1)*geometry::main::vec(b,c)(1)+geometry::main::vec(a,b)(2)*geometry::main::vec(b,c)(2)) = -geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c))
+
+
+thm congruent_equal_arm_angles_have_equal_numerators:
+    ? forall p,q,r,a,b,c cart(R,R), side_sq R+:
+        $geometry::main::are_angles_congruent(p,q,r,a,b,c)
+        geometry::main::distance_sq(q,p) = side_sq
+        geometry::main::distance_sq(q,r) = side_sq
+        geometry::main::distance_sq(b,a) = side_sq
+        geometry::main::distance_sq(b,c) = side_sq
+        =>:
+            geometry::main::angle_cos_num(p,q,r) = geometry::main::angle_cos_num(a,b,c)
+    by def $geometry::main::are_angles_congruent(p,q,r,a,b,c)
+    geometry::main::angle_cos_den(p,q,r) = geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r) = side_sq*side_sq = side_sq^2
+    geometry::main::angle_cos_den(a,b,c) = geometry::main::distance_sq(b,a)*geometry::main::distance_sq(b,c) = side_sq*side_sq = side_sq^2
+    have first R = geometry::main::angle_cos_num(p,q,r)
+    have second R = geometry::main::angle_cos_num(a,b,c)
+    first^2*side_sq^2 = geometry::main::angle_cos_num(p,q,r)^2*geometry::main::angle_cos_den(a,b,c) = geometry::main::angle_cos_num(a,b,c)^2*geometry::main::angle_cos_den(p,q,r) = second^2*side_sq^2
+    first^2 = (first^2*side_sq^2)/(side_sq^2) = (second^2*side_sq^2)/(side_sq^2) = second^2
+    first*second = geometry::main::angle_cos_num(p,q,r)*geometry::main::angle_cos_num(a,b,c) >= 0
+    release thm angle_measure::same_square_and_sign_gives_equality(first,second)
+    geometry::main::angle_cos_num(p,q,r) = first = second = geometry::main::angle_cos_num(a,b,c)
+
+
+thm equal_side_turns_have_equal_determinants:
+    ? forall u,v,w cart(R,R), side_sq R+, turn_dot R:
+        geometry::main::dot(u,u) = side_sq
+        geometry::main::dot(v,v) = side_sq
+        geometry::main::dot(w,w) = side_sq
+        geometry::main::dot(u,v) = turn_dot
+        geometry::main::dot(v,w) = turn_dot
+        geometry::main::det(u,v) > 0
+        geometry::main::det(v,w) > 0
+        =>:
+            geometry::main::det(u,v) = geometry::main::det(v,w)
+    release thm geometry::main::dot_squared_plus_det_squared(u,v)
+    release thm geometry::main::dot_squared_plus_det_squared(v,w)
+    geometry::main::det(u,v)^2 = (geometry::main::dot(u,v)^2+geometry::main::det(u,v)^2)-geometry::main::dot(u,v)^2 = geometry::main::dot(u,u)*geometry::main::dot(v,v)-geometry::main::dot(u,v)^2 = side_sq*geometry::main::dot(v,v)-geometry::main::dot(u,v)^2 = side_sq*side_sq-geometry::main::dot(u,v)^2 = side_sq^2-geometry::main::dot(u,v)^2 = side_sq^2-turn_dot^2
+    geometry::main::det(v,w)^2 = (geometry::main::dot(v,w)^2+geometry::main::det(v,w)^2)-geometry::main::dot(v,w)^2 = geometry::main::dot(v,v)*geometry::main::dot(w,w)-geometry::main::dot(v,w)^2 = side_sq*geometry::main::dot(w,w)-geometry::main::dot(v,w)^2 = side_sq*side_sq-geometry::main::dot(v,w)^2 = side_sq^2-geometry::main::dot(v,w)^2 = side_sq^2-turn_dot^2
+    have first R+ = geometry::main::det(u,v)
+    have second R+ = geometry::main::det(v,w)
+    first^2 = geometry::main::det(u,v)^2 = side_sq^2-turn_dot^2 = geometry::main::det(v,w)^2 = second^2
+    first+second > 0
+    (first-second)*(first+second) = first^2-second^2 = 0
+    first-second = ((first-second)*(first+second))/(first+second) = 0/(first+second) = 0
+    first = second
+    geometry::main::det(u,v) = first = second = geometry::main::det(v,w)
+
+
+thm equal_turn_coordinate_recurrence:
+    ? forall u1,u2,v1,v2,w1,w2,turn_dot R, side_sq R+:
+        v1^2+v2^2 = side_sq
+        u1*v1+u2*v2 = turn_dot
+        v1*w1+v2*w2 = turn_dot
+        u1*v2-u2*v1 = v1*w2-v2*w1
+        =>:
+            u1+w1 = (2*turn_dot/side_sq)*v1
+            u2+w2 = (2*turn_dot/side_sq)*v2
+    have dot_sum R = (u1*v1+u2*v2)+(v1*w1+v2*w2)
+    dot_sum = turn_dot+(v1*w1+v2*w2) = turn_dot+turn_dot = 2*turn_dot
+    have det_difference R = (u1*v2-u2*v1)-(v1*w2-v2*w1)
+    det_difference = 0
+    v1*dot_sum+v2*det_difference = v1*((u1*v1+u2*v2)+(v1*w1+v2*w2))+v2*det_difference = v1*((u1*v1+u2*v2)+(v1*w1+v2*w2))+v2*((u1*v2-u2*v1)-(v1*w2-v2*w1)) = (v1^2+v2^2)*(u1+w1)
+    v1*dot_sum+v2*det_difference = v1*(2*turn_dot)+v2*det_difference = v1*(2*turn_dot)+v2*0 = 2*turn_dot*v1
+    side_sq*(u1+w1) = (v1^2+v2^2)*(u1+w1) = v1*dot_sum+v2*det_difference = 2*turn_dot*v1
+    u1+w1 = (side_sq*(u1+w1))/side_sq = (2*turn_dot*v1)/side_sq = (2*turn_dot/side_sq)*v1
+    v2*dot_sum-v1*det_difference = v2*((u1*v1+u2*v2)+(v1*w1+v2*w2))-v1*det_difference = v2*((u1*v1+u2*v2)+(v1*w1+v2*w2))-v1*((u1*v2-u2*v1)-(v1*w2-v2*w1)) = (v1^2+v2^2)*(u2+w2)
+    v2*dot_sum-v1*det_difference = v2*(2*turn_dot)-v1*det_difference = v2*(2*turn_dot)-v1*0 = 2*turn_dot*v2
+    side_sq*(u2+w2) = (v1^2+v2^2)*(u2+w2) = v2*dot_sum-v1*det_difference = 2*turn_dot*v2
+    u2+w2 = (side_sq*(u2+w2))/side_sq = (2*turn_dot*v2)/side_sq = (2*turn_dot/side_sq)*v2
+
+
+thm equal_side_equal_turn_vector_recurrence:
+    ? forall u,v,w cart(R,R), side_sq R+, turn_dot R:
+        geometry::main::dot(u,u) = side_sq
+        geometry::main::dot(v,v) = side_sq
+        geometry::main::dot(w,w) = side_sq
+        geometry::main::dot(u,v) = turn_dot
+        geometry::main::dot(v,w) = turn_dot
+        geometry::main::det(u,v) > 0
+        geometry::main::det(v,w) > 0
+        =>:
+            u(1)+w(1) = (2*turn_dot/side_sq)*v(1)
+            u(2)+w(2) = (2*turn_dot/side_sq)*v(2)
+    release thm equal_side_turns_have_equal_determinants(u,v,w,side_sq,turn_dot)
+    release thm dot_coordinate_formula(v,v)
+    release thm dot_coordinate_formula(u,v)
+    release thm dot_coordinate_formula(v,w)
+    v(1)^2+v(2)^2 = v(1)*v(1)+v(2)*v(2) = geometry::main::dot(v,v) = side_sq
+    u(1)*v(1)+u(2)*v(2) = geometry::main::dot(u,v) = turn_dot
+    v(1)*w(1)+v(2)*w(2) = geometry::main::dot(v,w) = turn_dot
+    release thm geometry::main::det_coordinate_formula(u,v)
+    release thm geometry::main::det_coordinate_formula(v,w)
+    u(1)*v(2)-u(2)*v(1) = geometry::main::det(u,v) = geometry::main::det(v,w) = v(1)*w(2)-v(2)*w(1)
+    release thm equal_turn_coordinate_recurrence(u(1),u(2),v(1),v(2),w(1),w(2),turn_dot,side_sq)
+
+
+thm equal_sides_congruent_angles_have_equal_turns:
+    ? forall a,b,c,d cart(R,R), side_sq R+:
+        geometry::main::distance_sq(a,b) = side_sq
+        geometry::main::distance_sq(b,c) = side_sq
+        geometry::main::distance_sq(c,d) = side_sq
+        $geometry::main::are_angles_congruent(a,b,c,b,c,d)
+        =>:
+            geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c)) = geometry::main::dot(geometry::main::vec(b,c),geometry::main::vec(c,d))
+    by def $geometry::main::are_angles_congruent(a,b,c,b,c,d)
+    release thm geometry::main::distance_sq_symmetric(a,b)
+    release thm geometry::main::distance_sq_symmetric(b,c)
+    release thm congruent_equal_arm_angles_have_equal_numerators(a,b,c,b,c,d,side_sq)
+    release thm angle_numerator_is_negative_edge_turn(a,b,c)
+    release thm angle_numerator_is_negative_edge_turn(b,c,d)
+    geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c)) = -(-geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c))) = -geometry::main::angle_cos_num(a,b,c) = -geometry::main::angle_cos_num(b,c,d) = -(-geometry::main::dot(geometry::main::vec(b,c),geometry::main::vec(c,d))) = geometry::main::dot(geometry::main::vec(b,c),geometry::main::vec(c,d))
+
+
+thm equal_turn_center_extension_scalar:
+    ? forall x,y,u1,u2,v1,v2,w1,w2,turn_dot R, side_sq R+:
+        u1^2+u2^2 = side_sq
+        v1^2+v2^2 = side_sq
+        w1^2+w2^2 = side_sq
+        v1*w1+v2*w2 = turn_dot
+        u1+w1 = (2*turn_dot/side_sq)*v1
+        u2+w2 = (2*turn_dot/side_sq)*v2
+        (x+u1)^2+(y+u2)^2 = x^2+y^2
+        (x-v1)^2+(y-v2)^2 = x^2+y^2
+        =>:
+            (x-v1-w1)^2+(y-v2-w2)^2 = x^2+y^2
+    2*(x*u1+y*u2) = ((x+u1)^2+(y+u2)^2)-(x^2+y^2)-(u1^2+u2^2) = (x^2+y^2)-(x^2+y^2)-(u1^2+u2^2) = -(u1^2+u2^2) = -side_sq
+    2*(x*v1+y*v2) = (x^2+y^2)+(v1^2+v2^2)-((x-v1)^2+(y-v2)^2) = (x^2+y^2)+side_sq-((x-v1)^2+(y-v2)^2) = (x^2+y^2)+side_sq-(x^2+y^2) = side_sq
+    w1 = (u1+w1)-u1 = (2*turn_dot/side_sq)*v1-u1
+    w2 = (u2+w2)-u2 = (2*turn_dot/side_sq)*v2-u2
+    2*(x*w1+y*w2) = 2*(x*((2*turn_dot/side_sq)*v1-u1)+y*w2) = 2*(x*((2*turn_dot/side_sq)*v1-u1)+y*((2*turn_dot/side_sq)*v2-u2)) = (2*turn_dot/side_sq)*(2*(x*v1+y*v2))-2*(x*u1+y*u2) = (2*turn_dot/side_sq)*side_sq-2*(x*u1+y*u2) = 2*turn_dot-2*(x*u1+y*u2) = 2*turn_dot-(-side_sq) = 2*turn_dot+side_sq
+    2*((x-v1)*w1+(y-v2)*w2) = 2*(x*w1+y*w2)-2*(v1*w1+v2*w2) = (2*turn_dot+side_sq)-2*(v1*w1+v2*w2) = (2*turn_dot+side_sq)-2*turn_dot = side_sq
+    (x-v1-w1)^2+(y-v2-w2)^2 = ((x-v1)^2+(y-v2)^2)+(w1^2+w2^2)-2*((x-v1)*w1+(y-v2)*w2) = ((x-v1)^2+(y-v2)^2)+side_sq-2*((x-v1)*w1+(y-v2)*w2) = ((x-v1)^2+(y-v2)^2)+side_sq-side_sq = (x-v1)^2+(y-v2)^2 = x^2+y^2
+
+
+thm equal_turn_circumcenter_extension:
+    ? forall a,b,c,d,center cart(R,R), side_sq R+, turn_dot R:
+        geometry::main::distance_sq(a,b) = side_sq
+        geometry::main::distance_sq(b,c) = side_sq
+        geometry::main::distance_sq(c,d) = side_sq
+        geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c)) = turn_dot
+        geometry::main::dot(geometry::main::vec(b,c),geometry::main::vec(c,d)) = turn_dot
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(b,c)) > 0
+        geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(c,d)) > 0
+        geometry::main::distance_sq(a,center) = geometry::main::distance_sq(b,center)
+        geometry::main::distance_sq(c,center) = geometry::main::distance_sq(b,center)
+        =>:
+            geometry::main::distance_sq(d,center) = geometry::main::distance_sq(b,center)
+    have u cart(R,R) = geometry::main::vec(a,b)
+    have v cart(R,R) = geometry::main::vec(b,c)
+    have w cart(R,R) = geometry::main::vec(c,d)
+    release thm geometry::main::vec_dot_self_is_distance(a,b)
+    release thm geometry::main::vec_dot_self_is_distance(b,c)
+    release thm geometry::main::vec_dot_self_is_distance(c,d)
+    geometry::main::det(u,v) = geometry::main::det(geometry::main::vec(a,b),v) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(b,c)) > 0
+    geometry::main::det(v,w) = geometry::main::det(geometry::main::vec(b,c),w) = geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(c,d)) > 0
+    release thm equal_side_equal_turn_vector_recurrence(u,v,w,side_sq,turn_dot)
+    release thm dot_coordinate_formula(u,u)
+    release thm dot_coordinate_formula(v,v)
+    release thm dot_coordinate_formula(w,w)
+    release thm dot_coordinate_formula(v,w)
+    u(1)^2+u(2)^2 = u(1)*u(1)+u(2)*u(2) = geometry::main::dot(u,u) = side_sq
+    v(1)^2+v(2)^2 = v(1)*v(1)+v(2)*v(2) = geometry::main::dot(v,v) = side_sq
+    w(1)^2+w(2)^2 = w(1)*w(1)+w(2)*w(2) = geometry::main::dot(w,w) = side_sq
+    v(1)*w(1)+v(2)*w(2) = geometry::main::dot(v,w) = turn_dot
+    release thm geometry::main::vec_coordinate_formula(a,b)
+    release thm geometry::main::vec_coordinate_formula(b,c)
+    release thm geometry::main::vec_coordinate_formula(c,d)
+    u(1) = b(1)-a(1)
+    u(2) = b(2)-a(2)
+    v(1) = c(1)-b(1)
+    v(2) = c(2)-b(2)
+    w(1) = d(1)-c(1)
+    w(2) = d(2)-c(2)
+    have x R = center(1)-b(1)
+    have y R = center(2)-b(2)
+    x+u(1) = (center(1)-b(1))+(b(1)-a(1)) = center(1)-a(1)
+    y+u(2) = (center(2)-b(2))+(b(2)-a(2)) = center(2)-a(2)
+    x-v(1) = (center(1)-b(1))-(c(1)-b(1)) = center(1)-c(1)
+    y-v(2) = (center(2)-b(2))-(c(2)-b(2)) = center(2)-c(2)
+    x-v(1)-w(1) = (center(1)-c(1))-(d(1)-c(1)) = center(1)-d(1)
+    y-v(2)-w(2) = (center(2)-c(2))-(d(2)-c(2)) = center(2)-d(2)
+    release thm geometry::main::distance_sq_coordinate_formula(a,center)
+    release thm geometry::main::distance_sq_coordinate_formula(b,center)
+    release thm geometry::main::distance_sq_coordinate_formula(c,center)
+    release thm geometry::main::distance_sq_coordinate_formula(d,center)
+    x^2+y^2 = (center(1)-b(1))^2+(center(2)-b(2))^2 = geometry::main::distance_sq(b,center)
+    (x+u(1))^2+(y+u(2))^2 = (center(1)-a(1))^2+(center(2)-a(2))^2 = geometry::main::distance_sq(a,center) = geometry::main::distance_sq(b,center) = x^2+y^2
+    (x-v(1))^2+(y-v(2))^2 = (center(1)-c(1))^2+(center(2)-c(2))^2 = geometry::main::distance_sq(c,center) = geometry::main::distance_sq(b,center) = x^2+y^2
+    release thm equal_turn_center_extension_scalar(x,y,u(1),u(2),v(1),v(2),w(1),w(2),turn_dot,side_sq)
+    geometry::main::distance_sq(d,center) = (center(1)-d(1))^2+(center(2)-d(2))^2 = (x-v(1)-w(1))^2+(y-v(2)-w(2))^2 = x^2+y^2 = geometry::main::distance_sq(b,center)
+
+
+thm equal_turn_five_point_chain_has_circumcircle:
+    ? forall a,b,c,d,fifth cart(R,R), side_sq R+:
+        $geometry::main::is_triangle(a,b,c)
+        geometry::main::distance_sq(a,b) = side_sq
+        geometry::main::distance_sq(b,c) = side_sq
+        geometry::main::distance_sq(c,d) = side_sq
+        geometry::main::distance_sq(d,fifth) = side_sq
+        $geometry::main::are_angles_congruent(a,b,c,b,c,d)
+        $geometry::main::are_angles_congruent(b,c,d,c,d,fifth)
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(b,c)) > 0
+        geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(c,d)) > 0
+        geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(d,fifth)) > 0
+        =>:
+            exist center cart(R,R), radius R+ st {a $in geometry::main::circle(center,radius), b $in geometry::main::circle(center,radius), c $in geometry::main::circle(center,radius), d $in geometry::main::circle(center,radius), fifth $in geometry::main::circle(center,radius)}
+    release thm working::book04_proposition_5(a,b,c)
+    obtain center,radius from exist o cart(R,R), radius R+ st {a $in geometry::main::circle(o,radius), b $in geometry::main::circle(o,radius), c $in geometry::main::circle(o,radius)}
+    geometry::main::circle(center,radius) = {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    a $in geometry::main::circle(center,radius)
+    b $in geometry::main::circle(center,radius)
+    c $in geometry::main::circle(center,radius)
+    a $in {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    b $in {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    c $in {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    release thm set_builder_member(a,{p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius})
+    release thm set_builder_member(b,{p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius})
+    release thm set_builder_member(c,{p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius})
+    release thm geometry::main::distance_sq_symmetric(a,center)
+    release thm geometry::main::distance_sq_symmetric(b,center)
+    release thm geometry::main::distance_sq_symmetric(c,center)
+    geometry::main::distance_sq(a,center) = geometry::main::distance_sq(center,a) = radius*radius = geometry::main::distance_sq(center,b) = geometry::main::distance_sq(b,center)
+    geometry::main::distance_sq(c,center) = geometry::main::distance_sq(center,c) = radius*radius = geometry::main::distance_sq(center,b) = geometry::main::distance_sq(b,center)
+    release thm equal_sides_congruent_angles_have_equal_turns(a,b,c,d,side_sq)
+    release thm equal_turn_circumcenter_extension(a,b,c,d,center,side_sq,geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(b,c)))
+    release thm geometry::main::distance_sq_symmetric(d,center)
+    geometry::main::distance_sq(center,d) = geometry::main::distance_sq(d,center) = geometry::main::distance_sq(b,center) = radius*radius
+    release thm equal_sides_congruent_angles_have_equal_turns(b,c,d,fifth,side_sq)
+    geometry::main::distance_sq(b,center) = geometry::main::distance_sq(c,center)
+    geometry::main::distance_sq(d,center) = geometry::main::distance_sq(b,center) = geometry::main::distance_sq(c,center)
+    release thm equal_turn_circumcenter_extension(b,c,d,fifth,center,side_sq,geometry::main::dot(geometry::main::vec(b,c),geometry::main::vec(c,d)))
+    release thm geometry::main::distance_sq_symmetric(fifth,center)
+    geometry::main::distance_sq(center,fifth) = geometry::main::distance_sq(fifth,center) = geometry::main::distance_sq(c,center) = radius*radius
+    d $in {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    fifth $in {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    d $in geometry::main::circle(center,radius)
+    fifth $in geometry::main::circle(center,radius)
+    witness exist o cart(R,R), r R+ st {a $in geometry::main::circle(o,r), b $in geometry::main::circle(o,r), c $in geometry::main::circle(o,r), d $in geometry::main::circle(o,r), fifth $in geometry::main::circle(o,r)} from center,radius

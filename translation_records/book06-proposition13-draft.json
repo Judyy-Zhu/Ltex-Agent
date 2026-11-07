@@ -1,0 +1,30 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 13,
+    "mathematics": "Find a mean proportional UV between AB and CD so UV^2=AB*CD."
+  },
+  "status": "independent_strict_gate_passed_with_positive_consumer",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "main_sha256": "9c62346d486edadca740eb6ff9ac17c60cd81780006f9fec338e27f62a0c0aa9",
+  "main_with_consumer_sha256": "877dfc4ba948ddbb637624fa5e0afda6d3d8a30e9993fad87cf0531b3e79641a",
+  "core_gate": {
+    "stmts": 35,
+    "accepted": 35
+  },
+  "with_consumer_gate": {
+    "stmts": 36,
+    "accepted": 36
+  },
+  "accepted_source": {
+    "request": 9702
+  },
+  "positive_consumer": {
+    "request": 9703
+  },
+  "failed_attempts": [
+    9701
+  ],
+  "trust_added": 0,
+  "canonical_completion_increment": 0
+}

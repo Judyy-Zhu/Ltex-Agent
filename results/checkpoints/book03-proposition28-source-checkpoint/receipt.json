@@ -1,0 +1,41 @@
+{
+  "command": [
+    "scripts/Euclid_Elements/.draft/pinned-release/target/release/litex",
+    "-lang",
+    "en",
+    "-strict",
+    "-f",
+    "scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/main.lit"
+  ],
+  "started_at": "2026-10-13T14:08:18.865518+00:00",
+  "sha256_before": {
+    "scripts/Euclid_Elements/.draft/pinned-release/target/release/litex": "0be34d26405f77ed7e01bb8b02f40813dc145acc274e3220c41276bc47d4a45f",
+    "scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/main.lit": "f85ab40bb324cc589a9cf0ccce614e38e474c830e2f11759cef5100fec4fc9f1",
+    "scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/litex.config": "414a4bc83237fa5a6b943a099e1d5acf97747125ed9393b36a9cbd655c4c4906",
+    "scripts/Euclid_Elements/textbook/geometry/litex.config": "7c8ed2665cc2ee29bff6b8509dbe8d4a6bea8badd4fe69d4d5ccf45a0d55e521",
+    "scripts/LitexGeo-AutoBuild/shenjiachen/\u65b0geo\u548cgeo_definitions/geo.lit": "7852ec523321ad82bee651a5d1b343933379e71fa2850e302266bbe54f7c8a7c",
+    "scripts/Euclid_Elements/textbook/angle-interface.lit": "f1ac77be613fdd8304ca91617a664f0a3078ba4c5f8a8a94d364ff03a12d9a0c",
+    "scripts/Euclid_Elements/textbook/angle-measure.lit": "56023ced0f7ad1672f4d5465d6486e2d8ef083a158dd913816fcdfaa4ada6c40"
+  },
+  "ended_at": "2026-10-13T14:51:43.156331+00:00",
+  "wall_seconds": 2604.3393875421025,
+  "duration_clock": "Python time.monotonic (distinct from UTC timestamp difference)",
+  "exit_code": 0,
+  "kind": "run",
+  "success": true,
+  "session_error": null,
+  "statement_count": 91,
+  "sha256_after": {
+    "scripts/Euclid_Elements/.draft/pinned-release/target/release/litex": "0be34d26405f77ed7e01bb8b02f40813dc145acc274e3220c41276bc47d4a45f",
+    "scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/main.lit": "f85ab40bb324cc589a9cf0ccce614e38e474c830e2f11759cef5100fec4fc9f1",
+    "scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/litex.config": "414a4bc83237fa5a6b943a099e1d5acf97747125ed9393b36a9cbd655c4c4906",
+    "scripts/Euclid_Elements/textbook/geometry/litex.config": "7c8ed2665cc2ee29bff6b8509dbe8d4a6bea8badd4fe69d4d5ccf45a0d55e521",
+    "scripts/LitexGeo-AutoBuild/shenjiachen/\u65b0geo\u548cgeo_definitions/geo.lit": "7852ec523321ad82bee651a5d1b343933379e71fa2850e302266bbe54f7c8a7c",
+    "scripts/Euclid_Elements/textbook/angle-interface.lit": "f1ac77be613fdd8304ca91617a664f0a3078ba4c5f8a8a94d364ff03a12d9a0c",
+    "scripts/Euclid_Elements/textbook/angle-measure.lit": "56023ced0f7ad1672f4d5465d6486e2d8ef083a158dd913816fcdfaa4ada6c40"
+  },
+  "sources_and_binary_stable": true,
+  "log": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/full-gate.json",
+  "purpose": "III28 equal-chord minor/major arc congruence plus translated/rotated and semicircle consumers; III26 source prerequisites; promotion pending",
+  "epoch": 2
+}

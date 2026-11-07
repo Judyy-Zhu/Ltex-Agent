@@ -1,0 +1,39 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    91
+  ],
+  "source_goal": "Both opposite-angle pairs of a proper inscribed quadrilateral sum to two right angles",
+  "interface_plan": "Four distinct circumference vertices in cyclic order, expressed by opposite strict sides for both diagonals; no rectangle/parallelogram restriction.",
+  "proof_route": "Analytic opposite-arc supplementary lemma from verified chord-side metric identity and double cosine, then apply once per diagonal. Diameter case retained through weak cosine signs.",
+  "source_route_difference": "Source applies III21 plus I32; this analytic route retains the same two conclusions.",
+  "accepted": [
+    "equal-squares-opposite-signs1.lit",
+    "opposite-arc-angles-supplementary1.lit",
+    "inscribed-quadrilateral-definition1.lit",
+    "book03-proposition22-1.lit",
+    "book03-proposition22-use1.lit"
+  ],
+  "prepared": [
+    "opposite-arc-angles-supplementary1.lit"
+  ],
+  "status": "Independent strict PASS; canonical joint gate99057 running",
+  "trust_added": 0,
+  "counted": false,
+  "pending": null,
+  "checkpoint": ".draft/book03-proposition22-checkpoint",
+  "cold_gate": {
+    "session": 44001,
+    "status": "PASS32 strict/stable",
+    "directory": ".draft/book03-proposition22-checkpoint",
+    "receipt": ".draft/book03-proposition22-checkpoint/receipt.json"
+  },
+  "joint_integration_gate": {
+    "receipt": ".draft/book03-inscribed-angle-integration-checkpoint/receipt.json",
+    "success": true,
+    "statement_count": 140,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "canonical_promotion": "Pending remaining proof audit; superseding III20\u201323/Defs6,8,11 integration gate74372 running"
+}

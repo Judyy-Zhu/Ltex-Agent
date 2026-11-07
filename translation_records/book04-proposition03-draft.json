@@ -1,0 +1,36 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "book": 4,
+  "proposition": 3,
+  "source_lines": [
+    4609,
+    4662
+  ],
+  "statement": "Given a proper triangle and a positive-radius circle, construct a proper triangle equiangular with the given triangle and circumscribed about the circle.",
+  "formal_proof_route": "Apply the independent IV4 incircle construction to the original triangle; scale by given_radius/incircle_radius and translate the incircle center to the given center. Preserve finite side contacts, tangent inequalities, triangle interior, nondegeneracy and all three corresponding angles.",
+  "dependency_order": "The analytic IV4 construction is independent of IV3. Source ordering may place its construction lemma before IV3 while retaining the numbered IV4 statement later.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition3-candidate1.lit",
+  "status": "General theorem and concrete caller accepted in strict Session; boundary control rejected as intended; grouped gate/integration pending",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "verified_ingredients": [
+    "IV4 general incircle construction",
+    "Positive similarity preserves triangle interior",
+    "Positive similarity preserves finite segment membership",
+    "Positive similarity preserves line incidence and tangency",
+    "Existing uniform_scale_preserves_triangle and uniform_scale_preserves_angle"
+  ],
+  "pending": [
+    "General theorem verification",
+    "Concrete caller and degenerate-input control",
+    "Grouped strict saved-source gate and actual module integration",
+    "Final proof liveness and source fidelity audit"
+  ],
+  "accepted_request": "book04-construction-session-v5/results/1900.json",
+  "controls_pending": [
+    ".draft/resume-2026-10-17/book04-proposition3-use1.lit",
+    ".draft/resume-2026-10-17/book04-proposition3-collinear-negative.lit"
+  ],
+  "positive_consumer": "book04-construction-session-v5/results/1901.json",
+  "negative_control": "book04-construction-session-v5/results/1902.json"
+}

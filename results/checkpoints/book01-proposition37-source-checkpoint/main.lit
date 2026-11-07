@@ -1,0 +1,101 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def area::triangle_area
+
+
+# I.37: actual triangles on BC with apex points on a common parallel.
+thm proposition_37:
+    ? forall a, b, c, d cart(R, R):
+        $geometry::main::is_triangle(b, c, a)
+        $geometry::main::is_triangle(b, c, d)
+        geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+        =>:
+            exist common R+ st {$area::has_triangle_area(b, c, a, common), $area::has_triangle_area(b, c, d, common)}
+    release thm geometry::main::vec_coordinate_formula(b, c)
+    release thm geometry::main::vec_coordinate_formula(a, d)
+    geometry::main::vec(b, c)(1) = c(1)-b(1)
+    geometry::main::vec(b, c)(2) = c(2)-b(2)
+    geometry::main::vec(a, d)(1) = d(1)-a(1)
+    geometry::main::vec(a, d)(2) = d(2)-a(2)
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(a, d))
+    (c(1)-b(1))*(d(2)-a(2))-(c(2)-b(2))*(d(1)-a(1)) = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+    release thm geometry::main::collinear_det_expand(b, c, a)
+    release thm geometry::main::collinear_det_expand(b, c, d)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d)) = (c(1)-b(1))*(d(2)-b(2))-(c(2)-b(2))*(d(1)-b(1)) = ((c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)))+((c(1)-b(1))*(d(2)-a(2))-(c(2)-b(2))*(d(1)-a(1))) = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))+0 = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2 = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2
+    have common R+ = area::triangle_area(b, c, a)
+    $area::has_triangle_area(b, c, a, common)
+    by def $area::has_triangle_area(b, c, a, common)
+    2*common = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2) = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2)
+    by def $area::has_triangle_area(b, c, d, common)
+    witness exist result R+ st {$area::has_triangle_area(b, c, a, result), $area::has_triangle_area(b, c, d, result)} from common
+
+
+sketch:
+    have a cart(R, R) = (0, 2)
+    a(1) = 0
+    a(2) = 2
+    have b cart(R, R) = (0, 0)
+    b(1) = 0
+    b(2) = 0
+    have c cart(R, R) = (3, 0)
+    c(1) = 3
+    c(2) = 0
+    have d cart(R, R) = (2, 2)
+    d(1) = 2
+    d(2) = 2
+    release thm geometry::main::collinear_det_expand(b, c, a)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = 6 != 0
+    by def $geometry::main::is_triangle(b, c, a)
+    release thm geometry::main::collinear_det_expand(b, c, d)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d)) = (c(1)-b(1))*(d(2)-b(2))-(c(2)-b(2))*(d(1)-b(1)) = 6 != 0
+    by def $geometry::main::is_triangle(b, c, d)
+    geometry::main::vec(b, c)(1) = c(1)-b(1) = 3
+    geometry::main::vec(b, c)(2) = c(2)-b(2) = 0
+    geometry::main::vec(a, d)(1) = d(1)-a(1) = 2
+    geometry::main::vec(a, d)(2) = d(2)-a(2) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(a, d))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+    release thm proposition_37(a, b, c, d)
+    obtain common from exist result R+ st {$area::has_triangle_area(b, c, a, result), $area::has_triangle_area(b, c, d, result)}
+    by def $area::has_triangle_area(b, c, a, common)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2 = 6^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2) = sqrt(6^2) = |6| = 6
+    common = (2*common)/2 = 6/2 = 3
+    $area::has_triangle_area(b, c, a, 3)
+    $area::has_triangle_area(b, c, d, 3)
+
+
+sketch:
+    have a cart(R, R) = (0, 2)
+    a(1) = 0
+    a(2) = 2
+    have b cart(R, R) = (0, 0)
+    b(1) = 0
+    b(2) = 0
+    have c cart(R, R) = (3, 0)
+    c(1) = 3
+    c(2) = 0
+    have d cart(R, R) = (0, 2)
+    d(1) = 0
+    d(2) = 2
+    release thm geometry::main::collinear_det_expand(b, c, a)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = 6 != 0
+    by def $geometry::main::is_triangle(b, c, a)
+    release thm geometry::main::collinear_det_expand(b, c, d)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d)) = (c(1)-b(1))*(d(2)-b(2))-(c(2)-b(2))*(d(1)-b(1)) = 6 != 0
+    by def $geometry::main::is_triangle(b, c, d)
+    geometry::main::vec(b, c)(1) = c(1)-b(1) = 3
+    geometry::main::vec(b, c)(2) = c(2)-b(2) = 0
+    geometry::main::vec(a, d)(1) = d(1)-a(1) = 0
+    geometry::main::vec(a, d)(2) = d(2)-a(2) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(a, d))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+    release thm proposition_37(a, b, c, d)
+    obtain common from exist result R+ st {$area::has_triangle_area(b, c, a, result), $area::has_triangle_area(b, c, d, result)}
+    by def $area::has_triangle_area(b, c, a, common)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2 = 6^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2) = sqrt(6^2) = |6| = 6
+    common = (2*common)/2 = 6/2 = 3
+    $area::has_triangle_area(b, c, a, 3)
+    $area::has_triangle_area(b, c, d, 3)

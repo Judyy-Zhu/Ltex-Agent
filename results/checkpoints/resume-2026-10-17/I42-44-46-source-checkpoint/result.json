@@ -1,0 +1,247 @@
+{
+  "kind": "run",
+  "run_result": "success",
+  "target": "file",
+  "path": "scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/prefix.lit",
+  "detail": "normal",
+  "language": "en",
+  "statement_results": [
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::vec",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::vec $in fn (A, B cart(R, R)) cart(R, R)",
+        "m0::f0::vec = fn (A, B cart(R, R)) cart(R, R){((B(1) - A(1)), (B(2) - A(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::det",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::det $in fn (u, v cart(R, R)) R",
+        "m0::f0::det = fn (u, v cart(R, R)) R{((u(1) * v(2)) - (u(2) * v(1)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::dot",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::dot $in fn (u, v cart(R, R)) R",
+        "m0::f0::dot = fn (u, v cart(R, R)) R{((u(1) * v(1)) + (u(2) * v(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::distance_sq",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::distance_sq $in fn (a, b cart(R, R)) R",
+        "m0::f0::distance_sq = fn (a, b cart(R, R)) R{m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, b))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_num",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_num $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_num = fn (p, q, r cart(R, R): p != q, r != q) R{m0::f0::dot(m0::f0::vec(q, p), m0::f0::vec(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_den",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_den $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_den = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f0::angle_cosine",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f0::angle_cosine $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "f0::angle_cosine = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::angle_cos_num(p, q, r) / sqrt (m0::f0::angle_cos_den(p, q, r)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f4::triangle_area",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f4::triangle_area $in fn (a, b, c cart(R, R): $m0::f0::is_triangle(a, b, c)) R+",
+        "forall a, b, c cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    =>:\n        $f4::has_triangle_area(a, b, c, f4::triangle_area(a, b, c))",
+        "forall a, b, c cart(R, R), area R+:\n    $m0::f0::is_triangle(a, b, c)\n    $f4::has_triangle_area(a, b, c, area)\n    =>:\n        area = f4::triangle_area(a, b, c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm affine_parallelogram_witness:\n    ? forall a, b, c, d cart(R, R):\n        $m0::f0::is_triangle(a, b, d)\n        c(1) = ((b(1) + d(1)) - a(1))\n        c(2) = ((b(2) + d(2)) - a(2))\n        =>:\n            $f4::is_proper_parallelogram(a, b, c, d)\n    by def $m0::f0::is_triangle(a, b, d)\n    release thm f2::triangle_vertices_distinct(a, b, d)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    by contra:\n        ? d != c\n        d = c\n        c(1) = d(1)\n        c(2) = d(2)\n        b(1) = ((((b(1) + d(1)) - a(1)) - d(1)) + a(1)) = ((c(1) - d(1)) + a(1)) = ((d(1) - d(1)) + a(1)) = a(1)\n        b(2) = ((((b(2) + d(2)) - a(2)) - d(2)) + a(2)) = ((c(2) - d(2)) + a(2)) = ((d(2) - d(2)) + a(2)) = a(2)\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = (((a(1) - a(1)) * (d(2) - a(2))) - ((a(2) - a(2)) * (d(1) - a(1)))) = 0\n        impossible m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by contra:\n        ? b != c\n        b = c\n        c(1) = b(1)\n        c(2) = b(2)\n        d(1) = ((((b(1) + d(1)) - a(1)) - b(1)) + a(1)) = ((c(1) - b(1)) + a(1)) = ((b(1) - b(1)) + a(1)) = a(1)\n        d(2) = ((((b(2) + d(2)) - a(2)) - b(2)) + a(2)) = ((c(2) - b(2)) + a(2)) = ((b(2) - b(2)) + a(2)) = a(2)\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = (((b(1) - a(1)) * (a(2) - a(2))) - ((b(2) - a(2)) * (a(1) - a(1)))) = 0\n        impossible m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    (c(1) - d(1)) = (((b(1) + d(1)) - a(1)) - d(1)) = (b(1) - a(1))\n    (c(1) - b(1)) = (((b(1) + d(1)) - a(1)) - b(1)) = (d(1) - a(1))\n    (c(2) - d(2)) = (((b(2) + d(2)) - a(2)) - d(2)) = (b(2) - a(2))\n    (c(2) - b(2)) = (((b(2) + d(2)) - a(2)) - b(2)) = (d(2) - a(2))\n    release thm m0::f0::vec_coordinate_formula(a, b)\n    m0::f0::vec(a, b)(1) = (b(1) - a(1))\n    m0::f0::vec(a, b)(2) = (b(2) - a(2))\n    release thm m0::f0::vec_coordinate_formula(a, d)\n    m0::f0::vec(a, d)(1) = (d(1) - a(1))\n    m0::f0::vec(a, d)(2) = (d(2) - a(2))\n    release thm m0::f0::vec_coordinate_formula(d, c)\n    m0::f0::vec(d, c)(1) = (c(1) - d(1))\n    m0::f0::vec(d, c)(2) = (c(2) - d(2))\n    release thm m0::f0::vec_coordinate_formula(b, c)\n    m0::f0::vec(b, c)(1) = (c(1) - b(1))\n    m0::f0::vec(b, c)(2) = (c(2) - b(2))\n    release thm m0::f0::det_coordinate_formula(m0::f0::vec(a, b), m0::f0::vec(d, c))\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(d, c)) = (((b(1) - a(1)) * (c(2) - d(2))) - ((b(2) - a(2)) * (c(1) - d(1)))) = (((b(1) - a(1)) * (b(2) - a(2))) - ((b(2) - a(2)) * (b(1) - a(1)))) = 0\n    by def $m0::f0::is_parallel(a, b, d, c)\n    release thm m0::f0::det_coordinate_formula(m0::f0::vec(a, d), m0::f0::vec(b, c))\n    m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(b, c)) = (((d(1) - a(1)) * (c(2) - b(2))) - ((d(2) - a(2)) * (c(1) - b(1)))) = (((d(1) - a(1)) * (d(2) - a(2))) - ((d(2) - a(2)) * (d(1) - a(1)))) = 0\n    by def $m0::f0::is_parallel(a, d, b, c)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    release thm m0::f0::collinear_det_expand(a, d, b)\n    release thm m0::f0::det_antisymmetric(m0::f0::vec(a, d), m0::f0::vec(a, b))\n    by contra:\n        ? m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(a, b)) != 0\n        m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(a, b)) = 0\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (-(-m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)))) = (-m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(a, b))) = (-0) = 0\n        impossible m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by def $f3::are_parallel_lines(a, b, d, c)\n    by def $f3::are_parallel_lines(a, d, b, c)\n    by def $f4::is_proper_parallelogram(a, b, c, d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R):\n    $m0::f0::is_triangle(a, b, d)\n    c(1) = ((b(1) + d(1)) - a(1))\n    c(2) = ((b(2) + d(2)) - a(2))\n    =>:\n        $f4::is_proper_parallelogram(a, b, c, d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm affine_parallelogram_area:\n    ? forall a, b, c, d cart(R, R):\n        $m0::f0::is_triangle(a, b, d)\n        c(1) = ((b(1) + d(1)) - a(1))\n        c(2) = ((b(2) + d(2)) - a(2))\n        =>:\n            exist common R+ st {$f4::has_triangle_area(a, b, d, common), $f4::has_parallelogram_area(a, b, c, d, (2 * common))}\n    release thm affine_parallelogram_witness(a, b, c, d)\n    by def $m0::f0::is_triangle(a, b, d)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    release thm m0::f0::collinear_det_expand(b, c, d)\n    (c(1) - b(1)) = (((b(1) + d(1)) - a(1)) - b(1)) = (d(1) - a(1))\n    (c(2) - b(2)) = (((b(2) + d(2)) - a(2)) - b(2)) = (d(2) - a(2))\n    m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) = (((c(1) - b(1)) * (d(2) - b(2))) - ((c(2) - b(2)) * (d(1) - b(1)))) = (((d(1) - a(1)) * (d(2) - b(2))) - ((d(2) - a(2)) * (d(1) - b(1)))) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by def $m0::f0::is_triangle(b, c, d)\n    have common R+ = f4::triangle_area(a, b, d)\n    $f4::has_triangle_area(a, b, d, common)\n    by def $f4::has_triangle_area(a, b, d, common)\n    (m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2) = (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2)\n    (2 * common) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2)) = sqrt ((m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2))\n    by def $f4::has_triangle_area(b, c, d, common)\n    witness exist first, second R+ st {$f4::has_triangle_area(a, b, d, first), $f4::has_triangle_area(b, c, d, second), (2 * common) = (first + second)} from common, common\n    by def $f4::has_parallelogram_area(a, b, c, d, (2 * common))\n    witness exist half R+ st {$f4::has_triangle_area(a, b, d, half), $f4::has_parallelogram_area(a, b, c, d, (2 * half))} from common",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R):\n    $m0::f0::is_triangle(a, b, d)\n    c(1) = ((b(1) + d(1)) - a(1))\n    c(2) = ((b(2) + d(2)) - a(2))\n    =>:\n        exist common R+ st {$f4::has_triangle_area(a, b, d, common), $f4::has_parallelogram_area(a, b, c, d, (2 * common))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proposition_42:\n    ? forall a, b, c, p, q, r cart(R, R):\n        $m0::f0::is_triangle(a, b, c)\n        $m0::f0::is_triangle(q, p, r)\n        =>:\n            exist third, fourth cart(R, R), common R+ st {$f4::has_triangle_area(a, b, c, common), $f4::has_parallelogram_area(q, p, third, fourth, common), $m0::f0::are_angles_congruent(p, q, fourth, p, q, r)}\n    by def $m0::f0::is_triangle(q, p, r)\n    release thm f2::triangle_vertices_distinct(q, p, r)\n    have common R+ = f4::triangle_area(a, b, c)\n    $f4::has_triangle_area(a, b, c, common)\n    have determinant R = m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, r))\n    determinant != 0\n    (determinant ^ 2) > 0\n    sqrt ((determinant ^ 2)) > 0\n    have root R+ = sqrt ((determinant ^ 2))\n    root != 0\n    have scale R+ = (common / root)\n    scale != 0\n    have fourth cart(R, R) = ((q(1) + (scale * (r(1) - q(1)))), (q(2) + (scale * (r(2) - q(2)))))\n    fourth(1) = (q(1) + (scale * (r(1) - q(1))))\n    fourth(2) = (q(2) + (scale * (r(2) - q(2))))\n    (fourth(1) - q(1)) = ((q(1) + (scale * (r(1) - q(1)))) - q(1)) = (scale * (r(1) - q(1)))\n    (fourth(2) - q(2)) = ((q(2) + (scale * (r(2) - q(2)))) - q(2)) = (scale * (r(2) - q(2)))\n    have third cart(R, R) = (((p(1) + fourth(1)) - q(1)), ((p(2) + fourth(2)) - q(2)))\n    third(1) = ((p(1) + fourth(1)) - q(1))\n    third(2) = ((p(2) + fourth(2)) - q(2))\n    release thm m0::f0::collinear_det_expand(q, p, r)\n    release thm m0::f0::collinear_det_expand(q, p, fourth)\n    m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, fourth)) = (((p(1) - q(1)) * (fourth(2) - q(2))) - ((p(2) - q(2)) * (fourth(1) - q(1)))) = (((p(1) - q(1)) * (scale * (r(2) - q(2)))) - ((p(2) - q(2)) * (scale * (r(1) - q(1))))) = (scale * (((p(1) - q(1)) * (r(2) - q(2))) - ((p(2) - q(2)) * (r(1) - q(1))))) = (scale * m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, r))) = (scale * determinant)\n    by contra:\n        ? m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, fourth)) != 0\n        m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, fourth)) = 0\n        (scale * determinant) = m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, fourth)) = 0\n        determinant = ((scale * determinant) / scale) = (0 / scale) = 0\n        impossible determinant != 0\n    by def $m0::f0::is_triangle(q, p, fourth)\n    release thm f2::triangle_vertices_distinct(q, p, fourth)\n    release thm affine_parallelogram_area(q, p, third, fourth)\n    obtain half from exist value R+ st {$f4::has_triangle_area(q, p, fourth, value), $f4::has_parallelogram_area(q, p, third, fourth, (2 * value))}\n    by def $f4::has_triangle_area(q, p, fourth, half)\n    (m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, fourth)) ^ 2) = ((scale * determinant) ^ 2) = ((scale ^ 2) * (determinant ^ 2))\n    (scale ^ 2) >= 0\n    (determinant ^ 2) >= 0\n    sqrt (((scale ^ 2) * (determinant ^ 2))) = (sqrt ((scale ^ 2)) * sqrt ((determinant ^ 2)))\n    sqrt ((scale ^ 2)) = abs (scale) = scale\n    (2 * half) = sqrt ((m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, fourth)) ^ 2)) = sqrt (((scale ^ 2) * (determinant ^ 2))) = (sqrt ((scale ^ 2)) * sqrt ((determinant ^ 2))) = (scale * root) = ((common / root) * root) = common\n    $f4::has_parallelogram_area(q, p, third, fourth, common)\n    release thm f1::positive_ray_scale_preserves_cosine(p, q, r, fourth, scale)\n    release thm f1::equal_cosines_imply_angle_relation(p, q, fourth, p, q, r)\n    witness exist third_point, fourth_point cart(R, R), value R+ st {$f4::has_triangle_area(a, b, c, value), $f4::has_parallelogram_area(q, p, third_point, fourth_point, value), $m0::f0::are_angles_congruent(p, q, fourth_point, p, q, r)} from third, fourth, common",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, p, q, r cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    $m0::f0::is_triangle(q, p, r)\n    =>:\n        exist third, fourth cart(R, R), common R+ st {$f4::has_triangle_area(a, b, c, common), $f4::has_parallelogram_area(q, p, third, fourth, common), $m0::f0::are_angles_congruent(p, q, fourth, p, q, r)}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proposition_23:\n    ? forall a, b, d, c, e1 cart(R, R):\n        a != b\n        $m0::f0::is_triangle(c, d, e1)\n        =>:\n            exist g cart(R, R) st {$m0::f0::is_triangle(a, b, g), $m0::f0::are_angles_congruent(b, a, g, d, c, e1)}\n    release thm f2::triangle_vertices_distinct(c, d, e1)\n    release thm m0::f0::distance_sq_positive_of_ne(c, d)\n    release thm m0::f0::distance_sq_positive_of_ne(c, e1)\n    release thm m0::f0::distance_sq_positive_of_ne(a, b)\n    have k R+ = m0::f0::distance_sq(c, d)\n    have v R+ = m0::f0::distance_sq(c, e1)\n    have h R+ = m0::f0::distance_sq(a, b)\n    have ux R = (d(1) - c(1))\n    have uy R = (d(2) - c(2))\n    have vx R = (e1(1) - c(1))\n    have vy R = (e1(2) - c(2))\n    have wx R = (b(1) - a(1))\n    have wy R = (b(2) - a(2))\n    have n R = ((ux * vx) + (uy * vy))\n    have z R = ((ux * vy) - (uy * vx))\n    release thm m0::f0::distance_sq_coordinate_formula(c, d)\n    release thm m0::f0::distance_sq_coordinate_formula(c, e1)\n    release thm m0::f0::distance_sq_coordinate_formula(a, b)\n    k = ((ux ^ 2) + (uy ^ 2))\n    v = ((vx ^ 2) + (vy ^ 2))\n    h = ((wx ^ 2) + (wy ^ 2))\n    ((n ^ 2) + (z ^ 2)) = ((((ux * vx) + (uy * vy)) ^ 2) + (((ux * vy) - (uy * vx)) ^ 2)) = (((ux ^ 2) + (uy ^ 2)) * ((vx ^ 2) + (vy ^ 2))) = (k * v)\n    release thm m0::f0::collinear_det_expand(c, d, e1)\n    m0::f0::det(m0::f0::vec(c, d), m0::f0::vec(c, e1)) = ((ux * vy) - (uy * vx)) = z\n    z != 0\n    have gx R = (((n * wx) - (z * wy)) / k)\n    have gy R = (((n * wy) + (z * wx)) / k)\n    have g cart(R, R) = ((a(1) + gx), (a(2) + gy))\n    (g(1) - a(1)) = gx\n    (g(2) - a(2)) = gy\n    release thm m0::f0::collinear_det_expand(a, b, g)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, g)) = ((wx * gy) - (wy * gx)) = ((wx * (((n * wy) + (z * wx)) / k)) - (wy * (((n * wx) - (z * wy)) / k))) = ((z * ((wx ^ 2) + (wy ^ 2))) / k) = ((z * h) / k)\n    by contra:\n        ? ((z * h) / k) != 0\n        ((z * h) / k) = 0\n        z = (((z * h) / k) * (k / h)) = (0 * (k / h)) = 0\n        impossible z != 0\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, g)) != 0\n    by def $m0::f0::is_triangle(a, b, g)\n    release thm f2::triangle_vertices_distinct(a, b, g)\n    release thm m0::f0::distance_sq_coordinate_formula(a, g)\n    m0::f0::distance_sq(a, g) = ((gx ^ 2) + (gy ^ 2)) = (((((n * wx) - (z * wy)) / k) ^ 2) + ((((n * wy) + (z * wx)) / k) ^ 2)) = ((((n ^ 2) + (z ^ 2)) * ((wx ^ 2) + (wy ^ 2))) / (k ^ 2)) = (((k * v) * h) / (k ^ 2)) = ((v * h) / k)\n    release thm m0::f0::perpendicular_dot_expand(a, b, a, g)\n    m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, g)) = ((wx * gx) + (wy * gy)) = ((wx * (((n * wx) - (z * wy)) / k)) + (wy * (((n * wy) + (z * wx)) / k))) = ((n * ((wx ^ 2) + (wy ^ 2))) / k) = ((n * h) / k)\n    release thm m0::f0::perpendicular_dot_expand(c, d, c, e1)\n    m0::f0::dot(m0::f0::vec(c, d), m0::f0::vec(c, e1)) = ((ux * vx) + (uy * vy)) = n\n    m0::f0::angle_cos_num(b, a, g) = ((n * h) / k)\n    m0::f0::angle_cos_num(d, c, e1) = n\n    (v * h) > 0\n    (h / k) > 0\n    ((v * h) * (h / k)) > 0\n    ((v * (h ^ 2)) / k) = ((v * h) * (h / k)) > 0\n    m0::f0::angle_cos_den(b, a, g) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(a, g)) = (h * ((v * h) / k)) = ((v * (h ^ 2)) / k)\n    m0::f0::angle_cos_den(b, a, g) > 0\n    m0::f0::angle_cos_den(d, c, e1) = (k * v) > 0\n    ((m0::f0::angle_cos_num(b, a, g) ^ 2) * m0::f0::angle_cos_den(d, c, e1)) = ((((n * h) / k) ^ 2) * (k * v)) = ((n ^ 2) * ((v * (h ^ 2)) / k)) = ((m0::f0::angle_cos_num(d, c, e1) ^ 2) * m0::f0::angle_cos_den(b, a, g))\n    (m0::f0::angle_cos_num(b, a, g) * m0::f0::angle_cos_num(d, c, e1)) = (((n * h) / k) * n) = ((n ^ 2) * (h / k)) >= 0\n    by def $m0::f0::are_angles_congruent(b, a, g, d, c, e1)\n    witness exist gg cart(R, R) st {$m0::f0::is_triangle(a, b, gg), $m0::f0::are_angles_congruent(b, a, gg, d, c, e1)} from g",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, d, c, e1 cart(R, R):\n    a != b\n    $m0::f0::is_triangle(c, d, e1)\n    =>:\n        exist g cart(R, R) st {$m0::f0::is_triangle(a, b, g), $m0::f0::are_angles_congruent(b, a, g, d, c, e1)}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proposition_44:\n    ? forall a, b, c, base_start, base_end, p, q, r cart(R, R):\n        $m0::f0::is_triangle(a, b, c)\n        base_start != base_end\n        $m0::f0::is_triangle(q, p, r)\n        =>:\n            exist third, fourth cart(R, R), common R+ st {$f4::has_triangle_area(a, b, c, common), $f4::has_parallelogram_area(base_start, base_end, third, fourth, common), $m0::f0::are_angles_congruent(base_end, base_start, fourth, p, q, r)}\n    release thm proposition_23(base_start, base_end, p, q, r)\n    obtain ray_point from exist g cart(R, R) st {$m0::f0::is_triangle(base_start, base_end, g), $m0::f0::are_angles_congruent(base_end, base_start, g, p, q, r)}\n    release thm proposition_42(a, b, c, base_end, base_start, ray_point)\n    obtain third, fourth, common from exist x, y cart(R, R), value R+ st {$f4::has_triangle_area(a, b, c, value), $f4::has_parallelogram_area(base_start, base_end, x, y, value), $m0::f0::are_angles_congruent(base_end, base_start, y, base_end, base_start, ray_point)}\n    by def $m0::f0::are_angles_congruent(base_end, base_start, fourth, base_end, base_start, ray_point)\n    by def $m0::f0::are_angles_congruent(base_end, base_start, ray_point, p, q, r)\n    release thm f1::angle_relation_implies_equal_cosine(base_end, base_start, fourth, base_end, base_start, ray_point)\n    release thm f1::angle_relation_implies_equal_cosine(base_end, base_start, ray_point, p, q, r)\n    f0::angle_cosine(base_end, base_start, fourth) = f0::angle_cosine(base_end, base_start, ray_point) = f0::angle_cosine(p, q, r)\n    release thm f1::equal_cosines_imply_angle_relation(base_end, base_start, fourth, p, q, r)\n    witness exist x, y cart(R, R), value R+ st {$f4::has_triangle_area(a, b, c, value), $f4::has_parallelogram_area(base_start, base_end, x, y, value), $m0::f0::are_angles_congruent(base_end, base_start, y, p, q, r)} from third, fourth, common",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, base_start, base_end, p, q, r cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    base_start != base_end\n    $m0::f0::is_triangle(q, p, r)\n    =>:\n        exist third, fourth cart(R, R), common R+ st {$f4::has_triangle_area(a, b, c, common), $f4::has_parallelogram_area(base_start, base_end, third, fourth, common), $m0::f0::are_angles_congruent(base_end, base_start, fourth, p, q, r)}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proposition_46:\n    ? forall a, b cart(R, R):\n        a != b\n        =>:\n            exist c, d cart(R, R) st {$m0::f0::is_square(a, b, c, d), $f4::is_proper_parallelogram(a, b, c, d)}\n    have dx R = (b(1) - a(1))\n    have dy R = (b(2) - a(2))\n    release thm m0::f0::distance_sq_positive_of_ne(a, b)\n    release thm m0::f0::distance_sq_coordinate_formula(a, b)\n    ((dx ^ 2) + (dy ^ 2)) = (((b(1) - a(1)) ^ 2) + ((b(2) - a(2)) ^ 2)) = m0::f0::distance_sq(a, b) > 0\n    have d cart(R, R) = ((a(1) - dy), (a(2) + dx))\n    d(1) = (a(1) - dy)\n    d(2) = (a(2) + dx)\n    (d(1) - a(1)) = ((a(1) - dy) - a(1)) = (-dy)\n    (d(2) - a(2)) = ((a(2) + dx) - a(2)) = dx\n    have c cart(R, R) = ((b(1) - dy), (b(2) + dx))\n    c(1) = (b(1) - dy)\n    c(2) = (b(2) + dx)\n    c(1) = (b(1) - dy) = ((b(1) + (a(1) - dy)) - a(1)) = ((b(1) + d(1)) - a(1))\n    c(2) = (b(2) + dx) = ((b(2) + (a(2) + dx)) - a(2)) = ((b(2) + d(2)) - a(2))\n    (c(1) - b(1)) = ((b(1) - dy) - b(1)) = (-dy)\n    (c(2) - b(2)) = ((b(2) + dx) - b(2)) = dx\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = ((dx * dx) - (dy * (-dy))) = ((dx ^ 2) + (dy ^ 2)) > 0\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by def $m0::f0::is_triangle(a, b, d)\n    release thm f2::triangle_vertices_distinct(a, b, d)\n    release thm affine_parallelogram_witness(a, b, c, d)\n    by def $f4::is_proper_parallelogram(a, b, c, d)\n    $f3::are_parallel_lines(a, b, d, c)\n    by def $f3::are_parallel_lines(a, b, d, c)\n    $f3::are_parallel_lines(a, d, b, c)\n    by def $f3::are_parallel_lines(a, d, b, c)\n    by def $m0::f0::is_parallelogram(a, b, c, d)\n    release thm m0::f0::perpendicular_dot_expand(a, d, a, b)\n    m0::f0::dot(m0::f0::vec(a, d), m0::f0::vec(a, b)) = (((d(1) - a(1)) * (b(1) - a(1))) + ((d(2) - a(2)) * (b(2) - a(2)))) = (((-dy) * dx) + (dx * dy)) = 0\n    by def $m0::f0::is_right_angle(d, a, b)\n    by def $m0::f0::is_rectangle(a, b, c, d)\n    release thm m0::f0::distance_sq_coordinate_formula(b, c)\n    m0::f0::distance_sq(b, c) = (((c(1) - b(1)) ^ 2) + ((c(2) - b(2)) ^ 2)) = (((-dy) ^ 2) + (dx ^ 2)) = ((dx ^ 2) + (dy ^ 2)) = m0::f0::distance_sq(a, b)\n    by def $m0::f0::are_segments_congruent(a, b, b, c)\n    by def $m0::f0::is_square(a, b, c, d)\n    witness exist third, fourth cart(R, R) st {$m0::f0::is_square(a, b, third, fourth), $f4::is_proper_parallelogram(a, b, third, fourth)} from c, d",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b cart(R, R):\n    a != b\n    =>:\n        exist c, d cart(R, R) st {$m0::f0::is_square(a, b, c, d), $f4::is_proper_parallelogram(a, b, c, d)}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "sketch:\n    have a cart(R, R) = (0, 0)\n    a(1) = 0\n    a(2) = 0\n    have b cart(R, R) = (3, 0)\n    b(1) = 3\n    b(2) = 0\n    have c cart(R, R) = (0, 2)\n    c(1) = 0\n    c(2) = 2\n    have p cart(R, R) = (1, 0)\n    p(1) = 1\n    p(2) = 0\n    have q cart(R, R) = (0, 0)\n    q(1) = 0\n    q(2) = 0\n    have r cart(R, R) = (1, 1)\n    r(1) = 1\n    r(2) = 1\n    release thm m0::f0::collinear_det_expand(a, b, c)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, c)) = (((b(1) - a(1)) * (c(2) - a(2))) - ((b(2) - a(2)) * (c(1) - a(1)))) = 6\n    by def $m0::f0::is_triangle(a, b, c)\n    release thm m0::f0::collinear_det_expand(q, p, r)\n    m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, r)) = (((p(1) - q(1)) * (r(2) - q(2))) - ((p(2) - q(2)) * (r(1) - q(1)))) = 1\n    by def $m0::f0::is_triangle(q, p, r)\n    release thm proposition_42(a, b, c, p, q, r)\n    obtain third, fourth, common from exist third_point, fourth_point cart(R, R), value R+ st {$f4::has_triangle_area(a, b, c, value), $f4::has_parallelogram_area(q, p, third_point, fourth_point, value), $m0::f0::are_angles_congruent(p, q, fourth_point, p, q, r)}\n    by def $f4::has_triangle_area(a, b, c, common)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, c)) ^ 2) = (6 ^ 2)\n    (2 * common) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, c)) ^ 2)) = sqrt ((6 ^ 2)) = abs (6) = 6\n    common = ((2 * common) / 2) = (6 / 2) = 3\n    $f4::has_parallelogram_area(q, p, third, fourth, 3)\n    $m0::f0::are_angles_congruent(p, q, fourth, p, q, r)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Sketch",
+        "message": "Run a sketch proof block"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "sketch:\n    have a cart(R, R) = (0, 0)\n    a(1) = 0\n    a(2) = 0\n    have b cart(R, R) = (3, 0)\n    b(1) = 3\n    b(2) = 0\n    have c cart(R, R) = (0, 2)\n    c(1) = 0\n    c(2) = 2\n    have p cart(R, R) = (1, 0)\n    p(1) = 1\n    p(2) = 0\n    have q cart(R, R) = (0, 0)\n    q(1) = 0\n    q(2) = 0\n    have r cart(R, R) = ((-1), 1)\n    r(1) = (-1)\n    r(2) = 1\n    release thm m0::f0::collinear_det_expand(a, b, c)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, c)) = (((b(1) - a(1)) * (c(2) - a(2))) - ((b(2) - a(2)) * (c(1) - a(1)))) = 6\n    by def $m0::f0::is_triangle(a, b, c)\n    release thm m0::f0::collinear_det_expand(q, p, r)\n    m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, r)) = (((p(1) - q(1)) * (r(2) - q(2))) - ((p(2) - q(2)) * (r(1) - q(1)))) = 1\n    by def $m0::f0::is_triangle(q, p, r)\n    release thm proposition_42(a, b, c, p, q, r)\n    obtain third, fourth, common from exist third_point, fourth_point cart(R, R), value R+ st {$f4::has_triangle_area(a, b, c, value), $f4::has_parallelogram_area(q, p, third_point, fourth_point, value), $m0::f0::are_angles_congruent(p, q, fourth_point, p, q, r)}\n    by def $f4::has_triangle_area(a, b, c, common)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, c)) ^ 2) = (6 ^ 2)\n    (2 * common) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, c)) ^ 2)) = sqrt ((6 ^ 2)) = abs (6) = 6\n    common = ((2 * common) / 2) = (6 / 2) = 3\n    $f4::has_parallelogram_area(q, p, third, fourth, 3)\n    $m0::f0::are_angles_congruent(p, q, fourth, p, q, r)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Sketch",
+        "message": "Run a sketch proof block"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "sketch:\n    have a cart(R, R) = (2, 3)\n    have b cart(R, R) = (5, 7)\n    a(1) = 2\n    b(1) = 5\n    by contra:\n        ? a != b\n        a = b\n        2 = a(1) = b(1) = 5\n        impossible 2 != 5\n    release thm proposition_46(a, b)\n    obtain c, d from exist third, fourth cart(R, R) st {$m0::f0::is_square(a, b, third, fourth), $f4::is_proper_parallelogram(a, b, third, fourth)}",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Sketch",
+        "message": "Run a sketch proof block"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "sketch:\n    have a cart(R, R) = (5, 7)\n    have b cart(R, R) = (2, 3)\n    a(1) = 5\n    b(1) = 2\n    by contra:\n        ? a != b\n        a = b\n        5 = a(1) = b(1) = 2\n        impossible 5 != 2\n    release thm proposition_46(a, b)\n    obtain c, d from exist third, fourth cart(R, R) st {$m0::f0::is_square(a, b, third, fourth), $f4::is_proper_parallelogram(a, b, third, fourth)}",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Sketch",
+        "message": "Run a sketch proof block"
+      },
+      "stores": [],
+      "infers": []
+    }
+  ],
+  "session_terminated": false,
+  "termination": null
+}

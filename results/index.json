@@ -1,0 +1,552 @@
+{
+  "export_date": "2026-11-07",
+  "current_verifier_rerun": false,
+  "checkpoint_count": 32,
+  "note": "Receipts and configurations retain historical paths and versions. Missing original geometry dependency prevents an exact current replay. No checkpoint is promoted into the canonical textbook by this export.",
+  "checkpoints": [
+    {
+      "id": "book01-proposition35-source-checkpoint",
+      "receipt": "checkpoints/book01-proposition35-source-checkpoint/receipt.json",
+      "statement_count": 9,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book01-proposition35-source-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book01-proposition36-source-checkpoint",
+      "receipt": "checkpoints/book01-proposition36-source-checkpoint/receipt.json",
+      "statement_count": 11,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book01-proposition36-source-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book01-proposition37-source-checkpoint",
+      "receipt": "checkpoints/book01-proposition37-source-checkpoint/receipt.json",
+      "statement_count": 6,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book01-proposition37-source-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book01-proposition38-source-checkpoint2",
+      "receipt": "checkpoints/book01-proposition38-source-checkpoint2/receipt.json",
+      "statement_count": 9,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book01-proposition38-source-checkpoint2/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book01-proposition39-source-checkpoint",
+      "receipt": "checkpoints/book01-proposition39-source-checkpoint/receipt.json",
+      "statement_count": 4,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book01-proposition39-source-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book01-proposition40-source-checkpoint",
+      "receipt": "checkpoints/book01-proposition40-source-checkpoint/receipt.json",
+      "statement_count": 13,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book01-proposition40-source-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book01-through-area-module-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book01-through-area-module-checkpoint/receipt.json",
+      "statement_count": 74,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book01-through-area-module-checkpoint/book01-constructions.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/I42-44-46-source-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/receipt.json",
+      "statement_count": 18,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/angle_measure.lit",
+          "matches_recorded_hash": null
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/angles.lit",
+          "matches_recorded_hash": null
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/area.lit",
+          "matches_recorded_hash": null
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/geometry_lemmas.lit",
+          "matches_recorded_hash": null
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/parallel.lit",
+          "matches_recorded_hash": null
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/prefix.lit",
+          "matches_recorded_hash": null
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/I43-general-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/I43-general-checkpoint/receipt.json",
+      "statement_count": 25,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/angle_measure.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/angles.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/area.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/geometry_lemmas.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/parallel.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/I47-constructed-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/I47-constructed-checkpoint/receipt.json",
+      "statement_count": 22,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/angle_measure.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/angles.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/area.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/geometry_lemmas.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/parallel.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book02-canonical-prefix-integration-v2",
+      "receipt": "checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/receipt.json",
+      "statement_count": 114,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/book02.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book03-through26-audited-candidate",
+      "receipt": "checkpoints/book03-through26-audited-candidate/receipt.json",
+      "statement_count": 185,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book03-through26-audited-candidate/book03-circles.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book03-proposition28-source-checkpoint",
+      "receipt": "checkpoints/book03-proposition28-source-checkpoint/receipt.json",
+      "statement_count": 91,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book03-proposition28-source-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "book03-proposition31-rectilinear-checkpoint",
+      "receipt": "checkpoints/book03-proposition31-rectilinear-checkpoint/receipt.json",
+      "statement_count": 18,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/book03-proposition31-rectilinear-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book04-constructions-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+      "statement_count": 19,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-constructions-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book04-incircle-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book04-incircle-checkpoint/receipt.json",
+      "statement_count": 53,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-incircle-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/receipt.json",
+      "statement_count": 29,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/constructions.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book04-propositions11-12-checkpoint-v3",
+      "receipt": "checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/receipt.json",
+      "statement_count": 51,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/main.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/working.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book04-five-point-circle-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/receipt.json",
+      "statement_count": 21,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/working.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book05-equimultiple-equivalence-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/receipt.json",
+      "statement_count": 11,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book05-ratio-order-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/receipt.json",
+      "statement_count": 27,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition01-checkpoint-v2",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/receipt.json",
+      "statement_count": 29,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition02-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/receipt.json",
+      "statement_count": 30,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition03-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/receipt.json",
+      "statement_count": 31,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition04-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/receipt.json",
+      "statement_count": 24,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition05-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/receipt.json",
+      "statement_count": 28,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition06-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/receipt.json",
+      "statement_count": 28,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/book06-proposition07-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/receipt.json",
+      "statement_count": 35,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/main.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/polygon-boundary-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/receipt.json",
+      "statement_count": 20,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/angle_measure.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/angles.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/area.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/geometry_lemmas.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/parallel.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/prescribed-area-constructions-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/receipt.json",
+      "statement_count": 27,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/angle_measure.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/angles.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/area.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/geometry_lemmas.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/parallel.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/triangle-decomposition-area-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/receipt.json",
+      "statement_count": 31,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/angle_measure.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/angles.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/area.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/geometry_lemmas.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/parallel.lit",
+          "matches_recorded_hash": true
+        },
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    },
+    {
+      "id": "resume-2026-10-17/triangle-dissection-checkpoint",
+      "receipt": "checkpoints/resume-2026-10-17/triangle-dissection-checkpoint/receipt.json",
+      "statement_count": 25,
+      "historical_result": "success",
+      "source_hash_checks": [
+        {
+          "path": "results/checkpoints/resume-2026-10-17/triangle-dissection-checkpoint/prefix.lit",
+          "matches_recorded_hash": true
+        }
+      ],
+      "status": "historically_checked_draft_not_promoted"
+    }
+  ]
+}

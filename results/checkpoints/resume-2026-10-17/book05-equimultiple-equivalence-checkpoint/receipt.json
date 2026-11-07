@@ -1,0 +1,35 @@
+{
+  "exit_code": 0,
+  "elapsed": 1.7421801090240479,
+  "kind": "run",
+  "run_result": "success",
+  "session_terminated": false,
+  "termination": null,
+  "statement_count": 11,
+  "hashes_before": {
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-numerical/checkpoint/main.lit": "8d934ae7bed41ba0d8342cf74d63760743ccad0029e61132159ee77252a0f4d6",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/positive-rational-separation-candidate1.lit": "f341e6925103a5c88f31ddb6affef8cdec82b7dc0182a83275cf6ce5f16141fb",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/unequal-ratios-equimultiple-separation-candidate1.lit": "fd41a3ae29168955a0d419e3e4cc821158720ee9d54e4d289b796ecca801f139",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/real-equimultiple-comparisons-definition.lit": "943a596680c2b5c8309a711e8222d7a6c1904f961a8dd283ff9ae04047837e42",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-comparisons-imply-cross-product-candidate1.lit": "67f9b1c1bf0e37485248e7692895f9f103c36c45348e3fb32a208dd6fddfda4f",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/cross-product-implies-equimultiple-comparisons-candidate1.lit": "53f60a6d361ee8cd6079cc923c2582f97cdaea4e6f5082cb126f15937b1e5605",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-ratio-quotient-consumer.lit": "c5293dfd0de1d319085a9f528927f7910bd2992fc5ac0d7d66c8ce5ee4dbcda7",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-irrational-positive.lit": "b05620f9d71f547d429900e610d0b0963ed140c32270415484c0238d06c4e353",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/main.lit": "afe602f93be608fa01a45ac2aba2fc4fafd80002cd7349597b512b39ac610e0a",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/litex.config": "aea1515f4397ad4174b5596ddb87e1267f1134688979d869080dda5c21531963",
+    "target/release/litex": "f2444c091ac17a29e0665fa30be71fe603dc7721977503fa106770b3d0d9a106"
+  },
+  "hashes_after": {
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-numerical/checkpoint/main.lit": "8d934ae7bed41ba0d8342cf74d63760743ccad0029e61132159ee77252a0f4d6",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/positive-rational-separation-candidate1.lit": "f341e6925103a5c88f31ddb6affef8cdec82b7dc0182a83275cf6ce5f16141fb",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/unequal-ratios-equimultiple-separation-candidate1.lit": "fd41a3ae29168955a0d419e3e4cc821158720ee9d54e4d289b796ecca801f139",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/real-equimultiple-comparisons-definition.lit": "943a596680c2b5c8309a711e8222d7a6c1904f961a8dd283ff9ae04047837e42",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-comparisons-imply-cross-product-candidate1.lit": "67f9b1c1bf0e37485248e7692895f9f103c36c45348e3fb32a208dd6fddfda4f",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/cross-product-implies-equimultiple-comparisons-candidate1.lit": "53f60a6d361ee8cd6079cc923c2582f97cdaea4e6f5082cb126f15937b1e5605",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-ratio-quotient-consumer.lit": "c5293dfd0de1d319085a9f528927f7910bd2992fc5ac0d7d66c8ce5ee4dbcda7",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-irrational-positive.lit": "b05620f9d71f547d429900e610d0b0963ed140c32270415484c0238d06c4e353",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/main.lit": "afe602f93be608fa01a45ac2aba2fc4fafd80002cd7349597b512b39ac610e0a",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/litex.config": "aea1515f4397ad4174b5596ddb87e1267f1134688979d869080dda5c21531963",
+    "target/release/litex": "f2444c091ac17a29e0665fa30be71fe603dc7721977503fa106770b3d0d9a106"
+  }
+}

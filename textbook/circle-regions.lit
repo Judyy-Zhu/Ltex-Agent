@@ -1,0 +1,8 @@
+release obj def geometry::main::distance_sq
+
+# Filled disk complements the existing circle circumference; radius is strictly positive.
+have fn closed_disk(o cart(R, R), radius R+) power_set(cart(R, R)) = {p cart(R, R): geometry::main::distance_sq(o, p) <= radius^2}
+
+# Strict interior excludes all circumference points.
+prop is_inside_circle(p, o cart(R, R), radius R+):
+    geometry::main::distance_sq(o, p) < radius^2

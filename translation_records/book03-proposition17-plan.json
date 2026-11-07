@@ -1,0 +1,52 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    87,
+    88
+  ],
+  "source_goal": "Construct tangent from given exterior point to a given circle",
+  "domain": "positive radius; distance_sq(o,p)>radius^2. The pictured external-point assumption is made explicit. No tangent promised for interior points. Boundary-point construction can reuse radius-perpendicular separately.",
+  "construction": "D=distance_sq(o,p), v=p-o; T=o+(r^2/D)v+(r*sqrt(D-r^2)/D)rotate90(v). One orientation suffices for source existence.",
+  "certificate": [
+    "T on circumference",
+    "dot(T-o,p-T)=0",
+    "T!=p",
+    "Reuse III16 corollary to get canonical tangent predicate"
+  ],
+  "pending": "Joint tangent integration18965 includes boundary supplement; await before canonical promotion",
+  "prepared": [
+    "external-tangent-contact-certificate1.lit",
+    "external-tangent-contact-certificate2.lit",
+    "external-tangent-contact-certificate3.lit",
+    "book03-proposition17-external1.lit",
+    "external-tangent-contact-certificate4.lit",
+    "book03-proposition17-external-use1.lit"
+  ],
+  "completed": false,
+  "trust_added": 0,
+  "accepted": [
+    "external-tangent-contact-definition1.lit",
+    "external-tangent-contact-certificate4.lit",
+    "book03-proposition17-external1.lit",
+    "book03-proposition17-external-use2.lit",
+    "book03-proposition17-boundary1.lit",
+    "book03-proposition17-boundary-use1.lit"
+  ],
+  "preflight_note": "Certificate parser preflight includes constructor definition context; only theorem source submitted to retained REPL.",
+  "last_failure": {
+    "source": "external-tangent-contact-certificate3.lit",
+    "fact": "t(1)-o(1) = u*x-v*y",
+    "session_error": null,
+    "journal": "proof_journals/books02-03/external-tangent-contact-certificate3-rejection.json",
+    "repair": "Coordinate projection now passes. Show substitution of the established t(1) coordinate before polynomial cancellation."
+  },
+  "certificate_status": "All three certificate conclusions accepted in retained session 8827; source existence theorem pending, cold gate not yet launched.",
+  "cold_gate": ".draft/book03-proposition17-checkpoint",
+  "consumer": "Circle center (1,2), radius 3, exterior point (4,6); existence of tangent through prescribed point accepted.",
+  "boundary_status": "Boundary complement accepted in session 8827; not included in already-running gate 29569.",
+  "cold_status": "PASS19 declarations, strict/stable; exterior-point construction and III16 dependencies",
+  "cold_receipt": ".draft/book03-proposition17-checkpoint/receipt.json",
+  "canonical": true,
+  "canonical_record": "translation_records/book03-propositions17-19-canonical.json",
+  "status": "Canonical after joint strict PASS113; source clauses and use consumers checked"
+}

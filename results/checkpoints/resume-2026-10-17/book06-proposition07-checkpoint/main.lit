@@ -1,0 +1,947 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::line_through_points
+release obj def angle_measure::segment_length
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+release obj def angles::angle_cosine
+release obj def angle_measure::ray_angle
+
+thm proposition_17:
+    ? forall a, b, c cart(R, R):
+        a != b
+        a != c
+        b != c
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            angle_measure::ray_angle(b, a, c) + angle_measure::ray_angle(a, b, c) < pi
+            angle_measure::ray_angle(b, a, c) + angle_measure::ray_angle(a, c, b) < pi
+            angle_measure::ray_angle(a, b, c) + angle_measure::ray_angle(a, c, b) < pi
+    by def $geometry::main::is_triangle(a, b, c)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    release thm geometry::main::triangle_det_squared_vertex(a, b, c)
+    geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    by contra:
+        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) != 0
+        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) = 0
+        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = 0
+        impossible geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 > 0
+    by def $geometry::main::is_triangle(b, a, c)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(a, c), geometry::main::vec(a, b))
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) != 0
+        geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = 0
+        -geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -(-geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))) = -0 = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    by def $geometry::main::is_triangle(a, c, b)
+    release thm angle_measure::two_internal_triangle_cosines_sum_positive(a, b, c)
+    release thm angle_measure::two_internal_triangle_cosines_sum_positive(b, a, c)
+    release thm angle_measure::two_internal_triangle_cosines_sum_positive(a, c, b)
+    release thm angle_measure::angle_cosine_arms_symmetric(a, c, b)
+    release thm angle_measure::angle_cosine_arms_symmetric(b, a, c)
+    angles::angle_cosine(a, b, c) + angles::angle_cosine(a, c, b) = angles::angle_cosine(a, b, c) + angles::angle_cosine(b, c, a) > 0
+    angles::angle_cosine(b, a, c) + angles::angle_cosine(a, b, c) = angles::angle_cosine(c, a, b) + angles::angle_cosine(a, b, c) > 0
+    release thm angle_measure::angle_cosine_bounded(b, a, c)
+    release thm angle_measure::angle_cosine_bounded(a, b, c)
+    release thm angle_measure::angle_cosine_bounded(a, c, b)
+    release thm angle_measure::positive_cosine_sum_implies_angle_sum_below_pi(angles::angle_cosine(b, a, c), angles::angle_cosine(a, b, c))
+    release thm angle_measure::positive_cosine_sum_implies_angle_sum_below_pi(angles::angle_cosine(b, a, c), angles::angle_cosine(a, c, b))
+    release thm angle_measure::positive_cosine_sum_implies_angle_sum_below_pi(angles::angle_cosine(a, b, c), angles::angle_cosine(a, c, b))
+    angle_measure::ray_angle(b, a, c) + angle_measure::ray_angle(a, b, c) = arccos(angles::angle_cosine(b, a, c)) + arccos(angles::angle_cosine(a, b, c)) < pi
+    angle_measure::ray_angle(b, a, c) + angle_measure::ray_angle(a, c, b) = arccos(angles::angle_cosine(b, a, c)) + arccos(angles::angle_cosine(a, c, b)) < pi
+    angle_measure::ray_angle(a, b, c) + angle_measure::ray_angle(a, c, b) = arccos(angles::angle_cosine(a, b, c)) + arccos(angles::angle_cosine(a, c, b)) < pi
+
+
+release obj def angle_measure::segment_length
+
+
+# Book I.18: a greater triangle side subtends a greater angle.
+# Positive lengths and their squares have the same strict order.
+
+
+thm proposition_32:
+    ? forall a, b, c, d cart(R, R):
+        a != b
+        a != c
+        b != c
+        d != c
+        $geometry::main::is_triangle(a, b, c)
+        $geometry::main::is_on_extension(d, b, c)
+        =>:
+            angle_measure::ray_angle(a, c, d) = angle_measure::ray_angle(b, a, c)+angle_measure::ray_angle(a, b, c)
+            angle_measure::ray_angle(b, a, c)+angle_measure::ray_angle(a, b, c)+angle_measure::ray_angle(a, c, b) = pi
+    # Principal-angle completion used by triangle angle sum after its
+    # geometric cosine-addition certificate and I.17 range have been proved.
+    thm local_principal_three_angle_sum_from_cosine:
+        ? forall alpha, beta, gamma R:
+            0 <= alpha
+            0 <= beta
+            0 <= gamma
+            gamma <= pi
+            alpha+beta < pi
+            cos(alpha+beta) = -cos(gamma)
+            =>:
+                alpha+beta+gamma = pi
+        0 <= alpha+beta
+        alpha+beta <= pi
+        0 <= pi-gamma
+        pi-gamma <= pi
+        cos(pi-gamma) = -cos(gamma) = cos(alpha+beta)
+        arccos(cos(pi-gamma)) = pi-gamma
+        arccos(cos(alpha+beta)) = alpha+beta
+        alpha+beta = arccos(cos(alpha+beta)) = arccos(cos(pi-gamma)) = pi-gamma
+        alpha+beta+gamma = (pi-gamma)+gamma = pi
+    # Squared-side law-of-cosines numerators for I.32. The Gram remainder
+    # is the same at the two ends of a common side, and cosine addition
+    # then reconstructs minus the third angle's normalized numerator.
+    thm local_triangle_cosine_addition_numerator:
+        ? forall x, y, z R:
+            x*y-((x+y-z)/2)^2 = x*z-((x+z-y)/2)^2
+            ((x+y-z)/2)*((x+z-y)/2)-(x*y-((x+y-z)/2)^2) = -x*((y+z-x)/2)
+        x*y-((x+y-z)/2)^2 = x*z-((x+z-y)/2)^2
+        ((x+y-z)/2)*((x+z-y)/2)-(x*y-((x+y-z)/2)^2) = -x*((y+z-x)/2)
+    # Scalar bridge for Book I.32 angle addition: a positive normalized
+    # determinant gives the positive sine of the principal interior angle.
+    thm local_sine_from_positive_square:
+        ? forall theta R, k R+:
+            0 < theta
+            theta < pi
+            cos(theta)^2+k^2 = 1
+            =>:
+                sin(theta) = k
+        sin(theta) > 0
+        sin(theta)^2+cos(theta)^2 = 1
+        sin(theta)^2 = 1-cos(theta)^2 = k^2
+        sin(theta)*k > 0
+        sin(theta)*k >= 0
+        release thm angle_measure::same_square_and_sign_gives_equality(sin(theta), k)
+    # Common-side normalization in Book I.32 cosine addition.
+    thm local_positive_common_side_root_product:
+        ? forall x, y, z R+:
+            sqrt(x*y)*sqrt(x*z) = x*sqrt(y*z)
+        x*y > 0
+        x*z > 0
+        y*z > 0
+        sqrt(x*y) > 0
+        sqrt(x*z) > 0
+        sqrt(y*z) > 0
+        sqrt(x*y)*sqrt(x*z) > 0
+        x*sqrt(y*z) > 0
+        (sqrt(x*y)*sqrt(x*z))^2 = sqrt(x*y)^2*sqrt(x*z)^2 = (x*y)*(x*z) = x^2*(y*z) = x^2*sqrt(y*z)^2 = (x*sqrt(y*z))^2
+        (sqrt(x*y)*sqrt(x*z))*(x*sqrt(y*z)) > 0
+        (sqrt(x*y)*sqrt(x*z))*(x*sqrt(y*z)) >= 0
+        release thm angle_measure::same_square_and_sign_gives_equality(sqrt(x*y)*sqrt(x*z), x*sqrt(y*z))
+    # Complete scalar spine of I.32. Geometric callers must separately
+    # provide these side-square cosine formulas and positive Gram remainder.
+    thm local_triangle_angle_sum_from_metric_cosines:
+        ? forall alpha, beta, gamma R, x, y, z, gram R+:
+            0 < alpha
+            alpha < pi
+            0 < beta
+            beta < pi
+            0 <= gamma
+            gamma <= pi
+            alpha+beta < pi
+            cos(alpha)*sqrt(x*y) = (x+y-z)/2
+            cos(beta)*sqrt(x*z) = (x+z-y)/2
+            cos(gamma)*sqrt(y*z) = (y+z-x)/2
+            gram = x*y-((x+y-z)/2)^2
+            =>:
+                alpha+beta+gamma = pi
+        x*y > 0
+        x*z > 0
+        y*z > 0
+        sqrt(x*y) > 0
+        sqrt(x*z) > 0
+        sqrt(y*z) > 0
+        sqrt(gram) > 0
+        sqrt(x*y) != 0
+        sqrt(x*z) != 0
+        sqrt(y*z) != 0
+        cos(alpha) = (cos(alpha)*sqrt(x*y))/sqrt(x*y) = ((x+y-z)/2)/sqrt(x*y)
+        cos(beta) = (cos(beta)*sqrt(x*z))/sqrt(x*z) = ((x+z-y)/2)/sqrt(x*z)
+        cos(gamma) = (cos(gamma)*sqrt(y*z))/sqrt(y*z) = ((y+z-x)/2)/sqrt(y*z)
+        sqrt(gram)^2 = gram
+        sqrt(x*y)^2 = x*y
+        sqrt(x*z)^2 = x*z
+        sqrt(y*z)^2 = y*z
+        have first_sine R+ = sqrt(gram)/sqrt(x*y)
+        have second_sine R+ = sqrt(gram)/sqrt(x*z)
+        release thm local_triangle_cosine_addition_numerator(x, y, z)
+        gram = x*z-((x+z-y)/2)^2
+        ((x+y-z)/2)^2+gram = ((x+y-z)/2)^2+(x*y-((x+y-z)/2)^2) = x*y
+        ((x+z-y)/2)^2+gram = ((x+z-y)/2)^2+(x*z-((x+z-y)/2)^2) = x*z
+        ((x+y-z)/2)*((x+z-y)/2)-gram = ((x+y-z)/2)*((x+z-y)/2)-(x*y-((x+y-z)/2)^2) = -x*((y+z-x)/2)
+        cos(alpha)^2+first_sine^2 = (((x+y-z)/2)/sqrt(x*y))^2+(sqrt(gram)/sqrt(x*y))^2 = (((x+y-z)/2)^2+sqrt(gram)^2)/sqrt(x*y)^2 = (((x+y-z)/2)^2+gram)/(x*y) = (x*y)/(x*y) = 1
+        cos(beta)^2+second_sine^2 = (((x+z-y)/2)/sqrt(x*z))^2+(sqrt(gram)/sqrt(x*z))^2 = (((x+z-y)/2)^2+sqrt(gram)^2)/sqrt(x*z)^2 = (((x+z-y)/2)^2+gram)/(x*z) = (x*z)/(x*z) = 1
+        release thm local_sine_from_positive_square(alpha, first_sine)
+        release thm local_sine_from_positive_square(beta, second_sine)
+        release thm local_positive_common_side_root_product(x, y, z)
+        sqrt(x*y)*sqrt(x*z) > 0
+        sqrt(x*y)*sqrt(x*z) != 0
+        x*sqrt(y*z) > 0
+        x*sqrt(y*z) != 0
+        cos(alpha+beta) = cos(alpha)*cos(beta)-sin(alpha)*sin(beta)
+        cos(alpha)*cos(beta)-sin(alpha)*sin(beta) = (((x+y-z)/2)/sqrt(x*y))*(((x+z-y)/2)/sqrt(x*z))-(sqrt(gram)/sqrt(x*y))*(sqrt(gram)/sqrt(x*z)) = (((x+y-z)/2)*((x+z-y)/2)-sqrt(gram)^2)/(sqrt(x*y)*sqrt(x*z)) = (((x+y-z)/2)*((x+z-y)/2)-gram)/(x*sqrt(y*z)) = (-x*((y+z-x)/2))/(x*sqrt(y*z)) = -(((y+z-x)/2)/sqrt(y*z)) = -cos(gamma)
+        cos(alpha+beta) = -cos(gamma)
+        0 <= alpha
+        0 <= beta
+        release thm local_principal_three_angle_sum_from_cosine(alpha, beta, gamma)
+    # Nondegenerate Gram data excludes both principal-angle endpoints.
+    thm local_nonextremal_cosine_has_strict_angle:
+        ? forall theta, numerator R, denominator R+:
+            0 <= theta
+            theta <= pi
+            cos(theta)*sqrt(denominator) = numerator
+            numerator^2 != denominator
+            =>:
+                0 < theta
+                theta < pi
+        by contra:
+            ? 0 < theta
+            theta <= 0
+            theta = 0
+            cos(theta) = cos(0) = 1
+            numerator = cos(theta)*sqrt(denominator) = sqrt(denominator)
+            numerator^2 = sqrt(denominator)^2 = denominator
+            impossible numerator^2 != denominator
+        by contra:
+            ? theta < pi
+            theta >= pi
+            theta = pi
+            cos(theta) = cos(pi) = -1
+            numerator = cos(theta)*sqrt(denominator) = -sqrt(denominator)
+            numerator^2 = (-sqrt(denominator))^2 = sqrt(denominator)^2 = denominator
+            impossible numerator^2 != denominator
+    by def $geometry::main::is_triangle(a, b, c)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, c)
+    release thm geometry::main::distance_sq_positive_of_ne(b, c)
+    have x R+ = geometry::main::distance_sq(a, b)
+    have y R+ = geometry::main::distance_sq(a, c)
+    have z R+ = geometry::main::distance_sq(b, c)
+    have gram R+ = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2
+    have alpha R = angle_measure::ray_angle(b, a, c)
+    have beta R = angle_measure::ray_angle(a, b, c)
+    have gamma R = angle_measure::ray_angle(a, c, b)
+    release thm geometry::main::distance_sq_symmetric(a, b)
+    release thm geometry::main::distance_sq_symmetric(a, c)
+    release thm geometry::main::distance_sq_symmetric(b, c)
+    release thm geometry::main::dot_from_cosine_law(b, a, c)
+    geometry::main::angle_cos_num(b, a, c) = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c)) = (x+y-z)/2
+    geometry::main::angle_cos_den(b, a, c) = geometry::main::distance_sq(a, b)*geometry::main::distance_sq(a, c) = x*y
+    release thm angle_measure::ray_angle_range(b, a, c)
+    release thm angle_measure::ray_angle_cosine(b, a, c)
+    x*y > 0
+    sqrt(x*y) > 0
+    sqrt(x*y) != 0
+    release thm angles::angle_den_nonnegative(b, a, c)
+    release thm angles::angle_root_den_nonzero(b, a, c)
+    cos(alpha) = angles::angle_cosine(b, a, c) = geometry::main::angle_cos_num(b, a, c)/sqrt(geometry::main::angle_cos_den(b, a, c)) = ((x+y-z)/2)/sqrt(x*y)
+    cos(alpha)*sqrt(x*y) = (((x+y-z)/2)/sqrt(x*y))*sqrt(x*y) = (x+y-z)/2
+    release thm geometry::main::dot_from_cosine_law(a, b, c)
+    geometry::main::angle_cos_num(a, b, c) = geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, c)) = (x+z-y)/2
+    geometry::main::angle_cos_den(a, b, c) = geometry::main::distance_sq(b, a)*geometry::main::distance_sq(b, c) = x*z
+    release thm angle_measure::ray_angle_range(a, b, c)
+    release thm angle_measure::ray_angle_cosine(a, b, c)
+    x*z > 0
+    sqrt(x*z) > 0
+    sqrt(x*z) != 0
+    release thm angles::angle_den_nonnegative(a, b, c)
+    release thm angles::angle_root_den_nonzero(a, b, c)
+    cos(beta) = angles::angle_cosine(a, b, c) = geometry::main::angle_cos_num(a, b, c)/sqrt(geometry::main::angle_cos_den(a, b, c)) = ((x+z-y)/2)/sqrt(x*z)
+    cos(beta)*sqrt(x*z) = (((x+z-y)/2)/sqrt(x*z))*sqrt(x*z) = (x+z-y)/2
+    release thm geometry::main::dot_from_cosine_law(a, c, b)
+    geometry::main::angle_cos_num(a, c, b) = geometry::main::dot(geometry::main::vec(c, a), geometry::main::vec(c, b)) = (y+z-x)/2
+    geometry::main::angle_cos_den(a, c, b) = geometry::main::distance_sq(c, a)*geometry::main::distance_sq(c, b) = y*z
+    release thm angle_measure::ray_angle_range(a, c, b)
+    release thm angle_measure::ray_angle_cosine(a, c, b)
+    y*z > 0
+    sqrt(y*z) > 0
+    sqrt(y*z) != 0
+    release thm angles::angle_den_nonnegative(a, c, b)
+    release thm angles::angle_root_den_nonzero(a, c, b)
+    cos(gamma) = angles::angle_cosine(a, c, b) = geometry::main::angle_cos_num(a, c, b)/sqrt(geometry::main::angle_cos_den(a, c, b)) = ((y+z-x)/2)/sqrt(y*z)
+    cos(gamma)*sqrt(y*z) = (((y+z-x)/2)/sqrt(y*z))*sqrt(y*z) = (y+z-x)/2
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, c)
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    ((x+y-z)/2)^2+gram = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c))^2+geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b))*geometry::main::dot(geometry::main::vec(a, c), geometry::main::vec(a, c)) = x*y
+    gram = x*y-((x+y-z)/2)^2
+    gram > 0
+    gram != 0
+    gram != 0
+    by contra:
+        ? ((x+y-z)/2)^2 != x*y
+        ((x+y-z)/2)^2 = x*y
+        gram = x*y-((x+y-z)/2)^2 = x*y-(x*y) = 0
+        impossible gram != 0
+    release thm local_triangle_cosine_addition_numerator(x, y, z)
+    gram = x*z-((x+z-y)/2)^2
+    by contra:
+        ? ((x+z-y)/2)^2 != x*z
+        ((x+z-y)/2)^2 = x*z
+        gram = x*z-((x+z-y)/2)^2 = x*z-(x*z) = 0
+        impossible gram != 0
+    0 <= alpha <= pi
+    0 <= beta <= pi
+    0 <= gamma <= pi
+    release thm local_nonextremal_cosine_has_strict_angle(alpha, (x+y-z)/2, x*y)
+    release thm local_nonextremal_cosine_has_strict_angle(beta, (x+z-y)/2, x*z)
+    release thm proposition_17(a, b, c)
+    alpha+beta = angle_measure::ray_angle(b, a, c)+angle_measure::ray_angle(a, b, c) < pi
+    release thm local_triangle_angle_sum_from_metric_cosines(alpha, beta, gamma, x, y, z, gram)
+    angle_measure::ray_angle(b, a, c)+angle_measure::ray_angle(a, b, c)+angle_measure::ray_angle(a, c, b) = alpha+beta+gamma = pi
+    by def $geometry::main::is_on_extension(d, b, c)
+    obtain t from exist coef R st {coef > 1, d(1) = (1-coef)*b(1)+coef*c(1), d(2) = (1-coef)*b(2)+coef*c(2)}
+    have k R+ = t-1
+    d(1)-c(1) = ((1-t)*b(1)+t*c(1))-c(1) = -(t-1)*(b(1)-c(1)) = -k*(b(1)-c(1))
+    d(2)-c(2) = ((1-t)*b(2)+t*c(2))-c(2) = -(t-1)*(b(2)-c(2)) = -k*(b(2)-c(2))
+    release thm angle_measure::negative_ray_scale_changes_cosine_sign(a, c, b, d, k)
+    angles::angle_cosine(a, c, d) = -(angles::angle_cosine(a, c, b))
+    angles::angle_cosine(a, c, b)+angles::angle_cosine(a, c, d) = angles::angle_cosine(a, c, b)+(-(angles::angle_cosine(a, c, b))) = 0
+    release thm angle_measure::opposite_cosines_give_supplementary_angles(a, c, b, a, c, d)
+    gamma+angle_measure::ray_angle(a, c, d) = angle_measure::ray_angle(a, c, b)+angle_measure::ray_angle(a, c, d) = pi
+    angle_measure::ray_angle(a, c, d) = pi-gamma = (alpha+beta+gamma)-gamma = alpha+beta = angle_measure::ray_angle(b, a, c)+angle_measure::ray_angle(a, b, c)
+
+
+# Book I.33: same-side joins of equal and parallel proper segments.
+# Positive direction dot product expresses the noncrossed endpoint pairing.
+
+
+# Eudoxus comparisons for positive real measures; quantity kinds are supplied by geometric interfaces.
+prop have_equal_equimultiple_comparisons(a,b,c,d R+):
+    forall m,n N+:
+        =>:
+            m*a < n*b
+        <=>:
+            m*c < n*d
+    forall m,n N+:
+        =>:
+            m*a = n*b
+        <=>:
+            m*c = n*d
+    forall m,n N+:
+        =>:
+            m*a > n*b
+        <=>:
+            m*c > n*d
+
+
+thm cross_product_preserves_less_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a < n*b
+        =>:
+            m*c < n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) < scale*(n*b)
+    m*c < n*d
+
+
+thm cross_product_preserves_equal_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a = n*b
+        =>:
+            m*c = n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) = scale*(n*b)
+    m*c = n*d
+
+
+thm cross_product_preserves_greater_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a > n*b
+        =>:
+            m*c > n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) > scale*(n*b)
+    m*c > n*d
+
+
+thm cross_product_implies_equal_equimultiple_comparisons:
+    ? forall a,b,c,d R+:
+        a*d = b*c
+        =>:
+            $have_equal_equimultiple_comparisons(a,b,c,d)
+    c*b = b*c = a*d = d*a
+    claim:
+        ? forall m,n N+:
+            m*a < n*b
+            =>:
+                m*c < n*d
+        release thm cross_product_preserves_less_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c < n*d
+            =>:
+                m*a < n*b
+        release thm cross_product_preserves_less_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a = n*b
+            =>:
+                m*c = n*d
+        release thm cross_product_preserves_equal_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c = n*d
+            =>:
+                m*a = n*b
+        release thm cross_product_preserves_equal_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a > n*b
+            =>:
+                m*c > n*d
+        release thm cross_product_preserves_greater_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c > n*d
+            =>:
+                m*a > n*b
+        release thm cross_product_preserves_greater_equimultiples(c,d,a,b,m,n)
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+
+
+thm positive_rational_separation:
+    ? forall x,y R+:
+        x < y
+        =>:
+            exist numerator,denominator N+ st {x < numerator/denominator, numerator/denominator < y}
+    release thm rational_between_reals(x,y)
+    obtain middle from exist q Q st {x < q and q < y}
+    release thm rational_has_unique_reduced_fraction(middle)
+    obtain numerator,denominator from exist! p Z, d N+ st {middle = p/d, gcd(p,d) = 1}
+    middle > x > 0
+    denominator $in R+
+    middle*denominator > 0
+    numerator = (numerator/denominator)*denominator = middle*denominator > 0
+    numerator $in N+
+    x < middle = numerator/denominator < y
+    witness exist n,m N+ st {x < n/m, n/m < y} from numerator,denominator
+
+
+thm strict_cross_product_has_separating_equimultiples:
+    ? forall a,b,c,d R+:
+        a*d < b*c
+        =>:
+            exist m,n N+ st {m*a < n*b, m*c > n*d}
+    b*d > 0
+    (a*d)/(b*d) < (b*c)/(b*d)
+    a/b = (a*d)/(b*d) < (b*c)/(b*d) = c/d
+    a/b > 0
+    c/d > 0
+    release thm positive_rational_separation(a/b,c/d)
+    obtain n,m from exist numerator,denominator N+ st {a/b < numerator/denominator, numerator/denominator < c/d}
+    m $in R+
+    n $in R+
+    m*(a/b) < m*(n/m)
+    (m*(a/b))*b < (m*(n/m))*b
+    m*a = (m*(a/b))*b < (m*(n/m))*b = n*b
+    m*(n/m) < m*(c/d)
+    (m*(n/m))*d < (m*(c/d))*d
+    n*d = (m*(n/m))*d < (m*(c/d))*d = m*c
+    witness exist first,second N+ st {first*a < second*b, first*c > second*d} from m,n
+
+
+thm equal_equimultiple_comparisons_imply_cross_product:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a*d = b*c
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+    by contra:
+        ? a*d >= b*c
+        a*d < b*c
+        release thm strict_cross_product_has_separating_equimultiples(a,b,c,d)
+        obtain m,n from exist m,n N+ st {m*a < n*b, m*c > n*d}
+        m*c < n*d
+        impossible m*c > n*d
+    by contra:
+        ? a*d <= b*c
+        a*d > b*c
+        c*b = b*c < a*d = d*a
+        release thm strict_cross_product_has_separating_equimultiples(c,d,a,b)
+        obtain m,n from exist m,n N+ st {m*c < n*d, m*a > n*b}
+        m*a < n*b
+        impossible m*a > n*b
+    a*d = b*c
+
+
+thm equal_equimultiple_comparisons_give_equal_quotients:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a/b = c/d
+    release thm equal_equimultiple_comparisons_imply_cross_product(a,b,c,d)
+    b*d > 0
+    a/b = (a*d)/(b*d) = (b*c)/(b*d) = c/d
+
+
+thm equal_positive_quotients_imply_cross_product:
+    ? forall a,b,c,d R+:
+        a/b = c/d
+        =>:
+            a*d = b*c
+    (a/b)*(b*d) = (c/d)*(b*d)
+    a*d = (a/b)*(b*d) = (c/d)*(b*d) = b*c
+
+
+# Publish the independently proved nonzero contract for denominators in geometric ratios.
+claim:
+    ? forall a,b cart(R,R):
+        a != b
+        =>:
+            angle_measure::segment_length(a,b) $in R+
+            angle_measure::segment_length(a,b) > 0
+            angle_measure::segment_length(a,b) != 0
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    geometry::main::distance_sq(a,b) >= 0
+    sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) = sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) $in R+
+    angle_measure::segment_length(a,b) != 0
+
+
+# Principal-angle classification supplies the cosine numerator sign for VI.7.
+thm acute_angle_controls_cosine_numerator_sign:
+    ? forall p,q,r cart(R,R):
+        p != q
+        r != q
+        angle_measure::ray_angle(p,q,r) < pi/2
+        =>:
+            geometry::main::angle_cos_num(p,q,r) > 0
+    release obj def angle_measure::ray_angle
+    release thm angle_measure::angle_cosine_bounded(p,q,r)
+    release thm angles::angle_den_positive(p,q,r)
+    have n R = geometry::main::angle_cos_num(p,q,r)
+    have d R+ = sqrt(geometry::main::angle_cos_den(p,q,r))
+    have x R = angles::angle_cosine(p,q,r)
+    x = angles::angle_cosine(p,q,r) = geometry::main::angle_cos_num(p,q,r)/sqrt(geometry::main::angle_cos_den(p,q,r)) = n/d
+    (-1) <= x <= 1
+    angle_measure::ray_angle(p,q,r) = arccos(angles::angle_cosine(p,q,r)) = arccos(x)
+    arccos(0) = pi/2
+    by contra:
+        ? geometry::main::angle_cos_num(p,q,r) > 0
+        geometry::main::angle_cos_num(p,q,r) <= 0
+        n = geometry::main::angle_cos_num(p,q,r) <= 0
+        x = n/d <= 0/d = 0
+        by cases:
+            ? arccos(x) >= pi/2
+            case x < 0:
+                release thm angle_measure::arccos_strictly_decreasing(x,0)
+                arccos(x) > arccos(0) = pi/2
+            case x >= 0:
+                x = 0
+                arccos(x) = arccos(0) = pi/2
+        angle_measure::ray_angle(p,q,r) = arccos(x) >= pi/2
+        impossible angle_measure::ray_angle(p,q,r) < pi/2
+
+
+# Principal-angle classification supplies the cosine numerator sign for VI.7.
+thm nonacute_angle_controls_cosine_numerator_sign:
+    ? forall p,q,r cart(R,R):
+        p != q
+        r != q
+        angle_measure::ray_angle(p,q,r) >= pi/2
+        =>:
+            geometry::main::angle_cos_num(p,q,r) <= 0
+    release obj def angle_measure::ray_angle
+    release thm angle_measure::angle_cosine_bounded(p,q,r)
+    release thm angles::angle_den_positive(p,q,r)
+    have n R = geometry::main::angle_cos_num(p,q,r)
+    have d R+ = sqrt(geometry::main::angle_cos_den(p,q,r))
+    have x R = angles::angle_cosine(p,q,r)
+    x = angles::angle_cosine(p,q,r) = geometry::main::angle_cos_num(p,q,r)/sqrt(geometry::main::angle_cos_den(p,q,r)) = n/d
+    (-1) <= x <= 1
+    angle_measure::ray_angle(p,q,r) = arccos(angles::angle_cosine(p,q,r)) = arccos(x)
+    arccos(0) = pi/2
+    by contra:
+        ? geometry::main::angle_cos_num(p,q,r) <= 0
+        geometry::main::angle_cos_num(p,q,r) > 0
+        n = geometry::main::angle_cos_num(p,q,r) > 0
+        x = n/d > 0/d = 0
+        release thm angle_measure::arccos_strictly_decreasing(0,x)
+        angle_measure::ray_angle(p,q,r) = arccos(x) < arccos(0) = pi/2
+        impossible angle_measure::ray_angle(p,q,r) >= pi/2
+
+
+# Equal squared sines determine equal angles when cosine signs agree.
+# Gram identity converts the determinant ratio back to the cosine relation.
+thm determinant_ratio_and_cosine_sign_give_equal_angles:
+    ? forall p,q,r,u,v,w cart(R,R):
+        p != q
+        r != q
+        u != v
+        w != v
+        geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))^2*geometry::main::angle_cos_den(u,v,w) = geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2*geometry::main::angle_cos_den(p,q,r)
+        geometry::main::angle_cos_num(p,q,r)*geometry::main::angle_cos_num(u,v,w) >= 0
+        =>:
+            $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(q,p),geometry::main::vec(q,r))
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(v,u),geometry::main::vec(v,w))
+    have n R = geometry::main::angle_cos_num(p,q,r)
+    have m R = geometry::main::angle_cos_num(u,v,w)
+    have h R = geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))^2
+    have k R = geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2
+    have den R = geometry::main::angle_cos_den(p,q,r)
+    have other_den R = geometry::main::angle_cos_den(u,v,w)
+    n = geometry::main::angle_cos_num(p,q,r) = geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r))
+    m = geometry::main::angle_cos_num(u,v,w) = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w))
+    geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r))^2 = n^2
+    geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w))^2 = m^2
+    den = geometry::main::angle_cos_den(p,q,r) = geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r) = geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,p))*geometry::main::dot(geometry::main::vec(q,r),geometry::main::vec(q,r)) = geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r))^2+geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))^2 = n^2+geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))^2 = n^2+h
+    other_den = geometry::main::angle_cos_den(u,v,w) = geometry::main::distance_sq(v,u)*geometry::main::distance_sq(v,w) = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,u))*geometry::main::dot(geometry::main::vec(v,w),geometry::main::vec(v,w)) = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w))^2+geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2 = m^2+geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2 = m^2+k
+    h*other_den = geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))^2*geometry::main::angle_cos_den(u,v,w) = geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2*geometry::main::angle_cos_den(p,q,r) = k*den
+    n^2 = den-h
+    m^2 = other_den-k
+    n^2*other_den = (den-h)*other_den = den*other_den-h*other_den = den*other_den-k*den = (other_den-k)*den = m^2*den
+    geometry::main::angle_cos_num(p,q,r)^2*geometry::main::angle_cos_den(u,v,w) = n^2*other_den = m^2*den = geometry::main::angle_cos_num(u,v,w)^2*geometry::main::angle_cos_den(p,q,r)
+    release thm angles::angle_den_positive(p,q,r)
+    release thm angles::angle_den_positive(u,v,w)
+    by def $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+
+
+# The sine-law transport behind VI.7: side proportion and one equal angle
+# determine the other sine; its cosine sign removes the supplementary choice.
+thm side_ratio_and_angle_give_remaining_angle:
+    ? forall a,b,c,u,v,w cart(R,R):
+        a != b
+        a != c
+        b != c
+        u != v
+        u != w
+        v != w
+        $geometry::main::is_triangle(a,b,c)
+        $geometry::main::is_triangle(u,v,w)
+        $geometry::main::are_angles_congruent(b,a,c,v,u,w)
+        geometry::main::distance_sq(a,b)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(b,c)
+        geometry::main::angle_cos_num(a,c,b)*geometry::main::angle_cos_num(u,w,v) >= 0
+        =>:
+            $geometry::main::are_angles_congruent(a,c,b,u,w,v)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(u,v,w)
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    release thm geometry::main::distance_sq_positive_of_ne(a,c)
+    release thm geometry::main::distance_sq_positive_of_ne(b,c)
+    release thm geometry::main::distance_sq_positive_of_ne(u,v)
+    release thm geometry::main::distance_sq_positive_of_ne(u,w)
+    release thm geometry::main::distance_sq_positive_of_ne(v,w)
+    have x R+ = geometry::main::distance_sq(a,b)
+    have y R+ = geometry::main::distance_sq(a,c)
+    have z R+ = geometry::main::distance_sq(b,c)
+    have xx R+ = geometry::main::distance_sq(u,v)
+    have yy R+ = geometry::main::distance_sq(u,w)
+    have zz R+ = geometry::main::distance_sq(v,w)
+    by def $geometry::main::is_triangle(a,b,c)
+    by def $geometry::main::is_triangle(u,v,w)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 > 0
+    geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2 > 0
+    have first_area_sq R+ = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2
+    have second_area_sq R+ = geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2
+    release thm geometry::main::distance_sq_symmetric(a,b)
+    release thm geometry::main::distance_sq_symmetric(u,v)
+    geometry::main::angle_cos_den(b,a,c) = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(a,c) = x*y
+    geometry::main::angle_cos_den(v,u,w) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(u,w) = xx*yy
+    release thm geometry::main::congruent_angle_det_square_ratio(b,a,c,v,u,w)
+    first_area_sq*(xx*yy) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2*geometry::main::angle_cos_den(v,u,w) = geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2*geometry::main::angle_cos_den(b,a,c) = second_area_sq*(x*y)
+
+    release thm geometry::main::distance_sq_symmetric(a,c)
+    release thm geometry::main::distance_sq_symmetric(b,c)
+    release thm geometry::main::triangle_det_squared_vertex(c,a,b)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    geometry::main::det(geometry::main::vec(c,a),geometry::main::vec(c,b))^2 = geometry::main::det(geometry::main::vec(a,c),geometry::main::vec(a,b))^2 = (-geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)))^2 = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = first_area_sq
+    release thm geometry::main::distance_sq_symmetric(u,w)
+    release thm geometry::main::distance_sq_symmetric(v,w)
+    release thm geometry::main::triangle_det_squared_vertex(w,u,v)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(u,v),geometry::main::vec(u,w))
+    geometry::main::det(geometry::main::vec(w,u),geometry::main::vec(w,v))^2 = geometry::main::det(geometry::main::vec(u,w),geometry::main::vec(u,v))^2 = (-geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w)))^2 = geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2 = second_area_sq
+    geometry::main::angle_cos_den(a,c,b) = geometry::main::distance_sq(c,a)*geometry::main::distance_sq(c,b) = geometry::main::distance_sq(a,c)*geometry::main::distance_sq(b,c) = y*z
+    geometry::main::angle_cos_den(u,w,v) = geometry::main::distance_sq(w,u)*geometry::main::distance_sq(w,v) = geometry::main::distance_sq(u,w)*geometry::main::distance_sq(v,w) = yy*zz
+    x*zz = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(b,c) = xx*z
+    first_area_sq*(yy*zz) = (first_area_sq*(xx*yy))*zz/xx = (second_area_sq*(x*y))*zz/xx = second_area_sq*y*(x*zz)/xx = second_area_sq*y*(xx*z)/xx = second_area_sq*(y*z)
+    geometry::main::det(geometry::main::vec(c,a),geometry::main::vec(c,b))^2*geometry::main::angle_cos_den(u,w,v) = first_area_sq*(yy*zz) = second_area_sq*(y*z) = geometry::main::det(geometry::main::vec(w,u),geometry::main::vec(w,v))^2*geometry::main::angle_cos_den(a,c,b)
+    release thm determinant_ratio_and_cosine_sign_give_equal_angles(a,c,b,u,w,v)
+
+
+# I.32's angle-sum conclusion does not depend on which exterior point is
+# chosen. Supply the doubled endpoint as the auxiliary extension witness.
+thm proper_triangle_angle_sum:
+    ? forall a,b,c cart(R,R):
+        a != b
+        a != c
+        b != c
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            angle_measure::ray_angle(b,a,c)+angle_measure::ray_angle(a,b,c)+angle_measure::ray_angle(a,c,b) = pi
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    have d cart(R,R) = (2*c(1)-b(1),2*c(2)-b(2))
+    d(1) = 2*c(1)-b(1)
+    d(2) = 2*c(2)-b(2)
+    by contra:
+        ? d != c
+        d = c
+        b(1) = 2*c(1)-(2*c(1)-b(1)) = 2*c(1)-d(1) = 2*c(1)-c(1) = c(1)
+        b(2) = 2*c(2)-(2*c(2)-b(2)) = 2*c(2)-d(2) = 2*c(2)-c(2) = c(2)
+        b = (b(1),b(2)) = (c(1),c(2)) = c
+        impossible b != c
+    d(1) = (1-2)*b(1)+2*c(1)
+    d(2) = (1-2)*b(2)+2*c(2)
+    witness exist coef R st {coef > 1, d(1)=(1-coef)*b(1)+coef*c(1), d(2)=(1-coef)*b(2)+coef*c(2)} from 2
+    by def $geometry::main::is_on_extension(d,b,c)
+    release thm proposition_32(a,b,c,d)
+
+
+# I.32 makes the third principal angle equal once two corresponding angles
+# are equal. This interface supplies AA without a hidden side-ratio premise.
+thm two_equal_angles_give_equiangular_triangles:
+    ? forall a,b,c,u,v,w cart(R,R):
+        a != b
+        a != c
+        b != c
+        u != v
+        u != w
+        v != w
+        $geometry::main::is_triangle(a,b,c)
+        $geometry::main::is_triangle(u,v,w)
+        $geometry::main::are_angles_congruent(b,a,c,v,u,w)
+        $geometry::main::are_angles_congruent(a,c,b,u,w,v)
+        =>:
+            $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+    release thm proper_triangle_angle_sum(a,b,c)
+    release thm proper_triangle_angle_sum(u,v,w)
+    release thm angle_measure::angle_relation_implies_equal_measure(b,a,c,v,u,w)
+    release thm angle_measure::angle_relation_implies_equal_measure(a,c,b,u,w,v)
+    have alpha R = angle_measure::ray_angle(b,a,c)
+    have beta R = angle_measure::ray_angle(a,b,c)
+    have gamma R = angle_measure::ray_angle(a,c,b)
+    have other_beta R = angle_measure::ray_angle(u,v,w)
+    alpha+beta+gamma = angle_measure::ray_angle(b,a,c)+angle_measure::ray_angle(a,b,c)+angle_measure::ray_angle(a,c,b) = pi
+    alpha+other_beta+gamma = angle_measure::ray_angle(v,u,w)+angle_measure::ray_angle(u,v,w)+angle_measure::ray_angle(u,w,v) = pi
+    beta = (alpha+beta+gamma)-alpha-gamma = pi-alpha-gamma = (alpha+other_beta+gamma)-alpha-gamma = other_beta
+    angle_measure::ray_angle(a,b,c) = beta = other_beta = angle_measure::ray_angle(u,v,w)
+    release thm angle_measure::ray_angle_cosine(a,b,c)
+    release thm angle_measure::ray_angle_cosine(u,v,w)
+    angles::angle_cosine(a,b,c) = cos(angle_measure::ray_angle(a,b,c)) = cos(angle_measure::ray_angle(u,v,w)) = angles::angle_cosine(u,v,w)
+    release thm angle_measure::equal_cosines_imply_angle_relation(a,b,c,u,v,w)
+    by def $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+
+
+# Book VI, Proposition 7. The non-included-angle criterion requires the
+# remaining angles to lie on the same side of the right-angle boundary.
+# The analytic proof uses the sine ratio and this sign condition, then I.32.
+thm book06_proposition_07_quotients:
+    ? forall a,b,c,u,v,w cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        $geometry::main::is_triangle(u,v,w)
+        a != b
+        a != c
+        b != c
+        u != v
+        u != w
+        v != w
+        angle_measure::segment_length(a,b)/angle_measure::segment_length(b,c) = angle_measure::segment_length(u,v)/angle_measure::segment_length(v,w)
+        $geometry::main::are_angles_congruent(b,a,c,v,u,w)
+        angle_measure::ray_angle(a,c,b) < pi/2 and angle_measure::ray_angle(u,w,v) < pi/2 or angle_measure::ray_angle(a,c,b) >= pi/2 and angle_measure::ray_angle(u,w,v) >= pi/2
+        =>:
+            $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+    have ab R+ = angle_measure::segment_length(a,b)
+    have bc R+ = angle_measure::segment_length(b,c)
+    have uv R+ = angle_measure::segment_length(u,v)
+    have vw R+ = angle_measure::segment_length(v,w)
+    ab/bc = angle_measure::segment_length(a,b)/angle_measure::segment_length(b,c) = angle_measure::segment_length(u,v)/angle_measure::segment_length(v,w) = uv/vw
+    release thm equal_positive_quotients_imply_cross_product(ab,bc,uv,vw)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,b)
+    ab^2 = angle_measure::segment_length(a,b)^2 = geometry::main::distance_sq(a,b)
+    release thm angle_measure::segment_length_square_is_squared_distance(b,c)
+    bc^2 = angle_measure::segment_length(b,c)^2 = geometry::main::distance_sq(b,c)
+    release thm angle_measure::segment_length_square_is_squared_distance(u,v)
+    uv^2 = angle_measure::segment_length(u,v)^2 = geometry::main::distance_sq(u,v)
+    release thm angle_measure::segment_length_square_is_squared_distance(v,w)
+    vw^2 = angle_measure::segment_length(v,w)^2 = geometry::main::distance_sq(v,w)
+    geometry::main::distance_sq(a,b)*geometry::main::distance_sq(v,w) = ab^2*vw^2 = (ab*vw)^2 = (bc*uv)^2 = uv^2*bc^2 = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(b,c)
+    by cases:
+        ? geometry::main::angle_cos_num(a,c,b)*geometry::main::angle_cos_num(u,w,v) >= 0
+        case angle_measure::ray_angle(a,c,b) < pi/2 and angle_measure::ray_angle(u,w,v) < pi/2:
+            release thm acute_angle_controls_cosine_numerator_sign(a,c,b)
+            release thm acute_angle_controls_cosine_numerator_sign(u,w,v)
+            geometry::main::angle_cos_num(a,c,b)*geometry::main::angle_cos_num(u,w,v) > 0
+        case angle_measure::ray_angle(a,c,b) >= pi/2 and angle_measure::ray_angle(u,w,v) >= pi/2:
+            release thm nonacute_angle_controls_cosine_numerator_sign(a,c,b)
+            release thm nonacute_angle_controls_cosine_numerator_sign(u,w,v)
+            geometry::main::angle_cos_num(a,c,b)*geometry::main::angle_cos_num(u,w,v) >= 0
+    release thm side_ratio_and_angle_give_remaining_angle(a,b,c,u,v,w)
+    release thm two_equal_angles_give_equiangular_triangles(a,b,c,u,v,w)
+
+
+thm book06_proposition_07_equimultiples:
+    ? forall a,b,c,u,v,w cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        $geometry::main::is_triangle(u,v,w)
+        a != b
+        a != c
+        b != c
+        u != v
+        u != w
+        v != w
+        $geometry::main::are_angles_congruent(b,a,c,v,u,w)
+        $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+        angle_measure::ray_angle(a,c,b) < pi/2 and angle_measure::ray_angle(u,w,v) < pi/2 or angle_measure::ray_angle(a,c,b) >= pi/2 and angle_measure::ray_angle(u,w,v) >= pi/2
+        =>:
+            $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+    release thm equal_equimultiple_comparisons_give_equal_quotients(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+    release thm book06_proposition_07_quotients(a,b,c,u,v,w)
+
+
+thm uniform_scale_preserves_angle:
+    ? forall p,q,r,u,v,w cart(R,R), k R+:
+        p != q
+        r != q
+        u != v
+        w != v
+        u(1)-v(1) = k*(p(1)-q(1))
+        u(2)-v(2) = k*(p(2)-q(2))
+        w(1)-v(1) = k*(r(1)-q(1))
+        w(2)-v(2) = k*(r(2)-q(2))
+        =>:
+            $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+    release thm geometry::main::similar_triangles_ratio(p,q,q,u,v,v,k)
+    release thm geometry::main::similar_triangles_ratio(r,q,q,w,v,v,k)
+    release thm geometry::main::distance_sq_symmetric(p,q)
+    release thm geometry::main::distance_sq_symmetric(u,v)
+    release thm geometry::main::distance_sq_symmetric(r,q)
+    release thm geometry::main::distance_sq_symmetric(w,v)
+    geometry::main::distance_sq(v,u) = geometry::main::distance_sq(u,v) = k^2*geometry::main::distance_sq(p,q) = k^2*geometry::main::distance_sq(q,p)
+    geometry::main::distance_sq(v,w) = geometry::main::distance_sq(w,v) = k^2*geometry::main::distance_sq(r,q) = k^2*geometry::main::distance_sq(q,r)
+    release thm geometry::main::similar_triangles_dot(p,q,r,u,v,w,k)
+    have n R = geometry::main::angle_cos_num(p,q,r)
+    release thm angles::angle_den_positive(p,q,r)
+    have d R+ = geometry::main::angle_cos_den(p,q,r)
+    geometry::main::angle_cos_num(p,q,r) = geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r)) = (p(1)-q(1))*(r(1)-q(1))+(p(2)-q(2))*(r(2)-q(2))
+    geometry::main::angle_cos_num(u,v,w) = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w)) = (u(1)-v(1))*(w(1)-v(1))+(u(2)-v(2))*(w(2)-v(2)) = k^2*((p(1)-q(1))*(r(1)-q(1))+(p(2)-q(2))*(r(2)-q(2))) = k^2*n
+    d = geometry::main::angle_cos_den(p,q,r) = geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r)
+    geometry::main::angle_cos_den(u,v,w) = geometry::main::distance_sq(v,u)*geometry::main::distance_sq(v,w) = (k^2*geometry::main::distance_sq(q,p))*(k^2*geometry::main::distance_sq(q,r)) = k^4*(geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r)) = k^4*d
+    release thm angles::angle_den_positive(p,q,r)
+    release thm angles::angle_den_positive(u,v,w)
+    geometry::main::angle_cos_num(p,q,r)^2*geometry::main::angle_cos_den(u,v,w) = n^2*(k^4*d) = (k^2*n)^2*d = geometry::main::angle_cos_num(u,v,w)^2*geometry::main::angle_cos_den(p,q,r)
+    n^2 >= 0
+    geometry::main::angle_cos_num(p,q,r)*geometry::main::angle_cos_num(u,v,w) = n*(k^2*n) = k^2*n^2 >= 0
+    by def $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+
+
+thm uniform_scale_preserves_triangle:
+    ? forall p,q,r,u,v,w cart(R,R), k R+:
+        $geometry::main::is_triangle(q,p,r)
+        u(1)-v(1) = k*(p(1)-q(1))
+        u(2)-v(2) = k*(p(2)-q(2))
+        w(1)-v(1) = k*(r(1)-q(1))
+        w(2)-v(2) = k*(r(2)-q(2))
+        =>:
+            $geometry::main::is_triangle(v,u,w)
+    by def $geometry::main::is_triangle(q,p,r)
+    release thm geometry::main::collinear_det_expand(q,p,r)
+    release thm geometry::main::collinear_det_expand(v,u,w)
+    release thm geometry::main::similar_triangles_det(p,q,r,u,v,w,k)
+    have source_det R = geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))
+    source_det != 0
+    geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w)) = (u(1)-v(1))*(w(2)-v(2))-(u(2)-v(2))*(w(1)-v(1)) = k^2*((p(1)-q(1))*(r(2)-q(2))-(p(2)-q(2))*(r(1)-q(1))) = k^2*source_det
+    k^2 != 0
+    k^2*source_det != 0
+    by def $geometry::main::is_triangle(v,u,w)
+
+
+thm book06_proposition07_scaled_consumer:
+    ? forall a,b,c cart(R,R), scale R+:
+        $geometry::main::is_triangle(a,b,c)
+        a != b
+        a != c
+        b != c
+        =>:
+            exist u,v,w cart(R,R) st {u != v, u != w, v != w, u(1)=scale*a(1), u(2)=scale*a(2), v(1)=scale*b(1), v(2)=scale*b(2), w(1)=scale*c(1), w(2)=scale*c(2), $geometry::main::are_triangles_similar(a,b,c,u,v,w), $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))}
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    have u cart(R,R) = (scale*a(1),scale*a(2))
+    u(1) = scale*a(1)
+    u(2) = scale*a(2)
+    have v cart(R,R) = (scale*b(1),scale*b(2))
+    v(1) = scale*b(1)
+    v(2) = scale*b(2)
+    have w cart(R,R) = (scale*c(1),scale*c(2))
+    w(1) = scale*c(1)
+    w(2) = scale*c(2)
+    u(1)-v(1) = scale*a(1)-scale*b(1) = scale*(a(1)-b(1))
+    u(2)-v(2) = scale*a(2)-scale*b(2) = scale*(a(2)-b(2))
+    u(1)-w(1) = scale*a(1)-scale*c(1) = scale*(a(1)-c(1))
+    u(2)-w(2) = scale*a(2)-scale*c(2) = scale*(a(2)-c(2))
+    v(1)-u(1) = scale*b(1)-scale*a(1) = scale*(b(1)-a(1))
+    v(2)-u(2) = scale*b(2)-scale*a(2) = scale*(b(2)-a(2))
+    v(1)-w(1) = scale*b(1)-scale*c(1) = scale*(b(1)-c(1))
+    v(2)-w(2) = scale*b(2)-scale*c(2) = scale*(b(2)-c(2))
+    w(1)-u(1) = scale*c(1)-scale*a(1) = scale*(c(1)-a(1))
+    w(2)-u(2) = scale*c(2)-scale*a(2) = scale*(c(2)-a(2))
+    w(1)-v(1) = scale*c(1)-scale*b(1) = scale*(c(1)-b(1))
+    w(2)-v(2) = scale*c(2)-scale*b(2) = scale*(c(2)-b(2))
+    release thm uniform_scale_preserves_triangle(b,a,c,v,u,w,scale)
+    release thm geometry_lemmas::triangle_vertices_distinct(u,v,w)
+    release thm uniform_scale_preserves_angle(b,a,c,v,u,w,scale)
+    release thm geometry::main::similar_triangles_ratio(a,b,b,u,v,v,scale)
+    release thm geometry::main::similar_triangles_ratio(b,c,c,v,w,w,scale)
+    have ab R+ = angle_measure::segment_length(a,b)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,b)
+    ab^2 = angle_measure::segment_length(a,b)^2 = geometry::main::distance_sq(a,b)
+    have bc R+ = angle_measure::segment_length(b,c)
+    release thm angle_measure::segment_length_square_is_squared_distance(b,c)
+    bc^2 = angle_measure::segment_length(b,c)^2 = geometry::main::distance_sq(b,c)
+    have uv R+ = angle_measure::segment_length(u,v)
+    release thm angle_measure::segment_length_square_is_squared_distance(u,v)
+    uv^2 = angle_measure::segment_length(u,v)^2 = geometry::main::distance_sq(u,v)
+    have vw R+ = angle_measure::segment_length(v,w)
+    release thm angle_measure::segment_length_square_is_squared_distance(v,w)
+    vw^2 = angle_measure::segment_length(v,w)^2 = geometry::main::distance_sq(v,w)
+    uv^2 = geometry::main::distance_sq(u,v) = scale^2*geometry::main::distance_sq(a,b) = scale^2*ab^2 = (scale*ab)^2
+    uv*(scale*ab) > 0
+    release thm angle_measure::same_square_and_sign_gives_equality(uv,scale*ab)
+    vw^2 = geometry::main::distance_sq(v,w) = scale^2*geometry::main::distance_sq(b,c) = scale^2*bc^2 = (scale*bc)^2
+    vw*(scale*bc) > 0
+    release thm angle_measure::same_square_and_sign_gives_equality(vw,scale*bc)
+    angle_measure::segment_length(a,b)/angle_measure::segment_length(b,c) = ab/bc = (scale*ab)/(scale*bc) = uv/vw = angle_measure::segment_length(u,v)/angle_measure::segment_length(v,w)
+    release thm equal_positive_quotients_imply_cross_product(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+    release thm uniform_scale_preserves_angle(a,c,b,u,w,v,scale)
+    release thm angle_measure::angle_relation_implies_equal_measure(a,c,b,u,w,v)
+    by cases:
+        ? angle_measure::ray_angle(a,c,b) < pi/2 and angle_measure::ray_angle(u,w,v) < pi/2 or angle_measure::ray_angle(a,c,b) >= pi/2 and angle_measure::ray_angle(u,w,v) >= pi/2
+        case angle_measure::ray_angle(a,c,b) < pi/2:
+            angle_measure::ray_angle(u,w,v) = angle_measure::ray_angle(a,c,b) < pi/2
+        case angle_measure::ray_angle(a,c,b) >= pi/2:
+            angle_measure::ray_angle(u,w,v) = angle_measure::ray_angle(a,c,b) >= pi/2
+    release thm book06_proposition_07_equimultiples(a,b,c,u,v,w)
+    witness exist aa,bb,cc cart(R,R) st {aa != bb, aa != cc, bb != cc, aa(1)=scale*a(1), aa(2)=scale*a(2), bb(1)=scale*b(1), bb(2)=scale*b(2), cc(1)=scale*c(1), cc(2)=scale*c(2), $geometry::main::are_triangles_similar(a,b,c,aa,bb,cc), $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(aa,bb),angle_measure::segment_length(bb,cc))} from u,v,w

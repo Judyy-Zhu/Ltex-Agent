@@ -1,0 +1,69 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+thm triangle_vertices_distinct:
+    ? forall a, b, c cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            a != b
+            a != c
+            b != c
+    claim:
+        ? forall aa, bb, cc cart(R, R):
+            $geometry::main::is_triangle(aa, bb, cc)
+            =>:
+                aa != cc
+        by contra:
+            ? aa != cc
+            aa = cc
+            cc(1) = aa(1)
+            cc(2) = aa(2)
+            geometry::main::vec(aa, cc)(1) = cc(1) - aa(1) = aa(1) - aa(1) = 0
+            geometry::main::vec(aa, cc)(2) = cc(2) - aa(2) = aa(2) - aa(2) = 0
+            geometry::main::det(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) = geometry::main::vec(aa, bb)(1) * geometry::main::vec(aa, cc)(2) - geometry::main::vec(aa, bb)(2) * geometry::main::vec(aa, cc)(1) = geometry::main::vec(aa, bb)(1) * 0 - geometry::main::vec(aa, bb)(2) * 0 = 0
+            impossible geometry::main::det(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) != 0
+    a != c
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(a, c), geometry::main::vec(a, b))
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) != 0
+        geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = 0
+        0 = geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = -(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)))
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -(-(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)))) = -(geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b))) = -0 = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    by def $geometry::main::is_triangle(a, c, b)
+    a != b
+    release thm geometry::main::triangle_det_squared_vertex(a, b, c)
+    by contra:
+        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) != 0
+        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 = geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = 0^2 = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    by def $geometry::main::is_triangle(b, a, c)
+    b != c
+
+thm angle_congruence_from_equal_sides_and_dot:
+    ? forall aa, bb, cc, dd, ff, gg cart(R, R):
+        bb != aa
+        cc != aa
+        ff != dd
+        gg != dd
+        geometry::main::distance_sq(aa, bb) = geometry::main::distance_sq(dd, ff)
+        geometry::main::distance_sq(aa, cc) = geometry::main::distance_sq(dd, gg)
+        geometry::main::dot(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) = geometry::main::dot(geometry::main::vec(dd, ff), geometry::main::vec(dd, gg))
+        =>:
+            $geometry::main::are_angles_congruent(bb, aa, cc, ff, dd, gg)
+    release thm geometry::main::distance_sq_positive_of_ne(aa, bb)
+    release thm geometry::main::distance_sq_positive_of_ne(aa, cc)
+    geometry::main::distance_sq(aa, bb) $in R+
+    geometry::main::distance_sq(aa, cc) $in R+
+    geometry::main::distance_sq(aa, bb) * geometry::main::distance_sq(aa, cc) $in R+
+    geometry::main::angle_cos_den(bb, aa, cc) = geometry::main::distance_sq(aa, bb) * geometry::main::distance_sq(aa, cc) > 0
+    geometry::main::angle_cos_den(ff, dd, gg) = geometry::main::distance_sq(dd, ff) * geometry::main::distance_sq(dd, gg) = geometry::main::distance_sq(aa, bb) * geometry::main::distance_sq(aa, cc) = geometry::main::angle_cos_den(bb, aa, cc) > 0
+    geometry::main::angle_cos_num(bb, aa, cc) = geometry::main::dot(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) = geometry::main::dot(geometry::main::vec(dd, ff), geometry::main::vec(dd, gg)) = geometry::main::angle_cos_num(ff, dd, gg)
+    geometry::main::angle_cos_num(bb, aa, cc)^2 * geometry::main::angle_cos_den(ff, dd, gg) = geometry::main::angle_cos_num(ff, dd, gg)^2 * geometry::main::angle_cos_den(ff, dd, gg) = geometry::main::angle_cos_num(ff, dd, gg)^2 * geometry::main::angle_cos_den(bb, aa, cc)
+    geometry::main::angle_cos_num(bb, aa, cc) * geometry::main::angle_cos_num(ff, dd, gg) = geometry::main::angle_cos_num(bb, aa, cc) * geometry::main::angle_cos_num(bb, aa, cc) = geometry::main::angle_cos_num(bb, aa, cc)^2 >= 0
+    by def $geometry::main::are_angles_congruent(bb, aa, cc, ff, dd, gg)

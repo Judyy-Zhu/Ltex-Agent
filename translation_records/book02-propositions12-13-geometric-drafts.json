@@ -1,0 +1,55 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "II12_source_pages_zero_based": [
+    63,
+    64
+  ],
+  "II13_source_starts_zero_based": 64,
+  "status": "Shared prerequisites only, neither source proposition complete",
+  "orthogonal_projection": "orthogonal-projection-candidate2 accepted0092: arbitrary point B projected onto line AC with explicit affine parameter and zero dot product against AC",
+  "negative_projection": "candidate4 accepted0097 after explicit aliases for signed product and side sum",
+  "required_source_conclusions": [
+    "II12: actual square on opposite side exceeds sum of adjacent squares by twice actual rectangle on adjacent side and external projection segment",
+    "II13: analogous deficit for acute triangle and internal projection segment",
+    "Prove the angle conditions, correct foot location, nondegeneracy and positive actual figure construction; do not count a scalar cosine identity as either proposition"
+  ],
+  "trust": "No new trust or kernel edits.",
+  "external_foot": "candidate2 accepted0098",
+  "right_angle": "projection-foot-right-angle accepted0099",
+  "actual_figures": "II12-negative-dot-construction candidate1 accepted0100, includes external betweenness, actual right angle, rectangle and three squares with positive areas and strict inequality",
+  "remaining": [
+    "independent clean and original full gates"
+  ],
+  "source_II12": "book02-proposition12-construction-candidate2 accepted0116. Uses ray_angle(b,a,c)>pi/2; actual external foot/right angle/rectangle/3squares; exact positive area equality and strict inequality.",
+  "domain_note": "Explicit b!=a,c!=a are redundant consequences of is_triangle proved by existing theorem and global claim0114. They make ray_angle WD visible; no new mathematical restriction.",
+  "angle_bridge": "both directions accepted: main0112 and0117, independent angleworker0003/0005",
+  "II12_consumers": "obtuse0118 translated/reversed0119 accepted; right-angle0120 rejects exact ray_angle(b,a,c)>pi/2",
+  "II13_source_pages_zero_based": [
+    64,
+    65
+  ],
+  "II13_source_lines": [
+    2612,
+    2653
+  ],
+  "II13_status": "source0130 and actual construction candidate3 0129 accepted; all three acute angles required",
+  "II13_mapping": "Our A is source B, our B is source A, C unchanged. Base AC corresponds source BC; the square on our BC corresponds source AC; rectangle on AC and AD corresponds source BC and BD.",
+  "II13_scope": "All three angle measures less than pi/2 required by is_acute_triangle; internal foot and positive actual rectangle/three square areas, exact deficit and strict inequality.",
+  "II13_consumers": "acute0131 translated/reversed0132 accepted; right0133 rejects selected-angle<pi/2; other-angle-obtuse0134 rejected",
+  "II13_clean": "105-declaration assembly prepared, waiting for current95 gate88615",
+  "II13_other_angle_diagnostic": [
+    {
+      "category": "proof_search",
+      "message": "Could not prove the goal.",
+      "obligation": "ray_angle(b, c, a) < (pi / 2)"
+    }
+  ],
+  "II2_13_clean_gate": {
+    "status": "PASS",
+    "statement_count": 105,
+    "exit_code": 0,
+    "source_hashes_stable": true,
+    "receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/II2-13-geometric-checkpoint/receipt.json",
+    "canonical_increment": 0
+  }
+}

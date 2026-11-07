@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 12,
+    "mathematics": "Find a fourth proportional UV to AB,CD,PQ so AB:CD=PQ:UV."
+  },
+  "status": "independent_strict_gate_passed_with_positive_consumer",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "main_sha256": "ee3dac15e2fc16ad66ef971efdc00ad8124d058cafb342c1f3990e7009df9ff4",
+  "main_with_consumer_sha256": "4c750a839563c8007bca5b93fe3ed8585b86fa8b5e5259807b7caadf54a355ca",
+  "core_gate": {
+    "stmts": 34,
+    "accepted": 34
+  },
+  "with_consumer_gate": {
+    "stmts": 35,
+    "accepted": 35
+  },
+  "accepted_source": {
+    "request": 9601
+  },
+  "positive_consumer": {
+    "request": 9602
+  },
+  "trust_added": 0,
+  "canonical_completion_increment": 0
+}

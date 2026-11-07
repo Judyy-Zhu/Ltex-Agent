@@ -1,0 +1,26 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 11,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/11.txt"
+  },
+  "problem": "Construct a perpendicular at a given point C on the given straight line AB.",
+  "proof_idea": {
+    "original": "The source chooses two equidistant points on the line around C, constructs an equilateral triangle on their base, and joins its apex to C.",
+    "analytic": "Rotate the nonzero direction B-A by 90 degrees and translate it to C; prove the new endpoint differs from C and the direction dot product is zero."
+  },
+  "litex_code": "thm proposition_11:\n    ? forall a, b, c cart(R, R):\n        $geometry::main::is_on_line(c, a, b)\n        =>:\n            exist d cart(R, R) st {c != d, $geometry::main::is_perpendicular(a, b, c, d)}\n    release thm geometry::main::point_difference_norm_pos(a, b)\n    have dx R = b(1) - a(1)\n    have dy R = b(2) - a(2)\n    dx^2 + dy^2 = (b(1) - a(1))^2 + (b(2) - a(2))^2 > 0\n    have endpoint cart(R, R) = (c(1) - dy, c(2) + dx)\n    endpoint(1) = c(1) - dy\n    endpoint(1) - c(1) = (c(1) - dy) - c(1) = -dy\n    endpoint(2) = c(2) + dx\n    endpoint(2) - c(2) = (c(2) + dx) - c(2) = dx\n    by contra:\n        ? c != endpoint\n        c = endpoint\n        endpoint(1) = c(1)\n        endpoint(2) = c(2)\n        endpoint(1) - c(1) = 0\n        endpoint(2) - c(2) = 0\n        -dy = 0\n        dy = -(-dy) = -0 = 0\n        dx = 0\n        dx^2 + dy^2 = 0^2 + 0^2 = 0\n        impossible dx^2 + dy^2 > 0\n    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(c, endpoint)) = dx * (-dy) + dy * dx = 0\n    by def $geometry::main::is_perpendicular(a, b, c, endpoint)\n    witness exist d cart(R, R) st {c != d, $geometry::main::is_perpendicular(a, b, c, d)} from endpoint\n",
+  "comments": {
+    "status": "canonical full original geometry strict file gate passed",
+    "trust_added": 0,
+    "canonical_proposition_count_effect": 0,
+    "draft_path": ".draft/experiment/I11-candidate2.lit",
+    "first_diagnostic": "Reduced-context first draft failed at dx^2+dy^2>0; explicit coordinate-expression equality proposed but not yet submitted.",
+    "feedback_path": ".draft/reduced-check/I11-result.json",
+    "canonical_path": "../textbook/book01-constructions.lit"
+  },
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-twelve-checkpoint/receipt.json"
+}

@@ -1,0 +1,390 @@
+{
+  "kind": "run",
+  "run_result": "success",
+  "target": "file",
+  "path": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2/main.lit",
+  "detail": "normal",
+  "language": "en",
+  "statement_results": [
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::vec",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::vec $in fn (A, B cart(R, R)) cart(R, R)",
+        "m0::f0::vec = fn (A, B cart(R, R)) cart(R, R){((B(1) - A(1)), (B(2) - A(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::dot",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::dot $in fn (u, v cart(R, R)) R",
+        "m0::f0::dot = fn (u, v cart(R, R)) R{((u(1) * v(1)) + (u(2) * v(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::det",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::det $in fn (u, v cart(R, R)) R",
+        "m0::f0::det = fn (u, v cart(R, R)) R{((u(1) * v(2)) - (u(2) * v(1)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::distance_sq",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::distance_sq $in fn (a, b cart(R, R)) R",
+        "m0::f0::distance_sq = fn (a, b cart(R, R)) R{m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, b))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_num",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_num $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_num = fn (p, q, r cart(R, R): p != q, r != q) R{m0::f0::dot(m0::f0::vec(q, p), m0::f0::vec(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_den",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_den $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_den = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::line_through_points",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::line_through_points $in fn (a, b cart(R, R): a != b) power_set(cart(R, R))",
+        "m0::f0::line_through_points = fn (a, b cart(R, R): a != b) power_set(cart(R, R)){{p cart(R, R): m0::f0::det(m0::f0::vec(a, p), m0::f0::vec(a, b)) = 0}}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f2::triangle_area",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f2::triangle_area $in fn (a, b, c cart(R, R): $m0::f0::is_triangle(a, b, c)) R+",
+        "forall a, b, c cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    =>:\n        $f2::has_triangle_area(a, b, c, f2::triangle_area(a, b, c))",
+        "forall a, b, c cart(R, R), area R+:\n    $m0::f0::is_triangle(a, b, c)\n    $f2::has_triangle_area(a, b, c, area)\n    =>:\n        area = f2::triangle_area(a, b, c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm affine_parallelogram_witness:\n    ? forall a, b, c, d cart(R, R):\n        $m0::f0::is_triangle(a, b, d)\n        c(1) = ((b(1) + d(1)) - a(1))\n        c(2) = ((b(2) + d(2)) - a(2))\n        =>:\n            $f2::is_proper_parallelogram(a, b, c, d)\n    by def $m0::f0::is_triangle(a, b, d)\n    release thm f1::triangle_vertices_distinct(a, b, d)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    by contra:\n        ? d != c\n        d = c\n        c(1) = d(1)\n        c(2) = d(2)\n        b(1) = ((((b(1) + d(1)) - a(1)) - d(1)) + a(1)) = ((c(1) - d(1)) + a(1)) = ((d(1) - d(1)) + a(1)) = a(1)\n        b(2) = ((((b(2) + d(2)) - a(2)) - d(2)) + a(2)) = ((c(2) - d(2)) + a(2)) = ((d(2) - d(2)) + a(2)) = a(2)\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = (((a(1) - a(1)) * (d(2) - a(2))) - ((a(2) - a(2)) * (d(1) - a(1)))) = 0\n        impossible m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by contra:\n        ? b != c\n        b = c\n        c(1) = b(1)\n        c(2) = b(2)\n        d(1) = ((((b(1) + d(1)) - a(1)) - b(1)) + a(1)) = ((c(1) - b(1)) + a(1)) = ((b(1) - b(1)) + a(1)) = a(1)\n        d(2) = ((((b(2) + d(2)) - a(2)) - b(2)) + a(2)) = ((c(2) - b(2)) + a(2)) = ((b(2) - b(2)) + a(2)) = a(2)\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = (((b(1) - a(1)) * (a(2) - a(2))) - ((b(2) - a(2)) * (a(1) - a(1)))) = 0\n        impossible m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    (c(1) - d(1)) = (((b(1) + d(1)) - a(1)) - d(1)) = (b(1) - a(1))\n    (c(1) - b(1)) = (((b(1) + d(1)) - a(1)) - b(1)) = (d(1) - a(1))\n    (c(2) - d(2)) = (((b(2) + d(2)) - a(2)) - d(2)) = (b(2) - a(2))\n    (c(2) - b(2)) = (((b(2) + d(2)) - a(2)) - b(2)) = (d(2) - a(2))\n    release thm m0::f0::vec_coordinate_formula(a, b)\n    m0::f0::vec(a, b)(1) = (b(1) - a(1))\n    m0::f0::vec(a, b)(2) = (b(2) - a(2))\n    release thm m0::f0::vec_coordinate_formula(a, d)\n    m0::f0::vec(a, d)(1) = (d(1) - a(1))\n    m0::f0::vec(a, d)(2) = (d(2) - a(2))\n    release thm m0::f0::vec_coordinate_formula(d, c)\n    m0::f0::vec(d, c)(1) = (c(1) - d(1))\n    m0::f0::vec(d, c)(2) = (c(2) - d(2))\n    release thm m0::f0::vec_coordinate_formula(b, c)\n    m0::f0::vec(b, c)(1) = (c(1) - b(1))\n    m0::f0::vec(b, c)(2) = (c(2) - b(2))\n    release thm m0::f0::det_coordinate_formula(m0::f0::vec(a, b), m0::f0::vec(d, c))\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(d, c)) = (((b(1) - a(1)) * (c(2) - d(2))) - ((b(2) - a(2)) * (c(1) - d(1)))) = (((b(1) - a(1)) * (b(2) - a(2))) - ((b(2) - a(2)) * (b(1) - a(1)))) = 0\n    by def $m0::f0::is_parallel(a, b, d, c)\n    release thm m0::f0::det_coordinate_formula(m0::f0::vec(a, d), m0::f0::vec(b, c))\n    m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(b, c)) = (((d(1) - a(1)) * (c(2) - b(2))) - ((d(2) - a(2)) * (c(1) - b(1)))) = (((d(1) - a(1)) * (d(2) - a(2))) - ((d(2) - a(2)) * (d(1) - a(1)))) = 0\n    by def $m0::f0::is_parallel(a, d, b, c)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    release thm m0::f0::collinear_det_expand(a, d, b)\n    release thm m0::f0::det_antisymmetric(m0::f0::vec(a, d), m0::f0::vec(a, b))\n    by contra:\n        ? m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(a, b)) != 0\n        m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(a, b)) = 0\n        m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = (-(-m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)))) = (-m0::f0::det(m0::f0::vec(a, d), m0::f0::vec(a, b))) = (-0) = 0\n        impossible m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by def $f0::are_parallel_lines(a, b, d, c)\n    by def $f0::are_parallel_lines(a, d, b, c)\n    by def $f2::is_proper_parallelogram(a, b, c, d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R):\n    $m0::f0::is_triangle(a, b, d)\n    c(1) = ((b(1) + d(1)) - a(1))\n    c(2) = ((b(2) + d(2)) - a(2))\n    =>:\n        $f2::is_proper_parallelogram(a, b, c, d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm affine_parallelogram_area:\n    ? forall a, b, c, d cart(R, R):\n        $m0::f0::is_triangle(a, b, d)\n        c(1) = ((b(1) + d(1)) - a(1))\n        c(2) = ((b(2) + d(2)) - a(2))\n        =>:\n            exist common R+ st {$f2::has_triangle_area(a, b, d, common), $f2::has_parallelogram_area(a, b, c, d, (2 * common))}\n    release thm affine_parallelogram_witness(a, b, c, d)\n    by def $m0::f0::is_triangle(a, b, d)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    release thm m0::f0::collinear_det_expand(b, c, d)\n    (c(1) - b(1)) = (((b(1) + d(1)) - a(1)) - b(1)) = (d(1) - a(1))\n    (c(2) - b(2)) = (((b(2) + d(2)) - a(2)) - b(2)) = (d(2) - a(2))\n    m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) = (((c(1) - b(1)) * (d(2) - b(2))) - ((c(2) - b(2)) * (d(1) - b(1)))) = (((d(1) - a(1)) * (d(2) - b(2))) - ((d(2) - a(2)) * (d(1) - b(1)))) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) != 0\n    by def $m0::f0::is_triangle(b, c, d)\n    have common R+ = f2::triangle_area(a, b, d)\n    $f2::has_triangle_area(a, b, d, common)\n    by def $f2::has_triangle_area(a, b, d, common)\n    (m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2) = (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2)\n    (2 * common) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2)) = sqrt ((m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2))\n    by def $f2::has_triangle_area(b, c, d, common)\n    witness exist first, second R+ st {$f2::has_triangle_area(a, b, d, first), $f2::has_triangle_area(b, c, d, second), (2 * common) = (first + second)} from common, common\n    by def $f2::has_parallelogram_area(a, b, c, d, (2 * common))\n    witness exist half R+ st {$f2::has_triangle_area(a, b, d, half), $f2::has_parallelogram_area(a, b, c, d, (2 * half))} from common",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R):\n    $m0::f0::is_triangle(a, b, d)\n    c(1) = ((b(1) + d(1)) - a(1))\n    c(2) = ((b(2) + d(2)) - a(2))\n    =>:\n        exist common R+ st {$f2::has_triangle_area(a, b, d, common), $f2::has_parallelogram_area(a, b, c, d, (2 * common))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm parallelogram_coordinate_closure:\n    ? forall par_a, par_b, par_c, par_d cart(R, R):\n        $f2::is_proper_parallelogram(par_a, par_b, par_c, par_d)\n        =>:\n            par_d(1) = ((par_a(1) + par_c(1)) - par_b(1))\n            par_d(2) = ((par_a(2) + par_c(2)) - par_b(2))\n    thm local_independent_directions_force_zero_offset:\n        ? forall u1, u2, v1, v2, k1, k2 R:\n            ((u1 * v2) - (u2 * v1)) != 0\n            ((u1 * k2) - (u2 * k1)) = 0\n            ((v1 * k2) - (v2 * k1)) = 0\n            =>:\n                k1 = 0\n                k2 = 0\n        have determinant R = ((u1 * v2) - (u2 * v1))\n        determinant != 0\n        (determinant * k1) = (((u1 * v2) - (u2 * v1)) * k1) = ((v1 * ((u1 * k2) - (u2 * k1))) - (u1 * ((v1 * k2) - (v2 * k1)))) = ((v1 * 0) - (u1 * 0)) = 0\n        (determinant * k2) = (((u1 * v2) - (u2 * v1)) * k2) = ((v2 * ((u1 * k2) - (u2 * k1))) - (u2 * ((v1 * k2) - (v2 * k1)))) = ((v2 * 0) - (u2 * 0)) = 0\n        k1 = ((determinant * k1) / determinant) = (0 / determinant) = 0\n        k2 = ((determinant * k2) / determinant) = (0 / determinant) = 0\n    by def $f2::is_proper_parallelogram(par_a, par_b, par_c, par_d)\n    $f0::are_parallel_lines(par_a, par_b, par_d, par_c)\n    by def $f0::are_parallel_lines(par_a, par_b, par_d, par_c)\n    $f0::are_parallel_lines(par_a, par_d, par_b, par_c)\n    by def $f0::are_parallel_lines(par_a, par_d, par_b, par_c)\n    $m0::f0::is_parallel(par_a, par_b, par_d, par_c)\n    by def $m0::f0::is_parallel(par_a, par_b, par_d, par_c)\n    $m0::f0::is_parallel(par_a, par_d, par_b, par_c)\n    by def $m0::f0::is_parallel(par_a, par_d, par_b, par_c)\n    have u1 R = (par_b(1) - par_a(1))\n    have u2 R = (par_b(2) - par_a(2))\n    have v1 R = (par_d(1) - par_a(1))\n    have v2 R = (par_d(2) - par_a(2))\n    have k1 R = (((par_a(1) + par_c(1)) - par_b(1)) - par_d(1))\n    have k2 R = (((par_a(2) + par_c(2)) - par_b(2)) - par_d(2))\n    release thm m0::f0::collinear_det_expand(par_a, par_b, par_d)\n    ((u1 * v2) - (u2 * v1)) = (((par_b(1) - par_a(1)) * (par_d(2) - par_a(2))) - ((par_b(2) - par_a(2)) * (par_d(1) - par_a(1)))) = m0::f0::det(m0::f0::vec(par_a, par_b), m0::f0::vec(par_a, par_d)) != 0\n    release thm m0::f0::vec_coordinate_formula(par_a, par_b)\n    release thm m0::f0::vec_coordinate_formula(par_a, par_d)\n    release thm m0::f0::vec_coordinate_formula(par_d, par_c)\n    release thm m0::f0::vec_coordinate_formula(par_b, par_c)\n    release thm m0::f0::det_coordinate_formula(m0::f0::vec(par_a, par_b), m0::f0::vec(par_d, par_c))\n    release thm m0::f0::det_coordinate_formula(m0::f0::vec(par_a, par_d), m0::f0::vec(par_b, par_c))\n    m0::f0::det(m0::f0::vec(par_a, par_b), m0::f0::vec(par_d, par_c)) = (((par_b(1) - par_a(1)) * (par_c(2) - par_d(2))) - ((par_b(2) - par_a(2)) * (par_c(1) - par_d(1))))\n    (((par_b(1) - par_a(1)) * (par_c(2) - par_d(2))) - ((par_b(2) - par_a(2)) * (par_c(1) - par_d(1)))) = m0::f0::det(m0::f0::vec(par_a, par_b), m0::f0::vec(par_d, par_c)) = 0\n    m0::f0::det(m0::f0::vec(par_a, par_d), m0::f0::vec(par_b, par_c)) = (((par_d(1) - par_a(1)) * (par_c(2) - par_b(2))) - ((par_d(2) - par_a(2)) * (par_c(1) - par_b(1))))\n    (((par_d(1) - par_a(1)) * (par_c(2) - par_b(2))) - ((par_d(2) - par_a(2)) * (par_c(1) - par_b(1)))) = m0::f0::det(m0::f0::vec(par_a, par_d), m0::f0::vec(par_b, par_c)) = 0\n    ((u1 * k2) - (u2 * k1)) = (((par_b(1) - par_a(1)) * (((par_a(2) + par_c(2)) - par_b(2)) - par_d(2))) - ((par_b(2) - par_a(2)) * (((par_a(1) + par_c(1)) - par_b(1)) - par_d(1)))) = (((par_b(1) - par_a(1)) * (par_c(2) - par_d(2))) - ((par_b(2) - par_a(2)) * (par_c(1) - par_d(1)))) = m0::f0::det(m0::f0::vec(par_a, par_b), m0::f0::vec(par_d, par_c)) = 0\n    ((v1 * k2) - (v2 * k1)) = (((par_d(1) - par_a(1)) * (((par_a(2) + par_c(2)) - par_b(2)) - par_d(2))) - ((par_d(2) - par_a(2)) * (((par_a(1) + par_c(1)) - par_b(1)) - par_d(1)))) = (((par_d(1) - par_a(1)) * (par_c(2) - par_b(2))) - ((par_d(2) - par_a(2)) * (par_c(1) - par_b(1)))) = m0::f0::det(m0::f0::vec(par_a, par_d), m0::f0::vec(par_b, par_c)) = 0\n    release thm local_independent_directions_force_zero_offset(u1, u2, v1, v2, k1, k2)\n    ((par_a(1) + par_c(1)) - par_b(1)) = ((((par_a(1) + par_c(1)) - par_b(1)) - par_d(1)) + par_d(1)) = (k1 + par_d(1)) = (0 + par_d(1)) = par_d(1)\n    ((par_a(2) + par_c(2)) - par_b(2)) = ((((par_a(2) + par_c(2)) - par_b(2)) - par_d(2)) + par_d(2)) = (k2 + par_d(2)) = (0 + par_d(2)) = par_d(2)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall par_a, par_b, par_c, par_d cart(R, R):\n    $f2::is_proper_parallelogram(par_a, par_b, par_c, par_d)\n    =>:\n        par_d(1) = ((par_a(1) + par_c(1)) - par_b(1))\n        par_d(2) = ((par_a(2) + par_c(2)) - par_b(2))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm parallelogram_area_is_absolute_determinant:\n    ? forall a, b, c, d cart(R, R), total R+:\n        $f2::has_parallelogram_area(a, b, c, d, total)\n        =>:\n            total = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2))\n    by def $f2::has_parallelogram_area(a, b, c, d, total)\n    $f2::is_proper_parallelogram(a, b, c, d)\n    release thm parallelogram_coordinate_closure(a, b, c, d)\n    c(1) = ((b(1) + ((a(1) + c(1)) - b(1))) - a(1)) = ((b(1) + d(1)) - a(1))\n    c(2) = ((b(2) + ((a(2) + c(2)) - b(2))) - a(2)) = ((b(2) + d(2)) - a(2))\n    have u cart(R, R) = m0::f0::vec(a, b)\n    have v cart(R, R) = m0::f0::vec(a, d)\n    (m0::f0::det(u, v) ^ 2) >= 0\n    by def $f2::has_parallelogram_area(a, b, c, d, total)\n    obtain first, second from exist x, y R+ st {$f2::has_triangle_area(a, b, d, x), $f2::has_triangle_area(b, c, d, y), total = (x + y)}\n    by def $f2::has_triangle_area(a, b, d, first)\n    by def $f2::has_triangle_area(b, c, d, second)\n    release thm m0::f0::collinear_det_expand(a, b, d)\n    release thm m0::f0::collinear_det_expand(b, c, d)\n    (c(1) - b(1)) = (((b(1) + d(1)) - a(1)) - b(1)) = (d(1) - a(1))\n    (c(2) - b(2)) = (((b(2) + d(2)) - a(2)) - b(2)) = (d(2) - a(2))\n    m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) = (((c(1) - b(1)) * (d(2) - b(2))) - ((c(2) - b(2)) * (d(1) - b(1)))) = (((d(1) - a(1)) * (d(2) - b(2))) - ((d(2) - a(2)) * (d(1) - b(1)))) = (((b(1) - a(1)) * (d(2) - a(2))) - ((b(2) - a(2)) * (d(1) - a(1)))) = m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = m0::f0::det(u, v)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) = m0::f0::det(u, v)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2) = (m0::f0::det(u, v) ^ 2)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2) >= 0\n    m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) = m0::f0::det(u, v)\n    (m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2) = (m0::f0::det(u, v) ^ 2)\n    (m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2) >= 0\n    (2 * first) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2)) = sqrt ((m0::f0::det(u, v) ^ 2))\n    (2 * second) = sqrt ((m0::f0::det(m0::f0::vec(b, c), m0::f0::vec(b, d)) ^ 2)) = sqrt ((m0::f0::det(u, v) ^ 2))\n    have twice_area R = sqrt ((m0::f0::det(u, v) ^ 2))\n    (2 * first) = twice_area\n    (2 * second) = twice_area\n    total = (first + second) = (((2 * first) + (2 * second)) / 2) = ((twice_area + twice_area) / 2) = twice_area\n    total = twice_area = sqrt ((m0::f0::det(u, v) ^ 2)) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R), total R+:\n    $f2::has_parallelogram_area(a, b, c, d, total)\n    =>:\n        total = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm perpendicular_foot_determinant_height_identity:\n    ? forall a, b, p, f cart(R, R):\n        a != b\n        $m0::f0::is_foot(f, p, a, b)\n        =>:\n            (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(p, f))\n    by def $m0::f0::is_foot(f, p, a, b)\n    $m0::f0::is_on_line(f, a, b)\n    by def $m0::f0::is_on_line(f, a, b)\n    m0::f0::line_through_points(a, b) = {r cart(R, R): m0::f0::det(m0::f0::vec(a, r), m0::f0::vec(a, b)) = 0}\n    f $in m0::f0::line_through_points(a, b)\n    m0::f0::det(m0::f0::vec(a, f), m0::f0::vec(a, b)) = 0\n    release thm m0::f0::collinear_det_expand(a, f, b)\n    release thm m0::f0::collinear_det_expand(a, b, p)\n    have u cart(R, R) = m0::f0::vec(p, f)\n    have v cart(R, R) = m0::f0::vec(a, b)\n    u(1) = (f(1) - p(1))\n    u(2) = (f(2) - p(2))\n    v(1) = (b(1) - a(1))\n    v(2) = (b(2) - a(2))\n    m0::f0::det(u, v) = ((u(1) * v(2)) - (u(2) * v(1)))\n    ((u(1) * v(2)) - (u(2) * v(1))) = (((f(1) - p(1)) * v(2)) - (u(2) * v(1))) = (((f(1) - p(1)) * (b(2) - a(2))) - (u(2) * v(1))) = (((f(1) - p(1)) * (b(2) - a(2))) - ((f(2) - p(2)) * v(1))) = (((f(1) - p(1)) * (b(2) - a(2))) - ((f(2) - p(2)) * (b(1) - a(1))))\n    (((f(1) - p(1)) * (b(2) - a(2))) - ((f(2) - p(2)) * (b(1) - a(1)))) = ((((f(1) - a(1)) * (b(2) - a(2))) - ((f(2) - a(2)) * (b(1) - a(1)))) + (((b(1) - a(1)) * (p(2) - a(2))) - ((b(2) - a(2)) * (p(1) - a(1)))))\n    ((((f(1) - a(1)) * (b(2) - a(2))) - ((f(2) - a(2)) * (b(1) - a(1)))) + (((b(1) - a(1)) * (p(2) - a(2))) - ((b(2) - a(2)) * (p(1) - a(1))))) = (0 + (((b(1) - a(1)) * (p(2) - a(2))) - ((b(2) - a(2)) * (p(1) - a(1))))) = m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p))\n    m0::f0::det(u, v) = m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p))\n    m0::f0::dot(u, v) = m0::f0::dot(m0::f0::vec(p, f), m0::f0::vec(a, b)) = 0\n    m0::f0::dot(u, u) = m0::f0::dot(m0::f0::vec(p, f), m0::f0::vec(p, f)) = m0::f0::distance_sq(p, f)\n    m0::f0::dot(v, v) = m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, b)) = m0::f0::distance_sq(a, b)\n    release thm m0::f0::dot_squared_plus_det_squared(u, v)\n    (m0::f0::det(u, v) ^ 2) = ((m0::f0::dot(u, v) ^ 2) + (m0::f0::det(u, v) ^ 2)) = (m0::f0::dot(u, u) * m0::f0::dot(v, v)) = (m0::f0::distance_sq(p, f) * m0::f0::dot(v, v)) = (m0::f0::distance_sq(p, f) * m0::f0::distance_sq(a, b))\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2) = (m0::f0::det(u, v) ^ 2) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(p, f))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, p, f cart(R, R):\n    a != b\n    $m0::f0::is_foot(f, p, a, b)\n    =>:\n        (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(p, f))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm triangle_area_from_perpendicular_height:\n    ? forall a, b, p, f cart(R, R), base, height, content R+:\n        a != b\n        $m0::f0::is_foot(f, p, a, b)\n        $f2::has_triangle_area(a, b, p, content)\n        m0::f0::distance_sq(a, b) = (base ^ 2)\n        m0::f0::distance_sq(p, f) = (height ^ 2)\n        =>:\n            (2 * content) = (base * height)\n    release thm perpendicular_foot_determinant_height_identity(a, b, p, f)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(p, f)) = ((base ^ 2) * m0::f0::distance_sq(p, f)) = ((base ^ 2) * (height ^ 2)) = ((base * height) ^ 2)\n    (base * height) > 0\n    (base * height) >= 0\n    sqrt (((base * height) ^ 2)) = (base * height)\n    (2 * content) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2)) = sqrt (((base * height) ^ 2)) = (base * height)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, p, f cart(R, R), base, height, content R+:\n    a != b\n    $m0::f0::is_foot(f, p, a, b)\n    $f2::has_triangle_area(a, b, p, content)\n    m0::f0::distance_sq(a, b) = (base ^ 2)\n    m0::f0::distance_sq(p, f) = (height ^ 2)\n    =>:\n        (2 * content) = (base * height)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "prop has_triangle_perpendicular_height(a, b, p cart(R, R), height R+):\n    a != b\n    $m0::f0::is_triangle(a, b, p)\n    exist foot cart(R, R) st {$m0::f0::is_foot(foot, p, a, b), m0::f0::distance_sq(p, foot) = (height ^ 2)}",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define prop",
+        "message": "Define a predicate"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm triangle_perpendicular_height_gives_area:\n    ? forall a, b, p cart(R, R), base, height, content R+:\n        $f3::has_triangle_perpendicular_height(a, b, p, height)\n        $f2::has_triangle_area(a, b, p, content)\n        m0::f0::distance_sq(a, b) = (base ^ 2)\n        =>:\n            (2 * content) = (base * height)\n    by def $f3::has_triangle_perpendicular_height(a, b, p, height)\n    a != b\n    obtain foot from exist foot cart(R, R) st {$m0::f0::is_foot(foot, p, a, b), m0::f0::distance_sq(p, foot) = (height ^ 2)}\n    release thm triangle_area_from_perpendicular_height(a, b, p, foot, base, height, content)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, p cart(R, R), base, height, content R+:\n    $f3::has_triangle_perpendicular_height(a, b, p, height)\n    $f2::has_triangle_area(a, b, p, content)\n    m0::f0::distance_sq(a, b) = (base ^ 2)\n    =>:\n        (2 * content) = (base * height)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition_01_triangles_quotient:\n    ? forall a, b, p, c, d, q cart(R, R), base1, base2, height, content1, content2 R+:\n        $f3::has_triangle_perpendicular_height(a, b, p, height)\n        $f3::has_triangle_perpendicular_height(c, d, q, height)\n        $f2::has_triangle_area(a, b, p, content1)\n        $f2::has_triangle_area(c, d, q, content2)\n        m0::f0::distance_sq(a, b) = (base1 ^ 2)\n        m0::f0::distance_sq(c, d) = (base2 ^ 2)\n        =>:\n            (content1 / content2) = (base1 / base2)\n            (content1 * base2) = (content2 * base1)\n    release thm triangle_perpendicular_height_gives_area(a, b, p, base1, height, content1)\n    release thm triangle_perpendicular_height_gives_area(c, d, q, base2, height, content2)\n    (content1 / content2) = ((2 * content1) / (2 * content2)) = ((base1 * height) / (2 * content2)) = ((base1 * height) / (base2 * height)) = (base1 / base2)\n    ((2 * content1) * base2) = ((base1 * height) * base2) = (base1 * (base2 * height)) = (base1 * (2 * content2))\n    (content1 * base2) = (((2 * content1) * base2) / 2) = ((base1 * (2 * content2)) / 2) = (content2 * base1)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, p, c, d, q cart(R, R), base1, base2, height, content1, content2 R+:\n    $f3::has_triangle_perpendicular_height(a, b, p, height)\n    $f3::has_triangle_perpendicular_height(c, d, q, height)\n    $f2::has_triangle_area(a, b, p, content1)\n    $f2::has_triangle_area(c, d, q, content2)\n    m0::f0::distance_sq(a, b) = (base1 ^ 2)\n    m0::f0::distance_sq(c, d) = (base2 ^ 2)\n    =>:\n        (content1 / content2) = (base1 / base2)\n        (content1 * base2) = (content2 * base1)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "prop has_parallelogram_perpendicular_height(a, b, c, d cart(R, R), height R+):\n    a != b\n    $f2::is_proper_parallelogram(a, b, c, d)\n    exist foot cart(R, R) st {$m0::f0::is_foot(foot, d, a, b), m0::f0::distance_sq(d, foot) = (height ^ 2)}",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define prop",
+        "message": "Define a predicate"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm parallelogram_perpendicular_height_gives_area:\n    ? forall a, b, c, d cart(R, R), base, height, content R+:\n        $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n        $f2::has_parallelogram_area(a, b, c, d, content)\n        m0::f0::distance_sq(a, b) = (base ^ 2)\n        =>:\n            content = (base * height)\n    by def $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n    a != b\n    obtain foot from exist foot cart(R, R) st {$m0::f0::is_foot(foot, d, a, b), m0::f0::distance_sq(d, foot) = (height ^ 2)}\n    release thm perpendicular_foot_determinant_height_identity(a, b, d, foot)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(d, foot)) = ((base ^ 2) * m0::f0::distance_sq(d, foot)) = ((base ^ 2) * (height ^ 2)) = ((base * height) ^ 2)\n    (base * height) > 0\n    (base * height) >= 0\n    sqrt (((base * height) ^ 2)) = (base * height)\n    release thm parallelogram_area_is_absolute_determinant(a, b, c, d, content)\n    content = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, d)) ^ 2)) = sqrt (((base * height) ^ 2)) = (base * height)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d cart(R, R), base, height, content R+:\n    $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n    $f2::has_parallelogram_area(a, b, c, d, content)\n    m0::f0::distance_sq(a, b) = (base ^ 2)\n    =>:\n        content = (base * height)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition_01_parallelograms_quotient:\n    ? forall a, b, c, d, p, q, r, s cart(R, R), base1, base2, height, content1, content2 R+:\n        $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n        $f3::has_parallelogram_perpendicular_height(p, q, r, s, height)\n        $f2::has_parallelogram_area(a, b, c, d, content1)\n        $f2::has_parallelogram_area(p, q, r, s, content2)\n        m0::f0::distance_sq(a, b) = (base1 ^ 2)\n        m0::f0::distance_sq(p, q) = (base2 ^ 2)\n        =>:\n            (content1 / content2) = (base1 / base2)\n            (content1 * base2) = (content2 * base1)\n    release thm parallelogram_perpendicular_height_gives_area(a, b, c, d, base1, height, content1)\n    release thm parallelogram_perpendicular_height_gives_area(p, q, r, s, base2, height, content2)\n    (content1 / content2) = ((base1 * height) / content2) = ((base1 * height) / (base2 * height)) = (base1 / base2)\n    (content1 * base2) = ((base1 * height) * base2) = (base1 * (base2 * height)) = (base1 * content2) = (content2 * base1)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d, p, q, r, s cart(R, R), base1, base2, height, content1, content2 R+:\n    $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n    $f3::has_parallelogram_perpendicular_height(p, q, r, s, height)\n    $f2::has_parallelogram_area(a, b, c, d, content1)\n    $f2::has_parallelogram_area(p, q, r, s, content2)\n    m0::f0::distance_sq(a, b) = (base1 ^ 2)\n    m0::f0::distance_sq(p, q) = (base2 ^ 2)\n    =>:\n        (content1 / content2) = (base1 / base2)\n        (content1 * base2) = (content2 * base1)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "prop have_equal_equimultiple_comparisons(a, b, c, d R+):\n    forall m, n N+:\n        =>:\n            (m * a) < (n * b)\n        <=>:\n            (m * c) < (n * d)\n    forall m, n N+:\n        =>:\n            (m * a) = (n * b)\n        <=>:\n            (m * c) = (n * d)\n    forall m, n N+:\n        =>:\n            (m * a) > (n * b)\n        <=>:\n            (m * c) > (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define prop",
+        "message": "Define a predicate"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_less_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) < (n * b)\n        =>:\n            (m * c) < (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) < (scale * (n * b))\n    (m * c) < (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) < (n * b)\n    =>:\n        (m * c) < (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_equal_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) = (n * b)\n        =>:\n            (m * c) = (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) = (scale * (n * b))\n    (m * c) = (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) = (n * b)\n    =>:\n        (m * c) = (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_greater_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) > (n * b)\n        =>:\n            (m * c) > (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) > (scale * (n * b))\n    (m * c) > (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) > (n * b)\n    =>:\n        (m * c) > (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_implies_equal_equimultiple_comparisons:\n    ? forall a, b, c, d R+:\n        (a * d) = (b * c)\n        =>:\n            $f3::have_equal_equimultiple_comparisons(a, b, c, d)\n    (c * b) = (b * c) = (a * d) = (d * a)\n    claim:\n        ? forall m, n N+:\n            (m * a) < (n * b)\n            =>:\n                (m * c) < (n * d)\n        release thm cross_product_preserves_less_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) < (n * d)\n            =>:\n                (m * a) < (n * b)\n        release thm cross_product_preserves_less_equimultiples(c, d, a, b, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * a) = (n * b)\n            =>:\n                (m * c) = (n * d)\n        release thm cross_product_preserves_equal_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) = (n * d)\n            =>:\n                (m * a) = (n * b)\n        release thm cross_product_preserves_equal_equimultiples(c, d, a, b, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * a) > (n * b)\n            =>:\n                (m * c) > (n * d)\n        release thm cross_product_preserves_greater_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) > (n * d)\n            =>:\n                (m * a) > (n * b)\n        release thm cross_product_preserves_greater_equimultiples(c, d, a, b, m, n)\n    by def $f3::have_equal_equimultiple_comparisons(a, b, c, d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a * d) = (b * c)\n    =>:\n        $f3::have_equal_equimultiple_comparisons(a, b, c, d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition_01_triangles_equimultiples:\n    ? forall a, b, p, c, d, q cart(R, R), base1, base2, height, content1, content2 R+:\n        $f3::has_triangle_perpendicular_height(a, b, p, height)\n        $f3::has_triangle_perpendicular_height(c, d, q, height)\n        $f2::has_triangle_area(a, b, p, content1)\n        $f2::has_triangle_area(c, d, q, content2)\n        m0::f0::distance_sq(a, b) = (base1 ^ 2)\n        m0::f0::distance_sq(c, d) = (base2 ^ 2)\n        =>:\n            $f3::have_equal_equimultiple_comparisons(content1, content2, base1, base2)\n    release thm book06_proposition_01_triangles_quotient(a, b, p, c, d, q, base1, base2, height, content1, content2)\n    release thm cross_product_implies_equal_equimultiple_comparisons(content1, content2, base1, base2)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, p, c, d, q cart(R, R), base1, base2, height, content1, content2 R+:\n    $f3::has_triangle_perpendicular_height(a, b, p, height)\n    $f3::has_triangle_perpendicular_height(c, d, q, height)\n    $f2::has_triangle_area(a, b, p, content1)\n    $f2::has_triangle_area(c, d, q, content2)\n    m0::f0::distance_sq(a, b) = (base1 ^ 2)\n    m0::f0::distance_sq(c, d) = (base2 ^ 2)\n    =>:\n        $f3::have_equal_equimultiple_comparisons(content1, content2, base1, base2)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition_01_parallelograms_equimultiples:\n    ? forall a, b, c, d, p, q, r, s cart(R, R), base1, base2, height, content1, content2 R+:\n        $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n        $f3::has_parallelogram_perpendicular_height(p, q, r, s, height)\n        $f2::has_parallelogram_area(a, b, c, d, content1)\n        $f2::has_parallelogram_area(p, q, r, s, content2)\n        m0::f0::distance_sq(a, b) = (base1 ^ 2)\n        m0::f0::distance_sq(p, q) = (base2 ^ 2)\n        =>:\n            $f3::have_equal_equimultiple_comparisons(content1, content2, base1, base2)\n    release thm book06_proposition_01_parallelograms_quotient(a, b, c, d, p, q, r, s, base1, base2, height, content1, content2)\n    release thm cross_product_implies_equal_equimultiple_comparisons(content1, content2, base1, base2)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d, p, q, r, s cart(R, R), base1, base2, height, content1, content2 R+:\n    $f3::has_parallelogram_perpendicular_height(a, b, c, d, height)\n    $f3::has_parallelogram_perpendicular_height(p, q, r, s, height)\n    $f2::has_parallelogram_area(a, b, c, d, content1)\n    $f2::has_parallelogram_area(p, q, r, s, content2)\n    m0::f0::distance_sq(a, b) = (base1 ^ 2)\n    m0::f0::distance_sq(p, q) = (base2 ^ 2)\n    =>:\n        $f3::have_equal_equimultiple_comparisons(content1, content2, base1, base2)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm horizontal_triangle_height_consumer:\n    ? forall base, height R+, offset R:\n        $f3::has_triangle_perpendicular_height((0, 0), (base, 0), (offset, height), height)\n        $f2::has_triangle_area((0, 0), (base, 0), (offset, height), ((base * height) / 2))\n        m0::f0::distance_sq((0, 0), (base, 0)) = (base ^ 2)\n    have a cart(R, R) = (0, 0)\n    have b cart(R, R) = (base, 0)\n    have p cart(R, R) = (offset, height)\n    have foot cart(R, R) = (offset, 0)\n    a(1) = 0\n    a(2) = 0\n    b(1) = base\n    b(2) = 0\n    p(1) = offset\n    p(2) = height\n    foot(1) = offset\n    foot(2) = 0\n    by contra:\n        ? a != b\n        a = b\n        0 = a(1) = b(1) = base\n        impossible base > 0\n    (b(1) - a(1)) = (base - 0) = base\n    (b(2) - a(2)) = (0 - 0) = 0\n    (p(1) - a(1)) = (offset - 0) = offset\n    (p(2) - a(2)) = (height - 0) = height\n    (foot(1) - a(1)) = (offset - 0) = offset\n    (foot(2) - a(2)) = (0 - 0) = 0\n    (foot(1) - p(1)) = (offset - offset) = 0\n    (foot(2) - p(2)) = (0 - height) = (-height)\n    release thm m0::f0::collinear_det_expand(a, b, p)\n    m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) = (((b(1) - a(1)) * (p(2) - a(2))) - ((b(2) - a(2)) * (p(1) - a(1)))) = ((base * (p(2) - a(2))) - ((b(2) - a(2)) * (p(1) - a(1)))) = ((base * height) - ((b(2) - a(2)) * (p(1) - a(1)))) = ((base * height) - (0 * (p(1) - a(1)))) = (base * height)\n    (base * height) > 0\n    by def $m0::f0::is_triangle(a, b, p)\n    release thm m0::f0::collinear_det_expand(a, foot, b)\n    m0::f0::det(m0::f0::vec(a, foot), m0::f0::vec(a, b)) = (((foot(1) - a(1)) * (b(2) - a(2))) - ((foot(2) - a(2)) * (b(1) - a(1)))) = 0\n    foot $in m0::f0::line_through_points(a, b)\n    by def $m0::f0::is_on_line(foot, a, b)\n    release thm m0::f0::perpendicular_dot_expand(p, foot, a, b)\n    m0::f0::dot(m0::f0::vec(p, foot), m0::f0::vec(a, b)) = (((foot(1) - p(1)) * (b(1) - a(1))) + ((foot(2) - p(2)) * (b(2) - a(2)))) = 0\n    by def $m0::f0::is_foot(foot, p, a, b)\n    release thm m0::f0::distance_sq_coordinate_formula(p, foot)\n    m0::f0::distance_sq(p, foot) = (((foot(1) - p(1)) ^ 2) + ((foot(2) - p(2)) ^ 2)) = ((0 ^ 2) + ((foot(2) - p(2)) ^ 2)) = ((0 ^ 2) + ((-height) ^ 2)) = (height ^ 2)\n    witness exist f cart(R, R) st {$m0::f0::is_foot(f, p, a, b), m0::f0::distance_sq(p, f) = (height ^ 2)} from foot\n    by def $f3::has_triangle_perpendicular_height(a, b, p, height)\n    (m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2) = ((base * height) ^ 2)\n    (base * height) >= 0\n    (2 * ((base * height) / 2)) = (base * height) = sqrt (((base * height) ^ 2)) = sqrt ((m0::f0::det(m0::f0::vec(a, b), m0::f0::vec(a, p)) ^ 2))\n    by def $f2::has_triangle_area(a, b, p, ((base * height) / 2))\n    release thm m0::f0::distance_sq_coordinate_formula(a, b)\n    m0::f0::distance_sq(a, b) = (((b(1) - a(1)) ^ 2) + ((b(2) - a(2)) ^ 2)) = ((base ^ 2) + ((b(2) - a(2)) ^ 2)) = ((base ^ 2) + (0 ^ 2)) = (base ^ 2)\n    $f3::has_triangle_perpendicular_height((0, 0), (base, 0), (offset, height), height)\n    $f2::has_triangle_area((0, 0), (base, 0), (offset, height), ((base * height) / 2))\n    m0::f0::distance_sq((0, 0), (base, 0)) = m0::f0::distance_sq(a, b) = (base ^ 2)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall base, height R+, offset R:\n    $f3::has_triangle_perpendicular_height((0, 0), (base, 0), (offset, height), height)\n    $f2::has_triangle_area((0, 0), (base, 0), (offset, height), ((base * height) / 2))\n    m0::f0::distance_sq((0, 0), (base, 0)) = (base ^ 2)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "sketch:\n    release thm horizontal_triangle_height_consumer(3, 2, (-1))\n    have a1 cart(R, R) = (0, 0)\n    a1(1) = 0\n    a1(2) = 0\n    have b1 cart(R, R) = (3, 0)\n    b1(1) = 3\n    b1(2) = 0\n    have c1 cart(R, R) = (2, 2)\n    c1(1) = 2\n    c1(2) = 2\n    have d1 cart(R, R) = ((-1), 2)\n    d1(1) = (-1)\n    d1(2) = 2\n    $f3::has_triangle_perpendicular_height(a1, b1, d1, 2)\n    $f2::has_triangle_area(a1, b1, d1, 3)\n    m0::f0::distance_sq(a1, b1) = (3 ^ 2)\n    $m0::f0::is_triangle(a1, b1, d1)\n    c1(1) = 2 = ((3 + (-1)) - 0) = ((b1(1) + (-1)) - 0) = ((b1(1) + d1(1)) - 0) = ((b1(1) + d1(1)) - a1(1))\n    c1(2) = 2 = ((0 + 2) - 0) = ((b1(2) + 2) - 0) = ((b1(2) + d1(2)) - 0) = ((b1(2) + d1(2)) - a1(2))\n    release thm affine_parallelogram_witness(a1, b1, c1, d1)\n    by def $f3::has_parallelogram_perpendicular_height(a1, b1, c1, d1, 2)\n    release thm affine_parallelogram_area(a1, b1, c1, d1)\n    obtain half1 from exist common R+ st {$f2::has_triangle_area(a1, b1, d1, common), $f2::has_parallelogram_area(a1, b1, c1, d1, (2 * common))}\n    (2 * half1) = sqrt ((m0::f0::det(m0::f0::vec(a1, b1), m0::f0::vec(a1, d1)) ^ 2)) = (2 * 3)\n    half1 = ((2 * half1) / 2) = ((2 * 3) / 2) = 3\n    $f2::has_parallelogram_area(a1, b1, c1, d1, (2 * half1))\n    (2 * half1) = (2 * 3) = 6\n    $f2::has_parallelogram_area(a1, b1, c1, d1, 6)\n    release thm horizontal_triangle_height_consumer(5, 2, 7)\n    have a2 cart(R, R) = (0, 0)\n    a2(1) = 0\n    a2(2) = 0\n    have b2 cart(R, R) = (5, 0)\n    b2(1) = 5\n    b2(2) = 0\n    have c2 cart(R, R) = (12, 2)\n    c2(1) = 12\n    c2(2) = 2\n    have d2 cart(R, R) = (7, 2)\n    d2(1) = 7\n    d2(2) = 2\n    $f3::has_triangle_perpendicular_height(a2, b2, d2, 2)\n    $f2::has_triangle_area(a2, b2, d2, 5)\n    m0::f0::distance_sq(a2, b2) = (5 ^ 2)\n    $m0::f0::is_triangle(a2, b2, d2)\n    c2(1) = 12 = ((5 + 7) - 0) = ((b2(1) + 7) - 0) = ((b2(1) + d2(1)) - 0) = ((b2(1) + d2(1)) - a2(1))\n    c2(2) = 2 = ((0 + 2) - 0) = ((b2(2) + 2) - 0) = ((b2(2) + d2(2)) - 0) = ((b2(2) + d2(2)) - a2(2))\n    release thm affine_parallelogram_witness(a2, b2, c2, d2)\n    by def $f3::has_parallelogram_perpendicular_height(a2, b2, c2, d2, 2)\n    release thm affine_parallelogram_area(a2, b2, c2, d2)\n    obtain half2 from exist common R+ st {$f2::has_triangle_area(a2, b2, d2, common), $f2::has_parallelogram_area(a2, b2, c2, d2, (2 * common))}\n    (2 * half2) = sqrt ((m0::f0::det(m0::f0::vec(a2, b2), m0::f0::vec(a2, d2)) ^ 2)) = (2 * 5)\n    half2 = ((2 * half2) / 2) = ((2 * 5) / 2) = 5\n    $f2::has_parallelogram_area(a2, b2, c2, d2, (2 * half2))\n    (2 * half2) = (2 * 5) = 10\n    $f2::has_parallelogram_area(a2, b2, c2, d2, 10)\n    release thm book06_proposition_01_triangles_quotient(a1, b1, d1, a2, b2, d2, 3, 5, 2, 3, 5)\n    release thm book06_proposition_01_triangles_equimultiples(a1, b1, d1, a2, b2, d2, 3, 5, 2, 3, 5)\n    release thm book06_proposition_01_parallelograms_quotient(a1, b1, c1, d1, a2, b2, c2, d2, 3, 5, 2, 6, 10)\n    release thm book06_proposition_01_parallelograms_equimultiples(a1, b1, c1, d1, a2, b2, c2, d2, 3, 5, 2, 6, 10)\n    (6 / 10) = (3 / 5)\n    $f3::have_equal_equimultiple_comparisons(6, 10, 3, 5)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Sketch",
+        "message": "Run a sketch proof block"
+      },
+      "stores": [],
+      "infers": []
+    }
+  ],
+  "session_terminated": false,
+  "termination": null
+}

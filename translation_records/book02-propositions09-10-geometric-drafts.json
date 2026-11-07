@@ -1,0 +1,39 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "status": "Persistent-session geometric drafts; no canonical coverage increment",
+  "common_identity": {
+    "file": "midpoint-four-square-identity-candidate1.lit",
+    "receipt": "session-persistent/results/0069.json",
+    "meaning": "Four positive actual square areas on AD, DB, AC, CD satisfy AD-square + DB-square = 2*(AC-square + CD-square), for midpoint C and an affine point D. Half-square is AC, matching source."
+  },
+  "II9": {
+    "source_pages_zero_based": [
+      58,
+      59
+    ],
+    "source": "book02-proposition09-source-candidate1.lit accepted0070",
+    "conditions": "C midpoint of AB, D strictly within AB, D distinct from C",
+    "construction": "candidate2 accepted0074; candidate1 ordinary failure0073 repaired by explicit coordinate substitution",
+    "remaining": [
+      "independent gate28183 expected74",
+      "full original import integration"
+    ],
+    "consumers": "left0076 and right0077 accepted; equal-cut0078 rejects d!=c"
+  },
+  "II10": {
+    "source_pages_zero_based": [
+      60
+    ],
+    "source": "book02-proposition10-source-candidate1.lit accepted0071",
+    "conditions": "C midpoint of AB; B strictly between A and extended D",
+    "construction": "candidate2 accepted0075",
+    "remaining": [
+      "independent gate28183 expected74",
+      "full original import integration"
+    ],
+    "consumers": "extension0079 and reversed0080 accepted; zero-extension0081 rejects b!=d"
+  },
+  "trust": "No new trust or kernel/AST edits; actual figures constructed with verified I46 and positive square-area witness.",
+  "II2_10_clean_gate": "PASS74 native0 stable hashes; .draft/resume-2026-10-17/II2-10-geometric-checkpoint/receipt.json"
+}

@@ -1,0 +1,17 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "zero_based_pages": [
+    79,
+    80
+  ],
+  "lines": [
+    3185,
+    3233
+  ],
+  "source_statement": "Two distinct circles have at most two common points",
+  "forward_derivation": "Common point plus distinct circumference sets gives distinct centers (III5 core). All common points have the second circle radius as their distance to its center. Equal-partner uniqueness on the first circle then bounds them by the given two distinct intersections.",
+  "contract": "For any two distinct common points a,b, every common point c equals a or b. This is the full at-most-two claim and does not assume transversal intersections.",
+  "candidate": ".draft/books02-03/book03-proposition10-1.lit",
+  "status": "accepted in8786, not cold checked or canonical",
+  "trust_added": 0
+}

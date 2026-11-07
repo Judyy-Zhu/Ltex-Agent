@@ -1,0 +1,15 @@
+{
+  "status": "all three source clauses and three concrete consumers PASS retained Session52918; fresh strict gate ready",
+  "source_sha256": "b1d3c4c887b9315088b691513f8e19ff6813d6e2e72d0a7c73a4140a7bf4861a",
+  "expected_statements": 18,
+  "dependency_selection": "exact existing circle-chord coordinate and metric identities; same angle predicate; no unrelated III20\u201326 replay",
+  "sources": [
+    "semicircle1.lit",
+    "greater_segment3.lit",
+    "lesser_segment3.lit",
+    "semicircle-use1.lit",
+    "greater_segment-use1.lit",
+    "lesser_segment-use1.lit"
+  ],
+  "counted": false
+}

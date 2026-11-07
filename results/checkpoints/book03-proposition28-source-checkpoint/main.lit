@@ -1,0 +1,2829 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::circle
+release obj def geometry::main::dot
+
+release obj def geometry::main::angle_cos_num
+
+release obj def geometry::main::angle_cos_den
+
+release obj def angles::angle_cosine
+
+release obj def angle_measure::ray_angle
+
+# The planar Gram identity relates central and inscribed cosine numerators.
+thm equal_radius_inscribed_cosine_identity:
+    ? forall x1, x2, y1, y2, z1, z2 R, rr R+:
+        x1^2+x2^2 = rr
+        y1^2+y2^2 = rr
+        z1^2+z2^2 = rr
+        =>:
+            2*rr*((x1*y1+x2*y2)-(x1*z1+x2*z2)-(y1*z1+y2*z2)+rr)^2 = (rr+(x1*y1+x2*y2))*(2*rr-2*(x1*z1+x2*z2))*(2*rr-2*(y1*z1+y2*z2))
+    have u R = x1*y1+x2*y2
+    have v R = x1*z1+x2*z2
+    have w R = y1*z1+y2*z2
+    (x1^2+x2^2)*(y1^2+y2^2)*(z1^2+z2^2)+2*(x1*y1+x2*y2)*(x1*z1+x2*z2)*(y1*z1+y2*z2)-(x1^2+x2^2)*(y1*z1+y2*z2)^2-(y1^2+y2^2)*(x1*z1+x2*z2)^2-(z1^2+z2^2)*(x1*y1+x2*y2)^2 = 0
+    rr^3+2*u*v*w-rr*(u^2+v^2+w^2) = rr*rr*rr+2*u*v*w-rr*w^2-rr*v^2-rr*u^2 = (x1^2+x2^2)*(y1^2+y2^2)*(z1^2+z2^2)+2*(x1*y1+x2*y2)*(x1*z1+x2*z2)*(y1*z1+y2*z2)-(x1^2+x2^2)*(y1*z1+y2*z2)^2-(y1^2+y2^2)*(x1*z1+x2*z2)^2-(z1^2+z2^2)*(x1*y1+x2*y2)^2 = 0
+    2*rr*(u-v-w+rr)^2-(rr+u)*(2*rr-2*v)*(2*rr-2*w) = -2*(rr^3+2*u*v*w-rr*(u^2+v^2+w^2)) = -2*0 = 0
+    2*rr*(u-v-w+rr)^2 = (2*rr*(u-v-w+rr)^2-(rr+u)*(2*rr-2*v)*(2*rr-2*w))+(rr+u)*(2*rr-2*v)*(2*rr-2*w) = 0+(rr+u)*(2*rr-2*v)*(2*rr-2*w) = (rr+u)*(2*rr-2*v)*(2*rr-2*w)
+    2*rr*((x1*y1+x2*y2)-(x1*z1+x2*z2)-(y1*z1+y2*z2)+rr)^2 = 2*rr*(u-v-w+rr)^2 = (rr+u)*(2*rr-2*v)*(2*rr-2*w) = (rr+(x1*y1+x2*y2))*(2*rr-2*(x1*z1+x2*z2))*(2*rr-2*(y1*z1+y2*z2))
+
+# Cosine equality gives equality of angles only on the principal range.
+thm inscribed_double_angle_principal:
+    ? forall alpha, beta R:
+        0 <= alpha
+        alpha <= pi/2
+        0 <= beta
+        beta <= pi
+        cos(2*alpha) = cos(beta)
+        =>:
+            2*alpha = beta
+    0 = 2*0 <= 2*alpha <= 2*(pi/2) = pi
+    2*alpha = arccos(cos(2*alpha)) = arccos(cos(beta)) = beta
+
+# The obtuse inscribed case determines the reflex central angle.
+thm inscribed_double_angle_reflex:
+    ? forall alpha, beta R:
+        pi/2 <= alpha
+        alpha <= pi
+        0 <= beta
+        beta <= pi
+        cos(2*alpha) = cos(beta)
+        =>:
+            2*alpha+beta = 2*pi
+    pi = 2*(pi/2) <= 2*alpha <= 2*pi
+    0 = 2*pi-2*pi <= 2*pi-2*alpha <= 2*pi-pi = pi
+    cos(pi) = -1
+    sin(pi) = 0
+    cos(2*pi) = cos(pi)^2-sin(pi)^2 = (-1)^2-0^2 = 1
+    sin(2*pi) = 2*sin(pi)*cos(pi) = 2*0*(-1) = 0
+    cos(2*pi-2*alpha) = cos(2*pi)*cos(2*alpha)+sin(2*pi)*sin(2*alpha) = 1*cos(2*alpha)+0*sin(2*alpha) = cos(2*alpha) = cos(beta)
+    2*pi-2*alpha = arccos(cos(2*pi-2*alpha)) = arccos(cos(beta)) = beta
+    2*alpha+beta = 2*alpha+(2*pi-2*alpha) = 2*pi
+
+# Equal radii turn the product of chord-side determinants into the inscribed dot product.
+thm circle_chord_side_dot_coordinate:
+    ? forall dx, dy, tx, ty, cx, cy R:
+        2*(cx*dx+cy*dy) = dx^2+dy^2
+        2*(cx*tx+cy*ty) = tx^2+ty^2
+        =>:
+            ((tx^2+ty^2)-(dx*tx+dy*ty))*(dx^2+dy^2) = 2*(dx*cy-dy*cx)*(dx*ty-dy*tx)
+    2*(dx*cy-dy*cx)*(dx*ty-dy*tx) = 2*((dx^2+dy^2)*(cx*tx+cy*ty)-(cx*dx+cy*dy)*(dx*tx+dy*ty)) = (dx^2+dy^2)*(2*(cx*tx+cy*ty))-(2*(cx*dx+cy*dy))*(dx*tx+dy*ty) = (dx^2+dy^2)*(tx^2+ty^2)-(dx^2+dy^2)*(dx*tx+dy*ty) = ((tx^2+ty^2)-(dx*tx+dy*ty))*(dx^2+dy^2)
+
+# A chosen closed arc retains which side of the proper chord was selected.
+have fn chosen_circle_arc(o, a, b cart(R, R), radius R+, side R: a != b, $geometry::main::is_on_circle(a, o, radius), $geometry::main::is_on_circle(b, o, radius), side = 1 or side = -1) power_set(cart(R, R)) = {p cart(R, R): p $in geometry::main::circle(o, radius), side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0}
+
+# Both endpoints belong to either chosen closed arc.
+thm chosen_circle_arc_contains_endpoints:
+    ? forall o, a, b cart(R, R), radius R+, side R:
+        a != b
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        =>:
+            a $in chosen_circle_arc(o, a, b, radius, side)
+            b $in chosen_circle_arc(o, a, b, radius, side)
+    by def $geometry::main::is_on_circle(a, o, radius)
+    by def $geometry::main::is_on_circle(b, o, radius)
+    a $in geometry::main::circle(o, radius)
+    b $in geometry::main::circle(o, radius)
+    release thm geometry::main::collinear_det_expand(a, b, a)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, a)) = (b(1)-a(1))*(a(2)-a(2))-(b(2)-a(2))*(a(1)-a(1)) = 0
+    release thm geometry::main::collinear_det_expand(a, b, b)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, b)) = (b(1)-a(1))*(b(2)-a(2))-(b(2)-a(2))*(b(1)-a(1)) = 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, a)) = side*0 = 0 >= 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, b)) = side*0 = 0 >= 0
+    release thm set_builder_member(a, {p cart(R, R): p $in geometry::main::circle(o, radius), side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0})
+    release thm set_builder_member(b, {p cart(R, R): p $in geometry::main::circle(o, radius), side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0})
+    a $in chosen_circle_arc(o, a, b, radius, side)
+    b $in chosen_circle_arc(o, a, b, radius, side)
+
+# Metric form of the double-angle identity, before any choice of angle branch.
+thm circle_inscribed_cosine_metric:
+    ? forall o, a, b, p cart(R, R), radius R+:
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        =>:
+            2*radius^2*geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))^2 = (radius^2+geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)))*geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b)
+    have rr R+ = radius^2
+    by def $geometry::main::is_on_circle(a, o, radius)
+    have x1 R = a(1)-o(1)
+    have x2 R = a(2)-o(2)
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    x1^2+x2^2 = (a(1)-o(1))^2+(a(2)-o(2))^2 = geometry::main::distance_sq(o, a) = radius*radius = radius^2 = rr
+    by def $geometry::main::is_on_circle(b, o, radius)
+    have y1 R = b(1)-o(1)
+    have y2 R = b(2)-o(2)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    y1^2+y2^2 = (b(1)-o(1))^2+(b(2)-o(2))^2 = geometry::main::distance_sq(o, b) = radius*radius = radius^2 = rr
+    by def $geometry::main::is_on_circle(p, o, radius)
+    have z1 R = p(1)-o(1)
+    have z2 R = p(2)-o(2)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    z1^2+z2^2 = (p(1)-o(1))^2+(p(2)-o(2))^2 = geometry::main::distance_sq(o, p) = radius*radius = radius^2 = rr
+    have u R = x1*y1+x2*y2
+    have v R = x1*z1+x2*z2
+    have w R = y1*z1+y2*z2
+    release thm equal_radius_inscribed_cosine_identity(x1, x2, y1, y2, z1, z2, rr)
+    2*rr*(u-v-w+rr)^2 = 2*rr*((x1*y1+x2*y2)-(x1*z1+x2*z2)-(y1*z1+y2*z2)+rr)^2 = (rr+(x1*y1+x2*y2))*(2*rr-2*(x1*z1+x2*z2))*(2*rr-2*(y1*z1+y2*z2)) = (rr+u)*(2*rr-2*v)*(2*rr-2*w)
+    a(1)-p(1) = (a(1)-o(1))-(p(1)-o(1)) = x1-z1
+    a(2)-p(2) = (a(2)-o(2))-(p(2)-o(2)) = x2-z2
+    release thm geometry::main::distance_sq_coordinate_formula(p, a)
+    geometry::main::distance_sq(p, a) = (a(1)-p(1))^2+(a(2)-p(2))^2 = (x1-z1)^2+(x2-z2)^2 = (x1^2+x2^2)+(z1^2+z2^2)-2*(x1*z1+x2*z2) = rr+rr-2*v = 2*rr-2*v
+    b(1)-p(1) = (b(1)-o(1))-(p(1)-o(1)) = y1-z1
+    b(2)-p(2) = (b(2)-o(2))-(p(2)-o(2)) = y2-z2
+    release thm geometry::main::distance_sq_coordinate_formula(p, b)
+    geometry::main::distance_sq(p, b) = (b(1)-p(1))^2+(b(2)-p(2))^2 = (y1-z1)^2+(y2-z2)^2 = (y1^2+y2^2)+(z1^2+z2^2)-2*(y1*z1+y2*z2) = rr+rr-2*w = 2*rr-2*w
+    release thm geometry::main::perpendicular_dot_expand(p, a, p, b)
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = (a(1)-p(1))*(b(1)-p(1))+(a(2)-p(2))*(b(2)-p(2)) = (x1-z1)*(y1-z1)+(x2-z2)*(y2-z2) = (x1*y1+x2*y2)-(x1*z1+x2*z2)-(y1*z1+y2*z2)+(z1^2+z2^2) = u-v-w+rr
+    release thm geometry::main::perpendicular_dot_expand(o, a, o, b)
+    geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = (a(1)-o(1))*(b(1)-o(1))+(a(2)-o(2))*(b(2)-o(2)) = x1*y1+x2*y2 = u
+    2*radius^2*geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))^2 = 2*rr*(u-v-w+rr)^2 = (rr+u)*(2*rr-2*v)*(2*rr-2*w) = (radius^2+geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)))*geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b)
+
+# The same circle determines the double-angle cosine; branch selection is separate.
+thm circle_inscribed_double_cosine:
+    ? forall o, a, b, p cart(R, R), radius R+:
+        a != p
+        b != p
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        =>:
+            cos(2*angle_measure::ray_angle(a, p, b)) = cos(angle_measure::ray_angle(a, o, b))
+    release thm circle_inscribed_cosine_metric(o, a, b, p, radius)
+    release thm angles::angle_den_positive(a, p, b)
+    have rr R+ = radius^2
+    have den R+ = geometry::main::angle_cos_den(a, p, b)
+    have h R+ = sqrt(den)
+    have n R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    have z R = geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b))
+    rr != 0
+    den != 0
+    h != 0
+    h^2 = sqrt(den)^2 = den
+    den = geometry::main::angle_cos_den(a, p, b) = geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b)
+    2*rr*n^2 = 2*radius^2*geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))^2 = (radius^2+geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)))*geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b) = (radius^2+geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)))*(geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b)) = (rr+z)*(geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b)) = (rr+z)*den
+    release thm angle_measure::ray_angle_cosine(a, p, b)
+    cos(angle_measure::ray_angle(a, p, b)) = angles::angle_cosine(a, p, b) = geometry::main::angle_cos_num(a, p, b)/sqrt(geometry::main::angle_cos_den(a, p, b)) = n/h
+    rr*den > 0
+    rr*den != 0
+    (2*rr*n^2)/(rr*den) = ((rr+z)*den)/(rr*den)
+    cos(2*angle_measure::ray_angle(a, p, b)) = 2*cos(angle_measure::ray_angle(a, p, b))^2-1 = 2*(n/h)^2-1 = 2*n^2/h^2-1 = 2*n^2/den-1 = (2*rr*n^2)/(rr*den)-1 = ((rr+z)*den)/(rr*den)-1 = (rr+z)/rr-1 = z/rr
+    by def $geometry::main::is_on_circle(a, o, radius)
+    by def $geometry::main::is_on_circle(b, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2 = rr
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2 = rr
+    geometry::main::angle_cos_den(a, o, b) = geometry::main::distance_sq(o, a)*geometry::main::distance_sq(o, b) = rr*rr = rr^2
+    sqrt(geometry::main::angle_cos_den(a, o, b)) = sqrt(rr^2) = rr
+    release thm angle_measure::ray_angle_cosine(a, o, b)
+    cos(angle_measure::ray_angle(a, o, b)) = angles::angle_cosine(a, o, b) = geometry::main::angle_cos_num(a, o, b)/sqrt(geometry::main::angle_cos_den(a, o, b)) = z/rr = cos(2*angle_measure::ray_angle(a, p, b))
+
+
+# The center and vertex chord-side signs determine the inscribed dot-product sign.
+thm circle_chord_side_dot_metric:
+    ? forall o, a, b, p cart(R, R), radius R+:
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        =>:
+            geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    by def $geometry::main::is_on_circle(a, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2
+    by def $geometry::main::is_on_circle(b, o, radius)
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2
+    by def $geometry::main::is_on_circle(p, o, radius)
+    geometry::main::distance_sq(o, p) = radius*radius = radius^2
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    have tx R = p(1)-a(1)
+    have ty R = p(2)-a(2)
+    have cx R = o(1)-a(1)
+    have cy R = o(2)-a(2)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    dx^2+dy^2 = (b(1)-a(1))^2+(b(2)-a(2))^2 = geometry::main::distance_sq(a, b)
+    release thm geometry::main::twice_dot_from_distances_direct(o, a, b)
+    release thm geometry::main::perpendicular_dot_expand(a, o, a, b)
+    (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b)) = (radius^2+geometry::main::distance_sq(a, b)-radius^2) = geometry::main::distance_sq(a, b)
+    2*(cx*dx+cy*dy) = 2*((o(1)-a(1))*(b(1)-a(1))+(o(2)-a(2))*(b(2)-a(2))) = 2*geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, b)) = 2*((geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b))/2) = radius^2+geometry::main::distance_sq(a, b)-radius^2 = geometry::main::distance_sq(a, b) = dx^2+dy^2
+    release thm geometry::main::distance_sq_coordinate_formula(a, p)
+    tx^2+ty^2 = (p(1)-a(1))^2+(p(2)-a(2))^2 = geometry::main::distance_sq(a, p)
+    release thm geometry::main::twice_dot_from_distances_direct(o, a, p)
+    release thm geometry::main::perpendicular_dot_expand(a, o, a, p)
+    (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, p)-geometry::main::distance_sq(o, p)) = (radius^2+geometry::main::distance_sq(a, p)-radius^2) = geometry::main::distance_sq(a, p)
+    2*(cx*tx+cy*ty) = 2*((o(1)-a(1))*(p(1)-a(1))+(o(2)-a(2))*(p(2)-a(2))) = 2*geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, p)) = 2*((geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, p)-geometry::main::distance_sq(o, p))/2) = radius^2+geometry::main::distance_sq(a, p)-radius^2 = geometry::main::distance_sq(a, p) = tx^2+ty^2
+    release thm circle_chord_side_dot_coordinate(dx, dy, tx, ty, cx, cy)
+    release thm geometry::main::perpendicular_dot_expand(p, a, p, b)
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = (a(1)-p(1))*(b(1)-p(1))+(a(2)-p(2))*(b(2)-p(2)) = (-(p(1)-a(1)))*((b(1)-a(1))-(p(1)-a(1)))+(-(p(2)-a(2)))*((b(2)-a(2))-(p(2)-a(2))) = (-tx)*(dx-tx)+(-ty)*(dy-ty) = (tx^2+ty^2)-(dx*tx+dy*ty)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = dx*cy-dy*cx
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = dx*ty-dy*tx
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = ((tx^2+ty^2)-(dx*tx+dy*ty))*(dx^2+dy^2) = 2*(dx*cy-dy*cx)*(dx*ty-dy*tx) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+
+# The angular measure of the selected arc uses the principal or reflex central angle.
+# If the center is on the chord, either side gives a semicircle and the principal angle pi.
+have fn chosen_arc_angle(o, a, b cart(R, R), radius R+, side R: a != b, a != o, b != o, $geometry::main::is_on_circle(a, o, radius), $geometry::main::is_on_circle(b, o, radius), side = 1 or side = -1) R by cases:
+    case side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0: angle_measure::ray_angle(a, o, b)
+    case not side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0: 2*pi-angle_measure::ray_angle(a, o, b)
+
+# On the principal angle interval, nonnegative cosine selects the first half.
+thm principal_nonnegative_cosine_half:
+    ? forall alpha R:
+        0 <= alpha
+        alpha <= pi
+        cos(alpha) >= 0
+        =>:
+            alpha <= pi/2
+    by contra:
+        ? alpha <= pi/2
+        alpha > pi/2
+        have theta R = pi-alpha
+        theta = pi-alpha >= pi-pi = 0
+        theta = pi-alpha < pi-pi/2 = pi/2
+        -pi/2 < 0 <= theta
+        cos(theta) > 0
+        cos(theta) = cos(pi-alpha) = -cos(alpha)
+        -cos(alpha) = cos(theta) > 0
+        cos(alpha) = -(-cos(alpha)) < -0 = 0
+        impossible cos(alpha) >= 0
+
+# On the principal angle interval, nonpositive cosine selects the second half.
+thm principal_nonpositive_cosine_half:
+    ? forall alpha R:
+        0 <= alpha
+        alpha <= pi
+        cos(alpha) <= 0
+        =>:
+            pi/2 <= alpha
+    by contra:
+        ? pi/2 <= alpha
+        alpha < pi/2
+        -pi/2 < 0 <= alpha
+        cos(alpha) > 0
+        impossible cos(alpha) <= 0
+
+# III.20: select the actual intercepted arc, including the reflex central-angle branch.
+thm proposition_20:
+    ? forall o, a, b, p cart(R, R), radius R+, side R:
+        a != b
+        a != p
+        b != p
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        side = 1 or side = -1
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) < 0
+        =>:
+            chosen_arc_angle(o, a, b, radius, side) = 2*angle_measure::ray_angle(a, p, b)
+    have alpha R = angle_measure::ray_angle(a, p, b)
+    have beta R = angle_measure::ray_angle(a, o, b)
+    release thm angle_measure::ray_angle_range(a, p, b)
+    release thm angle_measure::ray_angle_range(a, o, b)
+    0 <= alpha
+    alpha <= pi
+    0 <= beta
+    beta <= pi
+    release thm circle_inscribed_double_cosine(o, a, b, p, radius)
+    cos(2*alpha) = cos(2*angle_measure::ray_angle(a, p, b)) = cos(angle_measure::ray_angle(a, o, b)) = cos(beta)
+    have n R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    have center_side R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    have vertex_side R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    have chord_sq R+ = geometry::main::distance_sq(a, b)
+    release thm circle_chord_side_dot_metric(o, a, b, p, radius)
+    n*chord_sq = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2*center_side*vertex_side
+    side*vertex_side = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) < 0
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    release thm angles::angle_den_positive(a, p, b)
+    have den R+ = geometry::main::angle_cos_den(a, p, b)
+    have h R+ = sqrt(den)
+    release thm angle_measure::ray_angle_cosine(a, p, b)
+    geometry::main::angle_cos_num(a, p, b) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = n
+    sqrt(geometry::main::angle_cos_den(a, p, b)) = sqrt(den) = h
+    h != 0
+    cos(alpha) = cos(angle_measure::ray_angle(a, p, b)) = angles::angle_cosine(a, p, b) = geometry::main::angle_cos_num(a, p, b)/sqrt(geometry::main::angle_cos_den(a, p, b)) = n/h
+    by cases:
+        ? chosen_arc_angle(o, a, b, radius, side) = 2*alpha
+        case side*center_side <= 0:
+            (side*center_side)*(side*vertex_side) >= 0*(side*vertex_side) = 0
+            n*chord_sq = 2*center_side*vertex_side = 2*1*(center_side*vertex_side) = 2*side^2*(center_side*vertex_side) = 2*((side*center_side)*(side*vertex_side)) >= 2*0 = 0
+            by contra:
+                ? n >= 0
+                n < 0
+                n*chord_sq < 0*chord_sq = 0
+                impossible n*chord_sq >= 0
+            cos(alpha) = n/h >= 0/h = 0
+            release thm principal_nonnegative_cosine_half(alpha)
+            release thm inscribed_double_angle_principal(alpha, beta)
+            side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = side*center_side <= 0
+            chosen_arc_angle(o, a, b, radius, side) = angle_measure::ray_angle(a, o, b) = beta = 2*alpha
+        case side*center_side > 0:
+            side*center_side >= 0
+            (side*center_side)*(side*vertex_side) <= 0*(side*vertex_side) = 0
+            n*chord_sq = 2*center_side*vertex_side = 2*1*(center_side*vertex_side) = 2*side^2*(center_side*vertex_side) = 2*((side*center_side)*(side*vertex_side)) <= 2*0 = 0
+            by contra:
+                ? n <= 0
+                n > 0
+                n*chord_sq > 0*chord_sq = 0
+                impossible n*chord_sq <= 0
+            cos(alpha) = n/h <= 0/h = 0
+            release thm principal_nonpositive_cosine_half(alpha)
+            release thm inscribed_double_angle_reflex(alpha, beta)
+            side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = side*center_side > 0
+            chosen_arc_angle(o, a, b, radius, side) = 2*pi-angle_measure::ray_angle(a, o, b) = 2*pi-beta = (2*alpha+beta)-beta = 2*alpha
+    chosen_arc_angle(o, a, b, radius, side) = 2*alpha = 2*angle_measure::ray_angle(a, p, b)
+
+# Concrete minor-arc construction: central angle pi/2, inscribed angle pi/4.
+thm proposition_20_minor_use:
+    ? exist o, a, b, p cart(R, R) st {o = (0, 0), a = (1, 0), b = (0, 1), p = (-1, 0), a != b, a != p, b != p, a != o, b != o, $geometry::main::is_on_circle(a, o, 1), $geometry::main::is_on_circle(b, o, 1), chosen_arc_angle(o, a, b, 1, -1) = pi/2, angle_measure::ray_angle(a, p, b) = pi/4}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have p cart(R, R) = (-1, 0)
+    p(1) = -1
+    p(2) = 0
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = -1
+        impossible 1 != -1
+    by contra:
+        ? b != p
+        b = p
+        0 = b(1) = p(1) = -1
+        impossible 0 != -1
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        1 = b(2) = o(2) = 0
+        impossible 1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::perpendicular_dot_expand(o, a, o, b)
+    geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = (a(1)-o(1))*(b(1)-o(1))+(a(2)-o(2))*(b(2)-o(2)) = (1-0)*(0-0)+(0-0)*(1-0) = 0
+    by def $geometry::main::is_right_angle(a, o, b)
+    release thm angle_measure::right_angle_has_measure_half_pi(a, o, b)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = (0-1)*(0-0)-(1-0)*(0-1) = 1
+    (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (-1)*1 = -1 <= 0
+    chosen_arc_angle(o, a, b, 1, -1) = angle_measure::ray_angle(a, o, b) = pi/2
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = (0-1)*(0-0)-(1-0)*(-1-1) = 2
+    (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (-1)*2 = -2 < 0
+    release thm proposition_20(o, a, b, p, 1, -1)
+    angle_measure::ray_angle(a, p, b) = (2*angle_measure::ray_angle(a, p, b))/2 = chosen_arc_angle(o, a, b, 1, -1)/2 = (pi/2)/2 = pi/4
+    witness exist oo, aa, bb, pp cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (0, 1), pp = (-1, 0), aa != bb, aa != pp, bb != pp, aa != oo, bb != oo, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), chosen_arc_angle(oo, aa, bb, 1, -1) = pi/2, angle_measure::ray_angle(aa, pp, bb) = pi/4} from o, a, b, p
+
+# Concrete major-arc construction: selected central angle 3*pi/2, inscribed angle 3*pi/4.
+thm proposition_20_major_use:
+    ? exist o, a, b, p cart(R, R) st {o = (0, 0), a = (1, 0), b = (0, 1), p = (3/5, 4/5), a != b, a != p, b != p, a != o, b != o, $geometry::main::is_on_circle(a, o, 1), $geometry::main::is_on_circle(b, o, 1), chosen_arc_angle(o, a, b, 1, 1) = 3*pi/2, angle_measure::ray_angle(a, p, b) = 3*pi/4}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have p cart(R, R) = (3/5, 4/5)
+    p(1) = 3/5
+    p(2) = 4/5
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = 3/5
+        impossible 1 != 3/5
+    by contra:
+        ? b != p
+        b = p
+        0 = b(1) = p(1) = 3/5
+        impossible 0 != 3/5
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        1 = b(2) = o(2) = 0
+        impossible 1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::perpendicular_dot_expand(o, a, o, b)
+    geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = (a(1)-o(1))*(b(1)-o(1))+(a(2)-o(2))*(b(2)-o(2)) = (1-0)*(0-0)+(0-0)*(1-0) = 0
+    by def $geometry::main::is_right_angle(a, o, b)
+    release thm angle_measure::right_angle_has_measure_half_pi(a, o, b)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = (0-1)*(0-0)-(1-0)*(0-1) = 1
+    1*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1*1 = 1 > 0
+    chosen_arc_angle(o, a, b, 1, 1) = 2*pi-angle_measure::ray_angle(a, o, b) = 2*pi-pi/2 = 3*pi/2
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = (0-1)*(4/5-0)-(1-0)*(3/5-1) = -2/5
+    1*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 1*(-2/5) = -2/5 < 0
+    release thm proposition_20(o, a, b, p, 1, 1)
+    angle_measure::ray_angle(a, p, b) = (2*angle_measure::ray_angle(a, p, b))/2 = chosen_arc_angle(o, a, b, 1, 1)/2 = (3*pi/2)/2 = 3*pi/4
+    witness exist oo, aa, bb, pp cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (0, 1), pp = (3/5, 4/5), aa != bb, aa != pp, bb != pp, aa != oo, bb != oo, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), chosen_arc_angle(oo, aa, bb, 1, 1) = 3*pi/2, angle_measure::ray_angle(aa, pp, bb) = 3*pi/4} from o, a, b, p
+
+# Diameter boundary: either chosen semicircle has angle pi.
+thm proposition_20_semicircle_use:
+    ? exist o, a, b, p cart(R, R) st {o = (0, 0), a = (1, 0), b = (-1, 0), p = (0, -1), a != b, a != p, b != p, a != o, b != o, $geometry::main::is_on_circle(a, o, 1), $geometry::main::is_on_circle(b, o, 1), chosen_arc_angle(o, a, b, 1, -1) = pi, angle_measure::ray_angle(a, p, b) = pi/2}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (-1, 0)
+    b(1) = -1
+    b(2) = 0
+    have p cart(R, R) = (0, -1)
+    p(1) = 0
+    p(2) = -1
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = -1
+        impossible 1 != -1
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != p
+        b = p
+        -1 = b(1) = p(1) = 0
+        impossible -1 != 0
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        -1 = b(1) = o(1) = 0
+        impossible -1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::perpendicular_dot_expand(o, a, o, b)
+    geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = (a(1)-o(1))*(b(1)-o(1))+(a(2)-o(2))*(b(2)-o(2)) = (1-0)*(-1-0)+(0-0)*(0-0) = -1
+    geometry::main::angle_cos_num(a, o, b) = geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = -1
+    geometry::main::angle_cos_den(a, o, b) = geometry::main::distance_sq(o, a)*geometry::main::distance_sq(o, b) = 1*1 = 1
+    angles::angle_cosine(a, o, b) = geometry::main::angle_cos_num(a, o, b)/sqrt(geometry::main::angle_cos_den(a, o, b)) = (-1)/sqrt(1) = -1
+    angle_measure::ray_angle(a, o, b) = arccos(angles::angle_cosine(a, o, b)) = arccos(-1) = pi
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = (-1-1)*(0-0)-(0-0)*(0-1) = 0
+    (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (-1)*0 = 0 <= 0
+    chosen_arc_angle(o, a, b, 1, -1) = angle_measure::ray_angle(a, o, b) = pi
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = (-1-1)*(-1-0)-(0-0)*(0-1) = 2
+    (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (-1)*2 = -2 < 0
+    release thm proposition_20(o, a, b, p, 1, -1)
+    angle_measure::ray_angle(a, p, b) = (2*angle_measure::ray_angle(a, p, b))/2 = chosen_arc_angle(o, a, b, 1, -1)/2 = pi/2
+    witness exist oo, aa, bb, pp cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), pp = (0, -1), aa != bb, aa != pp, bb != pp, aa != oo, bb != oo, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), chosen_arc_angle(oo, aa, bb, 1, -1) = pi, angle_measure::ray_angle(aa, pp, bb) = pi/2} from o, a, b, p
+
+
+# III.21: angles on a common chord, with both vertices on the same open arc.
+# Positive chord-side product expresses the same circular segment and excludes its chord.
+thm proposition_21:
+    ? forall o, a, b, p, q cart(R, R), radius R+:
+        a != b
+        a != p
+        b != p
+        a != q
+        b != q
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        $geometry::main::is_on_circle(q, o, radius)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+        =>:
+            angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(a, q, b)
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    u*v = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+    by cases:
+        ? 2*angle_measure::ray_angle(a, p, b) = 2*angle_measure::ray_angle(a, q, b)
+        case u > 0:
+            by contra:
+                ? v > 0
+                v <= 0
+                u*v <= u*0 = 0
+                impossible u*v > 0
+            (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (-1)*u = 0-u < 0-0 = 0
+            (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = (-1)*v = 0-v < 0-0 = 0
+            release thm proposition_20(o, a, b, p, radius, -1)
+            release thm proposition_20(o, a, b, q, radius, -1)
+            2*angle_measure::ray_angle(a, p, b) = chosen_arc_angle(o, a, b, radius, -1) = 2*angle_measure::ray_angle(a, q, b)
+        case u <= 0:
+            by contra:
+                ? u < 0
+                u >= 0
+                u = 0
+                u*v = 0*v = 0
+                impossible u*v > 0
+            by contra:
+                ? v < 0
+                v >= 0
+                u*v <= 0*v = 0
+                impossible u*v > 0
+            1*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = u < 0
+            1*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = v < 0
+            release thm proposition_20(o, a, b, p, radius, 1)
+            release thm proposition_20(o, a, b, q, radius, 1)
+            2*angle_measure::ray_angle(a, p, b) = chosen_arc_angle(o, a, b, radius, 1) = 2*angle_measure::ray_angle(a, q, b)
+    angle_measure::ray_angle(a, p, b) = (2*angle_measure::ray_angle(a, p, b))/2 = (2*angle_measure::ray_angle(a, q, b))/2 = angle_measure::ray_angle(a, q, b)
+
+# III21 use: two different vertices on the major arc of a quarter-circle chord.
+thm proposition_21_use:
+    ? exist o, a, b, p, q cart(R, R) st {o = (0, 0), a = (1, 0), b = (0, 1), p = (-1, 0), q = (0, -1), a != p, b != p, a != q, b != q, angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(a, q, b)}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have p cart(R, R) = (-1, 0)
+    p(1) = -1
+    p(2) = 0
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = -1
+        impossible 1 != -1
+    by contra:
+        ? b != p
+        b = p
+        0 = b(1) = p(1) = -1
+        impossible 0 != -1
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        1 = b(2) = o(2) = 0
+        impossible 1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    have q cart(R, R) = (0, -1)
+    q(1) = 0
+    q(2) = -1
+    by contra:
+        ? a != q
+        a = q
+        1 = a(1) = q(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != q
+        b = q
+        1 = b(2) = q(2) = -1
+        impossible 1 != -1
+    release thm geometry::main::distance_sq_coordinate_formula(o, q)
+    geometry::main::distance_sq(o, q) = (q(1)-o(1))^2+(q(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(q, o, 1)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = (0-1)*(0-0)-(1-0)*(-1-1) = 2
+    release thm geometry::main::collinear_det_expand(a, b, q)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = (b(1)-a(1))*(q(2)-a(2))-(b(2)-a(2))*(q(1)-a(1)) = (0-1)*(-1-0)-(1-0)*(0-1) = 2
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = 2*2 = 4 > 0
+    release thm proposition_21(o, a, b, p, q, 1)
+    witness exist oo, aa, bb, pp, qq cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (0, 1), pp = (-1, 0), qq = (0, -1), aa != pp, bb != pp, aa != qq, bb != qq, angle_measure::ray_angle(aa, pp, bb) = angle_measure::ray_angle(aa, qq, bb)} from o, a, b, p, q
+
+
+# Equal absolute values with opposite weak signs have zero sum.
+thm equal_squares_opposite_signs:
+    ? forall x, y R:
+        x^2 = y^2
+        x*y <= 0
+        =>:
+            x+y = 0
+    by cases:
+        ? x+y = 0
+        case x = y:
+            x^2 = x*x = x*y <= 0
+            x^2 >= 0
+            x^2 = 0
+            by contra:
+                ? x = 0
+                x != 0
+                x^2 > 0
+                impossible x^2 = 0
+            x+y = x+x = 0+0 = 0
+        case x != y:
+            by contra:
+                ? x-y != 0
+                x-y = 0
+                x = (x-y)+y = 0+y = y
+                impossible x != y
+            (x-y)*(x+y) = x^2-y^2 = y^2-y^2 = 0
+            x+y = ((x-y)*(x+y))/(x-y) = 0/(x-y) = 0
+
+# Circumference vertices on opposite sides of a proper chord give supplementary angles.
+thm opposite_arc_angles_supplementary:
+    ? forall o, a, b, p, q cart(R, R), radius R+:
+        a != b
+        a != p
+        b != p
+        a != q
+        b != q
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        $geometry::main::is_on_circle(q, o, radius)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) < 0
+        =>:
+            angle_measure::ray_angle(a, p, b)+angle_measure::ray_angle(a, q, b) = pi
+    have alpha R = angle_measure::ray_angle(a, p, b)
+    have beta R = angle_measure::ray_angle(a, q, b)
+    release thm circle_inscribed_double_cosine(o, a, b, p, radius)
+    release thm circle_inscribed_double_cosine(o, a, b, q, radius)
+    cos(2*alpha) = cos(2*angle_measure::ray_angle(a, p, b)) = cos(angle_measure::ray_angle(a, o, b)) = cos(2*angle_measure::ray_angle(a, q, b)) = cos(2*beta)
+    2*cos(alpha)^2-1 = cos(2*alpha) = cos(2*beta) = 2*cos(beta)^2-1
+    2*cos(alpha)^2 = (2*cos(alpha)^2-1)+1 = (2*cos(beta)^2-1)+1 = 2*cos(beta)^2
+    cos(alpha)^2 = (2*cos(alpha)^2)/2 = (2*cos(beta)^2)/2 = cos(beta)^2
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    have c R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    u*v = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) < 0
+    u*v <= 0
+    c^2 >= 0
+    4*c^2 >= 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    have l R+ = geometry::main::distance_sq(a, b)
+    have n R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    have m R = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))
+    release thm circle_chord_side_dot_metric(o, a, b, p, radius)
+    n*l = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2*c*u
+    release thm circle_chord_side_dot_metric(o, a, b, q, radius)
+    m*l = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = 2*c*v
+    (n*m)*l^2 = (n*l)*(m*l) = (2*c*u)*(2*c*v) = (4*c^2)*(u*v) <= (4*c^2)*0 = 0
+    l^2 > 0
+    by contra:
+        ? n*m <= 0
+        n*m > 0
+        (n*m)*l^2 > 0*l^2 = 0
+        impossible (n*m)*l^2 <= 0
+    release thm angles::angle_den_positive(a, p, b)
+    release thm angles::angle_den_positive(a, q, b)
+    have dp R+ = geometry::main::angle_cos_den(a, p, b)
+    have dq R+ = geometry::main::angle_cos_den(a, q, b)
+    have hp R+ = sqrt(dp)
+    have hq R+ = sqrt(dq)
+    sqrt(geometry::main::angle_cos_den(a, p, b)) = sqrt(dp) = hp
+    sqrt(geometry::main::angle_cos_den(a, q, b)) = sqrt(dq) = hq
+    hp != 0
+    hq != 0
+    hp*hq > 0
+    hp*hq != 0
+    geometry::main::angle_cos_num(a, p, b) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = n
+    geometry::main::angle_cos_num(a, q, b) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = m
+    release thm angle_measure::ray_angle_cosine(a, p, b)
+    release thm angle_measure::ray_angle_cosine(a, q, b)
+    cos(alpha) = cos(angle_measure::ray_angle(a, p, b)) = angles::angle_cosine(a, p, b) = geometry::main::angle_cos_num(a, p, b)/sqrt(geometry::main::angle_cos_den(a, p, b)) = n/hp
+    cos(beta) = cos(angle_measure::ray_angle(a, q, b)) = angles::angle_cosine(a, q, b) = geometry::main::angle_cos_num(a, q, b)/sqrt(geometry::main::angle_cos_den(a, q, b)) = m/hq
+    cos(alpha)*cos(beta) = (n/hp)*(m/hq) = (n*m)/(hp*hq) <= 0/(hp*hq) = 0
+    release thm equal_squares_opposite_signs(cos(alpha), cos(beta))
+    cos(beta) = (cos(alpha)+cos(beta))-cos(alpha) = 0-cos(alpha) = -cos(alpha)
+    angles::angle_cosine(a, q, b) = cos(beta) = -cos(alpha) = -angles::angle_cosine(a, p, b)
+    release thm angle_measure::opposite_cosines_give_supplementary_angles(a, p, b, a, q, b)
+
+# A non-self-crossing inscribed quadrilateral in the cyclic order a,b,c,d.
+# Diagonal endpoints are strictly on opposite sides of the other diagonal.
+prop is_inscribed_quadrilateral(o, a, b, c, d cart(R, R), radius R+):
+    a != b
+    a != c
+    a != d
+    b != c
+    b != d
+    c != d
+    a != o
+    b != o
+    c != o
+    d != o
+    $geometry::main::is_on_circle(a, o, radius)
+    $geometry::main::is_on_circle(b, o, radius)
+    $geometry::main::is_on_circle(c, o, radius)
+    $geometry::main::is_on_circle(d, o, radius)
+    geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b))*geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, d)) < 0
+    geometry::main::det(geometry::main::vec(b, d), geometry::main::vec(b, a))*geometry::main::det(geometry::main::vec(b, d), geometry::main::vec(b, c)) < 0
+
+# III.22: both pairs of opposite angles sum to two right angles.
+thm proposition_22:
+    ? forall o, a, b, c, d cart(R, R), radius R+:
+        $is_inscribed_quadrilateral(o, a, b, c, d, radius)
+        =>:
+            angle_measure::ray_angle(a, b, c)+angle_measure::ray_angle(a, d, c) = pi
+            angle_measure::ray_angle(b, a, d)+angle_measure::ray_angle(b, c, d) = pi
+    by def $is_inscribed_quadrilateral(o, a, b, c, d, radius)
+    release thm opposite_arc_angles_supplementary(o, a, c, b, d, radius)
+    release thm opposite_arc_angles_supplementary(o, b, d, a, c, radius)
+
+# III22 concrete non-rectangle, retaining a diameter diagonal boundary.
+thm proposition_22_use:
+    ? exist o, a, b, c, d cart(R, R) st {o = (0, 0), a = (1, 0), b = (0, 1), c = (-1, 0), d = (3/5, -4/5), $is_inscribed_quadrilateral(o, a, b, c, d, 1), angle_measure::ray_angle(a, b, c)+angle_measure::ray_angle(a, d, c) = pi, angle_measure::ray_angle(b, a, d)+angle_measure::ray_angle(b, c, d) = pi}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have c cart(R, R) = (-1, 0)
+    c(1) = -1
+    c(2) = 0
+    have d cart(R, R) = (3/5, -4/5)
+    d(1) = 3/5
+    d(2) = -4/5
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? a != c
+        a = c
+        1 = a(1) = c(1) = -1
+        impossible 1 != -1
+    by contra:
+        ? a != d
+        a = d
+        1 = a(1) = d(1) = 3/5
+        impossible 1 != 3/5
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != c
+        b = c
+        0 = b(1) = c(1) = -1
+        impossible 0 != -1
+    by contra:
+        ? b != d
+        b = d
+        0 = b(1) = d(1) = 3/5
+        impossible 0 != 3/5
+    by contra:
+        ? b != o
+        b = o
+        1 = b(2) = o(2) = 0
+        impossible 1 != 0
+    by contra:
+        ? c != d
+        c = d
+        -1 = c(1) = d(1) = 3/5
+        impossible -1 != 3/5
+    by contra:
+        ? c != o
+        c = o
+        -1 = c(1) = o(1) = 0
+        impossible -1 != 0
+    by contra:
+        ? d != o
+        d = o
+        3/5 = d(1) = o(1) = 0
+        impossible 3/5 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, c)
+    geometry::main::distance_sq(o, c) = (c(1)-o(1))^2+(c(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(c, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, d)
+    geometry::main::distance_sq(o, d) = (d(1)-o(1))^2+(d(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(d, o, 1)
+    release thm geometry::main::collinear_det_expand(a, c, b)
+    geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = (c(1)-a(1))*(b(2)-a(2))-(c(2)-a(2))*(b(1)-a(1)) = (-1-(1))*(1-(0))-(0-(0))*(0-(1)) = -2
+    release thm geometry::main::collinear_det_expand(a, c, d)
+    geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, d)) = (c(1)-a(1))*(d(2)-a(2))-(c(2)-a(2))*(d(1)-a(1)) = (-1-(1))*(-4/5-(0))-(0-(0))*(3/5-(1)) = 8/5
+    geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b))*geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, d)) = (-2)*(8/5) = -16/5 < 0
+    release thm geometry::main::collinear_det_expand(b, d, a)
+    geometry::main::det(geometry::main::vec(b, d), geometry::main::vec(b, a)) = (d(1)-b(1))*(a(2)-b(2))-(d(2)-b(2))*(a(1)-b(1)) = (3/5-(0))*(0-(1))-(-4/5-(1))*(1-(0)) = 6/5
+    release thm geometry::main::collinear_det_expand(b, d, c)
+    geometry::main::det(geometry::main::vec(b, d), geometry::main::vec(b, c)) = (d(1)-b(1))*(c(2)-b(2))-(d(2)-b(2))*(c(1)-b(1)) = (3/5-(0))*(0-(1))-(-4/5-(1))*(-1-(0)) = -12/5
+    geometry::main::det(geometry::main::vec(b, d), geometry::main::vec(b, a))*geometry::main::det(geometry::main::vec(b, d), geometry::main::vec(b, c)) = (6/5)*(-12/5) = -72/25 < 0
+    by def $is_inscribed_quadrilateral(o, a, b, c, d, 1)
+    release thm proposition_22(o, a, b, c, d, 1)
+    witness exist oo, aa, bb, cc, dd cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (-1, 0), dd = (3/5, -4/5), $is_inscribed_quadrilateral(oo, aa, bb, cc, dd, 1), angle_measure::ray_angle(aa, bb, cc)+angle_measure::ray_angle(aa, dd, cc) = pi, angle_measure::ray_angle(bb, aa, dd)+angle_measure::ray_angle(bb, cc, dd) = pi} from o, a, b, c, d
+
+
+# III.Def6: the filled region bounded by a proper chord and its selected arc.
+# The disk inequality includes the interior; side selects the minor or major segment.
+have fn circular_segment_region(o, a, b cart(R, R), radius R+, side R: a != b, $geometry::main::is_on_circle(a, o, radius), $geometry::main::is_on_circle(b, o, radius), side = 1 or side = -1) power_set(cart(R, R)) = {p cart(R, R): geometry::main::distance_sq(o, p) <= radius^2, side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0}
+
+# Both endpoints belong to either filled circular segment.
+thm circular_segment_region_contains_endpoints:
+    ? forall o, a, b cart(R, R), radius R+, side R:
+        a != b
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        =>:
+            a $in circular_segment_region(o, a, b, radius, side)
+            b $in circular_segment_region(o, a, b, radius, side)
+    by def $geometry::main::is_on_circle(a, o, radius)
+    by def $geometry::main::is_on_circle(b, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2
+    geometry::main::distance_sq(o, a) <= radius^2
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2
+    geometry::main::distance_sq(o, b) <= radius^2
+    release thm geometry::main::collinear_det_expand(a, b, a)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, a)) = (b(1)-a(1))*(a(2)-a(2))-(b(2)-a(2))*(a(1)-a(1)) = 0
+    release thm geometry::main::collinear_det_expand(a, b, b)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, b)) = (b(1)-a(1))*(b(2)-a(2))-(b(2)-a(2))*(b(1)-a(1)) = 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, a)) = side*0 = 0 >= 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, b)) = side*0 = 0 >= 0
+    release thm set_builder_member(a, {p cart(R, R): geometry::main::distance_sq(o, p) <= radius^2, side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0})
+    release thm set_builder_member(b, {p cart(R, R): geometry::main::distance_sq(o, p) <= radius^2, side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0})
+    a $in circular_segment_region(o, a, b, radius, side)
+    b $in circular_segment_region(o, a, b, radius, side)
+
+# III.Def6 use: upper half-disk includes an interior point and excludes a lower-half point.
+thm circular_segment_filled_semicircle_use:
+    ? exist arc power_set(cart(R, R)) st {(1, 0) $in arc, (-1, 0) $in arc, (0, 1/2) $in arc, not (0, -1) $in arc}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (-1, 0)
+    b(1) = -1
+    b(2) = 0
+    have u cart(R, R) = (0, 1/2)
+    u(1) = 0
+    u(2) = 1/2
+    have v cart(R, R) = (0, -1)
+    v(1) = 0
+    v(2) = -1
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = -1
+        impossible 1 != -1
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, u)
+    geometry::main::distance_sq(o, u) = (u(1)-o(1))^2+(u(2)-o(2))^2 = 1/4 <= 1^2
+    have arc power_set(cart(R, R)) = circular_segment_region(o, a, b, 1, -1)
+    release thm circular_segment_region_contains_endpoints(o, a, b, 1, -1)
+    release thm geometry::main::collinear_det_expand(a, b, u)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, u)) = (b(1)-a(1))*(u(2)-a(2))-(b(2)-a(2))*(u(1)-a(1)) = (-1-1)*(1/2-0)-(0-0)*(0-1) = -1
+    (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, u)) = (-1)*(-1) = 1 >= 0
+    release thm set_builder_member(u, {p cart(R, R): geometry::main::distance_sq(o, p) <= 1^2, (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0})
+    arc = circular_segment_region(o, a, b, 1, -1) = {p cart(R, R): geometry::main::distance_sq(o, p) <= 1^2, (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0}
+    u $in arc
+    release thm geometry::main::collinear_det_expand(a, b, v)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, v)) = (b(1)-a(1))*(v(2)-a(2))-(b(2)-a(2))*(v(1)-a(1)) = (-1-1)*(-1-0)-(0-0)*(0-1) = 2
+    by contra:
+        ? not v $in arc
+        v $in arc
+        release thm set_builder_member(v, {q arc: 0 = 0})
+        (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, v)) >= 0
+        -2 = (-1)*2 = (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, v)) >= 0
+        impossible -2 < 0
+    witness exist result power_set(cart(R, R)) st {(1, 0) $in result, (-1, 0) $in result, (0, 1/2) $in result, not (0, -1) $in result} from arc
+
+# Every point of the chosen circumference arc belongs to its filled segment.
+thm chosen_arc_point_in_circular_segment:
+    ? forall o, a, b, p cart(R, R), radius R+, side R:
+        a != b
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        p $in chosen_circle_arc(o, a, b, radius, side)
+        =>:
+            p $in circular_segment_region(o, a, b, radius, side)
+    have arc power_set(cart(R, R)) = chosen_circle_arc(o, a, b, radius, side)
+    arc = chosen_circle_arc(o, a, b, radius, side) = {q cart(R, R): q $in geometry::main::circle(o, radius), side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) >= 0}
+    p $in arc
+    release thm set_builder_member(p, {q arc: 0 = 0})
+    p $in geometry::main::circle(o, radius)
+    geometry::main::circle(o, radius) = {q cart(R, R): geometry::main::distance_sq(o, q) = radius*radius}
+    release thm set_builder_member(p, {q geometry::main::circle(o, radius): 0 = 0})
+    geometry::main::distance_sq(o, p) = radius*radius = radius^2
+    geometry::main::distance_sq(o, p) <= radius^2
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0
+    release thm set_builder_member(p, {q cart(R, R): geometry::main::distance_sq(o, q) <= radius^2, side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) >= 0})
+    circular_segment_region(o, a, b, radius, side) = {q cart(R, R): geometry::main::distance_sq(o, q) <= radius^2, side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) >= 0}
+    p $in circular_segment_region(o, a, b, radius, side)
+
+# III.Def8: an angle in a segment joins a selected-arc point to the chord endpoints.
+# The strict side condition excludes chord endpoints and keeps the vertex on the chosen arc.
+# This is the rectilinear angle IN a segment, distinct from III.Def7's curved angle OF it.
+prop is_angle_in_circular_segment(o, a, b, p cart(R, R), radius R+, side, alpha R):
+    a != b
+    a != p
+    b != p
+    a != o
+    b != o
+    $geometry::main::is_on_circle(a, o, radius)
+    $geometry::main::is_on_circle(b, o, radius)
+    $geometry::main::is_on_circle(p, o, radius)
+    side = 1 or side = -1
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    alpha = angle_measure::ray_angle(a, p, b)
+
+# III21 makes the angle accepted by a chosen circular segment independent of its vertex.
+thm angles_in_circular_segment_equal:
+    ? forall o, a, b, p, q cart(R, R), radius R+, side, alpha, beta R:
+        $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+        $is_angle_in_circular_segment(o, a, b, q, radius, side, beta)
+        =>:
+            alpha = beta
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by def $is_angle_in_circular_segment(o, a, b, q, radius, side, beta)
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    side*u = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    side*v = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+    (side*u)*(side*v) > 0
+    u*v = 1*(u*v) = side^2*(u*v) = (side*u)*(side*v) > 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = u*v > 0
+    release thm proposition_21(o, a, b, p, q, radius)
+    alpha = angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(a, q, b) = beta
+
+# III.Def11: similar circular segments accept equal rectilinear angles.
+# Existence supplies actual circumference vertices; III21 supplies independence of the choice.
+prop are_similar_circular_segments(o, a, b, center, c, d cart(R, R), radius, other_radius R+, side, other_side R):
+    a != b
+    c != d
+    $geometry::main::is_on_circle(a, o, radius)
+    $geometry::main::is_on_circle(b, o, radius)
+    $geometry::main::is_on_circle(c, center, other_radius)
+    $geometry::main::is_on_circle(d, center, other_radius)
+    side = 1 or side = -1
+    other_side = 1 or other_side = -1
+    exist p, q cart(R, R), alpha R st {$is_angle_in_circular_segment(o, a, b, p, radius, side, alpha), $is_angle_in_circular_segment(center, c, d, q, other_radius, other_side, alpha)}
+
+# Similarity does not depend on the vertices used to witness its common angle.
+thm similar_segments_have_equal_angles:
+    ? forall o, a, b, center, c, d, p, q cart(R, R), radius, other_radius R+, side, other_side, alpha, beta R:
+        $are_similar_circular_segments(o, a, b, center, c, d, radius, other_radius, side, other_side)
+        $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+        $is_angle_in_circular_segment(center, c, d, q, other_radius, other_side, beta)
+        =>:
+            alpha = beta
+    by def $are_similar_circular_segments(o, a, b, center, c, d, radius, other_radius, side, other_side)
+    obtain u, v, theta from exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(o, a, b, x, radius, side, t), $is_angle_in_circular_segment(center, c, d, y, other_radius, other_side, t)}
+    release thm angles_in_circular_segment_equal(o, a, b, p, u, radius, side, alpha, theta)
+    release thm angles_in_circular_segment_equal(center, c, d, q, v, other_radius, other_side, beta, theta)
+    alpha = theta = beta
+
+# III.Def8/11 use: the two semicircular segments accept equal right angles.
+thm opposite_semicircular_segments_similar_use:
+    ? exist o, a, b cart(R, R) st {o = (0, 0), a = (1, 0), b = (-1, 0), $are_similar_circular_segments(o, a, b, o, a, b, 1, 1, 1, -1)}
+    release thm proposition_20_semicircle_use
+    obtain o, a, b, p from exist oo, aa, bb, pp cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), pp = (0, -1), aa != bb, aa != pp, bb != pp, aa != oo, bb != oo, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), chosen_arc_angle(oo, aa, bb, 1, -1) = pi, angle_measure::ray_angle(aa, pp, bb) = pi/2}
+    o(1) = 0
+    o(2) = 0
+    a(1) = 1
+    a(2) = 0
+    b(1) = -1
+    b(2) = 0
+    p(1) = 0
+    p(2) = -1
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = (-1-1)*(-1-0)-(0-0)*(0-1) = 2
+    1*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 1*2 = 2 > 0
+    by def $is_angle_in_circular_segment(o, a, b, p, 1, 1, pi/2)
+    have q cart(R, R) = (0, 1)
+    q(1) = 0
+    q(2) = 1
+    by contra:
+        ? a != q
+        a = q
+        1 = a(1) = q(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != q
+        b = q
+        -1 = b(1) = q(1) = 0
+        impossible -1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, q)
+    geometry::main::distance_sq(o, q) = (q(1)-o(1))^2+(q(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(q, o, 1)
+    release thm geometry::main::collinear_det_expand(a, b, q)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = (b(1)-a(1))*(q(2)-a(2))-(b(2)-a(2))*(q(1)-a(1)) = (-1-1)*(1-0)-(0-0)*(0-1) = -2
+    (-1)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = (-1)*(-2) = 2 > 0
+    release thm geometry::main::perpendicular_dot_expand(q, a, q, b)
+    geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = (a(1)-q(1))*(b(1)-q(1))+(a(2)-q(2))*(b(2)-q(2)) = (1-0)*(-1-0)+(0-1)*(0-1) = 0
+    by def $geometry::main::is_right_angle(a, q, b)
+    release thm angle_measure::right_angle_has_measure_half_pi(a, q, b)
+    by def $is_angle_in_circular_segment(o, a, b, q, 1, -1, pi/2)
+    witness exist x, y cart(R, R), alpha R st {$is_angle_in_circular_segment(o, a, b, x, 1, 1, alpha), $is_angle_in_circular_segment(o, a, b, y, 1, -1, alpha)} from p, q, pi/2
+    by def $are_similar_circular_segments(o, a, b, o, a, b, 1, 1, 1, -1)
+    witness exist oo, aa, bb cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), $are_similar_circular_segments(oo, aa, bb, oo, aa, bb, 1, 1, 1, -1)} from o, a, b
+
+# Equal normalized dot products determine the signed dot/determinant ratio on one side.
+thm equal_normalized_projections_ratio:
+    ? forall x, y, u, v R, h, k R+:
+        h^2 = x^2+u^2
+        k^2 = y^2+v^2
+        x*k = y*h
+        u*v > 0
+        =>:
+            x*v = y*u
+    (x*k)^2 = (y*h)^2
+    x^2*k^2 = (x*k)^2 = (y*h)^2 = y^2*h^2
+    x^2*(y^2+v^2) = x^2*k^2 = y^2*h^2 = y^2*(x^2+u^2)
+    x^2*v^2 = x^2*(y^2+v^2)-x^2*y^2 = y^2*(x^2+u^2)-x^2*y^2 = y^2*u^2
+    (x*v)^2 = x^2*v^2 = y^2*u^2 = (y*u)^2 = (-(y*u))^2
+    x^2 >= 0
+    x^2*k >= 0*k = 0
+    (x*y)*h = x*(y*h) = x*(x*k) = x^2*k >= 0
+    by contra:
+        ? x*y >= 0
+        x*y < 0
+        (x*y)*h < 0*h = 0
+        impossible (x*y)*h >= 0
+    (x*y)*(u*v) >= 0*(u*v) = 0
+    (x*v)*(-(y*u)) = -((x*y)*(u*v)) = 0-(x*y)*(u*v) <= 0-0 = 0
+    release thm equal_squares_opposite_signs(x*v, -(y*u))
+    x*v = (x*v+(-(y*u)))+y*u = 0+y*u = y*u
+
+# Equal angles at same-side vertices give the signed dot/determinant cross ratio.
+thm equal_same_chord_angles_cross_ratio:
+    ? forall a, b, p, q cart(R, R):
+        a != p
+        b != p
+        a != q
+        b != q
+        angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(a, q, b)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+        =>:
+            geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have n R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    have m R = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    u*v = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+    release thm geometry::main::collinear_det_expand(p, a, b)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(p, a), geometry::main::vec(p, b)) = (a(1)-p(1))*(b(2)-p(2))-(a(2)-p(2))*(b(1)-p(1)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = u
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    release thm geometry::main::vec_dot_self_is_distance(p, a)
+    release thm geometry::main::vec_dot_self_is_distance(p, b)
+    release thm angles::angle_den_positive(a, p, b)
+    have hp R+ = sqrt(geometry::main::angle_cos_den(a, p, b))
+    hp != 0
+    geometry::main::angle_cos_den(a, p, b) = geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, a))*geometry::main::dot(geometry::main::vec(p, b), geometry::main::vec(p, b)) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))^2+geometry::main::det(geometry::main::vec(p, a), geometry::main::vec(p, b))^2 = n^2+u^2
+    hp^2 = sqrt(geometry::main::angle_cos_den(a, p, b))^2 = geometry::main::angle_cos_den(a, p, b) = n^2+u^2
+    geometry::main::angle_cos_num(a, p, b) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = n
+    sqrt(geometry::main::angle_cos_den(a, p, b)) = hp
+    angles::angle_cosine(a, p, b) = geometry::main::angle_cos_num(a, p, b)/sqrt(geometry::main::angle_cos_den(a, p, b)) = n/hp
+    release thm angle_measure::ray_angle_cosine(a, p, b)
+    release thm geometry::main::collinear_det_expand(q, a, b)
+    release thm geometry::main::collinear_det_expand(a, b, q)
+    geometry::main::det(geometry::main::vec(q, a), geometry::main::vec(q, b)) = (a(1)-q(1))*(b(2)-q(2))-(a(2)-q(2))*(b(1)-q(1)) = (b(1)-a(1))*(q(2)-a(2))-(b(2)-a(2))*(q(1)-a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = v
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(q, a), geometry::main::vec(q, b))
+    release thm geometry::main::vec_dot_self_is_distance(q, a)
+    release thm geometry::main::vec_dot_self_is_distance(q, b)
+    release thm angles::angle_den_positive(a, q, b)
+    have hq R+ = sqrt(geometry::main::angle_cos_den(a, q, b))
+    hq != 0
+    geometry::main::angle_cos_den(a, q, b) = geometry::main::distance_sq(q, a)*geometry::main::distance_sq(q, b) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, a))*geometry::main::dot(geometry::main::vec(q, b), geometry::main::vec(q, b)) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))^2+geometry::main::det(geometry::main::vec(q, a), geometry::main::vec(q, b))^2 = m^2+v^2
+    hq^2 = sqrt(geometry::main::angle_cos_den(a, q, b))^2 = geometry::main::angle_cos_den(a, q, b) = m^2+v^2
+    geometry::main::angle_cos_num(a, q, b) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = m
+    sqrt(geometry::main::angle_cos_den(a, q, b)) = hq
+    angles::angle_cosine(a, q, b) = geometry::main::angle_cos_num(a, q, b)/sqrt(geometry::main::angle_cos_den(a, q, b)) = m/hq
+    release thm angle_measure::ray_angle_cosine(a, q, b)
+    n/hp = angles::angle_cosine(a, p, b) = cos(angle_measure::ray_angle(a, p, b)) = cos(angle_measure::ray_angle(a, q, b)) = angles::angle_cosine(a, q, b) = m/hq
+    n*hq = (n/hp)*(hp*hq) = (m/hq)*(hp*hq) = m*hp
+    release thm equal_normalized_projections_ratio(n, m, u, v, hp, hq)
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = n*v = m*u = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+
+# A same-side inscribed angle on a fixed chord determines the supporting circle.
+thm equal_same_chord_angles_determine_circle:
+    ? forall o, center, a, b, p, q cart(R, R), radius, other_radius R+:
+        a != b
+        a != p
+        b != p
+        a != q
+        b != q
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        $geometry::main::is_on_circle(a, center, other_radius)
+        $geometry::main::is_on_circle(b, center, other_radius)
+        $geometry::main::is_on_circle(q, center, other_radius)
+        angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(a, q, b)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+        =>:
+            o = center
+            radius = other_radius
+    have n R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    have m R = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    have co R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    have cc R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, center))
+    have l R = geometry::main::distance_sq(a, b)
+    u*v = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+    2*(u*v) > 0
+    2*(u*v) != 0
+    release thm equal_same_chord_angles_cross_ratio(a, b, p, q)
+    n*v = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = m*u
+    release thm circle_chord_side_dot_metric(o, a, b, p, radius)
+    n*l = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2*co*u
+    release thm circle_chord_side_dot_metric(center, a, b, q, other_radius)
+    m*l = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, center))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = 2*cc*v
+    co*(2*(u*v)) = (2*co*u)*v = (n*l)*v = (n*v)*l = (m*u)*l = (m*l)*u = (2*cc*v)*u = cc*(2*(u*v))
+    co = (co*(2*(u*v)))/(2*(u*v)) = (cc*(2*(u*v)))/(2*(u*v)) = cc
+    by def $geometry::main::is_on_circle(a, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2
+    by def $geometry::main::is_on_circle(b, o, radius)
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2
+    release thm geometry::main::twice_dot_from_distances_direct(o, a, b)
+    (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b)) = (radius^2+geometry::main::distance_sq(a, b)-radius^2) = geometry::main::distance_sq(a, b)
+    geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, b)) = (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b))/2 = geometry::main::distance_sq(a, b)/2
+    release thm geometry::main::perpendicular_dot_expand(a, o, a, b)
+    (o(1)-a(1))*(b(1)-a(1))+(o(2)-a(2))*(b(2)-a(2)) = geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, b)) = geometry::main::distance_sq(a, b)/2
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    by def $geometry::main::is_on_circle(a, center, other_radius)
+    geometry::main::distance_sq(center, a) = other_radius*other_radius = other_radius^2
+    by def $geometry::main::is_on_circle(b, center, other_radius)
+    geometry::main::distance_sq(center, b) = other_radius*other_radius = other_radius^2
+    release thm geometry::main::twice_dot_from_distances_direct(center, a, b)
+    (geometry::main::distance_sq(center, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(center, b)) = (other_radius^2+geometry::main::distance_sq(a, b)-other_radius^2) = geometry::main::distance_sq(a, b)
+    geometry::main::dot(geometry::main::vec(a, center), geometry::main::vec(a, b)) = (geometry::main::distance_sq(center, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(center, b))/2 = geometry::main::distance_sq(a, b)/2
+    release thm geometry::main::perpendicular_dot_expand(a, center, a, b)
+    (center(1)-a(1))*(b(1)-a(1))+(center(2)-a(2))*(b(2)-a(2)) = geometry::main::dot(geometry::main::vec(a, center), geometry::main::vec(a, b)) = geometry::main::distance_sq(a, b)/2
+    release thm geometry::main::collinear_det_expand(a, b, center)
+    (b(1)-a(1))*(o(1)-center(1))+(b(2)-a(2))*(o(2)-center(2)) = ((o(1)-a(1))*(b(1)-a(1))+(o(2)-a(2))*(b(2)-a(2)))-((center(1)-a(1))*(b(1)-a(1))+(center(2)-a(2))*(b(2)-a(2))) = geometry::main::distance_sq(a, b)/2-geometry::main::distance_sq(a, b)/2 = 0
+    (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = co
+    (b(1)-a(1))*(center(2)-a(2))-(b(2)-a(2))*(center(1)-a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, center)) = cc
+    (b(1)-a(1))*(o(2)-center(2))-(b(2)-a(2))*(o(1)-center(1)) = ((b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)))-((b(1)-a(1))*(center(2)-a(2))-(b(2)-a(2))*(center(1)-a(1))) = co-cc = 0
+    release thm geometry::main::point_difference_norm_pos(a, b)
+    release thm geometry::main::dot_det_eliminate(b(1)-a(1), b(2)-a(2), o(1)-center(1), o(2)-center(2))
+    o(1) = (o(1)-center(1))+center(1) = 0+center(1) = center(1)
+    o(2) = (o(2)-center(2))+center(2) = 0+center(2) = center(2)
+    release thm tuple_equal_from_coordinates(o, (o(1), o(2)))
+    release thm tuple_equal_from_coordinates(center, (center(1), center(2)))
+    o = (o(1), o(2)) = (center(1), center(2)) = center
+    radius^2 = geometry::main::distance_sq(o, a) = geometry::main::distance_sq(center, a) = other_radius^2
+    radius = sqrt(radius^2) = sqrt(other_radius^2) = other_radius
+
+# III.23: similar segments on the same chord and side are the same filled region.
+thm proposition_23:
+    ? forall o, center, a, b cart(R, R), radius, other_radius R+, side R:
+        $are_similar_circular_segments(o, a, b, center, a, b, radius, other_radius, side, side)
+        =>:
+            circular_segment_region(o, a, b, radius, side) = circular_segment_region(center, a, b, other_radius, side)
+    by def $are_similar_circular_segments(o, a, b, center, a, b, radius, other_radius, side, side)
+    obtain p, q, alpha from exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(o, a, b, x, radius, side, t), $is_angle_in_circular_segment(center, a, b, y, other_radius, side, t)}
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by def $is_angle_in_circular_segment(center, a, b, q, other_radius, side, alpha)
+    angle_measure::ray_angle(a, p, b) = alpha = angle_measure::ray_angle(a, q, b)
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    side*u = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    side*v = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+    (side*u)*(side*v) > 0
+    u*v = 1*(u*v) = side^2*(u*v) = (side*u)*(side*v) > 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = u*v > 0
+    release thm equal_same_chord_angles_determine_circle(o, center, a, b, p, q, radius, other_radius)
+    circular_segment_region(o, a, b, radius, side) = circular_segment_region(center, a, b, radius, side) = circular_segment_region(center, a, b, other_radius, side)
+
+# Apply III23 to independently supplied circles with a common chord and 45-degree angles.
+# The comparison circle's center and radius are not assumed equal to the reference ones.
+thm proposition_23_equal_angle_use:
+    ? forall o, center, a, b, p, q cart(R, R), radius, other_radius R+:
+        $is_angle_in_circular_segment(o, a, b, p, radius, 1, pi/4)
+        $is_angle_in_circular_segment(center, a, b, q, other_radius, 1, pi/4)
+        =>:
+            circular_segment_region(o, a, b, radius, 1) = circular_segment_region(center, a, b, other_radius, 1)
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, 1, pi/4)
+    by def $is_angle_in_circular_segment(center, a, b, q, other_radius, 1, pi/4)
+    witness exist x, y cart(R, R), alpha R st {$is_angle_in_circular_segment(o, a, b, x, radius, 1, alpha), $is_angle_in_circular_segment(center, a, b, y, other_radius, 1, alpha)} from p, q, pi/4
+    by def $are_similar_circular_segments(o, a, b, center, a, b, radius, other_radius, 1, 1)
+    release thm proposition_23(o, center, a, b, radius, other_radius, 1)
+
+# A Euclidean plane motion: optional reflection, then rotation, then translation.
+# Unit rotation and orientation sign are part of the function domain.
+have fn plane_rigid_motion(p, translation cart(R, R), co, si, orientation R: co^2+si^2 = 1, orientation = 1 or orientation = -1) cart(R, R) = (co*p(1)-si*orientation*p(2)+translation(1), si*p(1)+co*orientation*p(2)+translation(2))
+
+# Composition of reflected coordinates, the library rotation, and library translation.
+thm plane_rigid_motion_preserves_distance:
+    ? forall p, q, translation cart(R, R), co, si, orientation R:
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        =>:
+            geometry::main::distance_sq(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(q, translation, co, si, orientation)) = geometry::main::distance_sq(p, q)
+    by cases:
+        ? orientation^2 = 1
+        case orientation = 1:
+            orientation^2 = 1^2 = 1
+        case orientation = -1:
+            orientation^2 = (-1)^2 = 1
+    have rp cart(R, R) = (p(1), orientation*p(2))
+    rp(1) = p(1)
+    rp(2) = orientation*p(2)
+    have sp cart(R, R) = (co*rp(1)-si*rp(2), si*rp(1)+co*rp(2))
+    sp(1) = co*rp(1)-si*rp(2)
+    sp(2) = si*rp(1)+co*rp(2)
+    have fp cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    fp = plane_rigid_motion(p, translation, co, si, orientation) = (co*p(1)-si*orientation*p(2)+translation(1), si*p(1)+co*orientation*p(2)+translation(2))
+    co*p(1)-si*orientation*p(2) = co*rp(1)-si*(orientation*p(2)) = co*rp(1)-si*rp(2) = sp(1)
+    si*p(1)+co*orientation*p(2) = si*rp(1)+co*(orientation*p(2)) = si*rp(1)+co*rp(2) = sp(2)
+    fp(1) = co*p(1)-si*orientation*p(2)+translation(1) = co*rp(1)-si*rp(2)+translation(1) = sp(1)+translation(1)
+    fp(2) = si*p(1)+co*orientation*p(2)+translation(2) = si*rp(1)+co*rp(2)+translation(2) = sp(2)+translation(2)
+    have rq cart(R, R) = (q(1), orientation*q(2))
+    rq(1) = q(1)
+    rq(2) = orientation*q(2)
+    have sq cart(R, R) = (co*rq(1)-si*rq(2), si*rq(1)+co*rq(2))
+    sq(1) = co*rq(1)-si*rq(2)
+    sq(2) = si*rq(1)+co*rq(2)
+    have fq cart(R, R) = plane_rigid_motion(q, translation, co, si, orientation)
+    fq = plane_rigid_motion(q, translation, co, si, orientation) = (co*q(1)-si*orientation*q(2)+translation(1), si*q(1)+co*orientation*q(2)+translation(2))
+    co*q(1)-si*orientation*q(2) = co*rq(1)-si*(orientation*q(2)) = co*rq(1)-si*rq(2) = sq(1)
+    si*q(1)+co*orientation*q(2) = si*rq(1)+co*(orientation*q(2)) = si*rq(1)+co*rq(2) = sq(2)
+    fq(1) = co*q(1)-si*orientation*q(2)+translation(1) = co*rq(1)-si*rq(2)+translation(1) = sq(1)+translation(1)
+    fq(2) = si*q(1)+co*orientation*q(2)+translation(2) = si*rq(1)+co*rq(2)+translation(2) = sq(2)+translation(2)
+    release thm geometry::main::distance_sq_coordinate_formula(rp, rq)
+    release thm geometry::main::distance_sq_coordinate_formula(p, q)
+    geometry::main::distance_sq(rp, rq) = (rq(1)-rp(1))^2+(rq(2)-rp(2))^2 = (q(1)-p(1))^2+(orientation*q(2)-orientation*p(2))^2 = (q(1)-p(1))^2+orientation^2*(q(2)-p(2))^2 = (q(1)-p(1))^2+1*(q(2)-p(2))^2 = geometry::main::distance_sq(p, q)
+    release thm geometry::main::rotation_preserves_distance(rp, rq, sp, sq, co, si)
+    release thm geometry::main::distance_sq_translate(sp, sq, translation, fp, fq)
+    geometry::main::distance_sq(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(q, translation, co, si, orientation)) = geometry::main::distance_sq(fp, fq) = geometry::main::distance_sq(sp, sq) = geometry::main::distance_sq(rp, rq) = geometry::main::distance_sq(p, q)
+
+# Undo translation, rotation and the optional reflection in reverse order.
+have fn plane_rigid_motion_inverse(p, translation cart(R, R), co, si, orientation R: co^2+si^2 = 1, orientation = 1 or orientation = -1) cart(R, R) = (co*(p(1)-translation(1))+si*(p(2)-translation(2)), orientation*(-si*(p(1)-translation(1))+co*(p(2)-translation(2))))
+
+# The explicit inverse works on both sides, so the motion maps the whole plane onto itself.
+thm plane_rigid_motion_inverse_laws:
+    ? forall p, translation cart(R, R), co, si, orientation R:
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        =>:
+            plane_rigid_motion_inverse(plane_rigid_motion(p, translation, co, si, orientation), translation, co, si, orientation) = p
+            plane_rigid_motion(plane_rigid_motion_inverse(p, translation, co, si, orientation), translation, co, si, orientation) = p
+    by cases:
+        ? orientation^2 = 1
+        case orientation = 1:
+            orientation^2 = 1^2 = 1
+        case orientation = -1:
+            orientation^2 = (-1)^2 = 1
+    have f cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    f = plane_rigid_motion(p, translation, co, si, orientation) = (co*p(1)-si*orientation*p(2)+translation(1), si*p(1)+co*orientation*p(2)+translation(2))
+    f(1) = co*p(1)-si*orientation*p(2)+translation(1)
+    f(2) = si*p(1)+co*orientation*p(2)+translation(2)
+    f(1)-translation(1) = co*p(1)-si*orientation*p(2)
+    f(2)-translation(2) = si*p(1)+co*orientation*p(2)
+    have back cart(R, R) = plane_rigid_motion_inverse(f, translation, co, si, orientation)
+    back = plane_rigid_motion_inverse(f, translation, co, si, orientation) = (co*(f(1)-translation(1))+si*(f(2)-translation(2)), orientation*(-si*(f(1)-translation(1))+co*(f(2)-translation(2))))
+    back(1) = co*(f(1)-translation(1))+si*(f(2)-translation(2)) = co*(co*p(1)-si*orientation*p(2))+si*(si*p(1)+co*orientation*p(2)) = (co^2+si^2)*p(1) = 1*p(1) = p(1)
+    back(2) = orientation*(-si*(f(1)-translation(1))+co*(f(2)-translation(2))) = orientation*(-si*(co*p(1)-si*orientation*p(2))+co*(si*p(1)+co*orientation*p(2))) = orientation^2*((co^2+si^2)*p(2)) = 1*(1*p(2)) = p(2)
+    release thm tuple_equal_from_coordinates(back, (back(1), back(2)))
+    release thm tuple_equal_from_coordinates(p, (p(1), p(2)))
+    back = (back(1), back(2)) = (p(1), p(2)) = p
+    plane_rigid_motion_inverse(plane_rigid_motion(p, translation, co, si, orientation), translation, co, si, orientation) = plane_rigid_motion_inverse(f, translation, co, si, orientation) = back = p
+    have g cart(R, R) = plane_rigid_motion_inverse(p, translation, co, si, orientation)
+    g = plane_rigid_motion_inverse(p, translation, co, si, orientation) = (co*(p(1)-translation(1))+si*(p(2)-translation(2)), orientation*(-si*(p(1)-translation(1))+co*(p(2)-translation(2))))
+    g(1) = co*(p(1)-translation(1))+si*(p(2)-translation(2))
+    g(2) = orientation*(-si*(p(1)-translation(1))+co*(p(2)-translation(2)))
+    orientation*g(2) = orientation*(orientation*(-si*(p(1)-translation(1))+co*(p(2)-translation(2)))) = orientation^2*(-si*(p(1)-translation(1))+co*(p(2)-translation(2))) = -si*(p(1)-translation(1))+co*(p(2)-translation(2))
+    si*orientation*g(2) = si*(orientation*g(2)) = si*(-si*(p(1)-translation(1))+co*(p(2)-translation(2)))
+    co*orientation*g(2) = co*(orientation*g(2)) = co*(-si*(p(1)-translation(1))+co*(p(2)-translation(2)))
+    have forward cart(R, R) = plane_rigid_motion(g, translation, co, si, orientation)
+    forward = plane_rigid_motion(g, translation, co, si, orientation) = (co*g(1)-si*orientation*g(2)+translation(1), si*g(1)+co*orientation*g(2)+translation(2))
+    forward(1) = co*g(1)-si*orientation*g(2)+translation(1) = co*(co*(p(1)-translation(1))+si*(p(2)-translation(2)))-si*(-si*(p(1)-translation(1))+co*(p(2)-translation(2)))+translation(1) = (co^2+si^2)*(p(1)-translation(1))+translation(1) = 1*(p(1)-translation(1))+translation(1) = p(1)
+    forward(2) = si*g(1)+co*orientation*g(2)+translation(2) = si*(co*(p(1)-translation(1))+si*(p(2)-translation(2)))+co*(-si*(p(1)-translation(1))+co*(p(2)-translation(2)))+translation(2) = (co^2+si^2)*(p(2)-translation(2))+translation(2) = 1*(p(2)-translation(2))+translation(2) = p(2)
+    release thm tuple_equal_from_coordinates(forward, (forward(1), forward(2)))
+    forward = (forward(1), forward(2)) = (p(1), p(2)) = p
+    plane_rigid_motion(plane_rigid_motion_inverse(p, translation, co, si, orientation), translation, co, si, orientation) = plane_rigid_motion(g, translation, co, si, orientation) = forward = p
+
+# Orientation is exactly the sign by which a plane motion changes signed area.
+thm plane_rigid_motion_preserves_signed_area:
+    ? forall a, b, p, translation cart(R, R), co, si, orientation R:
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        =>:
+            geometry::main::det(geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))) = orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have fa cart(R, R) = plane_rigid_motion(a, translation, co, si, orientation)
+    fa = plane_rigid_motion(a, translation, co, si, orientation) = (co*a(1)-si*orientation*a(2)+translation(1), si*a(1)+co*orientation*a(2)+translation(2))
+    fa(1) = co*a(1)-si*orientation*a(2)+translation(1)
+    fa(2) = si*a(1)+co*orientation*a(2)+translation(2)
+    have fb cart(R, R) = plane_rigid_motion(b, translation, co, si, orientation)
+    fb = plane_rigid_motion(b, translation, co, si, orientation) = (co*b(1)-si*orientation*b(2)+translation(1), si*b(1)+co*orientation*b(2)+translation(2))
+    fb(1) = co*b(1)-si*orientation*b(2)+translation(1)
+    fb(2) = si*b(1)+co*orientation*b(2)+translation(2)
+    have fp cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    fp = plane_rigid_motion(p, translation, co, si, orientation) = (co*p(1)-si*orientation*p(2)+translation(1), si*p(1)+co*orientation*p(2)+translation(2))
+    fp(1) = co*p(1)-si*orientation*p(2)+translation(1)
+    fp(2) = si*p(1)+co*orientation*p(2)+translation(2)
+    fb(1)-fa(1) = (co*b(1)-si*orientation*b(2)+translation(1))-(co*a(1)-si*orientation*a(2)+translation(1)) = co*(b(1)-a(1))-si*orientation*(b(2)-a(2))
+    fb(2)-fa(2) = (si*b(1)+co*orientation*b(2)+translation(2))-(si*a(1)+co*orientation*a(2)+translation(2)) = si*(b(1)-a(1))+co*orientation*(b(2)-a(2))
+    fp(1)-fa(1) = (co*p(1)-si*orientation*p(2)+translation(1))-(co*a(1)-si*orientation*a(2)+translation(1)) = co*(p(1)-a(1))-si*orientation*(p(2)-a(2))
+    fp(2)-fa(2) = (si*p(1)+co*orientation*p(2)+translation(2))-(si*a(1)+co*orientation*a(2)+translation(2)) = si*(p(1)-a(1))+co*orientation*(p(2)-a(2))
+    release thm geometry::main::collinear_det_expand(fa, fb, fp)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(fa, fb), geometry::main::vec(fa, fp)) = (fb(1)-fa(1))*(fp(2)-fa(2))-(fb(2)-fa(2))*(fp(1)-fa(1)) = (co*(b(1)-a(1))-si*orientation*(b(2)-a(2)))*(si*(p(1)-a(1))+co*orientation*(p(2)-a(2)))-(si*(b(1)-a(1))+co*orientation*(b(2)-a(2)))*(co*(p(1)-a(1))-si*orientation*(p(2)-a(2))) = (co^2+si^2)*orientation*((b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1))) = orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+
+# Polarization recovers the inner product from three squared distances.
+thm plane_rigid_motion_preserves_inner_product:
+    ? forall a, b, p, translation cart(R, R), co, si, orientation R:
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        =>:
+            geometry::main::dot(geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))) = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have fa cart(R, R) = plane_rigid_motion(a, translation, co, si, orientation)
+    have fb cart(R, R) = plane_rigid_motion(b, translation, co, si, orientation)
+    have fp cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    release thm plane_rigid_motion_preserves_distance(b, a, translation, co, si, orientation)
+    geometry::main::distance_sq(fb, fa) = geometry::main::distance_sq(plane_rigid_motion(b, translation, co, si, orientation), plane_rigid_motion(a, translation, co, si, orientation)) = geometry::main::distance_sq(b, a)
+    release thm plane_rigid_motion_preserves_distance(a, p, translation, co, si, orientation)
+    geometry::main::distance_sq(fa, fp) = geometry::main::distance_sq(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(a, p)
+    release thm plane_rigid_motion_preserves_distance(b, p, translation, co, si, orientation)
+    geometry::main::distance_sq(fb, fp) = geometry::main::distance_sq(plane_rigid_motion(b, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(b, p)
+    geometry::main::distance_sq(fb, fa)+geometry::main::distance_sq(fa, fp) = geometry::main::distance_sq(b, a)+geometry::main::distance_sq(a, p)
+    geometry::main::distance_sq(fb, fa)+geometry::main::distance_sq(fa, fp)-geometry::main::distance_sq(fb, fp) = geometry::main::distance_sq(b, a)+geometry::main::distance_sq(a, p)-geometry::main::distance_sq(b, p)
+    release thm geometry::main::twice_dot_from_distances_direct(fb, fa, fp)
+    release thm geometry::main::twice_dot_from_distances_direct(b, a, p)
+    geometry::main::dot(geometry::main::vec(fa, fb), geometry::main::vec(fa, fp)) = (geometry::main::distance_sq(fb, fa)+geometry::main::distance_sq(fa, fp)-geometry::main::distance_sq(fb, fp))/2 = (geometry::main::distance_sq(b, a)+geometry::main::distance_sq(a, p)-geometry::main::distance_sq(b, p))/2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, p))
+
+# The inverse gives injectivity on the entire plane.
+thm plane_rigid_motion_is_injective:
+    ? forall p, q, translation cart(R, R), co, si, orientation R:
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        plane_rigid_motion(p, translation, co, si, orientation) = plane_rigid_motion(q, translation, co, si, orientation)
+        =>:
+            p = q
+    release thm plane_rigid_motion_inverse_laws(p, translation, co, si, orientation)
+    release thm plane_rigid_motion_inverse_laws(q, translation, co, si, orientation)
+    p = plane_rigid_motion_inverse(plane_rigid_motion(p, translation, co, si, orientation), translation, co, si, orientation) = plane_rigid_motion_inverse(plane_rigid_motion(q, translation, co, si, orientation), translation, co, si, orientation) = q
+
+# A rigid motion carries a circle to the circle with the transported center and same radius.
+thm plane_rigid_motion_preserves_circle_incidence:
+    ? forall o, p, translation cart(R, R), radius R+, co, si, orientation R:
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        $geometry::main::is_on_circle(p, o, radius)
+        =>:
+            $geometry::main::is_on_circle(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(o, translation, co, si, orientation), radius)
+    by def $geometry::main::is_on_circle(p, o, radius)
+    release thm plane_rigid_motion_preserves_distance(o, p, translation, co, si, orientation)
+    geometry::main::distance_sq(plane_rigid_motion(o, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p) = radius*radius
+    by def $geometry::main::is_on_circle(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(o, translation, co, si, orientation), radius)
+
+# Membership equivalence under a globally invertible Euclidean plane motion.
+# This compares filled regions, including their boundaries and interiors.
+prop is_plane_rigid_motion_between_regions(source, target power_set(cart(R, R)), translation cart(R, R), co, si, orientation R):
+    co^2+si^2 = 1
+    orientation = 1 or orientation = -1
+    forall p cart(R, R):
+        =>:
+            p $in source
+        <=>:
+            plane_rigid_motion(p, translation, co, si, orientation) $in target
+
+# Every target-region point has a source-region preimage under this motion.
+thm plane_rigid_motion_between_regions_is_onto:
+    ? forall source, target power_set(cart(R, R)), translation cart(R, R), co, si, orientation R, q cart(R, R):
+        $is_plane_rigid_motion_between_regions(source, target, translation, co, si, orientation)
+        q $in target
+        =>:
+            exist p source st {plane_rigid_motion(p, translation, co, si, orientation) = q}
+    by def $is_plane_rigid_motion_between_regions(source, target, translation, co, si, orientation)
+    have p cart(R, R) = plane_rigid_motion_inverse(q, translation, co, si, orientation)
+    release thm plane_rigid_motion_inverse_laws(q, translation, co, si, orientation)
+    plane_rigid_motion(p, translation, co, si, orientation) = plane_rigid_motion(plane_rigid_motion_inverse(q, translation, co, si, orientation), translation, co, si, orientation) = q
+    plane_rigid_motion(p, translation, co, si, orientation) $in target
+    p $in source
+    witness exist z source st {plane_rigid_motion(z, translation, co, si, orientation) = q} from p
+
+# Equal nonzero vector lengths determine the rotation after a chosen reflection.
+thm equal_chord_motion_coefficients:
+    ? forall x, y, u, v, orientation R, length_sq R+:
+        x^2+y^2 = length_sq
+        u^2+v^2 = length_sq
+        orientation = 1 or orientation = -1
+        =>:
+            ((x*u+orientation*y*v)/length_sq)^2+((x*v-orientation*y*u)/length_sq)^2 = 1
+            ((x*u+orientation*y*v)/length_sq)*x-((x*v-orientation*y*u)/length_sq)*orientation*y = u
+            ((x*v-orientation*y*u)/length_sq)*x+((x*u+orientation*y*v)/length_sq)*orientation*y = v
+    by cases:
+        ? orientation^2 = 1
+        case orientation = 1:
+            orientation^2 = 1^2 = 1
+        case orientation = -1:
+            orientation^2 = (-1)^2 = 1
+    length_sq != 0
+    (x*u+orientation*y*v)^2+(x*v-orientation*y*u)^2 = (x^2+orientation^2*y^2)*(u^2+v^2) = (x^2+y^2)*(u^2+v^2) = length_sq*length_sq = length_sq^2
+    ((x*u+orientation*y*v)/length_sq)^2+((x*v-orientation*y*u)/length_sq)^2 = ((x*u+orientation*y*v)^2+(x*v-orientation*y*u)^2)/length_sq^2 = length_sq^2/length_sq^2 = 1
+    ((x*u+orientation*y*v)/length_sq)*x-((x*v-orientation*y*u)/length_sq)*orientation*y = ((x^2+orientation^2*y^2)*u)/length_sq = ((x^2+y^2)*u)/length_sq = length_sq*u/length_sq = u
+    ((x*v-orientation*y*u)/length_sq)*x+((x*u+orientation*y*v)/length_sq)*orientation*y = ((x^2+orientation^2*y^2)*v)/length_sq = ((x^2+y^2)*v)/length_sq = length_sq*v/length_sq = v
+
+# A chosen orientation and equal proper chords determine a plane motion.
+thm equal_chords_admit_plane_rigid_motion:
+    ? forall a, b, c, d cart(R, R), orientation R:
+        a != b
+        geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+        orientation = 1 or orientation = -1
+        =>:
+            exist translation cart(R, R), co, si R st {co^2+si^2 = 1, plane_rigid_motion(a, translation, co, si, orientation) = c, plane_rigid_motion(b, translation, co, si, orientation) = d}
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    release thm geometry::main::distance_sq_coordinate_formula(c, d)
+    have x R = b(1)-a(1)
+    have y R = b(2)-a(2)
+    have u R = d(1)-c(1)
+    have v R = d(2)-c(2)
+    x^2+y^2 = (b(1)-a(1))^2+(b(2)-a(2))^2 = geometry::main::distance_sq(a, b) = length_sq
+    u^2+v^2 = (d(1)-c(1))^2+(d(2)-c(2))^2 = geometry::main::distance_sq(c, d) = length_sq
+    release thm equal_chord_motion_coefficients(x, y, u, v, orientation, length_sq)
+    have co R = (x*u+orientation*y*v)/length_sq
+    have si R = (x*v-orientation*y*u)/length_sq
+    co^2+si^2 = ((x*u+orientation*y*v)/length_sq)^2+((x*v-orientation*y*u)/length_sq)^2 = 1
+    co*x-si*orientation*y = ((x*u+orientation*y*v)/length_sq)*x-((x*v-orientation*y*u)/length_sq)*orientation*y = u
+    si*x+co*orientation*y = ((x*v-orientation*y*u)/length_sq)*x+((x*u+orientation*y*v)/length_sq)*orientation*y = v
+    have translation cart(R, R) = (c(1)-co*a(1)+si*orientation*a(2), c(2)-si*a(1)-co*orientation*a(2))
+    translation(1) = c(1)-co*a(1)+si*orientation*a(2)
+    translation(2) = c(2)-si*a(1)-co*orientation*a(2)
+    have fa cart(R, R) = plane_rigid_motion(a, translation, co, si, orientation)
+    have fb cart(R, R) = plane_rigid_motion(b, translation, co, si, orientation)
+    fa = plane_rigid_motion(a, translation, co, si, orientation) = (co*a(1)-si*orientation*a(2)+translation(1), si*a(1)+co*orientation*a(2)+translation(2))
+    fa(1) = co*a(1)-si*orientation*a(2)+(c(1)-co*a(1)+si*orientation*a(2)) = c(1)
+    fa(2) = si*a(1)+co*orientation*a(2)+(c(2)-si*a(1)-co*orientation*a(2)) = c(2)
+    release thm tuple_equal_from_coordinates(fa, (fa(1), fa(2)))
+    release thm tuple_equal_from_coordinates(c, (c(1), c(2)))
+    fa = (fa(1), fa(2)) = (c(1), c(2)) = c
+    fb = plane_rigid_motion(b, translation, co, si, orientation) = (co*b(1)-si*orientation*b(2)+translation(1), si*b(1)+co*orientation*b(2)+translation(2))
+    co*(b(1)-a(1))-si*orientation*(b(2)-a(2)) = co*x-si*orientation*y = u = d(1)-c(1)
+    si*(b(1)-a(1))+co*orientation*(b(2)-a(2)) = si*x+co*orientation*y = v = d(2)-c(2)
+    fb(1) = co*b(1)-si*orientation*b(2)+(c(1)-co*a(1)+si*orientation*a(2)) = c(1)+(co*(b(1)-a(1))-si*orientation*(b(2)-a(2))) = c(1)+(d(1)-c(1)) = d(1)
+    fb(2) = si*b(1)+co*orientation*b(2)+(c(2)-si*a(1)-co*orientation*a(2)) = c(2)+(si*(b(1)-a(1))+co*orientation*(b(2)-a(2))) = c(2)+(d(2)-c(2)) = d(2)
+    release thm tuple_equal_from_coordinates(fb, (fb(1), fb(2)))
+    release thm tuple_equal_from_coordinates(d, (d(1), d(2)))
+    fb = (fb(1), fb(2)) = (d(1), d(2)) = d
+    witness exist t cart(R, R), h, k R st {h^2+k^2 = 1, plane_rigid_motion(a, t, h, k, orientation) = c, plane_rigid_motion(b, t, h, k, orientation) = d} from translation, co, si
+
+# The same quarter-turn and translation distinguish orientation-preserving and reversing maps.
+thm plane_rigid_motion_rotation_reflection_use:
+    ? exist rotated, reflected cart(R, R) st {rotated = plane_rigid_motion((1, 2), (3, 4), 0, 1, 1), rotated = (1, 5), reflected = plane_rigid_motion((1, 2), (3, 4), 0, 1, -1), reflected = (5, 5), plane_rigid_motion_inverse(rotated, (3, 4), 0, 1, 1) = (1, 2), plane_rigid_motion_inverse(reflected, (3, 4), 0, 1, -1) = (1, 2)}
+    have p cart(R, R) = (1, 2)
+    have t cart(R, R) = (3, 4)
+    p(1) = 1
+    p(2) = 2
+    t(1) = 3
+    t(2) = 4
+    have rotated cart(R, R) = plane_rigid_motion((1, 2), (3, 4), 0, 1, 1)
+    rotated = plane_rigid_motion((1, 2), (3, 4), 0, 1, 1) = plane_rigid_motion(p, t, 0, 1, 1) = (0*p(1)-1*1*p(2)+t(1), 1*p(1)+0*1*p(2)+t(2)) = (0*1-1*1*2+3, 1*1+0*1*2+4) = (1, 5)
+    have reflected cart(R, R) = plane_rigid_motion((1, 2), (3, 4), 0, 1, -1)
+    reflected = plane_rigid_motion((1, 2), (3, 4), 0, 1, -1) = plane_rigid_motion(p, t, 0, 1, -1) = (0*p(1)-1*(-1)*p(2)+t(1), 1*p(1)+0*(-1)*p(2)+t(2)) = (0*1-1*(-1)*2+3, 1*1+0*(-1)*2+4) = (5, 5)
+    release thm plane_rigid_motion_inverse_laws((1, 2), (3, 4), 0, 1, 1)
+    release thm plane_rigid_motion_inverse_laws((1, 2), (3, 4), 0, 1, -1)
+    plane_rigid_motion_inverse(rotated, (3, 4), 0, 1, 1) = plane_rigid_motion_inverse(plane_rigid_motion((1, 2), (3, 4), 0, 1, 1), (3, 4), 0, 1, 1) = (1, 2)
+    plane_rigid_motion_inverse(reflected, (3, 4), 0, 1, -1) = plane_rigid_motion_inverse(plane_rigid_motion((1, 2), (3, 4), 0, 1, -1), (3, 4), 0, 1, -1) = (1, 2)
+    witness exist u, v cart(R, R) st {u = plane_rigid_motion((1, 2), (3, 4), 0, 1, 1), u = (1, 5), v = plane_rigid_motion((1, 2), (3, 4), 0, 1, -1), v = (5, 5), plane_rigid_motion_inverse(u, (3, 4), 0, 1, 1) = (1, 2), plane_rigid_motion_inverse(v, (3, 4), 0, 1, -1) = (1, 2)} from rotated, reflected
+
+# A quarter-turn transports the entire closed right half-plane to the upper half-plane.
+thm plane_rigid_motion_halfplane_use:
+    ? $is_plane_rigid_motion_between_regions({z cart(R, R): z(1) >= 0}, {z cart(R, R): z(2) >= 0}, (0, 0), 0, 1, 1)
+    have t cart(R, R) = (0, 0)
+    t(1) = 0
+    t(2) = 0
+    claim:
+        ? forall p cart(R, R):
+            p $in {z cart(R, R): z(1) >= 0}
+            =>:
+                plane_rigid_motion(p, (0, 0), 0, 1, 1) $in {z cart(R, R): z(2) >= 0}
+        have q cart(R, R) = plane_rigid_motion(p, (0, 0), 0, 1, 1)
+        q = plane_rigid_motion(p, (0, 0), 0, 1, 1) = plane_rigid_motion(p, t, 0, 1, 1) = (0*p(1)-1*1*p(2)+t(1), 1*p(1)+0*1*p(2)+t(2)) = (0*p(1)-1*1*p(2)+0, 1*p(1)+0*1*p(2)+0) = (-p(2), p(1))
+        q(2) = p(1) >= 0
+        q $in {z cart(R, R): z(2) >= 0}
+    claim:
+        ? forall p cart(R, R):
+            plane_rigid_motion(p, (0, 0), 0, 1, 1) $in {z cart(R, R): z(2) >= 0}
+            =>:
+                p $in {z cart(R, R): z(1) >= 0}
+        have q cart(R, R) = plane_rigid_motion(p, (0, 0), 0, 1, 1)
+        q = plane_rigid_motion(p, (0, 0), 0, 1, 1) = plane_rigid_motion(p, t, 0, 1, 1) = (0*p(1)-1*1*p(2)+t(1), 1*p(1)+0*1*p(2)+t(2)) = (0*p(1)-1*1*p(2)+0, 1*p(1)+0*1*p(2)+0) = (-p(2), p(1))
+        q $in {z cart(R, R): z(2) >= 0}
+        p(1) = q(2) >= 0
+    by def $is_plane_rigid_motion_between_regions({z cart(R, R): z(1) >= 0}, {z cart(R, R): z(2) >= 0}, (0, 0), 0, 1, 1)
+
+# The endpoint constructor accepts a translated vertical target and reversing orientation.
+thm equal_chords_rigid_motion_use:
+    ? exist translation cart(R, R), co, si R st {co^2+si^2 = 1, plane_rigid_motion((0, 0), translation, co, si, -1) = (3, 4), plane_rigid_motion((2, 0), translation, co, si, -1) = (3, 6)}
+    have a cart(R, R) = (0, 0)
+    have b cart(R, R) = (2, 0)
+    have c cart(R, R) = (3, 4)
+    have d cart(R, R) = (3, 6)
+    a(1) = 0
+    a(2) = 0
+    b(1) = 2
+    b(2) = 0
+    c(1) = 3
+    c(2) = 4
+    d(1) = 3
+    d(2) = 6
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    release thm geometry::main::distance_sq_coordinate_formula(c, d)
+    geometry::main::distance_sq((0, 0), (2, 0)) = geometry::main::distance_sq(a, b) = (b(1)-a(1))^2+(b(2)-a(2))^2 = (2-0)^2+(0-0)^2 = 4
+    geometry::main::distance_sq((3, 4), (3, 6)) = geometry::main::distance_sq(c, d) = (d(1)-c(1))^2+(d(2)-c(2))^2 = (3-3)^2+(6-4)^2 = 4
+    by contra:
+        ? (0, 0) != (2, 0)
+        a = (0, 0) = (2, 0) = b
+        0 = a(1) = b(1) = 2
+        impossible 0 = 2
+    release thm equal_chords_admit_plane_rigid_motion((0, 0), (2, 0), (3, 4), (3, 6), -1)
+
+# Inner products and arm lengths preserve rectilinear angles, including straight angles.
+thm plane_rigid_motion_preserves_angles:
+    ? forall a, p, b, translation cart(R, R), co, si, orientation R:
+        a != p
+        b != p
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        =>:
+            $geometry::main::are_angles_congruent(a, p, b, plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation))
+    have fa cart(R, R) = plane_rigid_motion(a, translation, co, si, orientation)
+    have fp cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    have fb cart(R, R) = plane_rigid_motion(b, translation, co, si, orientation)
+    by contra:
+        ? fa != fp
+        plane_rigid_motion(a, translation, co, si, orientation) = fa = fp = plane_rigid_motion(p, translation, co, si, orientation)
+        release thm plane_rigid_motion_is_injective(a, p, translation, co, si, orientation)
+        impossible a != p
+    by contra:
+        ? fb != fp
+        plane_rigid_motion(b, translation, co, si, orientation) = fb = fp = plane_rigid_motion(p, translation, co, si, orientation)
+        release thm plane_rigid_motion_is_injective(b, p, translation, co, si, orientation)
+        impossible b != p
+    release thm angles::angle_den_positive(a, p, b)
+    release thm angles::angle_den_positive(fa, fp, fb)
+    release thm plane_rigid_motion_preserves_inner_product(p, a, b, translation, co, si, orientation)
+    geometry::main::angle_cos_num(fa, fp, fb) = geometry::main::dot(geometry::main::vec(fp, fa), geometry::main::vec(fp, fb)) = geometry::main::dot(geometry::main::vec(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(a, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation))) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = geometry::main::angle_cos_num(a, p, b)
+    release thm plane_rigid_motion_preserves_distance(p, a, translation, co, si, orientation)
+    release thm plane_rigid_motion_preserves_distance(p, b, translation, co, si, orientation)
+    geometry::main::distance_sq(fp, fa) = geometry::main::distance_sq(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(a, translation, co, si, orientation)) = geometry::main::distance_sq(p, a)
+    geometry::main::distance_sq(fp, fb) = geometry::main::distance_sq(plane_rigid_motion(p, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)) = geometry::main::distance_sq(p, b)
+    geometry::main::distance_sq(fp, fa)*geometry::main::distance_sq(fp, fb) = geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b)
+    geometry::main::angle_cos_den(fa, fp, fb) = geometry::main::distance_sq(fp, fa)*geometry::main::distance_sq(fp, fb) = geometry::main::distance_sq(p, a)*geometry::main::distance_sq(p, b) = geometry::main::angle_cos_den(a, p, b)
+    geometry::main::angle_cos_num(a, p, b)^2*geometry::main::angle_cos_den(fa, fp, fb) = geometry::main::angle_cos_num(a, p, b)^2*geometry::main::angle_cos_den(a, p, b) = geometry::main::angle_cos_num(fa, fp, fb)^2*geometry::main::angle_cos_den(a, p, b)
+    geometry::main::angle_cos_num(a, p, b)*geometry::main::angle_cos_num(fa, fp, fb) = geometry::main::angle_cos_num(a, p, b)*geometry::main::angle_cos_num(a, p, b) = geometry::main::angle_cos_num(a, p, b)^2 >= 0
+    by def $geometry::main::are_angles_congruent(a, p, b, fa, fp, fb)
+
+# Matching centers, chord endpoints and selected sides transports the full circular segments.
+thm plane_rigid_motion_transports_circular_segment:
+    ? forall o, a, b, center, c, d, translation cart(R, R), radius R+, side, other_side, co, si, orientation R:
+        a != b
+        c != d
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        side = 1 or side = -1
+        other_side = 1 or other_side = -1
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        plane_rigid_motion(o, translation, co, si, orientation) = center
+        plane_rigid_motion(a, translation, co, si, orientation) = c
+        plane_rigid_motion(b, translation, co, si, orientation) = d
+        other_side*orientation = side
+        =>:
+            $is_plane_rigid_motion_between_regions(circular_segment_region(o, a, b, radius, side), circular_segment_region(center, c, d, radius, other_side), translation, co, si, orientation)
+    claim:
+        ? forall p cart(R, R):
+            geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p)
+            other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+        release thm plane_rigid_motion_preserves_distance(o, p, translation, co, si, orientation)
+        geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(plane_rigid_motion(o, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p)
+        release thm plane_rigid_motion_preserves_signed_area(a, b, p, translation, co, si, orientation)
+        geometry::main::vec(c, d) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation))
+        geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))
+        geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = geometry::main::det(geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))) = orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = other_side*(orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) = (other_side*orientation)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    circular_segment_region(o, a, b, radius, side) = {p cart(R, R): geometry::main::distance_sq(o, p) <= radius^2, side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0}
+    circular_segment_region(center, c, d, radius, other_side) = {p cart(R, R): geometry::main::distance_sq(center, p) <= radius^2, other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, p)) >= 0}
+    claim:
+        ? forall p cart(R, R):
+            p $in circular_segment_region(o, a, b, radius, side)
+            =>:
+                plane_rigid_motion(p, translation, co, si, orientation) $in circular_segment_region(center, c, d, radius, other_side)
+        geometry::main::distance_sq(o, p) <= radius^2
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0
+        geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p) <= radius^2
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0
+    claim:
+        ? forall p cart(R, R):
+            plane_rigid_motion(p, translation, co, si, orientation) $in circular_segment_region(center, c, d, radius, other_side)
+            =>:
+                p $in circular_segment_region(o, a, b, radius, side)
+        geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) <= radius^2
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) >= 0
+        geometry::main::distance_sq(o, p) = geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) <= radius^2
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) >= 0
+    by def $is_plane_rigid_motion_between_regions(circular_segment_region(o, a, b, radius, side), circular_segment_region(center, c, d, radius, other_side), translation, co, si, orientation)
+
+# III.24: equal chords and similar segments admit an explicit congruence of filled regions.
+thm proposition_24:
+    ? forall o, a, b, center, c, d cart(R, R), radius, other_radius R+, side, other_side R:
+        $are_similar_circular_segments(o, a, b, center, c, d, radius, other_radius, side, other_side)
+        geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+        =>:
+            exist translation cart(R, R), co, si, orientation R st {$is_plane_rigid_motion_between_regions(circular_segment_region(o, a, b, radius, side), circular_segment_region(center, c, d, other_radius, other_side), translation, co, si, orientation)}
+    by def $are_similar_circular_segments(o, a, b, center, c, d, radius, other_radius, side, other_side)
+    obtain p, q, alpha from exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(o, a, b, x, radius, side, t), $is_angle_in_circular_segment(center, c, d, y, other_radius, other_side, t)}
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by def $is_angle_in_circular_segment(center, c, d, q, other_radius, other_side, alpha)
+    have orientation R = side*other_side
+    by cases:
+        ? orientation = 1 or orientation = -1
+        case side = 1:
+            orientation = side*other_side = other_side
+            orientation = 1 or orientation = -1
+        case side = -1:
+            by cases:
+                ? orientation = 1 or orientation = -1
+                case other_side = 1:
+                    orientation = side*other_side = (-1)*1 = -1
+                case other_side = -1:
+                    orientation = side*other_side = (-1)*(-1) = 1
+    by cases:
+        ? other_side^2 = 1
+        case other_side = 1:
+            other_side^2 = 1^2 = 1
+        case other_side = -1:
+            other_side^2 = (-1)^2 = 1
+    other_side*orientation = other_side*(side*other_side) = side*other_side^2 = side*1 = side
+    release thm equal_chords_admit_plane_rigid_motion(a, b, c, d, orientation)
+    obtain translation, co, si from exist t cart(R, R), h, k R st {h^2+k^2 = 1, plane_rigid_motion(a, t, h, k, orientation) = c, plane_rigid_motion(b, t, h, k, orientation) = d}
+    have fo cart(R, R) = plane_rigid_motion(o, translation, co, si, orientation)
+    have fp cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    release thm plane_rigid_motion_preserves_circle_incidence(o, a, translation, radius, co, si, orientation)
+    release thm plane_rigid_motion_preserves_circle_incidence(o, b, translation, radius, co, si, orientation)
+    release thm plane_rigid_motion_preserves_circle_incidence(o, p, translation, radius, co, si, orientation)
+    $geometry::main::is_on_circle(c, fo, radius)
+    $geometry::main::is_on_circle(d, fo, radius)
+    $geometry::main::is_on_circle(fp, fo, radius)
+    by contra:
+        ? c != fo
+        plane_rigid_motion(a, translation, co, si, orientation) = c = fo = plane_rigid_motion(o, translation, co, si, orientation)
+        release thm plane_rigid_motion_is_injective(a, o, translation, co, si, orientation)
+        impossible a != o
+    by contra:
+        ? d != fo
+        plane_rigid_motion(b, translation, co, si, orientation) = d = fo = plane_rigid_motion(o, translation, co, si, orientation)
+        release thm plane_rigid_motion_is_injective(b, o, translation, co, si, orientation)
+        impossible b != o
+    release thm plane_rigid_motion_preserves_angles(a, p, b, translation, co, si, orientation)
+    $geometry::main::are_angles_congruent(a, p, b, c, fp, d)
+    by def $geometry::main::are_angles_congruent(a, p, b, c, fp, d)
+    release thm angle_measure::angle_relation_implies_equal_measure(a, p, b, c, fp, d)
+    alpha = angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(c, fp, d)
+    release thm plane_rigid_motion_preserves_signed_area(a, b, p, translation, co, si, orientation)
+    geometry::main::vec(c, d) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation))
+    geometry::main::vec(c, fp) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, fp)) = geometry::main::det(geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))) = orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, fp)) = other_side*(orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) = (other_side*orientation)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    by def $is_angle_in_circular_segment(fo, c, d, fp, radius, other_side, alpha)
+    witness exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(fo, c, d, x, radius, other_side, t), $is_angle_in_circular_segment(center, c, d, y, other_radius, other_side, t)} from fp, q, alpha
+    by def $are_similar_circular_segments(fo, c, d, center, c, d, radius, other_radius, other_side, other_side)
+    release thm proposition_23(fo, center, c, d, radius, other_radius, other_side)
+    release thm plane_rigid_motion_transports_circular_segment(o, a, b, fo, c, d, translation, radius, side, other_side, co, si, orientation)
+    witness exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(circular_segment_region(o, a, b, radius, side), circular_segment_region(center, c, d, other_radius, other_side), t, h, k, orientation_sign)} from translation, co, si, orientation
+
+# The opposite unit semicircular regions give an actual congruence witness.
+thm proposition_24_semicircle_use:
+    ? exist o, a, b, translation cart(R, R), co, si, orientation R st {o = (0, 0), a = (1, 0), b = (-1, 0), $are_similar_circular_segments(o, a, b, o, a, b, 1, 1, 1, -1), $is_plane_rigid_motion_between_regions(circular_segment_region(o, a, b, 1, 1), circular_segment_region(o, a, b, 1, -1), translation, co, si, orientation)}
+    release thm opposite_semicircular_segments_similar_use
+    obtain o, a, b from exist oo, aa, bb cart(R, R) st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), $are_similar_circular_segments(oo, aa, bb, oo, aa, bb, 1, 1, 1, -1)}
+    release thm proposition_24(o, a, b, o, a, b, 1, 1, 1, -1)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(circular_segment_region(o, a, b, 1, 1), circular_segment_region(o, a, b, 1, -1), t, h, k, orientation_sign)}
+    witness exist oo, aa, bb, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), $are_similar_circular_segments(oo, aa, bb, oo, aa, bb, 1, 1, 1, -1), $is_plane_rigid_motion_between_regions(circular_segment_region(oo, aa, bb, 1, 1), circular_segment_region(oo, aa, bb, 1, -1), t, h, k, orientation_sign)} from o, a, b, translation, co, si, orientation
+
+
+# Matching centers, chord endpoints and selected sides transports the chosen circular arcs.
+thm plane_rigid_motion_transports_chosen_arc:
+    ? forall o, a, b, center, c, d, translation cart(R, R), radius R+, side, other_side, co, si, orientation R:
+        a != b
+        c != d
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        side = 1 or side = -1
+        other_side = 1 or other_side = -1
+        co^2+si^2 = 1
+        orientation = 1 or orientation = -1
+        plane_rigid_motion(o, translation, co, si, orientation) = center
+        plane_rigid_motion(a, translation, co, si, orientation) = c
+        plane_rigid_motion(b, translation, co, si, orientation) = d
+        other_side*orientation = side
+        =>:
+            $is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)
+    claim:
+        ? forall p cart(R, R):
+            geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p)
+            other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+        release thm plane_rigid_motion_preserves_distance(o, p, translation, co, si, orientation)
+        geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(plane_rigid_motion(o, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p)
+        release thm plane_rigid_motion_preserves_signed_area(a, b, p, translation, co, si, orientation)
+        geometry::main::vec(c, d) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation))
+        geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))
+        geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = geometry::main::det(geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))) = orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = other_side*(orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) = (other_side*orientation)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    geometry::main::circle(o, radius) = {p cart(R, R): geometry::main::distance_sq(o, p) = radius*radius}
+    geometry::main::circle(center, radius) = {p cart(R, R): geometry::main::distance_sq(center, p) = radius*radius}
+    chosen_circle_arc(o, a, b, radius, side) = {p cart(R, R): p $in geometry::main::circle(o, radius), side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0}
+    chosen_circle_arc(center, c, d, radius, other_side) = {p cart(R, R): p $in geometry::main::circle(center, radius), other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, p)) >= 0}
+    claim:
+        ? forall p cart(R, R):
+            p $in chosen_circle_arc(o, a, b, radius, side)
+            =>:
+                plane_rigid_motion(p, translation, co, si, orientation) $in chosen_circle_arc(center, c, d, radius, other_side)
+        p $in geometry::main::circle(o, radius)
+        geometry::main::distance_sq(o, p) = radius*radius
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0
+        geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = geometry::main::distance_sq(o, p) = radius*radius
+        plane_rigid_motion(p, translation, co, si, orientation) $in geometry::main::circle(center, radius)
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) >= 0
+    claim:
+        ? forall p cart(R, R):
+            plane_rigid_motion(p, translation, co, si, orientation) $in chosen_circle_arc(center, c, d, radius, other_side)
+            =>:
+                p $in chosen_circle_arc(o, a, b, radius, side)
+        plane_rigid_motion(p, translation, co, si, orientation) $in geometry::main::circle(center, radius)
+        geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = radius*radius
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) >= 0
+        geometry::main::distance_sq(o, p) = geometry::main::distance_sq(center, plane_rigid_motion(p, translation, co, si, orientation)) = radius*radius
+        p $in geometry::main::circle(o, radius)
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, plane_rigid_motion(p, translation, co, si, orientation))) >= 0
+    by def $is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)
+
+
+# The selected principal or reflex arc span has the same cosine as its central rays.
+thm chosen_arc_angle_cosine:
+    ? forall o, a, b cart(R, R), radius R+, side R:
+        a != b
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        =>:
+            cos(chosen_arc_angle(o, a, b, radius, side)) = cos(angle_measure::ray_angle(a, o, b))
+    cos(2*pi) = 1
+    sin(2*pi) = 0
+    by cases:
+        ? cos(chosen_arc_angle(o, a, b, radius, side)) = cos(angle_measure::ray_angle(a, o, b))
+        case side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0:
+            chosen_arc_angle(o, a, b, radius, side) = angle_measure::ray_angle(a, o, b)
+            cos(chosen_arc_angle(o, a, b, radius, side)) = cos(angle_measure::ray_angle(a, o, b))
+        case not side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0:
+            chosen_arc_angle(o, a, b, radius, side) = 2*pi-angle_measure::ray_angle(a, o, b)
+            cos(chosen_arc_angle(o, a, b, radius, side)) = cos(2*pi-angle_measure::ray_angle(a, o, b)) = cos(2*pi)*cos(angle_measure::ray_angle(a, o, b))+sin(2*pi)*sin(angle_measure::ray_angle(a, o, b)) = 1*cos(angle_measure::ray_angle(a, o, b))+0*sin(angle_measure::ray_angle(a, o, b)) = cos(angle_measure::ray_angle(a, o, b))
+
+
+# The chord metric depends only on radius and selected angular span.
+thm chosen_arc_chord_metric:
+    ? forall o, a, b cart(R, R), radius R+, side R:
+        a != b
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        =>:
+            geometry::main::distance_sq(a, b) = 2*radius^2*(1-cos(chosen_arc_angle(o, a, b, radius, side)))
+    by def $geometry::main::is_on_circle(a, o, radius)
+    by def $geometry::main::is_on_circle(b, o, radius)
+    have rr R+ = radius^2
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2 = rr
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2 = rr
+    release thm geometry::main::distance_sq_symmetric(a, o)
+    geometry::main::distance_sq(a, o) = geometry::main::distance_sq(o, a) = rr
+    have z R = geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b))
+    geometry::main::angle_cos_num(a, o, b) = geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = z
+    geometry::main::angle_cos_den(a, o, b) = geometry::main::distance_sq(o, a)*geometry::main::distance_sq(o, b) = rr*rr = rr^2
+    sqrt(geometry::main::angle_cos_den(a, o, b)) = sqrt(rr^2) = |rr| = rr
+    release thm angle_measure::ray_angle_cosine(a, o, b)
+    release thm chosen_arc_angle_cosine(o, a, b, radius, side)
+    cos(chosen_arc_angle(o, a, b, radius, side)) = cos(angle_measure::ray_angle(a, o, b)) = angles::angle_cosine(a, o, b) = geometry::main::angle_cos_num(a, o, b)/sqrt(geometry::main::angle_cos_den(a, o, b)) = z/rr
+    release thm geometry::main::cosine_law(a, o, b)
+    geometry::main::distance_sq(a, b) = geometry::main::distance_sq(a, o)+geometry::main::distance_sq(o, b)-2*geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = rr+rr-2*z = 2*rr*(1-z/rr) = 2*rr*(1-cos(chosen_arc_angle(o, a, b, radius, side))) = 2*radius^2*(1-cos(chosen_arc_angle(o, a, b, radius, side)))
+
+
+thm equal_arc_spans_equal_chords:
+    ? forall o, a, b, center, c, d cart(R, R), radius R+, side, other_side R:
+        a != b
+        a != o
+        b != o
+        c != d
+        c != center
+        d != center
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        side = 1 or side = -1
+        other_side = 1 or other_side = -1
+        chosen_arc_angle(o, a, b, radius, side) = chosen_arc_angle(center, c, d, radius, other_side)
+        =>:
+            geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+    release thm chosen_arc_chord_metric(o, a, b, radius, side)
+    release thm chosen_arc_chord_metric(center, c, d, radius, other_side)
+    cos(chosen_arc_angle(o, a, b, radius, side)) = cos(chosen_arc_angle(center, c, d, radius, other_side))
+    geometry::main::distance_sq(a, b) = 2*radius^2*(1-cos(chosen_arc_angle(o, a, b, radius, side))) = 2*radius^2*(1-cos(chosen_arc_angle(center, c, d, radius, other_side))) = geometry::main::distance_sq(c, d)
+
+
+thm similar_same_chord_segments_determine_circle:
+    ? forall o, center, a, b cart(R, R), radius, other_radius R+, side R:
+        $are_similar_circular_segments(o, a, b, center, a, b, radius, other_radius, side, side)
+        =>:
+            o = center
+            radius = other_radius
+    by def $are_similar_circular_segments(o, a, b, center, a, b, radius, other_radius, side, side)
+    obtain p, q, alpha from exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(o, a, b, x, radius, side, t), $is_angle_in_circular_segment(center, a, b, y, other_radius, side, t)}
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by def $is_angle_in_circular_segment(center, a, b, q, other_radius, side, alpha)
+    angle_measure::ray_angle(a, p, b) = alpha = angle_measure::ray_angle(a, q, b)
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    have u R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    have v R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q))
+    side*u = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    side*v = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) > 0
+    (side*u)*(side*v) > 0
+    u*v = 1*(u*v) = side^2*(u*v) = (side*u)*(side*v) > 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, q)) = u*v > 0
+    release thm equal_same_chord_angles_determine_circle(o, center, a, b, p, q, radius, other_radius)
+
+
+# III.24: equal chords and similar segments admit an explicit congruence of filled regions.
+thm similar_equal_chord_segments_admit_centered_motion:
+    ? forall o, a, b, center, c, d cart(R, R), radius, other_radius R+, side, other_side R:
+        $are_similar_circular_segments(o, a, b, center, c, d, radius, other_radius, side, other_side)
+        geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+        =>:
+            radius = other_radius
+            exist translation cart(R, R), co, si, orientation R st {co^2+si^2 = 1, orientation = 1 or orientation = -1, plane_rigid_motion(o, translation, co, si, orientation) = center, plane_rigid_motion(a, translation, co, si, orientation) = c, plane_rigid_motion(b, translation, co, si, orientation) = d, other_side*orientation = side}
+    by def $are_similar_circular_segments(o, a, b, center, c, d, radius, other_radius, side, other_side)
+    obtain p, q, alpha from exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(o, a, b, x, radius, side, t), $is_angle_in_circular_segment(center, c, d, y, other_radius, other_side, t)}
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by def $is_angle_in_circular_segment(center, c, d, q, other_radius, other_side, alpha)
+    have orientation R = side*other_side
+    by cases:
+        ? orientation = 1 or orientation = -1
+        case side = 1:
+            orientation = side*other_side = other_side
+            orientation = 1 or orientation = -1
+        case side = -1:
+            by cases:
+                ? orientation = 1 or orientation = -1
+                case other_side = 1:
+                    orientation = side*other_side = (-1)*1 = -1
+                case other_side = -1:
+                    orientation = side*other_side = (-1)*(-1) = 1
+    by cases:
+        ? other_side^2 = 1
+        case other_side = 1:
+            other_side^2 = 1^2 = 1
+        case other_side = -1:
+            other_side^2 = (-1)^2 = 1
+    other_side*orientation = other_side*(side*other_side) = side*other_side^2 = side*1 = side
+    release thm equal_chords_admit_plane_rigid_motion(a, b, c, d, orientation)
+    obtain translation, co, si from exist t cart(R, R), h, k R st {h^2+k^2 = 1, plane_rigid_motion(a, t, h, k, orientation) = c, plane_rigid_motion(b, t, h, k, orientation) = d}
+    have fo cart(R, R) = plane_rigid_motion(o, translation, co, si, orientation)
+    have fp cart(R, R) = plane_rigid_motion(p, translation, co, si, orientation)
+    release thm plane_rigid_motion_preserves_circle_incidence(o, a, translation, radius, co, si, orientation)
+    release thm plane_rigid_motion_preserves_circle_incidence(o, b, translation, radius, co, si, orientation)
+    release thm plane_rigid_motion_preserves_circle_incidence(o, p, translation, radius, co, si, orientation)
+    $geometry::main::is_on_circle(c, fo, radius)
+    $geometry::main::is_on_circle(d, fo, radius)
+    $geometry::main::is_on_circle(fp, fo, radius)
+    by contra:
+        ? c != fo
+        plane_rigid_motion(a, translation, co, si, orientation) = c = fo = plane_rigid_motion(o, translation, co, si, orientation)
+        release thm plane_rigid_motion_is_injective(a, o, translation, co, si, orientation)
+        impossible a != o
+    by contra:
+        ? d != fo
+        plane_rigid_motion(b, translation, co, si, orientation) = d = fo = plane_rigid_motion(o, translation, co, si, orientation)
+        release thm plane_rigid_motion_is_injective(b, o, translation, co, si, orientation)
+        impossible b != o
+    release thm plane_rigid_motion_preserves_angles(a, p, b, translation, co, si, orientation)
+    $geometry::main::are_angles_congruent(a, p, b, c, fp, d)
+    by def $geometry::main::are_angles_congruent(a, p, b, c, fp, d)
+    release thm angle_measure::angle_relation_implies_equal_measure(a, p, b, c, fp, d)
+    alpha = angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(c, fp, d)
+    release thm plane_rigid_motion_preserves_signed_area(a, b, p, translation, co, si, orientation)
+    geometry::main::vec(c, d) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation))
+    geometry::main::vec(c, fp) = geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, fp)) = geometry::main::det(geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(b, translation, co, si, orientation)), geometry::main::vec(plane_rigid_motion(a, translation, co, si, orientation), plane_rigid_motion(p, translation, co, si, orientation))) = orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, fp)) = other_side*(orientation*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) = (other_side*orientation)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    by def $is_angle_in_circular_segment(fo, c, d, fp, radius, other_side, alpha)
+    witness exist x, y cart(R, R), t R st {$is_angle_in_circular_segment(fo, c, d, x, radius, other_side, t), $is_angle_in_circular_segment(center, c, d, y, other_radius, other_side, t)} from fp, q, alpha
+    by def $are_similar_circular_segments(fo, c, d, center, c, d, radius, other_radius, other_side, other_side)
+    release thm similar_same_chord_segments_determine_circle(fo, center, c, d, radius, other_radius, other_side)
+    plane_rigid_motion(o, translation, co, si, orientation) = fo = center
+    witness exist t cart(R, R), h, k, orientation_sign R st {h^2+k^2 = 1, orientation_sign = 1 or orientation_sign = -1, plane_rigid_motion(o, t, h, k, orientation_sign) = center, plane_rigid_motion(a, t, h, k, orientation_sign) = c, plane_rigid_motion(b, t, h, k, orientation_sign) = d, other_side*orientation_sign = side} from translation, co, si, orientation
+
+
+# III.26 circumference branch: equal inscribed angles in equal circles intercept congruent arcs.
+thm proposition_26_inscribed:
+    ? forall o, a, b, p, center, c, d, q cart(R, R), radius R+, side, other_side R:
+        a != b
+        a != p
+        b != p
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        side = 1 or side = -1
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) < 0
+        c != d
+        c != q
+        d != q
+        c != center
+        d != center
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        $geometry::main::is_on_circle(q, center, radius)
+        other_side = 1 or other_side = -1
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) < 0
+        angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(c, q, d)
+        =>:
+            exist translation cart(R, R), co, si, orientation R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)}
+    release thm proposition_20(o, a, b, p, radius, side)
+    release thm proposition_20(center, c, d, q, radius, other_side)
+    chosen_arc_angle(o, a, b, radius, side) = 2*angle_measure::ray_angle(a, p, b) = 2*angle_measure::ray_angle(c, q, d) = chosen_arc_angle(center, c, d, radius, other_side)
+    release thm equal_arc_spans_equal_chords(o, a, b, center, c, d, radius, side, other_side)
+    have alpha R = angle_measure::ray_angle(a, p, b)
+    by cases:
+        ? -side = 1 or -side = -1
+        case side = 1:
+            -side = -1
+        case side = -1:
+            -side = -(-1) = 1
+    (-side)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = -(side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) > 0
+    alpha = angle_measure::ray_angle(a, p, b)
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, -side, alpha)
+    by cases:
+        ? -other_side = 1 or -other_side = -1
+        case other_side = 1:
+            -other_side = -1
+        case other_side = -1:
+            -other_side = -(-1) = 1
+    (-other_side)*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) = -(other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q))) > 0
+    alpha = angle_measure::ray_angle(c, q, d)
+    by def $is_angle_in_circular_segment(center, c, d, q, radius, -other_side, alpha)
+    witness exist x, y cart(R, R), beta R st {$is_angle_in_circular_segment(o, a, b, x, radius, -side, beta), $is_angle_in_circular_segment(center, c, d, y, radius, -other_side, beta)} from p, q, alpha
+    by def $are_similar_circular_segments(o, a, b, center, c, d, radius, radius, -side, -other_side)
+    release thm similar_equal_chord_segments_admit_centered_motion(o, a, b, center, c, d, radius, radius, -side, -other_side)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {h^2+k^2 = 1, orientation_sign = 1 or orientation_sign = -1, plane_rigid_motion(o, t, h, k, orientation_sign) = center, plane_rigid_motion(a, t, h, k, orientation_sign) = c, plane_rigid_motion(b, t, h, k, orientation_sign) = d, (-other_side)*orientation_sign = -side}
+    other_side*orientation = -((-other_side)*orientation) = -(-side) = side
+    release thm plane_rigid_motion_transports_chosen_arc(o, a, b, center, c, d, translation, radius, side, other_side, co, si, orientation)
+    witness exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), t, h, k, orientation_sign)} from translation, co, si, orientation
+
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::dot
+
+# A proper chord has a positive real, nonzero length for normalized coordinates.
+claim:
+    ? forall a, b cart(R, R):
+        geometry::main::distance_sq(a, b) > 0
+        =>:
+            sqrt(geometry::main::distance_sq(a, b)) $in R+
+            sqrt(geometry::main::distance_sq(a, b)) != 0
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    have h R+ = sqrt(length_sq)
+    sqrt(geometry::main::distance_sq(a, b)) = sqrt(length_sq) = h
+    sqrt(geometry::main::distance_sq(a, b)) $in R+
+    sqrt(geometry::main::distance_sq(a, b)) > 0
+
+
+claim:
+    ? forall o, a, b cart(R, R), radius R+, side R:
+        geometry::main::distance_sq(a, b) > 0
+        =>:
+            (o(1)-side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)), o(2)+side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b))) $in cart(R, R)
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    have h R+ = sqrt(length_sq)
+    sqrt(geometry::main::distance_sq(a, b)) = h
+    have x R = o(1)-side*radius*(b(2)-a(2))/h
+    have y R = o(2)+side*radius*(b(1)-a(1))/h
+    o(1)-side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)) = x
+    o(2)+side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b)) = y
+    (o(1)-side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)), o(2)+side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b))) = (x, y)
+
+
+# The selected normal direction meets the circle strictly on the chosen chord side.
+have fn selected_arc_point(o, a, b cart(R, R), radius R+, side R: $geometry::main::is_on_circle(a, o, radius), $geometry::main::is_on_circle(b, o, radius), geometry::main::distance_sq(a, b) > 0, side = 1 or side = -1) cart(R, R) = (o(1)-side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)), o(2)+side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b)))
+
+
+# The normalized chord normal reaches the selected open arc of the circle.
+thm selected_arc_point_certificate:
+    ? forall o, a, b cart(R, R), radius R+, side R:
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        geometry::main::distance_sq(a, b) > 0
+        side = 1 or side = -1
+        =>:
+            $geometry::main::is_on_circle(selected_arc_point(o, a, b, radius, side), o, radius)
+            side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, selected_arc_point(o, a, b, radius, side))) > 0
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    have h R+ = sqrt(length_sq)
+    h != 0
+    h^2 = sqrt(length_sq)^2 = length_sq
+    sqrt(geometry::main::distance_sq(a, b)) = sqrt(length_sq) = h
+    have x R = b(1)-a(1)
+    have y R = b(2)-a(2)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    x^2+y^2 = (b(1)-a(1))^2+(b(2)-a(2))^2 = geometry::main::distance_sq(a, b) = length_sq
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    have p cart(R, R) = selected_arc_point(o, a, b, radius, side)
+    p = selected_arc_point(o, a, b, radius, side) = (o(1)-side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)), o(2)+side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b)))
+    side*radius*(b(2)-a(2)) = side*radius*y
+    side*radius*(b(1)-a(1)) = side*radius*x
+    side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)) = side*radius*y/h
+    side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b)) = side*radius*x/h
+    p(1) = o(1)-side*radius*(b(2)-a(2))/sqrt(geometry::main::distance_sq(a, b)) = o(1)-side*radius*y/h
+    p(2) = o(2)+side*radius*(b(1)-a(1))/sqrt(geometry::main::distance_sq(a, b)) = o(2)+side*radius*x/h
+    p(1)-o(1) = (o(1)-side*radius*y/h)-o(1) = 0-side*radius*y/h
+    p(2)-o(2) = (o(2)+side*radius*x/h)-o(2) = side*radius*x/h
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    side^2*radius^2 = radius^2
+    side^2*radius^2*(x^2+y^2) = radius^2*length_sq
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = (0-side*radius*y/h)^2+(side*radius*x/h)^2 = side^2*radius^2*(x^2+y^2)/h^2 = radius^2*length_sq/length_sq = radius^2 = radius*radius
+    by def $geometry::main::is_on_circle(p, o, radius)
+    by def $geometry::main::is_on_circle(a, o, radius)
+    by def $geometry::main::is_on_circle(b, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2
+    release thm geometry::main::twice_dot_from_distances_direct(o, a, b)
+    geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, b)) = (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b))/2 = (radius^2+length_sq-radius^2)/2 = length_sq/2
+    release thm geometry::main::dot_commutative(a, b, a, o)
+    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, o)) = geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, b)) = length_sq/2
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, o)
+    release thm geometry::main::distance_sq_symmetric(a, o)
+    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b)) = geometry::main::distance_sq(a, b) = length_sq
+    geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, o)) = geometry::main::distance_sq(a, o) = geometry::main::distance_sq(o, a) = radius^2
+    have center_side R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, o))^2 = (length_sq/2)^2 = length_sq^2/4
+    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b))*geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, o)) = length_sq*radius^2
+    center_side^2+length_sq^2/4 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))^2+geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, o))^2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b))*geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, o)) = length_sq*radius^2
+    length_sq^2/4 > 0
+    center_side^2 = length_sq*radius^2-length_sq^2/4 < length_sq*radius^2-0 = radius^2*length_sq
+    have rr R+ = radius^2
+    (-side*center_side)^2 = side^2*center_side^2 = center_side^2 < radius^2*length_sq = rr*length_sq
+    release thm angle_measure::strict_square_bound_implies_upper_root_product(-side*center_side, rr, length_sq)
+    sqrt(rr) = sqrt(radius^2) = radius
+    -side*center_side < sqrt(rr)*sqrt(length_sq) = radius*h
+    side*center_side+radius*h > side*center_side+(-side*center_side) = 0
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    center_side = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = x*(o(2)-a(2))-y*(o(1)-a(1))
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = x*(p(2)-a(2))-y*(p(1)-a(1)) = x*(o(2)+side*radius*x/h-a(2))-y*(o(1)-side*radius*y/h-a(1)) = (x*(o(2)-a(2))-y*(o(1)-a(1)))+side*radius*(x^2+y^2)/h = center_side+side*radius*length_sq/h = center_side+side*radius*h^2/h = center_side+side*radius*h
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = side*(center_side+side*radius*h) = side*center_side+side^2*radius*h = side*center_side+radius*h > 0
+    geometry::main::vec(a, selected_arc_point(o, a, b, radius, side)) = geometry::main::vec(a, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, selected_arc_point(o, a, b, radius, side))) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, selected_arc_point(o, a, b, radius, side))) = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+
+
+
+thm book01_triangle_vertices_distinct:
+    ? forall a, b, c cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            a != b
+            a != c
+            b != c
+    claim:
+        ? forall aa, bb, cc cart(R, R):
+            $geometry::main::is_triangle(aa, bb, cc)
+            =>:
+                aa != cc
+        by contra:
+            ? aa != cc
+            aa = cc
+            cc(1) = aa(1)
+            cc(2) = aa(2)
+            geometry::main::vec(aa, cc)(1) = cc(1) - aa(1) = aa(1) - aa(1) = 0
+            geometry::main::vec(aa, cc)(2) = cc(2) - aa(2) = aa(2) - aa(2) = 0
+            geometry::main::det(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) = geometry::main::vec(aa, bb)(1) * geometry::main::vec(aa, cc)(2) - geometry::main::vec(aa, bb)(2) * geometry::main::vec(aa, cc)(1) = geometry::main::vec(aa, bb)(1) * 0 - geometry::main::vec(aa, bb)(2) * 0 = 0
+            impossible geometry::main::det(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) != 0
+    a != c
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(a, c), geometry::main::vec(a, b))
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) != 0
+        geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = 0
+        0 = geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = -(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)))
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -(-(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)))) = -(geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b))) = -0 = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    by def $geometry::main::is_triangle(a, c, b)
+    a != b
+    release thm geometry::main::triangle_det_squared_vertex(a, b, c)
+    by contra:
+        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) != 0
+        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 = geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = 0^2 = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    by def $geometry::main::is_triangle(b, a, c)
+    b != c
+
+# III.26 selected-span form: choose opposite-side circle points and apply the inscribed branch.
+thm proposition_26_equal_selected_spans:
+    ? forall o, a, b, center, c, d cart(R, R), radius R+, side, other_side R:
+        a != b
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        c != d
+        c != center
+        d != center
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        other_side = 1 or other_side = -1
+        chosen_arc_angle(o, a, b, radius, side) = chosen_arc_angle(center, c, d, radius, other_side)
+        =>:
+            exist translation cart(R, R), co, si, orientation R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)}
+    by cases:
+        ? -side = 1 or -side = -1
+        case side = 1:
+            -side = -1
+        case side = -1:
+            -side = -(-1) = 1
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm selected_arc_point_certificate(o, a, b, radius, -side)
+    have p cart(R, R) = selected_arc_point(o, a, b, radius, -side)
+    geometry::main::vec(a, p) = geometry::main::vec(a, selected_arc_point(o, a, b, radius, -side))
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, selected_arc_point(o, a, b, radius, -side)))
+    (-side)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (-side)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, selected_arc_point(o, a, b, radius, -side))) > 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = -((-side)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) < 0
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) != 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 0
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = side*0 = 0
+        impossible side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) < 0
+    by def $geometry::main::is_triangle(a, b, p)
+    release thm book01_triangle_vertices_distinct(a, b, p)
+    release thm proposition_20(o, a, b, p, radius, side)
+    by cases:
+        ? -other_side = 1 or -other_side = -1
+        case other_side = 1:
+            -other_side = -1
+        case other_side = -1:
+            -other_side = -(-1) = 1
+    release thm geometry::main::distance_sq_positive_of_ne(c, d)
+    release thm selected_arc_point_certificate(center, c, d, radius, -other_side)
+    have q cart(R, R) = selected_arc_point(center, c, d, radius, -other_side)
+    geometry::main::vec(c, q) = geometry::main::vec(c, selected_arc_point(center, c, d, radius, -other_side))
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) = geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, selected_arc_point(center, c, d, radius, -other_side)))
+    (-other_side)*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) = (-other_side)*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, selected_arc_point(center, c, d, radius, -other_side))) > 0
+    other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) = -((-other_side)*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q))) < 0
+    by contra:
+        ? geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) != 0
+        geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) = 0
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) = other_side*0 = 0
+        impossible other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, q)) < 0
+    by def $geometry::main::is_triangle(c, d, q)
+    release thm book01_triangle_vertices_distinct(c, d, q)
+    release thm proposition_20(center, c, d, q, radius, other_side)
+    2*angle_measure::ray_angle(a, p, b) = chosen_arc_angle(o, a, b, radius, side) = chosen_arc_angle(center, c, d, radius, other_side) = 2*angle_measure::ray_angle(c, q, d)
+    angle_measure::ray_angle(a, p, b) = angle_measure::ray_angle(c, q, d)
+    release thm proposition_26_inscribed(o, a, b, p, center, c, d, q, radius, side, other_side)
+
+# III.26 central branch. Choose the minor arc (or a semicircle) intercepted by each principal central angle.
+thm proposition_26_central:
+    ? forall o, a, b, center, c, d cart(R, R), radius R+, side, other_side R:
+        a != b
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        c != d
+        c != center
+        d != center
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        other_side = 1 or other_side = -1
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) <= 0
+        angle_measure::ray_angle(a, o, b) = angle_measure::ray_angle(c, center, d)
+        =>:
+            exist translation cart(R, R), co, si, orientation R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)}
+    chosen_arc_angle(o, a, b, radius, side) = angle_measure::ray_angle(a, o, b)
+    chosen_arc_angle(center, c, d, radius, other_side) = angle_measure::ray_angle(c, center, d)
+    chosen_arc_angle(o, a, b, radius, side) = chosen_arc_angle(center, c, d, radius, other_side)
+    release thm proposition_26_equal_selected_spans(o, a, b, center, c, d, radius, side, other_side)
+
+
+# III.26 use: a quarter-circle and its complementary major arc under a translated quarter-turn.
+thm proposition_26_rotated_minor_major_use:
+    ? forall side R:
+        side = 1 or side = -1
+        =>:
+            exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (3, 4), dd = (3, 5), ee = (2, 4), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have center cart(R, R) = (3, 4)
+    center(1) = 3
+    center(2) = 4
+    have c cart(R, R) = (3, 5)
+    c(1) = 3
+    c(2) = 5
+    have d cart(R, R) = (2, 4)
+    d(1) = 2
+    d(2) = 4
+    a(1) != b(1)
+    by contra:
+        ? a != b
+        a = b
+        a(1) = b(1)
+        impossible a(1) != b(1)
+    a(1) != o(1)
+    by contra:
+        ? a != o
+        a = o
+        a(1) = o(1)
+        impossible a(1) != o(1)
+    b(2) != o(2)
+    by contra:
+        ? b != o
+        b = o
+        b(2) = o(2)
+        impossible b(2) != o(2)
+    c(1) != d(1)
+    by contra:
+        ? c != d
+        c = d
+        c(1) = d(1)
+        impossible c(1) != d(1)
+    c(2) != center(2)
+    by contra:
+        ? c != center
+        c = center
+        c(2) = center(2)
+        impossible c(2) != center(2)
+    d(1) != center(1)
+    by contra:
+        ? d != center
+        d = center
+        d(1) = center(1)
+        impossible d(1) != center(1)
+    geometry::main::distance_sq(o, a) = 1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    geometry::main::distance_sq(o, b) = 1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    geometry::main::distance_sq(center, c) = 1
+    by def $geometry::main::is_on_circle(c, center, 1)
+    geometry::main::distance_sq(center, d) = 1
+    by def $geometry::main::is_on_circle(d, center, 1)
+    geometry::main::angle_cos_num(a, o, b) = 0
+    geometry::main::angle_cos_den(a, o, b) = 1
+    angles::angle_cosine(a, o, b) = geometry::main::angle_cos_num(a, o, b)/sqrt(geometry::main::angle_cos_den(a, o, b)) = 0/sqrt(1) = 0
+    angle_measure::ray_angle(a, o, b) = arccos(angles::angle_cosine(a, o, b)) = arccos(0)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1
+    geometry::main::angle_cos_num(c, center, d) = 0
+    geometry::main::angle_cos_den(c, center, d) = 1
+    angles::angle_cosine(c, center, d) = geometry::main::angle_cos_num(c, center, d)/sqrt(geometry::main::angle_cos_den(c, center, d)) = 0/sqrt(1) = 0
+    angle_measure::ray_angle(c, center, d) = arccos(angles::angle_cosine(c, center, d)) = arccos(0)
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = 1
+    by cases:
+        ? chosen_arc_angle(o, a, b, 1, side) = chosen_arc_angle(center, c, d, 1, side)
+        case side = 1:
+            side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1 > 0
+            side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = 1 > 0
+            not side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0
+            not side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) <= 0
+            chosen_arc_angle(o, a, b, 1, side) = 2*pi-angle_measure::ray_angle(a, o, b) = 2*pi-arccos(0) = 2*pi-angle_measure::ray_angle(c, center, d) = chosen_arc_angle(center, c, d, 1, side)
+        case side = -1:
+            side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = -1 <= 0
+            side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = -1 <= 0
+            chosen_arc_angle(o, a, b, 1, side) = angle_measure::ray_angle(a, o, b) = arccos(0) = angle_measure::ray_angle(c, center, d) = chosen_arc_angle(center, c, d, 1, side)
+    release thm proposition_26_equal_selected_spans(o, a, b, center, c, d, 1, side, side)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, 1, side), chosen_circle_arc(center, c, d, 1, side), t, h, k, orientation_sign)}
+    witness exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (3, 4), dd = (3, 5), ee = (2, 4), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)} from o, a, b, center, c, d, translation, co, si, orientation
+
+
+# III.26 use: both semicircle choices under a translated quarter-turn.
+thm proposition_26_rotated_semicircle_use:
+    ? forall side R:
+        side = 1 or side = -1
+        =>:
+            exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), cc = (3, 4), dd = (3, 5), ee = (3, 3), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (-1, 0)
+    b(1) = -1
+    b(2) = 0
+    have center cart(R, R) = (3, 4)
+    center(1) = 3
+    center(2) = 4
+    have c cart(R, R) = (3, 5)
+    c(1) = 3
+    c(2) = 5
+    have d cart(R, R) = (3, 3)
+    d(1) = 3
+    d(2) = 3
+    a(1) != b(1)
+    by contra:
+        ? a != b
+        a = b
+        a(1) = b(1)
+        impossible a(1) != b(1)
+    a(1) != o(1)
+    by contra:
+        ? a != o
+        a = o
+        a(1) = o(1)
+        impossible a(1) != o(1)
+    b(1) != o(1)
+    by contra:
+        ? b != o
+        b = o
+        b(1) = o(1)
+        impossible b(1) != o(1)
+    c(2) != d(2)
+    by contra:
+        ? c != d
+        c = d
+        c(2) = d(2)
+        impossible c(2) != d(2)
+    c(2) != center(2)
+    by contra:
+        ? c != center
+        c = center
+        c(2) = center(2)
+        impossible c(2) != center(2)
+    d(2) != center(2)
+    by contra:
+        ? d != center
+        d = center
+        d(2) = center(2)
+        impossible d(2) != center(2)
+    geometry::main::distance_sq(o, a) = 1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    geometry::main::distance_sq(o, b) = 1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    geometry::main::distance_sq(center, c) = 1
+    by def $geometry::main::is_on_circle(c, center, 1)
+    geometry::main::distance_sq(center, d) = 1
+    by def $geometry::main::is_on_circle(d, center, 1)
+    geometry::main::angle_cos_num(a, o, b) = -1
+    geometry::main::angle_cos_den(a, o, b) = 1
+    angles::angle_cosine(a, o, b) = geometry::main::angle_cos_num(a, o, b)/sqrt(geometry::main::angle_cos_den(a, o, b)) = (-1)/sqrt(1) = -1
+    angle_measure::ray_angle(a, o, b) = arccos(angles::angle_cosine(a, o, b)) = arccos(-1)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 0
+    geometry::main::angle_cos_num(c, center, d) = -1
+    geometry::main::angle_cos_den(c, center, d) = 1
+    angles::angle_cosine(c, center, d) = geometry::main::angle_cos_num(c, center, d)/sqrt(geometry::main::angle_cos_den(c, center, d)) = (-1)/sqrt(1) = -1
+    angle_measure::ray_angle(c, center, d) = arccos(angles::angle_cosine(c, center, d)) = arccos(-1)
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = side*0 = 0 <= 0
+    side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = side*0 = 0 <= 0
+    angle_measure::ray_angle(a, o, b) = arccos(-1) = angle_measure::ray_angle(c, center, d)
+    release thm proposition_26_central(o, a, b, center, c, d, 1, side, side)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, 1, side), chosen_circle_arc(center, c, d, 1, side), t, h, k, orientation_sign)}
+    witness exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), cc = (3, 4), dd = (3, 5), ee = (3, 3), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)} from o, a, b, center, c, d, translation, co, si, orientation
+
+thm equal_chords_have_equal_central_angles:
+    ? forall o, a, b, center, c, d cart(R, R), radius R+:
+        a != o
+        b != o
+        c != center
+        d != center
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+        =>:
+            angle_measure::ray_angle(a, o, b) = angle_measure::ray_angle(c, center, d)
+    release thm geometry::main::distance_sq_symmetric(a, o)
+    release thm geometry::main::distance_sq_symmetric(c, center)
+    release thm geometry::main::dot_from_cosine_law(a, o, b)
+    release thm geometry::main::dot_from_cosine_law(c, center, d)
+    geometry::main::distance_sq(a, o) = geometry::main::distance_sq(o, a) = radius*radius = radius^2
+    geometry::main::distance_sq(c, center) = geometry::main::distance_sq(center, c) = radius*radius = radius^2
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2
+    geometry::main::distance_sq(center, d) = radius*radius = radius^2
+    geometry::main::angle_cos_num(a, o, b) = geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(o, b)) = (geometry::main::distance_sq(a, o)+geometry::main::distance_sq(o, b)-geometry::main::distance_sq(a, b))/2 = (radius^2+radius^2-geometry::main::distance_sq(a, b))/2 = (radius^2+radius^2-geometry::main::distance_sq(c, d))/2 = (geometry::main::distance_sq(c, center)+geometry::main::distance_sq(center, d)-geometry::main::distance_sq(c, d))/2 = geometry::main::dot(geometry::main::vec(center, c), geometry::main::vec(center, d)) = geometry::main::angle_cos_num(c, center, d)
+    geometry::main::angle_cos_den(a, o, b) = geometry::main::distance_sq(o, a)*geometry::main::distance_sq(o, b) = (radius*radius)*(radius*radius) = geometry::main::distance_sq(center, c)*geometry::main::distance_sq(center, d) = geometry::main::angle_cos_den(c, center, d)
+    release thm angles::angle_root_den_nonzero(a, o, b)
+    release thm angles::angle_root_den_nonzero(c, center, d)
+    angles::angle_cosine(a, o, b) = geometry::main::angle_cos_num(a, o, b)/sqrt(geometry::main::angle_cos_den(a, o, b)) = geometry::main::angle_cos_num(c, center, d)/sqrt(geometry::main::angle_cos_den(c, center, d)) = angles::angle_cosine(c, center, d)
+    release thm angle_measure::angle_cosine_bounded(a, o, b)
+    release thm angle_measure::angle_cosine_bounded(c, center, d)
+    angle_measure::ray_angle(a, o, b) = arccos(angles::angle_cosine(a, o, b)) = arccos(angles::angle_cosine(c, center, d)) = angle_measure::ray_angle(c, center, d)
+
+
+thm proposition_28_minor:
+    ? forall o, a, b, center, c, d cart(R, R), radius R+, side, other_side R:
+        a != b
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        c != d
+        c != center
+        d != center
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        other_side = 1 or other_side = -1
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) <= 0
+        geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+        =>:
+            exist translation cart(R, R), co, si, orientation R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)}
+    release thm equal_chords_have_equal_central_angles(o, a, b, center, c, d, radius)
+    release thm proposition_26_central(o, a, b, center, c, d, radius, side, other_side)
+
+
+thm proposition_28_major:
+    ? forall o, a, b, center, c, d cart(R, R), radius R+, side, other_side R:
+        a != b
+        a != o
+        b != o
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        side = 1 or side = -1
+        c != d
+        c != center
+        d != center
+        $geometry::main::is_on_circle(c, center, radius)
+        $geometry::main::is_on_circle(d, center, radius)
+        other_side = 1 or other_side = -1
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) > 0
+        other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) > 0
+        geometry::main::distance_sq(a, b) = geometry::main::distance_sq(c, d)
+        =>:
+            exist translation cart(R, R), co, si, orientation R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, radius, side), chosen_circle_arc(center, c, d, radius, other_side), translation, co, si, orientation)}
+    release thm equal_chords_have_equal_central_angles(o, a, b, center, c, d, radius)
+    by contra:
+        ? not side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0
+        0 < side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) <= 0
+        impossible 0 < 0
+    by contra:
+        ? not other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) <= 0
+        0 < other_side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) <= 0
+        impossible 0 < 0
+    chosen_arc_angle(o, a, b, radius, side) = 2*pi-angle_measure::ray_angle(a, o, b) = 2*pi-angle_measure::ray_angle(c, center, d) = chosen_arc_angle(center, c, d, radius, other_side)
+    release thm proposition_26_equal_selected_spans(o, a, b, center, c, d, radius, side, other_side)
+
+
+thm proposition_28_rotated_minor_use:
+    ? forall side R:
+        side = -1
+        =>:
+            exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (3, 4), dd = (3, 5), ee = (2, 4), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have center cart(R, R) = (3, 4)
+    center(1) = 3
+    center(2) = 4
+    have c cart(R, R) = (3, 5)
+    c(1) = 3
+    c(2) = 5
+    have d cart(R, R) = (2, 4)
+    d(1) = 2
+    d(2) = 4
+    a(1) != b(1)
+    by contra:
+        ? a != b
+        a = b
+        a(1) = b(1)
+        impossible a(1) != b(1)
+    a(1) != o(1)
+    by contra:
+        ? a != o
+        a = o
+        a(1) = o(1)
+        impossible a(1) != o(1)
+    b(2) != o(2)
+    by contra:
+        ? b != o
+        b = o
+        b(2) = o(2)
+        impossible b(2) != o(2)
+    c(1) != d(1)
+    by contra:
+        ? c != d
+        c = d
+        c(1) = d(1)
+        impossible c(1) != d(1)
+    c(2) != center(2)
+    by contra:
+        ? c != center
+        c = center
+        c(2) = center(2)
+        impossible c(2) != center(2)
+    d(1) != center(1)
+    by contra:
+        ? d != center
+        d = center
+        d(1) = center(1)
+        impossible d(1) != center(1)
+    geometry::main::distance_sq(o, a) = 1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    geometry::main::distance_sq(o, b) = 1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    geometry::main::distance_sq(center, c) = 1
+    by def $geometry::main::is_on_circle(c, center, 1)
+    geometry::main::distance_sq(center, d) = 1
+    by def $geometry::main::is_on_circle(d, center, 1)
+    geometry::main::distance_sq(a, b) = 2
+    geometry::main::distance_sq(c, d) = 2
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = 1
+    release thm proposition_28_minor(o, a, b, center, c, d, 1, side, side)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, 1, side), chosen_circle_arc(center, c, d, 1, side), t, h, k, orientation_sign)}
+    witness exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (3, 4), dd = (3, 5), ee = (2, 4), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)} from o, a, b, center, c, d, translation, co, si, orientation
+
+thm proposition_28_rotated_major_use:
+    ? forall side R:
+        side = 1
+        =>:
+            exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (3, 4), dd = (3, 5), ee = (2, 4), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have center cart(R, R) = (3, 4)
+    center(1) = 3
+    center(2) = 4
+    have c cart(R, R) = (3, 5)
+    c(1) = 3
+    c(2) = 5
+    have d cart(R, R) = (2, 4)
+    d(1) = 2
+    d(2) = 4
+    a(1) != b(1)
+    by contra:
+        ? a != b
+        a = b
+        a(1) = b(1)
+        impossible a(1) != b(1)
+    a(1) != o(1)
+    by contra:
+        ? a != o
+        a = o
+        a(1) = o(1)
+        impossible a(1) != o(1)
+    b(2) != o(2)
+    by contra:
+        ? b != o
+        b = o
+        b(2) = o(2)
+        impossible b(2) != o(2)
+    c(1) != d(1)
+    by contra:
+        ? c != d
+        c = d
+        c(1) = d(1)
+        impossible c(1) != d(1)
+    c(2) != center(2)
+    by contra:
+        ? c != center
+        c = center
+        c(2) = center(2)
+        impossible c(2) != center(2)
+    d(1) != center(1)
+    by contra:
+        ? d != center
+        d = center
+        d(1) = center(1)
+        impossible d(1) != center(1)
+    geometry::main::distance_sq(o, a) = 1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    geometry::main::distance_sq(o, b) = 1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    geometry::main::distance_sq(center, c) = 1
+    by def $geometry::main::is_on_circle(c, center, 1)
+    geometry::main::distance_sq(center, d) = 1
+    by def $geometry::main::is_on_circle(d, center, 1)
+    geometry::main::distance_sq(a, b) = 2
+    geometry::main::distance_sq(c, d) = 2
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = 1
+    release thm proposition_28_major(o, a, b, center, c, d, 1, side, side)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, 1, side), chosen_circle_arc(center, c, d, 1, side), t, h, k, orientation_sign)}
+    witness exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (0, 1), cc = (3, 4), dd = (3, 5), ee = (2, 4), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)} from o, a, b, center, c, d, translation, co, si, orientation
+
+# III.26 use: both semicircle choices under a translated quarter-turn.
+thm proposition_28_rotated_semicircle_use:
+    ? forall side R:
+        side = 1 or side = -1
+        =>:
+            exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), cc = (3, 4), dd = (3, 5), ee = (3, 3), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)}
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (-1, 0)
+    b(1) = -1
+    b(2) = 0
+    have center cart(R, R) = (3, 4)
+    center(1) = 3
+    center(2) = 4
+    have c cart(R, R) = (3, 5)
+    c(1) = 3
+    c(2) = 5
+    have d cart(R, R) = (3, 3)
+    d(1) = 3
+    d(2) = 3
+    a(1) != b(1)
+    by contra:
+        ? a != b
+        a = b
+        a(1) = b(1)
+        impossible a(1) != b(1)
+    a(1) != o(1)
+    by contra:
+        ? a != o
+        a = o
+        a(1) = o(1)
+        impossible a(1) != o(1)
+    b(1) != o(1)
+    by contra:
+        ? b != o
+        b = o
+        b(1) = o(1)
+        impossible b(1) != o(1)
+    c(2) != d(2)
+    by contra:
+        ? c != d
+        c = d
+        c(2) = d(2)
+        impossible c(2) != d(2)
+    c(2) != center(2)
+    by contra:
+        ? c != center
+        c = center
+        c(2) = center(2)
+        impossible c(2) != center(2)
+    d(2) != center(2)
+    by contra:
+        ? d != center
+        d = center
+        d(2) = center(2)
+        impossible d(2) != center(2)
+    geometry::main::distance_sq(o, a) = 1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    geometry::main::distance_sq(o, b) = 1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    geometry::main::distance_sq(center, c) = 1
+    by def $geometry::main::is_on_circle(c, center, 1)
+    geometry::main::distance_sq(center, d) = 1
+    by def $geometry::main::is_on_circle(d, center, 1)
+    geometry::main::distance_sq(a, b) = 4
+    geometry::main::distance_sq(c, d) = 4
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 0
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = 0
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = side*0 = 0 <= 0
+    side*geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, center)) = side*0 = 0 <= 0
+    release thm proposition_28_minor(o, a, b, center, c, d, 1, side, side)
+    obtain translation, co, si, orientation from exist t cart(R, R), h, k, orientation_sign R st {$is_plane_rigid_motion_between_regions(chosen_circle_arc(o, a, b, 1, side), chosen_circle_arc(center, c, d, 1, side), t, h, k, orientation_sign)}
+    witness exist oo, aa, bb, cc, dd, ee, t cart(R, R), h, k, orientation_sign R st {oo = (0, 0), aa = (1, 0), bb = (-1, 0), cc = (3, 4), dd = (3, 5), ee = (3, 3), aa != bb, aa != oo, bb != oo, dd != ee, dd != cc, ee != cc, $geometry::main::is_on_circle(aa, oo, 1), $geometry::main::is_on_circle(bb, oo, 1), $geometry::main::is_on_circle(dd, cc, 1), $geometry::main::is_on_circle(ee, cc, 1), $is_plane_rigid_motion_between_regions(chosen_circle_arc(oo, aa, bb, 1, side), chosen_circle_arc(cc, dd, ee, 1, side), t, h, k, orientation_sign)} from o, a, b, center, c, d, translation, co, si, orientation

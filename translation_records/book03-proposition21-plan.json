@@ -1,0 +1,39 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    90,
+    91
+  ],
+  "source_goal": "Angles subtended by the same chord, with vertices in the same circular segment, are equal.",
+  "interface": "Four circumference points; proper chord; positive product of vertex chord-side determinants expresses same open arc. No restriction to minor arcs or semicircles.",
+  "proof_spine": [
+    "Same-sign nonzero determinants select one common opposite arc",
+    "Apply III20 to each vertex",
+    "Cancel the common factor two"
+  ],
+  "prepared": "book03-proposition21-1.lit",
+  "status": "Independent strict PASS; joint canonical integration pending",
+  "trust_added": 0,
+  "counted": false,
+  "accepted": [
+    "book03-proposition21-2.lit",
+    "book03-proposition21-use1.lit"
+  ],
+  "pending": null,
+  "failure_record": "proof_journals/books02-03/book03-proposition21-1-rejection.json",
+  "checkpoint": ".draft/book03-proposition21-checkpoint",
+  "cold_gate": {
+    "session": 67579,
+    "status": "PASS strict/stable",
+    "directory": ".draft/book03-proposition21-checkpoint",
+    "receipt": ".draft/book03-proposition21-checkpoint/receipt.json"
+  },
+  "joint_integration_gate": {
+    "receipt": ".draft/book03-inscribed-angle-integration-checkpoint/receipt.json",
+    "success": true,
+    "statement_count": 140,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "canonical_promotion": "Pending remaining proof audit; superseding III20\u201323/Defs6,8,11 integration gate74372 running"
+}

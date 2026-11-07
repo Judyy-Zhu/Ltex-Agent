@@ -1,0 +1,247 @@
+{
+  "status": "Independent triangle dissection checkpoint PASS25 native0 source/binary stable",
+  "source_role": "Foundations for actual finite simple polygon regions in I45 and II14, not a completion claim for either proposition",
+  "definitions": {
+    "closed_triangle": "Proper triangle plus two nonnegative barycentric coordinates summing to at most one; actual set-valued region guarded by proper triangle",
+    "interior": "Proper triangle plus strictly positive barycentric coordinates summing to less than one"
+  },
+  "verified_requests": {
+    "0149": "closed membership",
+    "0150": "actual region",
+    "0151": "first vertex membership",
+    "0152": "affine point membership",
+    "0156": "barycentric uniqueness candidate4",
+    "0157": "exterior exclusion",
+    "0158": "strict interior",
+    "0159": "interior implies closed",
+    "0160": "vertex not interior",
+    "0161": "triangle (0,0),(3,0),(0,3): vertex boundary, (1,1) interior, (4,4) exterior",
+    "0162": "finite triangle region decomposition primitive (may have disconnected union; not a simple polygon definition)"
+  },
+  "proof_repairs": "0153 missing selected helper replaced by definition;0154/0155 required explicit coordinate-difference and determinant-alias equalities. No new trust or kernel changes.",
+  "pending": [
+    "finite simple polygon carrier and triangulation",
+    "coverage and pairwise interior disjointness",
+    "area invariance and additivity",
+    "full source I45/II14 construction",
+    "canonical integration"
+  ],
+  "canonical_increment": 0,
+  "standalone_boundary": "Explicit release obj def vec and det needed independently; no mathematical statement changed",
+  "next": "Nonempty consequence0163 failed hidden-index inference; candidate3 packages exact known forall into local theorem, syntax preflight passed, verification pending after session recovery",
+  "session_recovery": "0164 malformed replacement caused actual exit1. v5 replay loading88 accepted non-sketch statements with input hash audit; record session-restart-0164.json",
+  "clean_receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-dissection-checkpoint/receipt.json",
+  "polygon_session": {
+    "directory": "scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-session",
+    "process_handle": 69218,
+    "prefix": "polygon-author-context/prefix.lit",
+    "accepted": {
+      "0001": "finite decomposition nonempty via exact local forall citation",
+      "0002": "closed triangle convexity",
+      "0003": "release closed region callable",
+      "0005": "actual closed triangle has one-piece region decomposition",
+      "0006": "proper triangle interior nonempty",
+      "0007": "overlapping interiors exclude decomposition",
+      "0008": "strict edge cut gives two proper triangles and determinant ratios",
+      "0009": "strict edge cut interiors disjoint",
+      "0010": "left cut region subset of original",
+      "0011": "union coverage of original closed triangle including shared boundary",
+      "0012": "right cut region subset of original",
+      "0014": "unsigned determinant content additivity; explicit powers/roots alias transport repairs0013 conclusion failure",
+      "0015": "concrete nonmidpoint cut actual-region consumer"
+    },
+    "current": "0016 zero cut expected rejection0<0; old PID absent after process lifetime ended, preserved receipt",
+    "ordinary_failures": {
+      "0004": "region alias equality needs explicit intermediate closed_triangle_region(a,b,c); fixed0005"
+    }
+  },
+  "source_scope_note": "This proves an actual triangle dissection primitive. Arbitrary simple polygon triangulation and canonical area-interface integration are still required for I45/II14.",
+  "actual_area_bridge": {
+    "v5_0003": "canonical has_triangle_area total=left+right accepted",
+    "v5_0004": "square with arbitrary prescribed positive area accepted; helper notII14 itself",
+    "v5_0006": "actual area consumer accepted after explicit squared determinant aliases",
+    "scalar_checkpoint": "PASS3 stable, scalar split and finite positive area sum with consumer",
+    "finite_refinement": "new area-scalar-session0002 accepts candidate5 finite area split preserves sum"
+  },
+  "area_constructions_current": {
+    "square": "acceptedv5_0004, actual positive consumer v5_0006; zero target rejected area-author0002 at0inR+",
+    "parallelogram": "accepted area-author0001; acute/obtuse input consumers accepted0003; flat-angle control0004 check receipt",
+    "independent_gate": "prescribed-area-constructions-checkpoint27 running12554",
+    "finite_area_helpers": "area-scalar-checkpoint-v3 PASS5 stable; positivity and refinement sum invariance with n1/n2 consumers",
+    "full_source_pending": "Simple polygon boundary/region, arbitrary triangulation, area representation invariance, complete source I45/II14 and canonical integration"
+  },
+  "polygon_boundary_current": {
+    "boundary_definition": "simple-polygonal-cycle-definition-candidate1.lit",
+    "session_accepted": [
+      "segments-common-endpoints-pointwise-candidate1.lit",
+      "bowtie-polygon-excluded-use5.lit"
+    ],
+    "negative_case": "crossing quadrilateral proven not simple",
+    "positive_cycle_pending": false,
+    "remaining": [
+      "positive simple-cycle consumer",
+      "filled polygon region",
+      "arbitrary polygon triangulation",
+      "area independence",
+      "I45 and II14 integration"
+    ],
+    "recovery": "polygon-boundary-recovery.json",
+    "new_session": "polygon-boundary-session",
+    "canonical_increment": 0,
+    "retained_session_accepted": [
+      {
+        "request": "0002",
+        "input": "triangle-adjacent-segment-intersection-qualified2.lit",
+        "sha256": "a0679afb143370e44cbca5f26758c426a7c6f6af7492e1fd551b2fbbf3c0a190"
+      },
+      {
+        "request": "0003",
+        "input": "triangle-adjacent-common-endpoints-qualified.lit",
+        "sha256": "3988b5fff4d952cd21d6d54c9b9ea53248cd142c39aa1fe8ad9b1ac04c9d05f3"
+      },
+      {
+        "request": "0004",
+        "input": "closed-segment-reversal-candidate1.lit",
+        "sha256": "7751992b2ba44b3955011013d01dc40fdfcd5bb41e3ad992503aebdf3909867d"
+      },
+      {
+        "request": "0005",
+        "input": "segment-common-endpoints-reverse-first-candidate1.lit",
+        "sha256": "ec9ef3a27f16efe3179c0c22cd68d164338366c14eaab4195ef659714b9027d2"
+      },
+      {
+        "request": "0006",
+        "input": "segment-common-endpoints-symmetry-candidate1.lit",
+        "sha256": "51b9ee438ae8c5eb590bddc0077bf32fcdd75f3a81730ef3c3cc7eb3bc3ab3ea"
+      },
+      {
+        "request": "0007",
+        "input": "triangle-cyclic-rotations-candidate1.lit",
+        "sha256": "9f2f6d3958b09bd519ab30d0f7f06073b8c1f21304cf32ba99faa00d962ba2c9"
+      },
+      {
+        "request": "0008",
+        "input": "triangle-consecutive-common-endpoints-candidate1.lit",
+        "sha256": "16e9e5dc2d891f5242ba67bb6d2604ff057969928a7f458b189e1eda833967ac"
+      },
+      {
+        "request": "0011",
+        "input": "integer-three-index-cases-candidate2.lit",
+        "sha256": "00d7fc2db54a36a22bce85c2d5ad23b22bcbf6f10fd932b3cd3bbf165f291665"
+      },
+      {
+        "request": "0015",
+        "input": "triangle-simple-cycle-candidate6.lit",
+        "sha256": "b65efcd3d2ea0ef47f0572869afef071d63bbfa5aeecb4334cf6d23db096bc93"
+      },
+      {
+        "request": "0016",
+        "input": "triangle-simple-cycle-use1.lit",
+        "sha256": "cb538a1871c5dd4e9070cae4725c32c155e741ec845ad638a88d022a4c686df4"
+      }
+    ],
+    "next": "actual finite triangle decomposition area existence and fixed-decomposition uniqueness; general simple polygon triangulation remains pending",
+    "positive_cycle_theorem": "triangle-simple-cycle-candidate6.lit",
+    "positive_cycle_consumer": "triangle-simple-cycle-use1.lit",
+    "clean_gate": {
+      "receipt": ".draft/resume-2026-10-17/polygon-boundary-checkpoint/receipt.json",
+      "run_result": "success",
+      "statements": 20,
+      "hashes_stable": true
+    }
+  },
+  "prescribed_area_checkpoint_current": {
+    "receipt": ".draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/receipt.json",
+    "run_result": "success",
+    "statement_count": 27,
+    "hashes_stable": true
+  },
+  "triangulated_region_area_current": {
+    "definition": "triangle-decomposition-area-definition-candidate1.lit",
+    "positive_total": "triangle-decomposition-area-positive-candidate1.lit",
+    "accepted_requests": [
+      "0019",
+      "0020",
+      "0021",
+      "0022"
+    ],
+    "uniqueness_request": "0023",
+    "existence_candidate": "triangle-decomposition-area-existence-candidate1.lit",
+    "scope": "area of a supplied actual finite triangle decomposition; not arbitrary triangulation existence or independence",
+    "uniqueness_outcome": "accepted",
+    "existence_request": "0024",
+    "existence_outcome": "accepted",
+    "positive_consumer": "triangle-decomposition-area-use1.lit",
+    "consumer_outcome": "accepted",
+    "negative_control": "same actual triangle decomposition cannot have total0; accepted proof",
+    "clean_gate": ".draft/resume-2026-10-17/triangle-decomposition-area-checkpoint",
+    "clean_gate_handle": 63684,
+    "expected_statements": 31,
+    "clean_gate_status": "success",
+    "statements": 31,
+    "sources_and_binary_stable": true
+  },
+  "book01_I5_under_base_current": {
+    "original_request": "1007",
+    "original_outcome": "rejected",
+    "first_failure": "deep squared-angle-numerator product substitution",
+    "repair_request": "9001",
+    "candidate": "book01-proposition5-under-base-repair-candidate1.lit",
+    "canonical_applied": false,
+    "repair_outcome": "accepted",
+    "clean_gate": "book01-proposition5-under-base-repaired-checkpoint",
+    "replay_resumed_at": 8,
+    "clean_gate_handle": 1157,
+    "clean_gate_status": "success",
+    "clean_gate_statements": 9
+  },
+  "book01_I6_current": {
+    "original_request": "1008",
+    "original_outcome": "rejected",
+    "first_failure": "angle_cos_num(b,a,c)^2 >=0",
+    "candidate": "book01-proposition6-repair-candidate1.lit",
+    "repair_request": "9002",
+    "canonical_applied": false,
+    "repair_outcome": "accepted",
+    "independent_gate": "pending grouped repair checkpoint",
+    "replay_resumed_at": 9
+  },
+  "workflow_correction_2026_10_18": {
+    "trigger": "user questioned Session usage and slowness",
+    "policy": "retain existing live Sessions; no per-lemma clean gates; group canonical Book I repairs at a contiguous checkpoint; track active-search timebox separately from waiting",
+    "references": [
+      "docs/AgentGuide.md",
+      "litex-proof-writer/SKILL.md",
+      "litex-proof-writer/references/trust-timebox.md"
+    ],
+    "unproved_drafts_never_count_as_checkable": true
+  },
+  "book01_I7_current": {
+    "repair_request": "9003",
+    "repair_outcome": "accepted",
+    "candidate": "book01-proposition7-repair-candidate1.lit",
+    "canonical_applied": false,
+    "replay_resumed_at": 10
+  },
+  "decomposition_square_current": {
+    "theorem": "square-equal-to-triangle-decomposition-candidate1.lit",
+    "consumer": "square-equal-to-triangle-decomposition-use1.lit",
+    "requests": [
+      "0037",
+      "0038"
+    ],
+    "outcome": "accepted",
+    "scope": "given actual finite triangle decomposition; not full II14",
+    "clean_gate": "deferred to coherent integration checkpoint"
+  },
+  "grouped_book01_staging": ".draft/resume-2026-10-17/book01-grouped-repair-staging.json",
+  "decomposition_parallelogram_current": {
+    "theorem": "parallelogram-equal-to-triangle-decomposition-candidate1.lit",
+    "consumer": "parallelogram-equal-to-triangle-decomposition-use1.lit",
+    "request": "0044",
+    "outcome": "accepted",
+    "scope": "I45 construction given an actual finite triangulation; not general arbitrary polygon triangulation",
+    "clean_gate": "deferred to coherent integration checkpoint"
+  },
+  "book01_area_mainline_plan": ".draft/resume-2026-10-17/book01-area-mainline-plan.json"
+}

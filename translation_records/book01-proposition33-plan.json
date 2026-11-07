@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-11T13:18:32.487196+00:00",
+  "source": {
+    "book_number": 1,
+    "proposition": 33,
+    "edition": "Fitzpatrick 2008",
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/33.txt"
+  },
+  "status": "Strict source candidate7, actual same-side join use, and crossed-endpoint rejection at premise2 all passed. Canonical checkpoint pending because contiguous I.32 remains under proof iteration.",
+  "draft": "scripts/Euclid_Elements/.draft/authoring-angles/proposition33-1.lit",
+  "statement": "Proper equal and parallel AB/CD with positive direction dot product imply proper equal and parallel AC/BD.",
+  "source_position": "The printed on-the-same-sides joins are encoded by equal-length parallel directions with positive dot product, distinguishing the crossed opposite endpoint pairing.",
+  "proof_spine": [
+    "Equal norms, zero direction determinant and positive dot product give equal directed vectors via the Gram identity.",
+    "Translated endpoint differences of AC/BD agree.",
+    "Original transverse separation proves both joining lines proper and noncoincident.",
+    "Coordinate distance formula gives equal joined lengths."
+  ],
+  "acceptance_pending": [
+    "Actual horizontal equal parallel segments with uncrossed joins",
+    "Opposite endpoint pairing rejected by dot-product premise"
+  ],
+  "trust_added": 0,
+  "session_id": 55623,
+  "accepted_session_id": 55623,
+  "accepted_source": "scripts/Euclid_Elements/.draft/authoring-angles/proposition33-7.lit"
+}

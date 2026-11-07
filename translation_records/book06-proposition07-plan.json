@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 7,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "lines": [
+      6989,
+      7060
+    ]
+  },
+  "statement": "Proper triangles ABC and UVW: angle A=U, AB/BC=UV/VW, and remaining angles C,W both below pi/2 or both at least pi/2 imply AAA.",
+  "proof_spine": [
+    "Keep principal angle measures in the source-facing branch condition. Prove their cosine numerator signs using existing arccos monotonicity.",
+    "Given angle A and side ratio, transport determinant-square/denominator equality to C,W. Gram identity plus the branch sign gives equal C,W.",
+    "Use the checked two-angle opposite squared-side ratio, then the three-side scale theorem to finish AAA."
+  ],
+  "non_goals": [
+    "No SSA assertion without the acute/nonacute branch condition.",
+    "No orientation restriction or added trust."
+  ],
+  "naming_audit": {
+    "book06_proposition_07": "source number retained",
+    "acute_angle_controls_cosine_numerator_sign": "states the principal-angle sign implication",
+    "nonacute_angle_controls_cosine_numerator_sign": "includes right angles in the nonpositive numerator branch"
+  },
+  "status": "angle-sign prerequisites in retained original Session; source theorem not yet complete"
+}

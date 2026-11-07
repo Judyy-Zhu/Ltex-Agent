@@ -1,0 +1,18 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 31,
+    "mathematics": "Similar triangles described on the sides of a right triangle: area on hypotenuse equals sum of areas on the legs (triangle-figure case of VI.31)."
+  },
+  "status": "independent_gate_passed",
+  "main_sha256": "72b256afedbf9b28907c4cf9d2d25eafeca2619cc505b6dcec76fc90502c9ab0",
+  "oneshot": {
+    "request": 14002
+  },
+  "core_gate": {
+    "stmts": 28,
+    "accepted": 28
+  },
+  "scope": "similar_triangles_only",
+  "trust_added": 0
+}

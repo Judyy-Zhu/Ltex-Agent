@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 6,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/6.txt"
+  },
+  "problem": "Equal base angles imply equal opposing sides.",
+  "proof_idea": {
+    "original": "The source assumes unequal legs, cuts off an equal shorter leg and uses I.4 to contradict the whole-versus-part common notion.",
+    "analytic": "Compare ABC with ACB using the common apex angle, the assumed base-angle equality and the common base via the independently algebraically proved library AAS law."
+  },
+  "litex_code": "thm proposition_6:\n    ? forall a, b, c cart(R, R):\n        $geometry::main::is_triangle(a, b, c)\n        $geometry::main::are_angles_congruent(a, b, c, a, c, b)\n        =>:\n            $geometry::main::are_segments_congruent(a, b, a, c)\n    release thm geometry_lemmas::triangle_vertices_distinct(a, b, c)\n    release thm geometry::main::det_antisymmetric(geometry::main::vec(a, c), geometry::main::vec(a, b))\n    by contra:\n        ? geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) != 0\n        geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = 0\n        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -(-(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)))) = -(geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b))) = -0 = 0\n        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0\n    by def $geometry::main::is_triangle(a, c, b)\n    release thm geometry::main::distance_sq_positive_of_ne(a, b)\n    release thm geometry::main::distance_sq_positive_of_ne(a, c)\n    geometry::main::distance_sq(a, b) $in R+\n    geometry::main::distance_sq(a, c) $in R+\n    geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, c) $in R+\n    geometry::main::angle_cos_den(b, a, c) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, c) > 0\n    geometry::main::angle_cos_den(c, a, b) = geometry::main::distance_sq(a, c) * geometry::main::distance_sq(a, b) = geometry::main::angle_cos_den(b, a, c) > 0\n    release thm geometry::main::dot_symmetric(geometry::main::vec(a, b), geometry::main::vec(a, c))\n    geometry::main::angle_cos_num(b, a, c) = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c)) = geometry::main::dot(geometry::main::vec(a, c), geometry::main::vec(a, b)) = geometry::main::angle_cos_num(c, a, b)\n    geometry::main::angle_cos_num(b, a, c)^2 * geometry::main::angle_cos_den(c, a, b) = geometry::main::angle_cos_num(c, a, b)^2 * geometry::main::angle_cos_den(c, a, b) = geometry::main::angle_cos_num(c, a, b)^2 * geometry::main::angle_cos_den(b, a, c)\n    geometry::main::angle_cos_num(b, a, c) * geometry::main::angle_cos_num(c, a, b) = geometry::main::angle_cos_num(b, a, c) * geometry::main::angle_cos_num(b, a, c) = geometry::main::angle_cos_num(b, a, c)^2 >= 0\n    by def $geometry::main::are_angles_congruent(b, a, c, c, a, b)\n    release thm geometry::main::distance_sq_symmetric(b, c)\n    release thm geometry::main::triangle_congruence_AAS(a, b, c, a, c, b)\n    by def $geometry::main::are_segments_congruent(a, b, a, c)\n",
+  "comments": {
+    "status": "checkable; canonical first-eight strict full-original-library gate passed",
+    "trust_added": 0,
+    "canonical_proposition_count_effect": 0,
+    "source_boundary": "Library AAS is an independent analytic route; this is not an assertion that source I.26 is available earlier.",
+    "draft_path": ".draft/experiment/I6-candidate1.lit",
+    "AAS_replay": "proof_journals/library-replay/triangle_congruence_AAS-1.json",
+    "source_route_difference": "Independent analytic library AAS proof, not an assertion that later source I.26 was used without proof.",
+    "canonical_path": "../textbook/book01-constructions.lit",
+    "canonical_receipt": "../.draft/first-eight-checkpoint/receipt.json"
+  }
+}

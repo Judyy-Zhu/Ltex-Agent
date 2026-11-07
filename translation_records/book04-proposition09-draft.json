@@ -1,0 +1,24 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "book": 4,
+  "proposition": 9,
+  "source_lines": [
+    4901,
+    4936
+  ],
+  "statement": "Construct a circle through the four vertices of any given square.",
+  "proof_spine": "Reuse existing square coordinate closure and equal orthogonal adjacent sides; choose diagonal midpoint and positive radius with square half the side squared; verify four equal distances.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition9-candidate2.lit",
+  "status": "Strict Session accepted9040; rotated-square consumer9054 accepted; collapsed-square negative9055 rejected at is_square premise. Clean/module integration pending.",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "session_receipt": ".draft/resume-2026-10-17/book01-original-session/results/9040.json",
+  "consumer_receipts": [
+    ".draft/resume-2026-10-17/book01-original-session/results/9054.json",
+    ".draft/resume-2026-10-17/book01-original-session/results/9055.json"
+  ],
+  "clean_checkpoint": ".draft/resume-2026-10-17/book04-square-circles-checkpoint/receipt.json",
+  "clean_checkpoint_status": "Failed: saved context omitted circle object definition release. Retained Session acceptance remains; independent file validation pending repaired combined gate.",
+  "replacement_clean_checkpoint": ".draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/receipt.json",
+  "replacement_clean_status": "running handle69887; includes explicit circle definition release"
+}

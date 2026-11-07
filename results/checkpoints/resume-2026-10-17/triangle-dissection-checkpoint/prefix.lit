@@ -1,0 +1,539 @@
+release obj def geometry::main::vec
+
+release obj def geometry::main::det
+
+# Actual filled triangle, independent of any assigned area.
+prop is_in_closed_triangle(p,a,b,c cart(R,R)):
+    $geometry::main::is_triangle(a,b,c)
+    exist u,v R st {0 <= u, 0 <= v, u+v <= 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+
+
+have fn closed_triangle_region(a,b,c cart(R,R): $geometry::main::is_triangle(a,b,c)) power_set(cart(R,R)) = {p cart(R,R): $is_in_closed_triangle(p,a,b,c)}
+
+
+thm first_vertex_in_closed_triangle:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $is_in_closed_triangle(a,a,b,c)
+    a(1) = a(1)+0*(b(1)-a(1))+0*(c(1)-a(1))
+    a(2) = a(2)+0*(b(2)-a(2))+0*(c(2)-a(2))
+    witness exist u,v R st {0 <= u, 0 <= v, u+v <= 1, a(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), a(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))} from 0,0
+    by def $is_in_closed_triangle(a,a,b,c)
+
+
+thm closed_triangle_affine_member:
+    ? forall a,b,c cart(R,R), u,v R:
+        $geometry::main::is_triangle(a,b,c)
+        0 <= u
+        0 <= v
+        u+v <= 1
+        =>:
+            $is_in_closed_triangle((a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)),a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))),a,b,c)
+    have p cart(R,R) = (a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)),a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)))
+    p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1))
+    p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))
+    witness exist x,y R st {0 <= x, 0 <= y, x+y <= 1, p(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1)), p(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))} from u,v
+    by def $is_in_closed_triangle(p,a,b,c)
+
+
+thm triangle_barycentric_coordinates_unique:
+    ? forall a,b,c cart(R,R), u,v,x,y R:
+        $geometry::main::is_triangle(a,b,c)
+        a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1))
+        a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))
+        =>:
+            u = x
+            v = y
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    have ex R = c(1)-a(1)
+    have ey R = c(2)-a(2)
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    have cross R = dx*ey-dy*ex
+    cross = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    (u-x)*dx+(v-y)*ex = (u-x)*(b(1)-a(1))+(v-y)*(c(1)-a(1)) = (a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)))-(a(1)+x*(b(1)-a(1))+y*(c(1)-a(1))) = 0
+    (u-x)*dy+(v-y)*ey = (u-x)*(b(2)-a(2))+(v-y)*(c(2)-a(2)) = (a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)))-(a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))) = 0
+    (u-x)*cross = (u-x)*(dx*ey-dy*ex) = ((u-x)*dx+(v-y)*ex)*ey-((u-x)*dy+(v-y)*ey)*ex = 0*ey-0*ex = 0
+    u-x = ((u-x)*cross)/cross = 0/cross = 0
+    u = x
+    (v-y)*cross = (v-y)*(dx*ey-dy*ex) = dx*((u-x)*dy+(v-y)*ey)-dy*((u-x)*dx+(v-y)*ex) = dx*0-dy*0 = 0
+    v-y = ((v-y)*cross)/cross = 0/cross = 0
+    v = y
+
+
+thm affine_point_beyond_opposite_edge_outside_triangle:
+    ? forall p,a,b,c cart(R,R), u,v R:
+        $geometry::main::is_triangle(a,b,c)
+        1 < u+v
+        p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1))
+        p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))
+        =>:
+            not $is_in_closed_triangle(p,a,b,c)
+    by contra:
+        ? not $is_in_closed_triangle(p,a,b,c)
+        $is_in_closed_triangle(p,a,b,c)
+        by def $is_in_closed_triangle(p,a,b,c)
+        obtain x,y from exist x,y R st {0 <= x, 0 <= y, x+y <= 1, p(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1)), p(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))}
+        a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)) = p(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1))
+        a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)) = p(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))
+        release thm triangle_barycentric_coordinates_unique(a,b,c,u,v,x,y)
+        u+v = x+y <= 1
+        impossible 1 < u+v
+
+
+prop is_in_triangle_interior(p,a,b,c cart(R,R)):
+    $geometry::main::is_triangle(a,b,c)
+    exist u,v R st {0 < u, 0 < v, u+v < 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+
+
+thm triangle_interior_implies_closed_membership:
+    ? forall p,a,b,c cart(R,R):
+        $is_in_triangle_interior(p,a,b,c)
+        =>:
+            $is_in_closed_triangle(p,a,b,c)
+    by def $is_in_triangle_interior(p,a,b,c)
+    obtain u,v from exist u,v R st {0 < u, 0 < v, u+v < 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+    0 <= u
+    0 <= v
+    u+v <= 1
+    witness exist x,y R st {0 <= x, 0 <= y, x+y <= 1, p(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1)), p(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))} from u,v
+    by def $is_in_closed_triangle(p,a,b,c)
+
+
+thm first_vertex_not_in_triangle_interior:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            not $is_in_triangle_interior(a,a,b,c)
+    by contra:
+        ? not $is_in_triangle_interior(a,a,b,c)
+        $is_in_triangle_interior(a,a,b,c)
+        by def $is_in_triangle_interior(a,a,b,c)
+        obtain u,v from exist u,v R st {0 < u, 0 < v, u+v < 1, a(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), a(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+        a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)) = a(1) = a(1)+0*(b(1)-a(1))+0*(c(1)-a(1))
+        a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)) = a(2) = a(2)+0*(b(2)-a(2))+0*(c(2)-a(2))
+        release thm triangle_barycentric_coordinates_unique(a,b,c,u,v,0,0)
+        u = 0
+        impossible 0 < u
+
+# A geometric decomposition primitive; does not assert the union is a simple polygon.
+prop is_finite_triangle_region_decomposition(region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R)):
+    forall k Z:
+        1 <= k
+        k <= n
+        =>:
+            $geometry::main::is_triangle(first(k),second(k),third(k))
+    forall p cart(R,R):
+        p $in region
+        =>:
+            exist k Z st {1 <= k, k <= n, $is_in_closed_triangle(p,first(k),second(k),third(k))}
+    forall k Z, p cart(R,R):
+        1 <= k
+        k <= n
+        $is_in_closed_triangle(p,first(k),second(k),third(k))
+        =>:
+            p $in region
+    forall left_index,right_index Z, p cart(R,R):
+        1 <= left_index
+        left_index <= n
+        1 <= right_index
+        right_index <= n
+        $is_in_triangle_interior(p,first(left_index),second(left_index),third(left_index))
+        $is_in_triangle_interior(p,first(right_index),second(right_index),third(right_index))
+        =>:
+            left_index = right_index
+
+
+thm finite_triangle_region_decomposition_nonempty:
+    ? forall region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R):
+        $entry::is_finite_triangle_region_decomposition(region,n,first,second,third)
+        =>:
+            first(1) $in region
+    by def $entry::is_finite_triangle_region_decomposition(region,n,first,second,third)
+    1 <= n
+    $geometry::main::is_triangle(first(1),second(1),third(1))
+    release thm entry::first_vertex_in_closed_triangle(first(1),second(1),third(1))
+    $entry::is_in_closed_triangle(first(1),first(1),second(1),third(1))
+    thm local_piece_in_region:
+        ? forall k Z, p cart(R,R):
+            1 <= k
+            k <= n
+            $entry::is_in_closed_triangle(p,first(k),second(k),third(k))
+            =>:
+                p $in region
+    release thm local_piece_in_region(1,first(1))
+    first(1) $in region
+
+
+thm closed_triangle_region_convex:
+    ? forall a,b,c,p,q,r cart(R,R), t R:
+        $entry::is_in_closed_triangle(p,a,b,c)
+        $entry::is_in_closed_triangle(q,a,b,c)
+        0 <= t
+        t <= 1
+        r(1) = (1-t)*p(1)+t*q(1)
+        r(2) = (1-t)*p(2)+t*q(2)
+        =>:
+            $entry::is_in_closed_triangle(r,a,b,c)
+    by def $entry::is_in_closed_triangle(p,a,b,c)
+    by def $entry::is_in_closed_triangle(q,a,b,c)
+    obtain u,v from exist u,v R st {0 <= u, 0 <= v, u+v <= 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+    obtain x,y from exist x,y R st {0 <= x, 0 <= y, x+y <= 1, q(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1)), q(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))}
+    0 <= 1-t
+    have first R = (1-t)*u+t*x
+    have second R = (1-t)*v+t*y
+    (1-t)*u >= 0
+    t*x >= 0
+    (1-t)*v >= 0
+    t*y >= 0
+    first >= 0
+    second >= 0
+    (1-t)*(u+v) <= (1-t)*1
+    t*(x+y) <= t*1
+    first+second = ((1-t)*u+t*x)+((1-t)*v+t*y) = (1-t)*(u+v)+t*(x+y) <= (1-t)*1+t*1 = 1
+    r(1) = (1-t)*p(1)+t*q(1) = (1-t)*(a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)))+t*(a(1)+x*(b(1)-a(1))+y*(c(1)-a(1))) = a(1)+((1-t)*u+t*x)*(b(1)-a(1))+((1-t)*v+t*y)*(c(1)-a(1)) = a(1)+first*(b(1)-a(1))+second*(c(1)-a(1))
+    r(2) = (1-t)*p(2)+t*q(2) = (1-t)*(a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)))+t*(a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))) = a(2)+((1-t)*u+t*x)*(b(2)-a(2))+((1-t)*v+t*y)*(c(2)-a(2)) = a(2)+first*(b(2)-a(2))+second*(c(2)-a(2))
+    witness exist s,w R st {0 <= s, 0 <= w, s+w <= 1, r(1) = a(1)+s*(b(1)-a(1))+w*(c(1)-a(1)), r(2) = a(2)+s*(b(2)-a(2))+w*(c(2)-a(2))} from first,second
+    by def $entry::is_in_closed_triangle(r,a,b,c)
+
+
+release obj def entry::closed_triangle_region
+
+
+thm single_triangle_region_decomposition:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist first,second,third fn(k Z) cart(R,R) st {$entry::is_finite_triangle_region_decomposition(entry::closed_triangle_region(a,b,c),1,first,second,third)}
+    let first = fn(k Z) cart(R,R) {a}
+    let second = fn(k Z) cart(R,R) {b}
+    let third = fn(k Z) cart(R,R) {c}
+    have region power_set(cart(R,R)) = entry::closed_triangle_region(a,b,c)
+    region = entry::closed_triangle_region(a,b,c) = {p cart(R,R): $entry::is_in_closed_triangle(p,a,b,c)}
+    claim:
+        ? forall k Z:
+            1 <= k
+            k <= 1
+            =>:
+                $geometry::main::is_triangle(first(k),second(k),third(k))
+        first(k) = a
+        second(k) = b
+        third(k) = c
+    claim:
+        ? forall p cart(R,R):
+            p $in region
+            =>:
+                exist k Z st {1 <= k, k <= 1, $entry::is_in_closed_triangle(p,first(k),second(k),third(k))}
+        p $in {q cart(R,R): $entry::is_in_closed_triangle(q,a,b,c)}
+        release thm set_builder_member(p,{q cart(R,R): $entry::is_in_closed_triangle(q,a,b,c)})
+        $entry::is_in_closed_triangle(p,a,b,c)
+        first(1) = a
+        second(1) = b
+        third(1) = c
+        $entry::is_in_closed_triangle(p,first(1),second(1),third(1))
+        witness exist k Z st {1 <= k, k <= 1, $entry::is_in_closed_triangle(p,first(k),second(k),third(k))} from 1
+    claim:
+        ? forall k Z, p cart(R,R):
+            1 <= k
+            k <= 1
+            $entry::is_in_closed_triangle(p,first(k),second(k),third(k))
+            =>:
+                p $in region
+        first(k) = a
+        second(k) = b
+        third(k) = c
+        $entry::is_in_closed_triangle(p,a,b,c)
+        p $in {q cart(R,R): $entry::is_in_closed_triangle(q,a,b,c)}
+        p $in region
+    claim:
+        ? forall left_index,right_index Z, p cart(R,R):
+            1 <= left_index
+            left_index <= 1
+            1 <= right_index
+            right_index <= 1
+            $entry::is_in_triangle_interior(p,first(left_index),second(left_index),third(left_index))
+            $entry::is_in_triangle_interior(p,first(right_index),second(right_index),third(right_index))
+            =>:
+                left_index = right_index
+        left_index = 1
+        right_index = 1
+    by def $entry::is_finite_triangle_region_decomposition(region,1,first,second,third)
+    witness exist f,g,h fn(k Z) cart(R,R) st {$entry::is_finite_triangle_region_decomposition(entry::closed_triangle_region(a,b,c),1,f,g,h)} from first,second,third
+
+
+thm triangle_interior_nonempty:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist p cart(R,R) st {$entry::is_in_triangle_interior(p,a,b,c)}
+    have center cart(R,R) = (a(1)+(1/3)*(b(1)-a(1))+(1/3)*(c(1)-a(1)),a(2)+(1/3)*(b(2)-a(2))+(1/3)*(c(2)-a(2)))
+    center(1) = a(1)+(1/3)*(b(1)-a(1))+(1/3)*(c(1)-a(1))
+    center(2) = a(2)+(1/3)*(b(2)-a(2))+(1/3)*(c(2)-a(2))
+    witness exist u,v R st {0 < u, 0 < v, u+v < 1, center(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), center(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))} from 1/3,1/3
+    by def $entry::is_in_triangle_interior(center,a,b,c)
+    witness exist p cart(R,R) st {$entry::is_in_triangle_interior(p,a,b,c)} from center
+
+
+thm overlapping_interiors_exclude_region_decomposition:
+    ? forall region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R), left_index,right_index Z, p cart(R,R):
+        1 <= left_index
+        left_index <= n
+        1 <= right_index
+        right_index <= n
+        left_index != right_index
+        $entry::is_in_triangle_interior(p,first(left_index),second(left_index),third(left_index))
+        $entry::is_in_triangle_interior(p,first(right_index),second(right_index),third(right_index))
+        =>:
+            not $entry::is_finite_triangle_region_decomposition(region,n,first,second,third)
+    by contra:
+        ? not $entry::is_finite_triangle_region_decomposition(region,n,first,second,third)
+        $entry::is_finite_triangle_region_decomposition(region,n,first,second,third)
+        by def $entry::is_finite_triangle_region_decomposition(region,n,first,second,third)
+        left_index = right_index
+        impossible left_index != right_index
+
+
+thm strict_edge_cut_gives_two_triangles:
+    ? forall a,b,c,d cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        =>:
+            $geometry::main::is_triangle(a,b,d)
+            $geometry::main::is_triangle(a,d,c)
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = t*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+            geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c)) = (1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    by def $geometry::main::is_triangle(a,b,c)
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    have ex R = c(1)-a(1)
+    have ey R = c(2)-a(2)
+    d(1)-a(1) = ((1-t)*b(1)+t*c(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1)) = (1-t)*dx+t*ex
+    d(2)-a(2) = ((1-t)*b(2)+t*c(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2)) = (1-t)*dy+t*ey
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,d)
+    release thm geometry::main::collinear_det_expand(a,d,c)
+    have cross R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    cross = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = dx*ey-dy*ex
+    cross != 0
+    t != 0
+    1-t > 0
+    1-t != 0
+    t*cross != 0
+    (1-t)*cross != 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = dx*((1-t)*dy+t*ey)-dy*((1-t)*dx+t*ex) = t*(dx*ey-dy*ex) = t*cross != 0
+    geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c)) = (d(1)-a(1))*(c(2)-a(2))-(d(2)-a(2))*(c(1)-a(1)) = ((1-t)*dx+t*ex)*ey-((1-t)*dy+t*ey)*ex = (1-t)*(dx*ey-dy*ex) = (1-t)*cross != 0
+    by def $geometry::main::is_triangle(a,b,d)
+    by def $geometry::main::is_triangle(a,d,c)
+
+
+thm strict_edge_cut_triangle_interiors_disjoint:
+    ? forall a,b,c,d,p cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        $entry::is_in_triangle_interior(p,a,b,d)
+        =>:
+            not $entry::is_in_triangle_interior(p,a,d,c)
+    by def $entry::is_in_triangle_interior(p,a,b,d)
+    obtain u,v from exist u,v R st {0 < u, 0 < v, u+v < 1, p(1) = a(1)+u*(b(1)-a(1))+v*(d(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(d(2)-a(2))}
+    by contra:
+        ? not $entry::is_in_triangle_interior(p,a,d,c)
+        $entry::is_in_triangle_interior(p,a,d,c)
+        by def $entry::is_in_triangle_interior(p,a,d,c)
+        obtain x,y from exist x,y R st {0 < x, 0 < y, x+y < 1, p(1) = a(1)+x*(d(1)-a(1))+y*(c(1)-a(1)), p(2) = a(2)+x*(d(2)-a(2))+y*(c(2)-a(2))}
+        d(1)-a(1) = ((1-t)*b(1)+t*c(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1))
+        a(1)+(u+v*(1-t))*(b(1)-a(1))+(v*t)*(c(1)-a(1)) = a(1)+u*(b(1)-a(1))+v*((1-t)*(b(1)-a(1))+t*(c(1)-a(1))) = a(1)+u*(b(1)-a(1))+v*(d(1)-a(1)) = p(1)
+        a(1)+(x*(1-t))*(b(1)-a(1))+(x*t+y)*(c(1)-a(1)) = a(1)+x*((1-t)*(b(1)-a(1))+t*(c(1)-a(1)))+y*(c(1)-a(1)) = a(1)+x*(d(1)-a(1))+y*(c(1)-a(1)) = p(1)
+        a(1)+(u+v*(1-t))*(b(1)-a(1))+(v*t)*(c(1)-a(1)) = a(1)+(x*(1-t))*(b(1)-a(1))+(x*t+y)*(c(1)-a(1))
+        d(2)-a(2) = ((1-t)*b(2)+t*c(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2))
+        a(2)+(u+v*(1-t))*(b(2)-a(2))+(v*t)*(c(2)-a(2)) = a(2)+u*(b(2)-a(2))+v*((1-t)*(b(2)-a(2))+t*(c(2)-a(2))) = a(2)+u*(b(2)-a(2))+v*(d(2)-a(2)) = p(2)
+        a(2)+(x*(1-t))*(b(2)-a(2))+(x*t+y)*(c(2)-a(2)) = a(2)+x*((1-t)*(b(2)-a(2))+t*(c(2)-a(2)))+y*(c(2)-a(2)) = a(2)+x*(d(2)-a(2))+y*(c(2)-a(2)) = p(2)
+        a(2)+(u+v*(1-t))*(b(2)-a(2))+(v*t)*(c(2)-a(2)) = a(2)+(x*(1-t))*(b(2)-a(2))+(x*t+y)*(c(2)-a(2))
+        release thm entry::triangle_barycentric_coordinates_unique(a,b,c,u+v*(1-t),v*t,x*(1-t),x*t+y)
+        (u+v*(1-t))-x*(1-t) = 0
+        v*t-(x*t+y) = 0
+        t*u+(1-t)*y = t*((u+v*(1-t))-x*(1-t))-(1-t)*(v*t-(x*t+y)) = t*0-(1-t)*0 = 0
+        1-t > 0
+        t*u > 0
+        (1-t)*y > 0
+        t*u+(1-t)*y > 0
+        impossible t*u+(1-t)*y = 0
+
+
+thm strict_edge_cut_left_region_subset:
+    ? forall a,b,c,d,p cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        $entry::is_in_closed_triangle(p,a,b,d)
+        =>:
+            $entry::is_in_closed_triangle(p,a,b,c)
+    by def $entry::is_in_closed_triangle(p,a,b,d)
+    obtain u,v from exist u,v R st {0 <= u, 0 <= v, u+v <= 1, p(1) = a(1)+u*(b(1)-a(1))+v*(d(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(d(2)-a(2))}
+    0 <= t
+    0 <= 1-t
+    v*(1-t) >= 0
+    v*t >= 0
+    u+v*(1-t) >= 0
+    (u+v*(1-t))+v*t = u+v <= 1
+    d(1)-a(1) = ((1-t)*b(1)+t*c(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1))
+    p(1) = a(1)+u*(b(1)-a(1))+v*(d(1)-a(1)) = a(1)+u*(b(1)-a(1))+v*((1-t)*(b(1)-a(1))+t*(c(1)-a(1))) = a(1)+(u+v*(1-t))*(b(1)-a(1))+(v*t)*(c(1)-a(1))
+    d(2)-a(2) = ((1-t)*b(2)+t*c(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2))
+    p(2) = a(2)+u*(b(2)-a(2))+v*(d(2)-a(2)) = a(2)+u*(b(2)-a(2))+v*((1-t)*(b(2)-a(2))+t*(c(2)-a(2))) = a(2)+(u+v*(1-t))*(b(2)-a(2))+(v*t)*(c(2)-a(2))
+    witness exist x,y R st {0 <= x, 0 <= y, x+y <= 1, p(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1)), p(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))} from u+v*(1-t),v*t
+    by def $entry::is_in_closed_triangle(p,a,b,c)
+
+
+thm strict_edge_cut_regions_cover_triangle:
+    ? forall a,b,c,d,p cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        $entry::is_in_closed_triangle(p,a,b,c)
+        =>:
+            $entry::is_in_closed_triangle(p,a,b,d) or $entry::is_in_closed_triangle(p,a,d,c)
+    release thm strict_edge_cut_gives_two_triangles(a,b,c,d,t)
+    by def $entry::is_in_closed_triangle(p,a,b,c)
+    obtain u,v from exist u,v R st {0 <= u, 0 <= v, u+v <= 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+    t != 0
+    1-t > 0
+    1-t != 0
+    d(1)-a(1) = ((1-t)*b(1)+t*c(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1))
+    d(2)-a(2) = ((1-t)*b(2)+t*c(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2))
+    by cases:
+        ? $entry::is_in_closed_triangle(p,a,b,d) or $entry::is_in_closed_triangle(p,a,d,c)
+        case t*u-(1-t)*v >= 0:
+            have x R = (t*u-(1-t)*v)/t
+            have y R = v/t
+            x >= 0
+            y >= 0
+            x+y = (t*u-(1-t)*v)/t+v/t = u+v <= 1
+            x+y*(1-t) = (t*u-(1-t)*v)/t+(v/t)*(1-t) = u
+            y*t = (v/t)*t = v
+            a(1)+x*(b(1)-a(1))+y*(d(1)-a(1)) = a(1)+x*(b(1)-a(1))+y*((1-t)*(b(1)-a(1))+t*(c(1)-a(1))) = a(1)+(x+y*(1-t))*(b(1)-a(1))+(y*t)*(c(1)-a(1)) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)) = p(1)
+            a(2)+x*(b(2)-a(2))+y*(d(2)-a(2)) = a(2)+x*(b(2)-a(2))+y*((1-t)*(b(2)-a(2))+t*(c(2)-a(2))) = a(2)+(x+y*(1-t))*(b(2)-a(2))+(y*t)*(c(2)-a(2)) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)) = p(2)
+            witness exist s,w R st {0 <= s, 0 <= w, s+w <= 1, p(1) = a(1)+s*(b(1)-a(1))+w*(d(1)-a(1)), p(2) = a(2)+s*(b(2)-a(2))+w*(d(2)-a(2))} from x,y
+            by def $entry::is_in_closed_triangle(p,a,b,d)
+        case t*u-(1-t)*v < 0:
+            (1-t)*v-t*u = -(t*u-(1-t)*v) > 0
+            have x R = u/(1-t)
+            have y R = ((1-t)*v-t*u)/(1-t)
+            x >= 0
+            y > 0
+            y >= 0
+            x+y = u/(1-t)+((1-t)*v-t*u)/(1-t) = u+v <= 1
+            x*(1-t) = (u/(1-t))*(1-t) = u
+            x*t+y = (u/(1-t))*t+((1-t)*v-t*u)/(1-t) = v
+            a(1)+x*(d(1)-a(1))+y*(c(1)-a(1)) = a(1)+x*((1-t)*(b(1)-a(1))+t*(c(1)-a(1)))+y*(c(1)-a(1)) = a(1)+(x*(1-t))*(b(1)-a(1))+(x*t+y)*(c(1)-a(1)) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)) = p(1)
+            a(2)+x*(d(2)-a(2))+y*(c(2)-a(2)) = a(2)+x*((1-t)*(b(2)-a(2))+t*(c(2)-a(2)))+y*(c(2)-a(2)) = a(2)+(x*(1-t))*(b(2)-a(2))+(x*t+y)*(c(2)-a(2)) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)) = p(2)
+            witness exist s,w R st {0 <= s, 0 <= w, s+w <= 1, p(1) = a(1)+s*(d(1)-a(1))+w*(c(1)-a(1)), p(2) = a(2)+s*(d(2)-a(2))+w*(c(2)-a(2))} from x,y
+            by def $entry::is_in_closed_triangle(p,a,d,c)
+
+
+thm strict_edge_cut_right_region_subset:
+    ? forall a,b,c,d,p cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        $entry::is_in_closed_triangle(p,a,d,c)
+        =>:
+            $entry::is_in_closed_triangle(p,a,b,c)
+    by def $entry::is_in_closed_triangle(p,a,d,c)
+    obtain u,v from exist u,v R st {0 <= u, 0 <= v, u+v <= 1, p(1) = a(1)+u*(d(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(d(2)-a(2))+v*(c(2)-a(2))}
+    0 <= t
+    0 <= 1-t
+    u*(1-t) >= 0
+    u*t >= 0
+    u*t+v >= 0
+    u*(1-t)+(u*t+v) = u+v <= 1
+    d(1)-a(1) = ((1-t)*b(1)+t*c(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1))
+    p(1) = a(1)+u*(d(1)-a(1))+v*(c(1)-a(1)) = a(1)+u*((1-t)*(b(1)-a(1))+t*(c(1)-a(1)))+v*(c(1)-a(1)) = a(1)+(u*(1-t))*(b(1)-a(1))+(u*t+v)*(c(1)-a(1))
+    d(2)-a(2) = ((1-t)*b(2)+t*c(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2))
+    p(2) = a(2)+u*(d(2)-a(2))+v*(c(2)-a(2)) = a(2)+u*((1-t)*(b(2)-a(2))+t*(c(2)-a(2)))+v*(c(2)-a(2)) = a(2)+(u*(1-t))*(b(2)-a(2))+(u*t+v)*(c(2)-a(2))
+    witness exist x,y R st {0 <= x, 0 <= y, x+y <= 1, p(1) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1)), p(2) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))} from u*(1-t),u*t+v
+    by def $entry::is_in_closed_triangle(p,a,b,c)
+
+
+thm strict_edge_cut_unsigned_contents_add:
+    ? forall a,b,c,d cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        =>:
+            sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2)+sqrt(geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2) = sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2)
+    release thm strict_edge_cut_gives_two_triangles(a,b,c,d,t)
+    by def $geometry::main::is_triangle(a,b,c)
+    have cross R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have left R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))
+    have right R = geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))
+    cross != 0
+    cross^2 > 0
+    1-t > 0
+    left = t*cross
+    right = (1-t)*cross
+    left^2 = (t*cross)^2 = t^2*cross^2
+    right^2 = ((1-t)*cross)^2 = (1-t)^2*cross^2
+    sqrt(left^2) = sqrt(t^2*cross^2) = sqrt(t^2)*sqrt(cross^2) = |t|*sqrt(cross^2) = t*sqrt(cross^2)
+    sqrt(right^2) = sqrt((1-t)^2*cross^2) = sqrt((1-t)^2)*sqrt(cross^2) = |1-t|*sqrt(cross^2) = (1-t)*sqrt(cross^2)
+    sqrt(left^2)+sqrt(right^2) = t*sqrt(cross^2)+(1-t)*sqrt(cross^2) = sqrt(cross^2)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2 = left^2
+    sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2) = sqrt(left^2)
+    geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2 = right^2
+    sqrt(geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2) = sqrt(right^2)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = cross^2
+    sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2) = sqrt(cross^2)
+    sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2)+sqrt(geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2) = sqrt(left^2)+sqrt(right^2) = sqrt(cross^2) = sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2)
+
+
+sketch:
+    have a cart(R,R) = (0,0)
+    have b cart(R,R) = (3,0)
+    have c cart(R,R) = (0,3)
+    a(1) = 0
+    a(2) = 0
+    b(1) = 3
+    b(2) = 0
+    c(1) = 0
+    c(2) = 3
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = (3-0)*(3-0)-(0-0)*(0-0) = 9 != 0
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm entry::first_vertex_in_closed_triangle(a,b,c)
+    release thm entry::first_vertex_not_in_triangle_interior(a,b,c)
+    have d cart(R,R) = (2,1)
+    d(1) = 2 = (1-1/3)*b(1)+(1/3)*c(1)
+    d(2) = 1 = (1-1/3)*b(2)+(1/3)*c(2)
+    release thm strict_edge_cut_gives_two_triangles(a,b,c,d,1/3)
+    release thm strict_edge_cut_unsigned_contents_add(a,b,c,d,1/3)
+    have p cart(R,R) = (1,1/4)
+    p(1) = 1 = a(1)+(1/6)*(b(1)-a(1))+(1/4)*(d(1)-a(1))
+    p(2) = 1/4 = a(2)+(1/6)*(b(2)-a(2))+(1/4)*(d(2)-a(2))
+    witness exist u,v R st {0 < u, 0 < v, u+v < 1, p(1) = a(1)+u*(b(1)-a(1))+v*(d(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(d(2)-a(2))} from 1/6,1/4
+    by def $entry::is_in_triangle_interior(p,a,b,d)
+    release thm strict_edge_cut_triangle_interiors_disjoint(a,b,c,d,p,1/3)
+    release thm entry::triangle_interior_implies_closed_membership(p,a,b,d)
+    release thm strict_edge_cut_left_region_subset(a,b,c,d,p,1/3)
+    release thm strict_edge_cut_regions_cover_triangle(a,b,c,d,p,1/3)
+    have q cart(R,R) = (1,1)
+    q(1) = 1 = a(1)+(1/2)*(d(1)-a(1))+(1/6)*(c(1)-a(1))
+    q(2) = 1 = a(2)+(1/2)*(d(2)-a(2))+(1/6)*(c(2)-a(2))
+    witness exist u,v R st {0 < u, 0 < v, u+v < 1, q(1) = a(1)+u*(d(1)-a(1))+v*(c(1)-a(1)), q(2) = a(2)+u*(d(2)-a(2))+v*(c(2)-a(2))} from 1/2,1/6
+    by def $entry::is_in_triangle_interior(q,a,d,c)
+    release thm entry::triangle_interior_implies_closed_membership(q,a,d,c)
+    release thm strict_edge_cut_right_region_subset(a,b,c,d,q,1/3)
+    release thm strict_edge_cut_regions_cover_triangle(a,b,c,d,q,1/3)

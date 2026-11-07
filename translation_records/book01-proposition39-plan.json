@@ -1,0 +1,32 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf#page=39",
+  "source_lines": "1511–1543",
+  "source_meaning": "Equal-area triangles on the same base and same side lie between the same parallels",
+  "representation": "Existing positive unsigned triangle area; same-side determinant product strictly positive; conclude existing proper nonintersecting parallel-lines predicate",
+  "nondegeneracy": "a != d makes the source joined AD a proper line; each triangle nondegenerate inside area predicate. Coincident apices remain covered by I37 but do not define AD.",
+  "proof_spine": [
+    "equal positive areas imply equal squared signed determinants",
+    "same-side sign selects equal determinants rather than opposite determinants",
+    "difference of determinants is determinant of the apex displacement; zero gives parallel directions, triangle nondegeneracy gives distinct lines"
+  ],
+  "dependencies": [
+    "canonical area predicate",
+    "canonical triangle_vertices_distinct",
+    "existing scalar same_square_and_sign_gives_equality",
+    "canonical proper parallel-lines predicate"
+  ],
+  "acceptance": [
+    "equal area3 same-side shifted apices",
+    "equal area3 opposite-side apices must reject same-side premise",
+    "coincident apices rejected as undefined AD line"
+  ],
+  "status": "prepared, not submitted",
+  "trust_added": 0,
+  "counted": false,
+  "preflight": "source1 syntax and namespace preflight passed; source_verified:false",
+  "prepared_consumers": [
+    "I39-same-side-use1.lit",
+    "I39-opposite-side-use1.lit",
+    "I39-coincident-use1.lit"
+  ]
+}

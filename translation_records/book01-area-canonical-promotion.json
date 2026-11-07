@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-18T08:04:43.126315+00:00",
+  "target": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "source_candidate": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-constructions-through-area-current-candidate.lit",
+  "backup": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-canonical-before-area-promotion.lit",
+  "old_sha256": "6e1f575bda93368df8785b6a4e0e6024d12974481bc3679289b24e0cf4b08596",
+  "new_sha256": "34c17398f11b3952e8f412ddcdf48584528f187a022dc050a0250541be2d5650",
+  "verification_receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/receipt.json",
+  "strict_statement_count": 74,
+  "verified_binary_sha256": "d0fc4de52bac20e67baac8d7131abc748bd2a2db39c7c1baa16b904f58415e17",
+  "current_disk_binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "existing_theorem_headers_changed": false,
+  "new_numbered_propositions": [
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    46,
+    47,
+    48
+  ],
+  "remaining_numbered_propositions": [
+    45
+  ],
+  "canonical_book1_numbered_propositions": 47,
+  "version_scope": "Verified by the recorded old binary; no claim of replay under the externally updated disk executable. Live authoring Sessions retained."
+}

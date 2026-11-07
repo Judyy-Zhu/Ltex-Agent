@@ -1,0 +1,24 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    88,
+    89
+  ],
+  "source_goal": "Perpendicular to tangent through contact passes through circle center",
+  "premises": "Tangent(c,a,b,o,r), is_perpendicular(c,d,a,b); both line directions nonzero by definitions",
+  "proof_spine": [
+    "III18 gives radius perpendicular to tangent",
+    "Two plane vectors orthogonal to one nonzero vector have zero determinant",
+    "Center belongs to proper line through contact in prescribed perpendicular direction"
+  ],
+  "trust_added": 0,
+  "canonical": true,
+  "completed": false,
+  "pending": "Joint strict gate under .draft/book03-tangent-integration-checkpoint",
+  "accepted": [
+    "book03-proposition19-center-on-normal1.lit",
+    "book03-proposition19-use1.lit"
+  ],
+  "canonical_record": "translation_records/book03-propositions17-19-canonical.json",
+  "status": "Canonical after joint strict PASS113; source clauses and use consumers checked"
+}

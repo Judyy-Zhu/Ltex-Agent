@@ -1,0 +1,15 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf#page=40",
+  "source_lines": "1542\u20131572",
+  "scope": "Equal-area triangles on equal collinear bases and same side imply proper parallel apex line; distinct apices explicit",
+  "proof_spine": [
+    "Same-side product excludes degenerate triangle BCd",
+    "I38 with common apex d transfers second triangle area onto BCd",
+    "Common area uniqueness via defining sqrt formula",
+    "I39 for triangles BCa and BCd gives proper parallel lines"
+  ],
+  "route_difference": "Equivalent proof via existing I38 and I39 instead of source contradiction construction",
+  "trust_added": 0,
+  "counted": false,
+  "status": "source1 PASS52918; concrete controls pending, independent gate not launched"
+}

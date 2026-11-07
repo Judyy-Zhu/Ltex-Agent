@@ -1,0 +1,146 @@
+release obj def geometry::main::vec
+
+release obj def geometry::main::dot
+
+release obj def geometry::main::det
+
+release obj def geometry::main::distance_sq
+
+release obj def geometry::main::angle_cos_num
+
+release obj def geometry::main::angle_cos_den
+
+
+release obj def angles::angle_cosine
+
+
+
+release obj def geometry::main::circle
+
+
+thm scaled_positive_root_domain:
+    ? forall k, norm R+:
+        sqrt(k^2 * norm) != 0
+        0 <= k^2 * norm
+    k^2 > 0
+    k^2 * norm > 0
+    sqrt(k^2 * norm) > 0
+    sqrt(k^2 * norm) != 0
+    0 <= k^2 * norm
+
+
+thm same_square_and_sign_gives_equality:
+    ? forall x, y R:
+        x^2 = y^2
+        x * y >= 0
+        =>:
+            x = y
+    by contra:
+        ? x = y
+        x != y
+        x - y != 0
+        (x - y) * (x + y) = x^2 - y^2 = 0
+        x + y = 0 / (x - y) = 0
+        y = -x
+        x * y = x * (-x) = -(x^2)
+        x^2 = -(-(x^2)) = -(x * y) <= 0
+        x^2 >= 0
+        x^2 = 0
+        x = 0
+        y = -x = 0
+        x = y
+        impossible x != y
+
+
+thm angle_relation_implies_equal_cosine:
+    ? forall p, q, r, a, b, c cart(R, R):
+        $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+        =>:
+            angles::angle_cosine(p, q, r) = angles::angle_cosine(a, b, c)
+    by def $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_root_den_nonzero(p, q, r)
+    release thm angles::angle_den_nonnegative(a, b, c)
+    release thm angles::angle_root_den_nonzero(a, b, c)
+    have n R = geometry::main::angle_cos_num(p, q, r)
+    have m R = geometry::main::angle_cos_num(a, b, c)
+    have den_1 R+ = geometry::main::angle_cos_den(p, q, r)
+    have den_2 R+ = geometry::main::angle_cos_den(a, b, c)
+    have u R+ = sqrt(den_1)
+    have v R+ = sqrt(den_2)
+    u^2 = sqrt(den_1)^2 = den_1
+    v^2 = sqrt(den_2)^2 = den_2
+    n^2 * den_2 = geometry::main::angle_cos_num(p, q, r)^2 * geometry::main::angle_cos_den(a, b, c) = geometry::main::angle_cos_num(a, b, c)^2 * geometry::main::angle_cos_den(p, q, r) = m^2 * den_1
+    (n / u)^2 = n^2 / u^2 = n^2 / den_1 = (n^2 * den_2) / (den_1 * den_2) = (m^2 * den_1) / (den_1 * den_2) = m^2 / den_2 = m^2 / v^2 = (m / v)^2
+    n * m = geometry::main::angle_cos_num(p, q, r) * geometry::main::angle_cos_num(a, b, c) >= 0
+    (n / u) * (m / v) = (n * m) / (u * v) >= 0 / (u * v) = 0
+    by thm same_square_and_sign_gives_equality(n / u, m / v) => n / u = m / v
+    angles::angle_cosine(p, q, r) = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r)) = n / u
+    angles::angle_cosine(a, b, c) = geometry::main::angle_cos_num(a, b, c) / sqrt(geometry::main::angle_cos_den(a, b, c)) = m / v
+    angles::angle_cosine(p, q, r) = n / u = m / v = angles::angle_cosine(a, b, c)
+
+
+thm positive_ray_scale_preserves_cosine:
+    ? forall a, q, b, d cart(R, R), k R+:
+        a != q
+        b != q
+        d != q
+        d(1) - q(1) = k * (b(1) - q(1))
+        d(2) - q(2) = k * (b(2) - q(2))
+        =>:
+            angles::angle_cosine(a, q, d) = angles::angle_cosine(a, q, b)
+    release thm angles::angle_den_positive(a, q, b)
+    have den R+ = geometry::main::angle_cos_den(a, q, b)
+    have n R = geometry::main::angle_cos_num(a, q, b)
+    have root R+ = sqrt(den)
+    d(1) = (d(1) - q(1)) + q(1) = k * (b(1) - q(1)) + q(1) = q(1) + k * (b(1) - q(1))
+    d(2) = (d(2) - q(2)) + q(2) = k * (b(2) - q(2)) + q(2) = q(2) + k * (b(2) - q(2))
+    release thm geometry::main::affine_distance_from_parameter(q, b, d, k)
+    release thm geometry::main::distance_sq_symmetric(q, d)
+    geometry::main::distance_sq(q, d) = geometry::main::distance_sq(d, q) = k^2 * geometry::main::distance_sq(q, b)
+    geometry::main::angle_cos_num(a, q, b) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = (a(1) - q(1)) * (b(1) - q(1)) + (a(2) - q(2)) * (b(2) - q(2))
+    geometry::main::angle_cos_num(a, q, d) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, d)) = (a(1) - q(1)) * (d(1) - q(1)) + (a(2) - q(2)) * (d(2) - q(2)) = (a(1) - q(1)) * (k * (b(1) - q(1))) + (a(2) - q(2)) * (k * (b(2) - q(2))) = k * ((a(1) - q(1)) * (b(1) - q(1)) + (a(2) - q(2)) * (b(2) - q(2))) = k * geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = k * geometry::main::angle_cos_num(a, q, b) = k * n
+    geometry::main::angle_cos_den(a, q, d) = geometry::main::distance_sq(q, a) * geometry::main::distance_sq(q, d) = geometry::main::distance_sq(q, a) * (k^2 * geometry::main::distance_sq(q, b)) = k^2 * (geometry::main::distance_sq(q, a) * geometry::main::distance_sq(q, b)) = k^2 * geometry::main::angle_cos_den(a, q, b) = k^2 * den
+    release thm angles::angle_den_nonnegative(a, q, b)
+    release thm angles::angle_root_den_nonzero(a, q, b)
+    release thm angles::angle_den_nonnegative(a, q, d)
+    release thm angles::angle_root_den_nonzero(a, q, d)
+    release thm scaled_positive_root_domain(k, den)
+    sqrt(geometry::main::angle_cos_den(a, q, d)) = sqrt(k^2 * den) = sqrt(k^2) * sqrt(den) = |k| * root = k * root
+    geometry::main::angle_cos_num(a, q, b) = n
+    sqrt(geometry::main::angle_cos_den(a, q, b)) = sqrt(den) = root
+    angles::angle_cosine(a, q, b) = geometry::main::angle_cos_num(a, q, b) / sqrt(geometry::main::angle_cos_den(a, q, b)) = n / root
+    angles::angle_cosine(a, q, d) = geometry::main::angle_cos_num(a, q, d) / sqrt(geometry::main::angle_cos_den(a, q, d)) = (k * n) / (k * root) = n / root = angles::angle_cosine(a, q, b)
+
+
+thm equal_cosines_imply_angle_relation:
+    ? forall p, q, r, a, b, c cart(R, R):
+        p != q
+        r != q
+        a != b
+        c != b
+        angles::angle_cosine(p, q, r) = angles::angle_cosine(a, b, c)
+        =>:
+            $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+    release thm angles::angle_den_positive(p, q, r)
+    release thm angles::angle_den_positive(a, b, c)
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_den_nonnegative(a, b, c)
+    have left R+ = sqrt(geometry::main::angle_cos_den(p, q, r))
+    have right R+ = sqrt(geometry::main::angle_cos_den(a, b, c))
+    left^2 = sqrt(geometry::main::angle_cos_den(p, q, r))^2 = geometry::main::angle_cos_den(p, q, r)
+    right^2 = sqrt(geometry::main::angle_cos_den(a, b, c))^2 = geometry::main::angle_cos_den(a, b, c)
+    have cosine R = angles::angle_cosine(p, q, r)
+    have n R = geometry::main::angle_cos_num(p, q, r)
+    have m R = geometry::main::angle_cos_num(a, b, c)
+    cosine = angles::angle_cosine(p, q, r) = n/left
+    cosine = angles::angle_cosine(a, b, c) = m/right
+    n = (n/left)*left = cosine*left
+    m = (m/right)*right = cosine*right
+    n^2*right^2 = (cosine*left)^2*right^2 = cosine^2*left^2*right^2 = (cosine*right)^2*left^2 = m^2*left^2
+    geometry::main::angle_cos_num(p, q, r)^2*geometry::main::angle_cos_den(a, b, c) = n^2*right^2 = m^2*left^2 = geometry::main::angle_cos_num(a, b, c)^2*geometry::main::angle_cos_den(p, q, r)
+    cosine^2 >= 0
+    left*right > 0
+    (cosine^2)*(left*right) >= 0
+    geometry::main::angle_cos_num(p, q, r)*geometry::main::angle_cos_num(a, b, c) = n*m = (cosine*left)*(cosine*right) = (cosine^2)*(left*right) >= 0
+    by def $geometry::main::are_angles_congruent(p, q, r, a, b, c)

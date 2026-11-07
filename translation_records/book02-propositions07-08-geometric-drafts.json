@@ -1,0 +1,35 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "status": "verified/pending geometric drafts, no canonical coverage increment",
+  "II7": {
+    "source_pages_zero_based": [
+      55,
+      56
+    ],
+    "source": "book02-proposition07-source-candidate1 accepted0058",
+    "construction": "book02-proposition07-construction-candidate1 accepted0059",
+    "consumers": "interior0060, reversed0061 accepted; endpoint0062 rejects c!=a",
+    "meaning": "Sum of actual squares on whole AB and piece CB equals twice actual rectangle on AB and CB plus actual square on remaining AC.",
+    "clean_gate": "PASS59 stable hashes II2-7-geometric-checkpoint/receipt.json"
+  },
+  "II8": {
+    "source_pages_zero_based": [
+      56,
+      57,
+      58
+    ],
+    "source": "book02-proposition08-source-candidate1 accepted0064",
+    "meaning": "Four times actual rectangle on AB and CB plus actual square on AC equals actual square on the continued length AB+CB. Point D=2B-C expresses continuing by the final piece.",
+    "source_bridge": "extend-by-cut-piece-candidate1 accepted0063 proves strict continuation and actual sqrt-distance AD=AB+CB",
+    "remaining": [
+      "independent clean gate",
+      "full original import integration"
+    ],
+    "construction": "book02-proposition08-construction-candidate1 accepted0065",
+    "consumers": "interior0066 and reversed0067 accepted; endpoint0068 rejects c!=a",
+    "clean_gate": "28183 running II2-10-geometric-checkpoint expected74"
+  },
+  "trust": "No added trust or kernel edits.",
+  "II2_10_clean_gate": "PASS74 native0 stable hashes; .draft/resume-2026-10-17/II2-10-geometric-checkpoint/receipt.json"
+}

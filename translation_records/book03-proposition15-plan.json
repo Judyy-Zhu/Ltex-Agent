@@ -1,0 +1,32 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    84,
+    85
+  ],
+  "source_clauses": [
+    "Diameter greatest among chords",
+    "Strictly nearer-center chord strictly longer"
+  ],
+  "interpretation": "Compare perpendicular distances to center, as corrected by source footnote; no parallel-chord restriction. Preserve strict inequality for non-diameters.",
+  "accepted": [
+    "nearer-chord-definition1.lit",
+    "book03-proposition15-nearer2.lit",
+    "circle-chord-length-bound2.lit",
+    "circle-diameter-length2.lit",
+    "book03-proposition15-diameter1.lit",
+    "book03-proposition15-strict-diameter1.lit",
+    "book03-proposition15-nearer-use1.lit",
+    "book03-proposition15-diameter-use1.lit"
+  ],
+  "pending": null,
+  "remaining": [
+    "Strict III1–III15 joint checkpoint68082",
+    "Source/cleanup audit and canonical promotion"
+  ],
+  "completed": false,
+  "trust_added": 0,
+  "joint_gate": ".draft/book03-first-fifteen-checkpoint/receipt.json",
+  "canonical_status": "Integrated into textbook/book03-circles.lit; joint strict PASS94 declarations, stable inputs",
+  "canonical_promotion": "translation_records/book03-propositions11-15-canonical.json"
+}

@@ -1,0 +1,33 @@
+{
+  "source": "Fitzpatrick, Euclid Elements I.44, PDF pp.42–43 (zero-based), lines1661 onward",
+  "problem": "Construct an actual proper parallelogram on a prescribed nonzero base, equal in area to a given proper triangle, with a prescribed nonstraight angle.",
+  "proof_idea": "I23 copies the angle onto the base. I42 fixes its first edge and scales only the second ray to obtain the target area. Transitivity of normalized cosine equality transports the prescribed angle.",
+  "litex_code": "scripts/Euclid_Elements/.draft/resume-2026-10-17/proposition44-candidate1.lit",
+  "comments": {
+    "status": "prepared; not submitted or verified",
+    "dependency_order": [
+      "canonical I23",
+      "pending I42",
+      "angle cosine equivalence"
+    ],
+    "route_difference": "Analytic positive scaling replaces Euclid complement construction; preserves actual base and angle.",
+    "carriers": "cart(R,R) points; R+ area; proper triangles and distinct base endpoints",
+    "name": "source-facing proposition_44; no new helper API",
+    "checks_required": [
+      "strict full file",
+      "oblique translated nonhorizontal base consumer",
+      "reversed base consumer",
+      "zero base rejection",
+      "flat angle rejection",
+      "degenerate source triangle rejection"
+    ],
+    "trust_added": 0
+  },
+  "current_evidence": {
+    "session": 27671,
+    "status": "accepted; focused clean checkpoint PASS18",
+    "receipt": ".draft/resume-2026-10-17/I42-44-46-source-checkpoint/receipt.json",
+    "canonical_promotion": "pending full original dependency checks and source audit",
+    "I44_consumers": "still pending distinct-base oblique/reversed angle consumers"
+  }
+}

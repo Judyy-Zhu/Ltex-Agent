@@ -1,0 +1,26 @@
+{
+  "source": {
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "book": 6,
+    "propositions": [
+      5,
+      6
+    ],
+    "lines": [
+      6887,
+      6988
+    ]
+  },
+  "scope": "VI5: proportional actual positive corresponding sides imply AAA. VI6: a corresponding included angle and proportional adjacent actual positive sides imply AAA. Nondegenerate triangles; reflected configurations allowed.",
+  "proof_spine": [
+    "VI5: obtain a positive common scale from the actual length ratios, square the three length laws, and use cosine law to prove each corresponding angle.",
+    "VI6: equal normalized included cosines plus a common adjacent-side scale determine the third squared side by cosine law; then apply the VI5 scale theorem.",
+    "Reuse required positive-real equimultiple equivalence for the source ratios."
+  ],
+  "non_goals": [
+    "Do not assume a coordinate similarity or AAA in either source theorem",
+    "Do not drop the included-angle condition in VI6",
+    "No kernel edits or new trust"
+  ],
+  "status": "Source anchored; shared cosine-law side-scale lemma prepared."
+}

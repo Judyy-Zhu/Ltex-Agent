@@ -1,0 +1,44 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    91,
+    92
+  ],
+  "source_goal": "Similar segments on the same proper chord and on the same side cannot be unequal; prove equality of the actual circular_segment_region sets.",
+  "interface": "Two positive-radius circles through the same distinct endpoints; same side sign; are_similar_circular_segments supplies two actual chosen-arc vertices with equal ray angle.",
+  "forward_spine": [
+    "Equal ray angles give equal normalized dot products x/h=y/k. Dot/determinant norm identities give h\u00b2=x\u00b2+u\u00b2, k\u00b2=y\u00b2+v\u00b2, where u and v have the same strict chord side.",
+    "The scalar normalized projection lemma proves x*v=y*u without division by a possibly zero cosine; right-angle/diameter case is included.",
+    "For each circle the checked chord-side identity is x*L=2*C1*u, y*L=2*C2*v. Since u*v>0 and L>0, deduce C1=C2.",
+    "Equal-radius distances to chord endpoints give the same center projection on the chord. Equal projection and equal signed determinant imply the two centers coincide.",
+    "Radius positivity and equal squared radius give equal radii, hence equal filled segment sets by identical definitions."
+  ],
+  "prepared": [
+    "equal-normalized-projections-ratio1.lit"
+  ],
+  "status": "Independent strict file gate passed; canonical joint integration and proof audit pending",
+  "trust_added": 0,
+  "counted": false,
+  "accepted": [
+    "equal-normalized-projections-ratio1.lit",
+    "equal-same-chord-angles-cross-ratio1.lit",
+    "equal-same-chord-angles-determine-circle2.lit",
+    "book03-proposition23-1.lit",
+    "book03-proposition23-equal-angle-use1.lit"
+  ],
+  "scalar_checkpoint": {
+    "receipt": ".draft/segment-ratio-scalar-checkpoint/receipt.json",
+    "status": "PASS2 strict/stable",
+    "scope_audit": ".draft/segment-ratio-scalar-checkpoint/scope-audit.json"
+  },
+  "pending": null,
+  "latest_rejection": "proof_journals/books02-03/equal-same-chord-angles-determine-circle1-rejection.json",
+  "consumer_boundary": "45-degree consumer has arbitrary input circles; concrete geometry nonvacuity is separately exercised by upper/lower semicircle similarity. More general concrete III23 source uses remain useful.",
+  "cold_gate": {
+    "receipt": ".draft/book03-proposition23-checkpoint/receipt.json",
+    "success": true,
+    "exit_code": 0,
+    "statement_count": 46,
+    "sources_and_binary_stable": true
+  }
+}

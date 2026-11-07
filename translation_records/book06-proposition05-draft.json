@@ -1,0 +1,23 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 5,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition05-checkpoint",
+  "statement_count": 28,
+  "hashes_stable": true,
+  "accepted_statements": [
+    9175,
+    9176
+  ],
+  "positive_construction_consumer": 9180,
+  "negative_collapsed_base": 9186,
+  "negative_obligation": "(0, 0) != (0, 0)",
+  "mathematics": "Proportional actual positive corresponding side lengths imply AAA. Two independent side ratios suffice; third follows. Quotient and Eudoxus equimultiple forms.",
+  "proof_route": "Source constructs an auxiliary triangle and uses VI4 and I8; checked analytic route derives a common positive scale and uses cosine law.",
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical module integration and final chapter proof-liveness audit."
+}

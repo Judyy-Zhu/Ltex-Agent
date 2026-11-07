@@ -1,0 +1,434 @@
+[
+  {
+    "id": "I.1",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop01.lit",
+    "legacy_has_real_conclusion": true,
+    "legacy_source_description": "To construct an equilateral triangle on a given finite straight-line. Let $AB$ be the given finite straight-line.  <prf> Thus, the three (straight-lines) $CA$, $AB$, and $BC$ are equal to one another.Thus, the triangle $ABC$ is equilateral, and has been constructed on the given finite straight-line $AB$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.2",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop02.lit",
+    "legacy_has_real_conclusion": true,
+    "legacy_source_description": "To place a straight-line equal to a given straight-line at a given point (as an extremity). Let $A$ be the given point, and $BC$ the given straight-line.  <prf>  Thus, $AL$ is also equal to $BC$. Thus, the straight-line $AL$, equal to the given straight-line $BC$, has been placed at the given point $A$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.3",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop03.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "For two given unequal straight-lines, to cut off from the greater a straight-line equal to the lesser. Let $AB$ and $C$ be the two given unequal straight-lines, of which let the greater be $AB$.  <prf> So $AE$ is also equal to $C$ [C.N.~1]. Thus, for two given unequal straight-lines, $AB$ and $C$, the (straight-line) $AE$, equal to the lesser $C$, has been cut off from the greater $AB$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.4",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop04.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two triangles have two  sides equal to two sides, respectively, and have the angle(s) enclosed by the equal straight-lines equal, then they will also have the base equal to the base, and the triangle will be equal to the triangle, and the remaining angles subtended by the equal sides will be equal to the corresponding remaining angles. Let $ABC$ and $DEF$ be  two triangles having the two sides $AB$ and $AC$ equal to the two sides $DE$ and $DF$, respectively. (That is) $AB$ to $DE$, and $AC$ to $DF$. And (let) the angle $BAC$ (be) equal to the angle $EDF$.  <prf>  Thus, the base $BC$ will coincide with $EF$, and will be equal to it [C.N.~4]. So the whole triangle $ABC$ will coincide with the whole triangle $DEF$, and will be equal to it [C.N.~4]. And the remaining angles will coincide with the remaining angles, and  will be equal to them [C.N.~4]. (That is) $ABC$ to $DEF$, and $ACB$ to $DFE$ [C.N.~4]. Thus, if two triangles have two  sides equal to two sides, respectively, and have the angle(s) enclosed by the equal straight-line equal, then they will also have the base equal to the base, and the triangle will be equal to the triangle,  and the remaining angles subtended by the equal sides will be equal to the corresponding remaining angles. .",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.5",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop05.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "For isosceles triangles, the angles at the base are equal to one another, and if the equal sides are produced then the angles under the base will be equal to one another. Let $ABC$ be an isosceles triangle having the side $AB$ equal to the side $AC$, and let the straight-lines $BD$ and $CE$ have been produced in a straight-line with $AB$ and $AC$ (respectively) [Post.~2]. I say that the angle $ABC$ is equal to $ACB$, and (angle) $CBD$  to $BCE$.  <prf> Therefore, since the whole angle $ABG$ was shown (to be) equal to the whole angle $ACF$, within which $CBG$ is equal to $BCF$, the remainder $ABC$ is thus equal to the remainder $ACB$ [C.N.~3]. And they are at the base of triangle $ABC$. And $FBC$ was also shown (to be) equal to $GCB$. And they are under the base. Thus, for isosceles triangles, the angles at the base are equal to one another, and if the equal sides are produced then the angles under the base will be equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.6",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop06.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If a triangle has two angles equal to one another then the sides subtending the equal angles will also be equal to one another. Let $ABC$ be a triangle having the angle $ABC$ equal to the angle $ACB$. I say that side $AB$ is also equal to side $AC$.  <prf> Thus, $AB$ is not unequal to $AC$. Thus, (it is) equal. Thus, if a triangle has two angles equal to one another then the sides subtending the equal angles will also be equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.7",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop07.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "On the same straight-line, two other straight-lines  equal, respectively, to  two (given) straight-lines (which meet) cannot be constructed (meeting) at  a different point on the same side (of the straight-line), but having the same ends as the given straight-lines.     For, if possible, let the two straight-lines $AC$, $CB$, equal to two other straight-lines $AD$, $DB$, respectively, have been constructed on the same straight-line $AB$, meeting at different points, $C$ and $D$, on the same side (of $AB$), and having the same ends (on $AB$). So $CA$ is equal to $DA$, having the same end $A$ as it, and $CB$ is equal to $DB$, having the same end $B$ as it. And let $CD$ have been joined [Post.~1]. <prf> Again, since  $CB$ is equal to $DB$, the angle $CDB$ is also equal to angle $DCB$ [Prop.~1.5]. But it was shown that the former (angle) is also much greater (than the latter). The very thing is impossible. Thus, on the same straight-line, two other straight-lines equal, respectively, to two (given) straight-lines (which meet) cannot be constructed (meeting) at a different point on the same side (of the straight-line), but having the same ends as the given straight-lines.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.8",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop08.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two triangles have  two sides equal to two sides, respectively,  and also have the base equal to the base, then they will also have equal the angles  encompassed by the equal straight-lines.     Let $ABC$ and $DEF$ be two triangles having the two sides $AB$ and $AC$ equal to the two sides $DE$ and $DF$, respectively. (That is) $AB$ to $DE$, and $AC$ to $DF$. Let them also have the base $BC$ equal to the base $EF$. I say that the angle $BAC$ is also equal to the angle $EDF$. <prf>   Thus, they will coincide. So the angle $BAC$ will also coincide with angle $EDF$, and will be equal to it [C.N.~4].Thus, if two triangles have  two  sides equal to two side, respectively, and  have the base equal to the base, then they will also have equal the angles  encompassed by the equal straight-lines.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.9",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop09.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To cut a given rectilinear angle in half. Let $BAC$ be the given rectilinear angle. So it is required to cut it in half.    <prf>  Thus, angle $DAF$ is equal to angle $EAF$ [Prop.~1.8]. Thus, the given rectilinear angle $BAC$ has been cut in half by the straight-line $AF$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.10",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop10.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To cut a given finite straight-line in half. Let $AB$ be the given finite straight-line. So it is required to cut the finite straight-line $AB$ in half.  <prf> Thus, the base $AD$ is equal to the base $BD$ [Prop.~1.4]. Thus, the given finite straight-line $AB$ has been cut in half at  (point) $D$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.11",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop11.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To draw a straight-line at right-angles to a given straight-line from a given point on it. Let $AB$ be the given straight-line, and $C$ the given point on it. So it is required to draw a straight-line from the point $C$ at right-angles to the straight-line $AB$.  <prf> Thus, the straight-line $CF$ has been drawn at right-angles to the given straight-line $AB$ from the given point $C$ on it.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.12",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop12.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To draw a straight-line perpendicular to a given infinite straight-line from a given point which is not on it. Let $AB$ be the given infinite straight-line  and $C$ the given point, which is not on ($AB$).  So it is required to draw a  straight-line  perpendicular to the given infinite straight-line $AB$ from the given point $C$, which is not on ($AB$). <prf>   Thus, the (straight-line) $CH$ has been drawn perpendicular to the given infinite straight-line $AB$ from the given point $C$, which is not on  ($AB$).",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.13",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop13.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If a straight-line stood on a(nother)  straight-line makes angles, it will certainly either make two right-angles, or (angles whose sum is) equal to two right-angles. For  let some straight-line $AB$ stood on the straight-line $CD$ make the angles $CBA$ and $ABD$. I say that the angles $CBA$ and $ABD$ are certainly either two right-angles, or (have a sum) equal to two right-angles. <prf> Thus, (the sum of) $ABD$ and $ABC$ is also equal to two right-angles.Thus, if a straight-line stood on a(nother)  straight-line makes angles, it will certainly either make two right-angles, or (angles whose sum is) equal to two right-angles.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.14",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop14.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two straight-lines, not lying on the same side,  make adjacent angles (whose sum is) equal to two right-angles  with some straight-line, at a point on it, then the two straight-lines will be straight-on (with respect) to one another. For let two straight-lines $BC$ and $BD$, not lying on the same side, make adjacent angles $ABC$ and $ABD$ (whose sum is) equal to two right-angles with some straight-line $AB$, at the point $B$ on it. I say that $BD$ is  straight-on with respect to $CB$. <prf> Thus, $CB$ is straight-on with respect to $BD$.Thus, if two straight-lines, not lying on the same side, make adjacent angles (whose sum is) equal to two right-angles with some straight-line, at a point on it, then the two straight-lines will be straight-on (with respect) to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.15",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop15.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two straight-lines cut one another then they make the vertically opposite angles equal to one another.For let the two straight-lines $AB$ and $CD$ cut one another at the point $E$. I say that  angle $AEC$ is equal to (angle) $DEB$, and (angle) $CEB$ to (angle) $AED$. <prf>  Thus, the remainder $CEA$ is equal to the remainder $BED$ [C.N.~3]. Similarly, it can be shown that $CEB$ and $DEA$ are also equal.Thus, if two straight-lines cut one another then they make the vertically opposite angles equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.16",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop16.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "For any triangle, when one of the sides is produced, the external angle is greater than each of the internal and opposite angles.Let $ABC$ be a triangle, and let one of its sides $BC$ have been produced to $D$. I say that the external angle $ACD$ is greater than each of the  internal and opposite angles, $CBA$ and $BAC$.  Let the (straight-line) $AC$ have been cut in half at (point) $E$ [Prop.~1.10]. <prf> Thus,  $ACD$ is greater than $BAE$. Similarly, by having cut $BC$ in half,  it can  be shown (that) $BCG$ ---that is to say, $ACD$---(is) also greater than $ABC$. Thus, for any triangle, when one of the sides is produced, the external angle is greater than each of the internal and opposite angles.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.17",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop17.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "For any triangle,  (the sum of) two angles taken together in any (possible way) is less than two right-angles. Let $ABC$ be a triangle. I say that (the sum of) two angles of triangle $ABC$ taken together in any (possible way) is less than two right-angles. <prf> Thus, (the sum of) $ABC$ and $BCA$ is less than two right-angles. Similarly, we can show that (the sum of) $BAC$ and $ACB$ is also less than two right-angles, and further (that the sum of) $CAB$ and $ABC$ (is less than two right-angles).Thus, for any triangle,  (the sum of) two angles taken together in any (possible way) is less than two right-angles.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.18",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop18.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "In any triangle, the greater side subtends the greater angle. For let $ABC$ be a triangle having side $AC$ greater than $AB$. I say that angle $ABC$ is also greater than $BCA$.   <prf>  Thus, $ABC$ is much greater than  $ACB$.  Thus, in any triangle, the greater side subtends the greater angle. (Which is) the very thing  it was required to show.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.19",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop19.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "In any triangle, the greater angle is subtended by the greater side. Let $ABC$ be a triangle having the angle $ABC$ greater than $BCA$. I say that side $AC$ is also greater than side $AB$. <prf>  Thus, $AC$  is greater than $AB$. Thus, in any triangle, the greater angle is subtended by the greater side.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.20",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop20.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "In any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side). For let $ABC$ be a triangle. I say that in triangle $ABC$ (the sum of) two sides taken together in any (possible way) is greater than the remaining (side). (So), (the sum of) $BA$ and $AC$ (is greater) than $BC$, (the sum of) $AB$ and $BC$ than $AC$, and (the sum of) $BC$ and $CA$ than $AB$.   <prf>  Thus, (the sum of) $BA$ and $AC$ is greater than $BC$. Similarly, we can show that (the sum of) $AB$ and $BC$ is also greater than $CA$, and (the sum of) $BC$ and $CA$ than $AB$.Thus, in any triangle, (the sum of) two sides taken together in any (possible way) is greater than the remaining (side).",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.21",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop21.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two internal straight-lines are constructed on one of the sides of a triangle, from its ends, the constructed (straight-lines) will be less than the two remaining  sides of the triangle, but will encompass a greater angle. For let the two internal straight-lines $BD$ and $DC$ have been constructed on one of the sides $BC$ of the triangle $ABC$, from its ends $B$ and $C$ (respectively). I say that  $BD$ and $DC$ are less than the (sum of the) two  remaining sides of the triangle $BA$ and $AC$, but encompass an angle $BDC$ greater than $BAC$.    <prf>  Thus, $BDC$ is much greater than $BAC$.Thus, if two internal straight-lines are constructed on one of the sides of a triangle, from its ends,  the constructed (straight-lines) are less than the two remaining  sides of the triangle, but  encompass a greater angle.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.22",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop22.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To construct a triangle from three straight-lines which are equal to three given [straight-lines]. It is necessary for (the sum of) two (of the straight-lines) taken together in any (possible way) to be greater than the remaining (one), on account of the (fact that) in any triangle (the sum of) two sides taken together in any (possible way) is greater than the remaining (one) [Prop.~1.20].Let $A$, $B$, and $C$ be the three given straight-lines, of which let (the sum of) two taken together in any (possible way)  be greater than the remaining (one).(Thus), (the sum of) $A$ and $B$ (is greater) than $C$, (the sum of) $A$ and $C$ than $B$,  and also (the sum of) $B$ and $C$ than $A$.So it is required to construct a triangle  from (straight-lines) equal to $A$, $B$, and $C$.    <prf>  Thus,  the three straight-lines $KF$, $FG$, and $GK$ are equal to $A$, $B$, and $C$ (respectively).   Thus, the triangle $KFG$ has been constructed from the three straight-lines  $KF$, $FG$, and $GK$, which are equal to the three given straight-lines  $A$, $B$, and $C$ (respectively).(Which is) the very thing it was required  to do.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.23",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop23.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To construct a rectilinear angle equal to a given rectilinear angle at a (given) point on a given straight-line.Let $AB$ be the given straight-line,  $A$ the (given) point on it, and  $DCE$ the given rectilinear angle.So it is required to construct a rectilinear angle equal to the given rectilinear angle $DCE$ at the (given) point $A$ on the given straight-line $AB$.  <prf> Thus, the rectilinear angle $FAG$,  equal to the  given rectilinear angle $DCE$, has been constructed at the (given) point $A$ on the given straight-line $AB$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.24",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop24.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two triangles have two sides equal to two sides, respectively,  but (one) has the angle encompassed by the equal straight-lines greater than the (corresponding)  angle (in the other), then (the former triangle) will also have a base greater than the base (of the latter). Let  $ABC$ and $DEF$ be two triangles having the two sides $AB$ and $AC$  equal to the two sides $DE$ and $DF$, respectively.(That is), $AB$ (equal) to $DE$, and  $AC$ to $DF$. Let them also have the angle at $A$ greater than the angle at $D$. I say that the base $BC$ is also greater than the base $EF$.  <prf>  Thus, $BC$ (is) also greater than $EF$. Thus, if two triangles have two sides equal to two sides, respectively,  but (one) has the angle encompassed by the equal straight-lines greater than the   (corresponding) angle (in the other), then (the former triangle) will also have a base greater than the base (of the latter).",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.25",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop25.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two triangles have two sides equal to two sides, respectively, but (one) has a base greater than the base (of the other), then (the former triangle) will also have the angle encompassed by the equal straight-lines greater than the (corresponding) angle (in the latter).Let $ABC$ and $DEF$ be  two triangles having the two sides $AB$ and $AC$ equal to the two sides $DE$ and $DF$, respectively. (That is), $AB$ (equal) to $DE$, and $AC$ to $DF$. And let the base $BC$ be greater than the base $EF$. I say that angle $BAC$ is also greater than $EDF$. <prf>  Thus, $BAC$ is greater than $EDF$.Thus, if two triangles have two sides equal to two sides, respectively, but (one) has a base greater than the base (of the other), then (the former triangle) will also have the angle encompassed by the equal straight-lines greater than the (corresponding) angle (in the latter).",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.26",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop26.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If two triangles have two angles equal to two angles, respectively,  and one side equal to one side---in fact, either that by the equal angles, or that subtending one of the equal angles---then (the triangles) will also have the remaining sides equal to the [corresponding] remaining sides, and the remaining angle (equal) to the remaining angle.Let $ABC$ and $DEF$ be two triangles having the two angles $ABC$ and $BCA$ equal to the two (angles) $DEF$ and $EFD$, respectively. (That is) $ABC$ (equal) to $DEF$, and $BCA$ to $EFD$. And let them also have one side equal to one side. First of all, the (side) by the equal angles. (That is) $BC$ (equal) to $EF$. I say that they will have the  remaining sides equal to the corresponding remaining sides. (That is) $AB$ (equal) to $DE$, and $AC$ to $DF$. And (they will have) the remaining angle (equal) to the remaining angle. (That is) $BAC$ (equal) to $EDF$. <prf> Thus, the base $AC$ is equal to the base $DF$, and triangle $ABC$ (is) equal to triangle $DEF$, and the remaining angle $BAC$ (is) equal to the remaining angle $EDF$ [Prop.~1.4].Thus, if two triangles have two angles equal to two angles, respectively, and one side equal to one side---in fact, either that by the equal angles, or that subtending one of the equal angles---then (the triangles) will also have the remaining sides equal to the (corresponding) remaining sides, and the remaining angle (equal) to the remaining angle.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.27",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop27.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If a straight-line falling across two straight-lines makes the alternate angles equal to one another then the (two) straight-lines will be parallel to one another.For let the straight-line $EF$, falling across the two straight-lines $AB$ and $CD$, make the alternate angles $AEF$ and $EFD$ equal to one another. I say that $AB$ and $CD$ are parallel. <prf> Thus, $AB$ and $CD$ are parallel.Thus, if a straight-line falling across two straight-lines makes the alternate angles equal to one another then the (two) straight-lines will be parallel (to one another).",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.28",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop28.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If a straight-line falling across two straight-lines makes the external angle equal to the internal and opposite angle on the same side, or (makes) the (sum  of the) internal (angles) on the same side equal to two right-angles, then the (two) straight-lines will be parallel to one another.   For let $EF$, falling across the two straight-lines $AB$ and $CD$, make the external angle $EGB$ equal to the internal and opposite angle $GHD$, or the (sum of the) internal (angles) on the same side, $BGH$ and $GHD$, equal to two right-angles. I say that $AB$ is parallel to $CD$.   <prf> Thus, $AB$ is parallel to $CD$ [Prop.~1.27].  Thus, if a straight-line falling across two straight-lines makes the external angle equal to the internal and opposite angle on the same side, or (makes) the (sum of the) internal (angles) on the same side equal to two right-angles, then the (two) straight-lines will be parallel (to one another).",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.29",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop29.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "A straight-line falling across  parallel straight-lines makes the alternate angles equal to one another, the external (angle) equal to the internal and opposite (angle), and the (sum of the) internal (angles) on the same side equal to two right-angles. For let the straight-line $EF$ fall across the parallel straight-lines $AB$ and $CD$. I say that it makes the  alternate angles, $AGH$ and $GHD$,  equal,  the external angle $EGB$ equal to the internal and opposite (angle) $GHD$, and the (sum of the) internal (angles) on the same side, $BGH$ and $GHD$, equal to two right-angles. <prf>  Thus, (the sum of) $BGH$ and $GHD$ is also equal to two right-angles.Thus, a straight-line falling across parallel straight-lines makes the alternate angles equal to one another,  the external (angle) equal to the internal and opposite (angle), and the (sum of the) internal (angles) on the same side equal to two right-angles.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.30",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop30.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "(Straight-lines) parallel to the same straight-line are also parallel to one another.Let each of the (straight-lines) $AB$ and $CD$ be parallel to $EF$. I say that $AB$ is also parallel to $CD$. <prf>  Thus, $AB$ is parallel to $CD$ [Prop.~1.27]. Thus, (straight-lines) parallel to the same straight-line are also parallel to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.31",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop31.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To draw a straight-line parallel to a given straight-line, through a given point.Let $A$ be the given point, and $BC$ the given straight-line. So it is required to draw a straight-line parallel to the straight-line $BC$, through the point $A$.  <prf>  Thus, the straight-line $EAF$ has been drawn parallel to the given straight-line $BC$, through the  given point $A$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.32",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop32.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "In any triangle, (if) one of the sides (is) produced  (then) the external angle is equal to the (sum of the) two internal and opposite (angles), and the (sum of the) three internal angles of the triangle is equal to two right-angles. Let $ABC$ be a triangle, and let one of its sides $BC$ have been produced to $D$. I say that the external angle $ACD$ is equal to the (sum of the) two internal and opposite angles $CAB$ and $ABC$, and the (sum of the) three internal angles of the triangle---$ABC$, $BCA$, and $CAB$---is equal to two right-angles. <prf>  Thus, (the sum of) $ACB$, $CBA$, and $CAB$ is also equal to two right-angles.Thus, in any triangle,  (if) one of the sides  (is) produced (then) the external angle is equal to the (sum of the) two internal and opposite (angles), and the (sum of the) three internal angles of the triangle is equal to two right-angles.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.33",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop33.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Straight-lines joining equal and parallel (straight-lines) on the same sides are  themselves also equal and parallel.Let $AB$ and $CD$ be equal and parallel (straight-lines), and let the straight-lines $AC$ and $BD$ join them on the same sides. I say that $AC$ and $BD$ are also equal and parallel. <prf> Thus, straight-lines joining equal and parallel (straight-lines) on the same sides are themselves also equal and parallel.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.34",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop34.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "In parallelogrammic figures the opposite sides and angles are equal to one another, and a diagonal cuts them in half.Let $ACDB$ be a parallelogrammic figure, and $BC$ its diagonal. I say that for parallelogram $ACDB$, the opposite sides and angles are equal to one another, and the diagonal $BC$ cuts it in half. <prf> Thus, the base $AC$ (is) also equal to $DB$, and triangle $ABC$ is equal to triangle $BCD$ [Prop.~1.4].Thus, the diagonal $BC$ cuts the parallelogram $ACDB$ in half.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.35",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop35.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Parallelograms which are on the same base and between the same parallels are equal to one another. Let $ABCD$ and $EBCF$ be parallelograms on the same base $BC$, and between the same parallels $AF$ and $BC$. I say that $ABCD$ is equal to parallelogram $EBCF$. <prf> Thus, the whole parallelogram $ABCD$ is equal to the whole parallelogram $EBCF$.Thus, parallelograms which are on the same base and between the same parallels are equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.36",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop36.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Parallelograms which are on equal bases and between the same parallels are equal to one another. Let $ABCD$ and $EFGH$ be parallelograms which are on the equal bases $BC$ and $FG$, and (are) between the same parallels $AH$ and $BG$. I say that the parallelogram $ABCD$ is equal to $EFGH$. <prf> So that the parallelogram $ABCD$ is  also equal to $EFGH$.Thus, parallelograms which are on equal bases and between the same parallels are equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.37",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop37.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Triangles which are on the same base and between the same parallels are equal to one another.  Let $ABC$ and $DBC$ be triangles on the same base $BC$, and between the same parallels $AD$ and $BC$. I say that triangle $ABC$ is equal to triangle $DBC$. <prf> Thus, triangle $ABC$ is equal to triangle $DBC$.Thus, triangles which are on the same base and between the same parallels are equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.38",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop38.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Triangles which are on equal bases and between the same parallels are equal to one another. Let $ABC$ and $DEF$ be triangles on the equal bases $BC$ and $EF$, and between the same parallels $BF$ and $AD$. I say that triangle $ABC$ is equal to triangle $DEF$.  <prf> Thus, triangle $ABC$ is equal to triangle $DEF$.Thus, triangles which are on equal bases and between the same parallels are equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.39",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop39.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Equal triangles which are on the same base, and on the same side, are also between the same parallels.Let $ABC$ and $DBC$ be equal triangles which are on the same base $BC$, and on the same side (of it). I say that they are also between the same parallels.For let $AD$ have been joined. I say that $AD$ and $BC$ are parallel. <prf> Thus, $AD$ is parallel to $BC$.Thus, equal triangles which are on the same base, and on the same side, are also between the same parallels.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.40",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop40.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "Equal triangles which are on equal bases, and on the same side, are also between the same parallels.Let $ABC$ and $CDE$ be equal triangles on the equal bases $BC$ and $CE$ (respectively), and on the same side (of $BE$). I say that they are also between the same parallels.For let $AD$ have been joined. I say that $AD$ is parallel to $BE$.   <prf> Thus, $AD$ is parallel to $BE$.Thus, equal triangles which are on equal bases, and on the same side, are also between the same parallels.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.41",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop41.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "If a parallelogram has the same base as a triangle, and is between the same parallels, then the parallelogram is double (the area) of the triangle. For let parallelogram $ABCD$ have the same base $BC$ as triangle $EBC$, and let it be between the same parallels, $BC$ and $AE$. I say that  parallelogram $ABCD$ is double (the area) of triangle $BEC$.  <prf> So parallelogram $ABCD$ is also double (the area) of triangle $EBC$.Thus, if a parallelogram has the same base as a triangle, and is between the same parallels, then the parallelogram is double (the area) of the triangle.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.42",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop42.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To construct a parallelogram equal to a given triangle in a given rectilinear angle. Let $ABC$ be the given triangle, and $D$ the given rectilinear angle. So it is required to construct a parallelogram equal to triangle $ABC$ in the rectilinear angle $D$.  <prf> Thus, parallelogram $FECG$ is equal to triangle $ABC$.($FECG$) also has the angle $CEF$ equal to the given (angle) $D$. Thus, parallelogram $FECG$,  equal to the given triangle $ABC$, has been constructed in the angle $CEF$, which is equal to $D$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.43",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop43.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "For any parallelogram, the complements of the parallelograms about the diagonal are equal to one another. Let $ABCD$ be a parallelogram, and $AC$ its diagonal. And let $EH$ and $FG$ be the parallelograms about  $AC$, and $BK$ and $KD$ the so-called complements (about $AC$). I say that the complement $BK$ is equal to the complement $KD$. <prf> Thus, the remaining complement $BK$ is equal to the remaining complement $KD$. Thus, for any parallelogramic figure, the complements of the parallelograms about the diagonal are equal to one another.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.44",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop44.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To apply a parallelogram equal to a given triangle to a given straight-line in a given rectilinear angle. Let $AB$ be the given straight-line,  $C$ the given triangle, and $D$ the given rectilinear angle. So it is required to apply a parallelogram equal to the given triangle $C$ to the given straight-line $AB$ in an angle equal to (angle) $D$. <prf> Thus, the parallelogram $LB$, equal to the given triangle $C$, has been applied to the given straight-line $AB$ in the angle $ABM$, which is equal to $D$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.45",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop45.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To construct a parallelogram equal to a given rectilinear figure in a given rectilinear angle.Let $ABCD$ be the given rectilinear figure, and $E$ the given rectilinear angle. So it is required to construct a parallelogram equal to the rectilinear figure $ABCD$ in the given angle $E$.  <prf> And since triangle $ABD$ is equal to parallelogram $FH$, and $DBC$ to $GM$, the whole rectilinear figure $ABCD$ is thus equal to the whole parallelogram $KFLM$. Thus, the parallelogram $KFLM$, equal to the given rectilinear figure $ABCD$, has been constructed in the angle $FKM$, which is equal to the given (angle) $E$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.46",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop46.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "To describe a square on a given straight-line. Let $AB$ be the given straight-line.So it is required to describe a square on the straight-line $AB$. <prf> Thus, $ADEB$ is right-angled. And it was also shown (to be) equilateral.Thus, ($ADEB$) is a square [Def.~1.22]. And it is described on the straight-line $AB$.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.47",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop47.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "In right-angled triangles,  the square on the side subtending the right-angle is equal to the (sum of the) squares on the sides containing the right-angle. Let $ABC$ be a right-angled triangle having the angle $BAC$a right-angle. I say that the square on $BC$ is equal to the (sum of the) squares on $BA$ and $AC$.  <prf>  Thus, the square on the side $BC$ is equal to the (sum of the) squares on the sides $BA$ and $AC$. Thus, in right-angled triangles,  the square on the side subtending the right-angle is equal to the (sum of the) squares on the sides surrounding the right-[angle].",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  },
+  {
+    "id": "I.48",
+    "source": "Euclid Elements, Book I; legacy Book.zip",
+    "legacy_path": "Book/Prop48.lit",
+    "legacy_has_real_conclusion": false,
+    "legacy_source_description": "For let the square on one of the sides, $BC$, of triangle $ABC$ be equal to the (sum of the) squares on the sides $BA$ and $AC$. I say that angle $BAC$ is a right-angle. <prf>  Thus, $BAC$ is also a right-angle.Thus, if the square on one of the sides of a triangle is equal to the (sum of the) squares on the remaining two sides of the triangle then the angle contained by the remaining two sides of the triangle is a right-angle.",
+    "status": "not_accepted_in_current_book",
+    "comments": "Archive descriptions are historical supporting material; authoritative PDF source fidelity and current proof verification remain required."
+  }
+]

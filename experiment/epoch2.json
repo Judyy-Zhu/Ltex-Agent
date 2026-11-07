@@ -1,0 +1,18 @@
+{
+  "epoch": 2,
+  "command": [
+    "cargo",
+    "build",
+    "--release"
+  ],
+  "started_at": "2026-10-11T03:24:26.337755+00:00",
+  "ended_at": "2026-10-11T03:24:26.524362+00:00",
+  "wall_seconds": 0.18649595812894404,
+  "exit_code": 0,
+  "src_tree_sha256": "731bbb2d87b80966141fb3954961f9ca12ed527f6750e73dba2367ba547f00be",
+  "source_stable_during_build": true,
+  "binary_sha256": "0be34d26405f77ed7e01bb8b02f40813dc145acc274e3220c41276bc47d4a45f",
+  "pinned_binary": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/pinned-release/target/release/litex",
+  "version": "Litex 1.0.6-beta",
+  "purpose": "build current release and freeze exact executable bytes after observed concurrent update"
+}

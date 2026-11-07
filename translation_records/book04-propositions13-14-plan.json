@@ -1,0 +1,16 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_items": [
+    "IV13 lines5110–5173",
+    "IV14 lines5174–5211"
+  ],
+  "required_input": "An arbitrary given equilateral/equiangular pentagon, not merely the coordinates constructed for IV11.",
+  "shared_route": [
+    "Equal lengths and equal consistently oriented turns imply equal consecutive edge determinants by the Gram identity.",
+    "Dot and determinant equations force the three-edge recurrence u+w=(2k/S)v.",
+    "A center equidistant from three consecutive vertices remains equidistant from the fourth; apply twice to obtain a common circumcenter.",
+    "Equal chords then have equal perpendicular midpoint distances; prove positive inradius, finite contacts, center interior and tangency for IV13."
+  ],
+  "boundary": "Helpers with positive oriented turns are intermediate statements only. Before counting source IV13/14, supply the full bridge from the source regular-pentagon representation, account for reverse orientation, and derive interior/finite-contact conditions; never assume a circumcircle or reuse IV11 coordinates as the given input.",
+  "status": "First independent equal-turn determinant helper submitted in retained native17245. IV13 and IV14 remain incomplete."
+}

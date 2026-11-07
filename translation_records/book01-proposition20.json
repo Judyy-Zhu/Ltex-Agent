@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 20,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/20.txt"
+  },
+  "problem": "In a nondegenerate triangle, every pair of side lengths has a sum greater than the remaining side length.",
+  "proof_idea": {
+    "original": "Extend one side by the other side, use isosceles angles and the larger-angle/larger-side theorem, then identify the total extended length.",
+    "analytic": "Strict Gram bound gives sqrt(x)+sqrt(y)>sqrt(z); consume the actual positive segment-length function and triangle vertex permutations for all three sums."
+  },
+  "litex_code": "# Book I.20: each pair of actual triangle side lengths exceeds the remaining length.\nthm proposition_20:\n    ? forall a, b, c cart(R, R):\n        a != b\n        a != c\n        b != c\n        $geometry::main::is_triangle(a, b, c)\n        =>:\n            segment_length(a, b) + segment_length(a, c) > segment_length(b, c)\n            segment_length(a, b) + segment_length(b, c) > segment_length(a, c)\n            segment_length(a, c) + segment_length(b, c) > segment_length(a, b)\n    by def $geometry::main::is_triangle(a, b, c)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0\n    release thm geometry::main::triangle_det_squared_vertex(a, b, c)\n    geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0\n    by contra:\n        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) != 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) = 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = 0\n        impossible geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 > 0\n    by def $geometry::main::is_triangle(b, a, c)\n    release thm cyclic_triangle_determinant(a, b, c)\n    geometry::main::det(geometry::main::vec(c, a), geometry::main::vec(c, b)) != 0\n    by def $geometry::main::is_triangle(c, a, b)\n    release thm adjacent_triangle_lengths_exceed_opposite(a, b, c)\n    release thm adjacent_triangle_lengths_exceed_opposite(b, a, c)\n    release thm adjacent_triangle_lengths_exceed_opposite(c, a, b)\n    release thm segment_length_is_symmetric(a, b)\n    release thm segment_length_is_symmetric(a, c)\n    release thm segment_length_is_symmetric(b, c)\n    segment_length(a, b) + segment_length(b, c) = segment_length(b, a) + segment_length(b, c) > segment_length(a, c)\n    segment_length(a, c) + segment_length(b, c) = segment_length(c, a) + segment_length(c, b) > segment_length(a, b)\n",
+  "comments": {
+    "status": "canonical strict first-twenty file gate passed",
+    "trust_added": 0,
+    "draft_source": "scripts/Euclid_Elements/.draft/authoring-angles/proposition20-1.lit",
+    "quantity_boundary": "Actual length sum, not squared-distance sum. Positive function domain contains endpoint distinctness; zero-edge guard and concrete length use probes remain pending."
+  },
+  "accepted_session_id": 55623,
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-twenty-checkpoint/receipt.json"
+}

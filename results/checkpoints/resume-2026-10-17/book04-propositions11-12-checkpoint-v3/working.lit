@@ -1,0 +1,206 @@
+release obj def geometry::main::vec
+
+
+
+release obj def geometry::main::det
+
+
+
+thm proper_triangle_adjacent_segments_intersect_at_vertex:
+    ? forall a,b,c,p cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        $entry::is_on_segment(p,a,b)
+        $entry::is_on_segment(p,a,c)
+        =>:
+            p = a
+    by def $entry::is_on_segment(p,a,b)
+    obtain u from exist u R st {0 <= u, u <= 1, p(1) = (1-u)*a(1)+u*b(1), p(2) = (1-u)*a(2)+u*b(2)}
+    by def $entry::is_on_segment(p,a,c)
+    obtain v from exist v R st {0 <= v, v <= 1, p(1) = (1-v)*a(1)+v*c(1), p(2) = (1-v)*a(2)+v*c(2)}
+    a(1)+u*(b(1)-a(1))+0*(c(1)-a(1)) = (1-u)*a(1)+u*b(1) = p(1) = (1-v)*a(1)+v*c(1) = a(1)+0*(b(1)-a(1))+v*(c(1)-a(1))
+    a(2)+u*(b(2)-a(2))+0*(c(2)-a(2)) = (1-u)*a(2)+u*b(2) = p(2) = (1-v)*a(2)+v*c(2) = a(2)+0*(b(2)-a(2))+v*(c(2)-a(2))
+    release thm entry::triangle_barycentric_coordinates_unique(a,b,c,u,0,0,v)
+    u = 0
+    v = 0
+    p(1) = (1-u)*a(1)+u*b(1) = a(1)
+    p(2) = (1-u)*a(2)+u*b(2) = a(2)
+    release thm tuple_equal_from_coordinates(p,(p(1),p(2)))
+    release thm tuple_equal_from_coordinates(a,(a(1),a(2)))
+    (p(1),p(2)) = (a(1),a(2))
+    p = (p(1),p(2)) = (a(1),a(2)) = a
+
+
+
+thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $entry::segments_meet_only_at_common_endpoints(a,b,a,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    claim:
+        ? forall p cart(R,R):
+            $entry::is_on_segment(p,a,b)
+            $entry::is_on_segment(p,a,c)
+            p != a
+            =>:
+                p = b
+        release thm proper_triangle_adjacent_segments_intersect_at_vertex(a,b,c,p)
+        by contra:
+            ? p = b
+            impossible p != a
+    claim:
+        ? forall p cart(R,R):
+            $entry::is_on_segment(p,a,b)
+            $entry::is_on_segment(p,a,c)
+            p != a
+            =>:
+                p = c
+        release thm proper_triangle_adjacent_segments_intersect_at_vertex(a,b,c,p)
+        by contra:
+            ? p = c
+            impossible p != a
+    by def $entry::segments_meet_only_at_common_endpoints(a,b,a,c)
+
+
+
+thm closed_segment_membership_reversed:
+    ? forall p,a,b cart(R,R):
+        $entry::is_on_segment(p,a,b)
+        =>:
+            $entry::is_on_segment(p,b,a)
+    by def $entry::is_on_segment(p,a,b)
+    obtain t from exist t R st {0 <= t, t <= 1, p(1) = (1-t)*a(1)+t*b(1), p(2) = (1-t)*a(2)+t*b(2)}
+    b != a
+    0 <= 1-t
+    1-t <= 1
+    p(1) = (1-t)*a(1)+t*b(1) = (1-(1-t))*b(1)+(1-t)*a(1)
+    p(2) = (1-t)*a(2)+t*b(2) = (1-(1-t))*b(2)+(1-t)*a(2)
+    witness exist u R st {0 <= u, u <= 1, p(1) = (1-u)*b(1)+u*a(1), p(2) = (1-u)*b(2)+u*a(2)} from 1-t
+    by def $entry::is_on_segment(p,b,a)
+
+
+
+thm common_endpoint_condition_reverse_first_segment:
+    ? forall a,b,c,d cart(R,R):
+        $entry::segments_meet_only_at_common_endpoints(a,b,c,d)
+        =>:
+            $entry::segments_meet_only_at_common_endpoints(b,a,c,d)
+    by def $entry::segments_meet_only_at_common_endpoints(a,b,c,d)
+    b != a
+    claim:
+        ? forall p cart(R,R):
+            $entry::is_on_segment(p,b,a)
+            $entry::is_on_segment(p,c,d)
+            p != b
+            =>:
+                p = a
+        release thm closed_segment_membership_reversed(p,b,a)
+        by contra:
+            ? p = a
+            p != a
+            p = b
+            impossible p != b
+    claim:
+        ? forall p cart(R,R):
+            $entry::is_on_segment(p,b,a)
+            $entry::is_on_segment(p,c,d)
+            p != c
+            =>:
+                p = d
+        release thm closed_segment_membership_reversed(p,b,a)
+        p = d
+    by def $entry::segments_meet_only_at_common_endpoints(b,a,c,d)
+
+
+
+thm common_endpoint_condition_symmetric:
+    ? forall a,b,c,d cart(R,R):
+        $entry::segments_meet_only_at_common_endpoints(a,b,c,d)
+        =>:
+            $entry::segments_meet_only_at_common_endpoints(c,d,a,b)
+    by def $entry::segments_meet_only_at_common_endpoints(a,b,c,d)
+    by def $entry::segments_meet_only_at_common_endpoints(c,d,a,b)
+
+
+
+thm proper_triangle_cyclic_rotations:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $geometry::main::is_triangle(b,c,a)
+            $geometry::main::is_triangle(c,a,b)
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    release thm geometry::main::collinear_det_expand(b,c,a)
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    by def $geometry::main::is_triangle(b,c,a)
+    release thm geometry::main::collinear_det_expand(c,a,b)
+    geometry::main::det(geometry::main::vec(c,a),geometry::main::vec(c,b)) = (a(1)-c(1))*(b(2)-c(2))-(a(2)-c(2))*(b(1)-c(1)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    by def $geometry::main::is_triangle(c,a,b)
+
+
+
+thm proper_triangle_consecutive_segments_common_endpoint:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $entry::segments_meet_only_at_common_endpoints(a,b,b,c)
+            $entry::segments_meet_only_at_common_endpoints(b,c,c,a)
+            $entry::segments_meet_only_at_common_endpoints(c,a,a,b)
+    release thm proper_triangle_cyclic_rotations(a,b,c)
+    release thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint(b,c,a)
+    release thm common_endpoint_condition_symmetric(b,c,b,a)
+    release thm common_endpoint_condition_reverse_first_segment(b,a,b,c)
+    $entry::segments_meet_only_at_common_endpoints(a,b,b,c)
+    release thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint(c,a,b)
+    release thm common_endpoint_condition_symmetric(c,a,c,b)
+    release thm common_endpoint_condition_reverse_first_segment(c,b,c,a)
+    $entry::segments_meet_only_at_common_endpoints(b,c,c,a)
+    release thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint(a,b,c)
+    release thm common_endpoint_condition_symmetric(a,b,a,c)
+    release thm common_endpoint_condition_reverse_first_segment(a,c,a,b)
+    $entry::segments_meet_only_at_common_endpoints(c,a,a,b)
+
+
+
+release obj def geometry::main::dot
+
+
+
+
+release obj def geometry::main::distance_sq
+
+
+
+
+release obj def area::triangle_area
+
+
+
+
+release obj def geometry::main::angle_cos_num
+
+
+
+release obj def geometry::main::angle_cos_den
+
+
+
+release obj def angles::angle_cosine
+
+
+
+release obj def geometry::main::circle
+
+# Euclid IV.Def3 and IV.Def6 describe the same incidence relation in opposite directions.
+# Finite simple polygon boundary and positive circle radius are part of its domain.
+
+
+prop polygon_inscribed_in_circle(n N+, vertices fn(k Z) cart(R,R), center cart(R,R), radius R+):
+    $entry::is_simple_polygonal_cycle(n,vertices)
+    forall k Z:
+        0 <= k
+        k < n
+        =>:
+            vertices(k) $in geometry::main::circle(center,radius)
+

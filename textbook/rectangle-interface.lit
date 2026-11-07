@@ -1,0 +1,144 @@
+# Book II, Definition 1: positive adjacent sides of a proper rectangle.
+# Coordinate implementation; geometric area and existence are derived below.
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def geometry::main::dot
+release obj def geometry::main::distance_sq
+
+# Positive side-product candidate; geometric rectangle-area equivalence is a separate pending theorem.
+have fn rectangle_content(width, height R+) R+ = width*height
+
+# II.Def1: a proper rectangular parallelogram is contained by its two adjacent positive side lengths.
+# The definition contains no area-product conclusion; that equivalence must be proved.
+prop is_rectangle_contained_by(a, b, c, d cart(R, R), width, height R+):
+    $area::is_proper_parallelogram(a, b, c, d)
+    $geometry::main::is_right_angle(d, a, b)
+    geometry::main::distance_sq(a, b) = width^2
+    geometry::main::distance_sq(a, d) = height^2
+
+# The product of positive adjacent side lengths is the actual unsigned area of any proper rectangle.
+# Gram's identity with orthogonal sides gives det^2=width^2*height^2; I34 supplies the diagonal half areas.
+thm rectangle_content_is_geometric_area:
+    ? forall a, b, c, d cart(R, R), width, height R+:
+        $is_rectangle_contained_by(a, b, c, d, width, height)
+        =>:
+            $area::has_parallelogram_area(a, b, c, d, rectangle_content(width, height))
+    by def $is_rectangle_contained_by(a, b, c, d, width, height)
+    $geometry::main::is_right_angle(d, a, b)
+    by def $geometry::main::is_right_angle(d, a, b)
+    have u cart(R, R) = geometry::main::vec(a, b)
+    have v cart(R, R) = geometry::main::vec(a, d)
+    release thm geometry::main::dot_symmetric(u, v)
+    geometry::main::dot(u, v) = geometry::main::dot(v, u) = 0
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, d)
+    geometry::main::dot(u, u) = geometry::main::distance_sq(a, b) = width^2
+    geometry::main::dot(v, v) = geometry::main::distance_sq(a, d) = height^2
+    release thm geometry::main::dot_squared_plus_det_squared(u, v)
+    geometry::main::dot(u, v)^2 = 0^2 = 0
+    geometry::main::det(u, v)^2 = geometry::main::dot(u, v)^2+geometry::main::det(u, v)^2 = geometry::main::dot(u, u)*geometry::main::dot(v, v) = width^2*height^2 = (width*height)^2
+    width*height > 0
+    width*height >= 0
+    geometry::main::det(u, v)^2 = (width*height)^2
+    geometry::main::det(u, v)^2 >= 0
+    (width*height)^2 >= 0
+    sqrt(geometry::main::det(u, v)^2) = sqrt((width*height)^2) = width*height
+    release thm book01::proposition_34(a, b, c, d)
+    obtain half from exist common R+ st {$area::has_triangle_area(a, b, d, common), $area::has_triangle_area(b, c, d, common), $area::has_parallelogram_area(a, b, c, d, 2*common)}
+    by def $area::has_triangle_area(a, b, d, half)
+    geometry::main::det(u, v) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))
+    geometry::main::det(u, v)^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2
+    2*half = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2) = sqrt(geometry::main::det(u, v)^2) = width*height = rectangle_content(width, height)
+    $area::has_parallelogram_area(a, b, c, d, rectangle_content(width, height))
+
+# Any two positive lengths construct an actual proper rectangle with their product as unsigned area.
+thm construct_rectangle_from_positive_lengths:
+    ? forall width, height R+:
+        exist a, b, c, d cart(R, R) st {$is_rectangle_contained_by(a, b, c, d, width, height), $area::has_parallelogram_area(a, b, c, d, rectangle_content(width, height))}
+    width != 0
+    height != 0
+    width*height > 0
+    width*height != 0
+    by contra:
+        ? -(width*height) != 0
+        -(width*height) = 0
+        width*height = -(-(width*height)) = -0 = 0
+        impossible width*height != 0
+    have a cart(R, R) = (0, 0)
+    a(1) = 0
+    a(2) = 0
+    have b cart(R, R) = (width, 0)
+    b(1) = width
+    b(2) = 0
+    have c cart(R, R) = (width, height)
+    c(1) = width
+    c(2) = height
+    have d cart(R, R) = (0, height)
+    d(1) = 0
+    d(2) = height
+    d(1)-a(1) = 0-0 = 0
+    d(2)-a(2) = height-0 = height
+    by contra:
+        ? a != b
+        a = b
+        0 = a(1) = b(1) = width
+        impossible width != 0
+    by contra:
+        ? d != c
+        d = c
+        0 = d(1) = c(1) = width
+        impossible width != 0
+    by contra:
+        ? a != d
+        a = d
+        0 = a(2) = d(2) = height
+        impossible height != 0
+    by contra:
+        ? b != c
+        b = c
+        0 = b(2) = c(2) = height
+        impossible height != 0
+    release thm geometry::main::vec_coordinate_formula(a, b)
+    geometry::main::vec(a, b)(1) = b(1)-a(1) = width
+    geometry::main::vec(a, b)(2) = b(2)-a(2) = 0
+    release thm geometry::main::vec_coordinate_formula(d, c)
+    geometry::main::vec(d, c)(1) = c(1)-d(1) = width
+    geometry::main::vec(d, c)(2) = c(2)-d(2) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, b), geometry::main::vec(d, c))
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(d, c)) = 0
+    by def $geometry::main::is_parallel(a, b, d, c)
+    b(1)-a(1) = width-0 = width
+    b(2)-a(2) = 0-0 = 0
+    (b(1)-a(1))*height = (width-0)*height = width*height
+    (b(2)-a(2))*0 = 0
+    release thm geometry::main::collinear_det_expand(a, b, d)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = (b(1)-a(1))*height-(b(2)-a(2))*0 = width*height-0 = width*height != 0
+    by def $parallel::are_parallel_lines(a, b, d, c)
+    release thm geometry::main::vec_coordinate_formula(a, d)
+    geometry::main::vec(a, d)(1) = d(1)-a(1) = 0
+    geometry::main::vec(a, d)(2) = d(2)-a(2) = height
+    release thm geometry::main::vec_coordinate_formula(b, c)
+    geometry::main::vec(b, c)(1) = c(1)-b(1) = 0
+    geometry::main::vec(b, c)(2) = c(2)-b(2) = height
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, d), geometry::main::vec(b, c))
+    geometry::main::det(geometry::main::vec(a, d), geometry::main::vec(b, c)) = 0
+    by def $geometry::main::is_parallel(a, d, b, c)
+    height*(b(1)-a(1)) = height*width = width*height
+    release thm geometry::main::collinear_det_expand(a, d, b)
+    geometry::main::det(geometry::main::vec(a, d), geometry::main::vec(a, b)) = (d(1)-a(1))*(b(2)-a(2))-(d(2)-a(2))*(b(1)-a(1)) = 0*(b(2)-a(2))-height*(b(1)-a(1)) = 0-width*height = -(width*height) != 0
+    by def $parallel::are_parallel_lines(a, d, b, c)
+    by def $area::is_proper_parallelogram(a, b, c, d)
+    release thm geometry::main::perpendicular_dot_expand(a, d, a, b)
+    geometry::main::dot(geometry::main::vec(a, d), geometry::main::vec(a, b)) = (d(1)-a(1))*(b(1)-a(1))+(d(2)-a(2))*(b(2)-a(2)) = 0
+    by def $geometry::main::is_right_angle(d, a, b)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    release thm geometry::main::distance_sq_coordinate_formula(a, d)
+    (b(1)-a(1))^2 = width^2
+    (b(2)-a(2))^2 = 0^2 = 0
+    geometry::main::distance_sq(a, b) = (b(1)-a(1))^2+(b(2)-a(2))^2 = width^2+0 = width^2
+    (d(1)-a(1))^2 = 0^2 = 0
+    (d(2)-a(2))^2 = height^2
+    geometry::main::distance_sq(a, d) = (d(1)-a(1))^2+(d(2)-a(2))^2 = 0+height^2 = height^2
+    by def $is_rectangle_contained_by(a, b, c, d, width, height)
+    release thm rectangle_content_is_geometric_area(a, b, c, d, width, height)
+    witness exist aa, bb, cc, dd cart(R, R) st {$is_rectangle_contained_by(aa, bb, cc, dd, width, height), $area::has_parallelogram_area(aa, bb, cc, dd, rectangle_content(width, height))} from a, b, c, d

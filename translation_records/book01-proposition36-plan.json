@@ -1,0 +1,178 @@
+{
+  "status": "draft preflight passed, not yet submitted",
+  "source": "Fitzpatrick2008 I36, equal-base parallelograms between same parallels",
+  "source_interface": "two proper cyclic figures ABCD and EFGH; BC congruent FG; F,G on lineBC, D,H on common upper parallel via determinant equations",
+  "proof_spine": [
+    "equal parallel nonzero bases imply equal squared determinants against common height",
+    "lower/upper endpoint offsets contribute zero determinant",
+    "I34 gives positive half areas, identify their squares/roots and whole areas"
+  ],
+  "scalar_evidence": "proof_journals/book01/I36-equal-parallel-base-scalar3-accepted.json",
+  "trust_added": 0,
+  "acceptance_pending": [
+    "translated separated bases with equal heights",
+    "reversed equal base direction",
+    "unequal bases rejected",
+    "different upper line rejected"
+  ],
+  "shared_area_prerequisite": {
+    "source": ".draft/book01-area-continuation/equal-parallel-base-determinants-squared.lit",
+    "consumers": [
+      "I36 equal-base parallelograms",
+      "I38 equal-base triangles"
+    ],
+    "reason": "Both prepared source proofs contain the identical local determinant-square argument; extract that mathematical identity once, preserving all domains and conclusions. It does not assert area equality or assume I36/I38.",
+    "status": "Session72613 PASS with empty control FAIL; isolated strict PASS1 and stable hashes. Actual I36/I38 consumers pending",
+    "source36": ".draft/book01-area-continuation/proposition36-shared-base-proof.lit",
+    "source38": ".draft/book01-area-continuation/proposition38-shared-base-proof.lit"
+  },
+  "concrete_coordinate_oracles": {
+    "status": "rational arithmetic only; Litex use proofs not written/verified",
+    "cases": [
+      {
+        "case": "separated_equal_bases",
+        "first": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "second": [
+          [
+            1,
+            2
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "first_area": "6",
+        "second_area": "6",
+        "first_base_sq": 5,
+        "second_base_sq": 5,
+        "same_lower_line_checks": [
+          0,
+          0
+        ],
+        "same_upper_line_check": 0
+      },
+      {
+        "case": "reversed_equal_base",
+        "first": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "second": [
+          [
+            3,
+            6
+          ],
+          [
+            6,
+            6
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "first_area": "6",
+        "second_area": "6",
+        "first_base_sq": 5,
+        "second_base_sq": 5,
+        "same_lower_line_checks": [
+          0,
+          0
+        ],
+        "same_upper_line_check": 0
+      },
+      {
+        "case": "unequal_base_rejection",
+        "first": [
+          [
+            0,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "second": [
+          [
+            0,
+            0
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            7,
+            8
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "first_area": "6",
+        "second_area": "12",
+        "first_base_sq": 5,
+        "second_base_sq": 20,
+        "same_lower_line_checks": [
+          0,
+          0
+        ],
+        "same_upper_line_check": 0
+      }
+    ]
+  }
+}

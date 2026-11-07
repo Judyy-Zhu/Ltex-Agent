@@ -1,0 +1,20 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 16,
+    "mathematics": "Four proportional segments \u2194 rectangle of extremes equals rectangle of means."
+  },
+  "status": "both_directions_independent_gate_passed",
+  "main_sha256": "db633e11a886816020035849f3c7e387f17df456fcbb9f8e1bbf4a0c0d044a80",
+  "forward": {
+    "request": 10001
+  },
+  "converse": {
+    "request": 10002
+  },
+  "core_gate": {
+    "stmts": 36,
+    "accepted": 36
+  },
+  "trust_added": 0
+}

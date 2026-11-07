@@ -1,0 +1,22 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    61,
+    62,
+    63
+  ],
+  "source_lines": [
+    2513,
+    2572
+  ],
+  "status": "Retained-Session construction accepted0084; no canonical coverage increment",
+  "meaning": "For arbitrary distinct A,B construct strict interior H, an actual rectangle of side lengths AB and HB, and an actual square on AH, with the same positive area.",
+  "method": "Coordinate construction using t=(sqrt(5)-1)/2 and accepted actual rectangle and I46 square constructions; preserves original output mathematics, not a line-by-line reproduction of the source proof.",
+  "scalar_helper": "golden-cut-parameter candidate2 accepted0083; candidate1 failed t<1, explicit ordered arithmetic bridge repairs it.",
+  "remaining": [
+    "independent clean gate",
+    "full original import integration"
+  ],
+  "trust": "No added trust or kernel edits.",
+  "consumers": "oblique0085 and reversed0086 accepted; zero-length0087 rejects a!=b"
+}

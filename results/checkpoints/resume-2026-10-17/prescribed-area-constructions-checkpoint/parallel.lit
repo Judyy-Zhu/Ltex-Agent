@@ -1,0 +1,18 @@
+release obj def geometry::main::vec
+
+release obj def geometry::main::det
+
+
+release obj def geometry::main::line_through_points
+
+# Proper parallel directions with transverse separation have no common point.
+# Membership in the two line sets gives two determinant equations. Together
+# with parallelism, they force both coordinates of the second direction to
+# vanish if there were a common point, contradicting its proper endpoints.
+
+prop are_parallel_lines(a, b, c, d cart(R, R)):
+    a != b
+    c != d
+    $geometry::main::is_parallel(a, b, c, d)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+

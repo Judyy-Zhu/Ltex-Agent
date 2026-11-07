@@ -1,0 +1,94 @@
+{
+  "reviewed_at": "2026-10-13T05:58:53.197382+00:00",
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pages_zero_based": [
+    94,
+    95
+  ],
+  "source_lines": [
+    3875,
+    3918
+  ],
+  "source_summary": "III26 covers equal central or inscribed angles in equal circles. Its proof uses equal radii and SAS for equal chords, similarity and III24 for the segments, then compares the remaining arcs.",
+  "checked_route_difference": "The drafts use cosine/chord metrics and the centered motion underlying III24. The central branch constructs opposite-side vertices and invokes III20 before the inscribed branch. This is an analytic replacement of the source route, not a claim to reproduce every synthetic step.",
+  "source_label_mapping": {
+    "G": "o",
+    "H": "center",
+    "B": "a",
+    "C": "b",
+    "E": "c",
+    "F": "d",
+    "A": "p",
+    "D": "q"
+  },
+  "requirements": [
+    {
+      "requirement": "Equal inscribed angles in equal-radius circles intercept congruent selected arcs",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-inscribed1.lit",
+      "sha256": "22b4b43a4376f4021f45eda3e48833105e3ee202a7f1871f65f21f45fbcadb5a",
+      "interpretation": "Vertex strictly opposite the chosen chord half-plane; distinct vertices and proper chords.",
+      "evidence": "Independent strict PASS72, native exit0/run/success/null error, stable hashes; .draft/book03-proposition26-inscribed-checkpoint/receipt.json"
+    },
+    {
+      "requirement": "Equal principal central angles intercept congruent minor arcs or semicircles",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-central1.lit",
+      "sha256": "6d9ccd4f5a438f11564663e944a6618d5a4b4a3177b47a4851a961023c723926",
+      "interpretation": "Both selected center-side products are nonpositive; this specifies the intercepted principal arcs.",
+      "evidence": "Independent strict PASS83, native exit0/run/success/null error, stable current hashes; .draft/book03-proposition26-central-checkpoint/receipt.json"
+    },
+    {
+      "requirement": "Selected-span formulation retains complementary major arcs",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-equal-selected-spans2.lit",
+      "sha256": "e152b3913a0442fa709c79f868b54ccab91e830080639c03297c03546dedcfb4",
+      "interpretation": "Construct opposite-side circle points and use III20; does not assume unspecified complementary arcs are equal.",
+      "evidence": "Independent strict PASS83, native exit0/run/success/null error, stable current hashes; .draft/book03-proposition26-central-checkpoint/receipt.json"
+    },
+    {
+      "requirement": "Arc equality is witnessed on actual point sets",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/plane-rigid-motion-chosen-arc1.lit",
+      "sha256": "badb94959d8922d5565a1e150836c5a8488e2087c172126b8cab26f09f3ed3c8",
+      "interpretation": "Membership equivalence under unit rotation/reflection and translation; previous inverse laws ensure invertibility.",
+      "evidence": "Session72613 accepted; source independent gates still pending"
+    },
+    {
+      "requirement": "Concrete rotated/translated minor and major consumers",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-rotated-minor-major-use2.lit",
+      "sha256": "eeb8342bc92d01a8d5956853fc8898987f70a8523d9d9e916d8b94130a2c31aa",
+      "interpretation": "Unit circle at origin and unit circle at(3,4), quarter-turn endpoint placement, both side signs.",
+      "evidence": "Session72613 accepted; source independent gates still pending"
+    },
+    {
+      "requirement": "Both semicircle choices under translation and rotation",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-rotated-semicircle-use1.lit",
+      "sha256": "066b8ed3cf5d2a624c813112f2c677d986f7a8fdb930c5f11cc285a9c154da6a",
+      "interpretation": "Diametric chords; both side signs; no strict minor-arc assumption at the boundary.",
+      "evidence": "Session72613 accepted; source independent gates still pending"
+    }
+  ],
+  "dependency_audit": [
+    "III20 has no dependency on III26",
+    "Equal-span chord metric is proved from existing circle/angle identities",
+    "Centered motion uses III23 circle identity and existing motion laws, not III26",
+    "Selected-point certificate comes from independent normalized-chord construction; not the conclusion of III26"
+  ],
+  "coverage_status": "Not counted: independent full source verification, proof-liveness and canonical integration pending",
+  "new_trust": 0,
+  "canonical_numbered_count": 52,
+  "complete_source_gate": {
+    "status": "PASS85",
+    "receipt": ".draft/book03-proposition26-source-checkpoint/receipt.json",
+    "native_exit": 0,
+    "kind": "run",
+    "success": true,
+    "session_error": null,
+    "hashes_stable": true,
+    "covers": "Both source branches and rotated/translated minor, major and semicircle consumers; proof audit and canonical promotion pending"
+  },
+  "independent_proof_audit": {
+    "session": 52918,
+    "status": "PASS for key helpers, inscribed, general-span and central proofs; each audited target empty control failed at mathematical conclusion before target loaded",
+    "journal": "proof_journals/books02-03/book03-proposition26-progress.json",
+    "canonical_candidate_note": "Frozen full188 retains independently verified original arc/III26 bodies; reduced arc transport and inscribed proof variants are local audit evidence, not edited into running input",
+    "promotion": "not performed"
+  }
+}

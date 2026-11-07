@@ -1,0 +1,583 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::line_through_points
+release obj def angle_measure::segment_length
+
+thm proposition_10:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            exist m cart(R, R) st {a != m, m != b, $geometry::main::is_on_segment(m, a, b), $geometry::main::are_segments_congruent(a, m, m, b)}
+    have middle cart(R, R) = ((a(1) + b(1)) / 2, (a(2) + b(2)) / 2)
+    middle(1) = (a(1) + b(1)) / 2
+    middle(2) = (a(2) + b(2)) / 2
+    by def $geometry::main::is_midpoint(middle, a, b)
+    middle(1) = (a(1) + b(1)) / 2 = a(1) / 2 + b(1) / 2 = (1 / 2) * a(1) + (1 / 2) * b(1) = (1 - 1 / 2) * a(1) + (1 / 2) * b(1)
+    middle(2) = (a(2) + b(2)) / 2 = a(2) / 2 + b(2) / 2 = (1 / 2) * a(2) + (1 / 2) * b(2) = (1 - 1 / 2) * a(2) + (1 / 2) * b(2)
+    witness exist t R st {0 <= t, t <= 1, middle(1) = (1 - t) * a(1) + t * b(1), middle(2) = (1 - t) * a(2) + t * b(2)} from 1 / 2
+    by def $geometry::main::is_on_segment(middle, a, b)
+    release thm geometry::main::midpoint_equidistant(a, b, middle)
+    release thm geometry::main::midpoint_half_distance(a, b, middle)
+    release thm geometry::main::distance_sq_symmetric(b, middle)
+    geometry::main::distance_sq(a, middle) = geometry::main::distance_sq(b, middle) = geometry::main::distance_sq(middle, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    geometry::main::distance_sq(a, middle) = geometry::main::distance_sq(a, b) / 4 > 0
+    geometry::main::distance_sq(middle, b) > 0
+    by contra:
+        ? a != middle
+        a = middle
+        middle(1) = a(1)
+        middle(2) = a(2)
+        release thm geometry::main::distance_sq_coordinate_formula(a, middle)
+        middle(1) - a(1) = 0
+        middle(2) - a(2) = 0
+        geometry::main::distance_sq(a, middle) = (middle(1) - a(1))^2 + (middle(2) - a(2))^2 = 0^2 + 0^2 = 0
+        impossible geometry::main::distance_sq(a, middle) > 0
+    by contra:
+        ? middle != b
+        middle = b
+        b(1) = middle(1)
+        b(2) = middle(2)
+        release thm geometry::main::distance_sq_coordinate_formula(middle, b)
+        b(1) - middle(1) = 0
+        b(2) - middle(2) = 0
+        geometry::main::distance_sq(middle, b) = (b(1) - middle(1))^2 + (b(2) - middle(2))^2 = 0^2 + 0^2 = 0
+        impossible geometry::main::distance_sq(middle, b) > 0
+    by def $geometry::main::are_segments_congruent(a, middle, middle, b)
+    witness exist m cart(R, R) st {a != m, m != b, $geometry::main::is_on_segment(m, a, b), $geometry::main::are_segments_congruent(a, m, m, b)} from middle
+
+# Book I.11: construct a perpendicular at a supplied point of a straight line.
+# The analytic witness rotates the line's nonzero direction by 90 degrees.
+
+
+# Eudoxus comparisons for positive real measures; quantity kinds are supplied by geometric interfaces.
+prop have_equal_equimultiple_comparisons(a,b,c,d R+):
+    forall m,n N+:
+        =>:
+            m*a < n*b
+        <=>:
+            m*c < n*d
+    forall m,n N+:
+        =>:
+            m*a = n*b
+        <=>:
+            m*c = n*d
+    forall m,n N+:
+        =>:
+            m*a > n*b
+        <=>:
+            m*c > n*d
+
+
+thm cross_product_preserves_less_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a < n*b
+        =>:
+            m*c < n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) < scale*(n*b)
+    m*c < n*d
+
+
+thm cross_product_preserves_equal_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a = n*b
+        =>:
+            m*c = n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) = scale*(n*b)
+    m*c = n*d
+
+
+thm cross_product_preserves_greater_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a > n*b
+        =>:
+            m*c > n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) > scale*(n*b)
+    m*c > n*d
+
+
+thm cross_product_implies_equal_equimultiple_comparisons:
+    ? forall a,b,c,d R+:
+        a*d = b*c
+        =>:
+            $have_equal_equimultiple_comparisons(a,b,c,d)
+    c*b = b*c = a*d = d*a
+    claim:
+        ? forall m,n N+:
+            m*a < n*b
+            =>:
+                m*c < n*d
+        release thm cross_product_preserves_less_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c < n*d
+            =>:
+                m*a < n*b
+        release thm cross_product_preserves_less_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a = n*b
+            =>:
+                m*c = n*d
+        release thm cross_product_preserves_equal_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c = n*d
+            =>:
+                m*a = n*b
+        release thm cross_product_preserves_equal_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a > n*b
+            =>:
+                m*c > n*d
+        release thm cross_product_preserves_greater_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c > n*d
+            =>:
+                m*a > n*b
+        release thm cross_product_preserves_greater_equimultiples(c,d,a,b,m,n)
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+
+
+thm positive_rational_separation:
+    ? forall x,y R+:
+        x < y
+        =>:
+            exist numerator,denominator N+ st {x < numerator/denominator, numerator/denominator < y}
+    release thm rational_between_reals(x,y)
+    obtain middle from exist q Q st {x < q and q < y}
+    release thm rational_has_unique_reduced_fraction(middle)
+    obtain numerator,denominator from exist! p Z, d N+ st {middle = p/d, gcd(p,d) = 1}
+    middle > x > 0
+    denominator $in R+
+    middle*denominator > 0
+    numerator = (numerator/denominator)*denominator = middle*denominator > 0
+    numerator $in N+
+    x < middle = numerator/denominator < y
+    witness exist n,m N+ st {x < n/m, n/m < y} from numerator,denominator
+
+
+thm strict_cross_product_has_separating_equimultiples:
+    ? forall a,b,c,d R+:
+        a*d < b*c
+        =>:
+            exist m,n N+ st {m*a < n*b, m*c > n*d}
+    b*d > 0
+    (a*d)/(b*d) < (b*c)/(b*d)
+    a/b = (a*d)/(b*d) < (b*c)/(b*d) = c/d
+    a/b > 0
+    c/d > 0
+    release thm positive_rational_separation(a/b,c/d)
+    obtain n,m from exist numerator,denominator N+ st {a/b < numerator/denominator, numerator/denominator < c/d}
+    m $in R+
+    n $in R+
+    m*(a/b) < m*(n/m)
+    (m*(a/b))*b < (m*(n/m))*b
+    m*a = (m*(a/b))*b < (m*(n/m))*b = n*b
+    m*(n/m) < m*(c/d)
+    (m*(n/m))*d < (m*(c/d))*d
+    n*d = (m*(n/m))*d < (m*(c/d))*d = m*c
+    witness exist first,second N+ st {first*a < second*b, first*c > second*d} from m,n
+
+
+thm equal_equimultiple_comparisons_imply_cross_product:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a*d = b*c
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+    by contra:
+        ? a*d >= b*c
+        a*d < b*c
+        release thm strict_cross_product_has_separating_equimultiples(a,b,c,d)
+        obtain m,n from exist m,n N+ st {m*a < n*b, m*c > n*d}
+        m*c < n*d
+        impossible m*c > n*d
+    by contra:
+        ? a*d <= b*c
+        a*d > b*c
+        c*b = b*c < a*d = d*a
+        release thm strict_cross_product_has_separating_equimultiples(c,d,a,b)
+        obtain m,n from exist m,n N+ st {m*c < n*d, m*a > n*b}
+        m*a < n*b
+        impossible m*a > n*b
+    a*d = b*c
+
+
+thm equal_equimultiple_comparisons_give_equal_quotients:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a/b = c/d
+    release thm equal_equimultiple_comparisons_imply_cross_product(a,b,c,d)
+    b*d > 0
+    a/b = (a*d)/(b*d) = (b*c)/(b*d) = c/d
+
+
+thm equal_positive_quotients_imply_cross_product:
+    ? forall a,b,c,d R+:
+        a/b = c/d
+        =>:
+            a*d = b*c
+    (a/b)*(b*d) = (c/d)*(b*d)
+    a*d = (a/b)*(b*d) = (c/d)*(b*d) = b*c
+
+
+# Publish the independently proved nonzero contract for denominators in geometric ratios.
+claim:
+    ? forall a,b cart(R,R):
+        a != b
+        =>:
+            angle_measure::segment_length(a,b) $in R+
+            angle_measure::segment_length(a,b) > 0
+            angle_measure::segment_length(a,b) != 0
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    geometry::main::distance_sq(a,b) >= 0
+    sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) = sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) $in R+
+    angle_measure::segment_length(a,b) != 0
+
+
+# An interior point of a proper finite segment has a strict affine parameter.
+thm interior_segment_affine_parameter:
+    ? forall a,b,p cart(R,R):
+        a != p
+        p != b
+        $geometry::main::is_on_segment(p,a,b)
+        =>:
+            exist t R+ st {t < 1, p(1)=a(1)+t*(b(1)-a(1)), p(2)=a(2)+t*(b(2)-a(2))}
+    by def $geometry::main::is_on_segment(p,a,b)
+    obtain t from exist t R st {0 <= t, t <= 1, p(1)=(1-t)*a(1)+t*b(1), p(2)=(1-t)*a(2)+t*b(2)}
+    0 <= t
+    t <= 1
+    by contra:
+        ? t != 0
+        t = 0
+        p(1) = (1-t)*a(1)+t*b(1) = (1-0)*a(1)+0*b(1) = a(1)
+        p(2) = (1-t)*a(2)+t*b(2) = (1-0)*a(2)+0*b(2) = a(2)
+        p = (p(1),p(2)) = (a(1),p(2)) = (a(1),a(2)) = a
+        impossible a != p
+    by contra:
+        ? t > 0
+        t <= 0
+        t = 0
+        impossible t != 0
+    t $in R+
+    by contra:
+        ? t != 1
+        t = 1
+        p(1) = (1-t)*a(1)+t*b(1) = (1-1)*a(1)+1*b(1) = b(1)
+        p(2) = (1-t)*a(2)+t*b(2) = (1-1)*a(2)+1*b(2) = b(2)
+        p = (p(1),p(2)) = (b(1),p(2)) = (b(1),b(2)) = b
+        impossible p != b
+    by contra:
+        ? t < 1
+        t >= 1
+        t = 1
+        impossible t != 1
+    p(1) = (1-t)*a(1)+t*b(1) = a(1)+t*(b(1)-a(1))
+    p(2) = (1-t)*a(2)+t*b(2) = a(2)+t*(b(2)-a(2))
+    witness exist s R+ st {s < 1, p(1)=a(1)+s*(b(1)-a(1)), p(2)=a(2)+s*(b(2)-a(2))} from t
+
+
+thm triangle_side_cut_determinants:
+    ? forall a,b,c,d,f cart(R,R), t,s R:
+        d(1)=a(1)+t*(b(1)-a(1))
+        d(2)=a(2)+t*(b(2)-a(2))
+        f(1)=a(1)+s*(c(1)-a(1))
+        f(2)=a(2)+s*(c(2)-a(2))
+        =>:
+            geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(b,c)) = (s-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+            geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(d,b)) = -s*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have u1 R = b(1)-a(1)
+    have v1 R = c(1)-a(1)
+    d(1)-a(1) = (a(1)+t*(b(1)-a(1)))-a(1) = t*(b(1)-a(1)) = t*u1
+    f(1)-a(1) = (a(1)+s*(c(1)-a(1)))-a(1) = s*(c(1)-a(1)) = s*v1
+    f(1)-d(1) = (f(1)-a(1))-(d(1)-a(1)) = s*v1-(d(1)-a(1)) = s*v1-t*u1
+    c(1)-b(1) = (c(1)-a(1))-(b(1)-a(1)) = v1-(b(1)-a(1)) = v1-u1
+    b(1)-d(1) = (b(1)-a(1))-(d(1)-a(1)) = u1-(d(1)-a(1)) = u1-t*u1 = (1-t)*u1
+    have u2 R = b(2)-a(2)
+    have v2 R = c(2)-a(2)
+    d(2)-a(2) = (a(2)+t*(b(2)-a(2)))-a(2) = t*(b(2)-a(2)) = t*u2
+    f(2)-a(2) = (a(2)+s*(c(2)-a(2)))-a(2) = s*(c(2)-a(2)) = s*v2
+    f(2)-d(2) = (f(2)-a(2))-(d(2)-a(2)) = s*v2-(d(2)-a(2)) = s*v2-t*u2
+    c(2)-b(2) = (c(2)-a(2))-(b(2)-a(2)) = v2-(b(2)-a(2)) = v2-u2
+    b(2)-d(2) = (b(2)-a(2))-(d(2)-a(2)) = u2-(d(2)-a(2)) = u2-t*u2 = (1-t)*u2
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    u1*v2-u2*v1 = (b(1)-a(1))*v2-u2*v1 = (b(1)-a(1))*(c(2)-a(2))-u2*v1 = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*v1 = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have x cart(R,R) = geometry::main::vec(d,f)
+    release thm geometry::main::vec_coordinate_formula(d,f)
+    x(1) = geometry::main::vec(d,f)(1) = f(1)-d(1) = s*v1-t*u1
+    x(2) = geometry::main::vec(d,f)(2) = f(2)-d(2) = s*v2-t*u2
+    have y cart(R,R) = geometry::main::vec(b,c)
+    release thm geometry::main::vec_coordinate_formula(b,c)
+    y(1) = geometry::main::vec(b,c)(1) = c(1)-b(1) = v1-u1
+    y(2) = geometry::main::vec(b,c)(2) = c(2)-b(2) = v2-u2
+    have z cart(R,R) = geometry::main::vec(d,b)
+    release thm geometry::main::vec_coordinate_formula(d,b)
+    z(1) = geometry::main::vec(d,b)(1) = b(1)-d(1) = (1-t)*u1
+    z(2) = geometry::main::vec(d,b)(2) = b(2)-d(2) = (1-t)*u2
+    geometry::main::det(x,y) = x(1)*y(2)-x(2)*y(1)
+    x(1)*y(2)-x(2)*y(1) = (s*v1-t*u1)*y(2)-x(2)*y(1) = (s*v1-t*u1)*(v2-u2)-x(2)*y(1) = (s*v1-t*u1)*(v2-u2)-(s*v2-t*u2)*y(1) = (s*v1-t*u1)*(v2-u2)-(s*v2-t*u2)*(v1-u1)
+    (s*v1-t*u1)*(v2-u2)-(s*v2-t*u2)*(v1-u1) = (s-t)*(u1*v2-u2*v1) = (s-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(b,c)) = geometry::main::det(x,geometry::main::vec(b,c)) = geometry::main::det(x,y) = (s-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    geometry::main::det(x,z) = x(1)*z(2)-x(2)*z(1)
+    x(1)*z(2)-x(2)*z(1) = (s*v1-t*u1)*z(2)-x(2)*z(1) = (s*v1-t*u1)*((1-t)*u2)-x(2)*z(1) = (s*v1-t*u1)*((1-t)*u2)-(s*v2-t*u2)*z(1) = (s*v1-t*u1)*((1-t)*u2)-(s*v2-t*u2)*((1-t)*u1)
+    (s*v1-t*u1)*((1-t)*u2)-(s*v2-t*u2)*((1-t)*u1) = -s*(1-t)*(u1*v2-u2*v1) = -s*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(d,b)) = geometry::main::det(x,geometry::main::vec(d,b)) = geometry::main::det(x,z) = -s*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+
+
+thm strict_segment_cut_length_ratio:
+    ? forall a,b,p cart(R,R), t R+:
+        a != b
+        a != p
+        p != b
+        t < 1
+        p(1)=a(1)+t*(b(1)-a(1))
+        p(2)=a(2)+t*(b(2)-a(2))
+        =>:
+            angle_measure::segment_length(p,a) = t*angle_measure::segment_length(a,b)
+            angle_measure::segment_length(b,p) = (1-t)*angle_measure::segment_length(a,b)
+            angle_measure::segment_length(b,p)/angle_measure::segment_length(p,a) = (1-t)/t
+    release thm angle_measure::positive_ray_scale_scales_length(a,b,p,t)
+    release thm angle_measure::strict_segment_length_addition(a,b,p,t)
+    release thm angle_measure::segment_length_is_symmetric(p,a)
+    release thm angle_measure::segment_length_is_symmetric(b,p)
+    angle_measure::segment_length(p,a) = angle_measure::segment_length(a,p) = t*angle_measure::segment_length(a,b)
+    angle_measure::segment_length(p,b) = (angle_measure::segment_length(a,p)+angle_measure::segment_length(p,b))-angle_measure::segment_length(a,p) = angle_measure::segment_length(a,b)-angle_measure::segment_length(a,p) = angle_measure::segment_length(a,b)-t*angle_measure::segment_length(a,b) = (1-t)*angle_measure::segment_length(a,b)
+    angle_measure::segment_length(b,p) = angle_measure::segment_length(p,b) = (1-t)*angle_measure::segment_length(a,b)
+    have whole_length R+ = angle_measure::segment_length(a,b)
+    angle_measure::segment_length(b,p)/angle_measure::segment_length(p,a) = ((1-t)*angle_measure::segment_length(a,b))/angle_measure::segment_length(p,a) = ((1-t)*angle_measure::segment_length(a,b))/(t*angle_measure::segment_length(a,b)) = ((1-t)*whole_length)/(t*angle_measure::segment_length(a,b)) = ((1-t)*whole_length)/(t*whole_length) = (1-t)/t
+
+
+thm triangle_side_cut_parallel_forces_equal_parameters:
+    ? forall a,b,c,d,f cart(R,R), t,s R+:
+        $geometry::main::is_triangle(a,b,c)
+        t < 1
+        s < 1
+        d(1)=a(1)+t*(b(1)-a(1))
+        d(2)=a(2)+t*(b(2)-a(2))
+        f(1)=a(1)+s*(c(1)-a(1))
+        f(2)=a(2)+s*(c(2)-a(2))
+        $parallel::are_parallel_lines(d,f,b,c)
+        =>:
+            t = s
+    release thm triangle_side_cut_determinants(a,b,c,d,f,t,s)
+    by def $geometry::main::is_triangle(a,b,c)
+    by def $parallel::are_parallel_lines(d,f,b,c)
+    $geometry::main::is_parallel(d,f,b,c)
+    by def $geometry::main::is_parallel(d,f,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(b,c)) = 0
+    (s-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(b,c)) = 0
+    s-t = ((s-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)))/geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = 0/geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = 0
+    t = s
+
+
+thm equal_parameters_make_triangle_side_cut_parallel:
+    ? forall a,b,c,d,f cart(R,R), t,s R+:
+        $geometry::main::is_triangle(a,b,c)
+        t < 1
+        s < 1
+        d(1)=a(1)+t*(b(1)-a(1))
+        d(2)=a(2)+t*(b(2)-a(2))
+        f(1)=a(1)+s*(c(1)-a(1))
+        f(2)=a(2)+s*(c(2)-a(2))
+        t = s
+        =>:
+            $parallel::are_parallel_lines(d,f,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm triangle_side_cut_determinants(a,b,c,d,f,t,s)
+    by def $geometry::main::is_triangle(a,b,c)
+    1-t > 0
+    s*(1-t) > 0
+    by contra:
+        ? -s*(1-t) != 0
+        -s*(1-t) = 0
+        s*(1-t) = -(-s*(1-t)) = -0 = 0
+        impossible s*(1-t) > 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    by contra:
+        ? -s*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+        -s*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (-s*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)))/(-s*(1-t)) = 0/(-s*(1-t)) = 0
+        impossible geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(d,b)) != 0
+    by contra:
+        ? d != f
+        d = f
+        f(1)-d(1) = 0
+        f(2)-d(2) = 0
+        release thm geometry::main::collinear_det_expand(d,f,b)
+        geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(d,b)) = (f(1)-d(1))*(b(2)-d(2))-(f(2)-d(2))*(b(1)-d(1)) = 0*(b(2)-d(2))-(f(2)-d(2))*(b(1)-d(1)) = 0*(b(2)-d(2))-0*(b(1)-d(1)) = 0
+        impossible geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(d,b)) != 0
+    s-t = 0
+    geometry::main::det(geometry::main::vec(d,f),geometry::main::vec(b,c)) = (s-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = 0*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = 0
+    by def $geometry::main::is_parallel(d,f,b,c)
+    by def $parallel::are_parallel_lines(d,f,b,c)
+
+
+thm positive_cut_ratio_injective:
+    ? forall t,s R+:
+        (1-t)/t = (1-s)/s
+        =>:
+            t = s
+    ((1-t)/t)*(t*s) = ((1-s)/s)*(t*s)
+    (1-t)*s = ((1-t)/t)*(t*s) = ((1-s)/s)*(t*s) = (1-s)*t
+    s-t*s = (1-t)*s = (1-s)*t = t-t*s
+    s = (s-t*s)+t*s = (t-t*s)+t*s = t
+
+
+thm book06_proposition_02_forward_quotient:
+    ? forall a,b,c,d,f cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != d
+        d != b
+        a != f
+        f != c
+        $geometry::main::is_on_segment(d,a,b)
+        $geometry::main::is_on_segment(f,a,c)
+        $parallel::are_parallel_lines(d,f,b,c)
+        =>:
+            angle_measure::segment_length(b,d)/angle_measure::segment_length(d,a) = angle_measure::segment_length(c,f)/angle_measure::segment_length(f,a)
+            angle_measure::segment_length(b,d)*angle_measure::segment_length(f,a) = angle_measure::segment_length(d,a)*angle_measure::segment_length(c,f)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm interior_segment_affine_parameter(a,b,d)
+    obtain t from exist t R+ st {t < 1, d(1)=a(1)+t*(b(1)-a(1)), d(2)=a(2)+t*(b(2)-a(2))}
+    release thm interior_segment_affine_parameter(a,c,f)
+    obtain s from exist s R+ st {s < 1, f(1)=a(1)+s*(c(1)-a(1)), f(2)=a(2)+s*(c(2)-a(2))}
+    release thm triangle_side_cut_parallel_forces_equal_parameters(a,b,c,d,f,t,s)
+    release thm strict_segment_cut_length_ratio(a,b,d,t)
+    release thm strict_segment_cut_length_ratio(a,c,f,s)
+    angle_measure::segment_length(b,d)/angle_measure::segment_length(d,a) = (1-t)/t = (1-s)/t = (1-s)/s = angle_measure::segment_length(c,f)/angle_measure::segment_length(f,a)
+    angle_measure::segment_length(b,d)/angle_measure::segment_length(d,a) = angle_measure::segment_length(c,f)/angle_measure::segment_length(f,a)
+    release thm equal_positive_quotients_imply_cross_product(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))
+
+
+thm book06_proposition_02_converse_quotient:
+    ? forall a,b,c,d,f cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != d
+        d != b
+        a != f
+        f != c
+        $geometry::main::is_on_segment(d,a,b)
+        $geometry::main::is_on_segment(f,a,c)
+        angle_measure::segment_length(b,d)/angle_measure::segment_length(d,a) = angle_measure::segment_length(c,f)/angle_measure::segment_length(f,a)
+        =>:
+            $parallel::are_parallel_lines(d,f,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm interior_segment_affine_parameter(a,b,d)
+    obtain t from exist t R+ st {t < 1, d(1)=a(1)+t*(b(1)-a(1)), d(2)=a(2)+t*(b(2)-a(2))}
+    release thm interior_segment_affine_parameter(a,c,f)
+    obtain s from exist s R+ st {s < 1, f(1)=a(1)+s*(c(1)-a(1)), f(2)=a(2)+s*(c(2)-a(2))}
+    release thm strict_segment_cut_length_ratio(a,b,d,t)
+    release thm strict_segment_cut_length_ratio(a,c,f,s)
+    (1-t)/t = angle_measure::segment_length(b,d)/angle_measure::segment_length(d,a) = angle_measure::segment_length(c,f)/angle_measure::segment_length(f,a) = (1-s)/s
+    release thm positive_cut_ratio_injective(t,s)
+    release thm equal_parameters_make_triangle_side_cut_parallel(a,b,c,d,f,t,s)
+
+
+thm book06_proposition_02_forward_equimultiples:
+    ? forall a,b,c,d,f cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != d
+        d != b
+        a != f
+        f != c
+        $geometry::main::is_on_segment(d,a,b)
+        $geometry::main::is_on_segment(f,a,c)
+        $parallel::are_parallel_lines(d,f,b,c)
+        =>:
+            $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))
+    release thm book06_proposition_02_forward_quotient(a,b,c,d,f)
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))
+
+
+thm book06_proposition_02_converse_equimultiples:
+    ? forall a,b,c,d,f cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != d
+        d != b
+        a != f
+        f != c
+        $geometry::main::is_on_segment(d,a,b)
+        $geometry::main::is_on_segment(f,a,c)
+        $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))
+        =>:
+            $parallel::are_parallel_lines(d,f,b,c)
+    release thm equal_equimultiple_comparisons_give_equal_quotients(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))
+    release thm book06_proposition_02_converse_quotient(a,b,c,d,f)
+
+
+thm congruent_segments_have_equal_positive_lengths:
+    ? forall a,b,c,d cart(R,R):
+        a != b
+        c != d
+        $geometry::main::are_segments_congruent(a,b,c,d)
+        =>:
+            angle_measure::segment_length(a,b) = angle_measure::segment_length(c,d)
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    release thm geometry::main::distance_sq_positive_of_ne(c,d)
+    geometry::main::distance_sq(a,b) >= 0
+    geometry::main::distance_sq(c,d) >= 0
+    by def $geometry::main::are_segments_congruent(a,b,c,d)
+    geometry::main::distance_sq(a,b) = geometry::main::distance_sq(c,d)
+    angle_measure::segment_length(a,b) = sqrt(geometry::main::distance_sq(a,b)) = sqrt(geometry::main::distance_sq(c,d)) = angle_measure::segment_length(c,d)
+
+
+thm book06_proposition02_midpoint_consumer:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist d,f cart(R,R) st {a != d, d != b, a != f, f != c, $geometry::main::is_on_segment(d,a,b), $geometry::main::is_on_segment(f,a,c), $parallel::are_parallel_lines(d,f,b,c), $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))}
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm proposition_10(a,b)
+    obtain d from exist m cart(R,R) st {a != m, m != b, $geometry::main::is_on_segment(m,a,b), $geometry::main::are_segments_congruent(a,m,m,b)}
+    release thm proposition_10(a,c)
+    obtain f from exist m cart(R,R) st {a != m, m != c, $geometry::main::is_on_segment(m,a,c), $geometry::main::are_segments_congruent(a,m,m,c)}
+    release thm congruent_segments_have_equal_positive_lengths(a,d,d,b)
+    release thm congruent_segments_have_equal_positive_lengths(a,f,f,c)
+    release thm angle_measure::segment_length_is_symmetric(b,d)
+    release thm angle_measure::segment_length_is_symmetric(d,a)
+    release thm angle_measure::segment_length_is_symmetric(c,f)
+    release thm angle_measure::segment_length_is_symmetric(f,a)
+    angle_measure::segment_length(b,d) = angle_measure::segment_length(d,b) = angle_measure::segment_length(a,d) = angle_measure::segment_length(d,a)
+    angle_measure::segment_length(c,f) = angle_measure::segment_length(f,c) = angle_measure::segment_length(a,f) = angle_measure::segment_length(f,a)
+    angle_measure::segment_length(b,d)*angle_measure::segment_length(f,a) = angle_measure::segment_length(d,a)*angle_measure::segment_length(f,a) = angle_measure::segment_length(d,a)*angle_measure::segment_length(c,f)
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(d,a),angle_measure::segment_length(c,f),angle_measure::segment_length(f,a))
+    release thm book06_proposition_02_converse_equimultiples(a,b,c,d,f)
+    release thm book06_proposition_02_forward_quotient(a,b,c,d,f)
+    witness exist cut1,cut2 cart(R,R) st {a != cut1, cut1 != b, a != cut2, cut2 != c, $geometry::main::is_on_segment(cut1,a,b), $geometry::main::is_on_segment(cut2,a,c), $parallel::are_parallel_lines(cut1,cut2,b,c), $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,cut1),angle_measure::segment_length(cut1,a),angle_measure::segment_length(c,cut2),angle_measure::segment_length(cut2,a))} from d,f

@@ -1,0 +1,9 @@
+{
+  "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/II1-13-original-context-checkpoint/prefix.lit",
+  "source_sha256": "42c0d2fcbfb532eeeeaf81129234138f4a7f8a051df51e16dfed820863b7d33b",
+  "binary": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/litex-checkpoint-b74d9f0c7e11",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "scope": "Exact canonical export prefix through repairedBookI and rectangles, then unchanged verifiedII1–13 candidate. Current source snapshot and pinned executable.",
+  "canonical_promoted": false,
+  "repair_record": "scripts/Euclid_Elements/translation_records/rectangle-interface-integration-repair.json"
+}

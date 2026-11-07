@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 8,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/8.txt"
+  },
+  "problem": "Equal corresponding three sides imply equal included angles. The candidate also gives full triangle congruence and all three corresponding angles.",
+  "proof_idea": {
+    "original": "The source uses superposition and I.7 to force the competing apex to coincide.",
+    "analytic": "The existing independently proved SSS metric law gives corresponding dot products. The signed-cosine bridge converts equal adjacent lengths and dot products into each corresponding angle relation."
+  },
+  "litex_code": "thm proposition_8:\n    ? forall p, q, r, u, v, w cart(R, R):\n        $geometry::main::is_triangle(p, q, r)\n        $geometry::main::is_triangle(u, v, w)\n        $geometry::main::are_segments_congruent(p, q, u, v)\n        $geometry::main::are_segments_congruent(q, r, v, w)\n        $geometry::main::are_segments_congruent(r, p, w, u)\n        =>:\n            $geometry::main::are_triangles_congruent(p, q, r, u, v, w)\n            $geometry::main::are_angles_congruent(p, q, r, u, v, w)\n            $geometry::main::are_angles_congruent(q, p, r, v, u, w)\n            $geometry::main::are_angles_congruent(p, r, q, u, w, v)\n    release thm geometry_lemmas::triangle_vertices_distinct(p, q, r)\n    release thm geometry_lemmas::triangle_vertices_distinct(u, v, w)\n    release thm geometry::main::distance_sq_symmetric(p, r)\n    release thm geometry::main::distance_sq_symmetric(u, w)\n    geometry::main::distance_sq(p, r) = geometry::main::distance_sq(r, p) = geometry::main::distance_sq(w, u) = geometry::main::distance_sq(u, w)\n    release thm geometry::main::sss_congruence(p, q, r, u, v, w)\n    by def $geometry::main::are_triangles_congruent(p, q, r, u, v, w)\n    release thm geometry::main::distance_sq_symmetric(p, q)\n    release thm geometry::main::distance_sq_symmetric(u, v)\n    geometry::main::distance_sq(q, p) = geometry::main::distance_sq(p, q) = geometry::main::distance_sq(u, v) = geometry::main::distance_sq(v, u)\n    by thm geometry_lemmas::angle_congruence_from_equal_sides_and_dot(q, p, r, v, u, w) => $geometry::main::are_angles_congruent(p, q, r, u, v, w)\n    by thm geometry_lemmas::angle_congruence_from_equal_sides_and_dot(p, q, r, u, v, w) => $geometry::main::are_angles_congruent(q, p, r, v, u, w)\n    release thm geometry::main::distance_sq_symmetric(q, r)\n    release thm geometry::main::distance_sq_symmetric(v, w)\n    geometry::main::distance_sq(r, q) = geometry::main::distance_sq(q, r) = geometry::main::distance_sq(v, w) = geometry::main::distance_sq(w, v)\n    by thm geometry_lemmas::angle_congruence_from_equal_sides_and_dot(r, p, q, w, u, v) => $geometry::main::are_angles_congruent(p, r, q, u, w, v)\n",
+  "comments": {
+    "status": "checkable; canonical first-eight strict full-original-library gate passed",
+    "trust_added": 0,
+    "canonical_proposition_count_effect": 0,
+    "source_boundary": "The additional congruence and other angle conclusions are a valid strengthening; they do not create extra numbered source items.",
+    "draft_path": ".draft/experiment/I8-candidate1.lit",
+    "canonical_path": "../textbook/book01-constructions.lit",
+    "canonical_receipt": "../.draft/first-eight-checkpoint/receipt.json"
+  }
+}

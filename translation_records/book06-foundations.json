@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-11T13:29:46.606924+00:00",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised 2008",
+  "scope": "Book 6 source definitions; inventory only",
+  "source_item_count": 3,
+  "completed_source_item_count": 0,
+  "pdf_zero_based_definition_pages": [
+    155
+  ],
+  "pdf_one_based_definition_pages": [
+    156
+  ],
+  "items": [
+    {
+      "source": {
+        "book_number": 6,
+        "kind": "definition",
+        "number": 1
+      },
+      "concept_tag": "similar figures",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 6,
+        "kind": "definition",
+        "number": 2
+      },
+      "concept_tag": "extreme and mean ratio",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 6,
+        "kind": "definition",
+        "number": 3
+      },
+      "concept_tag": "height",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    }
+  ],
+  "comments": {
+    "edition_boundary": "This supplied edition has only three Book VI definitions before Proposition 1; do not copy extra definitions from a different edition."
+  }
+}

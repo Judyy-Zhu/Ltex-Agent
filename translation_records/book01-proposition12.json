@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 12,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/12.txt"
+  },
+  "problem": "Construct the perpendicular to an infinite straight line AB from an external point P.",
+  "proof_idea": {
+    "original": "The source uses a circle centered at the external point, its two intersections with the line, and the midpoint of the resulting chord.",
+    "analytic": "Project P onto AB using t=dot(AP,AB)/norm(AB)^2. Check line membership and dot-zero perpendicularity; external-point hypothesis excludes equality with the projection."
+  },
+  "litex_code": "thm proposition_12:\n    ? forall a, b, p cart(R, R):\n        a != b\n        not $geometry::main::is_on_line(p, a, b)\n        =>:\n            exist f cart(R, R) st {$geometry::main::is_on_line(f, a, b), p != f, $geometry::main::is_perpendicular(p, f, a, b)}\n    release thm geometry::main::point_difference_norm_pos(a, b)\n    have norm_sq R+ = (b(1) - a(1))^2 + (b(2) - a(2))^2\n    have projection R = (p(1) - a(1)) * (b(1) - a(1)) + (p(2) - a(2)) * (b(2) - a(2))\n    have t R = projection / norm_sq\n    have foot cart(R, R) = (a(1) + t * (b(1) - a(1)), a(2) + t * (b(2) - a(2)))\n    foot(1) = a(1) + t * (b(1) - a(1))\n    foot(2) = a(2) + t * (b(2) - a(2))\n    foot(1) - a(1) = (a(1) + t * (b(1) - a(1))) - a(1) = t * (b(1) - a(1))\n    foot(2) - a(2) = (a(2) + t * (b(2) - a(2))) - a(2) = t * (b(2) - a(2))\n    geometry::main::det(geometry::main::vec(a, foot), geometry::main::vec(a, b)) = (foot(1) - a(1)) * (b(2) - a(2)) - (foot(2) - a(2)) * (b(1) - a(1)) = (t * (b(1) - a(1))) * (b(2) - a(2)) - (t * (b(2) - a(2))) * (b(1) - a(1)) = 0\n    release obj def geometry::main::line_through_points\n    foot $in geometry::main::line_through_points(a, b)\n    by def $geometry::main::is_on_line(foot, a, b)\n    projection = (projection / norm_sq) * norm_sq = t * norm_sq\n    (p(1) - a(1)) * (b(1) - a(1)) + (p(2) - a(2)) * (b(2) - a(2)) = t * ((b(1) - a(1))^2 + (b(2) - a(2))^2)\n    release thm geometry::main::foot_perp_parametric(a, b, p, foot, t)\n    by contra:\n        ? p != foot\n        p = foot\n        $geometry::main::is_on_line(p, a, b)\n        impossible not $geometry::main::is_on_line(p, a, b)\n    by def $geometry::main::is_perpendicular(p, foot, a, b)\n    witness exist f cart(R, R) st {$geometry::main::is_on_line(f, a, b), p != f, $geometry::main::is_perpendicular(p, f, a, b)} from foot\n",
+  "comments": {
+    "status": "canonical full original geometry strict file gate passed",
+    "trust_added": 0,
+    "canonical_proposition_count_effect": 0,
+    "draft_path": ".draft/experiment/I12-candidate1.lit",
+    "parser_preflight": "passed; verified=false",
+    "canonical_path": "../textbook/book01-constructions.lit"
+  },
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-twelve-checkpoint/receipt.json"
+}

@@ -1,0 +1,844 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+
+prop is_on_segment(p, a, b cart(R, R)):
+    a != b
+    exist t R st {0 <= t, t <= 1, p(1) = (1 - t) * a(1) + t * b(1), p(2) = (1 - t) * a(2) + t * b(2)}
+
+
+# Equivalent implication form of: every intersection is an endpoint of both proper segments.
+prop segments_meet_only_at_common_endpoints(a,b,c,d cart(R,R)):
+    a != b
+    c != d
+    forall p cart(R,R):
+        $is_on_segment(p,a,b)
+        $is_on_segment(p,c,d)
+        p != a
+        =>:
+            p = b
+    forall p cart(R,R):
+        $is_on_segment(p,a,b)
+        $is_on_segment(p,c,d)
+        p != c
+        =>:
+            p = d
+
+
+thm segment_endpoint_condition_excludes_crossing:
+    ? forall a,b,c,d,p cart(R,R):
+        $is_on_segment(p,a,b)
+        $is_on_segment(p,c,d)
+        p != a
+        p != b
+        =>:
+            not $segments_meet_only_at_common_endpoints(a,b,c,d)
+    by contra:
+        ? not $segments_meet_only_at_common_endpoints(a,b,c,d)
+        $segments_meet_only_at_common_endpoints(a,b,c,d)
+        by def $segments_meet_only_at_common_endpoints(a,b,c,d)
+        p = b
+        impossible p != b
+
+
+# Boundary only: a finite closed non-self-intersecting polygonal cycle.
+# Filled region and triangulation existence are separate obligations.
+prop is_simple_polygonal_cycle(n N+, vertices fn(k Z) cart(R,R)):
+    n >= 3
+    vertices(n) = vertices(0)
+    forall k Z:
+        0 <= k
+        k < n
+        =>:
+            vertices(k) != vertices(k+1)
+    forall left_index,right_index Z:
+        0 <= left_index
+        left_index < right_index
+        right_index < n
+        =>:
+            vertices(left_index) != vertices(right_index)
+    forall left_index,right_index Z:
+        0 <= left_index
+        left_index < n
+        0 <= right_index
+        right_index < n
+        left_index != right_index
+        =>:
+            $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+
+
+thm strict_edge_crossing_excludes_simple_polygonal_cycle:
+    ? forall n N+, vertices fn(k Z) cart(R,R), left_index,right_index Z, crossing cart(R,R):
+        0 <= left_index
+        left_index < n
+        0 <= right_index
+        right_index < n
+        left_index != right_index
+        $is_on_segment(crossing,vertices(left_index),vertices(left_index+1))
+        $is_on_segment(crossing,vertices(right_index),vertices(right_index+1))
+        crossing != vertices(left_index)
+        crossing != vertices(left_index+1)
+        =>:
+            not $is_simple_polygonal_cycle(n,vertices)
+    by contra:
+        ? not $is_simple_polygonal_cycle(n,vertices)
+        $is_simple_polygonal_cycle(n,vertices)
+        by def $is_simple_polygonal_cycle(n,vertices)
+        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+        release thm segment_endpoint_condition_excludes_crossing(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1),crossing)
+        impossible $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+
+
+thm segment_endpoint_condition_gives_common_endpoint:
+    ? forall a,b,c,d,p cart(R,R):
+        $segments_meet_only_at_common_endpoints(a,b,c,d)
+        $is_on_segment(p,a,b)
+        $is_on_segment(p,c,d)
+        =>:
+            p = a or p = b
+            p = c or p = d
+    by def $segments_meet_only_at_common_endpoints(a,b,c,d)
+    by cases:
+        ? p = a or p = b
+        case p = a:
+            p = a
+        case p != a:
+            p = b
+    by cases:
+        ? p = c or p = d
+        case p = c:
+            p = c
+        case p != c:
+            p = d
+
+
+sketch:
+    let vertices = fn(k Z) cart(R,R) {(2*(k%2),(k%4)*(3-(k%4)))}
+    vertices(0)(1) = 0
+    vertices(0)(2) = 0
+    vertices(0+1)(1) = 2
+    vertices(0+1)(2) = 2
+    vertices(2)(1) = 0
+    vertices(2)(2) = 2
+    vertices(2+1)(1) = 2
+    vertices(2+1)(2) = 0
+    have node0 cart(R,R) = vertices(0)
+    node0(1) = vertices(0)(1) = 0
+    node0(2) = vertices(0)(2) = 0
+    have node1 cart(R,R) = vertices(0+1)
+    node1(1) = vertices(0+1)(1) = 2
+    node1(2) = vertices(0+1)(2) = 2
+    have node2 cart(R,R) = vertices(2)
+    node2(1) = vertices(2)(1) = 0
+    node2(2) = vertices(2)(2) = 2
+    have node3 cart(R,R) = vertices(2+1)
+    node3(1) = vertices(2+1)(1) = 2
+    node3(2) = vertices(2+1)(2) = 0
+    have crossing cart(R,R) = (1,1)
+    crossing(1) = 1
+    crossing(2) = 1
+    by contra:
+        ? node0 != node1
+        node0 = node1
+        0 = node0(1) = node1(1) = 2
+        impossible 0 != 2
+    crossing(1) = 1 = (1-1/2)*0+(1/2)*2 = (1-1/2)*node0(1)+(1/2)*node1(1)
+    crossing(2) = 1 = (1-1/2)*0+(1/2)*2 = (1-1/2)*node0(2)+(1/2)*node1(2)
+    witness exist t R st {0 <= t, t <= 1, crossing(1) = (1-t)*node0(1)+t*node1(1), crossing(2) = (1-t)*node0(2)+t*node1(2)} from 1/2
+    by def $is_on_segment(crossing,node0,node1)
+    by contra:
+        ? node2 != node3
+        node2 = node3
+        0 = node2(1) = node3(1) = 2
+        impossible 0 != 2
+    crossing(1) = 1 = (1-1/2)*0+(1/2)*2 = (1-1/2)*node2(1)+(1/2)*node3(1)
+    crossing(2) = 1 = (1-1/2)*2+(1/2)*0 = (1-1/2)*node2(2)+(1/2)*node3(2)
+    witness exist t R st {0 <= t, t <= 1, crossing(1) = (1-t)*node2(1)+t*node3(1), crossing(2) = (1-t)*node2(2)+t*node3(2)} from 1/2
+    by def $is_on_segment(crossing,node2,node3)
+    by contra:
+        ? crossing != node0
+        crossing = node0
+        1 = crossing(1) = node0(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? crossing != node1
+        crossing = node1
+        1 = crossing(1) = node1(1) = 2
+        impossible 1 != 2
+    vertices(0) != vertices(0+1)
+    crossing(1) = (1-1/2)*node0(1)+(1/2)*node1(1) = (1-1/2)*vertices(0)(1)+(1/2)*vertices(0+1)(1)
+    crossing(2) = (1-1/2)*node0(2)+(1/2)*node1(2) = (1-1/2)*vertices(0)(2)+(1/2)*vertices(0+1)(2)
+    witness exist t R st {0 <= t, t <= 1, crossing(1) = (1-t)*vertices(0)(1)+t*vertices(0+1)(1), crossing(2) = (1-t)*vertices(0)(2)+t*vertices(0+1)(2)} from 1/2
+    by def $is_on_segment(crossing,vertices(0),vertices(0+1))
+    vertices(2) != vertices(2+1)
+    crossing(1) = (1-1/2)*node2(1)+(1/2)*node3(1) = (1-1/2)*vertices(2)(1)+(1/2)*vertices(2+1)(1)
+    crossing(2) = (1-1/2)*node2(2)+(1/2)*node3(2) = (1-1/2)*vertices(2)(2)+(1/2)*vertices(2+1)(2)
+    witness exist t R st {0 <= t, t <= 1, crossing(1) = (1-t)*vertices(2)(1)+t*vertices(2+1)(1), crossing(2) = (1-t)*vertices(2)(2)+t*vertices(2+1)(2)} from 1/2
+    by def $is_on_segment(crossing,vertices(2),vertices(2+1))
+    crossing != vertices(0)
+    crossing != vertices(0+1)
+    release thm strict_edge_crossing_excludes_simple_polygonal_cycle(4,vertices,0,2,crossing)
+
+
+thm triangle_barycentric_coordinates_unique:
+    ? forall a,b,c cart(R,R), u,v,x,y R:
+        $geometry::main::is_triangle(a,b,c)
+        a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)) = a(1)+x*(b(1)-a(1))+y*(c(1)-a(1))
+        a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)) = a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))
+        =>:
+            u = x
+            v = y
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    have ex R = c(1)-a(1)
+    have ey R = c(2)-a(2)
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    have cross R = dx*ey-dy*ex
+    cross = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    (u-x)*dx+(v-y)*ex = (u-x)*(b(1)-a(1))+(v-y)*(c(1)-a(1)) = (a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)))-(a(1)+x*(b(1)-a(1))+y*(c(1)-a(1))) = 0
+    (u-x)*dy+(v-y)*ey = (u-x)*(b(2)-a(2))+(v-y)*(c(2)-a(2)) = (a(2)+u*(b(2)-a(2))+v*(c(2)-a(2)))-(a(2)+x*(b(2)-a(2))+y*(c(2)-a(2))) = 0
+    (u-x)*cross = (u-x)*(dx*ey-dy*ex) = ((u-x)*dx+(v-y)*ex)*ey-((u-x)*dy+(v-y)*ey)*ex = 0*ey-0*ex = 0
+    u-x = ((u-x)*cross)/cross = 0/cross = 0
+    u = x
+    (v-y)*cross = (v-y)*(dx*ey-dy*ex) = dx*((u-x)*dy+(v-y)*ey)-dy*((u-x)*dx+(v-y)*ex) = dx*0-dy*0 = 0
+    v-y = ((v-y)*cross)/cross = 0/cross = 0
+    v = y
+
+
+thm proper_triangle_adjacent_segments_intersect_at_vertex:
+    ? forall a,b,c,p cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        $is_on_segment(p,a,b)
+        $is_on_segment(p,a,c)
+        =>:
+            p = a
+    by def $is_on_segment(p,a,b)
+    obtain u from exist u R st {0 <= u, u <= 1, p(1) = (1-u)*a(1)+u*b(1), p(2) = (1-u)*a(2)+u*b(2)}
+    by def $is_on_segment(p,a,c)
+    obtain v from exist v R st {0 <= v, v <= 1, p(1) = (1-v)*a(1)+v*c(1), p(2) = (1-v)*a(2)+v*c(2)}
+    a(1)+u*(b(1)-a(1))+0*(c(1)-a(1)) = (1-u)*a(1)+u*b(1) = p(1) = (1-v)*a(1)+v*c(1) = a(1)+0*(b(1)-a(1))+v*(c(1)-a(1))
+    a(2)+u*(b(2)-a(2))+0*(c(2)-a(2)) = (1-u)*a(2)+u*b(2) = p(2) = (1-v)*a(2)+v*c(2) = a(2)+0*(b(2)-a(2))+v*(c(2)-a(2))
+    release thm triangle_barycentric_coordinates_unique(a,b,c,u,0,0,v)
+    u = 0
+    v = 0
+    p(1) = (1-u)*a(1)+u*b(1) = a(1)
+    p(2) = (1-u)*a(2)+u*b(2) = a(2)
+    release thm tuple_equal_from_coordinates(p,(p(1),p(2)))
+    release thm tuple_equal_from_coordinates(a,(a(1),a(2)))
+    (p(1),p(2)) = (a(1),a(2))
+    p = (p(1),p(2)) = (a(1),a(2)) = a
+
+
+thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $segments_meet_only_at_common_endpoints(a,b,a,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    claim:
+        ? forall p cart(R,R):
+            $is_on_segment(p,a,b)
+            $is_on_segment(p,a,c)
+            p != a
+            =>:
+                p = b
+        release thm proper_triangle_adjacent_segments_intersect_at_vertex(a,b,c,p)
+        by contra:
+            ? p = b
+            impossible p != a
+    claim:
+        ? forall p cart(R,R):
+            $is_on_segment(p,a,b)
+            $is_on_segment(p,a,c)
+            p != a
+            =>:
+                p = c
+        release thm proper_triangle_adjacent_segments_intersect_at_vertex(a,b,c,p)
+        by contra:
+            ? p = c
+            impossible p != a
+    by def $segments_meet_only_at_common_endpoints(a,b,a,c)
+
+
+thm closed_segment_membership_reversed:
+    ? forall p,a,b cart(R,R):
+        $is_on_segment(p,a,b)
+        =>:
+            $is_on_segment(p,b,a)
+    by def $is_on_segment(p,a,b)
+    obtain t from exist t R st {0 <= t, t <= 1, p(1) = (1-t)*a(1)+t*b(1), p(2) = (1-t)*a(2)+t*b(2)}
+    b != a
+    0 <= 1-t
+    1-t <= 1
+    p(1) = (1-t)*a(1)+t*b(1) = (1-(1-t))*b(1)+(1-t)*a(1)
+    p(2) = (1-t)*a(2)+t*b(2) = (1-(1-t))*b(2)+(1-t)*a(2)
+    witness exist u R st {0 <= u, u <= 1, p(1) = (1-u)*b(1)+u*a(1), p(2) = (1-u)*b(2)+u*a(2)} from 1-t
+    by def $is_on_segment(p,b,a)
+
+
+thm common_endpoint_condition_reverse_first_segment:
+    ? forall a,b,c,d cart(R,R):
+        $segments_meet_only_at_common_endpoints(a,b,c,d)
+        =>:
+            $segments_meet_only_at_common_endpoints(b,a,c,d)
+    by def $segments_meet_only_at_common_endpoints(a,b,c,d)
+    b != a
+    claim:
+        ? forall p cart(R,R):
+            $is_on_segment(p,b,a)
+            $is_on_segment(p,c,d)
+            p != b
+            =>:
+                p = a
+        release thm closed_segment_membership_reversed(p,b,a)
+        by contra:
+            ? p = a
+            p != a
+            p = b
+            impossible p != b
+    claim:
+        ? forall p cart(R,R):
+            $is_on_segment(p,b,a)
+            $is_on_segment(p,c,d)
+            p != c
+            =>:
+                p = d
+        release thm closed_segment_membership_reversed(p,b,a)
+        p = d
+    by def $segments_meet_only_at_common_endpoints(b,a,c,d)
+
+
+thm common_endpoint_condition_symmetric:
+    ? forall a,b,c,d cart(R,R):
+        $segments_meet_only_at_common_endpoints(a,b,c,d)
+        =>:
+            $segments_meet_only_at_common_endpoints(c,d,a,b)
+    by def $segments_meet_only_at_common_endpoints(a,b,c,d)
+    by def $segments_meet_only_at_common_endpoints(c,d,a,b)
+
+
+thm proper_triangle_cyclic_rotations:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $geometry::main::is_triangle(b,c,a)
+            $geometry::main::is_triangle(c,a,b)
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    release thm geometry::main::collinear_det_expand(b,c,a)
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    by def $geometry::main::is_triangle(b,c,a)
+    release thm geometry::main::collinear_det_expand(c,a,b)
+    geometry::main::det(geometry::main::vec(c,a),geometry::main::vec(c,b)) = (a(1)-c(1))*(b(2)-c(2))-(a(2)-c(2))*(b(1)-c(1)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    by def $geometry::main::is_triangle(c,a,b)
+
+
+thm proper_triangle_consecutive_segments_common_endpoint:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $segments_meet_only_at_common_endpoints(a,b,b,c)
+            $segments_meet_only_at_common_endpoints(b,c,c,a)
+            $segments_meet_only_at_common_endpoints(c,a,a,b)
+    release thm proper_triangle_cyclic_rotations(a,b,c)
+    release thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint(b,c,a)
+    release thm common_endpoint_condition_symmetric(b,c,b,a)
+    release thm common_endpoint_condition_reverse_first_segment(b,a,b,c)
+    $segments_meet_only_at_common_endpoints(a,b,b,c)
+    release thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint(c,a,b)
+    release thm common_endpoint_condition_symmetric(c,a,c,b)
+    release thm common_endpoint_condition_reverse_first_segment(c,b,c,a)
+    $segments_meet_only_at_common_endpoints(b,c,c,a)
+    release thm proper_triangle_adjacent_segments_meet_only_at_common_endpoint(a,b,c)
+    release thm common_endpoint_condition_symmetric(a,b,a,c)
+    release thm common_endpoint_condition_reverse_first_segment(a,c,a,b)
+    $segments_meet_only_at_common_endpoints(c,a,a,b)
+
+
+thm integer_index_below_three_cases:
+    ? forall k Z:
+        0 <= k
+        k < 3
+        =>:
+            k = 0 or k = 1 or k = 2
+    by contra:
+        ? k = 0 or k = 1 or k = 2
+        k != 0
+        k != 1
+        k != 2
+        by contra:
+            ? k > 0
+            k <= 0
+            k = 0
+            impossible k != 0
+        k >= 1
+        by contra:
+            ? k > 1
+            k <= 1
+            k = 1
+            impossible k != 1
+        k >= 2
+        k <= 2
+        k = 2
+        impossible k != 2
+
+
+thm three_vertex_triangle_is_simple_polygonal_cycle:
+    ? forall vertices fn(k Z) cart(R,R):
+        $geometry::main::is_triangle(vertices(0),vertices(1),vertices(2))
+        vertices(3) = vertices(0)
+        =>:
+            $is_simple_polygonal_cycle(3,vertices)
+    release thm geometry_lemmas::triangle_vertices_distinct(vertices(0),vertices(1),vertices(2))
+    release thm proper_triangle_consecutive_segments_common_endpoint(vertices(0),vertices(1),vertices(2))
+    release thm common_endpoint_condition_symmetric(vertices(0),vertices(1),vertices(1),vertices(2))
+    release thm common_endpoint_condition_symmetric(vertices(1),vertices(2),vertices(2),vertices(0))
+    release thm common_endpoint_condition_symmetric(vertices(2),vertices(0),vertices(0),vertices(1))
+    claim:
+        ? forall k Z:
+            0 <= k
+            k < 3
+            =>:
+                vertices(k) != vertices(k+1)
+        release thm integer_index_below_three_cases(k)
+        by cases:
+            ? vertices(k) != vertices(k+1)
+            case k = 0:
+                k+1 = 1
+                vertices(k) = vertices(0)
+                vertices(k+1) = vertices(1)
+                vertices(0) != vertices(1)
+                vertices(k) != vertices(k+1)
+            case k = 1:
+                k+1 = 2
+                vertices(k) = vertices(1)
+                vertices(k+1) = vertices(2)
+                vertices(1) != vertices(2)
+                vertices(k) != vertices(k+1)
+            case k = 2:
+                k+1 = 3
+                vertices(k) = vertices(2)
+                vertices(k+1) = vertices(3)
+                vertices(2) != vertices(3)
+                vertices(k) != vertices(k+1)
+    claim:
+        ? forall left_index,right_index Z:
+            0 <= left_index
+            left_index < right_index
+            right_index < 3
+            =>:
+                vertices(left_index) != vertices(right_index)
+        left_index < 3
+        0 <= right_index
+        release thm integer_index_below_three_cases(left_index)
+        release thm integer_index_below_three_cases(right_index)
+        by contra:
+            ? left_index != 2
+            left_index = 2
+            right_index > 2
+            right_index >= 3
+            impossible right_index < 3
+        right_index > 0
+        right_index != 0
+        by contra:
+            ? left_index = 0 or left_index = 1
+            left_index != 0
+            left_index != 1
+            impossible left_index = 0 or left_index = 1 or left_index = 2
+        by contra:
+            ? right_index = 1 or right_index = 2
+            right_index != 1
+            right_index != 2
+            impossible right_index = 0 or right_index = 1 or right_index = 2
+        by cases:
+            ? vertices(left_index) != vertices(right_index)
+            case left_index = 0:
+                left_index+1 = 1
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(0)
+                        vertices(right_index) = vertices(1)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(0)
+                        vertices(right_index) = vertices(2)
+                        vertices(left_index) != vertices(right_index)
+            case left_index = 1:
+                left_index+1 = 2
+                right_index > 1
+                right_index >= 2
+                right_index <= 2
+                right_index = 2
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(1)
+                        vertices(right_index) = vertices(2)
+                        vertices(left_index) != vertices(right_index)
+    claim:
+        ? forall left_index,right_index Z:
+            0 <= left_index
+            left_index < 3
+            0 <= right_index
+            right_index < 3
+            left_index != right_index
+            =>:
+                $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+        release thm integer_index_below_three_cases(left_index)
+        release thm integer_index_below_three_cases(right_index)
+        by cases:
+            ? $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 0:
+                left_index+1 = 1
+                right_index != 0
+                by contra:
+                    ? right_index = 1 or right_index = 2
+                    right_index != 1
+                    right_index != 2
+                    impossible right_index = 0 or right_index = 1 or right_index = 2
+                by cases:
+                    ? $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(0)
+                        vertices(left_index+1) = vertices(1) = vertices(1)
+                        vertices(right_index) = vertices(1)
+                        vertices(right_index+1) = vertices(2) = vertices(2)
+                        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(0)
+                        vertices(left_index+1) = vertices(1) = vertices(1)
+                        vertices(right_index) = vertices(2)
+                        vertices(right_index+1) = vertices(3) = vertices(0)
+                        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 1:
+                left_index+1 = 2
+                right_index != 1
+                by contra:
+                    ? right_index = 0 or right_index = 2
+                    right_index != 0
+                    right_index != 2
+                    impossible right_index = 0 or right_index = 1 or right_index = 2
+                by cases:
+                    ? $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        right_index+1 = 1
+                        vertices(left_index) = vertices(1)
+                        vertices(left_index+1) = vertices(2) = vertices(2)
+                        vertices(right_index) = vertices(0)
+                        vertices(right_index+1) = vertices(1) = vertices(1)
+                        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(1)
+                        vertices(left_index+1) = vertices(2) = vertices(2)
+                        vertices(right_index) = vertices(2)
+                        vertices(right_index+1) = vertices(3) = vertices(0)
+                        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 2:
+                left_index+1 = 3
+                right_index != 2
+                by contra:
+                    ? right_index = 0 or right_index = 1
+                    right_index != 0
+                    right_index != 1
+                    impossible right_index = 0 or right_index = 1 or right_index = 2
+                by cases:
+                    ? $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        right_index+1 = 1
+                        vertices(left_index) = vertices(2)
+                        vertices(left_index+1) = vertices(3) = vertices(0)
+                        vertices(right_index) = vertices(0)
+                        vertices(right_index+1) = vertices(1) = vertices(1)
+                        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(2)
+                        vertices(left_index+1) = vertices(3) = vertices(0)
+                        vertices(right_index) = vertices(1)
+                        vertices(right_index+1) = vertices(2) = vertices(2)
+                        $segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+    by def $is_simple_polygonal_cycle(3,vertices)
+
+
+sketch:
+    let vertices = fn(k Z) cart(R,R) {(3*(k%3)*(2-(k%3)),(3/2)*(k%3)*((k%3)-1))}
+    vertices(0)(1) = 0
+    vertices(0)(2) = 0
+    vertices(1)(1) = 3
+    vertices(1)(2) = 0
+    vertices(2)(1) = 0
+    vertices(2)(2) = 3
+    vertices(3)(1) = 0
+    vertices(3)(2) = 0
+    vertices(3) = (0,0) = vertices(0)
+    release thm geometry::main::collinear_det_expand(vertices(0),vertices(1),vertices(2))
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) = (vertices(1)(1)-vertices(0)(1))*(vertices(2)(2)-vertices(0)(2))-(vertices(1)(2)-vertices(0)(2))*(vertices(2)(1)-vertices(0)(1)) = (3-0)*(3-0)-(0-0)*(0-0) = 9
+    by def $geometry::main::is_triangle(vertices(0),vertices(1),vertices(2))
+    release thm three_vertex_triangle_is_simple_polygonal_cycle(vertices)
+    $is_simple_polygonal_cycle(3,vertices)
+
+
+# Actual filled triangle, independent of any assigned area.
+prop is_in_closed_triangle(p,a,b,c cart(R,R)):
+    $geometry::main::is_triangle(a,b,c)
+    exist u,v R st {0 <= u, 0 <= v, u+v <= 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+
+
+prop is_in_triangle_interior(p,a,b,c cart(R,R)):
+    $geometry::main::is_triangle(a,b,c)
+    exist u,v R st {0 < u, 0 < v, u+v < 1, p(1) = a(1)+u*(b(1)-a(1))+v*(c(1)-a(1)), p(2) = a(2)+u*(b(2)-a(2))+v*(c(2)-a(2))}
+
+
+# A geometric decomposition primitive; does not assert the union is a simple polygon.
+prop is_finite_triangle_region_decomposition(region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R)):
+    forall k Z:
+        1 <= k
+        k <= n
+        =>:
+            $geometry::main::is_triangle(first(k),second(k),third(k))
+    forall p cart(R,R):
+        p $in region
+        =>:
+            exist k Z st {1 <= k, k <= n, $is_in_closed_triangle(p,first(k),second(k),third(k))}
+    forall k Z, p cart(R,R):
+        1 <= k
+        k <= n
+        $is_in_closed_triangle(p,first(k),second(k),third(k))
+        =>:
+            p $in region
+    forall left_index,right_index Z, p cart(R,R):
+        1 <= left_index
+        left_index <= n
+        1 <= right_index
+        right_index <= n
+        $is_in_triangle_interior(p,first(left_index),second(left_index),third(left_index))
+        $is_in_triangle_interior(p,first(right_index),second(right_index),third(right_index))
+        =>:
+            left_index = right_index
+
+
+# Area attached to a specified actual-region triangulation; independence of triangulation is a separate theorem.
+prop has_triangle_decomposition_area(region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R), terms fn(k Z) R, total R):
+    $is_finite_triangle_region_decomposition(region,n,first,second,third)
+    forall k Z:
+        1 <= k
+        k <= n
+        =>:
+            terms(k) > 0
+            $area::has_triangle_area(first(k),second(k),third(k),terms(k))
+    total = sum(1,n,terms)
+
+
+thm finite_positive_area_sum:
+    ? forall n N+, terms fn(k Z) R:
+        forall k Z:
+            1 <= k
+            k <= n
+            =>:
+                terms(k) > 0
+        =>:
+            sum(1,n,terms) > 0
+    1 <= n
+    terms(1) > 0
+    by cases:
+        ? sum(1,n,terms) > 0
+        case n = 1:
+            sum(1,n,terms) = sum(1,1,terms) = terms(1) > 0
+        case n != 1:
+            by contra:
+                ? n > 1
+                n <= 1
+                n >= 1
+                n = 1
+                impossible n != 1
+            n $in Z
+            n >= 2
+            let zero = fn(k Z) R {0}
+            claim:
+                ? forall k Z:
+                    2 <= k
+                    k <= n
+                    =>:
+                        zero(k) <= terms(k)
+                1 <= k
+                terms(k) > 0
+                zero(k) = 0 <= terms(k)
+            release thm sum_le_sum_from_pointwise(sum(2,n,zero),sum(2,n,terms))
+            sum(2,n,zero) = (n-2+1)*0 = 0
+            sum(2,n,terms) >= 0
+            terms(1) $in R
+            sum(2,n,terms) $in R
+            have head R = terms(1)
+            have remainder R = sum(2,n,terms)
+            head > 0
+            remainder >= 0
+            head+remainder >= head > 0
+            sum(1,n,terms) = sum(1,1,terms)+sum(2,n,terms) = terms(1)+sum(2,n,terms) = head+remainder > 0
+
+
+thm triangle_decomposition_area_positive:
+    ? forall region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R), terms fn(k Z) R, total R:
+        $has_triangle_decomposition_area(region,n,first,second,third,terms,total)
+        =>:
+            total > 0
+    by def $has_triangle_decomposition_area(region,n,first,second,third,terms,total)
+    release thm finite_positive_area_sum(n,terms)
+    total = sum(1,n,terms) > 0
+
+
+# Fixed-triangulation uniqueness only; this does not compare different triangulations.
+thm fixed_triangle_decomposition_area_unique:
+    ? forall region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R), left_terms,right_terms fn(k Z) R, left_total,right_total R:
+        $has_triangle_decomposition_area(region,n,first,second,third,left_terms,left_total)
+        $has_triangle_decomposition_area(region,n,first,second,third,right_terms,right_total)
+        =>:
+            left_total = right_total
+    by def $has_triangle_decomposition_area(region,n,first,second,third,left_terms,left_total)
+    by def $has_triangle_decomposition_area(region,n,first,second,third,right_terms,right_total)
+    claim:
+        ? forall k Z:
+            1 <= k
+            k <= n
+            =>:
+                left_terms(k) = right_terms(k)
+                left_terms(k) <= right_terms(k)
+                right_terms(k) <= left_terms(k)
+        $area::has_triangle_area(first(k),second(k),third(k),left_terms(k))
+        $area::has_triangle_area(first(k),second(k),third(k),right_terms(k))
+        by def $area::has_triangle_area(first(k),second(k),third(k),left_terms(k))
+        by def $area::has_triangle_area(first(k),second(k),third(k),right_terms(k))
+        2*left_terms(k) = sqrt(geometry::main::det(geometry::main::vec(first(k),second(k)),geometry::main::vec(first(k),third(k)))^2) = 2*right_terms(k)
+        left_terms(k) = (2*left_terms(k))/2 = (2*right_terms(k))/2 = right_terms(k)
+        left_terms(k) <= right_terms(k)
+        right_terms(k) <= left_terms(k)
+    release thm sum_le_sum_from_pointwise(sum(1,n,left_terms),sum(1,n,right_terms))
+    release thm sum_le_sum_from_pointwise(sum(1,n,right_terms),sum(1,n,left_terms))
+    sum(1,n,left_terms) = sum(1,n,right_terms)
+    left_total = sum(1,n,left_terms) = sum(1,n,right_terms) = right_total
+
+
+thm triangle_decomposition_has_positive_area:
+    ? forall region power_set(cart(R,R)), n N+, first,second,third fn(k Z) cart(R,R):
+        $is_finite_triangle_region_decomposition(region,n,first,second,third)
+        =>:
+            exist terms fn(k Z) R, total R+ st {$has_triangle_decomposition_area(region,n,first,second,third,terms,total)}
+    by def $is_finite_triangle_region_decomposition(region,n,first,second,third)
+    let terms = fn(k Z) R {sqrt(geometry::main::det(geometry::main::vec(first(k),second(k)),geometry::main::vec(first(k),third(k)))^2)/2}
+    claim:
+        ? forall k Z:
+            1 <= k
+            k <= n
+            =>:
+                terms(k) > 0
+                $area::has_triangle_area(first(k),second(k),third(k),terms(k))
+        $geometry::main::is_triangle(first(k),second(k),third(k))
+        by def $geometry::main::is_triangle(first(k),second(k),third(k))
+        have cross R = geometry::main::det(geometry::main::vec(first(k),second(k)),geometry::main::vec(first(k),third(k)))
+        cross != 0
+        cross^2 > 0
+        sqrt(cross^2) > 0
+        geometry::main::det(geometry::main::vec(first(k),second(k)),geometry::main::vec(first(k),third(k)))^2 = cross^2
+        terms(k) = sqrt(geometry::main::det(geometry::main::vec(first(k),second(k)),geometry::main::vec(first(k),third(k)))^2)/2 = sqrt(cross^2)/2 > 0
+        2*terms(k) = 2*(sqrt(cross^2)/2) = sqrt(cross^2) = sqrt(geometry::main::det(geometry::main::vec(first(k),second(k)),geometry::main::vec(first(k),third(k)))^2)
+        by def $area::has_triangle_area(first(k),second(k),third(k),terms(k))
+    release thm finite_positive_area_sum(n,terms)
+    have total R+ = sum(1,n,terms)
+    by def $has_triangle_decomposition_area(region,n,first,second,third,terms,total)
+    witness exist values fn(k Z) R, area_value R+ st {$has_triangle_decomposition_area(region,n,first,second,third,values,area_value)} from terms,total
+
+
+have fn closed_triangle_region(a,b,c cart(R,R): $geometry::main::is_triangle(a,b,c)) power_set(cart(R,R)) = {p cart(R,R): $is_in_closed_triangle(p,a,b,c)}
+
+
+thm single_triangle_region_decomposition:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist first,second,third fn(k Z) cart(R,R) st {$is_finite_triangle_region_decomposition(closed_triangle_region(a,b,c),1,first,second,third)}
+    let first = fn(k Z) cart(R,R) {a}
+    let second = fn(k Z) cart(R,R) {b}
+    let third = fn(k Z) cart(R,R) {c}
+    have region power_set(cart(R,R)) = closed_triangle_region(a,b,c)
+    region = closed_triangle_region(a,b,c) = {p cart(R,R): $is_in_closed_triangle(p,a,b,c)}
+    claim:
+        ? forall k Z:
+            1 <= k
+            k <= 1
+            =>:
+                $geometry::main::is_triangle(first(k),second(k),third(k))
+        first(k) = a
+        second(k) = b
+        third(k) = c
+    claim:
+        ? forall p cart(R,R):
+            p $in region
+            =>:
+                exist k Z st {1 <= k, k <= 1, $is_in_closed_triangle(p,first(k),second(k),third(k))}
+        p $in {q cart(R,R): $is_in_closed_triangle(q,a,b,c)}
+        release thm set_builder_member(p,{q cart(R,R): $is_in_closed_triangle(q,a,b,c)})
+        $is_in_closed_triangle(p,a,b,c)
+        first(1) = a
+        second(1) = b
+        third(1) = c
+        $is_in_closed_triangle(p,first(1),second(1),third(1))
+        witness exist k Z st {1 <= k, k <= 1, $is_in_closed_triangle(p,first(k),second(k),third(k))} from 1
+    claim:
+        ? forall k Z, p cart(R,R):
+            1 <= k
+            k <= 1
+            $is_in_closed_triangle(p,first(k),second(k),third(k))
+            =>:
+                p $in region
+        first(k) = a
+        second(k) = b
+        third(k) = c
+        $is_in_closed_triangle(p,a,b,c)
+        p $in {q cart(R,R): $is_in_closed_triangle(q,a,b,c)}
+        p $in region
+    claim:
+        ? forall left_index,right_index Z, p cart(R,R):
+            1 <= left_index
+            left_index <= 1
+            1 <= right_index
+            right_index <= 1
+            $is_in_triangle_interior(p,first(left_index),second(left_index),third(left_index))
+            $is_in_triangle_interior(p,first(right_index),second(right_index),third(right_index))
+            =>:
+                left_index = right_index
+        left_index = 1
+        right_index = 1
+    by def $is_finite_triangle_region_decomposition(region,1,first,second,third)
+    witness exist f,g,h fn(k Z) cart(R,R) st {$is_finite_triangle_region_decomposition(closed_triangle_region(a,b,c),1,f,g,h)} from first,second,third
+
+
+sketch:
+    have a cart(R,R) = (0,0)
+    have b cart(R,R) = (3,0)
+    have c cart(R,R) = (0,3)
+    a(1) = 0
+    a(2) = 0
+    b(1) = 3
+    b(2) = 0
+    c(1) = 0
+    c(2) = 3
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = 9
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm single_triangle_region_decomposition(a,b,c)
+    obtain first,second,third from exist first,second,third fn(k Z) cart(R,R) st {$is_finite_triangle_region_decomposition(closed_triangle_region(a,b,c),1,first,second,third)}
+    release thm triangle_decomposition_has_positive_area(closed_triangle_region(a,b,c),1,first,second,third)
+    obtain terms,total from exist terms fn(k Z) R, total R+ st {$has_triangle_decomposition_area(closed_triangle_region(a,b,c),1,first,second,third,terms,total)}
+    release thm triangle_decomposition_area_positive(closed_triangle_region(a,b,c),1,first,second,third,terms,total)
+    total > 0
+    by contra:
+        ? not $has_triangle_decomposition_area(closed_triangle_region(a,b,c),1,first,second,third,terms,0)
+        $has_triangle_decomposition_area(closed_triangle_region(a,b,c),1,first,second,third,terms,0)
+        release thm triangle_decomposition_area_positive(closed_triangle_region(a,b,c),1,first,second,third,terms,0)
+        impossible 0 > 0

@@ -1,0 +1,30 @@
+{
+  "id": "I.1",
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 1,
+    "pdf_page": 8,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "problem": "Construct a nondegenerate equilateral triangle on any given nonzero segment.",
+  "proof_idea": "Use the oriented sixty-degree coordinate apex. Prove its two squared distances equal the base squared length, and its signed determinant is positive. Verify that it lies on both circles of the prescribed radius. The original source obtains the vertex at the two circles' intersection; the analytic witness proves that such an intersection exists in the real plane.",
+  "litex_code": "thm proposition_1:\n    ? forall a, b cart(R, R):\n        a != b\n        =>:\n            exist z cart(R, R) st {$geometry::main::is_equilateral(a, b, z)}\n    have c cart(R, R) = equilateral_vertex(a, b)\n    have x R = b(1) - a(1)\n    have y R = b(2) - a(2)\n    equilateral_vertex(a, b) = ((a(1) + b(1)) / 2 - sqrt(3) * (b(2) - a(2)) / 2, (a(2) + b(2)) / 2 + sqrt(3) * (b(1) - a(1)) / 2)\n    c = ((a(1) + b(1)) / 2 - sqrt(3) * (b(2) - a(2)) / 2, (a(2) + b(2)) / 2 + sqrt(3) * (b(1) - a(1)) / 2)\n    c(1) = (a(1) + b(1)) / 2 - sqrt(3) * y / 2\n    c(2) = (a(2) + b(2)) / 2 + sqrt(3) * x / 2\n    release thm geometry::main::vec_coordinate_formula(a, b)\n    geometry::main::vec(a, b)(1) = x\n    geometry::main::vec(a, b)(2) = y\n    release thm geometry::main::distance_sq_coordinate_formula(a, b)\n    geometry::main::distance_sq(a, b) = (b(1) - a(1))^2 + (b(2) - a(2))^2 = x^2 + y^2\n    release thm geometry::main::distance_sq_positive_of_ne(a, b)\n    x^2 + y^2 > 0\n    sqrt(3)^2 = 3\n    sqrt(3) > 0\n    c(1) - a(1) = ((a(1) + b(1)) / 2 - sqrt(3) * y / 2) - a(1) = (b(1) - a(1)) / 2 - sqrt(3) * y / 2 = x / 2 - sqrt(3) * y / 2\n    c(2) - a(2) = ((a(2) + b(2)) / 2 + sqrt(3) * x / 2) - a(2) = (b(2) - a(2)) / 2 + sqrt(3) * x / 2 = y / 2 + sqrt(3) * x / 2\n    c(1) - b(1) = ((a(1) + b(1)) / 2 - sqrt(3) * y / 2) - b(1) = -(b(1) - a(1)) / 2 - sqrt(3) * y / 2 = -x / 2 - sqrt(3) * y / 2\n    c(2) - b(2) = ((a(2) + b(2)) / 2 + sqrt(3) * x / 2) - b(2) = -(b(2) - a(2)) / 2 + sqrt(3) * x / 2 = -y / 2 + sqrt(3) * x / 2\n    geometry::main::vec(a, c)(1) = x / 2 - sqrt(3) * y / 2\n    geometry::main::vec(a, c)(2) = y / 2 + sqrt(3) * x / 2\n    geometry::main::vec(b, c)(1) = -x / 2 - sqrt(3) * y / 2\n    geometry::main::vec(b, c)(2) = -y / 2 + sqrt(3) * x / 2\n    (x / 2 - sqrt(3) * y / 2)^2 + (y / 2 + sqrt(3) * x / 2)^2 = (1 + sqrt(3)^2) * (x^2 + y^2) / 4 = x^2 + y^2\n    (-x / 2 - sqrt(3) * y / 2)^2 + (-y / 2 + sqrt(3) * x / 2)^2 = (1 + sqrt(3)^2) * (x^2 + y^2) / 4 = x^2 + y^2\n    release thm geometry::main::distance_sq_coordinate_formula(a, c)\n    geometry::main::distance_sq(a, c) = (c(1) - a(1))^2 + (c(2) - a(2))^2 = (x / 2 - sqrt(3) * y / 2)^2 + (y / 2 + sqrt(3) * x / 2)^2 = x^2 + y^2\n    release thm geometry::main::distance_sq_coordinate_formula(b, c)\n    geometry::main::distance_sq(b, c) = (c(1) - b(1))^2 + (c(2) - b(2))^2 = (-x / 2 - sqrt(3) * y / 2)^2 + (-y / 2 + sqrt(3) * x / 2)^2 = x^2 + y^2\n    release thm geometry::main::distance_sq_symmetric(c, a)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = x * (y / 2 + sqrt(3) * x / 2) - y * (x / 2 - sqrt(3) * y / 2) = sqrt(3) * (x^2 + y^2) / 2\n    have norm_sq R+ = x^2 + y^2\n    sqrt(3) $in R+\n    sqrt(3) * norm_sq $in R+\n    sqrt(3) * norm_sq / 2 $in R+\n    sqrt(3) * (x^2 + y^2) / 2 = sqrt(3) * norm_sq / 2 > 0\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0\n    by def $geometry::main::is_triangle(a, b, c)\n    by def $geometry::main::are_segments_congruent(a, b, b, c)\n    by def $geometry::main::are_segments_congruent(b, c, c, a)\n    by def $geometry::main::is_equilateral(a, b, c)\n    release obj def geometry::main::circle\n    have radius R+ = sqrt(geometry::main::distance_sq(a, b))\n    sqrt(geometry::main::distance_sq(a, b))^2 = geometry::main::distance_sq(a, b)\n    radius^2 = sqrt(geometry::main::distance_sq(a, b))^2 = geometry::main::distance_sq(a, b)\n    geometry::main::distance_sq(a, c) = radius * radius\n    geometry::main::distance_sq(b, c) = radius * radius\n    c $in geometry::main::circle(a, radius)\n    c $in geometry::main::circle(b, radius)\n    witness exist z cart(R, R) st {$geometry::main::is_equilateral(a, b, z)} from c\n",
+  "comments": {
+    "status": "checkable: clean registered strict file gate passed",
+    "context": "complete existing analytic geometry library",
+    "trust_added": 0,
+    "source_route_difference": "Explicit coordinate witness instead of assuming circle intersection.",
+    "draft_path": "../.draft/experiment/I1-full-candidate.lit",
+    "canonical_path": "../textbook/book01-constructions.lit",
+    "gate": {
+      "command": "target/release/litex -lang en -strict -f scripts/Euclid_Elements/textbook/book01-constructions.lit",
+      "exit_code": 0,
+      "success": true,
+      "session_error": null,
+      "receipt": "../.draft/experiment/book01-first-three-clean.json",
+      "binary_start_hash": "not captured; concurrent binary update disclosed in experiment protocol"
+    }
+  }
+}

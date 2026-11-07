@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 17,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/17.txt"
+  },
+  "problem": "Every pair of a nondegenerate triangle's interior angles sums to less than two right angles.",
+  "proof_idea": {
+    "original": "Extend a side and compare the exterior angle with an opposite interior angle using I.16; subtract from the straight-angle sum.",
+    "analytic": "Consume independently derived positive sums of two interior normalized cosines and principal arccos order/supplementary identities; cover all three pairs."
+  },
+  "litex_code": "# Book I.17: each pair of interior triangle angles sums to less than two right angles.\nthm proposition_17:\n    ? forall a, b, c cart(R, R):\n        a != b\n        a != c\n        b != c\n        $geometry::main::is_triangle(a, b, c)\n        =>:\n            ray_angle(b, a, c) + ray_angle(a, b, c) < pi\n            ray_angle(b, a, c) + ray_angle(a, c, b) < pi\n            ray_angle(a, b, c) + ray_angle(a, c, b) < pi\n    by def $geometry::main::is_triangle(a, b, c)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0\n    release thm geometry::main::triangle_det_squared_vertex(a, b, c)\n    geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0\n    by contra:\n        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) != 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) = 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = 0\n        impossible geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 > 0\n    by def $geometry::main::is_triangle(b, a, c)\n    release thm geometry::main::det_antisymmetric(geometry::main::vec(a, c), geometry::main::vec(a, b))\n    by contra:\n        ? geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) != 0\n        geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = 0\n        -geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0\n        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -(-geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))) = -0 = 0\n        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0\n    by def $geometry::main::is_triangle(a, c, b)\n    release thm two_internal_triangle_cosines_sum_positive(a, b, c)\n    release thm two_internal_triangle_cosines_sum_positive(b, a, c)\n    release thm two_internal_triangle_cosines_sum_positive(a, c, b)\n    release thm angle_cosine_arms_symmetric(a, c, b)\n    release thm angle_cosine_arms_symmetric(b, a, c)\n    angles::angle_cosine(a, b, c) + angles::angle_cosine(a, c, b) = angles::angle_cosine(a, b, c) + angles::angle_cosine(b, c, a) > 0\n    angles::angle_cosine(b, a, c) + angles::angle_cosine(a, b, c) = angles::angle_cosine(c, a, b) + angles::angle_cosine(a, b, c) > 0\n    release thm angle_cosine_bounded(b, a, c)\n    release thm angle_cosine_bounded(a, b, c)\n    release thm angle_cosine_bounded(a, c, b)\n    release thm positive_cosine_sum_implies_angle_sum_below_pi(angles::angle_cosine(b, a, c), angles::angle_cosine(a, b, c))\n    release thm positive_cosine_sum_implies_angle_sum_below_pi(angles::angle_cosine(b, a, c), angles::angle_cosine(a, c, b))\n    release thm positive_cosine_sum_implies_angle_sum_below_pi(angles::angle_cosine(a, b, c), angles::angle_cosine(a, c, b))\n    ray_angle(b, a, c) + ray_angle(a, b, c) = arccos(angles::angle_cosine(b, a, c)) + arccos(angles::angle_cosine(a, b, c)) < pi\n    ray_angle(b, a, c) + ray_angle(a, c, b) = arccos(angles::angle_cosine(b, a, c)) + arccos(angles::angle_cosine(a, c, b)) < pi\n    ray_angle(a, b, c) + ray_angle(a, c, b) = arccos(angles::angle_cosine(a, b, c)) + arccos(angles::angle_cosine(a, c, b)) < pi\n",
+  "comments": {
+    "status": "canonical strict full-source first-seventeen gate passed",
+    "draft_source": "scripts/Euclid_Elements/.draft/authoring-angles/proposition17-1.lit",
+    "trust_added": 0,
+    "boundary_and_next_obligation": "Keep genuine nondegenerate triangle conditions and all three angle-pair conclusions. First-fifteen canonical gate source remains frozen."
+  },
+  "accepted_session_id": 55623,
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-seventeen-checkpoint/receipt.json"
+}

@@ -1,0 +1,103 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": {
+    "III7": [
+      74,
+      75,
+      76
+    ],
+    "III8": [
+      76,
+      77,
+      78
+    ]
+  },
+  "status": "source decomposition, no completed source theorem",
+  "III7_required": [
+    "noncentral point on diameter; represent full source diameter domain and explicitly audit boundary endpoints",
+    "construct near and far circle points on center axis",
+    "prove global minimum and maximum and strictness away from those points",
+    "prove monotonic distance order with angular proximity to center-going direction",
+    "construct reflected equal-distance endpoint on opposite side of axis; prove at most two and uniqueness of the partner off axis"
+  ],
+  "III8_required": [
+    "external point; positive-radius circle",
+    "separate near/convex and far/concave ray intersections, with tangent boundary explicit",
+    "far branch maximum and order nearer central ray => longer",
+    "near branch minimum and order nearer central ray => shorter",
+    "opposite-side equal-distance pair construction and no third equal endpoint"
+  ],
+  "dependency_plan": [
+    "circle distance expansion via dot product",
+    "positive norm and noncentral axis guard",
+    "radial endpoint and axial reflection functions",
+    "point-angle order bridge preserving source meaning",
+    "near/far ray-root carriers and tangent boundary"
+  ],
+  "fidelity_note": "Squared-distance identities alone, global extrema alone, or projections without the angle/branch bridge do not complete III7 or III8. Source footnote says nearer is presumably angular; state the adopted meaning explicitly.",
+  "III7_boundary_audit": {
+    "source_lines": [
+      2960,
+      2968
+    ],
+    "finding": "source statement says on diameter and excludes center, without an explicit endpoint exclusion",
+    "implementation_plan": "prove distance extrema on 0<distance(O,P)<=r including boundary min0; require each angle arm nonzero separately; do not claim a zero-length segment forms an angle",
+    "status": "Radial global/strict bounds, interior/boundary/exterior coordinates and strict boundary use passed independent strict cold gate97412; actual interior angle order warm accepted",
+    "pair_domain": "off-axis circumference point has a distinct opposite-side partner; axial extrema have no distinct partner"
+  },
+  "angle_order_proof_plan": {
+    "cosine_law": "2*d*l*c = d^2+l^2-r^2; all lengths positive at actual angle arms",
+    "factorization": "2*d*l1*l2*(c2-c1) = (l2-l1)*(l1*l2+r^2-d^2)",
+    "interior": "d<=r implies product factor positive",
+    "external_far": "l1^2,l2^2 >= d^2-r^2 imply product factor nonnegative; strict cosine difference excludes zero factor",
+    "external_near": "l1^2,l2^2 <= d^2-r^2 imply product factor nonpositive; strict cosine difference excludes zero factor",
+    "geometric_branch_bridge": "2*(Q-P) dot (Q-O)=distance_sq(P,Q)+r^2-distance_sq(P,O); sign identifies side of the tangent at Q",
+    "ray_intersection_bridge": "For C=d^2-r^2>0, given Q on circumference and l^2=distance_sq(P,Q), the other intersection on its ray is P+(C/l^2)*(Q-P). Prove circle membership and near/far ordering; tangent gives Q again.",
+    "status": "Combined independent strict gate26380 PASS: cosine law, actual interior/far/near angle order, interior4<8 and tangent-inclusive2<4<8 uses, ray construction and classification; 22 declarations, stable inputs"
+  },
+  "ray_branch_evidence": {
+    "accepted": [
+      "circle-ray-branch-order2.lit",
+      "circle-ray-far-branch-order1.lit",
+      "circle-ray-tangent-fixed1.lit",
+      "circle-ray-parameter-unique1.lit",
+      "circle-ray-other-point-unique1.lit"
+    ],
+    "scope": "Forward other circle point plus complete classification of circle points by affine ray parameter; angle/branch source audit remains",
+    "cold_status": "PASS for construction/strict branch/fixed point/parameter and point uniqueness in26380; later all-ray weak branch characterization3 and external-near placement2 remain warm only"
+  },
+  "source_placement_audit": {
+    "reason": "Complete source III7 must exhibit a genuine diameter containing the observer; greatest ray must actually pass through center",
+    "pending": null,
+    "prepared": "circle-center-on-far-segment3.lit",
+    "status": "Both source placement lemmas accepted in8786; included in full III1\u2013III7 candidate under strict gate20949",
+    "accepted": [
+      "circle-diameter-placement4.lit",
+      "circle-center-on-far-segment3.lit"
+    ]
+  },
+  "III7_candidate": {
+    "path": ".draft/book03-first-seven-checkpoint/book03-circles.lit",
+    "source_manifest": ".draft/book03-first-seven-checkpoint/source-manifest.json",
+    "gate_session": 20949,
+    "status": "PASS, canonically promoted; count41"
+  },
+  "III8_candidate": {
+    "path": ".draft/book03-first-ten-checkpoint/book03-circles.lit",
+    "source_manifest": ".draft/book03-first-ten-checkpoint/source-manifest.json",
+    "status": "running full III1\u2013III10 strict gate50633; not counted"
+  },
+  "III7_completed": {
+    "at": "2026-10-12T07:08:28.080917+00:00",
+    "source_number": 7,
+    "source_clause_audit": "All7 source clauses mapped in source-manifest.json: genuine diameter and observer placement, greatest through center, strict min/max, angular order, opposite-side equal partner and uniqueness. Boundary observers included; angular comparisons require nonzero arms.",
+    "receipt": ".draft/book03-first-seven-checkpoint/receipt.json",
+    "canonical": "textbook/book03-circles.lit",
+    "sha256_before": "339c2a654f3c64b68f02121b2afe8e79f5a44a68deca900b6ba2107af0a1a664",
+    "sha256_after": "c5a66899f84b210f075659f00d449252f4e72916cfc28c418e5a58547b95abea",
+    "copy_matches_checked_candidate": true,
+    "numbered_count_after": 41,
+    "trust_added": 0,
+    "geometry_changed": false
+  }
+}

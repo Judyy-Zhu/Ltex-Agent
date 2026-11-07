@@ -1,0 +1,26 @@
+{
+  "status": "prepared only; native gate not launched",
+  "source_files": [
+    {
+      "path": ".draft/book01-area-continuation/prefix.lit",
+      "sha256": "77a3c3db496196780f0de46b14948cf5fef7eb955fcf43ac4c89f1ec447187e0"
+    },
+    {
+      "path": ".draft/book01-area-continuation/proposition35-source.lit",
+      "sha256": "3cfadf781f043162dac67ce5ed592419c1c58d9ea5cc8d6d2fb020c6bd13e6d1"
+    },
+    {
+      "path": ".draft/book01-area-continuation/sheared-area-six-use2.lit",
+      "sha256": "7ced87dfa5e1d5dd42a39e1e60ee0820845e4719d38111d50f8b3ab116f82e11"
+    },
+    {
+      "path": ".draft/book01-area-continuation/same-upper-endpoints-allowed-use.lit",
+      "sha256": "7d93bab4f669092840bc7574780dc041bd01aadb08d7d1aaf7e11213721c6f27"
+    }
+  ],
+  "source_sha256": "d181ac87e54d9e52fbbb655599922a680c6008a791784aa5d8b8ba3ff6bd0369",
+  "expected_main_statement_count": 9,
+  "scope": "I34 prefix, I35 theorem, numeric area6 consumer, coincident-upper-endpoints positive control; negative controls kept separately",
+  "remaining": "I35 internal redundancy audit, valid boundary controls, clean gate and later canonical integration",
+  "canonical_changed": false
+}

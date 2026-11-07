@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 2,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "start_line": 6741
+  },
+  "scope": "Both directions for strict interior cuts of two sides of a nondegenerate triangle; source segment ratios use positive actual lengths, not squared distances.",
+  "reuse": [
+    "geometry::main::is_on_segment",
+    "angle_measure::segment_length",
+    "angle_measure::positive_ray_scale_scales_length",
+    "parallel::are_parallel_lines",
+    "have_equal_equimultiple_comparisons"
+  ],
+  "proof_spine": [
+    "Extract strict affine parameters t,s from finite-segment membership plus endpoint exclusions.",
+    "Derive the two cut-line determinant identities from coordinate differences.",
+    "Proper parallelism is equivalent to t=s; transverse separation is nonzero because both cuts are strict.",
+    "Existing positive ray length scaling identifies BD/DA=(1-t)/t and CE/EA=(1-s)/s.",
+    "Positive ratios agree iff t=s; use the already established real-measure equimultiple bridge for the source formulation."
+  ],
+  "non_goals": "No new kernel rules, no separate abstract BookV model, no replacement of length ratios by squared ratios.",
+  "status": "Both directions and midpoint consumer accepted in retained Session; strict independent checkpoint running."
+}

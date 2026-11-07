@@ -1,0 +1,176 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    89,
+    90
+  ],
+  "source_goal": "Central angle equals twice the circumference angle on the same intercepted arc",
+  "geometry_interface": "chosen_circle_arc; vertex strictly on opposite chord side, nonzero angle arms; retain major/minor/semicircle cases",
+  "candidate_algebra_spine": [
+    "Let R=r\u00b2, U=(A-O)\u00b7(B-O), V=(A-O)\u00b7(P-O), W=(B-O)\u00b7(P-O). All centered vector squared norms equal R.",
+    "Planar Gram determinant: R\u00b3+2UVW-R(U\u00b2+V\u00b2+W\u00b2)=0.",
+    "Inscribed numerator N=U-V-W+R and denominator D=(2R-2V)(2R-2W) satisfy 2R N\u00b2=(R+U)D.",
+    "Hence cos(2*inscribed)=central cosine; this equality alone does not select principal versus reflex central angle.",
+    "Prove half-plane orientation and angle-range branch independently before source theorem."
+  ],
+  "status": "Independent strict checkpoint PASS; canonical integration pending",
+  "trust_added": 0,
+  "completed": false,
+  "pending": null,
+  "prepared": [
+    "circle-inscribed-cosine-metric1.lit",
+    "inscribed-double-angle-principal1.lit",
+    "inscribed-double-angle-reflex1.lit",
+    "circle-chord-side-dot-metric1.lit",
+    "chosen-arc-angle-definition1.lit",
+    "book03-proposition20-1.lit",
+    "book03-proposition20-minor-use1.lit",
+    "book03-proposition20-major-use1.lit",
+    "book03-proposition20-semicircle-use1.lit"
+  ],
+  "accepted": [
+    "equal-radius-inscribed-cosine-identity1.lit",
+    "circle-inscribed-cosine-metric1.lit",
+    "circle-inscribed-double-cosine3.lit",
+    "circle-chord-side-dot-metric2.lit",
+    "chosen-arc-angle-definition2.lit",
+    "book03-proposition20-2.lit",
+    "book03-proposition20-minor-use1.lit",
+    "book03-proposition20-major-use1.lit",
+    "book03-proposition20-semicircle-use1.lit"
+  ],
+  "root_function_releases": [
+    "geometry::main::angle_cos_num",
+    "geometry::main::angle_cos_den",
+    "angles::angle_cosine",
+    "angle_measure::ray_angle"
+  ],
+  "orientation_spine": [
+    "For chord direction d=B-A, center displacement c=O-A and vertex displacement t=P-A, equal circle radii give 2(c\u00b7d)=|d|\u00b2 and 2(c\u00b7t)=|t|\u00b2.",
+    "The planar identity gives |A-B|\u00b2 ((A-P)\u00b7(B-P)) = 2 det(B-A,O-A) det(B-A,P-A).",
+    "The positive chord norm makes the inscribed cosine sign equal the product of the center/vertex chord-side signs.",
+    "A vertex opposite the selected arc determines principal versus reflex central-angle branch; center on chord covers the diameter case."
+  ],
+  "orientation_status": "Metric chord-side identity accepted in retained15436; source angle branch theorem pending",
+  "latest_rejection": "proof_journals/books02-03/book03-proposition20-1-rejection.json",
+  "scalar_pending": null,
+  "scalar_accepted": [
+    "inscribed-double-angle-principal1.lit",
+    "inscribed-double-angle-reflex3.lit",
+    "circle-chord-side-dot-coordinate1.lit",
+    "principal-nonnegative-cosine-half1.lit",
+    "principal-nonpositive-cosine-half1.lit"
+  ],
+  "scalar_session": 63322,
+  "scalar_gate": {
+    "session": 83380,
+    "directory": ".draft/inscribed-angle-scalar-checkpoint",
+    "status": "PASS4 declarations strict/stable",
+    "receipt": ".draft/inscribed-angle-scalar-checkpoint/receipt.json"
+  },
+  "geometry_session": 15436,
+  "arc_angle_definition": "Prepared piecewise real-valued measure: principal ray angle when chosen half-plane excludes center, 2*pi minus principal when it includes center; diameter boundary assigned principal pi. Exact positive range is a subsequent theorem.",
+  "scalar_sign_gate": {
+    "status": "PASS6 declarations strict/stable",
+    "receipt": ".draft/inscribed-angle-scalar-sign-checkpoint/receipt.json"
+  },
+  "parser_preflight": {
+    "chosen-arc-angle-definition1.lit": "PASS syntax only; not executed",
+    "book03-proposition20-1.lit": "PASS with chosen-arc-angle definition context; not executed",
+    "book03-proposition20-minor-use1.lit": "PASS with chosen-arc-angle definition context; not executed",
+    "book03-proposition20-major-use1.lit": "PASS with chosen-arc-angle definition context; not executed",
+    "book03-proposition20-semicircle-use1.lit": "PASS with chosen-arc-angle definition context; not executed"
+  },
+  "planned_source_consumers": [
+    {
+      "kind": "minor",
+      "center": [
+        0,
+        0
+      ],
+      "radius": 1,
+      "a": [
+        1,
+        0
+      ],
+      "b": [
+        0,
+        1
+      ],
+      "vertex": [
+        -1,
+        0
+      ],
+      "side": -1,
+      "expected_arc_angle": "pi/2",
+      "expected_inscribed_angle": "pi/4",
+      "status": "Accepted in15436; cold gate pending",
+      "draft_source": "book03-proposition20-minor-use1.lit"
+    },
+    {
+      "kind": "major",
+      "center": [
+        0,
+        0
+      ],
+      "radius": 1,
+      "a": [
+        1,
+        0
+      ],
+      "b": [
+        0,
+        1
+      ],
+      "vertex": [
+        "3/5",
+        "4/5"
+      ],
+      "side": 1,
+      "expected_arc_angle": "3*pi/2",
+      "expected_inscribed_angle": "3*pi/4",
+      "status": "Accepted in15436; cold gate pending",
+      "draft_source": "book03-proposition20-major-use1.lit"
+    },
+    {
+      "kind": "semicircle",
+      "center": [
+        0,
+        0
+      ],
+      "radius": 1,
+      "a": [
+        1,
+        0
+      ],
+      "b": [
+        -1,
+        0
+      ],
+      "vertex": [
+        0,
+        -1
+      ],
+      "side": -1,
+      "expected_arc_angle": "pi",
+      "expected_inscribed_angle": "pi/2",
+      "status": "Accepted in15436; cold gate pending",
+      "draft_source": "book03-proposition20-semicircle-use1.lit"
+    }
+  ],
+  "definition_coverage_note": "Complementary guards x<=0 and not x<=0 accepted; initial x<=0 or x>0 coverage search failed, session_error null. Mathematical branch unchanged.",
+  "cold_gate": {
+    "session": 23306,
+    "directory": ".draft/book03-proposition20-checkpoint",
+    "status": "PASS strict/stable",
+    "receipt": ".draft/book03-proposition20-checkpoint/receipt.json"
+  },
+  "joint_integration_gate": {
+    "receipt": ".draft/book03-inscribed-angle-integration-checkpoint/receipt.json",
+    "success": true,
+    "statement_count": 140,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "canonical_promotion": "Pending remaining proof audit; superseding III20\u201323/Defs6,8,11 integration gate74372 running"
+}

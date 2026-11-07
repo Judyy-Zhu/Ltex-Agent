@@ -1,0 +1,40 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "book": 4,
+  "proposition": 1,
+  "source_pages_zero_based": [
+    109,
+    110
+  ],
+  "source_lines": [
+    4541,
+    4571
+  ],
+  "status": "Session accepted and grouped saved-source strict gate passed; canonical module integration and final proof audit pending",
+  "statement": "Given a positive-radius circle and a proper segment no longer than its diameter, construct a proper chord congruent to that segment.",
+  "representation": "The length bound is written as distance_sq(u,v)<=4*radius^2; positivity makes this equivalent to length<=2*radius. Both interior and diameter cases are included.",
+  "proof_spine": "Set half=sqrt(distance_sq(u,v))/2 and height=sqrt(radius^2-half^2); choose the two symmetric horizontal endpoints, prove their circle membership and distance equality.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition1-candidate4.lit",
+  "accepted_request": "polygon-boundary-session/results/0055.json",
+  "positive_consumers": {
+    "0056": "translated center, length6 in radius5 circle",
+    "0057": "length6 in radius3 circle, diameter endpoint case"
+  },
+  "negative_consumer": {
+    "0058": "length6 in radius2 circle rejects exactly the diameter-bound premise"
+  },
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "pending": [
+    "grouped saved-source validation",
+    "canonical BookIV module integration"
+  ],
+  "grouped_gate": {
+    "receipt": ".draft/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+    "elapsed_seconds": 285.73385095596313,
+    "top_level_statement_count": 19,
+    "imports_hashed": true,
+    "hashes_stable": true
+  }
+}

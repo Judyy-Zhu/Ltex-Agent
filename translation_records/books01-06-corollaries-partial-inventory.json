@@ -1,0 +1,85 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick2008",
+  "status": "partial confirmed source inventory; III1 and III16 corollaries canonically checked",
+  "method": "PDF Corollary heading search and local line inspection; original Book.zip abridges source and contains no corollary keyword",
+  "items": [
+    {
+      "book": 3,
+      "parent_proposition": 1,
+      "pdf_one_based_page": 71,
+      "meaning": "Perpendicular bisector of a proper chord contains the circle center",
+      "litex_code": "textbook/book03-circles.lit",
+      "status": "canonical strict cold PASS",
+      "receipt": ".draft/III01-corollary-checkpoint/receipt.json",
+      "canonical_receipt": ".draft/book03-first-three-checkpoint/receipt.json"
+    },
+    {
+      "book": 3,
+      "parent_proposition": 16,
+      "pdf_one_based_page": 88,
+      "meaning": "Radius-perpendicular at circumference is tangent; any tangent has only one circumference contact",
+      "litex_code": "textbook/book03-circles.lit",
+      "status": "canonical strict cold PASS",
+      "canonical_receipt": ".draft/book03-tangent-integration-checkpoint/receipt.json"
+    },
+    {
+      "book": 4,
+      "parent_proposition": 15,
+      "pdf_one_based_page": 126,
+      "meaning": "Regular hexagon side equals radius",
+      "litex_code": null,
+      "status": "unfinished",
+      "adjacent_source_extensions": [
+        "Circumscribe a regular hexagon by tangents at the six division points",
+        "Inscribe and circumscribe circles for a given regular hexagon"
+      ],
+      "extension_status": "unfinished, retained in scope"
+    },
+    {
+      "book": 5,
+      "parent_proposition": 7,
+      "pdf_one_based_page": 138,
+      "meaning": "Inverting a proportion preserves proportionality",
+      "litex_code": null,
+      "status": "unfinished"
+    },
+    {
+      "book": 5,
+      "parent_proposition": 19,
+      "pdf_one_based_page": 149,
+      "meaning": "Converting a proportion of composed magnitudes preserves proportionality",
+      "litex_code": null,
+      "status": "unfinished"
+    },
+    {
+      "book": 6,
+      "parent_proposition": 8,
+      "pdf_one_based_page": 166,
+      "meaning": "Altitude to hypotenuse is mean proportional of the hypotenuse pieces",
+      "litex_code": null,
+      "status": "unfinished"
+    },
+    {
+      "book": 6,
+      "parent_proposition": 19,
+      "pdf_one_based_page": 175,
+      "meaning": "For three continuously proportional lengths, first-to-third ratio equals the area ratio of similar figures on first and second",
+      "litex_code": null,
+      "status": "unfinished",
+      "page_continuation": 176
+    },
+    {
+      "book": 6,
+      "parent_proposition": 20,
+      "pdf_one_based_page": 178,
+      "meaning": "Similar rectilinear figures have area ratio equal to squared corresponding-side ratio",
+      "litex_code": null,
+      "status": "unfinished"
+    }
+  ],
+  "completed_corollaries": 2,
+  "remaining_audit": "Eight explicit headings located in Books I\u2013VI; unheaded appended consequences and construction extensions still need full inventory. Do not equate heading inventory with complete scope.",
+  "cold_checked_corollaries": 2,
+  "confirmed_heading_count": 8
+}

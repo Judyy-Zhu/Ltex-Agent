@@ -1,0 +1,40 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    85,
+    86
+  ],
+  "source_clauses": [
+    "Radius-perpendicular through circumference lies outside circle except contact",
+    "No intervening straight line fits between tangent and circumference",
+    "Semicircle curved angle exceeds every acute rectilinear angle",
+    "Remaining curved angle is smaller than every acute rectilinear angle"
+  ],
+  "semantic_boundary": "Do not reinterpret curved angles as ordinary two-ray angle values. Prior source audit records unanswered semantic preference; retain clauses and continue independent straight-line mathematics.",
+  "accepted": [
+    "radial-perpendicular-distance2.lit",
+    "radius-perpendicular-line-distance1.lit",
+    "book03-proposition16-line-outside1.lit",
+    "rotated-line-endpoints-distinct1.lit",
+    "book03-proposition16-rotated-use3.lit",
+    "tangent-definition-replay1.lit",
+    "book03-proposition16-tangent-corollary1.lit",
+    "book03-proposition16-contact-unique1.lit",
+    "book03-proposition16-tangent-use1.lit",
+    "book03-proposition16-unique-use1.lit"
+  ],
+  "pending": null,
+  "completion": false,
+  "trust_added": 0,
+  "remaining": [
+    "Model no-intervening-line and source curved-angle semantics without replacing their meaning",
+    "Canonical integration and joint strict gate for checked line and corollary clauses"
+  ],
+  "source_corollary": "III16 corollary, PDF zero-based87: radius-perpendicular touches, and line contacts at one point. Preserve as separate corollary; not yet counted.",
+  "next": "Integrate accepted line/corollary with later accepted tangent source propositions at a coherent checkpoint; full III16 remains incomplete.",
+  "uniqueness_spine": "Assume second circumference contact; midpoint remains on the tangent line and lies strictly inside by checked III2, contradicting nonentry. Applies to every tangent under existing definition, not only constructed perpendicular tangents.",
+  "checkpoint": ".draft/book03-proposition16-line-checkpoint/run_gate.py",
+  "checkpoint_status": "PASS15 declarations; strict exit0/run/success true/session_error null; stable inputs",
+  "checkpoint_session": 85641,
+  "receipt": ".draft/book03-proposition16-line-checkpoint/receipt.json"
+}

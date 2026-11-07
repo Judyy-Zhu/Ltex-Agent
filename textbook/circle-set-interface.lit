@@ -1,0 +1,118 @@
+release obj def geometry::main::circle
+release obj def geometry::main::distance_sq
+
+# Every positive-radius circle contains a noncollinear triple; this witnesses the reconstruction domain.
+thm circle_contains_noncollinear_triple:
+    ? forall o cart(R, R), radius R+:
+        exist a, b, c cart(R, R) st {$geometry::main::is_on_circle(a, o, radius), $geometry::main::is_on_circle(b, o, radius), $geometry::main::is_on_circle(c, o, radius), (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0}
+    have a cart(R, R) = (o(1)+radius, o(2))
+    have b cart(R, R) = (o(1), o(2)+radius)
+    have c cart(R, R) = (o(1)-radius, o(2))
+    a(1) = o(1)+radius
+    a(2) = o(2)
+    b(1) = o(1)
+    b(2) = o(2)+radius
+    c(1) = o(1)-radius
+    c(2) = o(2)
+    a(1)-o(1) = radius
+    a(2)-o(2) = 0
+    (a(1)-o(1))^2 = (radius)^2
+    (a(2)-o(2))^2 = (0)^2
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = (radius)^2+(0)^2 = radius^2 = radius*radius
+    by def $geometry::main::is_on_circle(a, o, radius)
+    b(1)-o(1) = 0
+    b(2)-o(2) = radius
+    (b(1)-o(1))^2 = (0)^2
+    (b(2)-o(2))^2 = (radius)^2
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = (0)^2+(radius)^2 = radius^2 = radius*radius
+    by def $geometry::main::is_on_circle(b, o, radius)
+    c(1)-o(1) = (o(1)-radius)-o(1) = -radius
+    c(2)-o(2) = 0
+    (c(1)-o(1))^2 = (-radius)^2
+    (c(2)-o(2))^2 = (0)^2
+    release thm geometry::main::distance_sq_coordinate_formula(o, c)
+    geometry::main::distance_sq(o, c) = (c(1)-o(1))^2+(c(2)-o(2))^2 = (-radius)^2+(0)^2 = radius^2 = radius*radius
+    by def $geometry::main::is_on_circle(c, o, radius)
+    b(1)-a(1) = o(1)-(o(1)+radius) = -radius
+    b(2)-a(2) = radius
+    c(1)-a(1) = (o(1)-radius)-(o(1)+radius) = -2*radius
+    c(2)-a(2) = 0
+    (b(1)-a(1))*(c(2)-a(2)) = (-radius)*0 = 0
+    (b(2)-a(2))*(c(1)-a(1)) = radius*(-2*radius) = -2*radius^2
+    (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = 0-(-2*radius^2) = 2*radius^2
+    radius^2 > 0
+    2*radius^2 > 0
+    2*radius^2 != 0
+    (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0
+    witness exist aa, bb, cc cart(R, R) st {$geometry::main::is_on_circle(aa, o, radius), $geometry::main::is_on_circle(bb, o, radius), $geometry::main::is_on_circle(cc, o, radius), (bb(1)-aa(1))*(cc(2)-aa(2))-(bb(2)-aa(2))*(cc(1)-aa(1)) != 0} from a, b, c
+
+# Equal positive-radius circumference point sets have the same center.
+thm equal_circumferences_have_equal_centers:
+    ? forall o, p cart(R, R), radius, other_radius R+:
+        geometry::main::circle(o, radius) = geometry::main::circle(p, other_radius)
+        =>:
+            o = p
+    release thm circle_contains_noncollinear_triple(o, radius)
+    obtain a, b, c from exist aa, bb, cc cart(R, R) st {$geometry::main::is_on_circle(aa, o, radius), $geometry::main::is_on_circle(bb, o, radius), $geometry::main::is_on_circle(cc, o, radius), (bb(1)-aa(1))*(cc(2)-aa(2))-(bb(2)-aa(2))*(cc(1)-aa(1)) != 0}
+    geometry::main::circle(p, other_radius) = {q cart(R, R): geometry::main::distance_sq(p, q) = other_radius*other_radius}
+    by def $geometry::main::is_on_circle(a, o, radius)
+    a $in geometry::main::circle(o, radius)
+    a $in geometry::main::circle(p, other_radius)
+    release thm set_builder_member(a, {q geometry::main::circle(p, other_radius): 0 = 0})
+    geometry::main::distance_sq(p, a) = other_radius*other_radius
+    by def $geometry::main::is_on_circle(b, o, radius)
+    b $in geometry::main::circle(o, radius)
+    b $in geometry::main::circle(p, other_radius)
+    release thm set_builder_member(b, {q geometry::main::circle(p, other_radius): 0 = 0})
+    geometry::main::distance_sq(p, b) = other_radius*other_radius
+    by def $geometry::main::is_on_circle(c, o, radius)
+    c $in geometry::main::circle(o, radius)
+    c $in geometry::main::circle(p, other_radius)
+    release thm set_builder_member(c, {q geometry::main::circle(p, other_radius): 0 = 0})
+    geometry::main::distance_sq(p, c) = other_radius*other_radius
+    geometry::main::distance_sq(o, a) = radius*radius = geometry::main::distance_sq(o, b)
+    geometry::main::distance_sq(o, a) = radius*radius = geometry::main::distance_sq(o, c)
+    geometry::main::distance_sq(p, a) = other_radius*other_radius = geometry::main::distance_sq(p, b)
+    geometry::main::distance_sq(p, a) = other_radius*other_radius = geometry::main::distance_sq(p, c)
+    release thm circle_center::equidistant_center_is_unique(a, b, c, o, p)
+
+# A circumference supplied only as a point set; positive radius excludes singleton degeneracy.
+prop is_circle_set(circumference power_set(cart(R, R))):
+    exist o cart(R, R), radius R+ st {circumference = geometry::main::circle(o, radius)}
+
+# A candidate center belongs to a positive-radius representation of the entire circumference.
+prop is_center_of_circle_set(o cart(R, R), circumference power_set(cart(R, R))):
+    exist radius R+ st {circumference = geometry::main::circle(o, radius)}
+
+# The whole circumference determines exactly one center.
+thm circle_set_has_unique_center:
+    ? forall circumference power_set(cart(R, R)):
+        $is_circle_set(circumference)
+        =>:
+            exist! o cart(R, R) st {$is_center_of_circle_set(o, circumference)}
+    by def $is_circle_set(circumference)
+    obtain o, radius from exist p cart(R, R), r R+ st {circumference = geometry::main::circle(p, r)}
+    witness exist r R+ st {circumference = geometry::main::circle(o, r)} from radius
+    by def $is_center_of_circle_set(o, circumference)
+    claim:
+        ? forall p, q cart(R, R):
+            $is_center_of_circle_set(p, circumference)
+            $is_center_of_circle_set(q, circumference)
+            =>:
+                p = q
+        by def $is_center_of_circle_set(p, circumference)
+        by def $is_center_of_circle_set(q, circumference)
+        obtain rp from exist r R+ st {circumference = geometry::main::circle(p, r)}
+        obtain rq from exist r R+ st {circumference = geometry::main::circle(q, r)}
+        geometry::main::circle(p, rp) = circumference = geometry::main::circle(q, rq)
+        release thm equal_circumferences_have_equal_centers(p, q, rp, rq)
+    witness exist! p cart(R, R) st {$is_center_of_circle_set(p, circumference)} from o
+
+# Center selected from the proved unique-center relation on circumference point sets.
+have fn circle_center by exist!:
+    ? forall circumference power_set(cart(R, R)):
+        $is_circle_set(circumference)
+        =>:
+            exist! o cart(R, R) st {$is_center_of_circle_set(o, circumference)}

@@ -1,0 +1,78 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 8,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "lines": [
+      7061,
+      7111
+    ]
+  },
+  "status": "vi8_core_session_accepted_pending_strict_gate",
+  "accepted_prerequisite_scalar": {
+    "request": 9204,
+    "path": "scripts/Euclid_Elements/.draft/resume-2026-10-17/right-triangle-foot-parameter-scalar-candidate2.lit",
+    "theorem": "right_triangle_foot_coordinate_parameter"
+  },
+  "accepted_geometric_bridge": {
+    "request": 9212,
+    "path": "scripts/Euclid_Elements/.draft/resume-2026-10-17/right-triangle-altitude-foot-interior-candidate8.lit",
+    "theorem": "right_triangle_altitude_foot_interior",
+    "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+    "authoring": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition08-authoring",
+    "mathematics": "If angle at A is right and D is the foot from A to line BC, then D = B + t(C-B) for some t in R+ with t < 1."
+  },
+  "failed_attempts": [
+    9205,
+    9206,
+    9207,
+    9208,
+    9209,
+    9210,
+    9211,
+    9214,
+    9215,
+    9216,
+    9217,
+    9218
+  ],
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": [
+    "Positive/negative consumers and independent strict checkpoint",
+    "Canonical integration"
+  ],
+  "accepted_right_angles_congruent": {
+    "request": 9213,
+    "path": "scripts/Euclid_Elements/.draft/resume-2026-10-17/right-angles-are-congruent-candidate1.lit",
+    "theorem": "right_angles_are_congruent"
+  },
+  "pending": "positive/negative consumers; independent strict checkpoint; canonical integration",
+  "accepted_altitude_foot_right_angles": {
+    "request": 9219,
+    "path": "scripts/Euclid_Elements/.draft/resume-2026-10-17/altitude-foot-right-angles-candidate6.lit",
+    "theorem": "altitude_foot_has_right_angles",
+    "sha256": "cf18bed7804bd6e8c943235ce7ce2be3e44b014df43ac73ae5b397f58f8fb6bf"
+  },
+  "accepted_abd_similar_cba": {
+    "request": 9228,
+    "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/vi8-abd-similar-cba-candidate9.lit",
+    "sha256": "392e5195a2b6771fcea1f3bf9449f45b4e2d520e27b5c39e63724fd2b888407e"
+  },
+  "accepted_acd_similar_bca": {
+    "request": 9229,
+    "sha256": "de54d818897e235da449029234375be23fe98362fd123e0e825151fb1baade9c"
+  },
+  "accepted_abd_similar_cad": {
+    "request": 9236,
+    "sha256": "f83027b8f028489dfce007d8aae1256ee2a38aa6e97443b19d41ef8858d001de"
+  },
+  "accepted_mean_proportional": {
+    "request": 9239,
+    "sha256": "d4b74dd94406e251ede7e80d3f15f12c1e6e1f3c4a9f139400a1e1b5d90dd873"
+  },
+  "accepted_mean_proportional_lengths": {
+    "request": 9240,
+    "sha256": "0c5a1618b0c232c78354430621c023b0ec7e20827f1eceec7af93b14f7b3bb01"
+  }
+}

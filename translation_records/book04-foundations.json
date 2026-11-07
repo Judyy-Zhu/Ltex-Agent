@@ -1,0 +1,122 @@
+{
+  "at": "2026-10-11T13:29:46.606064+00:00",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised 2008",
+  "scope": "Book 4 source definitions; inventory only",
+  "source_item_count": 7,
+  "completed_source_item_count": 0,
+  "pdf_zero_based_definition_pages": [
+    109
+  ],
+  "pdf_one_based_definition_pages": [
+    110
+  ],
+  "items": [
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 1
+      },
+      "concept_tag": "polygon in polygon",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 2
+      },
+      "concept_tag": "polygon about polygon",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 3
+      },
+      "concept_tag": "polygon in circle",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 4
+      },
+      "concept_tag": "polygon about circle",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 5
+      },
+      "concept_tag": "circle in polygon",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 6
+      },
+      "concept_tag": "circle about polygon",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 4,
+        "kind": "definition",
+        "number": 7
+      },
+      "concept_tag": "inserted chord",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    }
+  ],
+  "current_draft_progress_2026_10_18": {
+    "source_pages_zero_based": [
+      109
+    ],
+    "source_lines": [
+      4521,
+      4540
+    ],
+    "definitions_3_6": {
+      "interface": ".draft/resume-2026-10-17/book04-inscribed-polygon-definition.lit",
+      "session_definition": "0047 accepted",
+      "positive_consumer": "0048 accepted",
+      "wrong_radius_exclusion": "0051 accepted",
+      "same_relation_two_source_directions": true
+    },
+    "definition_7": {
+      "reuse": "textbook/circle-contact.lit:is_chord",
+      "exact_definition_replay": "0050 accepted"
+    },
+    "canonical_increment": 0,
+    "pending": "coherent BookIV saved-source and module integration"
+  }
+}

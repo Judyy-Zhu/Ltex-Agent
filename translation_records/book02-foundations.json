@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-11T13:29:46.604695+00:00",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised 2008",
+  "scope": "Book 2 source definitions; inventory only",
+  "source_item_count": 2,
+  "completed_source_item_count": 0,
+  "pdf_zero_based_definition_pages": [
+    49
+  ],
+  "pdf_one_based_definition_pages": [
+    50
+  ],
+  "items": [
+    {
+      "source": {
+        "book_number": 2,
+        "kind": "definition",
+        "number": 1
+      },
+      "concept_tag": "rectangle sides",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 2,
+        "kind": "definition",
+        "number": 2
+      },
+      "concept_tag": "gnomon",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "zero_based_pages": [
+    78,
+    79
+  ],
+  "lines": [
+    3135,
+    3184
+  ],
+  "source_statement": "An interior point with more than two equal segments to distinct circumference points is the center",
+  "forward_derivation": "The established III7/8 analytic equal-partner uniqueness bounds noncentral equal-distance fibers by two points. Three distinct endpoints contradict that bound. This gives p=o without requiring an interior assumption.",
+  "source_difference": "Alternative analytic proof through the equal-partner theorem; stronger domain, no source cases removed. Source proof uses two perpendicular bisectors and III1 corollary.",
+  "scope_note": "Three distinct endpoints represent more than two; equality is of nonnegative lengths via squared distances.",
+  "status": "accepted in Session8786, not cold checked or canonical",
+  "candidate": ".draft/books02-03/book03-proposition09-1.lit",
+  "trust_added": 0
+}

@@ -1,0 +1,218 @@
+{
+  "scope": {
+    "book2_propositions": 14,
+    "book3_propositions": 37,
+    "book2_definitions": 2,
+    "book3_definitions": 11,
+    "corollaries": "all included, exhaustive inventory unfinished"
+  },
+  "checked_source_propositions": {
+    "2": [],
+    "3": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "source_definitions_cold_checked": {
+    "2": [
+      1
+    ],
+    "3": [
+      2,
+      4,
+      5
+    ]
+  },
+  "warm_interfaces": [
+    "positive real disk and strict interior",
+    "proper rectangle contained by two positive side lengths",
+    "general rectangle product-to-area bridge",
+    "axis and rotated rectangles area6, zero-width rejection",
+    "arbitrary positive side lengths construct a proper rectangle with product area",
+    "proper chord: radius5 use checked, coincident endpoints rejected"
+  ],
+  "computation_cores_cold_checked": [
+    "II.2",
+    "II.3",
+    "II.4",
+    "II.5",
+    "II.6",
+    "II.7",
+    "II.8",
+    "II.9",
+    "II.10"
+  ],
+  "computation_cores_are_not_completed_source_propositions": true,
+  "new_concept_plan": "books02-03-plan.md",
+  "source_gap": "II1 symbolic finite aggregate recurrence, region constructions, and later source items unfinished",
+  "trust_added": 0,
+  "core_changes": false,
+  "rectangle_cold_gate": {
+    "status": "PASS",
+    "session_id": 87156,
+    "receipt": ".draft/rectangle-checkpoint/receipt.json"
+  },
+  "tangent_line_definition": {
+    "status": "warm accepted",
+    "actual_use": "arbitrary positive-radius horizontal tangent constructed; construction5 accepted",
+    "canonical_source": "textbook/circle-contact.lit",
+    "cold": "PASS: base definition and generic horizontal construction",
+    "session_id": 25756,
+    "receipt": ".draft/circle-contact-checkpoint/receipt.json"
+  },
+  "center_recovery": {
+    "function": "warm accepted, no supplied center/radius",
+    "actual_use": "(0,0),(2,0),(0,2) -> (1,1); all distance squares2; warm accepted",
+    "linear_equation_recovery": "strict cold PASS",
+    "sourceIII1": "canonical main construction and corollary strict cold PASS",
+    "general_equidistance": "warm accepted: center-equidistance3.lit",
+    "general_uniqueness": "warm accepted: center-uniqueness2.lit",
+    "original_center_recovery": "warm accepted: center-circle-recovery1.lit",
+    "collinear_boundary": "invalid construction rejected, session_error null",
+    "canonical": "textbook/circle-center.lit",
+    "cold_gate": {
+      "status": "PASS",
+      "session_id": 4325,
+      "receipt": ".draft/circle-center-checkpoint/receipt.json"
+    },
+    "set_interface": "warm accepted: circle_center from circumference point set, unique center proved",
+    "noncollinear_triple": "warm accepted for every positive-radius circle",
+    "set_actual_use": "circle center (2,3), radius5 -> (2,3), warm accepted"
+  },
+  "tangent_boundary": "general center-exclusion theorem and explicit unit-circle secant negation warm accepted",
+  "book03_first_two_gate": {
+    "status": "replacement also failed at is_on_circle expansion; superseded by first-three gate",
+    "session_id": 10730,
+    "receipt": ".draft/book03-first-two-checkpoint2/receipt.json",
+    "previous_receipt": ".draft/book03-first-two-checkpoint/receipt.json"
+  },
+  "corollary_III1": {
+    "status": "strict cold PASS including ordinary chord and diameter actual uses",
+    "cold_gate": 37259,
+    "receipt": ".draft/III01-corollary-checkpoint/receipt.json",
+    "canonical_promotion": "complete, joint gate PASS"
+  },
+  "III3": {
+    "status": "canonical integrated, joint strict cold PASS",
+    "cold_gate": 18688,
+    "receipt": ".draft/III03-checkpoint/receipt.json"
+  },
+  "III4": {
+    "status": "canonical integrated and joint strict cold PASS",
+    "cold_gate": 35951,
+    "receipt": ".draft/III04-checkpoint/receipt.json"
+  },
+  "book03_first_three_gate": {
+    "status": "PASS, stable inputs, canonical III1–III3 and III1 corollary",
+    "session_id": 51537,
+    "receipt": ".draft/book03-first-three-checkpoint/receipt.json"
+  },
+  "III5": {
+    "status": "canonical integrated and joint strict cold PASS",
+    "cold_gate": 68724,
+    "receipt": ".draft/III05-checkpoint/receipt.json"
+  },
+  "III6": {
+    "status": "canonical integrated and joint strict cold PASS",
+    "scope_correction": "old internal-only theorem was a special case; full source now implemented",
+    "cold_gate": 6897,
+    "receipt": ".draft/III06-checkpoint/receipt.json"
+  },
+  "III7_III8_source_plan": "translation_records/books03-propositions07-08-source-plan.json",
+  "III7_III8_projection": {
+    "status": "identity, strict order, equal-projection lemma and actual use strict cold PASS; not complete III7/III8",
+    "cold_gate": 56617,
+    "receipt": ".draft/circle-projection-checkpoint/receipt.json",
+    "not_completed_source_propositions": true,
+    "cold_status": "PASS"
+  },
+  "book03_first_six_gate": {
+    "status": "PASS, stable inputs",
+    "receipt": ".draft/book03-first-six-checkpoint/receipt.json",
+    "session_id": 59463
+  },
+  "III7_III8_reflection": {
+    "status": "strict cold PASS: generic reflection, equal-distance partner existence/uniqueness and diagonal actual uses",
+    "full_source_completion": false,
+    "receipts": [
+      ".draft/circle-reflection-checkpoint/receipt.json",
+      ".draft/circle-partner-unique-checkpoint/receipt.json"
+    ]
+  },
+  "III7_III8_angle_order": {
+    "status": "scalar factorization, both order directions and three uses strict cold PASS",
+    "receipt": ".draft/circle-angle-scalar-checkpoint/receipt.json",
+    "full_source_completion": false
+  },
+  "III8_ray_intersection": {
+    "status": "strict cold PASS: constructor, circle/forward-ray certificate, near/far/tangent uses and weak branch product bounds",
+    "receipt": ".draft/circle-ray-checkpoint/receipt.json",
+    "full_source_completion": false
+  },
+  "III7_III8_radial": {
+    "status": "center-ray and opposite endpoint metric certificates, global weak distance bounds warm accepted; actual interior/boundary/exterior probes running",
+    "full_source_completion": false
+  },
+  "radial_extrema_checkpoint": {
+    "status": "PASS",
+    "receipt": ".draft/circle-radial-checkpoint/receipt.json",
+    "declarations": 14,
+    "scope": "Radial endpoints, global bounds, strict uniqueness of minimum/maximum, interior/boundary/exterior coordinates and strict boundary example",
+    "source_completion": false
+  },
+  "circle_angle_and_ray_progress": {
+    "warm_accepted": [
+      "actual circle ray cosine law",
+      "interior angular order",
+      "external far angular order incl tangent bound",
+      "external near angular order incl tangent bound",
+      "other circle intersection lies on same forward ray",
+      "near/far coefficient and length ordering",
+      "coincident tangent intersection",
+      "exhaustive second ray parameter"
+    ],
+    "cold_status": "PASS .draft/circle-angle-branch-checkpoint/receipt.json (22 target declarations, stable hashes)",
+    "source_completion": false,
+    "actual_uses": [
+      "interior observer: actual angular order implies segment lengths4<8",
+      "external observer: tangent equality boundary included, segment lengths2<4<8"
+    ]
+  },
+  "book03_new_source_candidates": {
+    "7": "canonically promoted after full strict III1–III7 gate20949 PASS,44 declarations",
+    "8": "canonical; strict joint gate50633 PASS",
+    "9": "canonical; strict joint gate50633 PASS",
+    "10": "canonical; strict joint gate50633 PASS"
+  },
+  "latest_book03_cold_receipt": ".draft/book03-first-ten-checkpoint/receipt.json",
+  "book03_first_ten_gate": {
+    "status": "PASS, canonical candidate promoted byte-for-byte",
+    "receipt": ".draft/book03-first-ten-checkpoint/receipt.json",
+    "declarations": 61
+  },
+  "book03_first_fifteen_gate": {
+    "status": "PASS and canonical",
+    "receipt": ".draft/book03-first-fifteen-checkpoint/receipt.json",
+    "declarations": 94,
+    "canonical_sha256": "15e1a141eea94f66215bb3cb5fedc5f09a78f30aa9be4452d13cb6eb16dd4c11"
+  },
+  "book03_proposition16_line_gate": {
+    "status": "PASS, standalone draft only",
+    "receipt": ".draft/book03-proposition16-line-checkpoint/receipt.json",
+    "declarations": 15,
+    "full_source_complete": false
+  }
+}

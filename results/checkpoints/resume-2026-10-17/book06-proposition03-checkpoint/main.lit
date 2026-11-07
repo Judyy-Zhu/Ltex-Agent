@@ -1,0 +1,629 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::line_through_points
+release obj def angle_measure::segment_length
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+release obj def angles::angle_cosine
+
+thm proposition_9:
+    ? forall a, b, c cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            exist d cart(R, R) st {a != d, b != d, c != d, $geometry::main::is_on_segment(d, b, c), $geometry::main::are_angles_congruent(b, a, d, d, a, c)}
+    release thm geometry_lemmas::triangle_vertices_distinct(a, b, c)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, c)
+    have left_sq R+ = geometry::main::distance_sq(a, b)
+    have right_sq R+ = geometry::main::distance_sq(a, c)
+    have left R+ = sqrt(left_sq)
+    have right R+ = sqrt(right_sq)
+    sqrt(left_sq)^2 = left_sq
+    left^2 = sqrt(left_sq)^2 = left_sq
+    sqrt(right_sq)^2 = right_sq
+    right^2 = sqrt(right_sq)^2 = right_sq
+    have length_total R+ = left + right
+    have t R+ = left / length_total
+    left < length_total
+    t = left / length_total < length_total / length_total = 1
+    1 - t = 1 - left / length_total = (length_total - left) / length_total = right / length_total
+    have cut cart(R, R) = ((right * b(1) + left * c(1)) / length_total, (right * b(2) + left * c(2)) / length_total)
+    cut(1) = (right * b(1) + left * c(1)) / length_total = (right / length_total) * b(1) + (left / length_total) * c(1) = (1 - t) * b(1) + t * c(1)
+    cut(2) = (right * b(2) + left * c(2)) / length_total = (right / length_total) * b(2) + (left / length_total) * c(2) = (1 - t) * b(2) + t * c(2)
+    witness exist k R st {0 <= k, k <= 1, cut(1) = (1 - k) * b(1) + k * c(1), cut(2) = (1 - k) * b(2) + k * c(2)} from t
+    by def $geometry::main::is_on_segment(cut, b, c)
+    have u cart(R, R) = geometry::main::vec(a, b)
+    have v cart(R, R) = geometry::main::vec(a, c)
+    have w cart(R, R) = geometry::main::vec(a, cut)
+    have cross R = geometry::main::det(u, v)
+    have inner R = geometry::main::dot(u, v)
+    by contra:
+        ? not $geometry::main::is_collinear(a, b, c)
+        $geometry::main::is_collinear(a, b, c)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    release thm geometry::main::triangle_det_nonzero(a, b, c)
+    cross = geometry::main::det(u, v) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    release thm geometry::main::triangle_det_square_positive(a, b, c)
+    cross^2 > 0
+    cross^2 $in R+
+    length_total^2 $in R+
+    left * right $in R+
+    (left * right) * cross^2 $in R+
+    ((left * right) * cross^2) / length_total^2 $in R+
+    left * right * cross^2 / length_total^2 $in R+
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, c)
+    release thm geometry::main::dot_coordinate_formula(u, u)
+    u(1)^2 + u(2)^2 = u(1) * u(1) + u(2) * u(2) = geometry::main::dot(u, u) = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b)) = geometry::main::distance_sq(a, b) = left_sq = left^2
+    release thm geometry::main::dot_coordinate_formula(v, v)
+    v(1)^2 + v(2)^2 = v(1) * v(1) + v(2) * v(2) = geometry::main::dot(v, v) = geometry::main::dot(geometry::main::vec(a, c), geometry::main::vec(a, c)) = geometry::main::distance_sq(a, c) = right_sq = right^2
+    u(1) = geometry::main::vec(a, b)(1) = b(1) - a(1)
+    v(1) = geometry::main::vec(a, c)(1) = c(1) - a(1)
+    u(2) = geometry::main::vec(a, b)(2) = b(2) - a(2)
+    v(2) = geometry::main::vec(a, c)(2) = c(2) - a(2)
+    w(1) = cut(1) - a(1) = (right * b(1) + left * c(1)) / length_total - a(1) = (right * b(1) + left * c(1) - length_total * a(1)) / length_total = (right * b(1) + left * c(1) - (left + right) * a(1)) / length_total = (right * (b(1) - a(1)) + left * (c(1) - a(1))) / length_total = (right * u(1) + left * v(1)) / length_total
+    w(2) = cut(2) - a(2) = (right * b(2) + left * c(2)) / length_total - a(2) = (right * b(2) + left * c(2) - length_total * a(2)) / length_total = (right * b(2) + left * c(2) - (left + right) * a(2)) / length_total = (right * (b(2) - a(2)) + left * (c(2) - a(2))) / length_total = (right * u(2) + left * v(2)) / length_total
+    release thm geometry::main::dot_coordinate_formula(u, v)
+    inner = geometry::main::dot(u, v) = u(1) * v(1) + u(2) * v(2)
+    geometry::main::dot(u, w) = u(1) * w(1) + u(2) * w(2) = u(1) * ((right * u(1) + left * v(1)) / length_total) + u(2) * ((right * u(2) + left * v(2)) / length_total) = (right * (u(1)^2 + u(2)^2) + left * (u(1) * v(1) + u(2) * v(2))) / length_total = (right * (u(1)^2 + u(2)^2) + left * inner) / length_total = (right * left^2 + left * inner) / length_total = left * (left * right + inner) / length_total
+    geometry::main::dot(w, v) = w(1) * v(1) + w(2) * v(2) = ((right * u(1) + left * v(1)) / length_total) * v(1) + ((right * u(2) + left * v(2)) / length_total) * v(2) = (right * (u(1) * v(1) + u(2) * v(2)) + left * (v(1)^2 + v(2)^2)) / length_total = (right * inner + left * (v(1)^2 + v(2)^2)) / length_total = (right * inner + left * right^2) / length_total = right * (left * right + inner) / length_total
+    release thm geometry::main::det_coordinate_formula(u, v)
+    cross = geometry::main::det(u, v) = u(1) * v(2) - u(2) * v(1)
+    geometry::main::det(u, w) = u(1) * w(2) - u(2) * w(1) = u(1) * ((right * u(2) + left * v(2)) / length_total) - u(2) * ((right * u(1) + left * v(1)) / length_total) = left * (u(1) * v(2) - u(2) * v(1)) / length_total = left * cross / length_total
+    geometry::main::det(w, v) = w(1) * v(2) - w(2) * v(1) = ((right * u(1) + left * v(1)) / length_total) * v(2) - ((right * u(2) + left * v(2)) / length_total) * v(1) = right * (u(1) * v(2) - u(2) * v(1)) / length_total = right * cross / length_total
+    geometry::main::det(u, w) * geometry::main::det(w, v) = (left * cross / length_total) * (right * cross / length_total) = left * right * cross^2 / length_total^2 > 0
+    geometry::main::dot(u, w) * geometry::main::det(w, v) = (left * (left * right + inner) / length_total) * (right * cross / length_total) = (left * cross / length_total) * (right * (left * right + inner) / length_total) = geometry::main::det(u, w) * geometry::main::dot(w, v)
+    by contra:
+        ? a != cut
+        a = cut
+        cut(1) = a(1)
+        cut(2) = a(2)
+        w(1) = cut(1) - a(1) = 0
+        w(2) = cut(2) - a(2) = 0
+        geometry::main::det(u, w) = u(1) * 0 - u(2) * 0 = 0
+        geometry::main::det(u, w) * geometry::main::det(w, v) = 0
+        impossible geometry::main::det(u, w) * geometry::main::det(w, v) > 0
+    by contra:
+        ? b != cut
+        b = cut
+        cut(1) = b(1)
+        cut(2) = b(2)
+        w(1) = cut(1) - a(1) = b(1) - a(1) = u(1)
+        w(2) = cut(2) - a(2) = b(2) - a(2) = u(2)
+        geometry::main::det(u, w) = u(1) * u(2) - u(2) * u(1) = 0
+        geometry::main::det(u, w) * geometry::main::det(w, v) = 0
+        impossible geometry::main::det(u, w) * geometry::main::det(w, v) > 0
+    by contra:
+        ? c != cut
+        c = cut
+        cut(1) = c(1)
+        cut(2) = c(2)
+        w(1) = cut(1) - a(1) = c(1) - a(1) = v(1)
+        w(2) = cut(2) - a(2) = c(2) - a(2) = v(2)
+        geometry::main::det(w, v) = v(1) * v(2) - v(2) * v(1) = 0
+        geometry::main::det(u, w) * geometry::main::det(w, v) = 0
+        impossible geometry::main::det(u, w) * geometry::main::det(w, v) > 0
+    (b(1) - a(1)) * (cut(2) - a(2)) - (b(2) - a(2)) * (cut(1) - a(1)) = geometry::main::det(u, w)
+    (cut(1) - a(1)) * (c(2) - a(2)) - (cut(2) - a(2)) * (c(1) - a(1)) = geometry::main::det(w, v)
+    ((b(1) - a(1)) * (cut(2) - a(2)) - (b(2) - a(2)) * (cut(1) - a(1))) * ((cut(1) - a(1)) * (c(2) - a(2)) - (cut(2) - a(2)) * (c(1) - a(1))) = geometry::main::det(u, w) * geometry::main::det(w, v) > 0
+    ((b(1) - a(1)) * (cut(1) - a(1)) + (b(2) - a(2)) * (cut(2) - a(2))) = geometry::main::dot(u, w)
+    ((cut(1) - a(1)) * (c(1) - a(1)) + (cut(2) - a(2)) * (c(2) - a(2))) = geometry::main::dot(w, v)
+    ((b(1) - a(1)) * (cut(1) - a(1)) + (b(2) - a(2)) * (cut(2) - a(2))) * ((cut(1) - a(1)) * (c(2) - a(2)) - (cut(2) - a(2)) * (c(1) - a(1))) = geometry::main::dot(u, w) * geometry::main::det(w, v) = geometry::main::det(u, w) * geometry::main::dot(w, v) = ((b(1) - a(1)) * (cut(2) - a(2)) - (b(2) - a(2)) * (cut(1) - a(1))) * ((cut(1) - a(1)) * (c(1) - a(1)) + (cut(2) - a(2)) * (c(2) - a(2)))
+    release thm geometry::main::cross_ratio_same_det_sign_implies_angle_congruence(b, a, cut, cut, a, c)
+    witness exist d cart(R, R) st {a != d, b != d, c != d, $geometry::main::is_on_segment(d, b, c), $geometry::main::are_angles_congruent(b, a, d, d, a, c)} from cut
+
+# Book I.10: an analytic midpoint witness for a finite nonzero segment.
+# The source constructs an equilateral triangle and bisects its apex angle;
+# this proof instead verifies the coordinate average directly.
+
+
+# Eudoxus comparisons for positive real measures; quantity kinds are supplied by geometric interfaces.
+prop have_equal_equimultiple_comparisons(a,b,c,d R+):
+    forall m,n N+:
+        =>:
+            m*a < n*b
+        <=>:
+            m*c < n*d
+    forall m,n N+:
+        =>:
+            m*a = n*b
+        <=>:
+            m*c = n*d
+    forall m,n N+:
+        =>:
+            m*a > n*b
+        <=>:
+            m*c > n*d
+
+
+thm cross_product_preserves_less_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a < n*b
+        =>:
+            m*c < n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) < scale*(n*b)
+    m*c < n*d
+
+
+thm cross_product_preserves_equal_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a = n*b
+        =>:
+            m*c = n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) = scale*(n*b)
+    m*c = n*d
+
+
+thm cross_product_preserves_greater_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a > n*b
+        =>:
+            m*c > n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) > scale*(n*b)
+    m*c > n*d
+
+
+thm cross_product_implies_equal_equimultiple_comparisons:
+    ? forall a,b,c,d R+:
+        a*d = b*c
+        =>:
+            $have_equal_equimultiple_comparisons(a,b,c,d)
+    c*b = b*c = a*d = d*a
+    claim:
+        ? forall m,n N+:
+            m*a < n*b
+            =>:
+                m*c < n*d
+        release thm cross_product_preserves_less_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c < n*d
+            =>:
+                m*a < n*b
+        release thm cross_product_preserves_less_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a = n*b
+            =>:
+                m*c = n*d
+        release thm cross_product_preserves_equal_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c = n*d
+            =>:
+                m*a = n*b
+        release thm cross_product_preserves_equal_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a > n*b
+            =>:
+                m*c > n*d
+        release thm cross_product_preserves_greater_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c > n*d
+            =>:
+                m*a > n*b
+        release thm cross_product_preserves_greater_equimultiples(c,d,a,b,m,n)
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+
+
+thm positive_rational_separation:
+    ? forall x,y R+:
+        x < y
+        =>:
+            exist numerator,denominator N+ st {x < numerator/denominator, numerator/denominator < y}
+    release thm rational_between_reals(x,y)
+    obtain middle from exist q Q st {x < q and q < y}
+    release thm rational_has_unique_reduced_fraction(middle)
+    obtain numerator,denominator from exist! p Z, d N+ st {middle = p/d, gcd(p,d) = 1}
+    middle > x > 0
+    denominator $in R+
+    middle*denominator > 0
+    numerator = (numerator/denominator)*denominator = middle*denominator > 0
+    numerator $in N+
+    x < middle = numerator/denominator < y
+    witness exist n,m N+ st {x < n/m, n/m < y} from numerator,denominator
+
+
+thm strict_cross_product_has_separating_equimultiples:
+    ? forall a,b,c,d R+:
+        a*d < b*c
+        =>:
+            exist m,n N+ st {m*a < n*b, m*c > n*d}
+    b*d > 0
+    (a*d)/(b*d) < (b*c)/(b*d)
+    a/b = (a*d)/(b*d) < (b*c)/(b*d) = c/d
+    a/b > 0
+    c/d > 0
+    release thm positive_rational_separation(a/b,c/d)
+    obtain n,m from exist numerator,denominator N+ st {a/b < numerator/denominator, numerator/denominator < c/d}
+    m $in R+
+    n $in R+
+    m*(a/b) < m*(n/m)
+    (m*(a/b))*b < (m*(n/m))*b
+    m*a = (m*(a/b))*b < (m*(n/m))*b = n*b
+    m*(n/m) < m*(c/d)
+    (m*(n/m))*d < (m*(c/d))*d
+    n*d = (m*(n/m))*d < (m*(c/d))*d = m*c
+    witness exist first,second N+ st {first*a < second*b, first*c > second*d} from m,n
+
+
+thm equal_equimultiple_comparisons_imply_cross_product:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a*d = b*c
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+    by contra:
+        ? a*d >= b*c
+        a*d < b*c
+        release thm strict_cross_product_has_separating_equimultiples(a,b,c,d)
+        obtain m,n from exist m,n N+ st {m*a < n*b, m*c > n*d}
+        m*c < n*d
+        impossible m*c > n*d
+    by contra:
+        ? a*d <= b*c
+        a*d > b*c
+        c*b = b*c < a*d = d*a
+        release thm strict_cross_product_has_separating_equimultiples(c,d,a,b)
+        obtain m,n from exist m,n N+ st {m*c < n*d, m*a > n*b}
+        m*a < n*b
+        impossible m*a > n*b
+    a*d = b*c
+
+
+thm equal_equimultiple_comparisons_give_equal_quotients:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a/b = c/d
+    release thm equal_equimultiple_comparisons_imply_cross_product(a,b,c,d)
+    b*d > 0
+    a/b = (a*d)/(b*d) = (b*c)/(b*d) = c/d
+
+
+thm equal_positive_quotients_imply_cross_product:
+    ? forall a,b,c,d R+:
+        a/b = c/d
+        =>:
+            a*d = b*c
+    (a/b)*(b*d) = (c/d)*(b*d)
+    a*d = (a/b)*(b*d) = (c/d)*(b*d) = b*c
+
+
+# Publish the independently proved nonzero contract for denominators in geometric ratios.
+claim:
+    ? forall a,b cart(R,R):
+        a != b
+        =>:
+            angle_measure::segment_length(a,b) $in R+
+            angle_measure::segment_length(a,b) > 0
+            angle_measure::segment_length(a,b) != 0
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    geometry::main::distance_sq(a,b) >= 0
+    sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) = sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) $in R+
+    angle_measure::segment_length(a,b) != 0
+
+
+# An interior point of a proper finite segment has a strict affine parameter.
+thm interior_segment_affine_parameter:
+    ? forall a,b,p cart(R,R):
+        a != p
+        p != b
+        $geometry::main::is_on_segment(p,a,b)
+        =>:
+            exist t R+ st {t < 1, p(1)=a(1)+t*(b(1)-a(1)), p(2)=a(2)+t*(b(2)-a(2))}
+    by def $geometry::main::is_on_segment(p,a,b)
+    obtain t from exist t R st {0 <= t, t <= 1, p(1)=(1-t)*a(1)+t*b(1), p(2)=(1-t)*a(2)+t*b(2)}
+    0 <= t
+    t <= 1
+    by contra:
+        ? t != 0
+        t = 0
+        p(1) = (1-t)*a(1)+t*b(1) = (1-0)*a(1)+0*b(1) = a(1)
+        p(2) = (1-t)*a(2)+t*b(2) = (1-0)*a(2)+0*b(2) = a(2)
+        p = (p(1),p(2)) = (a(1),p(2)) = (a(1),a(2)) = a
+        impossible a != p
+    by contra:
+        ? t > 0
+        t <= 0
+        t = 0
+        impossible t != 0
+    t $in R+
+    by contra:
+        ? t != 1
+        t = 1
+        p(1) = (1-t)*a(1)+t*b(1) = (1-1)*a(1)+1*b(1) = b(1)
+        p(2) = (1-t)*a(2)+t*b(2) = (1-1)*a(2)+1*b(2) = b(2)
+        p = (p(1),p(2)) = (b(1),p(2)) = (b(1),b(2)) = b
+        impossible p != b
+    by contra:
+        ? t < 1
+        t >= 1
+        t = 1
+        impossible t != 1
+    p(1) = (1-t)*a(1)+t*b(1) = a(1)+t*(b(1)-a(1))
+    p(2) = (1-t)*a(2)+t*b(2) = a(2)+t*(b(2)-a(2))
+    witness exist s R+ st {s < 1, p(1)=a(1)+s*(b(1)-a(1)), p(2)=a(2)+s*(b(2)-a(2))} from t
+
+
+thm strict_segment_cut_length_ratio:
+    ? forall a,b,p cart(R,R), t R+:
+        a != b
+        a != p
+        p != b
+        t < 1
+        p(1)=a(1)+t*(b(1)-a(1))
+        p(2)=a(2)+t*(b(2)-a(2))
+        =>:
+            angle_measure::segment_length(p,a) = t*angle_measure::segment_length(a,b)
+            angle_measure::segment_length(b,p) = (1-t)*angle_measure::segment_length(a,b)
+            angle_measure::segment_length(b,p)/angle_measure::segment_length(p,a) = (1-t)/t
+    release thm angle_measure::positive_ray_scale_scales_length(a,b,p,t)
+    release thm angle_measure::strict_segment_length_addition(a,b,p,t)
+    release thm angle_measure::segment_length_is_symmetric(p,a)
+    release thm angle_measure::segment_length_is_symmetric(b,p)
+    angle_measure::segment_length(p,a) = angle_measure::segment_length(a,p) = t*angle_measure::segment_length(a,b)
+    angle_measure::segment_length(p,b) = (angle_measure::segment_length(a,p)+angle_measure::segment_length(p,b))-angle_measure::segment_length(a,p) = angle_measure::segment_length(a,b)-angle_measure::segment_length(a,p) = angle_measure::segment_length(a,b)-t*angle_measure::segment_length(a,b) = (1-t)*angle_measure::segment_length(a,b)
+    angle_measure::segment_length(b,p) = angle_measure::segment_length(p,b) = (1-t)*angle_measure::segment_length(a,b)
+    have whole_length R+ = angle_measure::segment_length(a,b)
+    angle_measure::segment_length(b,p)/angle_measure::segment_length(p,a) = ((1-t)*angle_measure::segment_length(a,b))/angle_measure::segment_length(p,a) = ((1-t)*angle_measure::segment_length(a,b))/(t*angle_measure::segment_length(a,b)) = ((1-t)*whole_length)/(t*angle_measure::segment_length(a,b)) = ((1-t)*whole_length)/(t*whole_length) = (1-t)/t
+
+
+thm equal_weighted_cosines_force_side_weights:
+    ? forall alpha,beta R+, mixed,t R:
+        mixed != alpha*beta
+        ((1-t)*alpha^2+t*mixed)/alpha = ((1-t)*mixed+t*beta^2)/beta
+        =>:
+            (1-t)*alpha = t*beta
+    by contra:
+        ? alpha*beta-mixed != 0
+        alpha*beta-mixed = 0
+        mixed = alpha*beta-(alpha*beta-mixed) = alpha*beta-0 = alpha*beta
+        impossible mixed != alpha*beta
+    have difference R = ((1-t)*alpha^2+t*mixed)/alpha-((1-t)*mixed+t*beta^2)/beta
+    difference = 0
+    ((1-t)*alpha-t*beta)*(alpha*beta-mixed) = beta*((1-t)*alpha^2+t*mixed)-alpha*((1-t)*mixed+t*beta^2) = (alpha*beta)*(((1-t)*alpha^2+t*mixed)/alpha-((1-t)*mixed+t*beta^2)/beta) = (alpha*beta)*difference = (alpha*beta)*0 = 0
+    (1-t)*alpha-t*beta = (((1-t)*alpha-t*beta)*(alpha*beta-mixed))/(alpha*beta-mixed) = 0/(alpha*beta-mixed) = 0
+    (1-t)*alpha = ((1-t)*alpha-t*beta)+t*beta = 0+t*beta = t*beta
+
+
+thm base_cut_cosine_formulas:
+    ? forall a,b,c,d cart(R,R), alpha,beta,gamma R+, t R:
+        a != b
+        a != c
+        a != d
+        geometry::main::distance_sq(a,b) = alpha^2
+        geometry::main::distance_sq(a,c) = beta^2
+        geometry::main::distance_sq(a,d) = gamma^2
+        d(1) = b(1)+t*(c(1)-b(1))
+        d(2) = b(2)+t*(c(2)-b(2))
+        =>:
+            angles::angle_cosine(b,a,d) = ((1-t)*alpha^2+t*geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c)))/(alpha*gamma)
+            angles::angle_cosine(d,a,c) = ((1-t)*geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))+t*beta^2)/(beta*gamma)
+    have u cart(R,R) = geometry::main::vec(a,b)
+    have v cart(R,R) = geometry::main::vec(a,c)
+    have w cart(R,R) = geometry::main::vec(a,d)
+    release thm geometry::main::vec_coordinate_formula(a,b)
+    release thm geometry::main::vec_coordinate_formula(a,c)
+    release thm geometry::main::vec_coordinate_formula(a,d)
+    u(1) = b(1)-a(1)
+    u(2) = b(2)-a(2)
+    v(1) = c(1)-a(1)
+    v(2) = c(2)-a(2)
+    w(1) = d(1)-a(1) = b(1)+t*(c(1)-b(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1)) = (1-t)*u(1)+t*v(1)
+    w(2) = d(2)-a(2) = b(2)+t*(c(2)-b(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2)) = (1-t)*u(2)+t*v(2)
+    release thm geometry::main::vec_dot_self_is_distance(a,b)
+    release thm geometry::main::vec_dot_self_is_distance(a,c)
+    release thm geometry::main::dot_coordinate_formula(u,u)
+    release thm geometry::main::dot_coordinate_formula(v,v)
+    release thm geometry::main::dot_coordinate_formula(u,v)
+    release thm geometry::main::dot_coordinate_formula(u,w)
+    release thm geometry::main::dot_coordinate_formula(w,v)
+    u(1)^2+u(2)^2 = u(1)*u(1)+u(2)*u(2) = geometry::main::dot(u,u) = geometry::main::distance_sq(a,b) = alpha^2
+    v(1)^2+v(2)^2 = v(1)*v(1)+v(2)*v(2) = geometry::main::dot(v,v) = geometry::main::distance_sq(a,c) = beta^2
+    have mixed R = geometry::main::dot(u,v)
+    mixed = u(1)*v(1)+u(2)*v(2)
+    geometry::main::dot(u,w) = u(1)*w(1)+u(2)*w(2) = u(1)*((1-t)*u(1)+t*v(1))+u(2)*((1-t)*u(2)+t*v(2)) = (1-t)*(u(1)^2+u(2)^2)+t*(u(1)*v(1)+u(2)*v(2)) = (1-t)*alpha^2+t*mixed
+    geometry::main::dot(w,v) = w(1)*v(1)+w(2)*v(2) = ((1-t)*u(1)+t*v(1))*v(1)+((1-t)*u(2)+t*v(2))*v(2) = (1-t)*(u(1)*v(1)+u(2)*v(2))+t*(v(1)^2+v(2)^2) = (1-t)*mixed+t*beta^2
+    geometry::main::angle_cos_num(b,a,d) = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,d)) = geometry::main::dot(u,w) = (1-t)*alpha^2+t*mixed
+    geometry::main::angle_cos_num(d,a,c) = geometry::main::dot(geometry::main::vec(a,d),geometry::main::vec(a,c)) = geometry::main::dot(w,v) = (1-t)*mixed+t*beta^2
+    geometry::main::angle_cos_den(b,a,d) = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(a,d) = alpha^2*gamma^2 = (alpha*gamma)^2
+    geometry::main::angle_cos_den(d,a,c) = geometry::main::distance_sq(a,d)*geometry::main::distance_sq(a,c) = gamma^2*beta^2 = (beta*gamma)^2
+    release thm angles::angle_den_nonnegative(b,a,d)
+    release thm angles::angle_den_nonnegative(d,a,c)
+    release thm angles::angle_root_den_nonzero(b,a,d)
+    release thm angles::angle_root_den_nonzero(d,a,c)
+    alpha*gamma > 0
+    beta*gamma > 0
+    sqrt(geometry::main::angle_cos_den(b,a,d)) = sqrt((alpha*gamma)^2) = |alpha*gamma| = alpha*gamma
+    sqrt(geometry::main::angle_cos_den(d,a,c)) = sqrt((beta*gamma)^2) = |beta*gamma| = beta*gamma
+    angles::angle_cosine(b,a,d) = geometry::main::angle_cos_num(b,a,d)/sqrt(geometry::main::angle_cos_den(b,a,d)) = ((1-t)*alpha^2+t*mixed)/(alpha*gamma)
+    angles::angle_cosine(d,a,c) = geometry::main::angle_cos_num(d,a,c)/sqrt(geometry::main::angle_cos_den(d,a,c)) = ((1-t)*mixed+t*beta^2)/(beta*gamma)
+    mixed = geometry::main::dot(u,v) = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))
+
+
+thm triangle_mixed_product_differs_from_length_product:
+    ? forall a,b,c cart(R,R), alpha,beta R+:
+        $geometry::main::is_triangle(a,b,c)
+        geometry::main::distance_sq(a,b) = alpha^2
+        geometry::main::distance_sq(a,c) = beta^2
+        =>:
+            geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c)) != alpha*beta
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::vec_dot_self_is_distance(a,b)
+    release thm geometry::main::vec_dot_self_is_distance(a,c)
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have mixed R = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have cross R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    cross != 0
+    mixed^2+cross^2 = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))^2+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,b))*geometry::main::dot(geometry::main::vec(a,c),geometry::main::vec(a,c)) = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(a,c) = alpha^2*beta^2
+    by contra:
+        ? geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c)) != alpha*beta
+        geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c)) = alpha*beta
+        mixed = alpha*beta
+        cross^2 = (mixed^2+cross^2)-mixed^2 = alpha^2*beta^2-mixed^2 = alpha^2*beta^2-(alpha*beta)^2 = 0
+        cross = 0
+        impossible cross != 0
+
+
+thm book06_proposition_03_forward_quotient:
+    ? forall a,b,c,d cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != d
+        b != d
+        d != c
+        $geometry::main::is_on_segment(d,b,c)
+        $geometry::main::are_angles_congruent(b,a,d,d,a,c)
+        =>:
+            angle_measure::segment_length(b,d)/angle_measure::segment_length(c,d) = angle_measure::segment_length(a,b)/angle_measure::segment_length(a,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm interior_segment_affine_parameter(b,c,d)
+    obtain t from exist t R+ st {t < 1, d(1)=b(1)+t*(c(1)-b(1)), d(2)=b(2)+t*(c(2)-b(2))}
+    have alpha R+ = angle_measure::segment_length(a,b)
+    have beta R+ = angle_measure::segment_length(a,c)
+    have gamma R+ = angle_measure::segment_length(a,d)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,b)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,c)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,d)
+    release thm base_cut_cosine_formulas(a,b,c,d,alpha,beta,gamma,t)
+    release thm triangle_mixed_product_differs_from_length_product(a,b,c,alpha,beta)
+    release thm angle_measure::angle_relation_implies_equal_cosine(b,a,d,d,a,c)
+    have mixed R = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    angles::angle_cosine(b,a,d) = ((1-t)*alpha^2+t*geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c)))/(alpha*gamma) = ((1-t)*alpha^2+t*mixed)/(alpha*gamma)
+    angles::angle_cosine(d,a,c) = ((1-t)*geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))+t*beta^2)/(beta*gamma) = ((1-t)*mixed+t*beta^2)/(beta*gamma)
+    mixed != alpha*beta
+    ((1-t)*alpha^2+t*mixed)/(alpha*gamma) = angles::angle_cosine(b,a,d) = angles::angle_cosine(d,a,c) = ((1-t)*mixed+t*beta^2)/(beta*gamma)
+    ((1-t)*alpha^2+t*mixed)/(alpha*gamma) = ((1-t)*mixed+t*beta^2)/(beta*gamma)
+    ((1-t)*alpha^2+t*mixed)/alpha = (((1-t)*alpha^2+t*mixed)/(alpha*gamma))*gamma = (((1-t)*mixed+t*beta^2)/(beta*gamma))*gamma = ((1-t)*mixed+t*beta^2)/beta
+    release thm equal_weighted_cosines_force_side_weights(alpha,beta,mixed,t)
+    1-t > 0
+    t/(1-t) = (t*beta)/((1-t)*beta) = ((1-t)*alpha)/((1-t)*beta) = alpha/beta
+    release thm strict_segment_cut_length_ratio(b,c,d,t)
+    release thm angle_measure::segment_length_is_symmetric(b,d)
+    have whole R+ = angle_measure::segment_length(b,c)
+    angle_measure::segment_length(b,d) = angle_measure::segment_length(d,b) = t*angle_measure::segment_length(b,c) = t*whole
+    angle_measure::segment_length(c,d) = (1-t)*angle_measure::segment_length(b,c) = (1-t)*whole
+    angle_measure::segment_length(b,d)/angle_measure::segment_length(c,d) = (t*whole)/angle_measure::segment_length(c,d) = (t*whole)/((1-t)*whole) = t/(1-t) = alpha/beta = angle_measure::segment_length(a,b)/angle_measure::segment_length(a,c)
+
+
+thm book06_proposition_03_converse_quotient:
+    ? forall a,b,c,d cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != b
+        a != c
+        a != d
+        b != d
+        d != c
+        $geometry::main::is_on_segment(d,b,c)
+        angle_measure::segment_length(b,d)/angle_measure::segment_length(c,d) = angle_measure::segment_length(a,b)/angle_measure::segment_length(a,c)
+        =>:
+            $geometry::main::are_angles_congruent(b,a,d,d,a,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm interior_segment_affine_parameter(b,c,d)
+    obtain t from exist t R+ st {t < 1, d(1)=b(1)+t*(c(1)-b(1)), d(2)=b(2)+t*(c(2)-b(2))}
+    have alpha R+ = angle_measure::segment_length(a,b)
+    have beta R+ = angle_measure::segment_length(a,c)
+    have gamma R+ = angle_measure::segment_length(a,d)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,b)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,c)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,d)
+    release thm base_cut_cosine_formulas(a,b,c,d,alpha,beta,gamma,t)
+    release thm strict_segment_cut_length_ratio(b,c,d,t)
+    release thm angle_measure::segment_length_is_symmetric(b,d)
+    have whole R+ = angle_measure::segment_length(b,c)
+    angle_measure::segment_length(b,d) = angle_measure::segment_length(d,b) = t*angle_measure::segment_length(b,c) = t*whole
+    angle_measure::segment_length(c,d) = (1-t)*angle_measure::segment_length(b,c) = (1-t)*whole
+    1-t > 0
+    angle_measure::segment_length(b,d)/angle_measure::segment_length(c,d) = (t*whole)/angle_measure::segment_length(c,d) = (t*whole)/((1-t)*whole) = t/(1-t)
+    t/(1-t) = angle_measure::segment_length(b,d)/angle_measure::segment_length(c,d) = angle_measure::segment_length(a,b)/angle_measure::segment_length(a,c) = alpha/beta
+    release thm equal_positive_quotients_imply_cross_product(t,1-t,alpha,beta)
+    (1-t)*alpha-t*beta = 0
+    have mixed R = geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    angles::angle_cosine(b,a,d) = ((1-t)*alpha^2+t*geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c)))/(alpha*gamma) = ((1-t)*alpha^2+t*mixed)/(alpha*gamma)
+    angles::angle_cosine(d,a,c) = ((1-t)*geometry::main::dot(geometry::main::vec(a,b),geometry::main::vec(a,c))+t*beta^2)/(beta*gamma) = ((1-t)*mixed+t*beta^2)/(beta*gamma)
+    ((1-t)*alpha^2+t*mixed)/alpha-((1-t)*mixed+t*beta^2)/beta = (beta*((1-t)*alpha^2+t*mixed)-alpha*((1-t)*mixed+t*beta^2))/(alpha*beta) = (((1-t)*alpha-t*beta)*(alpha*beta-mixed))/(alpha*beta) = (0*(alpha*beta-mixed))/(alpha*beta) = 0
+    ((1-t)*alpha^2+t*mixed)/alpha-((1-t)*mixed+t*beta^2)/beta = 0
+    ((1-t)*alpha^2+t*mixed)/alpha = (((1-t)*alpha^2+t*mixed)/alpha-((1-t)*mixed+t*beta^2)/beta)+((1-t)*mixed+t*beta^2)/beta = 0+((1-t)*mixed+t*beta^2)/beta = ((1-t)*mixed+t*beta^2)/beta
+    ((1-t)*alpha^2+t*mixed)/(alpha*gamma) = (((1-t)*alpha^2+t*mixed)/alpha)/gamma = (((1-t)*mixed+t*beta^2)/beta)/gamma = ((1-t)*mixed+t*beta^2)/(beta*gamma)
+    angles::angle_cosine(b,a,d) = ((1-t)*alpha^2+t*mixed)/(alpha*gamma) = ((1-t)*mixed+t*beta^2)/(beta*gamma) = angles::angle_cosine(d,a,c)
+    release thm angle_measure::equal_cosines_imply_angle_relation(b,a,d,d,a,c)
+
+
+thm book06_proposition_03_forward_equimultiples:
+    ? forall a,b,c,d cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != d
+        b != d
+        d != c
+        $geometry::main::is_on_segment(d,b,c)
+        $geometry::main::are_angles_congruent(b,a,d,d,a,c)
+        =>:
+            $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(c,d),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm book06_proposition_03_forward_quotient(a,b,c,d)
+    release thm equal_positive_quotients_imply_cross_product(angle_measure::segment_length(b,d),angle_measure::segment_length(c,d),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(c,d),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))
+
+
+thm book06_proposition_03_converse_equimultiples:
+    ? forall a,b,c,d cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        a != b
+        a != c
+        a != d
+        b != d
+        d != c
+        $geometry::main::is_on_segment(d,b,c)
+        $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(c,d),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))
+        =>:
+            $geometry::main::are_angles_congruent(b,a,d,d,a,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm equal_equimultiple_comparisons_give_equal_quotients(angle_measure::segment_length(b,d),angle_measure::segment_length(c,d),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))
+    release thm book06_proposition_03_converse_quotient(a,b,c,d)
+
+
+thm book06_proposition03_constructed_bisector_consumer:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist d cart(R,R) st {a != d, b != d, d != c, $geometry::main::is_on_segment(d,b,c), $geometry::main::are_angles_congruent(b,a,d,d,a,c), $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,d),angle_measure::segment_length(c,d),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))}
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm proposition_9(a,b,c)
+    obtain d from exist d cart(R,R) st {a != d, b != d, c != d, $geometry::main::is_on_segment(d,b,c), $geometry::main::are_angles_congruent(b,a,d,d,a,c)}
+    release thm book06_proposition_03_forward_equimultiples(a,b,c,d)
+    release thm book06_proposition_03_converse_equimultiples(a,b,c,d)
+    witness exist cut cart(R,R) st {a != cut, b != cut, cut != c, $geometry::main::is_on_segment(cut,b,c), $geometry::main::are_angles_congruent(b,a,cut,cut,a,c), $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,cut),angle_measure::segment_length(c,cut),angle_measure::segment_length(a,b),angle_measure::segment_length(a,c))} from d

@@ -1,0 +1,284 @@
+{
+  "session": 72613,
+  "pending": null,
+  "prepared_next": null,
+  "source_plan": "translation_records/book03-proposition26-plan.json",
+  "accepted": [
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/plane-rigid-motion-chosen-arc1.lit",
+      "sha256": "badb94959d8922d5565a1e150836c5a8488e2087c172126b8cab26f09f3ed3c8",
+      "status": "accepted; success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/chosen-arc-angle-cosine2.lit",
+      "sha256": "f20bbd5db25414c0875c8dc0ab9aa9b5762a63a95a9f4cc7731ef347177d8e18",
+      "status": "accepted; success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/chosen-arc-chord-metric1.lit",
+      "sha256": "2fce8ce863f4f96aa8d3ae28da842daac6e21427590ae60b8ff75329293f6bd2",
+      "status": "success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/equal-arc-spans-equal-chords1.lit",
+      "sha256": "6ad230a4e5431f05c536bef1afc2585519ed5c4dedcb67f13d96ae6983d74e9b",
+      "status": "success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/similar-same-chord-segments-determine-circle1.lit",
+      "sha256": "bba3d3317639b9cff85e9882830b84b0b1cb7bc2d248ce6bf99995a96ef6c5d2",
+      "status": "success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/similar-equal-chord-segments-centered-motion1.lit",
+      "sha256": "f3ef8026fac9c7eb0c99046fea5334b7af2672e43836b2676c9590628d4f43c1",
+      "status": "success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-inscribed1.lit",
+      "sha256": "22b4b43a4376f4021f45eda3e48833105e3ee202a7f1871f65f21f45fbcadb5a",
+      "status": "success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-equal-selected-spans2.lit",
+      "sha256": "e152b3913a0442fa709c79f868b54ccab91e830080639c03297c03546dedcfb4",
+      "status": "success and following prompt consumed in session72613"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-central1.lit",
+      "sha256": "6d9ccd4f5a438f11564663e944a6618d5a4b4a3177b47a4851a961023c723926",
+      "status": "success and following prompt consumed in session72613"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-rotated-minor-major-use2.lit",
+      "sha256": "eeb8342bc92d01a8d5956853fc8898987f70a8523d9d9e916d8b94130a2c31aa",
+      "status": "success and following prompt consumed"
+    },
+    {
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition26-rotated-semicircle-use1.lit",
+      "sha256": "066b8ed3cf5d2a624c813112f2c677d986f7a8fdb930c5f11cc285a9c154da6a",
+      "status": "success and following prompt consumed"
+    }
+  ],
+  "trust_added": 0,
+  "counted": false,
+  "first_cosine_rejection": "proof_journals/books02-03/chosen-arc-angle-cosine1-rejection.json",
+  "next": "Finish arc transport and III26 independent proof audits; verify inlined semicircle consumer; launch corrected factored canonical candidate; no promotion yet",
+  "shared_interface_note": "Expose center/radius equality already proved in III23 and center/endpoint correspondence already constructed in III24. After verification, factor original III23/24 through these interfaces to avoid duplicated proof families; frozen candidates not edited.",
+  "independent_inscribed_gate": {
+    "session": 85824,
+    "status": "PASS72; native0/run/success/null error; launch/current hashes unchanged",
+    "receipt": ".draft/book03-proposition26-inscribed-checkpoint/receipt.json",
+    "expected_statements": 72
+  },
+  "selected_span_first_rejection": "proof_journals/books02-03/book03-proposition26-selected-spans1-rejection.json",
+  "independent_central_gate": {
+    "status": "PASS83; native0/run/success/null error; before/after/current hashes unchanged",
+    "receipt": ".draft/book03-proposition26-central-checkpoint/receipt.json",
+    "expected_statements": 83,
+    "session": 56594
+  },
+  "concrete_consumer_first_rejection": "proof_journals/books02-03/book03-proposition26-rotated-use1-rejection.json",
+  "independent_source_gate": {
+    "status": "PASS85; native0/run/success/null error; before/after/current hashes unchanged",
+    "expected_statements": 85,
+    "receipt": ".draft/book03-proposition26-source-checkpoint/receipt.json",
+    "session": 41832
+  },
+  "shared_refactor": {
+    "author_session": 72613,
+    "accepted_warm_only": [
+      ".draft/circle-motion-authoring/book03-proposition23-shared-interface1.lit",
+      ".draft/circle-motion-authoring/book03-proposition24-shared-interface1.lit",
+      ".draft/circle-motion-authoring/audit-shared-circle-identity-short2.lit",
+      ".draft/circle-motion-authoring/audit-circle-identity-without-def-chain.lit"
+    ],
+    "pending": null,
+    "note": "Warm checks do not establish liveness; old theorem exists in author context.",
+    "warm_empty23": "PASS: loaded original theorem bypasses body. Warm wrapper checks are not proof-liveness evidence; use52918 exact prefix.",
+    "pending_note": "Warm authoring nomination only; independent candidate queued in52918 after negative control",
+    "short1_rejection": "proof_journals/books02-03/audit-shared-circle-identity-short1-rejection.json",
+    "short2_sha256": "39947281f4fe715819febe679e9a3fa32bf7f6de5b60f4d866de03f1898b5ab8",
+    "without_side_chain": {
+      "status": "FAIL in author session; normal session_error null and prompt consumed",
+      "receipt": "proof_journals/books02-03/audit-circle-identity-without-side-chain-rejection.json"
+    }
+  },
+  "independent_liveness": {
+    "session": 52918,
+    "status": "Shared identity/core, III23/24 wrappers, arc transport/cosine/chord metric/equal-chord helper, III26 inscribed/general-span/central independently checked with failing empty controls. Source-selected point prerequisites replayed. Remaining lower III20–25 audits and canonical integration pending.",
+    "manifest": ".draft/book03-proposition26-liveness/manifest.json",
+    "first_candidate": ".draft/book03-proposition26-liveness/circle-identity-empty-control.lit",
+    "candidate_after_control": ".draft/book03-proposition26-liveness/circle-identity-candidate4.lit",
+    "then": "proposition23-empty-control.lit, proposition23-candidate1.lit; after their results, replay17 motion statements one at a time, then centered-motion empty control and reduced candidate.",
+    "warm_nomination": {
+      "without_def_chain": "PASS in72613; nomination only, original target present",
+      "without_side_chain": "FAIL at positive determinant product, normal session_error null; receipt saved",
+      "candidate4": "Removes definition chains and repeated product conclusions inside cases; independent test pending",
+      "motion_replay_manifest": ".draft/book03-proposition26-liveness/motion-replay/manifest.json"
+    },
+    "pending": null,
+    "evidence": [
+      {
+        "source": "circle-identity-empty-control.lit",
+        "result": "FAIL at conclusion o=center, not WD; null session_error and following prompt",
+        "receipt": "proof_journals/books02-03/audit-circle-identity-independent-empty.json"
+      },
+      {
+        "source": "circle-identity-candidate4.lit",
+        "sha256": "592833260a609eea8c2f3c5e4d3284063474e2dd7c63f44b6f62e1b2ea9e018e",
+        "result": "PASS in52918; success and following prompt consumed; original identity theorem absent from prefix"
+      },
+      {
+        "source": "proposition23-empty-control.lit",
+        "result": "FAIL at circular-segment equality conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-proposition23-independent-empty.json"
+      },
+      {
+        "source": "proposition23-candidate1.lit",
+        "sha256": "5c8dd99439aeec9a5ad85dd748b186f1a97e5c0a4f9742cb5881de0fbcd064bc",
+        "result": "PASS in52918, success and following prompt consumed; originalIII23 absent"
+      },
+      {
+        "source": "centered-motion-empty-control.lit",
+        "result": "FAIL at radius=other_radius conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-centered-motion-independent-empty.json"
+      },
+      {
+        "source": "centered-motion-candidate1.lit",
+        "sha256": "a807080acbea42f32f4decb6835f8f7d3e5ed844cd57c2b6132acc20b634e674",
+        "result": "PASS in52918, success and following prompt consumed; original centered motion andIII24 absent"
+      },
+      {
+        "source": "proposition24-empty-control.lit",
+        "result": "FAIL at existential congruence conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-proposition24-independent-empty.json"
+      },
+      {
+        "source": "proposition24-candidate1.lit",
+        "sha256": "d819ea7a1916580f2e32379933560754280ddee6bc21300361a415135abc0bcd",
+        "result": "PASS in52918; success and following prompt consumed; originalIII24 absent"
+      },
+      {
+        "source": "arc-transport-empty-control.lit",
+        "result": "FAIL at arc-motion proposition conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-arc-transport-independent-empty.json"
+      },
+      {
+        "source": "arc-transport-candidate1.lit",
+        "result": "FAIL at distance_sq(o,p)=radius*radius after removing circle/arc unfolding and membership bridge; session_error null and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-arc-transport-candidate1-rejection.json"
+      },
+      {
+        "source": "arc-transport-candidate2.lit",
+        "result": "FAIL at transformed arc membership conclusion: input circle memberships restored, output circle membership bridge still absent; normal null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-arc-transport-candidate2-rejection.json"
+      },
+      {
+        "source": "arc-transport-candidate3.lit",
+        "sha256": "5c38057fa07c5b8d46d1d42b1f53168ba09b27e2a9e5dfb0db143dd09ddc2a4a",
+        "result": "PASS in52918; success and following prompt consumed. Empty target failed before target loaded. Circle/arc unfolding and both input/output circle membership bridges retained; removes distance alias echo, scalar premise echoes and final explicit predicate fold. Frozen canonical188 retains earlier independently verified original source."
+      },
+      {
+        "source": "chosen-arc-angle-cosine2-empty-control.lit",
+        "result": "FAIL at cosine equality conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-arc-cosine-independent-empty.json"
+      },
+      {
+        "source": "chosen-arc-angle-cosine2.lit",
+        "sha256": "f20bbd5db25414c0875c8dc0ab9aa9b5762a63a95a9f4cc7731ef347177d8e18",
+        "result": "PASS in52918; success and prompt consumed; empty control failed before theorem loaded"
+      },
+      {
+        "source": "chosen-arc-chord-metric1-empty-control.lit",
+        "result": "FAIL at chord metric conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-arc-chord-metric-independent-empty.json"
+      },
+      {
+        "source": "chosen-arc-chord-metric1.lit",
+        "sha256": "2fce8ce863f4f96aa8d3ae28da842daac6e21427590ae60b8ff75329293f6bd2",
+        "result": "PASS in52918; success and prompt consumed after independent empty control failed"
+      },
+      {
+        "source": "equal-arc-spans-equal-chords1-empty-control.lit",
+        "result": "FAIL at chord equality conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-equal-arc-spans-chords-independent-empty.json"
+      },
+      {
+        "source": "equal-arc-spans-equal-chords1.lit",
+        "sha256": "6ad230a4e5431f05c536bef1afc2585519ed5c4dedcb67f13d96ae6983d74e9b",
+        "result": "PASS in52918; success and prompt consumed after independent empty control failed"
+      },
+      {
+        "source": "proposition26-inscribed-empty-control.lit",
+        "result": "FAIL at arc-congruence existential conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-proposition26-inscribed-independent-empty.json"
+      },
+      {
+        "source": "proposition26-inscribed-candidate1.lit",
+        "result": "FAIL only at release arc transport premise other_side*orientation=side after omitting explicit negative-sign cancellation; session_error null and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-proposition26-inscribed-candidate1-rejection.json"
+      },
+      {
+        "source": "proposition26-inscribed-candidate2.lit",
+        "sha256": "7c85cb67e0157dfa9e156463166e14f653058a8ce52408cce7c321d9f9f61935",
+        "result": "PASS in52918; success and prompt consumed. Empty control failed before original theorem loaded. Shorter body retains explicit side-orientation cancellation; frozen188 retains earlier verified source body."
+      },
+      {
+        "source": "book03-proposition26-equal-selected-spans2-empty-control.lit",
+        "result": "FAIL at arc-congruence existential conclusion, not WD; null session_error and prompt consumed. Raw log required a later read after flush.",
+        "receipt": "proof_journals/books02-03/audit-proposition26-selected-spans-independent-empty.json"
+      },
+      {
+        "source": "book03-proposition26-equal-selected-spans2.lit",
+        "sha256": "e152b3913a0442fa709c79f868b54ccab91e830080639c03297c03546dedcfb4",
+        "result": "PASS in52918; success and prompt consumed after empty control failed"
+      },
+      {
+        "source": "book03-proposition26-central1-empty-control.lit",
+        "result": "FAIL at arc-congruence existential conclusion, not WD; null session_error and prompt consumed",
+        "receipt": "proof_journals/books02-03/audit-proposition26-central-independent-empty.json"
+      },
+      {
+        "source": "book03-proposition26-central1.lit",
+        "sha256": "6d9ccd4f5a438f11564663e944a6618d5a4b4a3177b47a4851a961023c723926",
+        "result": "PASS in52918; success and prompt consumed after empty control failed"
+      }
+    ],
+    "next": "III26 key/source audit complete; whole188 and earlier helper audits remain",
+    "selected_point_replay": ".draft/book03-proposition26-liveness/selected-point-replay/manifest.json",
+    "selected_point_replay_status": "All5 prerequisite statements PASS52918; geometry releases reused from original prefix"
+  },
+  "factored_canonical_candidate": {
+    "directory": "scripts/Euclid_Elements/.draft/book03-through26-factored-candidate",
+    "status": "RUNNING native strict gate; files frozen; not promoted",
+    "expected_statements": 188,
+    "session": 84659,
+    "launch": ".draft/book03-through26-factored-candidate/launch.json"
+  },
+  "source_audit": "translation_records/book03-proposition26-source-audit.json",
+  "last_observed_author_state": "72613 idle; local semicircle integration consumer2 PASS; success and following prompt consumed",
+  "last_observed_independent_audit_state": "III26 key/source audit complete; Session52918 now serving III25 helper audit. For current pending statement use book03-proposition25-helper-liveness.json.",
+  "through25_canonical_gate": {
+    "status": "FAIL177, only statement146 proposition_24_semicircle_use fails: referenced opposite_semicircular_segments_similar_use absent",
+    "receipt": ".draft/book03-through25-canonical-candidate/receipt.json",
+    "native_exit": 1,
+    "stable_hashes": true
+  },
+  "semicircle_integration_repair": {
+    "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/proposition24-semicircle-local-integration-use2.lit",
+    "sha256": "da0c97e86b55ab9870ba9289d65381f8222c98dc4d7edfb3dc21270fd2051fcd",
+    "result": "PASS in72613; warm consumer check only, independent whole chapter next",
+    "first_failure": "wrong entry:: qualification of root is_plane_rigid_motion_between_regions, obtain mismatch; not a mathematical/kernel failure",
+    "receipt": "proof_journals/books02-03/proposition24-local-consumer-wrong-namespace.json"
+  },
+  "latest_audited_integration": {
+    "directory": ".draft/book03-through26-audited-candidate",
+    "status": "prepared, parser preflight PASS; fresh native gate not launched",
+    "replacements": 13,
+    "canonical_changed": false,
+    "remaining": "remaining internal/locality audits and fresh native integrated gate",
+    "expected_main_statement_count": 184,
+    "localizations": 4
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "at": "2026-10-12T08:14:59.430657+00:00",
+  "candidate_sha256": "15e1a141eea94f66215bb3cb5fedc5f09a78f30aa9be4452d13cb6eb16dd4c11",
+  "canonical_prefix_preserved": true,
+  "checked_target_starts_with_candidate": true,
+  "new_trust_or_axiom_tokens": false,
+  "clause_audit": {
+    "III11": {
+      "declarations": [
+        "proposition_11"
+      ],
+      "scope": "Internal contact via disk inclusion; inner center lies on outer-center/contact segment and differs from both ends.",
+      "all_declarations_present": true
+    },
+    "III12": {
+      "declarations": [
+        "proposition_12"
+      ],
+      "scope": "External disk nonentry; contact lies on center segment and differs from both centers.",
+      "all_declarations_present": true
+    },
+    "III13": {
+      "declarations": [
+        "proposition_13_internal",
+        "proposition_13_external"
+      ],
+      "scope": "Every common circumference point equals contact, proved from geometric contact without assuming uniqueness.",
+      "all_declarations_present": true
+    },
+    "III14": {
+      "declarations": [
+        "proposition_14_equal_chords",
+        "proposition_14_equal_distances"
+      ],
+      "scope": "Both implications between actual chord-length equality and existential equal perpendicular distances; diameter feet included.",
+      "all_declarations_present": true
+    },
+    "III15": {
+      "declarations": [
+        "proposition_15_diameter_greatest",
+        "proposition_15_diameter_strict",
+        "proposition_15_nearer_chord"
+      ],
+      "scope": "Diameter weak maximum, strict superiority over non-diameters, and strict reversal of perpendicular-distance order.",
+      "all_declarations_present": true
+    }
+  },
+  "foundation_candidates": [
+    "III.Def4",
+    "III.Def5"
+  ],
+  "foundation_not_claimed": [
+    "III.Def3: generic meets-without-cutting equivalence not separately established"
+  ],
+  "source_proof_difference": "Coordinate/radial proofs replace selected synthetic proof steps; source conclusions and nondegenerate carriers retained.",
+  "proof_style_review": {
+    "retain_evidence_bridges": [
+      "Internal contact disk membership projection needs explicit builder equality/member replay (failed shorter attempts recorded)",
+      "Actual distances need distance_sq_nonnegative for square-root rewriting",
+      "Aliases in III15 scalar products require explicit square equalities (failed nearer1)"
+    ],
+    "remaining_cleanup_candidates": [],
+    "status": "Source and structural review complete; retain checked proof bridges and midpoint metric interfaces.",
+    "retained_metric_lemmas": "The two midpoint metric implications state independently meaningful geometric relations and separate radius-identity algebra from perpendicular-foot existence in III14. Retain checked interfaces; no additional wrapper or alias introduced during integration."
+  },
+  "release_gate": "PASS94 declarations; strict exit0/run/success true/session_error null; stable inputs",
+  "promotion_pending": false,
+  "receipt": ".draft/book03-first-fifteen-checkpoint/receipt.json",
+  "promotion_wait": null,
+  "promotion_record": "translation_records/book03-propositions11-15-canonical.json"
+}

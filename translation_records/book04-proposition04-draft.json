@@ -1,0 +1,39 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "book": 4,
+  "proposition": 4,
+  "source_lines": [
+    4664,
+    4710
+  ],
+  "pdf_pages_zero_based": [
+    112,
+    113
+  ],
+  "statement": "Construct a circle inscribed in any proper triangle.",
+  "source_proof": "Intersection of two angle bisectors; three perpendicular distances are equal; the common-radius circle is tangent to the sides.",
+  "formal_proof_route": "Independent analytic construction: positive side-length barycentric center, explicit interior contact parameters, common determinant/perimeter radius, perpendicular-line tangent certificates. Preserves the source conclusion; does not claim to reproduce the synthetic proof step for step.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition4-candidate3.lit",
+  "status": "Strict Session theorem and actual consumer accepted; collinear control rejected at intended premise; grouped clean gate running",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "definition": "circle_inscribed_in_triangle requires an interior center and tangent contacts on each finite side.",
+  "verified_ingredients": [
+    "Four scalar coordinate identities: independent strict checkpoint passed",
+    "Generic geometric side certificate accepted in full original Session",
+    "Positive triangle lengths accepted in full original Session",
+    "Positive-weighted triangle interior accepted in selected BookIV Session"
+  ],
+  "pending": [
+    "Grouped clean gate and module integration",
+    "Final proof liveness and source-fidelity audit"
+  ],
+  "controls_pending": [
+    ".draft/resume-2026-10-17/book04-proposition4-use1.lit",
+    ".draft/resume-2026-10-17/book04-proposition4-collinear-negative.lit"
+  ],
+  "accepted_request": "book04-construction-session-v5/results/1602.json",
+  "positive_consumer": "book04-construction-session-v5/results/1700.json",
+  "negative_control": "book04-construction-session-v5/results/1701.json",
+  "grouped_gate_pending": ".draft/resume-2026-10-17/book04-incircle-checkpoint/receipt.json"
+}

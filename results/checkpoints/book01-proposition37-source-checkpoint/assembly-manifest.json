@@ -1,0 +1,12 @@
+{
+  "status": "Source and both positive consumers accepted52918; canonical area module fresh strict gate ready",
+  "expected_statements": 6,
+  "source_sha256": "769cdb84c2a46f4386a49a36a1b7d676a7cef677704e44148b69991828b46715",
+  "sources": [
+    "proposition37-source2.lit",
+    "shifted-use1.lit",
+    "coincident-use1.lit"
+  ],
+  "namespace_mapping": "ROOT area predicate/constructor replay restored to canonical area:: module",
+  "dependency_choice": "I37 uses triangle area directly, no dependency on I34/I35/I36"
+}

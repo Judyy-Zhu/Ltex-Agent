@@ -1,0 +1,64 @@
+{
+  "book": 4,
+  "proposition": 11,
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_lines": [
+    4989,
+    5033
+  ],
+  "required_statement": "In every positive-radius circle, construct a simple equilateral and equiangular pentagon.",
+  "construction": "Five normalized golden-parameter coordinates, followed by positive scaling and translation.",
+  "proof_order": [
+    "II11 golden parameter and IV10 positive height",
+    "unit circle and side/diagonal metrics",
+    "15 positive edge-side determinants",
+    "existing simple polygonal cycle via finite-segment intersection conditions",
+    "equal angles from equal neighboring triangles",
+    "positive similarity to arbitrary given circle"
+  ],
+  "status": "Similarity determinant2155, circle incidence2157 and generic positive-side simple-cycle2158 accepted. Full given-circle theorem candidate2 request2162 submitted after explicit positive squared-side/domain proof. Consumer2160 and zero-radius2161 driver19376 waits for2162 acceptance.",
+  "drafts": [
+    "pentagon-scalar-metric-candidate1.lit",
+    "pentagon-orientation-candidate2.lit",
+    "pentagon-metric-candidate4.lit",
+    "strict-half-plane-polygon-edge-condition.lit",
+    "pentagon-nondegenerate-corners.lit"
+  ],
+  "canonical_increment": 0,
+  "observed_receipts": {
+    "2125": "accepted",
+    "2132": "accepted",
+    "2133": "accepted",
+    "2134": "accepted",
+    "9063": "accepted",
+    "9064": "accepted",
+    "9065": "accepted"
+  },
+  "angle_attempts": [
+    "2135/2136/2139 rejected at nested substitution inside cosine-law numerator; side-length facts accepted",
+    "candidate4 uses existing sss_dot_equal interface with proof extracted from geometry sss_congruence middle-vertex calculation"
+  ],
+  "queued_artifacts": [
+    "five-vertex-function-candidate1.lit",
+    "five-vertex-simple-cycle-candidate1.lit",
+    "pentagon-dependency-sss-dot-equal.lit",
+    "pentagon-equal-angles-candidate4.lit"
+  ],
+  "accepted_additional_sources": [
+    "pentagon-dependency-angle-congruence.lit",
+    "pentagon-equal-angles-candidate5.lit",
+    "five-vertex-simple-cycle-candidate1.lit",
+    "five-vertex-function-candidate5.lit"
+  ],
+  "vertex_function_attempts": [
+    "2140 large interpolation evaluation rejected",
+    "2146 interval guard coverage rejected",
+    "2147 explicit coverage accepted but pairwise interval disjointness rejected",
+    "2148 binary guard definitions accepted, composed evaluation needed explicit chain",
+    "2149 binary-guard function with explicit evaluation chains accepted"
+  ],
+  "transport_map": "scale_and_translate_point(p,center,scale)=(center(1)+scale*p(1),center(2)+scale*p(2)), scale R+",
+  "remaining_transport": "Use metric and oriented-determinant preservation to retain equal edges, equal neighboring triangle sides, positive side orientations and the existing simple-cycle condition; conclude the full given-circle theorem.",
+  "full_statement_candidate": ".draft/resume-2026-10-17/book04-proposition11-candidate2.lit",
+  "trust_count": 0
+}

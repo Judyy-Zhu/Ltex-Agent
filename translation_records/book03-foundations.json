@@ -1,0 +1,149 @@
+{
+  "at": "2026-10-11T13:29:46.605536+00:00",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised 2008",
+  "scope": "Book 3 source definitions; inventory only",
+  "source_item_count": 11,
+  "completed_source_item_count": 0,
+  "pdf_zero_based_definition_pages": [
+    69
+  ],
+  "pdf_one_based_definition_pages": [
+    70
+  ],
+  "items": [
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 1
+      },
+      "concept_tag": "equal circles",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 2
+      },
+      "concept_tag": "line tangency",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 3
+      },
+      "concept_tag": "circle tangency",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 4
+      },
+      "concept_tag": "equal chord distance",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 5
+      },
+      "concept_tag": "greater chord distance",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 6
+      },
+      "concept_tag": "circular segment",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 7
+      },
+      "concept_tag": "segment angle",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished",
+        "semantic_gap": "Curved line/arc segment angle is not automatically an ordinary two-ray real angle. Preserve the original curved-angle comparison statements (including III.16) and design their region/interface meaning before translating."
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 8
+      },
+      "concept_tag": "inscribed angle",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 9
+      },
+      "concept_tag": "subtended arc",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 10
+      },
+      "concept_tag": "sector",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 3,
+        "kind": "definition",
+        "number": 11
+      },
+      "concept_tag": "similar segments",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    }
+  ]
+}

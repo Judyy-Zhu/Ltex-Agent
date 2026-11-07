@@ -1,0 +1,37 @@
+{
+  "source": "Fitzpatrick revised2008 Euclid I.47–48, PDF zero-based45–47",
+  "problem": "The square on the side opposite a right angle equals the sum of the squares on the other two sides, and conversely this square-area equality implies the included angle is right.",
+  "proof_idea": "For arbitrary actual squares on each side, prove their unsigned parallelogram areas equal squared side lengths. Apply the independently algebraically proved metric Pythagorean law or recover a zero included dot product from the cosine law.",
+  "litex_code": [
+    "scripts/Euclid_Elements/.draft/resume-2026-10-17/proposition47-candidate1.lit",
+    "scripts/Euclid_Elements/.draft/resume-2026-10-17/proposition48-candidate1.lit"
+  ],
+  "comments": {
+    "status": "prepared only; no semantic acceptance",
+    "source_fidelity": "All three square figures and their positive geometric areas are explicit. No scalar-only source coverage claim. I46 and area existence support instantiation; proof uses analytic route rather than Euclid dissection.",
+    "helper": "scripts/Euclid_Elements/.draft/resume-2026-10-17/square-area-candidate1.lit",
+    "helper_consumers": [
+      "I47",
+      "I48"
+    ],
+    "pending": [
+      "strict square-area bridge",
+      "three actual constructed squares consumer",
+      "translated and rotated triangles",
+      "non-right triangle rejection",
+      "wrong area rejection",
+      "square/area-existence source audit"
+    ],
+    "trust_added": 0,
+    "counted": false
+  },
+  "current_evidence": {
+    "session": 27671,
+    "square_area": "candidate7 accepted",
+    "I47": "candidate1 accepted",
+    "I48": "candidate2 accepted",
+    "square_positive_area": "proper_square_area_exists candidate1 accepted",
+    "nonvacuity_consumer": "three_squares_on_triangle and constructed I47 candidate written, not submitted because27671 handle disappeared",
+    "full_gate": "pending; restoring accepted context in5630"
+  }
+}

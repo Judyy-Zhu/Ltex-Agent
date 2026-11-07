@@ -1,0 +1,46 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 7,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition07-checkpoint",
+  "checkpoint_handle": 21386,
+  "accepted_statements": [
+    9197,
+    9199
+  ],
+  "positive_scaled_construction_consumer": 9200,
+  "negative_mixed_angle_branch": 9201,
+  "negative_obligation": "ray_angle(a,c,b) < pi/2 and ray_angle(a,w,b) < pi/2 or ray_angle(a,c,b) >= pi/2 and ray_angle(a,w,b) >= pi/2",
+  "negative_configuration": {
+    "A": [
+      0,
+      0
+    ],
+    "B": [
+      6,
+      0
+    ],
+    "C": [
+      2,
+      2
+    ],
+    "W": [
+      4,
+      4
+    ],
+    "established_before_rejection": "ABC and ABW proper triangles, AB/BC=AB/BW, angle BAC=BAW; C obtuse and W acute in the actual coordinates."
+  },
+  "mathematics": "One equal angle, side ratios around another angle, and both remaining principal angles acute or both nonacute imply AAA.",
+  "source_proof": "Construct auxiliary triangle and use I5/I13/I17 to exclude the other angle choice.",
+  "checked_route": "Determinant-square sine ratio and cosine-sign branch give the second equal angle; reuse exact I32 through a constructed exterior point to obtain the third.",
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical integration and final chapter proof-liveness audit.",
+  "positive_ssa_counterexample": 9202,
+  "counterexample_conclusion": "Verified not AAA for ABC/ABW with A=(0,0),B=(6,0),C=(2,2),W=(4,4), despite equal A angles and AB/BC=AB/BW; VI4 squared-side consequence would require 160=640.",
+  "statement_count": 35,
+  "hashes_stable": true
+}

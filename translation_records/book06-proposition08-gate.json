@@ -1,0 +1,32 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 8,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "lines": [7061, 7111]
+  },
+  "status": "independent_strict_gate_passed_with_positive_consumer",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition08-checkpoint",
+  "main_with_consumer_sha256": "61255e397cfbb39db9c33ce6e1cc5f045674e46bc4d63ae7c4cf77c0b4a48baa",
+  "statements": 27,
+  "accepted": 27,
+  "rejected": 0,
+  "positive_consumer": {
+    "theorem": "book06_proposition08_345_consumer",
+    "oneshot": 9241,
+    "mathematics": "Concrete 3-4-5 right triangle with altitude foot; AAA similarities and AD^2 = BD*DC in lengths."
+  },
+  "core_theorems": [
+    "right_triangle_altitude_foot_interior",
+    "altitude_foot_has_right_angles",
+    "book06_proposition_08_abd_similar_cba",
+    "book06_proposition_08_acd_similar_bca",
+    "book06_proposition_08_abd_similar_cad",
+    "book06_proposition_08_mean_proportional",
+    "book06_proposition_08_mean_proportional_lengths"
+  ],
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": ["Canonical integration", "Optional negative boundary audit"]
+}

@@ -1,0 +1,52 @@
+{
+  "source_consumers": [
+    "I.13 adjacent angles",
+    "I.14 converse",
+    "I.15 vertical angles",
+    "I.32 triangle angle sum",
+    "III circle angle results",
+    "VI.33 angle/arc ratios"
+  ],
+  "ordinary_meaning": "Principal non-reflex angle between two nonzero rays, measured in radians. Genuine Euclidean rectilinear angle configurations additionally exclude collinearity.",
+  "semantic_roles": {
+    "angle_cosine": "real-valued function",
+    "ray_angle": "canonical real quantity",
+    "are_angles_congruent": "existing geometric relation, bridge pending"
+  },
+  "chosen_form": {
+    "angle_cosine": "have fn, nonzero arms inside signature",
+    "ray_angle": "have fn as principal arccos of normalized dot; strict Session checked"
+  },
+  "minimal_interface": "have fn ray_angle(p, q, r cart(R, R): p != q, r != q) R = arccos(angle_cosine(p, q, r))",
+  "domains": "nonzero arms; derived cosine bounds [-1,1]; result [0,pi]; radians",
+  "nearest_rejected_form": "Uninterpreted angle-addition predicate or declaring I.13 collinearity alone; neither expresses the source magnitude sum.",
+  "dependencies": [
+    "original dot/squared distance",
+    "positive norm product",
+    "sqrt denominator domain",
+    "normalized dot bound from Lagrange identity",
+    "native principal arccos",
+    "opposite normalized values -> sum pi"
+  ],
+  "immediate_use_probe": "P=(0,1), Q=(0,0), A=(1,0), B=(-1,0): each ray angle pi/2, sum pi; P=Q must reject at function domain.",
+  "status": {
+    "angle_den_positive": "strict Session checked",
+    "angle_den_nonnegative": "strict Session checked",
+    "angle_root_den_nonzero": "strict Session checked",
+    "angle_cosine_function": "restored and strict Session checked",
+    "arccos_opposite_values_sum": "strict Session checked",
+    "angle_cosine_bounded": "strict Session checked using Lagrange identity and independently verified scalar ratio bound",
+    "ray_angle": "strict Session checked",
+    "relation_measure_bridge": "forward checked: existing relation implies equal normalized cosine and equal principal measure; reverse remains pending",
+    "ray_angle_range": "strict Session checked: 0 <= angle <= pi",
+    "supplementary_bridge": "strict Session checked: opposite normalized cosines imply sum pi",
+    "right_angle_measure": "strict Session checked: existing right-angle relation implies measure pi/2",
+    "ray_angle_cosine": "strict Session checked: cos(measure)=normalized dot",
+    "right_angle_measure_converse": "strict Session checked: measure pi/2 implies original right-angle relation",
+    "orthogonal_unit_ray_use": "strict Session checked",
+    "zero_arm_control": "rejected at (0,0)!=(0,0), ordinary failure followed by positive use"
+  },
+  "trust_added": 0,
+  "core_changes": 0,
+  "last_updated_at": "2026-10-11T07:15:36.366276+00:00"
+}

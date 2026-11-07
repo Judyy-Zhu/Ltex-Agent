@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 2,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "checkpoint": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition02-checkpoint",
+  "statement_count": 30,
+  "hashes_stable": true,
+  "mathematics": "Both directions of a parallel cut of two triangle sides dividing them proportionally, expressed by positive actual segment-length quotients and all integer equimultiple comparisons. Strict interior cuts and nondegenerate triangles.",
+  "accepted_requests": [
+    9132,
+    9126,
+    9127,
+    9128
+  ],
+  "positive_midpoint_consumer": 9134,
+  "negative_endpoint": 9154,
+  "negative_collinear": 9136,
+  "retained_native_pid": 34674,
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical module integration and later BookVI propositions.",
+  "negative_endpoint_obligation": "a != a",
+  "prior_negative_probe_correction": "9135 rejected before endpoint at unmaterialized is_triangle;9153 rejected at numeric determinant rewrite. Neither is endpoint-boundary evidence.9154 first constructs the valid triangle and rejects a!=a."
+}

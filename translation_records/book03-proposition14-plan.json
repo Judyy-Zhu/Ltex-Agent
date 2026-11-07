@@ -1,0 +1,52 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pages_zero_based": [
+    83,
+    84
+  ],
+  "source_clauses": [
+    "Equal chords in one circle are equally distant from its center",
+    "Conversely equally distant chords are equal"
+  ],
+  "foundation_dependency": "III.Def4: equal perpendicular distances; not counted yet",
+  "interfaces": {
+    "existing_foot": "geometry::main::is_foot(f,o,a,b) uses proper line and orthogonality, allows f=o for a diameter",
+    "shared_identity": "distance_sq(o,m)+distance_sq(a,b)/4=radius^2 for a proper chord midpoint; Session accepted",
+    "actual_lengths": "geometry::main::distance is total and nonnegative; use length equalities, not only squared distances"
+  },
+  "accepted": [
+    "chord-midpoint-radius-identity2.lit",
+    "equal_chords-metric2.lit",
+    "equal_midpoint_distances-metric2.lit",
+    "chord-foot-midpoint1.lit",
+    "chord-midpoint-foot1.lit",
+    "equidistant-chords-definition1.lit",
+    "book03-proposition14-forward1.lit",
+    "book03-proposition14-reverse1.lit",
+    "book03-proposition14-ordinary-use1.lit",
+    "book03-proposition14-diameter-use1.lit",
+    "book03-proposition14-reverse-use1.lit"
+  ],
+  "pending": null,
+  "remaining": [
+    "Inspect independent strict gate receipt and stable hashes",
+    "Audit proof cleanup and source definition coverage",
+    "Canonical integration with latest III1–III10 chapter and contact changes, then joint gate"
+  ],
+  "source_completion": false,
+  "trust_added": 0,
+  "prepared_source_files": [
+    "chord-midpoint-foot1.lit",
+    "equidistant-chords-definition1.lit",
+    "book03-proposition14-forward1.lit",
+    "book03-proposition14-reverse1.lit"
+  ],
+  "source_interface": "Proper positive-radius same-circle chords, existential perpendicular feet with equal total Euclidean distances. Uses existing is_foot and constructs midpoint witnesses; includes diameter feet coincident with center.",
+  "next": "Session8827 at prompt. III14 both source directions and Def4 accepted; add concrete non-diameter and diameter boundary uses, negative degenerate-chord control, cleanup and independent strict gate. Contact29994 still live; preserve its frozen inputs.",
+  "negative_control": "degenerate chord rejected in retained Session; by_def diagnostic does not expose which clause failed",
+  "cold_status": "PASS18 declarations; native exit0/run/success true/session_error null/stable hashes",
+  "cold_session": 74373,
+  "cold_receipt": ".draft/book03-proposition14-checkpoint/receipt.json",
+  "canonical_status": "Integrated into textbook/book03-circles.lit; joint strict PASS94 declarations, stable inputs",
+  "canonical_promotion": "translation_records/book03-propositions11-15-canonical.json"
+}

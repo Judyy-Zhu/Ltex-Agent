@@ -1,0 +1,26 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 21,
+    "mathematics": "Triangles similar to the same triangle are also similar to one another."
+  },
+  "status": "similarity_package_gate_passed",
+  "main_sha256": "33b4c6c804b756914b75293df79f658a4aff51f379c7cab06db402e357a2dad9",
+  "oneshot": {
+    "request": 12001
+  },
+  "core_gate": {
+    "stmts": 28,
+    "accepted": 28
+  },
+  "trust_added": 0,
+  "symmetry": {
+    "request": 12011
+  },
+  "reflexive": {
+    "request": 12012
+  },
+  "congruent_implies_similar": {
+    "request": 12015
+  }
+}

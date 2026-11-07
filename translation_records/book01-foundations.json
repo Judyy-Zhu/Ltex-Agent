@@ -1,0 +1,530 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "scope": "Book I: 23 definitions, 5 postulates, 5 common notions",
+  "model": "real-coordinate plane",
+  "source_item_count": 33,
+  "completed_source_item_count": 1,
+  "items": [
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 1,
+        "printed_page": 6
+      },
+      "problem": "Point",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "cart(R,R)",
+        "boundary_or_next_obligation": "Model carrier; no axiom about parts."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 2,
+        "printed_page": 6
+      },
+      "problem": "Line as breadthless length",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Explanatory source vocabulary; distinguish finite segment, infinite straight line, and curved boundary."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 3,
+        "printed_page": 6
+      },
+      "problem": "Line endpoints",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_on_segment",
+        "boundary_or_next_obligation": "Endpoint membership must be verified for the affine segment."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 4,
+        "printed_page": 6
+      },
+      "problem": "Straight line",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::line_through_points",
+        "boundary_or_next_obligation": "Two distinct defining points; affine/determinant incidence model."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 5,
+        "printed_page": 6
+      },
+      "problem": "Surface",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Plane-region representation is still pending; a boundary locus is not a filled region."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 6,
+        "printed_page": 6
+      },
+      "problem": "Surface boundary",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Boundary operation and region vocabulary are pending."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 7,
+        "printed_page": 6
+      },
+      "problem": "Plane surface",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "cart(R,R)",
+        "boundary_or_next_obligation": "Model choice, not an asserted theorem about all surfaces."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 8,
+        "printed_page": 6
+      },
+      "problem": "Plane angle",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "General curved-line inclination is not supplied by the rectilinear-angle library; record explanatory scope separately."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 9,
+        "printed_page": 6
+      },
+      "problem": "Rectilinear angle",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::are_angles_congruent",
+        "boundary_or_next_obligation": "Requires nonzero arms; source nonstraight angle needs noncollinearity in construction inputs."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 10,
+        "printed_page": 6
+      },
+      "problem": "Right angle and perpendicular",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_right_angle; geometry::main::is_perpendicular",
+        "boundary_or_next_obligation": "Dot-zero model. Its equivalence to equal adjacent angles remains a source bridge obligation."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 11,
+        "printed_page": 6
+      },
+      "problem": "Obtuse angle",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Dot numerator negative, nonzero arms, with angle-order interpretation to justify."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 12,
+        "printed_page": 6
+      },
+      "problem": "Acute angle",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Dot numerator positive, nonzero arms, with angle-order interpretation to justify."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 13,
+        "printed_page": 6
+      },
+      "problem": "Boundary",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Explanatory source item until regions/boundaries are modeled."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 14,
+        "printed_page": 6
+      },
+      "problem": "Figure",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Ordered nondegenerate polygons and plane regions are required before area chapters."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 15,
+        "printed_page": 6
+      },
+      "problem": "Circle",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::circle",
+        "boundary_or_next_obligation": "Existing function is the circumference locus. Source enclosed figure/region must be represented separately when needed."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 16,
+        "printed_page": 6
+      },
+      "problem": "Circle center",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::circle",
+        "boundary_or_next_obligation": "Explicit center argument; positive radius. Uniqueness is a theorem obligation, not part of this metadata."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 17,
+        "printed_page": 6
+      },
+      "problem": "Diameter",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_diameter_endpoints",
+        "boundary_or_next_obligation": "Must additionally require both endpoints on the same positive-radius circle. Bisecting the circle is a downstream theorem obligation."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 18,
+        "printed_page": 6
+      },
+      "problem": "Semicircle",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": null,
+        "boundary_or_next_obligation": "Need diameter, selected half-plane and its bounded region/arc; current library has no complete source-facing interface."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 19,
+        "printed_page": 6
+      },
+      "problem": "Rectilinear figures",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_triangle",
+        "boundary_or_next_obligation": "General polygon with ordered vertices and genuine boundary still pending."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 20,
+        "printed_page": 6
+      },
+      "problem": "Triangle side classifications",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_equilateral; geometry::main::is_isosceles",
+        "boundary_or_next_obligation": "Source isosceles excludes equilateral: add unequal base/leg condition for the source definition. I.5 may validly prove the stronger inclusive result."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 21,
+        "printed_page": 7
+      },
+      "problem": "Triangle angle classifications",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_triangle; geometry::main::is_right_angle",
+        "boundary_or_next_obligation": "Nondegenerate right/obtuse/acute classifications require vertex cases and the sign/order bridge."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 22,
+        "printed_page": 7
+      },
+      "problem": "Quadrilateral classifications",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": null,
+      "comments": {
+        "status": "source inventory and interface audit; not completed formalization",
+        "existing_interface": "geometry::main::is_square; geometry::main::is_rectangle; geometry::main::is_rhombus; geometry::main::is_parallelogram",
+        "boundary_or_next_obligation": "Source rectangle excludes square and source rhombus excludes right angles. Existing predicates include squares; source definitions need exclusions. General four-vertex nondegeneracy/order must be added."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "definition",
+        "number": 23,
+        "printed_page": 7
+      },
+      "problem": "Parallel straight lines",
+      "proof_idea": "Interpret the source in the chosen real-plane model; reuse audited interfaces and prove any stated bridge before claiming source coverage.",
+      "litex_code": "# Book I Definition 23: two proper coplanar lines have\n# parallel directions and a nonzero transverse separation.\n# The two equivalence directions below certify the source nonintersection definition.\nrelease obj def geometry::main::vec\nrelease obj def geometry::main::det\n\nprop are_parallel_lines(a, b, c, d cart(R, R)):\n    a != b\n    c != d\n    $geometry::main::is_parallel(a, b, c, d)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0\n",
+      "comments": {
+        "status": "canonically strict checked: exact line-set nonintersection equivalence, constructor and use/rejection probes",
+        "existing_interface": "parallel::are_parallel_lines and geometry::main::line_through_points",
+        "boundary_or_next_obligation": "Complete at this source item; other foundations remain unfinished.",
+        "evidence": "book01-parallel-interface-draft.json",
+        "canonical_receipt": ".draft/parallel-interface-checkpoint/receipt.json"
+      },
+      "completed": true
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "postulate",
+        "number": 1,
+        "printed_page": 7
+      },
+      "problem": "Join two points",
+      "proof_idea": "Record the original assumption as source content, then establish its interpretation as a theorem of the real-coordinate model rather than adding a user axiom.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; model theorem pending",
+        "boundary_or_next_obligation": "Distinct points admit a straight line containing both. Endpoint coincidence is not a unique-line problem."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "postulate",
+        "number": 2,
+        "printed_page": 7
+      },
+      "problem": "Extend a finite straight line",
+      "proof_idea": "Record the original assumption as source content, then establish its interpretation as a theorem of the real-coordinate model rather than adding a user axiom.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; model theorem pending",
+        "boundary_or_next_obligation": "Affine parameter > 1 provides an extension witness; verify endpoint distinction and incidence."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "postulate",
+        "number": 3,
+        "printed_page": 7
+      },
+      "problem": "Draw a circle",
+      "proof_idea": "Record the original assumption as source content, then establish its interpretation as a theorem of the real-coordinate model rather than adding a user axiom.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; model theorem pending",
+        "boundary_or_next_obligation": "Positive-radius circumference function exists and is nonempty; enclosed region remains separate."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "postulate",
+        "number": 4,
+        "printed_page": 7
+      },
+      "problem": "All right angles equal",
+      "proof_idea": "Record the original assumption as source content, then establish its interpretation as a theorem of the real-coordinate model rather than adding a user axiom.",
+      "litex_code": "# Book I, Postulate 4 interpreted as a theorem of the real-plane model.\n# Source definition 10's equal-adjacent-angle bridge remains a separate item.\nthm postulate_4_model:\n    ? forall p, q, r, u, v, w cart(R, R):\n        $geometry::main::is_right_angle(p, q, r)\n        $geometry::main::is_right_angle(u, v, w)\n        =>:\n            $geometry::main::are_angles_congruent(p, q, r, u, v, w)\n    release thm geometry::main::distance_sq_positive_of_ne(q, p)\n    release thm geometry::main::distance_sq_positive_of_ne(q, r)\n    release thm geometry::main::distance_sq_positive_of_ne(v, u)\n    release thm geometry::main::distance_sq_positive_of_ne(v, w)\n    geometry::main::distance_sq(q, p) $in R+\n    geometry::main::distance_sq(q, r) $in R+\n    geometry::main::distance_sq(v, u) $in R+\n    geometry::main::distance_sq(v, w) $in R+\n    geometry::main::distance_sq(q, p) * geometry::main::distance_sq(q, r) $in R+\n    geometry::main::distance_sq(v, u) * geometry::main::distance_sq(v, w) $in R+\n    geometry::main::angle_cos_den(p, q, r) = geometry::main::distance_sq(q, p) * geometry::main::distance_sq(q, r) > 0\n    geometry::main::angle_cos_den(u, v, w) = geometry::main::distance_sq(v, u) * geometry::main::distance_sq(v, w) > 0\n    geometry::main::angle_cos_num(p, q, r) = geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r)) = 0\n    geometry::main::angle_cos_num(u, v, w) = geometry::main::dot(geometry::main::vec(v, u), geometry::main::vec(v, w)) = 0\n    geometry::main::angle_cos_num(p, q, r)^2 * geometry::main::angle_cos_den(u, v, w) = 0^2 * geometry::main::angle_cos_den(u, v, w) = 0 = 0^2 * geometry::main::angle_cos_den(p, q, r) = geometry::main::angle_cos_num(u, v, w)^2 * geometry::main::angle_cos_den(p, q, r)\n    geometry::main::angle_cos_num(p, q, r) * geometry::main::angle_cos_num(u, v, w) = 0 * 0 = 0 >= 0\n    by def $geometry::main::are_angles_congruent(p, q, r, u, v, w)\n",
+      "comments": {
+        "status": "draft model theorem; parser-only preflight passed; proof validation pending",
+        "boundary_or_next_obligation": "Dot-zero numerators with positive norm-product denominators give the actual angle-congruence relation."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "postulate",
+        "number": 5,
+        "printed_page": 7
+      },
+      "problem": "Parallel postulate",
+      "proof_idea": "Record the original assumption as source content, then establish its interpretation as a theorem of the real-coordinate model rather than adding a user axiom.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; model theorem pending",
+        "boundary_or_next_obligation": "Source same-side interior-angle sum and the indicated side of intersection need an angle addition/order and side-of-line interface. Do not replace by an unbridged parallel-line statement."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "common_notion",
+        "number": 1,
+        "printed_page": 7
+      },
+      "problem": "Equality transitivity",
+      "proof_idea": "Separate source content from model-specific equality, addition, subtraction, congruence and positive measure laws.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; formal interpretation pending",
+        "boundary_or_next_obligation": "Reuse builtin equality for objects of one mathematical kind."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "common_notion",
+        "number": 2,
+        "printed_page": 7
+      },
+      "problem": "Equal additions",
+      "proof_idea": "Separate source content from model-specific equality, addition, subtraction, congruence and positive measure laws.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; formal interpretation pending",
+        "boundary_or_next_obligation": "Same-kind magnitudes; builtin real addition is the numerical interpretation."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "common_notion",
+        "number": 3,
+        "printed_page": 7
+      },
+      "problem": "Equal subtractions",
+      "proof_idea": "Separate source content from model-specific equality, addition, subtraction, congruence and positive measure laws.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; formal interpretation pending",
+        "boundary_or_next_obligation": "Same-kind magnitudes and valid subtraction/remainder domain."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "common_notion",
+        "number": 4,
+        "printed_page": 7
+      },
+      "problem": "Coincidence implies equality",
+      "proof_idea": "Separate source content from model-specific equality, addition, subtraction, congruence and positive measure laws.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; formal interpretation pending",
+        "boundary_or_next_obligation": "Geometric superposition is congruence/isometry, not arbitrary vertex-tuple identity; region equality and equal area are separate."
+      }
+    },
+    {
+      "source": {
+        "book_number": 1,
+        "kind": "common_notion",
+        "number": 5,
+        "printed_page": 7
+      },
+      "problem": "Whole greater than proper part",
+      "proof_idea": "Separate source content from model-specific equality, addition, subtraction, congruence and positive measure laws.",
+      "litex_code": null,
+      "comments": {
+        "status": "inventory; formal interpretation pending",
+        "boundary_or_next_obligation": "Proper nonzero part and compatible magnitude/measure; arbitrary subset strictness is false without positive remainder."
+      }
+    }
+  ]
+}

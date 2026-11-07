@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-12T02:52:05.522895+00:00",
+  "main_session_id": 8786,
+  "main_state": "I34 full source and skew/flat/collinear/orientation checks accepted; I35 full source accepted; actual sheared use1 evaluating, use2 prepared removing unnecessary distinct-upper-endpoint direction predicate",
+  "scalar_session_id": 79075,
+  "scalar_state": "ready; I36/I38 equal-parallel-base determinant-square lemma3 cold strict/actual/boundary passed",
+  "canonical_gate": {
+    "session_id": 7283,
+    "state": "active",
+    "receipt": ".draft/first-thirty-four-checkpoint/receipt.json",
+    "frozen": "snapshot book/config and used canonical geometry/parallel/geometry_lemmas/angle/area dependencies"
+  },
+  "latest_cold_book_coverage": 33,
+  "canonical_saved_source_coverage": 34,
+  "drafts_not_source_completions": [
+    "I36 source1 preflight only",
+    "I37 source1 draft",
+    "I38 source1 draft"
+  ],
+  "next_action": "consume main8786 response before transfer; expected ordinary failure of use1 if missing d!=f; retain Session and use2. Then coincident upper endpoint use and different-height boundary before I35 promotion. Consume gate7283 separately; native exit0/run/success/no session_error/stable hashes required."
+}

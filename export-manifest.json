@@ -1,0 +1,2299 @@
+{
+  "export_date": "2026-11-07",
+  "source_workspace": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements",
+  "current_verifier_rerun": false,
+  "files": [
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/README.md",
+      "path": "textbook/README.md",
+      "bytes": 19834,
+      "sha256": "cbf12a9d2f27fc704a67a20eb6f69f319ed0d31bfadceae752632e4d6376c3c9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/angle-interface.lit",
+      "path": "textbook/angle-interface.lit",
+      "bytes": 2152,
+      "sha256": "f1ac77be613fdd8304ca91617a664f0a3078ba4c5f8a8a94d364ff03a12d9a0c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/angle-measure.lit",
+      "path": "textbook/angle-measure.lit",
+      "bytes": 62530,
+      "sha256": "f91f1d3bf02c9d63d9ea8fe8f3b539cf1e5536ab5472e0cba693b541f5056b65"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/area-interface.lit",
+      "path": "textbook/area-interface.lit",
+      "bytes": 2511,
+      "sha256": "6c9dd1e1cde2b10ca102439bb94139c0eba376093b66f9ef8cd2966209c0cd97"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/book01-constructions.lit",
+      "path": "textbook/book01-constructions.lit",
+      "bytes": 250511,
+      "sha256": "34c17398f11b3952e8f412ddcdf48584528f187a022dc050a0250541be2d5650"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/book01-geometry-lemmas.lit",
+      "path": "textbook/book01-geometry-lemmas.lit",
+      "bytes": 4891,
+      "sha256": "77080050195038f34ce239bee3c80177e6556955c8dd255135bad7af0f68d529"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/book03-circles.lit",
+      "path": "textbook/book03-circles.lit",
+      "bytes": 151254,
+      "sha256": "850b4a4323fdf2855e2a414e00aabdd7d68fe128fff7befb11aa09259ae00114"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/circle-center.lit",
+      "path": "textbook/circle-center.lit",
+      "bytes": 9889,
+      "sha256": "51712f0f3652e7949f47372bec2ea57ee2698c771e028d030867f3cc65617247"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/circle-contact.lit",
+      "path": "textbook/circle-contact.lit",
+      "bytes": 3438,
+      "sha256": "98717c216fe92902162448b76f9308a8811cee4825119380ef95884b52436838"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/circle-regions.lit",
+      "path": "textbook/circle-regions.lit",
+      "bytes": 420,
+      "sha256": "8dd9b507d53cc17431165834d65bad1cd7f76c740cc81ceee7778cab32c3497c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/circle-set-interface.lit",
+      "path": "textbook/circle-set-interface.lit",
+      "bytes": 6652,
+      "sha256": "77522870a5c34158cba749429ffc59e573720f4c904385804a130b52bfcdeeb4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/geometry/litex.config",
+      "path": "textbook/geometry/litex.config",
+      "bytes": 91,
+      "sha256": "7c8ed2665cc2ee29bff6b8509dbe8d4a6bea8badd4fe69d4d5ccf45a0d55e521"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/litex.config",
+      "path": "textbook/litex.config",
+      "bytes": 472,
+      "sha256": "64e253022d7726d5287ed80c280cb6b3d2f0d09a4b5846a1fd95f73b5c4bed78"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/math_collections.md",
+      "path": "textbook/math_collections.md",
+      "bytes": 35239,
+      "sha256": "de3902a0e0be528c95eba8c25220b88edf07caa328f6a4e1d5f7f9cdc56c809b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/parallel-interface.lit",
+      "path": "textbook/parallel-interface.lit",
+      "bytes": 10746,
+      "sha256": "ac0c97b95ed1d00c131cc4889b34a96a773517aa61b7b73a4d095e310e4c5818"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/textbook/rectangle-interface.lit",
+      "path": "textbook/rectangle-interface.lit",
+      "bytes": 7721,
+      "sha256": "a5d6b53cf8002c035a0e61b0f99ea356a7b2c4a21392e816215764d5e340d5af"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/angle_measure_interface.json",
+      "path": "translation_records/angle_measure_interface.json",
+      "bytes": 2815,
+      "sha256": "b0c73914bc1644f9e686b5ec3f31085654439eb7f9f950fdec85bd62d88d55ac"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/axis-reflection-model.json",
+      "path": "translation_records/axis-reflection-model.json",
+      "bytes": 724,
+      "sha256": "4284c8934dc990ef02d2e463fcb8ecc63fe7732dccf0a444acd58f188c35e1c7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-area-canonical-promotion.json",
+      "path": "translation_records/book01-area-canonical-promotion.json",
+      "bytes": 1324,
+      "sha256": "2440a3d7ebab42c5b9871125beb7d5cdf3e58e316b48ac7bd405b99bc8773a52"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-area-dependency-plan.json",
+      "path": "translation_records/book01-area-dependency-plan.json",
+      "bytes": 1174,
+      "sha256": "9f39acec90233a16bae8f99f03e406a31e8655583ec625a64df0cdd0619d32e4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-foundations.json",
+      "path": "translation_records/book01-foundations.json",
+      "bytes": 24560,
+      "sha256": "2da8993ee06d067dd4dc538a2c09f3947c8aa6fc3065625a731f8d271a4d8f47"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-parallel-interface-draft.json",
+      "path": "translation_records/book01-parallel-interface-draft.json",
+      "bytes": 3081,
+      "sha256": "d08d576598ff19df27efefdc553488090319d2c31036b3127a295dbbe04578dc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition01.json",
+      "path": "translation_records/book01-proposition01.json",
+      "bytes": 5248,
+      "sha256": "bc3e6caca2ab25724ffefd422437c4e2cad293894440a74155a1b3dd92ff3a43"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition02.json",
+      "path": "translation_records/book01-proposition02.json",
+      "bytes": 3195,
+      "sha256": "68de3b04dd26b684ba45b4dc5363bf27966f126ec8bd30777751aa0ead288bcd"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition03.json",
+      "path": "translation_records/book01-proposition03.json",
+      "bytes": 4197,
+      "sha256": "6b347aa611aa68b746c9b49007b792df7b40e4a4b1b646c5006b8ca7bf404db0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition04.json",
+      "path": "translation_records/book01-proposition04.json",
+      "bytes": 5285,
+      "sha256": "1149d8306960aed16d656c41c12c03641645066e0996ad382865838bedff76d8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition05.json",
+      "path": "translation_records/book01-proposition05.json",
+      "bytes": 12360,
+      "sha256": "3bbdf5af042111b7e714d90d212063c44a00cb7db841689c87f8906e4277974c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition06.json",
+      "path": "translation_records/book01-proposition06.json",
+      "bytes": 4081,
+      "sha256": "fc799b611d0652775b3c55fb2693b3b9b4d09979b5f205ac5839f2fbf5db860d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition07.json",
+      "path": "translation_records/book01-proposition07.json",
+      "bytes": 8870,
+      "sha256": "01c383a5528b0c6dec8f9a1dc2b49f882b6cdfbc73653e68e75e6c7abab3f5c1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition08.json",
+      "path": "translation_records/book01-proposition08.json",
+      "bytes": 3451,
+      "sha256": "2dfb5fc9d6f0651c62ae29df52870293cf45090e63847218d1900c97001121a0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition09.json",
+      "path": "translation_records/book01-proposition09.json",
+      "bytes": 10429,
+      "sha256": "c1ebf511dd9813ea9945f6c075e464c9077a2f7268fa73679de9c335b8ce5340"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition10.json",
+      "path": "translation_records/book01-proposition10.json",
+      "bytes": 3726,
+      "sha256": "7d8e7c7f131c58c17658cfae63310f523e452463776097b1e5483223935c79e7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition11.json",
+      "path": "translation_records/book01-proposition11.json",
+      "bytes": 2492,
+      "sha256": "6838331a6546677df495d0dd306ceeac7ab4fd4c462db15a237f2ca8759c17a1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition12.json",
+      "path": "translation_records/book01-proposition12.json",
+      "bytes": 2983,
+      "sha256": "a51b390bb13a96e02bfdfc87834adcd1cc7d46fdb9f6ca4ca2e779d74e5db382"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition13.json",
+      "path": "translation_records/book01-proposition13.json",
+      "bytes": 5960,
+      "sha256": "8b83c1f7de7f3787558f1728966d9cd7e3ef2dfc78efaf8ffc46c0c2b7a0a76e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition14.json",
+      "path": "translation_records/book01-proposition14.json",
+      "bytes": 8441,
+      "sha256": "83f76813004754f0cd1a16f895cf6f7d7b755d97d00c0e8a6058cee888bfbbc3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition15.json",
+      "path": "translation_records/book01-proposition15.json",
+      "bytes": 2506,
+      "sha256": "1bb1206352f7a08042815c1ff264bd718bf61607a8734795e9145ce8744d0106"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition16.json",
+      "path": "translation_records/book01-proposition16.json",
+      "bytes": 5220,
+      "sha256": "4448a3a8b5e09e85f417e4b3e6dd1f230fe43325e7673e875b2e1fc3648416e0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition17.json",
+      "path": "translation_records/book01-proposition17.json",
+      "bytes": 4739,
+      "sha256": "f93aa87bc5ebf385b80d2ca07ae5c8aed960d7b57c02ab8f463e8e2326457c5a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition18.json",
+      "path": "translation_records/book01-proposition18.json",
+      "bytes": 1923,
+      "sha256": "4e751b0c28f54010165fb129b961473b9f2ad83378858313b8a83f34be1b37fd"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition19.json",
+      "path": "translation_records/book01-proposition19.json",
+      "bytes": 3797,
+      "sha256": "5860400a294d65cc0fe7bfdad8b1ada4452c17dbb5daefda98c6c933e5649e50"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition20.json",
+      "path": "translation_records/book01-proposition20.json",
+      "bytes": 3411,
+      "sha256": "f8a34a72558e441d8adb5e0a2fcffd2ae4a9498e2220737538593262d3591e42"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition21.json",
+      "path": "translation_records/book01-proposition21.json",
+      "bytes": 7040,
+      "sha256": "dc83d8d5a812c1f42afa67eb2003309bfef0d8521decad599a806022b38cd068"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition22.json",
+      "path": "translation_records/book01-proposition22.json",
+      "bytes": 4445,
+      "sha256": "38c2b9f68373bd85e9a874889a3ce5ddf610b00ca7f73f8c178681ed04413ac8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition23.json",
+      "path": "translation_records/book01-proposition23.json",
+      "bytes": 5953,
+      "sha256": "b74397aa730ed970c7b674f44c7939d1cc12431ca51cade82111170d74d3f7b5"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition24.json",
+      "path": "translation_records/book01-proposition24.json",
+      "bytes": 7019,
+      "sha256": "52d5183d965e42c384bb75f342d752767197b611c07ade59b2b0622a0a2f961a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition25.json",
+      "path": "translation_records/book01-proposition25.json",
+      "bytes": 7452,
+      "sha256": "0acabd703210106f7aa4b2f885d684152b4d20bb49cb1931e57dd93a9ab19695"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition26.json",
+      "path": "translation_records/book01-proposition26.json",
+      "bytes": 17173,
+      "sha256": "9b66b9dcde77ee371f633f58f0ad3ff8e602a7208fbf9b16ffaae6da50565553"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition27.json",
+      "path": "translation_records/book01-proposition27.json",
+      "bytes": 9367,
+      "sha256": "7eedf7fa155480e876ed422855c613a93cfcfef97f4e97753a6bc40e00b85b92"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition28.json",
+      "path": "translation_records/book01-proposition28.json",
+      "bytes": 5899,
+      "sha256": "b04c1c742ccb9886eb931226dbe057aba23c555a67c6b8c9e51767e362361022"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition29.json",
+      "path": "translation_records/book01-proposition29.json",
+      "bytes": 9769,
+      "sha256": "3da32db95822e3abf218060b53d1d2fab51e096dd792c5065ed1376b0eeeead1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition30.json",
+      "path": "translation_records/book01-proposition30.json",
+      "bytes": 15964,
+      "sha256": "71a585acab500f956d57f039ab9afd7dacb733eab4879cbe56df5695f2005861"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition31.json",
+      "path": "translation_records/book01-proposition31.json",
+      "bytes": 4243,
+      "sha256": "77e1f221fd8568443ae29d6c41517f372b023bb472f0be764f6d4a87fe48ea22"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition32-plan.json",
+      "path": "translation_records/book01-proposition32-plan.json",
+      "bytes": 3848,
+      "sha256": "69b7c3fca11215ef745c2f19f13f87cad05aefadbbc8e9c2c09b890ec81c5bdb"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition32.json",
+      "path": "translation_records/book01-proposition32.json",
+      "bytes": 14187,
+      "sha256": "fcf4aa9aabf6f98150745a70205fef075a206d1d61bba9d09f1752f709e68612"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition33-plan.json",
+      "path": "translation_records/book01-proposition33-plan.json",
+      "bytes": 1549,
+      "sha256": "21bbbf9132ddd492af30bfd4a7c21cc58ec484f9bef9baa777e13cdfd43d44ce"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition33.json",
+      "path": "translation_records/book01-proposition33.json",
+      "bytes": 6497,
+      "sha256": "a7190be65f09c5f2be23a3b287ca80742600dabf27041b37b462cbbc24cda38a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition34-plan.json",
+      "path": "translation_records/book01-proposition34-plan.json",
+      "bytes": 3201,
+      "sha256": "5636cb6e52a85e2e180f3af4b6b5bd9bdf28963720d6ad7ea93b1e3aee2b9138"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition34.json",
+      "path": "translation_records/book01-proposition34.json",
+      "bytes": 10911,
+      "sha256": "83d304d3930c6078cc377c8aff25ae7bc6b0acd4f61952b65ce06b94eaa6a655"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition35-plan.json",
+      "path": "translation_records/book01-proposition35-plan.json",
+      "bytes": 2534,
+      "sha256": "c71790f568a627ee34c046138650ef02b51418f49a92fc5228e8507ffc40f4d2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition36-plan.json",
+      "path": "translation_records/book01-proposition36-plan.json",
+      "bytes": 4075,
+      "sha256": "69ab8eaf99419ee5a7670d2d14fab5208eb75d8801065f5bc9841fe2d1d7487e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition39-plan.json",
+      "path": "translation_records/book01-proposition39-plan.json",
+      "bytes": 1600,
+      "sha256": "37c851fc9d2dfabc4b4149cb35f743405d5ae158b7d697baf4f17da38323ebd9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition40-plan.json",
+      "path": "translation_records/book01-proposition40-plan.json",
+      "bytes": 765,
+      "sha256": "cec299cb78f3c807baa66c9052a0940fdb25b8567515b72ba5ea09d9dcd2ed4d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition41-plan.json",
+      "path": "translation_records/book01-proposition41-plan.json",
+      "bytes": 764,
+      "sha256": "5bc9c8ab9746a759819fd9c64d4aaf7f77e6f6d1bcd31c7e28760cf9f5b688a2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition42-plan.json",
+      "path": "translation_records/book01-proposition42-plan.json",
+      "bytes": 2357,
+      "sha256": "b5ca798b81aa55f69e91b3cc284df1b4b86ca2c42e21b04679978aa6590f9939"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition43-general-draft.json",
+      "path": "translation_records/book01-proposition43-general-draft.json",
+      "bytes": 2081,
+      "sha256": "fd2f52e67f3222a3ab9fb624595bef20f9c5be62bd944f21bbab07ae1b3503c1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition43-plan.json",
+      "path": "translation_records/book01-proposition43-plan.json",
+      "bytes": 2155,
+      "sha256": "9f5bc0a06b48cdd9af894093dd433e78b18ae4f40d8655417c2306a5cde85722"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition44-plan.json",
+      "path": "translation_records/book01-proposition44-plan.json",
+      "bytes": 1677,
+      "sha256": "0a90619f34e10cd8e7b85f93e26320133de58423b2788a546dd71102ae6b2ad4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-proposition46-plan.json",
+      "path": "translation_records/book01-proposition46-plan.json",
+      "bytes": 1660,
+      "sha256": "276ada3ea7cf9ecce93fc9c8649eb4477186a4564b04af6344eea75b75dc7e7a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-propositions47-48-plan.json",
+      "path": "translation_records/book01-propositions47-48-plan.json",
+      "bytes": 1942,
+      "sha256": "ef35ffef112ea9e14ed15289a6099a5e9ca96762557a03b44603542a38200675"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book01-propositions47-48-source-audit.json",
+      "path": "translation_records/book01-propositions47-48-source-audit.json",
+      "bytes": 2448,
+      "sha256": "030a6e7aac3771130e24e205953aa56587931938dd9dde795e9e1a58be5d5e96"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-foundations.json",
+      "path": "translation_records/book02-foundations.json",
+      "bytes": 987,
+      "sha256": "e655e216f7b542084bd1f6e32ddec153f69836d6c73ee7a5b3a5e527ae1f1af0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-proposition01-geometric-draft.json",
+      "path": "translation_records/book02-proposition01-geometric-draft.json",
+      "bytes": 1875,
+      "sha256": "c2773bc35c4053506f2eafaea74726f7d2dc7b2a76e72cb4949e010bed32b6b2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-proposition02-geometric-draft.json",
+      "path": "translation_records/book02-proposition02-geometric-draft.json",
+      "bytes": 2108,
+      "sha256": "f261232ab85b01cbfc3e704b3aed469f969373d985cade3ddb05683ba509659b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-proposition11-geometric-draft.json",
+      "path": "translation_records/book02-proposition11-geometric-draft.json",
+      "bytes": 1022,
+      "sha256": "5ea148fc52fa97103513c7218b613ea46ff799d8c058c0cedacf2e64c1f14856"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-propositions03-04-geometric-drafts.json",
+      "path": "translation_records/book02-propositions03-04-geometric-drafts.json",
+      "bytes": 1580,
+      "sha256": "0bdcdbe2ff8637ae51bb8bd8bf485e2f6a6f2c2038337aa26bc855508befcb29"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-propositions05-06-geometric-drafts.json",
+      "path": "translation_records/book02-propositions05-06-geometric-drafts.json",
+      "bytes": 1935,
+      "sha256": "aba6630ad7ee8aae3388c89ed5197146be7603022a428521a84a8e9a4d015698"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-propositions07-08-geometric-drafts.json",
+      "path": "translation_records/book02-propositions07-08-geometric-drafts.json",
+      "bytes": 1713,
+      "sha256": "494d70edbc21540dff2727dc91e0e473d26fde30eb5231925f116624643695d6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-propositions09-10-geometric-drafts.json",
+      "path": "translation_records/book02-propositions09-10-geometric-drafts.json",
+      "bytes": 1798,
+      "sha256": "e6595d6cb2c1711b2da9b40cd25b54d97b0003b906683218b792da1eaf40a314"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book02-propositions12-13-geometric-drafts.json",
+      "path": "translation_records/book02-propositions12-13-geometric-drafts.json",
+      "bytes": 3318,
+      "sha256": "4ce7b33d84951cbedb2529d6eaabf6cc199cd6c63e63bde0aea05e021300441b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-arcs-plan.json",
+      "path": "translation_records/book03-arcs-plan.json",
+      "bytes": 3262,
+      "sha256": "71ec2028c148c215612e94969ec06d1b98afb5557fee326def269be50dedf736"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-corollary01.json",
+      "path": "translation_records/book03-corollary01.json",
+      "bytes": 785,
+      "sha256": "cab5e33aed79a0ee034775b98735dfc654077c6f14855c8e31d680f3dfc862f8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-definition02.json",
+      "path": "translation_records/book03-definition02.json",
+      "bytes": 548,
+      "sha256": "20e6be3772fee41d714213d0e0fe5e7fa2e2bc96808aca9d2bccf428352036da"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-foundations.json",
+      "path": "translation_records/book03-foundations.json",
+      "bytes": 3935,
+      "sha256": "c3498c42377319da8405e903e5949ddbb77b2ca250f48b943c480d304a88e4bf"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-inscribed-angle-integration-audit.json",
+      "path": "translation_records/book03-inscribed-angle-integration-audit.json",
+      "bytes": 1622,
+      "sha256": "a062c7965b384edf8d4a27620eb42776fa9af33ace28cbb9540877c09ae54717"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition01.json",
+      "path": "translation_records/book03-proposition01.json",
+      "bytes": 823,
+      "sha256": "307ccc1a1db5490e5f7a4b4003d9acce719b3e5c80683b03108890e8110bc562"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition02.json",
+      "path": "translation_records/book03-proposition02.json",
+      "bytes": 1220,
+      "sha256": "97725dc561981f7794f56bab3843061f45d49f68c429f134e9c56865c452e7f8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition03.json",
+      "path": "translation_records/book03-proposition03.json",
+      "bytes": 1074,
+      "sha256": "b47b93e75b81a60b9826a90b02fdb36023d4406fa914735e147551a3d417d7dc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition04.json",
+      "path": "translation_records/book03-proposition04.json",
+      "bytes": 1125,
+      "sha256": "75710ee0bd52f6e0a2c08a392a2f49f627afdc4f0a5a859687d340bee1eeca23"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition05.json",
+      "path": "translation_records/book03-proposition05.json",
+      "bytes": 894,
+      "sha256": "7aa17c84b1a38bccd521aba3c7f3021a74139bd6c1ff10ca577d3ed3da0519d3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition06.json",
+      "path": "translation_records/book03-proposition06.json",
+      "bytes": 1008,
+      "sha256": "d87236a6c6d3e53d90e3b08b0884840ad8a9ec6bb8e9d59d44600eb15e0a282a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition07-canonical.json",
+      "path": "translation_records/book03-proposition07-canonical.json",
+      "bytes": 766,
+      "sha256": "22697dba39cd9caade562445502fc173dc5743199242e7e0cec1f96debac6bc5"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition09-plan.json",
+      "path": "translation_records/book03-proposition09-plan.json",
+      "bytes": 998,
+      "sha256": "058e5b20a088cae6f4958232a6d5e0d87a7bcd7441503bc00819dbcef28aea58"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition10-plan.json",
+      "path": "translation_records/book03-proposition10-plan.json",
+      "bytes": 844,
+      "sha256": "a29fe000a46a9df1abde2a8ee0fbdce0d055f112ac13a9d7c72f05e01d61c26e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition14-plan.json",
+      "path": "translation_records/book03-proposition14-plan.json",
+      "bytes": 2739,
+      "sha256": "66969e4696655f1f5adebde907c561fb4fc3665a3aa6d5824999ae078dc21ad0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition15-plan.json",
+      "path": "translation_records/book03-proposition15-plan.json",
+      "bytes": 1227,
+      "sha256": "cdf051c8aa5939a96f12db4e36d4ee3eb054f2e832f74e46c6d748a02b340b69"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition16-plan.json",
+      "path": "translation_records/book03-proposition16-plan.json",
+      "bytes": 2292,
+      "sha256": "f7a34c82fffdd20b8ac7b7dc8daa2b9a1b04b52df5cb7046a115fc29032daf94"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition17-plan.json",
+      "path": "translation_records/book03-proposition17-plan.json",
+      "bytes": 2823,
+      "sha256": "7135aa2931d52679884480f36a2c69e513b90706087fb1f2d8b712d318ad5d05"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition18-plan.json",
+      "path": "translation_records/book03-proposition18-plan.json",
+      "bytes": 1473,
+      "sha256": "a0ed639900fa404033d325e43913e01260f24d5ecaecca47c0090b8fa6197c05"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition19-plan.json",
+      "path": "translation_records/book03-proposition19-plan.json",
+      "bytes": 1002,
+      "sha256": "2c0cb4cd935dda57593a24194f0fb5a2e7a55cc1fa8a380543799599443570ac"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition20-plan.json",
+      "path": "translation_records/book03-proposition20-plan.json",
+      "bytes": 6419,
+      "sha256": "856243eea923fe6a8b0aed93af0216451b492d3ce7cc5a31d76eebb33144abec"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition21-plan.json",
+      "path": "translation_records/book03-proposition21-plan.json",
+      "bytes": 1548,
+      "sha256": "0565223dcff9d3232a947d60da0ede82e8caffd0025906d5405234459e5ed68c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition22-plan.json",
+      "path": "translation_records/book03-proposition22-plan.json",
+      "bytes": 1753,
+      "sha256": "ad26720b6f7619de46536b78b1f0cf770d704b610839ab47ac614568c2b686bc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition23-plan.json",
+      "path": "translation_records/book03-proposition23-plan.json",
+      "bytes": 2485,
+      "sha256": "6132de8f1f28d6f9f2d1a59dfd525a30615a8de1b23f6ffe31a85bc9e7588636"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition24-plan.json",
+      "path": "translation_records/book03-proposition24-plan.json",
+      "bytes": 4113,
+      "sha256": "72c3d6d221deb537fedd97dd3b2af43350bcd213c9fd57eb6cc6717a1ebb79df"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition25-plan.json",
+      "path": "translation_records/book03-proposition25-plan.json",
+      "bytes": 6721,
+      "sha256": "8277d6d899d827bb17d20e43a5ca90ec3409a21401fec5169a2d2ad4b6bbe4a2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition25-source-audit.json",
+      "path": "translation_records/book03-proposition25-source-audit.json",
+      "bytes": 5677,
+      "sha256": "f8ea319f4316206d9200378913179fa09a6d5ca5c18c35a81dc2c1d270c3f3d6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition26-plan.json",
+      "path": "translation_records/book03-proposition26-plan.json",
+      "bytes": 3707,
+      "sha256": "95748cec68ecf0b0663283486bca27887ac98c21fbf2538c03acf3adc60f5771"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition26-source-audit.json",
+      "path": "translation_records/book03-proposition26-source-audit.json",
+      "bytes": 5681,
+      "sha256": "f38209167d215aa4752d4cf67917b3d604edfe936da461b1276fc9e7dff185c4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition28-plan.json",
+      "path": "translation_records/book03-proposition28-plan.json",
+      "bytes": 1203,
+      "sha256": "8be0ab00cca62354dddaa715b180f8bc8abb66cd16b62aa03829abcb4aa49556"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-proposition31-plan.json",
+      "path": "translation_records/book03-proposition31-plan.json",
+      "bytes": 1059,
+      "sha256": "84797deefa8eec167258b9f086cd8c0022c60bc5d1d984400ea96e3e9104c536"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-propositions08-10-canonical.json",
+      "path": "translation_records/book03-propositions08-10-canonical.json",
+      "bytes": 3569,
+      "sha256": "559633d046476dfeadcd1407df6bf716144ce878685930b1d9da6eeafde6f6b5"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-propositions11-13-interface-plan.json",
+      "path": "translation_records/book03-propositions11-13-interface-plan.json",
+      "bytes": 3189,
+      "sha256": "6bdde32382b92a2cdd0022f395d39d26eb6c583e4de120c46f0f81ee2af488db"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-propositions11-15-canonical.json",
+      "path": "translation_records/book03-propositions11-15-canonical.json",
+      "bytes": 702,
+      "sha256": "a5cf337011e9bc82bb254ce336242753fd5e5942d47599a81e187d50f616a86c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-propositions11-15-integration-audit.json",
+      "path": "translation_records/book03-propositions11-15-integration-audit.json",
+      "bytes": 3197,
+      "sha256": "b045447eb27f9bf0d1c0ec6e483f640732f53c011b2d7e9e99e54cda120f3289"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-propositions17-19-canonical.json",
+      "path": "translation_records/book03-propositions17-19-canonical.json",
+      "bytes": 788,
+      "sha256": "38ea65922f8e29f922a2d2de490e9b9e31e20e5f6cf7658c857b7aa267505e66"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-segment-integration-audit.json",
+      "path": "translation_records/book03-segment-integration-audit.json",
+      "bytes": 362,
+      "sha256": "be58ac80f6e8ccf9a9af2711901786f2756912c0cf3062d31705d277cbe4c8ea"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book03-tangent-integration-audit.json",
+      "path": "translation_records/book03-tangent-integration-audit.json",
+      "bytes": 1379,
+      "sha256": "fcbc2706aa8c3dcb0df814ac4a41d8bdfa416d293ff1db2034727668a27210a7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-foundations.json",
+      "path": "translation_records/book04-foundations.json",
+      "bytes": 3203,
+      "sha256": "e8abb73668bba6abc3e8752d4e46e5714aca559206c0a8810d8ea8e5a96aa2f0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition01-draft.json",
+      "path": "translation_records/book04-proposition01-draft.json",
+      "bytes": 1718,
+      "sha256": "09196ab0c8c63f02c47feb429e0881f976e6b0275a0288e12fc813d341ff2dfd"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition02-draft.json",
+      "path": "translation_records/book04-proposition02-draft.json",
+      "bytes": 1893,
+      "sha256": "170afa71ba87eeb2405e1d3d0bf34a0fdcb481385ddac90667afa5d391322114"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition03-draft.json",
+      "path": "translation_records/book04-proposition03-draft.json",
+      "bytes": 2065,
+      "sha256": "19903ecb5f47033c711d77ca7a88c321ef341fbe9675f28e8db9dedee221667d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition04-draft.json",
+      "path": "translation_records/book04-proposition04-draft.json",
+      "bytes": 2063,
+      "sha256": "9c984ea0868ada4a309ccc3133eefccb3111f8fdfca37abf934e86bcf41c4e3a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition05-draft.json",
+      "path": "translation_records/book04-proposition05-draft.json",
+      "bytes": 1806,
+      "sha256": "17f6ede5b9b7cf7d15bd35dd44e3833795436998edc43afc0bed012ef0ce868d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition06-draft.json",
+      "path": "translation_records/book04-proposition06-draft.json",
+      "bytes": 1220,
+      "sha256": "f2c6da560980b30d4405ad71ff5d178c8cc3e3054aa896a11c6e9b7d1a166982"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition07-draft.json",
+      "path": "translation_records/book04-proposition07-draft.json",
+      "bytes": 1042,
+      "sha256": "16cefa3e4b257b48da20d22e40bf08b300bc566e660083e9544e27434454671e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition08-draft.json",
+      "path": "translation_records/book04-proposition08-draft.json",
+      "bytes": 1430,
+      "sha256": "9a469fa64f308137c79696de764ea0d51755460bb9baf6b87a576d531eb0e545"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition09-draft.json",
+      "path": "translation_records/book04-proposition09-draft.json",
+      "bytes": 1515,
+      "sha256": "6e122c7544adf48d0970ea4e6936838498f9d97eeb7e443c96f1e2fe305e48e4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition10-plan.json",
+      "path": "translation_records/book04-proposition10-plan.json",
+      "bytes": 1891,
+      "sha256": "a656c276aa9c03a89806ac0bc8360fd0e2fce5f49b38c88629423b95775d7b62"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition11-plan.json",
+      "path": "translation_records/book04-proposition11-plan.json",
+      "bytes": 3049,
+      "sha256": "abd8bac8f0882ce780001e7ca5d16561ca8807bf943c9cd646c0c730a26537f3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition12-draft.json",
+      "path": "translation_records/book04-proposition12-draft.json",
+      "bytes": 1252,
+      "sha256": "533e08fac249e2d9611fbb52a2bcd2661972a69c4229b6b4b3f8d78dc389c8c8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-proposition12-plan.json",
+      "path": "translation_records/book04-proposition12-plan.json",
+      "bytes": 1846,
+      "sha256": "6acfe5f76e59804547a8ae8ebdd0fc93cc8e54e376efe298a3b821ee08a186a3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book04-propositions13-14-plan.json",
+      "path": "translation_records/book04-propositions13-14-plan.json",
+      "bytes": 1284,
+      "sha256": "ede56096f39bb95f891f766524831b41fbd5d47200e626ad984cc146a9c41d30"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book05-equimultiple-equivalence.json",
+      "path": "translation_records/book05-equimultiple-equivalence.json",
+      "bytes": 3029,
+      "sha256": "98dadeb93e0c7137a75e221218d28d374ed85112989d5f16d8154942def8b5d7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book05-equimultiple-forward-bridge.json",
+      "path": "translation_records/book05-equimultiple-forward-bridge.json",
+      "bytes": 1314,
+      "sha256": "5ab58af89c2cb1ea5786c49e50ddd26b72d4711ea6adcdd6c3ac56dec787bee5"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book05-foundations.json",
+      "path": "translation_records/book05-foundations.json",
+      "bytes": 6980,
+      "sha256": "54d38401504d2aa734a3d00f8cbf96f6bc367d875ee6de317e72e69dfbdc5a7e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book05-magnitude-model-decision.json",
+      "path": "translation_records/book05-magnitude-model-decision.json",
+      "bytes": 2088,
+      "sha256": "4b397d7fa6f32b44c888c545963c4bbc51b0805ab9629ac09f6eb38de4e506ec"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book05-ratio-order-real-measures.json",
+      "path": "translation_records/book05-ratio-order-real-measures.json",
+      "bytes": 3840,
+      "sha256": "aeeab0dbd84075c1cd375e556f039641f48ebc63db275e0eac7eac3e17bfca8e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-foundations.json",
+      "path": "translation_records/book06-foundations.json",
+      "bytes": 1477,
+      "sha256": "0cda4285adf13230d15e52146ba7eac4c2a981cc59ae81b38de22ff6600ff096"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition01-draft.json",
+      "path": "translation_records/book06-proposition01-draft.json",
+      "bytes": 1431,
+      "sha256": "fdc133525bf9c2c41a9b41fda47bfd321aff4989c9bd4ed47331c4a55369904f"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition01-plan.json",
+      "path": "translation_records/book06-proposition01-plan.json",
+      "bytes": 978,
+      "sha256": "825c2e64bd15b1bd0ff84adc9b99a3e5ba171b31857456e659d38697539adac2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition02-draft.json",
+      "path": "translation_records/book06-proposition02-draft.json",
+      "bytes": 1246,
+      "sha256": "5e864c77f5e7485d6599841397d75638603e039e7ea5e1de8f072afda9da5706"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition02-plan.json",
+      "path": "translation_records/book06-proposition02-plan.json",
+      "bytes": 1327,
+      "sha256": "22da79a6b7e26d286f3a6119b6e906005dec6871d4f7497eebc0258799e9773c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition03-draft.json",
+      "path": "translation_records/book06-proposition03-draft.json",
+      "bytes": 1163,
+      "sha256": "7a7d8f34b34748f44e5576072ba944730789522ef5be489c7a09b9a38e5cff81"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition03-plan.json",
+      "path": "translation_records/book06-proposition03-plan.json",
+      "bytes": 1494,
+      "sha256": "e23321ba90d2dc01b4f6aca5c426496b7a5aa8bfd3f22aef5feda96fb22d3732"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition04-draft.json",
+      "path": "translation_records/book06-proposition04-draft.json",
+      "bytes": 972,
+      "sha256": "28d88a984cae3eb3d1859870d2c60583f1c147f7a81686293f4ea05abf1b0011"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition04-plan.json",
+      "path": "translation_records/book06-proposition04-plan.json",
+      "bytes": 1354,
+      "sha256": "498f26d702eb40826617b4253e378d25ec986503ab04535370025e7e21682b84"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition05-draft.json",
+      "path": "translation_records/book06-proposition05-draft.json",
+      "bytes": 970,
+      "sha256": "79104f9192a9f98ec823c51e23763d225d61b602e858c2af6316548a233f4144"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition06-draft.json",
+      "path": "translation_records/book06-proposition06-draft.json",
+      "bytes": 997,
+      "sha256": "50dcc51df5804e72783383869a8b2d237534974b6dd3a44e0875d8506d6c47a9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition07-draft.json",
+      "path": "translation_records/book06-proposition07-draft.json",
+      "bytes": 1733,
+      "sha256": "fa36f65d95d019e26021a890edac131fc45720d055aad08a7839f087c246a969"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition07-plan.json",
+      "path": "translation_records/book06-proposition07-plan.json",
+      "bytes": 1279,
+      "sha256": "6a742a3a98d8ccfbee5e840f6de8315947d3257e955c310a7c68a690545f693b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition08-foot-interior-draft.json",
+      "path": "translation_records/book06-proposition08-foot-interior-draft.json",
+      "bytes": 2843,
+      "sha256": "cd10508e2a208fedeac8f861c9d2f9efa84cb72cd3389166988056beea6f01d6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition08-gate.json",
+      "path": "translation_records/book06-proposition08-gate.json",
+      "bytes": 1267,
+      "sha256": "d7559ad1cf3aa985f7669c82dad5258c26e873b0fac2d060dc6cfe5fe5634709"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition08-plan.json",
+      "path": "translation_records/book06-proposition08-plan.json",
+      "bytes": 1448,
+      "sha256": "086ef63ff38625c09682b480ac257264c2e2d63cd300e1e00c5c2322d381ca89"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition09-draft.json",
+      "path": "translation_records/book06-proposition09-draft.json",
+      "bytes": 1189,
+      "sha256": "667c7a7b53e8d597936cf35882abd628b959817893af28cdcde40ce4a1d52c6b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition10-draft.json",
+      "path": "translation_records/book06-proposition10-draft.json",
+      "bytes": 834,
+      "sha256": "a5447ac98f05b2e19b7ad8883686d6973565d82c541f71826c1c974db2a13b56"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition11-draft.json",
+      "path": "translation_records/book06-proposition11-draft.json",
+      "bytes": 807,
+      "sha256": "ab92450c25aeaa6381477b415357d7f74ea197d92fa010bafc88694d6c9d3379"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition12-draft.json",
+      "path": "translation_records/book06-proposition12-draft.json",
+      "bytes": 760,
+      "sha256": "ea2ae966f47329d9a3b145405b34130f2937ab1b3cc90f92d22d171344731675"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition13-draft.json",
+      "path": "translation_records/book06-proposition13-draft.json",
+      "bytes": 800,
+      "sha256": "d6e265de2fe42966825147be2a69e5fc75254859bde0eef7ca975a96e1d30c88"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition14-draft.json",
+      "path": "translation_records/book06-proposition14-draft.json",
+      "bytes": 723,
+      "sha256": "8ee4b45daffc73a8f2f2188b943cdb0b25103a2135c08545b79952a887208b20"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition15-draft.json",
+      "path": "translation_records/book06-proposition15-draft.json",
+      "bytes": 614,
+      "sha256": "2eb0e9c333a0c00d8c4e277bea1d8a79b3058436b1587a1affe583f28ab8cfc8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition16-draft.json",
+      "path": "translation_records/book06-proposition16-draft.json",
+      "bytes": 464,
+      "sha256": "0ef92fefc0009180831a76d9c5dfab3ee883bb4d4f014a967ce5fc4bc97c6602"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition17-draft.json",
+      "path": "translation_records/book06-proposition17-draft.json",
+      "bytes": 465,
+      "sha256": "8d193da219f96f870fbf8ab93e4b94be4a2fd188c538658b55ee9b4cbee649f7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition19-draft.json",
+      "path": "translation_records/book06-proposition19-draft.json",
+      "bytes": 544,
+      "sha256": "2f747ad8a037bbc47c270a39751ce17636652af0eea79bfe585b156224962362"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition21-draft.json",
+      "path": "translation_records/book06-proposition21-draft.json",
+      "bytes": 547,
+      "sha256": "46954525be6e6de561c68fec878298f4ba1ce395b4a69cd9755ef6af036894a5"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition23-draft.json",
+      "path": "translation_records/book06-proposition23-draft.json",
+      "bytes": 694,
+      "sha256": "b7ef497bfe5f0a0d38791b2db93491bef09a380d1fa4283762bb04767e6d6d4b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-proposition31-draft.json",
+      "path": "translation_records/book06-proposition31-draft.json",
+      "bytes": 507,
+      "sha256": "043c3a54e07d752edfbfa63d1d4caac9bb7520e8786846373f8452069cf4f94a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/book06-propositions05-06-plan.json",
+      "path": "translation_records/book06-propositions05-06-plan.json",
+      "bytes": 1123,
+      "sha256": "e1695454892b2e206676ce5aacfa98c9b9654ff666ce9fe10346a0286369f45c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/books01-06-corollaries-partial-inventory.json",
+      "path": "translation_records/books01-06-corollaries-partial-inventory.json",
+      "bytes": 3241,
+      "sha256": "ddbb0111a483df17ba2befd67355395f4bf7a0b75ed94bd4c43c9ab4f2367575"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/books01-06-coverage.json",
+      "path": "translation_records/books01-06-coverage.json",
+      "bytes": 6482,
+      "sha256": "1193fd374291a830fc790529fe8eb61568c260d5ff8bba3c568f1b393b1bf528"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/books02-03-progress.json",
+      "path": "translation_records/books02-03-progress.json",
+      "bytes": 8320,
+      "sha256": "5274ecfe75c74c156978d6a0f2e7bc8a129623a11b058795789bf9bc4d76a614"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/books03-propositions07-08-source-plan.json",
+      "path": "translation_records/books03-propositions07-08-source-plan.json",
+      "bytes": 5892,
+      "sha256": "85414ccd8fb50be291d926b1b796ec4049d892894edfb7ac16c4e9cc1fde0595"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/circle-radial-model.json",
+      "path": "translation_records/circle-radial-model.json",
+      "bytes": 1236,
+      "sha256": "6b02efe545b4c17a77cb67787d07ac188de5b14e7247a2f0bc64a13dcacc7b9c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/circle-ray-intersection-model.json",
+      "path": "translation_records/circle-ray-intersection-model.json",
+      "bytes": 1111,
+      "sha256": "faa3bf26996a78b13738e4e18bd9fe03b2f66785cff272577788047f2d8558be"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/geometry-only-scope-and-audit.json",
+      "path": "translation_records/geometry-only-scope-and-audit.json",
+      "bytes": 2088,
+      "sha256": "9e9eb5d5d1dda236b5e8b5e013d19b01ddc984e3a14dfc1f5f754f2b0dc78f4f"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/polygon-region-prerequisites-draft.json",
+      "path": "translation_records/polygon-region-prerequisites-draft.json",
+      "bytes": 11972,
+      "sha256": "cc3965c82abc06e37d94696bf8ee187c821d52ce7617e299a62274aa5a81cf5e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/translation_records/rectangle-interface-integration-repair.json",
+      "path": "translation_records/rectangle-interface-integration-repair.json",
+      "bytes": 1032,
+      "sha256": "742b33ee8c94245496458dbc6a1702469cd4fc2b265ead4d6c8c5b74d94f8459"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experience/problem_notes/book01_proposition01_acceptance.md",
+      "path": "experience/problem_notes/book01_proposition01_acceptance.md",
+      "bytes": 3582,
+      "sha256": "82a500b64510f06906d28509b1e44c3012a0bf57684c170e446b8b5679035379"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experience/problem_notes/book01_proposition23_acceptance.md",
+      "path": "experience/problem_notes/book01_proposition23_acceptance.md",
+      "bytes": 1311,
+      "sha256": "4d3479213b5a810d4a2f7c60f8a8a14e99a3469d15f1df4a48f63d1aba8dcd6b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/todo.md",
+      "path": "todo.md",
+      "bytes": 27244,
+      "sha256": "2703532bb5c0c0d4a9bbb0340e7d6b9ec022457f1b96bf1d37512f2dfb098c0f"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/books02-03-plan.md",
+      "path": "books02-03-plan.md",
+      "bytes": 10509,
+      "sha256": "6b2071c678fcc86f148f85001634cf71a893efd05a992bd6ff61c91073ac5bf3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/migration_plan.md",
+      "path": "migration_plan.md",
+      "bytes": 17466,
+      "sha256": "d3c6bd6986109227d76010273165593a852aa96818d55d2bbb0124b1fd186cab"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/legacy_archive_audit.md",
+      "path": "legacy_archive_audit.md",
+      "bytes": 4332,
+      "sha256": "611945b6b7f82ef33d4ef31a2761badc8742bcd20ed3bcb7c15d2ca0cc5b2ae6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/baseline.json",
+      "path": "experiment/baseline.json",
+      "bytes": 2901,
+      "sha256": "48345eb88782e21079251b773f64409366114610759f5a49b464f28ed540f9b1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/checkpoint.json",
+      "path": "experiment/checkpoint.json",
+      "bytes": 1639,
+      "sha256": "773d6cb8aacf7ba502e411dd9d7d6316ecac5a1c1f9410b55b495024fb5136e6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/clock-observation.json",
+      "path": "experiment/clock-observation.json",
+      "bytes": 423,
+      "sha256": "10406ed4c3d8dac4ce2814463fd5c4edc895660bd2be5abbab554384fdccc438"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/commands.jsonl",
+      "path": "experiment/commands.jsonl",
+      "bytes": 615011,
+      "sha256": "57e423e45067d258894cb4e1fbd7f7a1217bb1e179b5eedf5c255a09be77ac75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/current_processes.json",
+      "path": "experiment/current_processes.json",
+      "bytes": 1232,
+      "sha256": "4e4f9df3b623d96c9cec085f40721c54bb49fda17b1b487dec9771ec9c6410a7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/epoch2.json",
+      "path": "experiment/epoch2.json",
+      "bytes": 752,
+      "sha256": "6d9de030794d1a800090f9e9cabc941b2de37f043234a331746b21892447b138"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/legacy_source_inventory.json",
+      "path": "experiment/legacy_source_inventory.json",
+      "bytes": 48490,
+      "sha256": "054f0a9ca2ed8c95c9dd4b85fadfe7fedd54650c98161245ff1cf06404413b6b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/metrics.jsonl",
+      "path": "experiment/metrics.jsonl",
+      "bytes": 60495,
+      "sha256": "d871ae9cc83473285b14e28c6b32eb29a1cef871f74acde8663d37c910ccdd79"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/protocol.md",
+      "path": "experiment/protocol.md",
+      "bytes": 19109,
+      "sha256": "891188526375a8627d49eb718a4a38fd0864a24c31e39c32addc7a82a00d7246"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/report.md",
+      "path": "experiment/report.md",
+      "bytes": 30995,
+      "sha256": "400db1b6fc0f65f60f6bd8f0636db9e11feab4eab2eb06aefd257e74a73b0943"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/session_dispatch.json",
+      "path": "experiment/session_dispatch.json",
+      "bytes": 480,
+      "sha256": "d0c98e275d57d2f1726431794238964ef733fd7e9bcff08d9b5f5c8f609f8187"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/sop-history-2026-10-12.md",
+      "path": "experiment/sop-history-2026-10-12.md",
+      "bytes": 27251,
+      "sha256": "7a9ab02c254a6929e749ffca88b8c5c4e7af134f1c80dff867c2a914126a3b22"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/experiment/sop-history-before-2026-10-17.md",
+      "path": "experiment/sop-history-before-2026-10-17.md",
+      "bytes": 71786,
+      "sha256": "470c0bf592131c30110534ffa9b3980d92a93a76664060f263d683f12e89bfb6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/proof_journals/resume-2026-10-17.json",
+      "path": "proof_journals/resume-2026-10-17.json",
+      "bytes": 143591,
+      "sha256": "9da2ff54ee9d4541ac7a7384376c4e000ec7eb56da6571b26ec53f76a0d2fce6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/proof_journals/books02-03/book03-proposition26-progress.json",
+      "path": "proof_journals/books02-03/book03-proposition26-progress.json",
+      "bytes": 17014,
+      "sha256": "e33513e88dbc90e1e05741b010c6bc126965d0015fa7ca7ab3084f4b8018a1f7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition35-source-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book01-proposition35-source-checkpoint/assembly-manifest.json",
+      "bytes": 1175,
+      "sha256": "09bacdc1dc2fd25299297e8851484d3ba9f3b55ea508b814921c24ebf79b0e14"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition35-source-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book01-proposition35-source-checkpoint/full-gate.json",
+      "bytes": 24987,
+      "sha256": "54210b921092885d9dad811b513d0c32949c407f4d5f076de690fddb70561b2e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition35-source-checkpoint/litex.config",
+      "path": "results/checkpoints/book01-proposition35-source-checkpoint/litex.config",
+      "bytes": 222,
+      "sha256": "62dd81d154d8d296d9c70c88d547fa1faac680ec4ba8c7b9b5758d507acf62f3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition35-source-checkpoint/main.lit",
+      "path": "results/checkpoints/book01-proposition35-source-checkpoint/main.lit",
+      "bytes": 22003,
+      "sha256": "d181ac87e54d9e52fbbb655599922a680c6008a791784aa5d8b8ba3ff6bd0369"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition35-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/book01-proposition35-source-checkpoint/receipt.json",
+      "bytes": 3231,
+      "sha256": "b858dd140b9f7ab1e69f82d52e4bf0b9b0389c2899071768105ca6514819ee36"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book01-proposition36-source-checkpoint/assembly-manifest.json",
+      "bytes": 451,
+      "sha256": "9bf8b87803f4a5ae351e3c2858d791990c812149f7156d7e316c2f0077230976"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book01-proposition36-source-checkpoint/full-gate.json",
+      "bytes": 38207,
+      "sha256": "ec65ebed36bb3c75ae281d9cffaab5338794a1c5a19346a11e74f1b6d2dd31f6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/litex.config",
+      "path": "results/checkpoints/book01-proposition36-source-checkpoint/litex.config",
+      "bytes": 222,
+      "sha256": "62dd81d154d8d296d9c70c88d547fa1faac680ec4ba8c7b9b5758d507acf62f3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/main.lit",
+      "path": "results/checkpoints/book01-proposition36-source-checkpoint/main.lit",
+      "bytes": 34541,
+      "sha256": "1bdda9fec3192be8e441d38286066d00334639ccbdbcc4c43547814a8c72c2a1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/book01-proposition36-source-checkpoint/receipt.json",
+      "bytes": 3225,
+      "sha256": "022697e58550e47df15dd17b71ce1b536de3688aa11fa014d944397ce28ecdb2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition37-source-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book01-proposition37-source-checkpoint/assembly-manifest.json",
+      "bytes": 521,
+      "sha256": "4f25d40e85982314c05c2897c74bebff2126bf83a8b7cfee853c92e69d7664aa"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition37-source-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book01-proposition37-source-checkpoint/full-gate.json",
+      "bytes": 7728,
+      "sha256": "c08a91b34bbc338d9939910db49459dd3b7a32b7112ab4e399af289afb1ddc23"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition37-source-checkpoint/litex.config",
+      "path": "results/checkpoints/book01-proposition37-source-checkpoint/litex.config",
+      "bytes": 222,
+      "sha256": "62dd81d154d8d296d9c70c88d547fa1faac680ec4ba8c7b9b5758d507acf62f3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition37-source-checkpoint/main.lit",
+      "path": "results/checkpoints/book01-proposition37-source-checkpoint/main.lit",
+      "bytes": 5604,
+      "sha256": "769cdb84c2a46f4386a49a36a1b7d676a7cef677704e44148b69991828b46715"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition37-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/book01-proposition37-source-checkpoint/receipt.json",
+      "bytes": 3262,
+      "sha256": "a16381399e9352ea4203ca1a4b860ff08ac07759dff4122a586ad376431b202a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition38-source-checkpoint2/assembly-manifest.json",
+      "path": "results/checkpoints/book01-proposition38-source-checkpoint2/assembly-manifest.json",
+      "bytes": 236,
+      "sha256": "74cdf2116d060c40a439c0cc9600ad82415f62e973db0dacbfaf3adb2e6a4ec6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition38-source-checkpoint2/full-gate.json",
+      "path": "results/checkpoints/book01-proposition38-source-checkpoint2/full-gate.json",
+      "bytes": 17342,
+      "sha256": "6dddedbd612028ffaaf4fd9ce5a2d018ff343d1eefea41b82c6ff345777dace4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition38-source-checkpoint2/litex.config",
+      "path": "results/checkpoints/book01-proposition38-source-checkpoint2/litex.config",
+      "bytes": 222,
+      "sha256": "62dd81d154d8d296d9c70c88d547fa1faac680ec4ba8c7b9b5758d507acf62f3"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition38-source-checkpoint2/main.lit",
+      "path": "results/checkpoints/book01-proposition38-source-checkpoint2/main.lit",
+      "bytes": 13908,
+      "sha256": "b8040c4beafff32175d1d5f3b63cdeb7a55f2c417f9c1a456e4ee86f644a4651"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition38-source-checkpoint2/receipt.json",
+      "path": "results/checkpoints/book01-proposition38-source-checkpoint2/receipt.json",
+      "bytes": 3235,
+      "sha256": "0dacdb36c8210e8484cfe2b1ad7a5671512e06d90dd52003ac8801ed41ac088b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition39-source-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book01-proposition39-source-checkpoint/assembly-manifest.json",
+      "bytes": 427,
+      "sha256": "9e7babf0898974b34f935d171413b8478627ca06806b7e4db45be245d9320a7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition39-source-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book01-proposition39-source-checkpoint/full-gate.json",
+      "bytes": 5555,
+      "sha256": "d111c7b2d36941b48c9aa3332694ca74fdc5061d7fa2b5cc65a573da8a536828"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition39-source-checkpoint/litex.config",
+      "path": "results/checkpoints/book01-proposition39-source-checkpoint/litex.config",
+      "bytes": 315,
+      "sha256": "a75865d855a603237837520a364771e67bcff6f8acc02a8af0d42061ddb8312b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition39-source-checkpoint/main.lit",
+      "path": "results/checkpoints/book01-proposition39-source-checkpoint/main.lit",
+      "bytes": 4129,
+      "sha256": "00cb4144cd50087e75ba3abd289b0d42099921323a12d079f828c342fe1ff05a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition39-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/book01-proposition39-source-checkpoint/receipt.json",
+      "bytes": 3746,
+      "sha256": "991c970bf88b32546efe7f9b99f21df656316113794c3de31739fc8ceafa71bb"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition40-source-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book01-proposition40-source-checkpoint/assembly-manifest.json",
+      "bytes": 297,
+      "sha256": "afdb4b0c34af1cad01ac17d49ddf211c230220f9db667ad62e6e406768270441"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition40-source-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book01-proposition40-source-checkpoint/full-gate.json",
+      "bytes": 28098,
+      "sha256": "8000e6f7185fda0adc47263077a70d9a3f4bbdc33a7f9e7d2bad9c15a4244820"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition40-source-checkpoint/litex.config",
+      "path": "results/checkpoints/book01-proposition40-source-checkpoint/litex.config",
+      "bytes": 315,
+      "sha256": "a75865d855a603237837520a364771e67bcff6f8acc02a8af0d42061ddb8312b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition40-source-checkpoint/main.lit",
+      "path": "results/checkpoints/book01-proposition40-source-checkpoint/main.lit",
+      "bytes": 23864,
+      "sha256": "742b5fd61aac1a68907d695f3bd4e2584a42ded7a3b352cf48a7109e9f80a6a2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition40-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/book01-proposition40-source-checkpoint/receipt.json",
+      "bytes": 3706,
+      "sha256": "0e649a8ad0baecccc77b2d792f7a2fdd65ae598731ab9eeb3c30395c6e7d1a19"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/book01-constructions.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book01-through-area-module-checkpoint/book01-constructions.lit",
+      "bytes": 250511,
+      "sha256": "34c17398f11b3952e8f412ddcdf48584528f187a022dc050a0250541be2d5650"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book01-through-area-module-checkpoint/litex.config",
+      "bytes": 1290,
+      "sha256": "8aef4424c17eb0cdb840d63dca3b900a39ae41f2f165d1396ce0aa3f8c99306a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book01-through-area-module-checkpoint/receipt.json",
+      "bytes": 7389,
+      "sha256": "650926f63e30283991097c4f563b0c96fc55675195a05d700ee146e960c409fd"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-through-area-module-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book01-through-area-module-checkpoint/result.json",
+      "bytes": 273384,
+      "sha256": "50c7744b819c586c103df7bf2288d923cbf82e97f8a0620ac3df9669e7e4ed44"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/angle_measure.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/angle_measure.lit",
+      "bytes": 7283,
+      "sha256": "acd535e8b3f0ed6ef18786bd3817fe6e8f0f90b66448c720aa871c81734a5b7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/angles.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/angles.lit",
+      "bytes": 1638,
+      "sha256": "431c8fea334fc07d7e22d2fa3eb872e2a2807b68ab5b9aa404f5c20454489056"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/area.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/area.lit",
+      "bytes": 2517,
+      "sha256": "68c790d7c23cc0605ee9185ac469d6d7a2fef7a614e56ed175bf02cc3484ca75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/geometry_lemmas.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/geometry_lemmas.lit",
+      "bytes": 2809,
+      "sha256": "fedd0db65ed59c0342f7e29c64c34fd16c7c471f7a8fd806daaa9c4f22480c77"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/litex.config",
+      "bytes": 203,
+      "sha256": "e2020135e64d73f90e85bd17b39f77434799cf4ffdd2d209fd165718f5841801"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/parallel.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/parallel.lit",
+      "bytes": 632,
+      "sha256": "0e4bdf212a6c2e6a150a94aa2d59f50b0334f4494a3a4fcfffc9cb459ed800c2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/prefix.lit",
+      "bytes": 22552,
+      "sha256": "cabc34a39bfb3e08ad0fd13f5135eab9081b55fabcc0a3242d876cfe0ea92c07"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/receipt.json",
+      "bytes": 1811,
+      "sha256": "ba8ec3c7235b8d1dd209141f26ec29da188fa5cbe1a225b8c16b6b10fdace4bb"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I42-44-46-source-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/I42-44-46-source-checkpoint/result.json",
+      "bytes": 30151,
+      "sha256": "087c36ffafcedbc0eb301b18a22883e5512febc95c8168713604a5900fee77c9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/angle_measure.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/angle_measure.lit",
+      "bytes": 7283,
+      "sha256": "acd535e8b3f0ed6ef18786bd3817fe6e8f0f90b66448c720aa871c81734a5b7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/angles.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/angles.lit",
+      "bytes": 1638,
+      "sha256": "431c8fea334fc07d7e22d2fa3eb872e2a2807b68ab5b9aa404f5c20454489056"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/area.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/area.lit",
+      "bytes": 2517,
+      "sha256": "68c790d7c23cc0605ee9185ac469d6d7a2fef7a614e56ed175bf02cc3484ca75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/geometry_lemmas.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/geometry_lemmas.lit",
+      "bytes": 2809,
+      "sha256": "fedd0db65ed59c0342f7e29c64c34fd16c7c471f7a8fd806daaa9c4f22480c77"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/litex.config",
+      "bytes": 203,
+      "sha256": "e2020135e64d73f90e85bd17b39f77434799cf4ffdd2d209fd165718f5841801"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/parallel.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/parallel.lit",
+      "bytes": 632,
+      "sha256": "0e4bdf212a6c2e6a150a94aa2d59f50b0334f4494a3a4fcfffc9cb459ed800c2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/prefix.lit",
+      "bytes": 46174,
+      "sha256": "8a217bfef0eee2ac396627a296fba8203c4901c0a126b9043c99a4cf991b7059"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/receipt.json",
+      "bytes": 4407,
+      "sha256": "c7433d825d5eff19ee56a0d7a3c55359963148beec42dfb0de8bad48714bbccc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I43-general-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/I43-general-checkpoint/result.json",
+      "bytes": 60238,
+      "sha256": "8552f25dfbabcc33fb673ad87e3df75228ffabe89da3af1efd26719b91ab5edc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/angle_measure.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/angle_measure.lit",
+      "bytes": 7283,
+      "sha256": "acd535e8b3f0ed6ef18786bd3817fe6e8f0f90b66448c720aa871c81734a5b7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/angles.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/angles.lit",
+      "bytes": 1638,
+      "sha256": "431c8fea334fc07d7e22d2fa3eb872e2a2807b68ab5b9aa404f5c20454489056"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/area.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/area.lit",
+      "bytes": 2517,
+      "sha256": "68c790d7c23cc0605ee9185ac469d6d7a2fef7a614e56ed175bf02cc3484ca75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/geometry_lemmas.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/geometry_lemmas.lit",
+      "bytes": 2809,
+      "sha256": "fedd0db65ed59c0342f7e29c64c34fd16c7c471f7a8fd806daaa9c4f22480c77"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/litex.config",
+      "bytes": 203,
+      "sha256": "e2020135e64d73f90e85bd17b39f77434799cf4ffdd2d209fd165718f5841801"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/parallel.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/parallel.lit",
+      "bytes": 632,
+      "sha256": "0e4bdf212a6c2e6a150a94aa2d59f50b0334f4494a3a4fcfffc9cb459ed800c2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/prefix.lit",
+      "bytes": 35645,
+      "sha256": "9a60b130dd48cd0b7195ef51bfd592a786abe079efe0ffc2c30691a68d9d425a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/receipt.json",
+      "bytes": 4479,
+      "sha256": "19817b20a20d23fb3b2f0b60174e2bac94f1cc8d5fc96ae430106c5be8732990"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/I47-constructed-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/I47-constructed-checkpoint/result.json",
+      "bytes": 48166,
+      "sha256": "32e2d0c58c5c6ae5148ec92711c2178bfb6ace211fa79d98641cac64f433dc6e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-canonical-prefix-integration-v2/book02.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/book02.lit",
+      "bytes": 199740,
+      "sha256": "42c0d2fcbfb532eeeeaf81129234138f4a7f8a051df51e16dfed820863b7d33b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-canonical-prefix-integration-v2/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/litex.config",
+      "bytes": 1532,
+      "sha256": "ff4fa5d307917f0b80fc92570731204cb57e61edc294c1248f4d98f01bafa3e0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-canonical-prefix-integration-v2/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/provenance.json",
+      "bytes": 810,
+      "sha256": "80936dc49d43ccc0fc950985dd38be467eb63eedc06cb89cf932f28e77560837"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-canonical-prefix-integration-v2/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/receipt.json",
+      "bytes": 8113,
+      "sha256": "8f16319e614851fa68e9e95ff8b9a52b0906f4935e525e6546b2fa44d0c7af9b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-canonical-prefix-integration-v2/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book02-canonical-prefix-integration-v2/result.json",
+      "bytes": 273954,
+      "sha256": "f0a96bd100b8c7e16e5c09d934f5f624566f466336f8f408171d82e3d2bfecb8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-through26-audited-candidate/assembly-manifest.json",
+      "path": "results/checkpoints/book03-through26-audited-candidate/assembly-manifest.json",
+      "bytes": 7184,
+      "sha256": "eae296468cf47bc74b44bd26d2cf5844a26059e5918329f79309336e70c41d47"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-through26-audited-candidate/book03-circles.lit",
+      "path": "results/checkpoints/book03-through26-audited-candidate/book03-circles.lit",
+      "bytes": 353019,
+      "sha256": "27746179723d6c44025ddd39ccf915f393cc86a517ebd1c7fd22ab00243639d9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-through26-audited-candidate/full-gate.json",
+      "path": "results/checkpoints/book03-through26-audited-candidate/full-gate.json",
+      "bytes": 442456,
+      "sha256": "ca37eaac15b3001b2634402f4ade01de96fe9a8bd582ca95997bce9ea94deb7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-through26-audited-candidate/litex.config",
+      "path": "results/checkpoints/book03-through26-audited-candidate/litex.config",
+      "bytes": 628,
+      "sha256": "472021079e276d39c950d2bdd4be26d8d340731d61a621ba46894a085b667cb6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-through26-audited-candidate/receipt.json",
+      "path": "results/checkpoints/book03-through26-audited-candidate/receipt.json",
+      "bytes": 5309,
+      "sha256": "993cf51f3671dffe198a6fbea80e0c1c0281c9bfbcf8dfd7ea6b097361cee940"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book03-proposition28-source-checkpoint/assembly-manifest.json",
+      "bytes": 585,
+      "sha256": "874ff004a6f4fb56f155db68b14c3d0b6fff63c005723688601b61552b08adc4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book03-proposition28-source-checkpoint/full-gate.json",
+      "bytes": 231463,
+      "sha256": "8a54c3e245c06c1b0cbb67dd8552dc34b71580242b2472d684fe7b4eca8cff42"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/litex.config",
+      "path": "results/checkpoints/book03-proposition28-source-checkpoint/litex.config",
+      "bytes": 165,
+      "sha256": "414a4bc83237fa5a6b943a099e1d5acf97747125ed9393b36a9cbd655c4c4906"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/main.lit",
+      "path": "results/checkpoints/book03-proposition28-source-checkpoint/main.lit",
+      "bytes": 186423,
+      "sha256": "f85ab40bb324cc589a9cf0ccce614e38e474c830e2f11759cef5100fec4fc9f1"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition28-source-checkpoint/receipt.json",
+      "path": "results/checkpoints/book03-proposition28-source-checkpoint/receipt.json",
+      "bytes": 2968,
+      "sha256": "4308a10a81a5b734b3cc229be2efd973aeb696e36db124edc8351fcd61f0a7e9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition31-rectilinear-checkpoint/assembly-manifest.json",
+      "path": "results/checkpoints/book03-proposition31-rectilinear-checkpoint/assembly-manifest.json",
+      "bytes": 594,
+      "sha256": "2dafc6327b197a48bca3633d32e5c24b173585f8e322f2690d3898be1b9e93dc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition31-rectilinear-checkpoint/full-gate.json",
+      "path": "results/checkpoints/book03-proposition31-rectilinear-checkpoint/full-gate.json",
+      "bytes": 23744,
+      "sha256": "01ba70956d4b110a3c7b4f45669b6e6cd59e7c3a3cceb0e54402e68da254fa8b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition31-rectilinear-checkpoint/litex.config",
+      "path": "results/checkpoints/book03-proposition31-rectilinear-checkpoint/litex.config",
+      "bytes": 165,
+      "sha256": "414a4bc83237fa5a6b943a099e1d5acf97747125ed9393b36a9cbd655c4c4906"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition31-rectilinear-checkpoint/main.lit",
+      "path": "results/checkpoints/book03-proposition31-rectilinear-checkpoint/main.lit",
+      "bytes": 17537,
+      "sha256": "b1d3c4c887b9315088b691513f8e19ff6813d6e2e72d0a7c73a4140a7bf4861a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book03-proposition31-rectilinear-checkpoint/receipt.json",
+      "path": "results/checkpoints/book03-proposition31-rectilinear-checkpoint/receipt.json",
+      "bytes": 2996,
+      "sha256": "7c87f78deccb7f613a39ac699cf7b3ee2d9153f137a744195c5dda8b2a3e6f4b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-constructions-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book04-constructions-checkpoint/litex.config",
+      "bytes": 1296,
+      "sha256": "748f9c2ab13794a19f32510715b889889d6e526001106205aead63dd80af079a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-constructions-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-constructions-checkpoint/prefix.lit",
+      "bytes": 24291,
+      "sha256": "82bc40445e5a4849b3c503f50a7fbd60d2dcbc4729a9d3d46bac225d052a610b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+      "bytes": 6605,
+      "sha256": "a988da26d9b80953d2d8228ec2ed0f525e6082b1dc189d537b3e49d601de8e50"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-constructions-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-constructions-checkpoint/result.json",
+      "bytes": 34653,
+      "sha256": "9d4c335f9c3d648e377c377583d19d08608de7dbe94b10df8d1bf990f01953e9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-incircle-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book04-incircle-checkpoint/litex.config",
+      "bytes": 1296,
+      "sha256": "748f9c2ab13794a19f32510715b889889d6e526001106205aead63dd80af079a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-incircle-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-incircle-checkpoint/prefix.lit",
+      "bytes": 79599,
+      "sha256": "228b09b3d6ac5addbe0be24986de8980ed394a911d5480226a985a7f5ed5a432"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-incircle-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-incircle-checkpoint/receipt.json",
+      "bytes": 6584,
+      "sha256": "4eaa975d1969bc98a59f3bd8db5ebfabe37354e89eddc02a1554be5cdb046490"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-incircle-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-incircle-checkpoint/result.json",
+      "bytes": 109059,
+      "sha256": "dc8e931f5f0270ee8b281da2f7f1a0a106dea9542f820df7f5a2820726ba23f4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/constructions.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/constructions.lit",
+      "bytes": 33000,
+      "sha256": "6ce451eee70d18018309c11465779a9478f43f727cb04239f95c7b840a984047"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/litex.config",
+      "bytes": 342,
+      "sha256": "28e931b495b7f403d9825d3c8d153e9effba0d0d660871909a20ba8e081690dd"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/provenance.json",
+      "bytes": 2313,
+      "sha256": "65acd7b8458b7ddb3ab1e850ff89ab9f8f72c208ac797b0e83797821a0b1afe4"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/receipt.json",
+      "bytes": 7366,
+      "sha256": "1ce7609b2e1030d8f8ab38d4bf5609b3eaad9c9b195dce14b5da6071fef13197"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/result.json",
+      "bytes": 49222,
+      "sha256": "8686759aa2519e71d0db92eca28116dd4a5e61fa9b0b17b2aacb2167fc3487d0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/litex.config",
+      "bytes": 1155,
+      "sha256": "bbcb3e488ec55886d259f39fa90ec4717e89fda6a5cc0e4de7820858d5c7330e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/main.lit",
+      "bytes": 190595,
+      "sha256": "900d5d9abb6a0f22285de17747519969415eeac113b652954aedea200ed9cb04"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/provenance.json",
+      "bytes": 29424,
+      "sha256": "8236e5fb4ed30a74cdf04429ff4df523ad66b51103f605bfe57ad08baf89c0da"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/receipt.json",
+      "bytes": 27490,
+      "sha256": "d7f4c1fb8e8440a745188e0277d29708c273d921e6a92b58fed87d6bcb9b6f23"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/result.json",
+      "bytes": 230434,
+      "sha256": "f0c325e9043cd107a0c4c6ddc5f7cfd4aba31f62afbfcc1c43f4418939d7d213"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/working.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/working.lit",
+      "bytes": 7201,
+      "sha256": "b1c2ceb8cae0bc5dbe485b97acb65dc6dd9847d0b2338f8375698f9defb01540"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/litex.config",
+      "bytes": 1155,
+      "sha256": "bbcb3e488ec55886d259f39fa90ec4717e89fda6a5cc0e4de7820858d5c7330e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/main.lit",
+      "bytes": 19022,
+      "sha256": "1f36bd12c529a3a9bc64eab34834263f18606196084adc43c1cd8e685971a1c0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/provenance.json",
+      "bytes": 9836,
+      "sha256": "54755593b94802e3c3378bec9f1cc54180f305639ddd5a143a75b5dd9975df87"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/receipt.json",
+      "bytes": 12764,
+      "sha256": "d3b12d3794cc79efa8d52ff8e23361905c327c2133cc6c1761bb46de0a0e5709"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/result.json",
+      "bytes": 31823,
+      "sha256": "dc4d0a90f98ceb42d9865817caf9f153e350961f2209d65994d30b3d112910ca"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-five-point-circle-checkpoint/working.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book04-five-point-circle-checkpoint/working.lit",
+      "bytes": 11683,
+      "sha256": "48eb2035bd4b4bb67c51b5d716881896cc04dda7d329ff405d7a3d0f332df3e0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/litex.config",
+      "bytes": 27,
+      "sha256": "aea1515f4397ad4174b5596ddb87e1267f1134688979d869080dda5c21531963"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/main.lit",
+      "bytes": 6356,
+      "sha256": "afe602f93be608fa01a45ac2aba2fc4fafd80002cd7349597b512b39ac610e0a"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/provenance.json",
+      "bytes": 1674,
+      "sha256": "f59dcf44c00c6d5f2a2e1885c5eb160b1650bb5368a469a722e7e27000fe1880"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/receipt.json",
+      "bytes": 5333,
+      "sha256": "cbb7a50723927394fb45a0dab2451af5b271fe97566a62c895024f11e5a1693b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/result.json",
+      "bytes": 12368,
+      "sha256": "bbd592500feff6b4b43558cbc4a59467cd2f2a67c30664acdcb04176941b4de2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/litex.config",
+      "bytes": 27,
+      "sha256": "aea1515f4397ad4174b5596ddb87e1267f1134688979d869080dda5c21531963"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/main.lit",
+      "bytes": 12092,
+      "sha256": "e0d405179fe303cc8a0f7452b44db0ce6260ebdcd6bc4e340abcacaed6185ed8"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/provenance.json",
+      "bytes": 3239,
+      "sha256": "7cd588d6dcf26a553745141ad952d2a6dd4e6a1077dc06c746a93c46d46db971"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/receipt.json",
+      "bytes": 9760,
+      "sha256": "757edf5c810ba674b2325cc96f023617339a6a4809afa7e8a1a50b61cb0625ca"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book05-ratio-order-checkpoint/result.json",
+      "bytes": 25262,
+      "sha256": "852e200041203c68dcf62e45f869a7c7f953d7667a4862e008e0aa7e143c3ab2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/litex.config",
+      "bytes": 528,
+      "sha256": "ba7f21e603b2b6e2c65ce66347b1fbaafe4ae74cc5cc4f6d91e6fda4370cd379"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/main.lit",
+      "bytes": 31881,
+      "sha256": "705dc726b9830503cc3d0b154918e084de72ad6d7eb2f752d3f5f6e2b12775ba"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/provenance.json",
+      "bytes": 13126,
+      "sha256": "7ec9c3224cce40c6c63ddbdce09407c425058b36b2363921ba20920157163b1b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/receipt.json",
+      "bytes": 14179,
+      "sha256": "c7b78683f9f64f44dfefaa9bef497836601c9d7df36b61519823746da42f10cc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition01-checkpoint-v2/result.json",
+      "bytes": 46997,
+      "sha256": "03649052819365906aa602d21ce7a5c33e238682cb3fe90a307aebbff712d810"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition02-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/litex.config",
+      "bytes": 656,
+      "sha256": "d6dcef0a456cd9a0869c2bfa3341a93486776210dc383594adf27309e9864a2d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition02-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/main.lit",
+      "bytes": 27397,
+      "sha256": "d83951f1b5a886fe5f53829e1970419f388a5419c071d2b07dc73b3c43fc85bc"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition02-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/provenance.json",
+      "bytes": 6221,
+      "sha256": "0eb5fd3345154d6a22e399823e27c4241c9521c8a20ac48979f543c65c6f9d02"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition02-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/receipt.json",
+      "bytes": 15932,
+      "sha256": "218c1058ef83ef04d3527e7f744bd4c714c45f228ffb28fc988a71c15e426ba0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition02-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition02-checkpoint/result.json",
+      "bytes": 43000,
+      "sha256": "4157f1ba4f2a3a36c19007819d7a487242f3f8fa0ba6f44270daf2a65dc6c0e6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition03-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/litex.config",
+      "bytes": 656,
+      "sha256": "d6dcef0a456cd9a0869c2bfa3341a93486776210dc383594adf27309e9864a2d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition03-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/main.lit",
+      "bytes": 34321,
+      "sha256": "0f7aec475d4fdd01d1033de45e2e9915690db47754e8b7c725f9cf3e0b77a825"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition03-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/provenance.json",
+      "bytes": 5859,
+      "sha256": "9872c39906312e820ce92eb471fe379d6fef5de7e4b773d80663abc61d5b6ec9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition03-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/receipt.json",
+      "bytes": 14916,
+      "sha256": "6d4270e6ae264f21825bc25dc3e094a86e8b39c3f0cf3549e5e96c7a67588ab9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition03-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition03-checkpoint/result.json",
+      "bytes": 51032,
+      "sha256": "3a91844a8b846895f38fd70a7637ed8436d60fbc6641ed07d2dcbc6f881a8f59"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition04-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/litex.config",
+      "bytes": 656,
+      "sha256": "d6dcef0a456cd9a0869c2bfa3341a93486776210dc383594adf27309e9864a2d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition04-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/main.lit",
+      "bytes": 22177,
+      "sha256": "483c6b8ecec28d02cef75c258958d808667aaedf2a62a32631ffa87bac6e37d6"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition04-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/provenance.json",
+      "bytes": 4545,
+      "sha256": "a9bd9b1955f7affc256a1f6e8e236799a0e5d9d4330763006272a749f7280d1b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition04-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/receipt.json",
+      "bytes": 11425,
+      "sha256": "6df327759a6000e8e942bb10fc2f5f84235d880d473c93b2a677a3bbee1c728b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition04-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition04-checkpoint/result.json",
+      "bytes": 34135,
+      "sha256": "ff45960293e58bdd13977a2b8be8f8ec0e6e5e8a93643e6c4f5a4ccfe78ca404"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition05-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/litex.config",
+      "bytes": 656,
+      "sha256": "d6dcef0a456cd9a0869c2bfa3341a93486776210dc383594adf27309e9864a2d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition05-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/main.lit",
+      "bytes": 24864,
+      "sha256": "19e28608a990d30d54e4d79e92aec93b5fdaf222866be21c73c2cf6abac3015e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition05-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/provenance.json",
+      "bytes": 5048,
+      "sha256": "0f80afee6c136f85032875edb31aecf2baf90c4093504875fb286c0b98b01972"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition05-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/receipt.json",
+      "bytes": 12836,
+      "sha256": "c8c14af56f0918044ab269555132cd13a1f1de826995af91bacaad5ecd1c4dbd"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition05-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition05-checkpoint/result.json",
+      "bytes": 37997,
+      "sha256": "5ec04cd9c2a2ab042bd9c8483868ddb9d97ce56c6bb7d5a6279743b28f6cd7d0"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/litex.config",
+      "bytes": 656,
+      "sha256": "d6dcef0a456cd9a0869c2bfa3341a93486776210dc383594adf27309e9864a2d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/main.lit",
+      "bytes": 25565,
+      "sha256": "c663b95d9c423234e9cca646097536ffacf5dfbb02d949c45add15559a2517f2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/provenance.json",
+      "bytes": 5370,
+      "sha256": "f463a2f5c5cc804c965a2f620ce37dc13180d8ccd271d179492e27636930b658"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/receipt.json",
+      "bytes": 13399,
+      "sha256": "3b9ec9523759594075c3d33c788c776a6ef1fc51b205286ee547e3e2f7334168"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition06-checkpoint/result.json",
+      "bytes": 40154,
+      "sha256": "95c21020e0f8082a616e041c9749a7b0bbd8f518d65a9145eeef0dacd8f59313"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition07-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/litex.config",
+      "bytes": 656,
+      "sha256": "d6dcef0a456cd9a0869c2bfa3341a93486776210dc383594adf27309e9864a2d"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition07-checkpoint/main.lit",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/main.lit",
+      "bytes": 50507,
+      "sha256": "1c1b62f914b6d680c4871d4cf4e27ecca1d8eca414213b1df2d99f88fd815306"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition07-checkpoint/provenance.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/provenance.json",
+      "bytes": 6013,
+      "sha256": "4e896ba2fd126e037930b7bc16b6d0919c83d43ffdbcd7864c908a5646ee0394"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition07-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/receipt.json",
+      "bytes": 15221,
+      "sha256": "a83b3b13a2edd4321837df8d3bdb699842db95d652b11e263f2f929c9cf14f57"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition07-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/book06-proposition07-checkpoint/result.json",
+      "bytes": 67084,
+      "sha256": "8de19840425f7919b4742e9eef0807498728a3335c91dd78ddbbd2024ba7d470"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/angle_measure.lit",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/angle_measure.lit",
+      "bytes": 7283,
+      "sha256": "acd535e8b3f0ed6ef18786bd3817fe6e8f0f90b66448c720aa871c81734a5b7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/angles.lit",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/angles.lit",
+      "bytes": 1638,
+      "sha256": "431c8fea334fc07d7e22d2fa3eb872e2a2807b68ab5b9aa404f5c20454489056"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/area.lit",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/area.lit",
+      "bytes": 2517,
+      "sha256": "68c790d7c23cc0605ee9185ac469d6d7a2fef7a614e56ed175bf02cc3484ca75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/geometry_lemmas.lit",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/geometry_lemmas.lit",
+      "bytes": 2809,
+      "sha256": "fedd0db65ed59c0342f7e29c64c34fd16c7c471f7a8fd806daaa9c4f22480c77"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/litex.config",
+      "bytes": 203,
+      "sha256": "e2020135e64d73f90e85bd17b39f77434799cf4ffdd2d209fd165718f5841801"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/parallel.lit",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/parallel.lit",
+      "bytes": 632,
+      "sha256": "0e4bdf212a6c2e6a150a94aa2d59f50b0334f4494a3a4fcfffc9cb459ed800c2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/prefix.lit",
+      "bytes": 25011,
+      "sha256": "7a78a92c2ae95c46f699174f22f1abb1a48b70ab6c0138df2c8f50b1679126c7"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/receipt.json",
+      "bytes": 4689,
+      "sha256": "a0d41d1ce2cb788074212aff381165b25abd626c07d89217c5845bdaf2312e75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/polygon-boundary-checkpoint/result.json",
+      "bytes": 36044,
+      "sha256": "7f97fd7764414508d595dbe619a79e21b9abd0915f3f417c62466da834f4741b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/angle_measure.lit",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/angle_measure.lit",
+      "bytes": 7283,
+      "sha256": "acd535e8b3f0ed6ef18786bd3817fe6e8f0f90b66448c720aa871c81734a5b7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/angles.lit",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/angles.lit",
+      "bytes": 1638,
+      "sha256": "431c8fea334fc07d7e22d2fa3eb872e2a2807b68ab5b9aa404f5c20454489056"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/area.lit",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/area.lit",
+      "bytes": 2517,
+      "sha256": "68c790d7c23cc0605ee9185ac469d6d7a2fef7a614e56ed175bf02cc3484ca75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/geometry_lemmas.lit",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/geometry_lemmas.lit",
+      "bytes": 2809,
+      "sha256": "fedd0db65ed59c0342f7e29c64c34fd16c7c471f7a8fd806daaa9c4f22480c77"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/litex.config",
+      "bytes": 203,
+      "sha256": "e2020135e64d73f90e85bd17b39f77434799cf4ffdd2d209fd165718f5841801"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/parallel.lit",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/parallel.lit",
+      "bytes": 632,
+      "sha256": "0e4bdf212a6c2e6a150a94aa2d59f50b0334f4494a3a4fcfffc9cb459ed800c2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/prefix.lit",
+      "bytes": 42280,
+      "sha256": "39643a60ccced291a40a6d8b6d70d4142e0c0cbb4925d3e70177413a82f72dd9"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/receipt.json",
+      "bytes": 4923,
+      "sha256": "01ada73071ca7f2d2ba00c9b84121b9d2d5c96238e8c7ab566a88dcbc7095c6e"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/prescribed-area-constructions-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/prescribed-area-constructions-checkpoint/result.json",
+      "bytes": 57098,
+      "sha256": "e2dccaf369c5a91f66c2e7c8f05e7dbc6fad4c658de91f4d7c68fed374989934"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/angle_measure.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/angle_measure.lit",
+      "bytes": 7283,
+      "sha256": "acd535e8b3f0ed6ef18786bd3817fe6e8f0f90b66448c720aa871c81734a5b7b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/angles.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/angles.lit",
+      "bytes": 1638,
+      "sha256": "431c8fea334fc07d7e22d2fa3eb872e2a2807b68ab5b9aa404f5c20454489056"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/area.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/area.lit",
+      "bytes": 2517,
+      "sha256": "68c790d7c23cc0605ee9185ac469d6d7a2fef7a614e56ed175bf02cc3484ca75"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/geometry_lemmas.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/geometry_lemmas.lit",
+      "bytes": 2809,
+      "sha256": "fedd0db65ed59c0342f7e29c64c34fd16c7c471f7a8fd806daaa9c4f22480c77"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/litex.config",
+      "bytes": 203,
+      "sha256": "e2020135e64d73f90e85bd17b39f77434799cf4ffdd2d209fd165718f5841801"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/parallel.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/parallel.lit",
+      "bytes": 632,
+      "sha256": "0e4bdf212a6c2e6a150a94aa2d59f50b0334f4494a3a4fcfffc9cb459ed800c2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/prefix.lit",
+      "bytes": 36686,
+      "sha256": "aae3d185c1558555676848ead9f3eb40d7099b1fa10143eebe0673cec351c307"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/receipt.json",
+      "bytes": 4887,
+      "sha256": "0edbc28d20488afcffea67e863de99025232e7f2513de8eff8433d1e38a2ea56"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-decomposition-area-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-decomposition-area-checkpoint/result.json",
+      "bytes": 52642,
+      "sha256": "0d2c854923fd2e5da8d606f255c291394ad74e8fe5a2339328ba92d16dc2557c"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-dissection-checkpoint/litex.config",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-dissection-checkpoint/litex.config",
+      "bytes": 61,
+      "sha256": "6864fcade95de84ab6979a9207d009cfdf3cda17e189a8e17fe9b3d1e9db396b"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-dissection-checkpoint/prefix.lit",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-dissection-checkpoint/prefix.lit",
+      "bytes": 26876,
+      "sha256": "12998227b6abf2220b844f9a1975107af1b03f929a81309ace27c0c40d7cded2"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-dissection-checkpoint/receipt.json",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-dissection-checkpoint/receipt.json",
+      "bytes": 2320,
+      "sha256": "0d9a944a4d39a9d5a22d6126a8713743841b7ed1f62f2f6d8ab26a184804b4ba"
+    },
+    {
+      "source": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/triangle-dissection-checkpoint/result.json",
+      "path": "results/checkpoints/resume-2026-10-17/triangle-dissection-checkpoint/result.json",
+      "bytes": 45033,
+      "sha256": "90620d5ef72d5205c9fee3c781d189e0bf9d224c63ff4a222fad92b696178792"
+    },
+    {
+      "path": "results/index.json",
+      "bytes": 21383,
+      "sha256": "5fd793c78887bd0477e7d3ed554f5fec5d975995c7c57b6dbe7905da8dfdc319",
+      "generated": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 3465,
+      "sha256": "85ff2d571c688b353bb8eb7b64b6d3f76a59d6233f3a6c50d2e78bffa9ad7687",
+      "generated": true
+    }
+  ]
+}

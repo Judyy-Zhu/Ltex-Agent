@@ -1,0 +1,55 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "reviewed_at": "2026-10-17T15:31:27.764459+00:00",
+  "source_lines": {
+    "I47": [
+      1800,
+      1863
+    ],
+    "I48": [
+      1865,
+      1897
+    ]
+  },
+  "source_labels_to_candidate": {
+    "A": "b (right-angle vertex)",
+    "B": "a",
+    "C": "c"
+  },
+  "requirements": [
+    {
+      "source": "I47 area of square on BC equals sum of squares on BA,AC",
+      "candidate": "proposition47-candidate1.lit: opposite = first+second, with three explicit square and positive area premises",
+      "assessment": "source statement preserved under vertex renaming; semantic verification and square/area nonvacuity consumers pending"
+    },
+    {
+      "source": "I48 square-area sum implies angle BAC is right",
+      "candidate": "proposition48-candidate1.lit: $geometry::main::is_right_angle(a,b,c)",
+      "assessment": "source converse preserved; same three actual-square/area premises, nondegenerate triangle retained"
+    },
+    {
+      "source": "I47 construction of all three squares cites I46",
+      "candidate": "proposition46-candidate1.lit and square-area-candidate1.lit",
+      "assessment": "must demonstrate all three square constructions and valid positive areas before coverage promotion; not yet verified"
+    },
+    {
+      "source": "I47 footnote additional common notion: doubles of equal areas are equal",
+      "candidate": "positive-real scalar equality in analytic area model",
+      "assessment": "source note identified; not added as a user axiom"
+    },
+    {
+      "source": "I48 footnote: squares of equal magnitudes are equal; converse also used",
+      "candidate": "square-area bridge and positive segment lengths",
+      "assessment": "source note identified; proof-route difference must remain visible"
+    }
+  ],
+  "proof_route": "Analytic determinant/Gram area identity and independently proved metric Pythagorean/cosine laws replace the source dissection/SSS route. No claim to reproduce Euclid proof verbatim.",
+  "source_hashes": {
+    "square-area-candidate1.lit": "9a46216a611ee2c6e97a55a8f9fc91b1efbfa6b2d3004354e7fd7b32f3574b06",
+    "proposition47-candidate1.lit": "a29ba179d5706db594cfd0a74e9a48b34774738173b4b20a4cdca03c669a77bc",
+    "proposition48-candidate1.lit": "80b20c0d5b7ed8006e0cad6fc0d6f208ee268758751bc072e11b0c88829d674a"
+  },
+  "semantic_verification": "pending",
+  "coverage_increment": 0,
+  "trust_added": 0
+}

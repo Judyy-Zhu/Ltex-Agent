@@ -1,0 +1,68 @@
+{
+  "status": "All three source propositions, internal/external contact definitions and concrete consumers passed independent strict gate",
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_audit_still_required": [
+    "III.Def3",
+    "III11 internal contact/produced center line",
+    "III12 external contact/center segment",
+    "III13 uniqueness of contact"
+  ],
+  "existing_interface_caution": {
+    "source": "textbook/book03-circles.lit:circles_touch_at",
+    "clause": "forall q cart(R,R): on_circle(q,o,r), on_circle(q,p,s) => q=contact",
+    "meaning": "This sufficient interface is used for III6, whose proof only needs distinct circles and one common point. Its uniqueness clause must not be used as an independent proof of source III13."
+  },
+  "forward_mathematical_plan": [
+    "Start from distinct positive-radius disks and a common circumference point.",
+    "Internal contact: one closed disk contained in the other. External contact: no point of either disk lies in the interior of the other. Audit these against source touching modes before implementation.",
+    "Use checked radial extrema to derive center distance plus/minus radius equality; do not assume unique intersection.",
+    "Strict radial extremum uniqueness then yields the contact point and excludes a second one.",
+    "Existing center-on-far-segment and external-near-on-center-segment lemmas supply the III11/III12 orientation, beyond mere collinearity."
+  ],
+  "foundation_status": "III.Def3 not yet counted",
+  "trust_added": 0,
+  "source_audit": {
+    "definition3": {
+      "page_zero_based": 69,
+      "lines": [
+        2708,
+        2711
+      ]
+    },
+    "III11": {
+      "pages_zero_based": [
+        80,
+        81
+      ],
+      "lines": [
+        3234,
+        3273
+      ],
+      "required": "Internal contact is on the produced center line, beyond the inner center."
+    },
+    "III12": {
+      "pages_zero_based": [
+        81,
+        82
+      ],
+      "lines": [
+        3274,
+        3310
+      ],
+      "required": "External contact lies on the finite center-center segment."
+    },
+    "III13": {
+      "pages_zero_based": [
+        82,
+        83
+      ],
+      "required": "At most one contact, for both modes; must derive uniqueness."
+    }
+  },
+  "interface_decision": "Relations use prop, existing circles::closed_disk for internal subset and external nonentry into circles::is_inside_circle. Radius carriersR+ and distinct circumference sets are in each definition. No uniqueness assumption. Derived incidence and uniqueness consume the same definitions.",
+  "tracer": "Internal disks center(0,0) radius2 inside center(3,0) radius5 touch at(-2,0); external center(0,0) radius2 and center(5,0) radius3 touch at(2,0). Translated/rotated general statements remain universal.",
+  "cold_receipt": ".draft/circle-circle-contact-checkpoint/receipt.json",
+  "canonical_integration": "pending with latest III1–III10 and III14; not counted yet",
+  "canonical_status": "Integrated into textbook/book03-circles.lit; joint strict PASS94 declarations, stable inputs",
+  "canonical_promotion": "translation_records/book03-propositions11-15-canonical.json"
+}

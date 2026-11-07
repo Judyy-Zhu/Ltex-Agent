@@ -1,0 +1,27 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    88
+  ],
+  "source_goal": "Radius to a tangent contact is perpendicular to the tangent",
+  "premise": "Existing nonentry definition of tangent; no assumed perpendicularity or uniqueness",
+  "proof_spine": [
+    "Project center to tangent using direction a→b of positive squared norm",
+    "Projection lies on tangent because contact lies on tangent",
+    "Projection squared distance is r² minus squared radial-direction dot divided by positive direction norm",
+    "Nonentry forces radial-direction dot to vanish"
+  ],
+  "trust_added": 0,
+  "completed": false,
+  "canonical": true,
+  "pending": "Joint tangent integration strict gate",
+  "first_attempt": "Projection construction, line incidence, and distance formula passed; compound strict subtraction inequality failed with session_error null. Typed radius-square and positive gap aliases added.",
+  "source_interface": "$is_perpendicular(o,c,a,b), with positive-radius contact ensuring o != c",
+  "accepted": [
+    "book03-proposition18-radius-perpendicular3.lit",
+    "book03-proposition18-use1.lit"
+  ],
+  "correction": "Explicit rr-gap < rr-0 = rr accepted; source perpendicular predicate and dot conclusion both verified.",
+  "canonical_record": "translation_records/book03-propositions17-19-canonical.json",
+  "status": "Canonical after joint strict PASS113; source clauses and use consumers checked"
+}

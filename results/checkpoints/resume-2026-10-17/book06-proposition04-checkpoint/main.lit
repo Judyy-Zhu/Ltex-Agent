@@ -1,0 +1,408 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::line_through_points
+release obj def angle_measure::segment_length
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+release obj def angles::angle_cosine
+
+# Eudoxus comparisons for positive real measures; quantity kinds are supplied by geometric interfaces.
+prop have_equal_equimultiple_comparisons(a,b,c,d R+):
+    forall m,n N+:
+        =>:
+            m*a < n*b
+        <=>:
+            m*c < n*d
+    forall m,n N+:
+        =>:
+            m*a = n*b
+        <=>:
+            m*c = n*d
+    forall m,n N+:
+        =>:
+            m*a > n*b
+        <=>:
+            m*c > n*d
+
+
+thm cross_product_preserves_less_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a < n*b
+        =>:
+            m*c < n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) < scale*(n*b)
+    m*c < n*d
+
+
+thm cross_product_preserves_equal_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a = n*b
+        =>:
+            m*c = n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) = scale*(n*b)
+    m*c = n*d
+
+
+thm cross_product_preserves_greater_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a > n*b
+        =>:
+            m*c > n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) > scale*(n*b)
+    m*c > n*d
+
+
+thm cross_product_implies_equal_equimultiple_comparisons:
+    ? forall a,b,c,d R+:
+        a*d = b*c
+        =>:
+            $have_equal_equimultiple_comparisons(a,b,c,d)
+    c*b = b*c = a*d = d*a
+    claim:
+        ? forall m,n N+:
+            m*a < n*b
+            =>:
+                m*c < n*d
+        release thm cross_product_preserves_less_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c < n*d
+            =>:
+                m*a < n*b
+        release thm cross_product_preserves_less_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a = n*b
+            =>:
+                m*c = n*d
+        release thm cross_product_preserves_equal_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c = n*d
+            =>:
+                m*a = n*b
+        release thm cross_product_preserves_equal_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a > n*b
+            =>:
+                m*c > n*d
+        release thm cross_product_preserves_greater_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c > n*d
+            =>:
+                m*a > n*b
+        release thm cross_product_preserves_greater_equimultiples(c,d,a,b,m,n)
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+
+
+thm equal_positive_quotients_imply_cross_product:
+    ? forall a,b,c,d R+:
+        a/b = c/d
+        =>:
+            a*d = b*c
+    (a/b)*(b*d) = (c/d)*(b*d)
+    a*d = (a/b)*(b*d) = (c/d)*(b*d) = b*c
+
+
+# Publish the independently proved nonzero contract for denominators in geometric ratios.
+claim:
+    ? forall a,b cart(R,R):
+        a != b
+        =>:
+            angle_measure::segment_length(a,b) $in R+
+            angle_measure::segment_length(a,b) > 0
+            angle_measure::segment_length(a,b) != 0
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    geometry::main::distance_sq(a,b) >= 0
+    sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) = sqrt(geometry::main::distance_sq(a,b)) > 0
+    angle_measure::segment_length(a,b) $in R+
+    angle_measure::segment_length(a,b) != 0
+
+
+thm two_equal_angles_give_opposite_squared_side_ratio:
+    ? forall a,b,c,u,v,w cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        $geometry::main::is_triangle(u,v,w)
+        $geometry::main::are_angles_congruent(b,a,c,v,u,w)
+        $geometry::main::are_angles_congruent(a,b,c,u,v,w)
+        =>:
+            geometry::main::distance_sq(a,c)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(u,w)*geometry::main::distance_sq(b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(u,v,w)
+    release thm geometry::main::distance_sq_positive_of_ne(a,b)
+    release thm geometry::main::distance_sq_positive_of_ne(a,c)
+    release thm geometry::main::distance_sq_positive_of_ne(b,c)
+    release thm geometry::main::distance_sq_positive_of_ne(u,v)
+    release thm geometry::main::distance_sq_positive_of_ne(u,w)
+    release thm geometry::main::distance_sq_positive_of_ne(v,w)
+    have x R+ = geometry::main::distance_sq(a,b)
+    have y R+ = geometry::main::distance_sq(a,c)
+    have z R+ = geometry::main::distance_sq(b,c)
+    have xx R+ = geometry::main::distance_sq(u,v)
+    have yy R+ = geometry::main::distance_sq(u,w)
+    have zz R+ = geometry::main::distance_sq(v,w)
+    by def $geometry::main::is_triangle(a,b,c)
+    by def $geometry::main::is_triangle(u,v,w)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 > 0
+    geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2 > 0
+    have first_area_sq R+ = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2
+    have second_area_sq R+ = geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2
+    release thm geometry::main::distance_sq_symmetric(a,b)
+    release thm geometry::main::distance_sq_symmetric(u,v)
+    geometry::main::angle_cos_den(b,a,c) = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(a,c) = x*y
+    geometry::main::angle_cos_den(v,u,w) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(u,w) = xx*yy
+    geometry::main::angle_cos_den(a,b,c) = geometry::main::distance_sq(b,a)*geometry::main::distance_sq(b,c) = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(b,c) = x*z
+    geometry::main::angle_cos_den(u,v,w) = geometry::main::distance_sq(v,u)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(v,w) = xx*zz
+    release thm geometry::main::congruent_angle_det_square_ratio(b,a,c,v,u,w)
+    first_area_sq*(xx*yy) = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2*geometry::main::angle_cos_den(v,u,w) = geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2*geometry::main::angle_cos_den(b,a,c) = second_area_sq*(x*y)
+    release thm geometry::main::congruent_angle_det_square_ratio(a,b,c,u,v,w)
+    release thm geometry::main::triangle_det_squared_vertex(a,b,c)
+    release thm geometry::main::triangle_det_squared_vertex(u,v,w)
+    first_area_sq = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = geometry::main::det(geometry::main::vec(b,a),geometry::main::vec(b,c))^2
+    second_area_sq = geometry::main::det(geometry::main::vec(u,v),geometry::main::vec(u,w))^2 = geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2
+    first_area_sq*(xx*zz) = geometry::main::det(geometry::main::vec(b,a),geometry::main::vec(b,c))^2*geometry::main::angle_cos_den(u,v,w) = geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w))^2*geometry::main::angle_cos_den(a,b,c) = second_area_sq*(x*z)
+    first_area_sq*xx > 0
+    have common R+ = first_area_sq*xx
+    (yy*z-zz*y)*common = (yy*z-zz*y)*(first_area_sq*xx) = (first_area_sq*(xx*yy))*z-(first_area_sq*(xx*zz))*y = (second_area_sq*(x*y))*z-(second_area_sq*(x*z))*y = 0
+    yy*z-zz*y = ((yy*z-zz*y)*common)/common = 0/common = 0
+    y*zz = zz*y = yy*z-(yy*z-zz*y) = yy*z-0 = yy*z
+    geometry::main::distance_sq(a,c)*geometry::main::distance_sq(v,w) = y*zz = yy*z = geometry::main::distance_sq(u,w)*geometry::main::distance_sq(b,c)
+
+
+thm congruent_angles_remain_congruent_with_reversed_arms:
+    ? forall p,q,r,u,v,w cart(R,R):
+        $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+        =>:
+            $geometry::main::are_angles_congruent(r,q,p,w,v,u)
+    by def $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+    release thm angle_measure::angle_relation_implies_equal_cosine(p,q,r,u,v,w)
+    release thm angle_measure::angle_cosine_arms_symmetric(p,q,r)
+    release thm angle_measure::angle_cosine_arms_symmetric(u,v,w)
+    angles::angle_cosine(r,q,p) = angles::angle_cosine(p,q,r) = angles::angle_cosine(u,v,w) = angles::angle_cosine(w,v,u)
+    release thm angle_measure::equal_cosines_imply_angle_relation(r,q,p,w,v,u)
+
+
+thm proper_triangle_survives_last_vertex_swap:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            $geometry::main::is_triangle(a,c,b)
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a,c),geometry::main::vec(a,b)) != 0
+        geometry::main::det(geometry::main::vec(a,c),geometry::main::vec(a,b)) = 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = -geometry::main::det(geometry::main::vec(a,c),geometry::main::vec(a,b)) = -0 = 0
+        impossible geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) != 0
+    by def $geometry::main::is_triangle(a,c,b)
+
+
+thm book06_proposition_04_quotients:
+    ? forall a,b,c,u,v,w cart(R,R):
+        $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+        a != b
+        a != c
+        b != c
+        u != v
+        u != w
+        v != w
+        =>:
+            angle_measure::segment_length(a,b)/angle_measure::segment_length(b,c) = angle_measure::segment_length(u,v)/angle_measure::segment_length(v,w)
+            angle_measure::segment_length(b,c)/angle_measure::segment_length(a,c) = angle_measure::segment_length(v,w)/angle_measure::segment_length(u,w)
+            angle_measure::segment_length(a,b)/angle_measure::segment_length(a,c) = angle_measure::segment_length(u,v)/angle_measure::segment_length(u,w)
+    by def $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(u,v,w)
+    release thm two_equal_angles_give_opposite_squared_side_ratio(a,b,c,u,v,w)
+    release thm proper_triangle_survives_last_vertex_swap(a,b,c)
+    release thm proper_triangle_survives_last_vertex_swap(u,v,w)
+    release thm congruent_angles_remain_congruent_with_reversed_arms(b,a,c,v,u,w)
+    release thm two_equal_angles_give_opposite_squared_side_ratio(a,c,b,u,w,v)
+    release thm geometry::main::distance_sq_symmetric(b,c)
+    release thm geometry::main::distance_sq_symmetric(v,w)
+    geometry::main::distance_sq(a,b)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(w,v) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(c,b) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(b,c)
+    have ab R+ = angle_measure::segment_length(a,b)
+    have ac R+ = angle_measure::segment_length(a,c)
+    have bc R+ = angle_measure::segment_length(b,c)
+    have uv R+ = angle_measure::segment_length(u,v)
+    have uw R+ = angle_measure::segment_length(u,w)
+    have vw R+ = angle_measure::segment_length(v,w)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,b)
+    release thm angle_measure::segment_length_square_is_squared_distance(a,c)
+    release thm angle_measure::segment_length_square_is_squared_distance(b,c)
+    release thm angle_measure::segment_length_square_is_squared_distance(u,v)
+    release thm angle_measure::segment_length_square_is_squared_distance(u,w)
+    release thm angle_measure::segment_length_square_is_squared_distance(v,w)
+    ab^2 = angle_measure::segment_length(a,b)^2 = geometry::main::distance_sq(a,b)
+    ac^2 = angle_measure::segment_length(a,c)^2 = geometry::main::distance_sq(a,c)
+    bc^2 = angle_measure::segment_length(b,c)^2 = geometry::main::distance_sq(b,c)
+    uv^2 = angle_measure::segment_length(u,v)^2 = geometry::main::distance_sq(u,v)
+    uw^2 = angle_measure::segment_length(u,w)^2 = geometry::main::distance_sq(u,w)
+    vw^2 = angle_measure::segment_length(v,w)^2 = geometry::main::distance_sq(v,w)
+    (ab*vw)^2 = ab^2*vw^2 = geometry::main::distance_sq(a,b)*vw^2 = geometry::main::distance_sq(a,b)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(u,v)*geometry::main::distance_sq(b,c) = uv^2*bc^2 = (uv*bc)^2
+    (ac*vw)^2 = ac^2*vw^2 = geometry::main::distance_sq(a,c)*vw^2 = geometry::main::distance_sq(a,c)*geometry::main::distance_sq(v,w) = geometry::main::distance_sq(u,w)*geometry::main::distance_sq(b,c) = uw^2*bc^2 = (uw*bc)^2
+    ab*vw > 0
+    uv*bc > 0
+    ac*vw > 0
+    uw*bc > 0
+    (ab*vw)*(uv*bc) > 0
+    (ac*vw)*(uw*bc) > 0
+    release thm angle_measure::same_square_and_sign_gives_equality(ab*vw,uv*bc)
+    release thm angle_measure::same_square_and_sign_gives_equality(ac*vw,uw*bc)
+    ab/bc = (ab*vw)/(bc*vw) = (uv*bc)/(bc*vw) = uv/vw
+    bc/ac = (uw*bc)/(uw*ac) = (ac*vw)/(uw*ac) = vw/uw
+    ab/ac = (ab/bc)*(bc/ac) = (uv/vw)*(vw/uw) = uv/uw
+    angle_measure::segment_length(a,b)/angle_measure::segment_length(b,c) = ab/bc = uv/vw = angle_measure::segment_length(u,v)/angle_measure::segment_length(v,w)
+    angle_measure::segment_length(b,c)/angle_measure::segment_length(a,c) = bc/ac = vw/uw = angle_measure::segment_length(v,w)/angle_measure::segment_length(u,w)
+    angle_measure::segment_length(a,b)/angle_measure::segment_length(a,c) = ab/ac = uv/uw = angle_measure::segment_length(u,v)/angle_measure::segment_length(u,w)
+
+
+thm uniform_scale_preserves_angle:
+    ? forall p,q,r,u,v,w cart(R,R), k R+:
+        p != q
+        r != q
+        u != v
+        w != v
+        u(1)-v(1) = k*(p(1)-q(1))
+        u(2)-v(2) = k*(p(2)-q(2))
+        w(1)-v(1) = k*(r(1)-q(1))
+        w(2)-v(2) = k*(r(2)-q(2))
+        =>:
+            $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+    release thm geometry::main::similar_triangles_ratio(p,q,q,u,v,v,k)
+    release thm geometry::main::similar_triangles_ratio(r,q,q,w,v,v,k)
+    release thm geometry::main::distance_sq_symmetric(p,q)
+    release thm geometry::main::distance_sq_symmetric(u,v)
+    release thm geometry::main::distance_sq_symmetric(r,q)
+    release thm geometry::main::distance_sq_symmetric(w,v)
+    geometry::main::distance_sq(v,u) = geometry::main::distance_sq(u,v) = k^2*geometry::main::distance_sq(p,q) = k^2*geometry::main::distance_sq(q,p)
+    geometry::main::distance_sq(v,w) = geometry::main::distance_sq(w,v) = k^2*geometry::main::distance_sq(r,q) = k^2*geometry::main::distance_sq(q,r)
+    release thm geometry::main::similar_triangles_dot(p,q,r,u,v,w,k)
+    have n R = geometry::main::angle_cos_num(p,q,r)
+    release thm angles::angle_den_positive(p,q,r)
+    have d R+ = geometry::main::angle_cos_den(p,q,r)
+    geometry::main::angle_cos_num(p,q,r) = geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r)) = (p(1)-q(1))*(r(1)-q(1))+(p(2)-q(2))*(r(2)-q(2))
+    geometry::main::angle_cos_num(u,v,w) = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w)) = (u(1)-v(1))*(w(1)-v(1))+(u(2)-v(2))*(w(2)-v(2)) = k^2*((p(1)-q(1))*(r(1)-q(1))+(p(2)-q(2))*(r(2)-q(2))) = k^2*n
+    d = geometry::main::angle_cos_den(p,q,r) = geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r)
+    geometry::main::angle_cos_den(u,v,w) = geometry::main::distance_sq(v,u)*geometry::main::distance_sq(v,w) = (k^2*geometry::main::distance_sq(q,p))*(k^2*geometry::main::distance_sq(q,r)) = k^4*(geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r)) = k^4*d
+    release thm angles::angle_den_positive(p,q,r)
+    release thm angles::angle_den_positive(u,v,w)
+    geometry::main::angle_cos_num(p,q,r)^2*geometry::main::angle_cos_den(u,v,w) = n^2*(k^4*d) = (k^2*n)^2*d = geometry::main::angle_cos_num(u,v,w)^2*geometry::main::angle_cos_den(p,q,r)
+    n^2 >= 0
+    geometry::main::angle_cos_num(p,q,r)*geometry::main::angle_cos_num(u,v,w) = n*(k^2*n) = k^2*n^2 >= 0
+    by def $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+
+
+thm uniform_scale_preserves_triangle:
+    ? forall p,q,r,u,v,w cart(R,R), k R+:
+        $geometry::main::is_triangle(q,p,r)
+        u(1)-v(1) = k*(p(1)-q(1))
+        u(2)-v(2) = k*(p(2)-q(2))
+        w(1)-v(1) = k*(r(1)-q(1))
+        w(2)-v(2) = k*(r(2)-q(2))
+        =>:
+            $geometry::main::is_triangle(v,u,w)
+    by def $geometry::main::is_triangle(q,p,r)
+    release thm geometry::main::collinear_det_expand(q,p,r)
+    release thm geometry::main::collinear_det_expand(v,u,w)
+    release thm geometry::main::similar_triangles_det(p,q,r,u,v,w,k)
+    have source_det R = geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))
+    source_det != 0
+    geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w)) = (u(1)-v(1))*(w(2)-v(2))-(u(2)-v(2))*(w(1)-v(1)) = k^2*((p(1)-q(1))*(r(2)-q(2))-(p(2)-q(2))*(r(1)-q(1))) = k^2*source_det
+    k^2 != 0
+    k^2*source_det != 0
+    by def $geometry::main::is_triangle(v,u,w)
+
+
+thm book06_proposition_04_equimultiples:
+    ? forall a,b,c,u,v,w cart(R,R):
+        $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+        a != b
+        a != c
+        b != c
+        u != v
+        u != w
+        v != w
+        =>:
+            $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+            $have_equal_equimultiple_comparisons(angle_measure::segment_length(b,c),angle_measure::segment_length(a,c),angle_measure::segment_length(v,w),angle_measure::segment_length(u,w))
+            $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(a,c),angle_measure::segment_length(u,v),angle_measure::segment_length(u,w))
+    release thm book06_proposition_04_quotients(a,b,c,u,v,w)
+    release thm equal_positive_quotients_imply_cross_product(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))
+    release thm equal_positive_quotients_imply_cross_product(angle_measure::segment_length(b,c),angle_measure::segment_length(a,c),angle_measure::segment_length(v,w),angle_measure::segment_length(u,w))
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(b,c),angle_measure::segment_length(a,c),angle_measure::segment_length(v,w),angle_measure::segment_length(u,w))
+    release thm equal_positive_quotients_imply_cross_product(angle_measure::segment_length(a,b),angle_measure::segment_length(a,c),angle_measure::segment_length(u,v),angle_measure::segment_length(u,w))
+    release thm cross_product_implies_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(a,c),angle_measure::segment_length(u,v),angle_measure::segment_length(u,w))
+
+
+thm book06_proposition04_scaled_consumer:
+    ? forall a,b,c cart(R,R), scale R+:
+        $geometry::main::is_triangle(a,b,c)
+        a != b
+        a != c
+        b != c
+        =>:
+            exist u,v,w cart(R,R) st {u != v, u != w, v != w, u(1)=scale*a(1), u(2)=scale*a(2), v(1)=scale*b(1), v(2)=scale*b(2), w(1)=scale*c(1), w(2)=scale*c(2), $geometry::main::are_triangles_similar(a,b,c,u,v,w), $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(u,v),angle_measure::segment_length(v,w))}
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    have u cart(R,R) = (scale*a(1),scale*a(2))
+    u(1) = scale*a(1)
+    u(2) = scale*a(2)
+    have v cart(R,R) = (scale*b(1),scale*b(2))
+    v(1) = scale*b(1)
+    v(2) = scale*b(2)
+    have w cart(R,R) = (scale*c(1),scale*c(2))
+    w(1) = scale*c(1)
+    w(2) = scale*c(2)
+    u(1)-v(1) = scale*a(1)-scale*b(1) = scale*(a(1)-b(1))
+    u(2)-v(2) = scale*a(2)-scale*b(2) = scale*(a(2)-b(2))
+    u(1)-w(1) = scale*a(1)-scale*c(1) = scale*(a(1)-c(1))
+    u(2)-w(2) = scale*a(2)-scale*c(2) = scale*(a(2)-c(2))
+    v(1)-u(1) = scale*b(1)-scale*a(1) = scale*(b(1)-a(1))
+    v(2)-u(2) = scale*b(2)-scale*a(2) = scale*(b(2)-a(2))
+    v(1)-w(1) = scale*b(1)-scale*c(1) = scale*(b(1)-c(1))
+    v(2)-w(2) = scale*b(2)-scale*c(2) = scale*(b(2)-c(2))
+    w(1)-u(1) = scale*c(1)-scale*a(1) = scale*(c(1)-a(1))
+    w(2)-u(2) = scale*c(2)-scale*a(2) = scale*(c(2)-a(2))
+    w(1)-v(1) = scale*c(1)-scale*b(1) = scale*(c(1)-b(1))
+    w(2)-v(2) = scale*c(2)-scale*b(2) = scale*(c(2)-b(2))
+    release thm uniform_scale_preserves_triangle(b,a,c,v,u,w,scale)
+    release thm geometry_lemmas::triangle_vertices_distinct(u,v,w)
+    release thm uniform_scale_preserves_angle(b,a,c,v,u,w,scale)
+    release thm uniform_scale_preserves_angle(a,b,c,u,v,w,scale)
+    release thm uniform_scale_preserves_angle(a,c,b,u,w,v,scale)
+    by def $geometry::main::are_triangles_similar(a,b,c,u,v,w)
+    release thm book06_proposition_04_equimultiples(a,b,c,u,v,w)
+    witness exist aa,bb,cc cart(R,R) st {aa != bb, aa != cc, bb != cc, aa(1)=scale*a(1), aa(2)=scale*a(2), bb(1)=scale*b(1), bb(2)=scale*b(2), cc(1)=scale*c(1), cc(2)=scale*c(2), $geometry::main::are_triangles_similar(a,b,c,aa,bb,cc), $have_equal_equimultiple_comparisons(angle_measure::segment_length(a,b),angle_measure::segment_length(b,c),angle_measure::segment_length(aa,bb),angle_measure::segment_length(bb,cc))} from u,v,w

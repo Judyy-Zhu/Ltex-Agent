@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-13T01:53:41.067337+00:00",
+  "source_numbers": [
+    17,
+    18,
+    19
+  ],
+  "source_corollaries": [
+    "III16"
+  ],
+  "explicitly_incomplete": [
+    "III16 no-intervening-line and curved-angle clauses"
+  ],
+  "receipt": ".draft/book03-tangent-integration-checkpoint/receipt.json",
+  "source_audit": "translation_records/book03-tangent-integration-audit.json",
+  "canonical": "textbook/book03-circles.lit",
+  "sha256_before": "15e1a141eea94f66215bb3cb5fedc5f09a78f30aa9be4452d13cb6eb16dd4c11",
+  "sha256_after": "850b4a4323fdf2855e2a414e00aabdd7d68fe128fff7befb11aa09259ae00114",
+  "copy_matches_checked_candidate": true,
+  "numbered_count_after": 52,
+  "foundations_count_after": 5,
+  "corollaries_count_after": 2,
+  "trust_added": 0,
+  "geometry_changed": false
+}

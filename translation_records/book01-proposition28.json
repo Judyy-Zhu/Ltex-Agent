@@ -1,0 +1,36 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 28,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/28.txt"
+  },
+  "problem": "Corresponding exterior/interior angles equal, or same-side interior angles summing to two right angles, imply parallel lines.",
+  "proof_idea": {
+    "original": "Use vertical-angle equality or the straight-angle sum to obtain equal alternate angles, then I.27.",
+    "analytic": "Both source conditions yield opposite normalized cosines on the same side. Reverse the first line ray and apply the checked I.27."
+  },
+  "cases": {
+    "corresponding": {
+      "status": "strict Session accepted on first actual source attempt",
+      "litex_code": "# Book I.28, corresponding-angle case: external ray px is opposite to\n# transversal ray pq. Equal external/internal corresponding angles yield\n# supplementary same-side cosines, hence parallelism through I.27.\nthm proposition_28_corresponding:\n    ? forall p, q, a, b, x cart(R, R), t R+:\n        p != q\n        p != a\n        q != b\n        p != x\n        x(1)-p(1) = -t*(q(1)-p(1))\n        x(2)-p(2) = -t*(q(2)-p(2))\n        geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(p, a))*geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(q, b)) > 0\n        $geometry::main::are_angles_congruent(x, p, a, p, q, b)\n        =>:\n            $are_parallel_lines(p, a, q, b)\n    release thm angle_relation_implies_equal_cosine(x, p, a, p, q, b)\n    release thm negative_ray_scale_changes_cosine_sign(a, p, q, x, t)\n    release thm angle_cosine_arms_symmetric(x, p, a)\n    angles::angle_cosine(x, p, a) = angles::angle_cosine(a, p, x) = -angles::angle_cosine(a, p, q)\n    angles::angle_cosine(a, p, q) = -(-angles::angle_cosine(a, p, q)) = -angles::angle_cosine(x, p, a) = -angles::angle_cosine(p, q, b)\n    release thm same_side_opposite_cosines_make_parallel(p, q, a, b)\n"
+    },
+    "interior_sum": {
+      "status": "strict Session accepted on first actual source attempt",
+      "litex_code": "# Book I.28, same-side interior-angle case: a sum of two right angles\n# makes the lines parallel. Opposite cosines reduce this directly to I.27.\nthm proposition_28_interior_sum:\n    ? forall p, q, a, b cart(R, R):\n        p != q\n        p != a\n        q != b\n        geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(p, a))*geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(q, b)) > 0\n        ray_angle(a, p, q)+ray_angle(p, q, b) = pi\n        =>:\n            $are_parallel_lines(p, a, q, b)\n    release thm supplementary_measures_imply_opposite_cosines(a, p, q, p, q, b)\n    angles::angle_cosine(a, p, q) = -(-angles::angle_cosine(a, p, q)) = -angles::angle_cosine(p, q, b)\n    release thm same_side_opposite_cosines_make_parallel(p, q, a, b)\n"
+    }
+  },
+  "comments": {
+    "status": "both source alternatives and actual two-case use strict Session accepted; canonical promotion awaits frozen first-27 gate",
+    "trust_added": 0,
+    "scope_guard": "Both alternatives are required for complete I.28 source coverage.",
+    "shared_criterion_source": ".draft/authoring-angles/same-side-opposite-cosines-parallel4.lit",
+    "probe_evidence": "proof_journals/library-replay/corresponding-and-interior-angle-use1-accepted.json",
+    "canonical_status": "saved after first-27 gate terminal; new cold first-29 checkpoint pending",
+    "canonical_checkpoint": "Strict first29 gate passed, 44 declarations, 2459.5303318339866s, all monitored hashes stable",
+    "canonical_receipt": "scripts/Euclid_Elements/.draft/first-twenty-nine-checkpoint/receipt.json"
+  },
+  "litex_code": "# Book I.28, corresponding-angle case: external ray px is opposite to\n# transversal ray pq. Equal external/internal corresponding angles yield\n# supplementary same-side cosines, hence parallelism through I.27.\nthm proposition_28_corresponding:\n    ? forall p, q, a, b, x cart(R, R), t R+:\n        p != q\n        p != a\n        q != b\n        p != x\n        x(1)-p(1) = -t*(q(1)-p(1))\n        x(2)-p(2) = -t*(q(2)-p(2))\n        geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(p, a))*geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(q, b)) > 0\n        $geometry::main::are_angles_congruent(x, p, a, p, q, b)\n        =>:\n            $parallel::are_parallel_lines(p, a, q, b)\n    release thm angle_measure::angle_relation_implies_equal_cosine(x, p, a, p, q, b)\n    release thm angle_measure::negative_ray_scale_changes_cosine_sign(a, p, q, x, t)\n    release thm angle_measure::angle_cosine_arms_symmetric(x, p, a)\n    angles::angle_cosine(x, p, a) = angles::angle_cosine(a, p, x) = -angles::angle_cosine(a, p, q)\n    angles::angle_cosine(a, p, q) = -(-angles::angle_cosine(a, p, q)) = -angles::angle_cosine(x, p, a) = -angles::angle_cosine(p, q, b)\n    release thm same_side_opposite_cosines_make_parallel(p, q, a, b)\n\n# Book I.28, same-side interior-angle case: a sum of two right angles\n# makes the lines parallel. Opposite cosines reduce this directly to I.27.\nthm proposition_28_interior_sum:\n    ? forall p, q, a, b cart(R, R):\n        p != q\n        p != a\n        q != b\n        geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(p, a))*geometry::main::det(geometry::main::vec(p, q), geometry::main::vec(q, b)) > 0\n        angle_measure::ray_angle(a, p, q)+angle_measure::ray_angle(p, q, b) = pi\n        =>:\n            $parallel::are_parallel_lines(p, a, q, b)\n    release thm angle_measure::supplementary_measures_imply_opposite_cosines(a, p, q, p, q, b)\n    angles::angle_cosine(a, p, q) = -(-angles::angle_cosine(a, p, q)) = -angles::angle_cosine(p, q, b)\n    release thm same_side_opposite_cosines_make_parallel(p, q, a, b)\n"
+}

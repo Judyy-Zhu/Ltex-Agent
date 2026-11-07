@@ -1,0 +1,112 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "source_items": {
+    "V.Def4": {
+      "lines": [
+        5327,
+        5328
+      ],
+      "numerical_request": "0018"
+    },
+    "V.Def7": {
+      "lines": [
+        5337,
+        5342
+      ],
+      "definition_request": "0010",
+      "equivalence_requests": [
+        "0011",
+        "0012"
+      ]
+    },
+    "V.7": {
+      "lines": [
+        5694,
+        5736
+      ],
+      "request": "0021"
+    },
+    "V.7.corollary": {
+      "lines": [
+        5737,
+        5743
+      ],
+      "request": "0022"
+    },
+    "V.8": {
+      "lines": [
+        5744,
+        5752
+      ],
+      "request": "0023"
+    },
+    "V.9": {
+      "lines": [
+        5839,
+        5860
+      ],
+      "requests": [
+        "0024",
+        "0025"
+      ]
+    },
+    "V.10": {
+      "lines": [
+        5861,
+        5895
+      ],
+      "requests": [
+        "0026",
+        "0027"
+      ]
+    },
+    "V.11": {
+      "lines": [
+        5896,
+        5930
+      ],
+      "request": "0029"
+    },
+    "V.13": {
+      "lines": [
+        6018,
+        6079
+      ],
+      "request": "0013"
+    }
+  },
+  "scope": "Numerical measure layer only: arbitrary positive real values. Same-kind quantity interfaces and canonical source integration remain unfinished.",
+  "key_definition": "has_greater_equimultiple_ratio(a,b,c,d) iff there exist m,n in N+ with m*a>n*b and m*c<=n*d. The non-exceeding comparison retains equality.",
+  "proof_routes": {
+    "order_equivalence": "Forward multiply witness inequalities by positive measures and cancel m. Reverse use the established rational separating-equimultiples theorem with swapped pairs.",
+    "V7_to_V10": "Use established exact equivalences to cross-products and positivity to multiply/cancel; covers both clauses and inversion corollary.",
+    "V11": "Use established equality of quotients, then package back into the original all-integer comparison predicate.",
+    "V13": "Directly transport the greater comparison across proportionality, retaining the same m,n witness.",
+    "VDef4": "Native Archimedean bounds applied to b/a and a/b supply positive integer witnesses."
+  },
+  "repairs": {
+    "0014": "sqrt(2)>1 was not automatic;0019 proves it by squaring a supposed contrary bound.",
+    "0028": "Direct folding missed the intermediate multiple comparison;0029 uses already-proved quotient equivalence, no additional premises."
+  },
+  "controls": {
+    "0015": "accepted: second comparison equality is allowed",
+    "0016": "rejected: equal ratios cannot be strictly greater",
+    "0017": "rejected: zero denominator outside R+",
+    "0019": "accepted irrational greater-ratio example",
+    "0020": "accepted V13 actual call"
+  },
+  "trust_added": 0,
+  "checkpoint_handle": 36798,
+  "checkpoint_receipt": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/receipt.json",
+  "checkpoint_status": "strict PASS27; stable hashes",
+  "canonical_increment": 0,
+  "next_numeric_request": "0030",
+  "checkpoint_elapsed_seconds": 5.327987194061279,
+  "proof_liveness_audit": {
+    "short_theorem_review": "V7–V10 are actual source propositions, not new administrative wrappers; their short proofs consume the established ratio equivalence. V13 consumes the exact integer witness directly.",
+    "premise_review": "All measure parameters are positive; source equality/strict inequality/ratio premises are used. No unused dimensional or geometric premises added.",
+    "calculation_review": "Only scalar cancellation and comparison transport needed; no long coordinate expansion. V11 uses a single quotient chain and existing forward interface.",
+    "scope_boundary": "No same-kind quantity model or canonical Book V item is certified by this numerical checkpoint."
+  }
+}

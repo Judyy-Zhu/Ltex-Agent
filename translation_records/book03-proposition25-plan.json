@@ -1,0 +1,109 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    93,
+    94
+  ],
+  "source_goal": "Complete the underlying circle from a given circular segment.",
+  "input_boundary": "The construction must use the given segment/arc and its chord; do not merely return a center already supplied as a construction input. Hidden center/radius witnesses may establish that the given object is a circular segment, but the recovered center must be computed from boundary points.",
+  "forward_spine": [
+    "Construct a strict point on the selected arc lying on the chord perpendicular bisector; prove circle incidence, selected side and equidistance to chord endpoints.",
+    "Use that point with the chord endpoints as a noncollinear triple. Reuse circle_center::center_from_three_points and recover_circle_center_from_three_points.",
+    "Recover the positive radius from the constructed center and a chord endpoint, then identify the completed circle with the underlying circle of the given segment.",
+    "Audit and retain the source minor/semicircle/major center-location consequences; do not infer full source completion from center recovery alone."
+  ],
+  "existing_interfaces": [
+    "textbook/circle-center.lit: center_from_three_points",
+    "textbook/circle-center.lit: constructed_center_is_equidistant",
+    "textbook/circle-center.lit: equidistant_center_is_unique",
+    "textbook/circle-center.lit: recover_circle_center_from_three_points",
+    "chosen_circle_arc",
+    "circular_segment_region",
+    "chosen_arc_angle"
+  ],
+  "first_missing_interface": "Final construction-to-source-case integration and acceptance audit",
+  "analytic_derivation": "For chord vector u and L=dot(u,u)>0, the circle point o+side*(radius/sqrt(L))*perp(u) lies on the selected side. The Gram identity and equal endpoint radii give det(u,o-a)^2=radius^2*L-L^2/4, which makes the side inequality strict. This is a proof plan, not a verified interface.",
+  "verification_cases": [
+    "minor segment",
+    "semicircle",
+    "major segment",
+    "translated or rotated chord"
+  ],
+  "source_proof_difference": "Use the existing coordinate circumcenter construction; original proof uses midpoint, perpendicular and angle-copy constructions. This difference must be recorded at acceptance.",
+  "status": "Construction/recovery and height independently PASS. Auxiliary triangle, center-location branches, and arc classifications Session-accepted, with three independent gates running. Source branch integration and final source/proof audit pending.",
+  "counted": false,
+  "trust_added": 0,
+  "accepted_session_files": [
+    "positive-chord-root-domain1.lit",
+    "positive-chord-root-domain2.lit",
+    "selected-arc-point-codomain1.lit",
+    "selected-arc-point-definition1.lit",
+    "selected-arc-point-certificate3.lit",
+    "selected-arc-point-minor-major-use1.lit",
+    "circular-arc-with-chord-definition1.lit",
+    "book03-proposition25-construction3.lit",
+    "book03-proposition25-recovery2.lit",
+    "selected-arc-point-equidistant1.lit",
+    "circumcenter-chord-height12.lit",
+    "circumcenter-chord-side-identity1.lit"
+  ],
+  "pending": "book01-angle-order-replay/01.lit",
+  "constructor_gate": {
+    "session": 82511,
+    "receipt": ".draft/selected-arc-point-constructor-checkpoint/receipt.json",
+    "scope": "Three declarations: positive root domain2, explicit codomain1, constructor1; excludes geometric certificate and III25.",
+    "status": "FAIL3: missing distance_sq function signature in isolated context; this checkpoint omitted release obj def geometry::main::distance_sq. Full certificate gate includes the release and remains running."
+  },
+  "full_certificate_gate": {
+    "receipt": ".draft/selected-arc-point-checkpoint/receipt.json",
+    "status": "PASS",
+    "scope": "9 declarations, includes geometric certificate and concrete consumer; excludes fullIII25",
+    "session": 96876,
+    "statement_count": 9,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "set_input_interface_plan": {
+    "predicate": "is_circular_arc_with_chord(arc, a, b)",
+    "meaning": "Nondegenerate chosen circle arc represented as a point set, with given chord endpoints; center/radius/side are existential witnesses, not construction inputs.",
+    "construction_output": "Select a noncollinear boundary point p in arc, compute center_from_three_points(a,b,p), recover positive radius from distance to a, and prove the entire arc lies on the resulting circumference.",
+    "remaining_source_clauses": "Minor/semicircle/major center location remains a separate required proof; the construction clause alone is not fullIII25."
+  },
+  "construction_statement_note": "Positive radius is specified by radius^2=distance_sq(center,a); this is equivalent to the positive square-root value. Actual body computes that square root. Explicit p cart(R,R) plus p in arc preserves the intended point domain.",
+  "construction_gate": {
+    "session": 83013,
+    "receipt": ".draft/book03-proposition25-construction-checkpoint/receipt.json",
+    "status": "FAIL: assembly used unaccepted chosen-circle-arc-definition1; 17 declarations passed, then arc definition failed and dependent name was undefined",
+    "native_exit_code": 1
+  },
+  "center_location_spine": [
+    "For the chord midpoint M and selected point P, prove PA=PB and MP perpendicular AB; the strict side certificate excludes P=M.",
+    "Write the circumcenter as C=M+t(P-M), where t=(MP^2-MA^2)/(2*MP^2). Verify this candidate through the existing unique equidistant-center theorem.",
+    "Use the right triangle AMP side/angle comparison to match the source angle APM versus PAM cases to t<0, t=0, t>0.",
+    "Conclude center outside the filled segment, at M for a semicircle, or inside the segment respectively; retain the matching minor/semicircle/major arc statements."
+  ],
+  "center_height_attempts": {
+    "session": 72613,
+    "status": "Height12 and side identity1 accepted; height independently PASS4",
+    "journal_prefix": "proof_journals/books02-03/circumcenter-chord-height",
+    "trust_added": 0
+  },
+  "corrected_construction_gate": {
+    "session": 20369,
+    "receipt": ".draft/book03-proposition25-construction-checkpoint-v2/receipt.json",
+    "status": "PASS",
+    "expected_statement_count": 21,
+    "assembly_fix": "accepted chosen-circle-arc-definition2, exact match to passed III23 checkpoint",
+    "statement_count": 21,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "height_gate": {
+    "session": 39113,
+    "status": "PASS",
+    "receipt": ".draft/circumcenter-chord-height-checkpoint/receipt.json",
+    "statement_count": 4,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  }
+}

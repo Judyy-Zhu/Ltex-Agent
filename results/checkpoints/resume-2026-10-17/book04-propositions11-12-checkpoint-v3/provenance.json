@@ -1,0 +1,469 @@
+{
+  "binary": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/litex-checkpoint-b74d9f0c7e11",
+  "source_receipts": [
+    {
+      "request": "0003",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/similarity-replay-similar_triangles_ratio.lit",
+      "sha256": "46c80ba88d6d7d872d45cbcfe588b30ce2dedbaa9fe4fa0269e35fae93c44a84",
+      "alive": true,
+      "output": "0003.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0005",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/similarity-replay-similar_triangles_det.lit",
+      "sha256": "4836bd2182e1ea1c64f5ea55974c581b7ebc0975c082452ceecab9a269b981b7",
+      "alive": true,
+      "output": "0005.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0007",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/rescale-circle-point-candidate2.lit",
+      "sha256": "3201f271a549fdbdca89526b51c3dd4e2a0bfa6474ad017cd71312da4f0bdb90",
+      "alive": true,
+      "output": "0007.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0013",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-release-line.lit",
+      "sha256": "4be0e36d817b3e688aab3dd72d2145c4a6c9af231a832cdd8bf26bcea59e534d",
+      "alive": true,
+      "output": "0013.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0014",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-existing-tangent-definition.lit",
+      "sha256": "a3ebc4fc4fafba6b8bf69eb827b53692fdc0d36d8ab86ff9227162646f56358e",
+      "alive": true,
+      "output": "0014.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0016",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-dependency-is_on_circle.lit",
+      "sha256": "8095dd46976c9e8889d7ea18f98ffb6aeb28a6cf1d879b14539d519e64419aaa",
+      "alive": true,
+      "output": "0016.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0017",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-dependency-point_difference_norm_pos.lit",
+      "sha256": "c53092f243b5c25b04ba88614041d15dc2d6f9b1259ed81bb0c59667900b02a1",
+      "alive": true,
+      "output": "0017.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0018",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-dependency-radial_perpendicular_distance_identity.lit",
+      "sha256": "bbe4cdecc56444a191ac4043d5afaed4158a94699ac2b0edcf404658d5fcdde9",
+      "alive": true,
+      "output": "0018.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "0022",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/radius-perpendicular-line-contact-candidate2.lit",
+      "sha256": "ee29bddbce259c4dc2fd257f716d3d746392956eb854771b891be0c98b818b78",
+      "alive": true,
+      "output": "0022.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "1300",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-release-distance-nonnegative-candidate2.lit",
+      "sha256": "53ffd49d2872b7ce8536f84f91ec1d50a79744a1e52b6fcab988320668b1defd",
+      "alive": true,
+      "output": "1300.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2101",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/golden-triangle-height-candidate1.lit",
+      "sha256": "b4b2c37abd7ee543f78d71d2873186f586dd47270558bfa7a161420c156311b8",
+      "alive": true,
+      "output": "2101.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2103",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/golden-cut-parameter-candidate2.lit",
+      "sha256": "c476b600a55f217265699e57c90b7bab187f26ac9c6904ae25b959c179195e65",
+      "alive": true,
+      "output": "2103.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2123",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-scalar-metric-candidate1.lit",
+      "sha256": "127d55a369031af873a100dfc459683f0090cb7796756db86ce5a31b8aa2933d",
+      "alive": true,
+      "output": "2123.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2125",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-orientation-candidate2.lit",
+      "sha256": "495b2ec42eb44e8e040421f546ef9af0d7ae937400de798ce47e3de8095c73ab",
+      "alive": true,
+      "output": "2125.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2128",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/positive-convex-combination-candidate1.lit",
+      "sha256": "ce7f55830cf064807558f9a509bc4f1f3af53f1cf33f048a6885a7e4d08aa5a0",
+      "alive": true,
+      "output": "2128.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2129",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-affine-determinant-linearity.lit",
+      "sha256": "f579afed98714927e2f4074a97d83bcab9c8a54e155524451be730177c197f8b",
+      "alive": true,
+      "output": "2129.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2130",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/segment-strict-half-plane-selected.lit",
+      "sha256": "3eb41cf18bc9c53ee76b05044f7539338895c77974ed603485deac365964838b",
+      "alive": true,
+      "output": "2130.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2131",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/strict-half-plane-disjoint-segments-selected.lit",
+      "sha256": "85327858ecfb130b098cb597caa8f45155654a669f99c6adc38857180e0fb8a5",
+      "alive": true,
+      "output": "2131.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2132",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-metric-candidate4.lit",
+      "sha256": "dfd7ac14399a8fe6efe9bd16a6cc2c80b7e84afadb09cb5c26ee683a23367c93",
+      "alive": true,
+      "output": "2132.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2133",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/strict-half-plane-polygon-edge-condition.lit",
+      "sha256": "714dbe565ad3404e21e9ff49d95330db460a4ba6f822099c4a09b11c92b659d2",
+      "alive": true,
+      "output": "2133.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2138",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/integer-index-below-five-cases.lit",
+      "sha256": "55c973856ded91243e262f7f05c744695644db8aac2f6b887805de50d38f5fd8",
+      "alive": true,
+      "output": "2138.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2141",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-vertex-simple-cycle-candidate1.lit",
+      "sha256": "d3c23b106c2c631506799a7928244064c145a01d9bdfc14802dd4ee0f3799b16",
+      "alive": true,
+      "output": "2141.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2142",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-dependency-sss-dot-equal.lit",
+      "sha256": "b99f97f732ca5ffda617bc4726389dca936bb33ce51bbbef3ba41adc0c802c35",
+      "alive": true,
+      "output": "2142.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2144",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-dependency-angle-congruence.lit",
+      "sha256": "068603c993b6f1fc3bb45d767d47303eb55bf42c3ba9be287c7d03beed99b724",
+      "alive": true,
+      "output": "2144.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2149",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-vertex-function-candidate5.lit",
+      "sha256": "dc812e0ae2d6177f5ac6000ebe95b249e7e5a0bc23521c1fc9b5b219837ef525",
+      "alive": true,
+      "output": "2149.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2151",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-point.lit",
+      "sha256": "4d3fc8dee9a11425a9cf69378fdab87dc72019e46d6da30407cb37b49b882894",
+      "alive": true,
+      "output": "2151.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2152",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-differences-candidate1.lit",
+      "sha256": "15f69e7d22ac4dee573a6277cf777e1db2e6cec3c93bae5c9e133b9d8f7b82ac",
+      "alive": true,
+      "output": "2152.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2154",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-distance-candidate1.lit",
+      "sha256": "9cc3926db0e33d446037d81ca66a817b2c8265f1692e661a6c00f6b0bd914ba0",
+      "alive": true,
+      "output": "2154.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2155",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-determinant-candidate1.lit",
+      "sha256": "ae71d9a2de5c8ab43207b33f3d5d12f588331c8684befe78286bccedf8d0a40a",
+      "alive": true,
+      "output": "2155.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2157",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-unit-circle-candidate2.lit",
+      "sha256": "09c8f35cf0986cf61a223f7d58f253b8f58fa1f2dad42f8dba705f0d6419d4cb",
+      "alive": true,
+      "output": "2157.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2158",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-positive-side-simple-cycle-candidate1.lit",
+      "sha256": "4758257e60833d9c598a94e4abf8ceee19a010edabb23ab0651005990b555ce9",
+      "alive": true,
+      "output": "2158.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2162",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition11-candidate2.lit",
+      "sha256": "0a556df6f71ab2ed39ca9c23933e91676fb9a0ceddf6c4f4a656a7bf403421f2",
+      "alive": true,
+      "output": "2162.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2164",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-outer-radius-candidate2.lit",
+      "sha256": "22bb75b6e7b04a8f9e6ea1b064a5476cd76c864274473ec894d3d7f701acd7dd",
+      "alive": true,
+      "output": "2164.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2165",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-chord-midpoint-radius-identity-selected.lit",
+      "sha256": "6571bf43a824ac1950e919d204f21b5b15e68445e1a38485adf68cc88e912a24",
+      "alive": true,
+      "output": "2165.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2167",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/chord-midpoint-contact-geometry-candidate2.lit",
+      "sha256": "9bf7bf38cff3223abb0e5d29fff8abf6404ef0bc43acb917a75b14f0efab9529",
+      "alive": true,
+      "output": "2167.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2169",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/concentric-chord-midpoint-tangency-candidate1.lit",
+      "sha256": "9782a050e2efa749a3e12ce74c606d01bc482daaf5a14f59ae57cf9f65c5bacc",
+      "alive": true,
+      "output": "2169.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2174",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-vertex-centroid-strict-side-candidate2.lit",
+      "sha256": "e5b1c9242d9f8c10a5444ddd3fb1328b21860566a21fbf148488ac44287eaae6",
+      "alive": true,
+      "output": "2174.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2175",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/golden-pentagon-centroid-coordinates-candidate1.lit",
+      "sha256": "e6521d09d53cb3671f4e7b7b1a7a7ebca458c1d748132e5e47e7ed3ca2af47b3",
+      "alive": true,
+      "output": "2175.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2176",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-point-similarity-centroid-candidate1.lit",
+      "sha256": "f31f5811990f618c5e7c8b24480fed6945f8ae6e75e2b9220b7f5e3aeacd4dc4",
+      "alive": true,
+      "output": "2176.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2177",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-prescribed-radius-center-candidate3.lit",
+      "sha256": "b8f70d28bd068fc54618018e57afd21c76f822edb0e5044ad7c48d4dade46a65",
+      "alive": true,
+      "output": "2177.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2178",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition12-candidate2.lit",
+      "sha256": "75a2a27d1feed5331a4d3d18c623d4e14ac8b368829847ce7b521882f428aa47",
+      "alive": true,
+      "output": "2178.log",
+      "outcome": "accepted"
+    },
+    {
+      "request": "2179",
+      "path": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition12-translated-positive.lit",
+      "sha256": "010fa1332c9191056416ba571295ae520c45fdb7ce573c93a6c65df464b1c602",
+      "alive": true,
+      "output": "2179.log",
+      "outcome": "accepted"
+    }
+  ],
+  "hashed_files": [
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/main.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/working.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3/litex.config",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-construction-context/accepted-v2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/litex-checkpoint-b74d9f0c7e11",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/similarity-replay-similar_triangles_ratio.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/similarity-replay-similar_triangles_det.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/rescale-circle-point-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-release-line.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-existing-tangent-definition.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-dependency-is_on_circle.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-dependency-point_difference_norm_pos.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-dependency-radial_perpendicular_distance_identity.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/radius-perpendicular-line-contact-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/incircle-release-distance-nonnegative-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/golden-triangle-height-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/golden-cut-parameter-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-scalar-metric-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-orientation-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/positive-convex-combination-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-affine-determinant-linearity.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/segment-strict-half-plane-selected.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/strict-half-plane-disjoint-segments-selected.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-metric-candidate4.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/strict-half-plane-polygon-edge-condition.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/integer-index-below-five-cases.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-vertex-simple-cycle-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-dependency-sss-dot-equal.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-dependency-angle-congruence.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-vertex-function-candidate5.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-point.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-differences-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-distance-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-determinant-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/scale-and-translate-unit-circle-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-positive-side-simple-cycle-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition11-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-outer-radius-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-chord-midpoint-radius-identity-selected.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/chord-midpoint-contact-geometry-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/concentric-chord-midpoint-tangency-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-vertex-centroid-strict-side-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/golden-pentagon-centroid-coordinates-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/five-point-similarity-centroid-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-prescribed-radius-center-candidate3.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition12-candidate2.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition12-translated-positive.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/angle_measure.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/angles.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/area.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/geometry/main.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/geometry_lemmas.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/parallel.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/prefix.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/geometry/litex.config",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/polygon-boundary-context/litex.config",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/pentagon-metric-candidate6.lit"
+  ],
+  "selected_main_names": [
+    "affine_point_determinant_linearity",
+    "angle_congruence_from_equal_sides_and_dot",
+    "book04_proposition_11",
+    "book04_proposition_12",
+    "chord_midpoint_contact_geometry",
+    "chord_midpoint_radius_identity",
+    "concentric_chord_midpoint_tangency",
+    "five_point_similarity_centroid",
+    "five_positive_side_vertices_give_simple_cycle",
+    "five_vertex_centroid_strict_side",
+    "five_vertex_conditions_give_simple_cycle",
+    "five_vertex_function_exists",
+    "golden_cut_parameter_exists",
+    "golden_pentagon_centroid_coordinates",
+    "golden_pentagon_metric_certificate",
+    "golden_pentagon_outer_radius",
+    "golden_pentagon_scalar_metrics",
+    "golden_pentagon_strict_side_orientation",
+    "golden_pentagon_with_prescribed_radius_and_center",
+    "golden_triangle_positive_height",
+    "integer_index_below_five_cases",
+    "is_on_circle",
+    "is_tangent_line_at",
+    "point_difference_norm_pos",
+    "positive_convex_combination",
+    "radial_perpendicular_distance_identity",
+    "radius_perpendicular_at_line_point_gives_tangency",
+    "rescale_circle_point",
+    "scale_and_translate_coordinate_differences",
+    "scale_and_translate_point",
+    "scale_and_translate_signed_determinant",
+    "scale_and_translate_squared_distance",
+    "scale_and_translate_unit_circle_point",
+    "segment_stays_in_strict_half_plane",
+    "similar_triangles_det",
+    "similar_triangles_ratio",
+    "sss_dot_equal",
+    "strict_half_plane_excludes_segment_intersection",
+    "strict_half_plane_segments_have_no_extra_intersection"
+  ],
+  "selected_working_names": [
+    "closed_segment_membership_reversed",
+    "common_endpoint_condition_reverse_first_segment",
+    "common_endpoint_condition_symmetric",
+    "polygon_inscribed_in_circle",
+    "proper_triangle_adjacent_segments_intersect_at_vertex",
+    "proper_triangle_adjacent_segments_meet_only_at_common_endpoint",
+    "proper_triangle_consecutive_segments_common_endpoint",
+    "proper_triangle_cyclic_rotations"
+  ],
+  "selection": "Conservative textual dependency closure over exact accepted statements; all non-sketch prefix commands retained; cold strict check is the authority.",
+  "context_repair": {
+    "prior_receipt": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint/receipt.json",
+    "commands_added_to_target": [
+      "release obj def geometry::main::vec",
+      "release obj def geometry::main::det",
+      "release obj def geometry::main::dot",
+      "release obj def geometry::main::distance_sq",
+      "release obj def area::triangle_area",
+      "release obj def geometry::main::angle_cos_num",
+      "release obj def geometry::main::angle_cos_den",
+      "release obj def angles::angle_cosine",
+      "release obj def geometry::main::circle"
+    ],
+    "reason": "Authoring Session inherited these commands from its starting file; separately registered target must replay the same object signatures. Proof bodies unchanged."
+  },
+  "repair_receipt": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-integration-repair-session/results/0008.json",
+  "prior_gate": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v2/receipt.json"
+}

@@ -1,0 +1,30 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 16,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "pdf_zero_based_pages": [
+      19,
+      20
+    ]
+  },
+  "problem": "An exterior angle of a nondegenerate triangle, formed by extending one side, is larger than either opposite interior angle.",
+  "proof_idea": {
+    "original": "Bisect a side, extend the joining median by its own length, use congruence and vertical angles; compare the resulting proper subangle with the exterior angle. The selected source notes an additional interior-point assumption.",
+    "analytic": "Strict extension makes its ray opposite to the original side ray. Derive strict normalized-cosine inequalities from nondegenerate coordinate geometry and consume checked arccos strict decrease. Preserve both opposite-angle conclusions."
+  },
+  "litex_code": "# Book I.16: a triangle's exterior angle is larger than each opposite interior angle.\n# Nondegenerate vertices and a proper extended ray are the domains of the displayed angles.\nthm proposition_16:\n    ? forall a, b, c, d cart(R, R):\n        a != b\n        a != c\n        b != c\n        d != c\n        $geometry::main::is_triangle(a, b, c)\n        $geometry::main::is_on_extension(d, b, c)\n        =>:\n            ray_angle(a, c, d) > ray_angle(b, a, c)\n            ray_angle(a, c, d) > ray_angle(a, b, c)\n    by def $geometry::main::is_triangle(a, b, c)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0\n    release thm geometry::main::triangle_det_squared_vertex(a, b, c)\n    geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0\n    by contra:\n        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) != 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c)) = 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = 0\n        impossible geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 > 0\n    by def $geometry::main::is_triangle(b, a, c)\n    release thm two_internal_triangle_cosines_sum_positive(a, b, c)\n    release thm two_internal_triangle_cosines_sum_positive(b, a, c)\n    release thm angle_cosine_arms_symmetric(a, c, b)\n    angles::angle_cosine(a, b, c) + angles::angle_cosine(a, c, b) = angles::angle_cosine(a, b, c) + angles::angle_cosine(b, c, a) > 0\n    by def $geometry::main::is_on_extension(d, b, c)\n    obtain t from exist coef R st {coef > 1, d(1) = (1 - coef) * b(1) + coef * c(1), d(2) = (1 - coef) * b(2) + coef * c(2)}\n    have k R+ = t - 1\n    d(1) - c(1) = ((1 - t) * b(1) + t * c(1)) - c(1) = -(t - 1) * (b(1) - c(1)) = -k * (b(1) - c(1))\n    d(2) - c(2) = ((1 - t) * b(2) + t * c(2)) - c(2) = -(t - 1) * (b(2) - c(2)) = -k * (b(2) - c(2))\n    release thm negative_ray_scale_changes_cosine_sign(a, c, b, d, k)\n    angles::angle_cosine(b, a, c) = (angles::angle_cosine(b, a, c) + angles::angle_cosine(a, c, b)) - angles::angle_cosine(a, c, b) > 0 - angles::angle_cosine(a, c, b) = -angles::angle_cosine(a, c, b) = angles::angle_cosine(a, c, d)\n    angles::angle_cosine(a, b, c) = (angles::angle_cosine(a, b, c) + angles::angle_cosine(a, c, b)) - angles::angle_cosine(a, c, b) > 0 - angles::angle_cosine(a, c, b) = -angles::angle_cosine(a, c, b) = angles::angle_cosine(a, c, d)\n    release thm angle_cosine_bounded(a, c, d)\n    release thm angle_cosine_bounded(b, a, c)\n    release thm angle_cosine_bounded(a, b, c)\n    release thm arccos_strictly_decreasing(angles::angle_cosine(a, c, d), angles::angle_cosine(b, a, c))\n    release thm arccos_strictly_decreasing(angles::angle_cosine(a, c, d), angles::angle_cosine(a, b, c))\n    ray_angle(a, c, d) = arccos(angles::angle_cosine(a, c, d)) > arccos(angles::angle_cosine(b, a, c)) = ray_angle(b, a, c)\n    ray_angle(a, c, d) = arccos(angles::angle_cosine(a, c, d)) > arccos(angles::angle_cosine(a, b, c)) = ray_angle(a, b, c)\n",
+  "comments": {
+    "status": "canonical strict full-source first-seventeen gate passed",
+    "ideal_statement": "Triangle ABC, D on extension beyond C of BC: ray_angle(A,C,D)>ray_angle(B,A,C) and ray_angle(A,C,D)>ray_angle(A,B,C), with proper arm domains derived/stated faithfully.",
+    "trust_added": 0,
+    "boundary_and_next_obligation": "I.16 strict Session accepted and all redundant proper-arm guards audited. Await frozen canonical first-fifteen gate before promoting next prefix; I.16 cold file gate still pending.",
+    "domain_guard_audit": "Triangle vertex distinctness was independently checked; strict_extension_endpoint_distinct now proves d!=c from the library extension predicate, confirming all displayed proper-arm conditions follow from the source geometry."
+  },
+  "draft_source": "scripts/Euclid_Elements/.draft/authoring-angles/proposition16-1.lit",
+  "accepted_session_id": 55623,
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-seventeen-checkpoint/receipt.json"
+}

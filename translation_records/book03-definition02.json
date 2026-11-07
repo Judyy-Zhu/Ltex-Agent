@@ -1,0 +1,11 @@
+{
+  "source": "III.Def2",
+  "semantics": "a proper infinite line touches the circumference and does not enter the positive-radius circle interior",
+  "canonical": "textbook/circle-contact.lit",
+  "definition": "is_tangent_line_at",
+  "actual_construction": "horizontal_tangent_exists, arbitrary positive radius",
+  "cold_receipt": ".draft/circle-contact-checkpoint/receipt.json",
+  "strict": true,
+  "trust_added": 0,
+  "additional_warm_boundary": "tangent-excludes-center2 and tangent-center-secant-control1, not included in this cold snapshot"
+}

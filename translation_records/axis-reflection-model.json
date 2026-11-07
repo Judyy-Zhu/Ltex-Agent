@@ -1,0 +1,15 @@
+{
+  "concept": "reflection in a proper axis",
+  "carrier": "o,p,q and result cart(R,R)",
+  "semantic_role": "function",
+  "selected_name": "reflection_in_axis",
+  "guard": "squared norm of p-o > 0; equivalent to o != p",
+  "existing_surface": "geo point reflection only; no axis-reflection function found",
+  "rejected_form": "prop only would not provide a usable reflected point",
+  "consumers": [
+    "III.7 equal-distance partner",
+    "III.8 equal-distance partner"
+  ],
+  "use_probe": "axis (0,0),(2,0), q=(3,4) -> (3,-4)",
+  "status": "strict cold PASS: constructor, generic distance preservation, signed determinant reversal, circle partner existence and horizontal/diagonal uses; uniqueness separate gate pending"
+}

@@ -1,0 +1,25 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf#page=98",
+  "source_lines": "4052–4110",
+  "scope": "III31 all source clauses remain goal; this slice proves rectilinear angle in a semicircle",
+  "proof_spine": [
+    "circle-chord side/dot identity already independently checked in III20",
+    "diameter means center is on chord line, so inscribed dot product times positive chord square is zero",
+    "divide by positive chord square; fold right-angle predicate and obtain pi/2 measure"
+  ],
+  "dependency_route": "analytic route using III20 prerequisite; no III27/29 needed",
+  "remaining": [
+    "two curved angle OF segment conclusions require source-faithful III.Def7 interface; do not substitute rectilinear angle IN segment"
+  ],
+  "trust_added": 0,
+  "counted": false,
+  "verified_slice": {
+    "clauses": [
+      "semicircle right angle",
+      "greater segment acute angle",
+      "lesser segment obtuse angle"
+    ],
+    "receipt": ".draft/book03-proposition31-rectilinear-checkpoint/receipt.json",
+    "strict": true
+  }
+}

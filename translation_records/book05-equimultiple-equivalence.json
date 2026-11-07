@@ -1,0 +1,62 @@
+{
+  "source": "Fitzpatrick revised2008 BookV Definition5",
+  "scope": "Positive-real numerical equivalence; quantity-kind typing and source definition integration remain unfinished",
+  "statement": "All positive-integer equimultiple comparisons (<,=,>) agree iff a*d=b*c, for arbitrary a,b,c,d in R+.",
+  "proof_spine": [
+    "Forward: common positive scale preserves all three comparisons in both directions.",
+    "If a*d<b*c, choose positive rational n/m strictly between a/b and c/d using builtin rational_between_reals and rational_has_unique_reduced_fraction. Then m*a<n*b but m*c>n*d.",
+    "The comparison equivalences exclude either strict cross-product ordering; conclude equality."
+  ],
+  "session_recovery": {
+    "old_handle": 74020,
+    "observation": "write_stdin returned Unknown process id; a missing handle permits recovery",
+    "new_handle": 7307,
+    "home": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-recovered-session",
+    "prefix": "verified four-declaration forward bridge imported once",
+    "native_pid": 49485,
+    "same_process_after_rejections": true
+  },
+  "accepted_requests": [
+    "0001",
+    "0002",
+    "0003",
+    "0004",
+    "0005",
+    "0006",
+    "0007"
+  ],
+  "controls": {
+    "quotient_consumer": "0006 accepted",
+    "irrational_ratio": "0007 accepted",
+    "wrong_ratio": "0008 rejected",
+    "zero_magnitude": "0009 rejected"
+  },
+  "trust_added": 0,
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-equimultiple-equivalence-checkpoint/receipt.json",
+  "checkpoint_handle": 8790,
+  "checkpoint_status": "strict PASS11, stable hashes",
+  "not_established": [
+    "same-kind magnitude interfaces and geometric measurement bridges",
+    "BookV foundation canonical integration",
+    "BookV propositions"
+  ],
+  "canonical_increment": 0,
+  "checkpoint_elapsed_seconds": 1.7421801090240479,
+  "proof_liveness_audit": {
+    "new_helper_review": [
+      {
+        "name": "positive_rational_separation",
+        "decision": "retain",
+        "reason": "Actual mathematical step: convert a rational between two positive reals to positive-integer numerator and denominator; consumed by the separating-multiples construction."
+      },
+      {
+        "name": "strict_cross_product_has_separating_equimultiples",
+        "decision": "retain",
+        "reason": "Constructs the source-relevant unequal comparison witnesses; both order directions consume it."
+      }
+    ],
+    "short_claim_review": "Six one-call quantified claims preserve the three source comparisons in both directions. They package existing forward lemmas at the exact quantified interface; no new mathematical assumptions.",
+    "calculation_chain_review": "Cross-product division uses positive denominators explicitly; numerator positivity and positive-integer refinement are necessary to supply the source witness domain.",
+    "proof_route": "Forward positive scaling; reverse rational separation and exclusion of both strict orders. No circular use of the reverse result."
+  }
+}

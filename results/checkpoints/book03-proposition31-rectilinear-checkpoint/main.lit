@@ -1,0 +1,335 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::circle
+release obj def geometry::main::dot
+
+release obj def geometry::main::angle_cos_num
+
+release obj def geometry::main::angle_cos_den
+
+release obj def angles::angle_cosine
+
+release obj def angle_measure::ray_angle
+
+
+
+thm circle_chord_side_dot_coordinate:
+    ? forall dx, dy, tx, ty, cx, cy R:
+        2*(cx*dx+cy*dy) = dx^2+dy^2
+        2*(cx*tx+cy*ty) = tx^2+ty^2
+        =>:
+            ((tx^2+ty^2)-(dx*tx+dy*ty))*(dx^2+dy^2) = 2*(dx*cy-dy*cx)*(dx*ty-dy*tx)
+    2*(dx*cy-dy*cx)*(dx*ty-dy*tx) = 2*((dx^2+dy^2)*(cx*tx+cy*ty)-(cx*dx+cy*dy)*(dx*tx+dy*ty)) = (dx^2+dy^2)*(2*(cx*tx+cy*ty))-(2*(cx*dx+cy*dy))*(dx*tx+dy*ty) = (dx^2+dy^2)*(tx^2+ty^2)-(dx^2+dy^2)*(dx*tx+dy*ty) = ((tx^2+ty^2)-(dx*tx+dy*ty))*(dx^2+dy^2)
+
+# A chosen closed arc retains which side of the proper chord was selected.
+
+thm circle_chord_side_dot_metric:
+    ? forall o, a, b, p cart(R, R), radius R+:
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(p, o, radius)
+        =>:
+            geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    by def $geometry::main::is_on_circle(a, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = radius^2
+    by def $geometry::main::is_on_circle(b, o, radius)
+    geometry::main::distance_sq(o, b) = radius*radius = radius^2
+    by def $geometry::main::is_on_circle(p, o, radius)
+    geometry::main::distance_sq(o, p) = radius*radius = radius^2
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    have tx R = p(1)-a(1)
+    have ty R = p(2)-a(2)
+    have cx R = o(1)-a(1)
+    have cy R = o(2)-a(2)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    dx^2+dy^2 = (b(1)-a(1))^2+(b(2)-a(2))^2 = geometry::main::distance_sq(a, b)
+    release thm geometry::main::twice_dot_from_distances_direct(o, a, b)
+    release thm geometry::main::perpendicular_dot_expand(a, o, a, b)
+    (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b)) = (radius^2+geometry::main::distance_sq(a, b)-radius^2) = geometry::main::distance_sq(a, b)
+    2*(cx*dx+cy*dy) = 2*((o(1)-a(1))*(b(1)-a(1))+(o(2)-a(2))*(b(2)-a(2))) = 2*geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, b)) = 2*((geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, b)-geometry::main::distance_sq(o, b))/2) = radius^2+geometry::main::distance_sq(a, b)-radius^2 = geometry::main::distance_sq(a, b) = dx^2+dy^2
+    release thm geometry::main::distance_sq_coordinate_formula(a, p)
+    tx^2+ty^2 = (p(1)-a(1))^2+(p(2)-a(2))^2 = geometry::main::distance_sq(a, p)
+    release thm geometry::main::twice_dot_from_distances_direct(o, a, p)
+    release thm geometry::main::perpendicular_dot_expand(a, o, a, p)
+    (geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, p)-geometry::main::distance_sq(o, p)) = (radius^2+geometry::main::distance_sq(a, p)-radius^2) = geometry::main::distance_sq(a, p)
+    2*(cx*tx+cy*ty) = 2*((o(1)-a(1))*(p(1)-a(1))+(o(2)-a(2))*(p(2)-a(2))) = 2*geometry::main::dot(geometry::main::vec(a, o), geometry::main::vec(a, p)) = 2*((geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, p)-geometry::main::distance_sq(o, p))/2) = radius^2+geometry::main::distance_sq(a, p)-radius^2 = geometry::main::distance_sq(a, p) = tx^2+ty^2
+    release thm circle_chord_side_dot_coordinate(dx, dy, tx, ty, cx, cy)
+    release thm geometry::main::perpendicular_dot_expand(p, a, p, b)
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = (a(1)-p(1))*(b(1)-p(1))+(a(2)-p(2))*(b(2)-p(2)) = (-(p(1)-a(1)))*((b(1)-a(1))-(p(1)-a(1)))+(-(p(2)-a(2)))*((b(2)-a(2))-(p(2)-a(2))) = (-tx)*(dx-tx)+(-ty)*(dy-ty) = (tx^2+ty^2)-(dx*tx+dy*ty)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = (b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1)) = dx*cy-dy*cx
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = (b(1)-a(1))*(p(2)-a(2))-(b(2)-a(2))*(p(1)-a(1)) = dx*ty-dy*tx
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))*geometry::main::distance_sq(a, b) = ((tx^2+ty^2)-(dx*tx+dy*ty))*(dx^2+dy^2) = 2*(dx*cy-dy*cx)*(dx*ty-dy*tx) = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+
+# The angular measure of the selected arc uses the principal or reflex central angle.
+# If the center is on the chord, either side gives a semicircle and the principal angle pi.
+
+prop is_angle_in_circular_segment(o, a, b, p cart(R, R), radius R+, side, alpha R):
+    a != b
+    a != p
+    b != p
+    a != o
+    b != o
+    $geometry::main::is_on_circle(a, o, radius)
+    $geometry::main::is_on_circle(b, o, radius)
+    $geometry::main::is_on_circle(p, o, radius)
+    side = 1 or side = -1
+    side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    alpha = angle_measure::ray_angle(a, p, b)
+
+# III21 makes the angle accepted by a chosen circular segment independent of its vertex.
+
+thm proposition_31_semicircle:
+    ? forall o, a, b, p cart(R, R), radius R+, side, alpha R:
+        $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 0
+        =>:
+            $geometry::main::is_right_angle(a, p, b)
+            alpha = pi/2
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm circle_chord_side_dot_metric(o, a, b, p, radius)
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    have dot_value R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    dot_value*length_sq = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2*0*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 0
+    dot_value = (dot_value*length_sq)/length_sq = 0/length_sq = 0
+    geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = dot_value = 0
+    by def $geometry::main::is_right_angle(a, p, b)
+    release thm angle_measure::right_angle_has_measure_half_pi(a, p, b)
+    alpha = angle_measure::ray_angle(a, p, b) = pi/2
+
+
+thm proposition_31_greater_segment:
+    ? forall o, a, b, p cart(R, R), radius R+, side, alpha R:
+        $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) > 0
+        =>:
+            alpha < pi/2
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    have center_det R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    have vertex_det R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    side*center_det = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) > 0
+    side*vertex_det = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    center_det*vertex_det = 1*(center_det*vertex_det) = side^2*(center_det*vertex_det) = (side*center_det)*(side*vertex_det) > 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm circle_chord_side_dot_metric(o, a, b, p, radius)
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    have dot_value R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    center_det*vertex_det = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    dot_value*length_sq = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2*(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) = 2*(center_det*vertex_det) > 0
+    dot_value = (dot_value*length_sq)/length_sq > 0/length_sq = 0
+    release thm angles::angle_den_positive(a, p, b)
+    have root_den R+ = sqrt(geometry::main::angle_cos_den(a, p, b))
+    geometry::main::angle_cos_num(a, p, b) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = dot_value
+    angles::angle_cosine(a, p, b) = geometry::main::angle_cos_num(a, p, b)/sqrt(geometry::main::angle_cos_den(a, p, b)) = dot_value/root_den > 0/root_den = 0
+    release thm angle_measure::angle_cosine_bounded(a, p, b)
+    release thm angle_measure::arccos_strictly_decreasing(0, angles::angle_cosine(a, p, b))
+    alpha = angle_measure::ray_angle(a, p, b) = arccos(angles::angle_cosine(a, p, b)) < arccos(0) = pi/2
+
+
+thm proposition_31_lesser_segment:
+    ? forall o, a, b, p cart(R, R), radius R+, side, alpha R:
+        $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+        side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) < 0
+        =>:
+            alpha > pi/2
+    by def $is_angle_in_circular_segment(o, a, b, p, radius, side, alpha)
+    by cases:
+        ? side^2 = 1
+        case side = 1:
+            side^2 = 1^2 = 1
+        case side = -1:
+            side^2 = (-1)^2 = 1
+    have center_det R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))
+    have vertex_det R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    side*center_det = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) < 0
+    side*vertex_det = side*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) > 0
+    center_det*vertex_det = 1*(center_det*vertex_det) = side^2*(center_det*vertex_det) = (side*center_det)*(side*vertex_det) < 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm circle_chord_side_dot_metric(o, a, b, p, radius)
+    have length_sq R+ = geometry::main::distance_sq(a, b)
+    have dot_value R = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b))
+    center_det*vertex_det = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))
+    dot_value*length_sq = 2*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2*(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o))*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p))) = 2*(center_det*vertex_det) < 0
+    dot_value = (dot_value*length_sq)/length_sq < 0/length_sq = 0
+    release thm angles::angle_den_positive(a, p, b)
+    have root_den R+ = sqrt(geometry::main::angle_cos_den(a, p, b))
+    geometry::main::angle_cos_num(a, p, b) = geometry::main::dot(geometry::main::vec(p, a), geometry::main::vec(p, b)) = dot_value
+    angles::angle_cosine(a, p, b) = geometry::main::angle_cos_num(a, p, b)/sqrt(geometry::main::angle_cos_den(a, p, b)) = dot_value/root_den < 0/root_den = 0
+    release thm angle_measure::angle_cosine_bounded(a, p, b)
+    release thm angle_measure::arccos_strictly_decreasing(angles::angle_cosine(a, p, b), 0)
+    alpha = angle_measure::ray_angle(a, p, b) = arccos(angles::angle_cosine(a, p, b)) > arccos(0) = pi/2
+
+
+sketch:
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (-1, 0)
+    b(1) = -1
+    b(2) = 0
+    have p cart(R, R) = (0, -1)
+    p(1) = 0
+    p(2) = -1
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = -1
+        impossible 1 != -1
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != p
+        b = p
+        -1 = b(1) = p(1) = 0
+        impossible -1 != 0
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        -1 = b(1) = o(1) = 0
+        impossible -1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2
+    by def $is_angle_in_circular_segment(o, a, b, p, 1, 1, angle_measure::ray_angle(a, p, b))
+    release thm proposition_31_semicircle(o, a, b, p, 1, 1, angle_measure::ray_angle(a, p, b))
+
+
+sketch:
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have p cart(R, R) = (-1, 0)
+    p(1) = -1
+    p(2) = 0
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = -1
+        impossible 1 != -1
+    by contra:
+        ? b != p
+        b = p
+        0 = b(1) = p(1) = -1
+        impossible 0 != -1
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        1 = b(2) = o(2) = 0
+        impossible 1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = 2
+    by def $is_angle_in_circular_segment(o, a, b, p, 1, 1, angle_measure::ray_angle(a, p, b))
+    release thm proposition_31_greater_segment(o, a, b, p, 1, 1, angle_measure::ray_angle(a, p, b))
+
+
+sketch:
+    have o cart(R, R) = (0, 0)
+    o(1) = 0
+    o(2) = 0
+    have a cart(R, R) = (1, 0)
+    a(1) = 1
+    a(2) = 0
+    have b cart(R, R) = (0, 1)
+    b(1) = 0
+    b(2) = 1
+    have p cart(R, R) = (3/5, 4/5)
+    p(1) = 3/5
+    p(2) = 4/5
+    by contra:
+        ? a != b
+        a = b
+        1 = a(1) = b(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? a != p
+        a = p
+        1 = a(1) = p(1) = 3/5
+        impossible 1 != 3/5
+    by contra:
+        ? b != p
+        b = p
+        0 = b(1) = p(1) = 3/5
+        impossible 0 != 3/5
+    by contra:
+        ? a != o
+        a = o
+        1 = a(1) = o(1) = 0
+        impossible 1 != 0
+    by contra:
+        ? b != o
+        b = o
+        1 = b(2) = o(2) = 0
+        impossible 1 != 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    geometry::main::distance_sq(o, a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(a, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    geometry::main::distance_sq(o, b) = (b(1)-o(1))^2+(b(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(b, o, 1)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    geometry::main::distance_sq(o, p) = (p(1)-o(1))^2+(p(2)-o(2))^2 = 1 = 1*1
+    by def $geometry::main::is_on_circle(p, o, 1)
+    release thm geometry::main::collinear_det_expand(a, b, o)
+    release thm geometry::main::collinear_det_expand(a, b, p)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, o)) = 1
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, p)) = -2/5
+    by def $is_angle_in_circular_segment(o, a, b, p, 1, -1, angle_measure::ray_angle(a, p, b))
+    release thm proposition_31_lesser_segment(o, a, b, p, 1, -1, angle_measure::ray_angle(a, p, b))

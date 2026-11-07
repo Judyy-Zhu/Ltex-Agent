@@ -1,0 +1,28 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 3,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition03-checkpoint",
+  "checkpoint_handle": 17067,
+  "accepted_requests": [
+    9145,
+    9151,
+    9148,
+    9149
+  ],
+  "positive_construction_consumer": 9150,
+  "negative_controls": {
+    "9156": "valid triangle and strict midpoint established; rejects angle congruence for the nonbisector",
+    "9157": "valid triangle established; rejects b!=b at the endpoint"
+  },
+  "prior_probe_correction": "9152 lacked explicit triangle establishment;9155 stopped at b!=c. They are not angle-boundary evidence.",
+  "domain_note": "a!=d explicitly makes the bisecting ray nonzero; converse ratio signatures also expose a!=b,a!=c for length well-definedness, already implied by nondegenerate triangle. Constructed consumer derives these from triangle_vertices_distinct.",
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical module integration.",
+  "statement_count": 31,
+  "hashes_stable": true
+}

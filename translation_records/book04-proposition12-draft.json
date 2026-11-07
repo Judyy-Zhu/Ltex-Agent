@@ -1,0 +1,32 @@
+{
+  "source": {
+    "book": 4,
+    "proposition": 12,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "source_file": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition12-candidate2.lit",
+  "theorem_request": "2178",
+  "retained_native_pid": 17245,
+  "positive_consumer": "2179: center(2,-3),radius5",
+  "negative_consumer": "2180: radius0 rejected;0 not in R+",
+  "properties": [
+    "simple5-cycle",
+    "five equal positive squared side lengths",
+    "four angle congruences",
+    "strict convex vertex-side determinants",
+    "five contacts on finite segments",
+    "five circle tangencies",
+    "center strictly inside all five side half-planes"
+  ],
+  "trust_added": 0,
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-propositions11-12-checkpoint-v3",
+  "canonical_increment": 0,
+  "prior_checkpoint_failures": [
+    "v1: missing object releases in target",
+    "v2: explicit metric coordinate substitution required on pinned binary"
+  ],
+  "statement_count": 51,
+  "hashes_stable": true,
+  "remaining": "Canonical full-geometry module integration remains pending. This checkpoint uses the recorded selected geometry dependency context."
+}

@@ -1,0 +1,36 @@
+{
+  "candidate_sha256": "850b4a4323fdf2855e2a414e00aabdd7d68fe128fff7befb11aa09259ae00114",
+  "canonical_prefix_preserved": true,
+  "tested_target_starts_with_candidate": true,
+  "trust_or_axiom_tokens": false,
+  "clauses": {
+    "III16_partial": [
+      "proposition_16_line_outside"
+    ],
+    "III16_corollary": [
+      "proposition_16_tangent_corollary",
+      "proposition_16_tangent_contact_unique"
+    ],
+    "III17": [
+      "tangent_contact_from_external_point",
+      "external_tangent_contact_certificate",
+      "proposition_17_external_point",
+      "proposition_17_boundary_point"
+    ],
+    "III18": [
+      "proposition_18"
+    ],
+    "III19": [
+      "proposition_19"
+    ]
+  },
+  "source_boundaries": [
+    "III16 no-intervening-line and curvilinear-angle claims remain unfinished; not counted as a complete numbered proposition",
+    "III17 exterior-point source construction with explicit domain and additional boundary-point construction; no tangent existence for interior points",
+    "Analytic coordinate proofs replace synthetic proof steps, not source conclusions"
+  ],
+  "remaining": "Full III16 remains incomplete; III17\u201319 and III16 corollary canonically integrated after strict PASS113",
+  "source_manifest": "source-manifest.json",
+  "all_named_clauses_present": true,
+  "receipt": ".draft/book03-tangent-integration-checkpoint/receipt.json"
+}

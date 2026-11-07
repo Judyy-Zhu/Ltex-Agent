@@ -1,0 +1,239 @@
+{
+  "at": "2026-10-11T13:29:46.606379+00:00",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised 2008",
+  "scope": "Book 5 source definitions; inventory only",
+  "source_item_count": 18,
+  "completed_source_item_count": 0,
+  "pdf_zero_based_definition_pages": [
+    129,
+    130
+  ],
+  "pdf_one_based_definition_pages": [
+    130,
+    131
+  ],
+  "items": [
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 1
+      },
+      "concept_tag": "part",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 2
+      },
+      "concept_tag": "multiple",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 3
+      },
+      "concept_tag": "ratio",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 4
+      },
+      "concept_tag": "comparable magnitudes",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished",
+        "numerical_bridge": "Positive-real mutual integer-multiple comparability accepted0018 by native Archimedean bounds."
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 5
+      },
+      "concept_tag": "equal ratios",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished",
+        "semantic_gap": "Source equal-ratio definition compares all positive-integer equimultiples, including irrational real magnitudes. A cross-product interface needs a proved equivalence to this definition, not a silent replacement by rational arithmetic.",
+        "numerical_forward_bridge": "Cross-product implies all three equimultiple comparisons for arbitrary positive real values: strict PASS4 incl irrational-use; source definition still incomplete. See book05-equimultiple-forward-bridge.json.",
+        "numerical_equivalence_bridge": "All three positive-integer comparison equivalences iff cross-product equality for arbitrary positive reals: strict PASS11, including quotient consumer and irrational positive use. See book05-equimultiple-equivalence.json. Quantity-kind interfaces and canonical definition remain unfinished."
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 6
+      },
+      "concept_tag": "proportional magnitudes",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 7
+      },
+      "concept_tag": "greater ratio",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished",
+        "numerical_bridge": "Exact integer-witness greater ratio with <= second comparison accepted0010; equivalence to strict cross-product order accepted0011/0012; boundary controls checked. See book05-ratio-order-real-measures.json."
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 8
+      },
+      "concept_tag": "continued proportion",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 9
+      },
+      "concept_tag": "duplicate ratio",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 10
+      },
+      "concept_tag": "triplicate ratio",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 11
+      },
+      "concept_tag": "correspondence",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 12
+      },
+      "concept_tag": "alternation",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 13
+      },
+      "concept_tag": "inversion",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 14
+      },
+      "concept_tag": "composition",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 15
+      },
+      "concept_tag": "separation",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 16
+      },
+      "concept_tag": "conversion",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 17
+      },
+      "concept_tag": "ex aequali",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    },
+    {
+      "source": {
+        "book_number": 5,
+        "kind": "definition",
+        "number": 18
+      },
+      "concept_tag": "perturbed proportion",
+      "litex_code": null,
+      "comments": {
+        "status": "Source inventoried; interface/semantic bridge/proof/gates unfinished"
+      }
+    }
+  ]
+}

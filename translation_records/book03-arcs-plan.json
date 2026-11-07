@@ -1,0 +1,65 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_scope": [
+    "III.Def6",
+    "III.Def8",
+    "III.Def9",
+    "III20–32"
+  ],
+  "starting_interface": "Chosen closed arc = circumference intersect oriented closed chord half-plane; proper chord and positive radius are definition guards, sign is +1 or -1",
+  "segment_interface": "Closed disk intersect same closed half-plane; actual region, not scalar area",
+  "angle_boundary": "Principal ray_angle is [0,pi]; the chosen arc may require central angle 2*pi-ray_angle. Do not claim III20 from cosine equality alone. Vertex lies strictly in opposite chord half-plane to intercepted arc. Diameter has two distinct half-circle choices.",
+  "immediate_probes": [
+    "Both chord endpoints belong to each closed arc",
+    "Unit-circle horizontal diameter: side -1 selects upper semicircle; opposite point excluded",
+    "Same chord side +1 selects lower semicircle"
+  ],
+  "trust_added": 0,
+  "canonical": false,
+  "completed": false,
+  "pending": null,
+  "accepted": [
+    "chosen-circle-arc-definition2.lit",
+    "chosen-circle-arc-endpoints2.lit",
+    "chosen-circle-arc-upper-use3.lit",
+    "chosen-circle-arc-lower-use1.lit"
+  ],
+  "definition_failure": {
+    "source": "chosen-circle-arc-definition1.lit",
+    "fact": "p $in cart(R,R) when p bound over circle",
+    "repair": "Equivalent cart(R,R) carrier with explicit circumference membership filter",
+    "journal": "proof_journals/books02-03/chosen-circle-arc-definition1-rejection.json"
+  },
+  "consumer_failure": {
+    "source": "chosen-circle-arc-upper-use1.lit",
+    "fact": "u $in arc",
+    "repair": "Establish arc = explicit set builder before membership transfer",
+    "journal": "proof_journals/books02-03/chosen-circle-arc-upper-use1-rejection.json"
+  },
+  "consumer_second_failure": "Direct arc = builder expansion failed; attempt3 explicitly follows arc = chosen_circle_arc(...) = builder. No mathematical premise changed.",
+  "checkpoint": ".draft/chosen-circle-arc-checkpoint",
+  "cold_status": "PASS8 declarations; strict, stable inputs",
+  "cold_receipt": ".draft/chosen-circle-arc-checkpoint/receipt.json",
+  "source_completion": false,
+  "segment_accepted": [
+    "circular-segment-region-definition1.lit",
+    "circular-segment-region-endpoints1.lit",
+    "circular-segment-region-filled-use1.lit",
+    "circular-segment-region-arc-inclusion2.lit"
+  ],
+  "segment_checkpoint": {
+    "directory": ".draft/circular-segment-region-checkpoint",
+    "status": "PASS12 strict/stable",
+    "session": 63731,
+    "receipt": ".draft/circular-segment-region-checkpoint/receipt.json"
+  },
+  "segment_scope": "Source III.Def6 candidate is actual filled region, with endpoint/arc and interior-use acceptance. Canonical foundation count unchanged.",
+  "angle_and_similarity_accepted": [
+    "angle-in-circular-segment-definition1.lit",
+    "angles-in-circular-segment-equal1.lit",
+    "similar-circular-segments-definition1.lit",
+    "similar-circular-segments-all-angles1.lit",
+    "similar-circular-segments-use1.lit"
+  ],
+  "angle_and_similarity_status": "Definition8/11, vertex independence, universal angle consequence and opposite semicircle concrete consumer accepted in15436; independent checkpoint pending"
+}

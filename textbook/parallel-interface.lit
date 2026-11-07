@@ -1,0 +1,184 @@
+# Book I Definition 23: two proper coplanar lines have
+# parallel directions and a nonzero transverse separation.
+# The two equivalence directions below certify the source nonintersection definition.
+release obj def geometry::main::vec
+release obj def geometry::main::det
+
+prop are_parallel_lines(a, b, c, d cart(R, R)):
+    a != b
+    c != d
+    $geometry::main::is_parallel(a, b, c, d)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+
+release obj def geometry::main::line_through_points
+
+# Proper parallel directions with transverse separation have no common point.
+# Membership in the two line sets gives two determinant equations. Together
+# with parallelism, they force both coordinates of the second direction to
+# vanish if there were a common point, contradicting its proper endpoints.
+thm parallel_lines_have_no_common_point:
+    ? forall a, b, c, d, p cart(R, R):
+        $are_parallel_lines(a, b, c, d)
+        p $in geometry::main::line_through_points(a, b)
+        =>:
+            not p $in geometry::main::line_through_points(c, d)
+    by def $are_parallel_lines(a, b, c, d)
+    $geometry::main::is_parallel(a, b, c, d)
+    by def $geometry::main::is_parallel(a, b, c, d)
+    by contra:
+        ? not p $in geometry::main::line_through_points(c, d)
+        p $in geometry::main::line_through_points(c, d)
+        geometry::main::line_through_points(a, b) = {r cart(R, R): geometry::main::det(geometry::main::vec(a, r), geometry::main::vec(a, b)) = 0}
+        geometry::main::line_through_points(c, d) = {r cart(R, R): geometry::main::det(geometry::main::vec(c, r), geometry::main::vec(c, d)) = 0}
+        p $in geometry::main::line_through_points(a, b)
+        p $in geometry::main::line_through_points(c, d)
+        geometry::main::det(geometry::main::vec(a, p), geometry::main::vec(a, b)) = 0
+        geometry::main::det(geometry::main::vec(c, p), geometry::main::vec(c, d)) = 0
+        have ux R = b(1)-a(1)
+        have uy R = b(2)-a(2)
+        have vx R = d(1)-c(1)
+        have vy R = d(2)-c(2)
+        have wx R = c(1)-a(1)
+        have wy R = c(2)-a(2)
+        have px R = p(1)-a(1)
+        have py R = p(2)-a(2)
+        p(1)-c(1) = (p(1)-a(1))-(c(1)-a(1)) = px-wx
+        p(2)-c(2) = (p(2)-a(2))-(c(2)-a(2)) = py-wy
+        release thm geometry::main::vec_coordinate_formula(a, b)
+        release thm geometry::main::vec_coordinate_formula(c, d)
+        release thm geometry::main::vec_coordinate_formula(a, p)
+        release thm geometry::main::vec_coordinate_formula(c, p)
+        geometry::main::vec(a, b)(1) = b(1)-a(1) = ux
+        geometry::main::vec(a, b)(2) = b(2)-a(2) = uy
+        geometry::main::vec(c, d)(1) = d(1)-c(1) = vx
+        geometry::main::vec(c, d)(2) = d(2)-c(2) = vy
+        geometry::main::vec(a, p)(1) = p(1)-a(1) = px
+        geometry::main::vec(a, p)(2) = p(2)-a(2) = py
+        geometry::main::vec(c, p)(1) = p(1)-c(1) = px-wx
+        geometry::main::vec(c, p)(2) = p(2)-c(2) = py-wy
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d)) = 0
+        release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, b), geometry::main::vec(c, d))
+        release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, p), geometry::main::vec(a, b))
+        release thm geometry::main::det_coordinate_formula(geometry::main::vec(c, p), geometry::main::vec(c, d))
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d)) = geometry::main::vec(a, b)(1)*geometry::main::vec(c, d)(2)-geometry::main::vec(a, b)(2)*geometry::main::vec(c, d)(1) = ux*vy-uy*vx = 0
+        geometry::main::det(geometry::main::vec(a, p), geometry::main::vec(a, b)) = px*uy-py*ux = 0
+        release thm geometry::main::collinear_det_expand(c, p, d)
+        geometry::main::det(geometry::main::vec(c, p), geometry::main::vec(c, d)) = (p(1)-c(1))*(d(2)-c(2))-(p(2)-c(2))*(d(1)-c(1))
+        (p(1)-c(1))*(d(2)-c(2))-(p(2)-c(2))*(d(1)-c(1)) = (px-wx)*vy-(py-wy)*vx
+        (px-wx)*vy-(py-wy)*vx = 0
+        ux*py-uy*px = -(px*uy-py*ux) = 0
+        (vx*py-vy*px)-(vx*wy-vy*wx) = -((px-wx)*vy-(py-wy)*vx) = -0 = 0
+        vx*py-vy*px = ((vx*py-vy*px)-(vx*wy-vy*wx))+(vx*wy-vy*wx) = 0+(vx*wy-vy*wx) = vx*wy-vy*wx
+        have offset R = ux*wy-uy*wx
+        release thm geometry::main::collinear_det_expand(a, b, c)
+        offset = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))
+        offset != 0
+        vx*offset = vx*(ux*wy-uy*wx)
+        vx*(ux*wy-uy*wx) = ux*(vx*wy-vy*wx)+(ux*vy-uy*vx)*wx
+        (ux*vy-uy*vx)*wx = 0*wx = 0
+        ux*(vx*wy-vy*wx)+(ux*vy-uy*vx)*wx = ux*(vx*wy-vy*wx)
+        ux*(vx*wy-vy*wx) = ux*(vx*py-vy*px)
+        ux*(vx*py-vy*px) = vx*(ux*py-uy*px)-(ux*vy-uy*vx)*px
+        vx*(ux*py-uy*px)-(ux*vy-uy*vx)*px = vx*0-0*px = 0
+        vx*offset = 0
+        vy*offset = vy*(ux*wy-uy*wx)
+        vy*(ux*wy-uy*wx) = uy*(vx*wy-vy*wx)+(ux*vy-uy*vx)*wy
+        (ux*vy-uy*vx)*wy = 0*wy = 0
+        uy*(vx*wy-vy*wx)+(ux*vy-uy*vx)*wy = uy*(vx*wy-vy*wx)
+        uy*(vx*wy-vy*wx) = uy*(vx*py-vy*px)
+        uy*(vx*py-vy*px) = vy*(ux*py-uy*px)-(ux*vy-uy*vx)*py
+        vy*(ux*py-uy*px)-(ux*vy-uy*vx)*py = vy*0-0*py = 0
+        vy*offset = 0
+        vx = (vx*offset)/offset = 0/offset = 0
+        vy = (vy*offset)/offset = 0/offset = 0
+        d(1)-c(1) = vx = 0
+        d(2)-c(2) = vy = 0
+        d(1) = c(1)
+        d(2) = c(2)
+        d = (d(1),d(2)) = (c(1),c(2)) = c
+        impossible c != d
+
+
+# Two proper lines with nonparallel directions have an actual intersection.
+# Solve the two linear incidence equations using the nonzero determinant.
+thm two_nonparallel_lines_intersect:
+    ? forall a, b, c, d cart(R, R):
+        a != b
+        c != d
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d)) != 0
+        =>:
+            exist p cart(R, R) st {p $in geometry::main::line_through_points(a, b), p $in geometry::main::line_through_points(c, d)}
+    have ux R = b(1)-a(1)
+    have uy R = b(2)-a(2)
+    have vx R = d(1)-c(1)
+    have vy R = d(2)-c(2)
+    have wx R = c(1)-a(1)
+    have wy R = c(2)-a(2)
+    release thm geometry::main::vec_coordinate_formula(a, b)
+    release thm geometry::main::vec_coordinate_formula(c, d)
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, b), geometry::main::vec(c, d))
+    geometry::main::vec(a, b)(1) = b(1)-a(1) = ux
+    geometry::main::vec(a, b)(2) = b(2)-a(2) = uy
+    geometry::main::vec(c, d)(1) = d(1)-c(1) = vx
+    geometry::main::vec(c, d)(2) = d(2)-c(2) = vy
+    have den R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d))
+    den = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d)) = geometry::main::vec(a, b)(1)*geometry::main::vec(c, d)(2)-geometry::main::vec(a, b)(2)*geometry::main::vec(c, d)(1) = ux*vy-uy*vx
+    den != 0
+    have t R = (wx*vy-wy*vx)/den
+    t*den = ((wx*vy-wy*vx)/den)*den = wx*vy-wy*vx
+    have p cart(R, R) = (a(1)+t*ux, a(2)+t*uy)
+    p(1)-a(1) = t*ux
+    p(2)-a(2) = t*uy
+    p(1)-c(1) = (p(1)-a(1))-(c(1)-a(1)) = t*ux-wx
+    p(2)-c(2) = (p(2)-a(2))-(c(2)-a(2)) = t*uy-wy
+    release thm geometry::main::vec_coordinate_formula(a, p)
+    release thm geometry::main::vec_coordinate_formula(c, p)
+    geometry::main::vec(a, p)(1) = p(1)-a(1) = t*ux
+    geometry::main::vec(a, p)(2) = p(2)-a(2) = t*uy
+    geometry::main::vec(c, p)(1) = p(1)-c(1) = t*ux-wx
+    geometry::main::vec(c, p)(2) = p(2)-c(2) = t*uy-wy
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, p), geometry::main::vec(a, b))
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(c, p), geometry::main::vec(c, d))
+    geometry::main::det(geometry::main::vec(a, p), geometry::main::vec(a, b)) = geometry::main::vec(a, p)(1)*geometry::main::vec(a, b)(2)-geometry::main::vec(a, p)(2)*geometry::main::vec(a, b)(1) = (t*ux)*uy-(t*uy)*ux = 0
+    geometry::main::det(geometry::main::vec(c, p), geometry::main::vec(c, d)) = geometry::main::vec(c, p)(1)*geometry::main::vec(c, d)(2)-geometry::main::vec(c, p)(2)*geometry::main::vec(c, d)(1) = (t*ux-wx)*vy-(t*uy-wy)*vx = t*(ux*vy-uy*vx)-(wx*vy-wy*vx) = t*den-(wx*vy-wy*vx) = 0
+    p $in geometry::main::line_through_points(a, b)
+    p $in geometry::main::line_through_points(c, d)
+    witness exist q cart(R, R) st {q $in geometry::main::line_through_points(a, b), q $in geometry::main::line_through_points(c, d)} from p
+
+
+# Conversely, two proper infinite lines with no common point have parallel
+# directions and nonzero transverse separation. Nonparallel directions
+# construct an intersection; zero separation makes c a common point.
+thm disjoint_lines_are_parallel_lines:
+    ? forall a, b, c, d cart(R, R):
+        a != b
+        c != d
+        forall p cart(R, R):
+            p $in geometry::main::line_through_points(a, b)
+            =>:
+                not p $in geometry::main::line_through_points(c, d)
+        =>:
+            $are_parallel_lines(a, b, c, d)
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d)) = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(c, d)) != 0
+        release thm two_nonparallel_lines_intersect(a, b, c, d)
+        obtain p from exist q cart(R, R) st {q $in geometry::main::line_through_points(a, b), q $in geometry::main::line_through_points(c, d)}
+        not p $in geometry::main::line_through_points(c, d)
+        impossible p $in geometry::main::line_through_points(c, d)
+    by def $geometry::main::is_parallel(a, b, c, d)
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0
+        release thm geometry::main::det_antisymmetric(geometry::main::vec(a, b), geometry::main::vec(a, c))
+        geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = -(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))) = -0 = 0
+        c $in geometry::main::line_through_points(a, b)
+        release thm geometry::main::vec_coordinate_formula(c, c)
+        geometry::main::vec(c, c)(1) = c(1)-c(1) = 0
+        geometry::main::vec(c, c)(2) = c(2)-c(2) = 0
+        release thm geometry::main::det_coordinate_formula(geometry::main::vec(c, c), geometry::main::vec(c, d))
+        geometry::main::det(geometry::main::vec(c, c), geometry::main::vec(c, d)) = 0*geometry::main::vec(c, d)(2)-0*geometry::main::vec(c, d)(1) = 0
+        c $in geometry::main::line_through_points(c, d)
+        not c $in geometry::main::line_through_points(c, d)
+        impossible c $in geometry::main::line_through_points(c, d)
+    by def $are_parallel_lines(a, b, c, d)

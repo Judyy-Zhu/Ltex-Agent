@@ -1,0 +1,10 @@
+{
+  "status": "source2 and same-side consumer Session accepted; parser preflight PASS; ready for independent gate",
+  "expected_statements": 4,
+  "source_sha256": "00cb4144cd50087e75ba3abd289b0d42099921323a12d079f828c342fe1ff05a",
+  "sources": [
+    "proposition39-source2.lit",
+    "I39-same-side-use1.lit"
+  ],
+  "namespace_mapping": "ROOT replay names restored to exact canonical area/parallel/geometry_lemmas namespaces"
+}

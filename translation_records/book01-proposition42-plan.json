@@ -1,0 +1,85 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf#page=41",
+  "source_lines": "1595\u20131628",
+  "status": "interface and constructive route prepared only; not submitted",
+  "source_scope": "Construct proper parallelogram equal in area to given proper triangle and with prescribed nonstraight rectilinear angle",
+  "witness": {
+    "common": "area::triangle_area(a,b,c)",
+    "determinant": "det(vec(q,p),vec(q,r))",
+    "scale": "common/sqrt(determinant^2), positive",
+    "fourth": "q+scale*(r-q), coordinate-wise",
+    "third": "p+fourth-q, coordinate-wise"
+  },
+  "proof_spine": [
+    "Positive triangle area and nonzero angle determinant give strictly positive scale",
+    "Affine fourth/third points form actual proper parallelogram",
+    "Both diagonal triangles have half the prescribed area, using determinant scaling and existing area definition",
+    "Existing positive_ray_scale_preserves_cosine followed by equal_cosines_imply_angle_relation gives prescribed geometric angle relation",
+    "Witness actual vertices, area equality, and congruent angle together"
+  ],
+  "route_difference": "Analytic explicit witness based at given angle vertex instead of source midpoint/parallel intersection construction; same existence conclusion with additional vertex anchoring",
+  "reused_interfaces": [
+    "area::triangle_area",
+    "area::has_parallelogram_area",
+    "angle_measure::positive_ray_scale_preserves_cosine",
+    "angle_measure::equal_cosines_imply_angle_relation",
+    "geometry::main::det_scale_right"
+  ],
+  "acceptance_cases": [
+    {
+      "triangle": [
+        [
+          0,
+          0
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "angle": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "expected_vertices": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "area": 3,
+      "purpose": "nonright prescribed angle, actual area witness"
+    },
+    "obtuse prescribed angle",
+    "flat angle rejected",
+    "degenerate triangle rejected"
+  ],
+  "trust_added": 0,
+  "counted": false
+}

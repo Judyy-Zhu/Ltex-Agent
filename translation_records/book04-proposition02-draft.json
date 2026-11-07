@@ -1,0 +1,36 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "book": 4,
+  "proposition": 2,
+  "source_lines": [
+    4572,
+    4607
+  ],
+  "statement": "For any proper triangle and positive-radius circle, construct a proper triangle with three vertices on the given circle and all three corresponding angles congruent.",
+  "proof_spine": "Use independent IV.5 analytic circumcenter; positive scale radius/old_radius followed by translation; squared-distance law gives circle membership, determinant scaling preserves nondegeneracy, dot/norm scaling preserves each angle.",
+  "dependency_order": "IV.5 analytic construction is independent of IV.2; source order may be restored by placing its circumcenter ingredient before IV.2 and stating IV.5 later.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition2-candidate1.lit",
+  "syntax_preview": ".draft/resume-2026-10-17/book04-proposition2-syntax-v3.json",
+  "status": "Session accepted and grouped saved-source strict gate passed; canonical module integration and final proof audit pending",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "pending": [
+    "Native dependency and theorem verification",
+    "Concrete consumer",
+    "Grouped clean/module gate"
+  ],
+  "controls_pending": [
+    ".draft/resume-2026-10-17/book04-proposition2-use1.lit",
+    ".draft/resume-2026-10-17/book04-proposition2-collinear-negative.lit"
+  ],
+  "accepted_request": "book04-construction-session-v3/results/1008.json",
+  "positive_consumer": "book04-construction-session-v3/results/1009.json",
+  "grouped_gate": {
+    "receipt": ".draft/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+    "elapsed_seconds": 285.73385095596313,
+    "top_level_statement_count": 19,
+    "imports_hashed": true,
+    "hashes_stable": true
+  },
+  "negative_control": "1010 rejected exactly at is_triangle(a,b,c) for collinear inputs"
+}

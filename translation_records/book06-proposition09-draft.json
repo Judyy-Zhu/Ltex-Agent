@@ -1,0 +1,21 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 9,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "mathematics": "From a given straight line cut off a prescribed proper part (1/n of the whole for n>1)."
+  },
+  "status": "independent_strict_gate_passed_with_positive_consumer",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition09-checkpoint",
+  "main_sha256": "bd5696a0352cde996e7ec3eaea407a36f860baede63f2c539268de79d34420ab",
+  "main_with_consumer_sha256": "e1a32963ab2a547ae5c137bc0504056d51023fb363b5baef037f4172c593e866",
+  "core_gate": {"stmts": 31, "accepted": 31},
+  "with_consumer_gate": {"stmts": 32, "accepted": 32},
+  "accepted_source": {"request": 9305, "path": "scripts/Euclid_Elements/.draft/resume-2026-10-17/vi9-cut-prescribed-part-candidate5.lit"},
+  "positive_consumer": {"request": 9307, "theorem": "book06_proposition09_unit_third_consumer"},
+  "failed_attempts": [9301, 9302, 9303, 9304, 9306],
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": ["Canonical integration", "Negative control"]
+}

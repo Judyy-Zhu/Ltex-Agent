@@ -1,0 +1,36 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 21,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "pdf_zero_based_pages": [
+      23,
+      24
+    ]
+  },
+  "problem": "For D strictly inside triangle ABC, BD+DC<BA+AC and angle BDC>angle BAC.",
+  "proof_idea": {
+    "original": "Extend BD to E on AC; use I.20 in ABE and CED and segment addition for the length bound, and I.16 twice for the angle bound.",
+    "analytic": "Represent strict interior by positive barycentric weights; construct E on AC with parameter v/(1-u) and derive the original source incidence/length/angle route."
+  },
+  "litex_code": "# Book I.21: inner broken sides are shorter, while the inner angle is larger.\nthm proposition_21:\n    ? forall a, b, c, d cart(R, R):\n        $strictly_inside_triangle(d, a, b, c)\n        =>:\n            segment_length(b, d) + segment_length(d, c) < segment_length(a, b) + segment_length(a, c)\n            ray_angle(b, d, c) > ray_angle(b, a, c)\n    by def $strictly_inside_triangle(d, a, b, c)\n    obtain u, v from exist u0, v0 R+ st {u0 + v0 < 1, d(1) = (1 - u0 - v0) * a(1) + u0 * b(1) + v0 * c(1), d(2) = (1 - u0 - v0) * a(2) + u0 * b(2) + v0 * c(2)}\n    release thm strict_barycentric_side_intersection(a, b, c, d, u, v)\n    obtain auxiliary, t, r from exist middle cart(R, R), ratio, weight R+ st {ratio < 1, weight < 1, middle(1) = a(1) + ratio * (c(1) - a(1)), middle(2) = a(2) + ratio * (c(2) - a(2)), d(1) = b(1) + weight * (middle(1) - b(1)), d(2) = b(2) + weight * (middle(2) - b(2))}\n    release thm side_intersection_triangles_nondegenerate(a, b, c, auxiliary, d, t, r)\n    release thm accepted::triangle_vertices_distinct(a, b, auxiliary)\n    release thm accepted::triangle_vertices_distinct(c, auxiliary, d)\n    release thm proposition_20(a, b, auxiliary)\n    release thm proposition_20(c, auxiliary, d)\n    release thm strict_segment_length_addition(a, c, auxiliary, t)\n    release thm strict_segment_length_addition(b, auxiliary, d, r)\n    release thm segment_length_is_symmetric(d, c)\n    release thm segment_length_is_symmetric(c, auxiliary)\n    release thm segment_length_is_symmetric(d, auxiliary)\n    segment_length(b, d) + segment_length(d, c) = segment_length(b, d) + segment_length(c, d) < segment_length(b, d) + (segment_length(c, auxiliary) + segment_length(auxiliary, d)) = segment_length(b, d) + (segment_length(c, auxiliary) + segment_length(d, auxiliary)) = segment_length(b, d) + (segment_length(auxiliary, c) + segment_length(d, auxiliary)) = (segment_length(b, d) + segment_length(d, auxiliary)) + segment_length(auxiliary, c) = segment_length(b, auxiliary) + segment_length(auxiliary, c) < (segment_length(a, b) + segment_length(a, auxiliary)) + segment_length(auxiliary, c) = segment_length(a, b) + (segment_length(a, auxiliary) + segment_length(auxiliary, c)) = segment_length(a, b) + segment_length(a, c)\n    auxiliary(1) - a(1) = (a(1) + t * (c(1) - a(1))) - a(1) = t * (c(1) - a(1))\n    auxiliary(2) - a(2) = (a(2) + t * (c(2) - a(2))) - a(2) = t * (c(2) - a(2))\n    have alpha R+ = 1 / t\n    alpha = 1 / t > t / t = 1\n    c(1) = a(1) + (c(1) - a(1)) = a(1) + (1 / t) * (t * (c(1) - a(1))) = a(1) + alpha * (auxiliary(1) - a(1)) = (1 - alpha) * a(1) + alpha * auxiliary(1)\n    c(2) = a(2) + (c(2) - a(2)) = a(2) + (1 / t) * (t * (c(2) - a(2))) = a(2) + alpha * (auxiliary(2) - a(2)) = (1 - alpha) * a(2) + alpha * auxiliary(2)\n    witness exist coef R st {coef > 1, c(1) = (1 - coef) * a(1) + coef * auxiliary(1), c(2) = (1 - coef) * a(2) + coef * auxiliary(2)} from alpha\n    by def $geometry::main::is_on_extension(c, a, auxiliary)\n    have s R+ = 1 - r\n    s = 1 - r < 1 - 0 = 1\n    d(1) - auxiliary(1) = (b(1) + r * (auxiliary(1) - b(1))) - auxiliary(1) = (1 - r) * (b(1) - auxiliary(1)) = s * (b(1) - auxiliary(1))\n    d(2) - auxiliary(2) = (b(2) + r * (auxiliary(2) - b(2))) - auxiliary(2) = (1 - r) * (b(2) - auxiliary(2)) = s * (b(2) - auxiliary(2))\n    have beta R+ = 1 / s\n    beta = 1 / s > s / s = 1\n    b(1) = auxiliary(1) + (b(1) - auxiliary(1)) = auxiliary(1) + (1 / s) * (s * (b(1) - auxiliary(1))) = auxiliary(1) + beta * (d(1) - auxiliary(1)) = (1 - beta) * auxiliary(1) + beta * d(1)\n    b(2) = auxiliary(2) + (b(2) - auxiliary(2)) = auxiliary(2) + (1 / s) * (s * (b(2) - auxiliary(2))) = auxiliary(2) + beta * (d(2) - auxiliary(2)) = (1 - beta) * auxiliary(2) + beta * d(2)\n    witness exist coef R st {coef > 1, b(1) = (1 - coef) * auxiliary(1) + coef * d(1), b(2) = (1 - coef) * auxiliary(2) + coef * d(2)} from beta\n    by def $geometry::main::is_on_extension(b, auxiliary, d)\n    release thm proposition_16(c, auxiliary, d, b)\n    by def $geometry::main::is_triangle(a, b, auxiliary)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, auxiliary))^2 > 0\n    release thm geometry::main::triangle_det_squared_vertex(a, b, auxiliary)\n    geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, auxiliary))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, auxiliary))^2 > 0\n    by contra:\n        ? geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, auxiliary)) != 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, auxiliary)) = 0\n        geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, auxiliary))^2 = 0\n        impossible geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, auxiliary))^2 > 0\n    by def $geometry::main::is_triangle(b, a, auxiliary)\n    release thm proposition_16(b, a, auxiliary, c)\n    release thm positive_ray_scale_preserves_angle(c, auxiliary, b, d, s)\n    release thm positive_ray_scale_preserves_angle(b, a, c, auxiliary, t)\n    release thm ray_angle_arms_symmetric(b, d, c)\n    release thm ray_angle_arms_symmetric(b, auxiliary, c)\n    ray_angle(b, d, c) = ray_angle(c, d, b) > ray_angle(c, auxiliary, d) = ray_angle(c, auxiliary, b) = ray_angle(b, auxiliary, c) > ray_angle(b, a, auxiliary) = ray_angle(b, a, c)\n",
+  "comments": {
+    "status": "canonical strict first-twenty-one full file gate passed",
+    "trust_added": 0,
+    "forward_dependencies": [
+      "strict open triangle interior",
+      "constructed side intersection",
+      "positive ray length scaling and segment addition",
+      "I.16 exterior angle comparison",
+      "I.20 triangle side sums"
+    ],
+    "domain_boundary": "Boundary points or degenerate triangles must not satisfy strict interior. No future theorem is assumed.",
+    "interior_probes": "Positive (1,1) witness and rigorous boundary (2,0) exclusion checked for triangle (0,0),(4,0),(0,4).",
+    "draft_source": "scripts/Euclid_Elements/.draft/authoring-angles/proposition21-1.lit"
+  },
+  "accepted_session_id": 55623,
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-twenty-one-checkpoint/receipt.json"
+}

@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 3,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "problem": "Cut from a longer nonzero segment a part equal to a shorter nonzero segment. The cut point must lie strictly between the longer segment endpoints.",
+  "proof_idea": "Let t be the positive square root of the ratio of squared lengths. It lies strictly between zero and one. Construct the affine point at parameter t on the longer segment and use the library affine-distance law. Verify segment membership, both endpoint inequalities and equality with the shorter segment. Euclid transfers the short length using I.2 and intersects a circle with the longer segment.",
+  "litex_code": "thm proposition_3:\n    ? forall a, b, c, d cart(R, R):\n        a != b\n        c != d\n        geometry::main::distance_sq(c, d) < geometry::main::distance_sq(a, b)\n        =>:\n            exist z cart(R, R) st {a != z, z != b, $geometry::main::is_on_segment(z, a, b), $geometry::main::are_segments_congruent(a, z, c, d)}\n    release thm geometry::main::distance_sq_positive_of_ne(a, b)\n    release thm geometry::main::distance_sq_positive_of_ne(c, d)\n    have long_sq R+ = geometry::main::distance_sq(a, b)\n    have short_sq R+ = geometry::main::distance_sq(c, d)\n    have ratio R+ = short_sq / long_sq\n    short_sq < long_sq\n    ratio = short_sq / long_sq < long_sq / long_sq = 1\n    have t R+ = sqrt(ratio)\n    sqrt(ratio)^2 = ratio\n    t^2 = sqrt(ratio)^2 = ratio\n    by contra:\n        ? t < 1\n        t >= 1\n        t^2 = t * t\n        t * t >= t * 1 = t >= 1\n        impossible t^2 < 1\n    have cut cart(R, R) = (a(1) + t * (b(1) - a(1)), a(2) + t * (b(2) - a(2)))\n    cut(1) = a(1) + t * (b(1) - a(1)) = (1 - t) * a(1) + t * b(1)\n    cut(2) = a(2) + t * (b(2) - a(2)) = (1 - t) * a(2) + t * b(2)\n    witness exist k R st {0 <= k, k <= 1, cut(1) = (1 - k) * a(1) + k * b(1), cut(2) = (1 - k) * a(2) + k * b(2)} from t\n    by def $geometry::main::is_on_segment(cut, a, b)\n    release thm geometry::main::affine_distance_from_parameter(a, b, cut, t)\n    release thm geometry::main::distance_sq_symmetric(a, cut)\n    geometry::main::distance_sq(a, cut) = t^2 * geometry::main::distance_sq(a, b) = ratio * long_sq = (short_sq / long_sq) * long_sq = short_sq = geometry::main::distance_sq(c, d)\n    by contra:\n        ? a != cut\n        a = cut\n        release thm geometry::main::distance_sq_coordinate_formula(a, cut)\n        cut(1) = a(1)\n        cut(2) = a(2)\n        cut(1) - a(1) = a(1) - a(1) = 0\n        cut(2) - a(2) = a(2) - a(2) = 0\n        geometry::main::distance_sq(a, cut) = (cut(1) - a(1))^2 + (cut(2) - a(2))^2 = 0^2 + 0^2 = 0\n        short_sq = geometry::main::distance_sq(a, cut) = 0\n        impossible short_sq > 0\n    by contra:\n        ? cut != b\n        cut = b\n        geometry::main::distance_sq(a, cut) = geometry::main::distance_sq(a, b)\n        geometry::main::distance_sq(c, d) = geometry::main::distance_sq(a, cut) = geometry::main::distance_sq(a, b)\n        impossible geometry::main::distance_sq(c, d) < geometry::main::distance_sq(a, b)\n    by def $geometry::main::are_segments_congruent(a, cut, c, d)\n    witness exist z cart(R, R) st {a != z, z != b, $geometry::main::is_on_segment(z, a, b), $geometry::main::are_segments_congruent(a, z, c, d)} from cut\n",
+  "comments": {
+    "status": "checkable: clean registered strict file gate passed",
+    "draft_path": "../.draft/experiment/I3-full-candidate3.lit",
+    "source_route_difference": "Solve the circle/segment intersection by an explicit affine parameter in the real-coordinate model.",
+    "trust_added": 0,
+    "canonical_path": "../textbook/book01-constructions.lit",
+    "gate": {
+      "command": "target/release/litex -lang en -strict -f scripts/Euclid_Elements/textbook/book01-constructions.lit",
+      "exit_code": 0,
+      "success": true,
+      "session_error": null,
+      "receipt": "../.draft/experiment/book01-first-three-clean.json",
+      "binary_start_hash": "not captured; concurrent binary update disclosed in experiment protocol"
+    }
+  }
+}

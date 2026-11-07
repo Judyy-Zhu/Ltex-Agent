@@ -1,0 +1,2146 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def geometry::main::dot
+release obj def geometry::main::distance_sq
+release obj def area::triangle_area
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+release obj def angles::angle_cosine
+release obj def geometry::main::circle
+
+thm similar_triangles_ratio:
+    ? forall p, q, r, u, v, w cart(R, R), k R:
+        u(1) - v(1) = k * (p(1) - q(1))
+        u(2) - v(2) = k * (p(2) - q(2))
+        w(1) - v(1) = k * (r(1) - q(1))
+        w(2) - v(2) = k * (r(2) - q(2))
+        =>:
+            geometry::main::distance_sq(u, w) = k^2 * geometry::main::distance_sq(p, r)
+    release thm geometry::main::distance_sq_coordinate_formula(u, w)
+    release thm geometry::main::distance_sq_coordinate_formula(p, r)
+    w(1) - u(1) = (w(1) - v(1)) - (u(1) - v(1))
+    (w(1) - v(1)) - (u(1) - v(1)) = k * (r(1) - q(1)) - k * (p(1) - q(1))
+    k * (r(1) - q(1)) - k * (p(1) - q(1)) = k * (r(1) - p(1))
+    w(1) - u(1) = k * (r(1) - p(1))
+    w(2) - u(2) = (w(2) - v(2)) - (u(2) - v(2))
+    (w(2) - v(2)) - (u(2) - v(2)) = k * (r(2) - q(2)) - k * (p(2) - q(2))
+    k * (r(2) - q(2)) - k * (p(2) - q(2)) = k * (r(2) - p(2))
+    w(2) - u(2) = k * (r(2) - p(2))
+    (w(1) - u(1))^2 = (k * (r(1) - p(1)))^2 = k^2 * (r(1) - p(1))^2
+    (w(2) - u(2))^2 = (k * (r(2) - p(2)))^2 = k^2 * (r(2) - p(2))^2
+    (w(1) - u(1))^2 + (w(2) - u(2))^2 = k^2 * (r(1) - p(1))^2 + k^2 * (r(2) - p(2))^2
+    k^2 * (r(1) - p(1))^2 + k^2 * (r(2) - p(2))^2 = k^2 * ((r(1) - p(1))^2 + (r(2) - p(2))^2)
+    geometry::main::distance_sq(u, w) = (w(1) - u(1))^2 + (w(2) - u(2))^2 = k^2 * ((r(1) - p(1))^2 + (r(2) - p(2))^2) = k^2 * geometry::main::distance_sq(p, r)
+
+
+thm similar_triangles_det:
+    ? forall p, q, r, u, v, w cart(R, R), k R:
+        u(1) - v(1) = k * (p(1) - q(1))
+        u(2) - v(2) = k * (p(2) - q(2))
+        w(1) - v(1) = k * (r(1) - q(1))
+        w(2) - v(2) = k * (r(2) - q(2))
+        =>:
+            (u(1) - v(1)) * (w(2) - v(2)) - (u(2) - v(2)) * (w(1) - v(1)) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1)))
+    release thm geometry::main::vec_coordinate_formula(v, u)
+    release thm geometry::main::vec_coordinate_formula(v, w)
+    release thm geometry::main::vec_coordinate_formula(q, p)
+    release thm geometry::main::vec_coordinate_formula(q, r)
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(v, u), geometry::main::vec(v, w))
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    (u(1) - v(1)) * (w(2) - v(2)) = (k * (p(1) - q(1))) * (k * (r(2) - q(2)))
+    (k * (p(1) - q(1))) * (k * (r(2) - q(2))) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)))
+    (u(1) - v(1)) * (w(2) - v(2)) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)))
+    (u(2) - v(2)) * (w(1) - v(1)) = (k * (p(2) - q(2))) * (k * (r(1) - q(1)))
+    (k * (p(2) - q(2))) * (k * (r(1) - q(1))) = k^2 * ((p(2) - q(2)) * (r(1) - q(1)))
+    (u(2) - v(2)) * (w(1) - v(1)) = k^2 * ((p(2) - q(2)) * (r(1) - q(1)))
+    (u(1) - v(1)) * (w(2) - v(2)) - (u(2) - v(2)) * (w(1) - v(1)) = k^2 * ((p(1) - q(1)) * (r(2) - q(2))) - k^2 * ((p(2) - q(2)) * (r(1) - q(1)))
+    k^2 * ((p(1) - q(1)) * (r(2) - q(2))) - k^2 * ((p(2) - q(2)) * (r(1) - q(1))) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1)))
+    geometry::main::det(geometry::main::vec(v, u), geometry::main::vec(v, w)) = (u(1) - v(1)) * (w(2) - v(2)) - (u(2) - v(2)) * (w(1) - v(1))
+    geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r)) = (p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1))
+    k^2 * ((p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1))) = k^2 * geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    geometry::main::det(geometry::main::vec(v, u), geometry::main::vec(v, w)) = k^2 * geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))
+
+
+# A positive similarity sends a circumference point to the prescribed circle.
+thm rescale_circle_point:
+    ? forall source,target,p,image cart(R,R), old_radius,new_radius R+:
+        p $in geometry::main::circle(source,old_radius)
+        image(1) = target(1)+(new_radius/old_radius)*(p(1)-source(1))
+        image(2) = target(2)+(new_radius/old_radius)*(p(2)-source(2))
+        =>:
+            image $in geometry::main::circle(target,new_radius)
+    geometry::main::circle(source,old_radius) = {q cart(R,R): geometry::main::distance_sq(source,q) = old_radius*old_radius}
+    p $in geometry::main::circle(source,old_radius)
+    p $in {q cart(R,R): geometry::main::distance_sq(source,q) = old_radius*old_radius}
+    release thm set_builder_member(p,{q cart(R,R): geometry::main::distance_sq(source,q) = old_radius*old_radius})
+    have k R+ = new_radius/old_radius
+    image(1) = target(1)+(new_radius/old_radius)*(p(1)-source(1)) = target(1)+k*(p(1)-source(1))
+    image(1)-target(1) = (target(1)+k*(p(1)-source(1)))-target(1) = k*(p(1)-source(1))
+    image(2) = target(2)+(new_radius/old_radius)*(p(2)-source(2)) = target(2)+k*(p(2)-source(2))
+    image(2)-target(2) = (target(2)+k*(p(2)-source(2)))-target(2) = k*(p(2)-source(2))
+    release thm similar_triangles_ratio(p,source,source,image,target,target,k)
+    release thm geometry::main::distance_sq_symmetric(p,source)
+    release thm geometry::main::distance_sq_symmetric(image,target)
+    geometry::main::distance_sq(source,p) = old_radius*old_radius
+    geometry::main::distance_sq(target,image) = geometry::main::distance_sq(image,target) = k^2*geometry::main::distance_sq(p,source) = k^2*geometry::main::distance_sq(source,p) = k^2*(old_radius*old_radius) = (new_radius/old_radius)^2*old_radius^2 = new_radius^2 = new_radius*new_radius
+    geometry::main::circle(target,new_radius) = {q cart(R,R): geometry::main::distance_sq(target,q) = new_radius*new_radius}
+    image $in geometry::main::circle(target,new_radius)
+
+
+release obj def geometry::main::line_through_points
+
+
+prop is_tangent_line_at(contact, a, b, o cart(R, R), radius R+):
+    a != b
+    contact $in geometry::main::line_through_points(a, b)
+    contact $in geometry::main::circle(o, radius)
+    forall p cart(R, R):
+        p $in geometry::main::line_through_points(a, b)
+        =>:
+            geometry::main::distance_sq(o, p) >= radius^2
+
+
+prop is_on_circle(p, o cart(R, R), r R+):
+    geometry::main::distance_sq(o, p) = r * r
+
+
+thm point_difference_norm_pos:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            (b(1) - a(1))^2 + (b(2) - a(2))^2 > 0
+    (b(1) - a(1))^2 >= 0
+    (b(2) - a(2))^2 >= 0
+    (b(1) - a(1))^2 + (b(2) - a(2))^2 >= 0
+    by contra:
+        ? (b(1) - a(1))^2 + (b(2) - a(2))^2 > 0
+        (b(1) - a(1))^2 + (b(2) - a(2))^2 <= 0
+        (b(1) - a(1))^2 + (b(2) - a(2))^2 = 0
+        (b(1) - a(1))^2 <= (b(1) - a(1))^2 + (b(2) - a(2))^2
+        (b(1) - a(1))^2 <= 0
+        (b(1) - a(1))^2 = 0
+        (b(2) - a(2))^2 <= (b(1) - a(1))^2 + (b(2) - a(2))^2
+        (b(2) - a(2))^2 <= 0
+        (b(2) - a(2))^2 = 0
+        b(1) - a(1) = 0
+        b(2) - a(2) = 0
+        b(1) = a(1)
+        b(2) = a(2)
+        release thm tuple_equal_from_coordinates(a, (a(1), a(2)))
+        release thm tuple_equal_from_coordinates(b, (b(1), b(2)))
+        a = (a(1), a(2)) = (b(1), b(2)) = b
+        impossible a != b
+
+
+thm radial_perpendicular_distance_identity:
+    ? forall o, a, q cart(R, R), radius R+:
+        $is_on_circle(a, o, radius)
+        geometry::main::dot(geometry::main::vec(o, a), geometry::main::vec(a, q)) = 0
+        =>:
+            geometry::main::distance_sq(o, q) = radius^2+geometry::main::distance_sq(a, q)
+    by def $is_on_circle(a, o, radius)
+    release thm geometry::main::perpendicular_dot_expand(o, a, a, q)
+    (a(1)-o(1))*(q(1)-a(1))+(a(2)-o(2))*(q(2)-a(2)) = 0
+    release thm geometry::main::distance_sq_coordinate_formula(o, q)
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    release thm geometry::main::distance_sq_coordinate_formula(a, q)
+    geometry::main::distance_sq(o, q) = (q(1)-o(1))^2+(q(2)-o(2))^2 = ((a(1)-o(1))+(q(1)-a(1)))^2+((a(2)-o(2))+(q(2)-a(2)))^2 = ((a(1)-o(1))^2+(a(2)-o(2))^2)+((q(1)-a(1))^2+(q(2)-a(2))^2)+2*((a(1)-o(1))*(q(1)-a(1))+(a(2)-o(2))*(q(2)-a(2))) = geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, q)+2*0 = geometry::main::distance_sq(o, a)+geometry::main::distance_sq(a, q) = radius*radius+geometry::main::distance_sq(a, q) = radius^2+geometry::main::distance_sq(a, q)
+
+
+# A radius perpendicular to a line at its circumference point certifies tangency.
+# The contact can lie anywhere on the line, not just at a named endpoint.
+thm radius_perpendicular_at_line_point_gives_tangency:
+    ? forall o,contact,a,b cart(R,R), radius R+:
+        a != b
+        contact $in geometry::main::line_through_points(a,b)
+        $is_on_circle(contact,o,radius)
+        geometry::main::dot(geometry::main::vec(o,contact),geometry::main::vec(a,b)) = 0
+        =>:
+            $is_tangent_line_at(contact,a,b,o,radius)
+    by def $is_on_circle(contact,o,radius)
+    geometry::main::circle(o,radius) = {p cart(R,R): geometry::main::distance_sq(o,p) = radius*radius}
+    contact $in geometry::main::circle(o,radius)
+    claim:
+        ? forall q cart(R,R):
+            q $in geometry::main::line_through_points(a,b)
+            =>:
+                geometry::main::distance_sq(o,q) >= radius^2
+        geometry::main::line_through_points(a,b) = {p cart(R,R): geometry::main::det(geometry::main::vec(a,p),geometry::main::vec(a,b)) = 0}
+        q $in geometry::main::line_through_points(a,b)
+        contact $in geometry::main::line_through_points(a,b)
+        q $in {p cart(R,R): geometry::main::det(geometry::main::vec(a,p),geometry::main::vec(a,b)) = 0}
+        contact $in {p cart(R,R): geometry::main::det(geometry::main::vec(a,p),geometry::main::vec(a,b)) = 0}
+        release thm set_builder_member(q,{p cart(R,R): geometry::main::det(geometry::main::vec(a,p),geometry::main::vec(a,b)) = 0})
+        release thm set_builder_member(contact,{p cart(R,R): geometry::main::det(geometry::main::vec(a,p),geometry::main::vec(a,b)) = 0})
+        release thm geometry::main::collinear_det_expand(a,q,b)
+        release thm geometry::main::collinear_det_expand(a,contact,b)
+        have ux R = contact(1)-o(1)
+        have uy R = contact(2)-o(2)
+        have vx R = b(1)-a(1)
+        have vy R = b(2)-a(2)
+        have wx R = q(1)-contact(1)
+        have wy R = q(2)-contact(2)
+        (q(1)-a(1))*vy-(q(2)-a(2))*vx = geometry::main::det(geometry::main::vec(a,q),geometry::main::vec(a,b)) = 0
+        (contact(1)-a(1))*vy-(contact(2)-a(2))*vx = geometry::main::det(geometry::main::vec(a,contact),geometry::main::vec(a,b)) = 0
+        wx = q(1)-contact(1) = (q(1)-a(1))-(contact(1)-a(1))
+        wy = q(2)-contact(2) = (q(2)-a(2))-(contact(2)-a(2))
+        wx*vy-wy*vx = (q(1)-contact(1))*vy-(q(2)-contact(2))*vx = ((q(1)-a(1))*vy-(q(2)-a(2))*vx)-((contact(1)-a(1))*vy-(contact(2)-a(2))*vx) = 0-0 = 0
+        vx*wy-vy*wx = -(wx*vy-wy*vx) = 0
+        release thm geometry::main::perpendicular_dot_expand(o,contact,a,b)
+        ux*vx+uy*vy = (contact(1)-o(1))*(b(1)-a(1))+(contact(2)-o(2))*(b(2)-a(2)) = geometry::main::dot(geometry::main::vec(o,contact),geometry::main::vec(a,b)) = 0
+        release thm point_difference_norm_pos(a,b)
+        vx^2+vy^2 = (b(1)-a(1))^2+(b(2)-a(2))^2 > 0
+        (vx^2+vy^2)*(ux*wx+uy*wy) = (ux*vx+uy*vy)*(vx*wx+vy*wy)+(vx*uy-vy*ux)*(vx*wy-vy*wx) = 0*(vx*wx+vy*wy)+(vx*uy-vy*ux)*0 = 0
+        ux*wx+uy*wy = ((vx^2+vy^2)*(ux*wx+uy*wy))/(vx^2+vy^2) = 0/(vx^2+vy^2) = 0
+        release thm geometry::main::perpendicular_dot_expand(o,contact,contact,q)
+        geometry::main::dot(geometry::main::vec(o,contact),geometry::main::vec(contact,q)) = (contact(1)-o(1))*(q(1)-contact(1))+(contact(2)-o(2))*(q(2)-contact(2)) = ux*wx+uy*wy = 0
+        release thm radial_perpendicular_distance_identity(o,contact,q,radius)
+        release thm geometry::main::distance_sq_nonnegative(contact,q)
+        geometry::main::distance_sq(o,q) = radius^2+geometry::main::distance_sq(contact,q) >= radius^2
+    by def $is_tangent_line_at(contact,a,b,o,radius)
+
+
+claim:
+    ? forall a,b cart(R,R):
+        geometry::main::distance_sq(a,b) >= 0
+    release thm geometry::main::distance_sq_nonnegative(a,b)
+
+
+thm golden_triangle_positive_height:
+    ? forall t R+:
+        t < 1
+        =>:
+            exist height R+ st {height^2 = 1-((1+t)/2)^2}
+    have u R = (1+t)/2
+    0 < (1+t)/2
+    1+t < 1+1 = 2
+    (1+t)/2 < 2/2 = 1
+    0 < u < 1
+    1-u > 0
+    1+u > 0
+    (1-u)*(1+u) > 0
+    1-u^2 = (1-u)*(1+u) > 0
+    have height_sq R+ = 1-u^2
+    have height R+ = sqrt(height_sq)
+    height^2 = (sqrt(height_sq))^2 = height_sq = 1-u^2 = 1-((1+t)/2)^2
+    witness exist h R+ st {h^2 = 1-((1+t)/2)^2} from height
+
+
+thm golden_cut_parameter_exists:
+    ? exist t R+ st {t < 1, t^2 = 1-t}
+    have root R+ = sqrt(5)
+    root^2 = sqrt(5)^2 = 5
+    by contra:
+        ? root > 1
+        root <= 1
+        1-root >= 0
+        1+root > 0
+        (1-root)*(1+root) >= 0
+        (1-root)*(1+root) = 1-root^2 = -4
+        impossible (1-root)*(1+root) >= 0
+    by contra:
+        ? root < 3
+        root >= 3
+        root-3 >= 0
+        root+3 > 0
+        (root-3)*(root+3) >= 0
+        (root-3)*(root+3) = root^2-9 = -4
+        impossible (root-3)*(root+3) >= 0
+    root-1 > 0
+    have t R+ = (root-1)/2
+    root-1 < 3-1 = 2
+    (root-1)/2 < 2/2 = 1
+    t = (root-1)/2 < 1
+    t^2 = ((root-1)/2)^2 = (root^2-2*root+1)/4 = (5-2*root+1)/4 = 1-(root-1)/2 = 1-t
+    witness exist k R+ st {k < 1, k^2 = 1-k} from t
+
+
+thm golden_pentagon_scalar_metrics:
+    ? forall t,h R+:
+        t < 1
+        t^2 = 1-t
+        h^2 = (2-t)/4
+        =>:
+            ((1+t)*h)^2+(t/2)^2 = 1
+            h^2+((1+t)/2)^2 = 1
+            ((1+t)*h)^2+(t/2-1)^2 = 2-t
+            ((1+t)*h-h)^2+(t/2+(1+t)/2)^2 = 2-t
+            4*h^2 = 2-t
+            h^2+(1+(1+t)/2)^2 = 3+t
+            4*((1+t)*h)^2 = 3+t
+            ((1+t)*h+h)^2+(t/2+(1+t)/2)^2 = 3+t
+    (1+t)^2 = 1+2*t+t^2 = 1+2*t+(1-t) = 2+t
+    ((1+t)*h)^2 = (1+t)^2*h^2 = (2+t)*((2-t)/4) = (4-t^2)/4 = (4-(1-t))/4 = (3+t)/4
+    (t/2)^2 = t^2/4 = (1-t)/4
+    ((1+t)/2)^2 = (1+t)^2/4 = (2+t)/4
+    ((1+t)*h)^2+(t/2)^2 = (3+t)/4+(1-t)/4 = 1
+    h^2+((1+t)/2)^2 = (2-t)/4+(2+t)/4 = 1
+    (t/2-1)^2 = (t^2-4*t+4)/4 = ((1-t)-4*t+4)/4 = (5-5*t)/4
+    ((1+t)*h)^2+(t/2-1)^2 = (3+t)/4+(5-5*t)/4 = 2-t
+    ((1+t)*h-h)^2 = (t*h)^2 = t^2*h^2 = (1-t)*((2-t)/4) = (2-3*t+t^2)/4 = (2-3*t+(1-t))/4 = (3-4*t)/4
+    (t/2+(1+t)/2)^2 = ((1+2*t)/2)^2 = (1+4*t+4*t^2)/4 = (1+4*t+4*(1-t))/4 = 5/4
+    ((1+t)*h-h)^2+(t/2+(1+t)/2)^2 = (3-4*t)/4+5/4 = 2-t
+    4*h^2 = 4*((2-t)/4) = 2-t
+    (1+(1+t)/2)^2 = ((3+t)/2)^2 = (9+6*t+t^2)/4 = (9+6*t+(1-t))/4 = (10+5*t)/4
+    h^2+(1+(1+t)/2)^2 = (2-t)/4+(10+5*t)/4 = 3+t
+    4*((1+t)*h)^2 = 4*((3+t)/4) = 3+t
+    (2+t)^2 = 4+4*t+t^2 = 4+4*t+(1-t) = 5+3*t
+    ((1+t)*h+h)^2 = ((2+t)*h)^2 = (2+t)^2*h^2 = (5+3*t)*((2-t)/4) = (10+t-3*t^2)/4 = (10+t-3*(1-t))/4 = (7+4*t)/4
+    ((1+t)*h+h)^2+(t/2+(1+t)/2)^2 = (7+4*t)/4+5/4 = 3+t
+
+
+thm golden_pentagon_strict_side_orientation:
+    ? forall t,h R+, a,b,c,d,fifth cart(R,R):
+        t < 1
+        t^2 = 1-t
+        a = (0,1)
+        b = (-(1+t)*h,t/2)
+        c = (-h,-(1+t)/2)
+        d = (h,-(1+t)/2)
+        fifth = ((1+t)*h,t/2)
+        =>:
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+            geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) > 0
+            geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) > 0
+            geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) > 0
+            geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) > 0
+            geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) > 0
+            geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) > 0
+            geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) > 0
+            geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) > 0
+            geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) > 0
+            geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) > 0
+            geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) > 0
+            geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) > 0
+    a(1) = 0
+    a(2) = 1
+    b(1) = -(1+t)*h
+    b(2) = t/2
+    c(1) = -h
+    c(2) = -(1+t)/2
+    d(1) = h
+    d(2) = -(1+t)/2
+    fifth(1) = (1+t)*h
+    fifth(2) = t/2
+    1+2*t > 0
+    3+t > 0
+    h*(1+2*t) > 0
+    h*(3+t) > 0
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = ((-(1+t)*h)-(0))*((-(1+t)/2)-(1))-((t/2)-(1))*((-h)-(0)) = h*(((1/2))+((5/2))*t+((1/2))*t^2) = h*(((1/2))+((5/2))*t+((1/2))*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(a,b,d)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = ((-(1+t)*h)-(0))*((-(1+t)/2)-(1))-((t/2)-(1))*((h)-(0)) = h*(((5/2))+((3/2))*t+((1/2))*t^2) = h*(((5/2))+((3/2))*t+((1/2))*(1-t)) = h*(3+t) > 0
+    release thm geometry::main::collinear_det_expand(a,b,fifth)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) = (b(1)-a(1))*(fifth(2)-a(2))-(b(2)-a(2))*(fifth(1)-a(1)) = ((-(1+t)*h)-(0))*((t/2)-(1))-((t/2)-(1))*(((1+t)*h)-(0)) = h*((2)+(1)*t+(-1)*t^2) = h*((2)+(1)*t+(-1)*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(b,c,d)
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) = (c(1)-b(1))*(d(2)-b(2))-(c(2)-b(2))*(d(1)-b(1)) = ((-h)-(-(1+t)*h))*((-(1+t)/2)-(t/2))-((-(1+t)/2)-(t/2))*((h)-(-(1+t)*h)) = h*((1)+(2)*t+(0)*t^2) = h*((1)+(2)*t+(0)*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(b,c,fifth)
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) = (c(1)-b(1))*(fifth(2)-b(2))-(c(2)-b(2))*(fifth(1)-b(1)) = ((-h)-(-(1+t)*h))*((t/2)-(t/2))-((-(1+t)/2)-(t/2))*(((1+t)*h)-(-(1+t)*h)) = h*((1)+(3)*t+(2)*t^2) = h*((1)+(3)*t+(2)*(1-t)) = h*(3+t) > 0
+    release thm geometry::main::collinear_det_expand(b,c,a)
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = ((-h)-(-(1+t)*h))*((1)-(t/2))-((-(1+t)/2)-(t/2))*((0)-(-(1+t)*h)) = h*(((1/2))+((5/2))*t+((1/2))*t^2) = h*(((1/2))+((5/2))*t+((1/2))*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(c,d,fifth)
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) = (d(1)-c(1))*(fifth(2)-c(2))-(d(2)-c(2))*(fifth(1)-c(1)) = ((h)-(-h))*((t/2)-(-(1+t)/2))-((-(1+t)/2)-(-(1+t)/2))*(((1+t)*h)-(-h)) = h*((1)+(2)*t+(0)*t^2) = h*((1)+(2)*t+(0)*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(c,d,a)
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) = (d(1)-c(1))*(a(2)-c(2))-(d(2)-c(2))*(a(1)-c(1)) = ((h)-(-h))*((1)-(-(1+t)/2))-((-(1+t)/2)-(-(1+t)/2))*((0)-(-h)) = h*((3)+(1)*t+(0)*t^2) = h*((3)+(1)*t+(0)*(1-t)) = h*(3+t) > 0
+    release thm geometry::main::collinear_det_expand(c,d,b)
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) = (d(1)-c(1))*(b(2)-c(2))-(d(2)-c(2))*(b(1)-c(1)) = ((h)-(-h))*((t/2)-(-(1+t)/2))-((-(1+t)/2)-(-(1+t)/2))*((-(1+t)*h)-(-h)) = h*((1)+(2)*t+(0)*t^2) = h*((1)+(2)*t+(0)*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(d,fifth,a)
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) = (fifth(1)-d(1))*(a(2)-d(2))-(fifth(2)-d(2))*(a(1)-d(1)) = (((1+t)*h)-(h))*((1)-(-(1+t)/2))-((t/2)-(-(1+t)/2))*((0)-(h)) = h*(((1/2))+((5/2))*t+((1/2))*t^2) = h*(((1/2))+((5/2))*t+((1/2))*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(d,fifth,b)
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) = (fifth(1)-d(1))*(b(2)-d(2))-(fifth(2)-d(2))*(b(1)-d(1)) = (((1+t)*h)-(h))*((t/2)-(-(1+t)/2))-((t/2)-(-(1+t)/2))*((-(1+t)*h)-(h)) = h*((1)+(3)*t+(2)*t^2) = h*((1)+(3)*t+(2)*(1-t)) = h*(3+t) > 0
+    release thm geometry::main::collinear_det_expand(d,fifth,c)
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) = (fifth(1)-d(1))*(c(2)-d(2))-(fifth(2)-d(2))*(c(1)-d(1)) = (((1+t)*h)-(h))*((-(1+t)/2)-(-(1+t)/2))-((t/2)-(-(1+t)/2))*((-h)-(h)) = h*((1)+(2)*t+(0)*t^2) = h*((1)+(2)*t+(0)*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(fifth,a,b)
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) = (a(1)-fifth(1))*(b(2)-fifth(2))-(a(2)-fifth(2))*(b(1)-fifth(1)) = ((0)-((1+t)*h))*((t/2)-(t/2))-((1)-(t/2))*((-(1+t)*h)-((1+t)*h)) = h*((2)+(1)*t+(-1)*t^2) = h*((2)+(1)*t+(-1)*(1-t)) = h*(1+2*t) > 0
+    release thm geometry::main::collinear_det_expand(fifth,a,c)
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) = (a(1)-fifth(1))*(c(2)-fifth(2))-(a(2)-fifth(2))*(c(1)-fifth(1)) = ((0)-((1+t)*h))*((-(1+t)/2)-(t/2))-((1)-(t/2))*((-h)-((1+t)*h)) = h*(((5/2))+((3/2))*t+((1/2))*t^2) = h*(((5/2))+((3/2))*t+((1/2))*(1-t)) = h*(3+t) > 0
+    release thm geometry::main::collinear_det_expand(fifth,a,d)
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) = (a(1)-fifth(1))*(d(2)-fifth(2))-(a(2)-fifth(2))*(d(1)-fifth(1)) = ((0)-((1+t)*h))*((-(1+t)/2)-(t/2))-((1)-(t/2))*((h)-((1+t)*h)) = h*(((1/2))+((5/2))*t+((1/2))*t^2) = h*(((1/2))+((5/2))*t+((1/2))*(1-t)) = h*(1+2*t) > 0
+
+
+thm positive_convex_combination:
+    ? forall first,second R+, t R:
+        0 <= t
+        t <= 1
+        =>:
+            (1-t)*first+t*second > 0
+    by cases:
+        ? (1-t)*first+t*second > 0
+        case t < 1:
+            1-t > 0
+            (1-t)*first > 0
+            t*second >= 0
+            (1-t)*first+t*second >= (1-t)*first > 0
+        case t >= 1:
+            t = 1
+            (1-t)*first+t*second = (1-1)*first+1*second = second > 0
+
+
+thm affine_point_determinant_linearity:
+    ? forall o, h, x, y, z cart(R, R), t R:
+        z(1) = (1 - t) * x(1) + t * y(1)
+        z(2) = (1 - t) * x(2) + t * y(2)
+        =>:
+            geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, z)) = (1 - t) * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, x)) + t * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, y))
+    z(1) - o(1) = ((1 - t) * x(1) + t * y(1)) - o(1) = (1 - t) * (x(1) - o(1)) + t * (y(1) - o(1))
+    z(2) - o(2) = ((1 - t) * x(2) + t * y(2)) - o(2) = (1 - t) * (x(2) - o(2)) + t * (y(2) - o(2))
+    release thm geometry::main::collinear_det_expand(o, h, z)
+    release thm geometry::main::collinear_det_expand(o, h, x)
+    release thm geometry::main::collinear_det_expand(o, h, y)
+    geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, z)) = (h(1) - o(1)) * (z(2) - o(2)) - (h(2) - o(2)) * (z(1) - o(1)) = (h(1) - o(1)) * ((1 - t) * (x(2) - o(2)) + t * (y(2) - o(2))) - (h(2) - o(2)) * ((1 - t) * (x(1) - o(1)) + t * (y(1) - o(1))) = (1 - t) * ((h(1) - o(1)) * (x(2) - o(2)) - (h(2) - o(2)) * (x(1) - o(1))) + t * ((h(1) - o(1)) * (y(2) - o(2)) - (h(2) - o(2)) * (y(1) - o(1))) = (1 - t) * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, x)) + t * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, y))
+
+
+
+thm segment_stays_in_strict_half_plane:
+    ? forall a,b,c,d,p cart(R,R):
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+        $entry::is_on_segment(p,c,d)
+        =>:
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,p)) > 0
+    by def $entry::is_on_segment(p,c,d)
+    obtain t from exist t R st {0 <= t, t <= 1, p(1) = (1-t)*c(1)+t*d(1), p(2) = (1-t)*c(2)+t*d(2)}
+    release thm affine_point_determinant_linearity(a,b,c,d,p,t)
+    have first R+ = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have second R+ = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))
+    release thm positive_convex_combination(first,second,t)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,p)) = (1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))+t*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = (1-t)*first+t*second > 0
+
+
+thm strict_half_plane_excludes_segment_intersection:
+    ? forall a,b,c,d,p cart(R,R):
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+        $entry::is_on_segment(p,c,d)
+        =>:
+            not $entry::is_on_segment(p,a,b)
+    release thm segment_stays_in_strict_half_plane(a,b,c,d,p)
+    by contra:
+        ? not $entry::is_on_segment(p,a,b)
+        $entry::is_on_segment(p,a,b)
+        by def $entry::is_on_segment(p,a,b)
+        obtain t from exist t R st {0 <= t, t <= 1, p(1) = (1-t)*a(1)+t*b(1), p(2) = (1-t)*a(2)+t*b(2)}
+        release thm affine_point_determinant_linearity(a,b,a,b,p,t)
+        release thm geometry::main::collinear_det_expand(a,b,a)
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,a)) = (b(1)-a(1))*(a(2)-a(2))-(b(2)-a(2))*(a(1)-a(1)) = 0
+        release thm geometry::main::collinear_det_expand(a,b,b)
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,b)) = (b(1)-a(1))*(b(2)-a(2))-(b(2)-a(2))*(b(1)-a(1)) = 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,p)) = (1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,a))+t*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,b)) = (1-t)*0+t*0 = 0
+        impossible geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,p)) > 0
+
+
+thm golden_pentagon_metric_certificate:
+    ? forall t,h R+, a,b,c,d,fifth cart(R,R):
+        t < 1
+        t^2 = 1-t
+        h^2 = (2-t)/4
+        a = (0,1)
+        b = (-(1+t)*h,t/2)
+        c = (-h,-(1+t)/2)
+        d = (h,-(1+t)/2)
+        fifth = ((1+t)*h,t/2)
+        =>:
+            geometry::main::distance_sq((0,0),a) = 1
+            geometry::main::distance_sq((0,0),b) = 1
+            geometry::main::distance_sq((0,0),c) = 1
+            geometry::main::distance_sq((0,0),d) = 1
+            geometry::main::distance_sq((0,0),fifth) = 1
+            geometry::main::distance_sq(a,b) = 2-t
+            geometry::main::distance_sq(a,c) = 3+t
+            geometry::main::distance_sq(b,c) = 2-t
+            geometry::main::distance_sq(b,d) = 3+t
+            geometry::main::distance_sq(c,d) = 2-t
+            geometry::main::distance_sq(c,fifth) = 3+t
+            geometry::main::distance_sq(d,fifth) = 2-t
+            geometry::main::distance_sq(d,a) = 3+t
+            geometry::main::distance_sq(fifth,a) = 2-t
+            geometry::main::distance_sq(fifth,b) = 3+t
+    release thm golden_pentagon_scalar_metrics(t,h)
+    have center cart(R,R) = (0,0)
+    center(1) = 0
+    center(2) = 0
+    a(1) = 0
+    a(2) = 1
+    b(1) = -(1+t)*h
+    b(2) = t/2
+    c(1) = -h
+    c(2) = -(1+t)/2
+    d(1) = h
+    d(2) = -(1+t)/2
+    fifth(1) = (1+t)*h
+    fifth(2) = t/2
+    release thm geometry::main::distance_sq_coordinate_formula(center,a)
+    a(1)-center(1) = (0)-(0)
+    a(2)-center(2) = (1)-(0)
+    (a(1)-center(1))^2+(a(2)-center(2))^2 = ((0)-(0))^2+(a(2)-center(2))^2 = ((0)-(0))^2+((1)-(0))^2
+    geometry::main::distance_sq((0,0),a) = geometry::main::distance_sq(center,a) = (a(1)-center(1))^2+(a(2)-center(2))^2 = ((0)-(0))^2+((1)-(0))^2 = (0)^2+(1)^2 = 1 = 1
+    release thm geometry::main::distance_sq_coordinate_formula(center,b)
+    b(1)-center(1) = (-(1+t)*h)-(0)
+    b(2)-center(2) = (t/2)-(0)
+    (b(1)-center(1))^2+(b(2)-center(2))^2 = ((-(1+t)*h)-(0))^2+(b(2)-center(2))^2 = ((-(1+t)*h)-(0))^2+((t/2)-(0))^2
+    geometry::main::distance_sq((0,0),b) = geometry::main::distance_sq(center,b) = (b(1)-center(1))^2+(b(2)-center(2))^2 = ((-(1+t)*h)-(0))^2+((t/2)-(0))^2 = (-(1+t)*h)^2+(t/2)^2 = ((1+t)*h)^2+(t/2)^2 = 1
+    release thm geometry::main::distance_sq_coordinate_formula(center,c)
+    c(1)-center(1) = (-h)-(0)
+    c(2)-center(2) = (-(1+t)/2)-(0)
+    (c(1)-center(1))^2+(c(2)-center(2))^2 = ((-h)-(0))^2+(c(2)-center(2))^2 = ((-h)-(0))^2+((-(1+t)/2)-(0))^2
+    geometry::main::distance_sq((0,0),c) = geometry::main::distance_sq(center,c) = (c(1)-center(1))^2+(c(2)-center(2))^2 = ((-h)-(0))^2+((-(1+t)/2)-(0))^2 = (-h)^2+(-(1+t)/2)^2 = h^2+((1+t)/2)^2 = 1
+    release thm geometry::main::distance_sq_coordinate_formula(center,d)
+    d(1)-center(1) = (h)-(0)
+    d(2)-center(2) = (-(1+t)/2)-(0)
+    (d(1)-center(1))^2+(d(2)-center(2))^2 = ((h)-(0))^2+(d(2)-center(2))^2 = ((h)-(0))^2+((-(1+t)/2)-(0))^2
+    geometry::main::distance_sq((0,0),d) = geometry::main::distance_sq(center,d) = (d(1)-center(1))^2+(d(2)-center(2))^2 = ((h)-(0))^2+((-(1+t)/2)-(0))^2 = (h)^2+(-(1+t)/2)^2 = h^2+((1+t)/2)^2 = 1
+    release thm geometry::main::distance_sq_coordinate_formula(center,fifth)
+    fifth(1)-center(1) = ((1+t)*h)-(0)
+    fifth(2)-center(2) = (t/2)-(0)
+    (fifth(1)-center(1))^2+(fifth(2)-center(2))^2 = (((1+t)*h)-(0))^2+(fifth(2)-center(2))^2 = (((1+t)*h)-(0))^2+((t/2)-(0))^2
+    geometry::main::distance_sq((0,0),fifth) = geometry::main::distance_sq(center,fifth) = (fifth(1)-center(1))^2+(fifth(2)-center(2))^2 = (((1+t)*h)-(0))^2+((t/2)-(0))^2 = ((1+t)*h)^2+(t/2)^2 = ((1+t)*h)^2+(t/2)^2 = 1
+    release thm geometry::main::distance_sq_coordinate_formula(a,b)
+    b(1)-a(1) = (-(1+t)*h)-(0)
+    b(2)-a(2) = (t/2)-(1)
+    (b(1)-a(1))^2+(b(2)-a(2))^2 = ((-(1+t)*h)-(0))^2+(b(2)-a(2))^2 = ((-(1+t)*h)-(0))^2+((t/2)-(1))^2
+    geometry::main::distance_sq(a,b) = (b(1)-a(1))^2+(b(2)-a(2))^2 = ((-(1+t)*h)-(0))^2+((t/2)-(1))^2 = ((1+t)*h)^2+(t/2-1)^2 = 2-t
+    release thm geometry::main::distance_sq_coordinate_formula(a,c)
+    c(1)-a(1) = (-h)-(0)
+    c(2)-a(2) = (-(1+t)/2)-(1)
+    (c(1)-a(1))^2+(c(2)-a(2))^2 = ((-h)-(0))^2+(c(2)-a(2))^2 = ((-h)-(0))^2+((-(1+t)/2)-(1))^2
+    geometry::main::distance_sq(a,c) = (c(1)-a(1))^2+(c(2)-a(2))^2 = ((-h)-(0))^2+((-(1+t)/2)-(1))^2 = h^2+(1+(1+t)/2)^2 = 3+t
+    release thm geometry::main::distance_sq_coordinate_formula(b,c)
+    c(1)-b(1) = (-h)-(-(1+t)*h)
+    c(2)-b(2) = (-(1+t)/2)-(t/2)
+    (c(1)-b(1))^2+(c(2)-b(2))^2 = ((-h)-(-(1+t)*h))^2+(c(2)-b(2))^2 = ((-h)-(-(1+t)*h))^2+((-(1+t)/2)-(t/2))^2
+    geometry::main::distance_sq(b,c) = (c(1)-b(1))^2+(c(2)-b(2))^2 = ((-h)-(-(1+t)*h))^2+((-(1+t)/2)-(t/2))^2 = ((1+t)*h-h)^2+(t/2+(1+t)/2)^2 = 2-t
+    release thm geometry::main::distance_sq_coordinate_formula(b,d)
+    d(1)-b(1) = (h)-(-(1+t)*h)
+    d(2)-b(2) = (-(1+t)/2)-(t/2)
+    (d(1)-b(1))^2+(d(2)-b(2))^2 = ((h)-(-(1+t)*h))^2+(d(2)-b(2))^2 = ((h)-(-(1+t)*h))^2+((-(1+t)/2)-(t/2))^2
+    geometry::main::distance_sq(b,d) = (d(1)-b(1))^2+(d(2)-b(2))^2 = ((h)-(-(1+t)*h))^2+((-(1+t)/2)-(t/2))^2 = ((1+t)*h+h)^2+(t/2+(1+t)/2)^2 = 3+t
+    release thm geometry::main::distance_sq_coordinate_formula(c,d)
+    d(1)-c(1) = (h)-(-h)
+    d(2)-c(2) = (-(1+t)/2)-(-(1+t)/2)
+    (d(1)-c(1))^2+(d(2)-c(2))^2 = ((h)-(-h))^2+(d(2)-c(2))^2 = ((h)-(-h))^2+((-(1+t)/2)-(-(1+t)/2))^2
+    geometry::main::distance_sq(c,d) = (d(1)-c(1))^2+(d(2)-c(2))^2 = ((h)-(-h))^2+((-(1+t)/2)-(-(1+t)/2))^2 = 4*h^2 = 2-t
+    release thm geometry::main::distance_sq_coordinate_formula(c,fifth)
+    fifth(1)-c(1) = ((1+t)*h)-(-h)
+    fifth(2)-c(2) = (t/2)-(-(1+t)/2)
+    (fifth(1)-c(1))^2+(fifth(2)-c(2))^2 = (((1+t)*h)-(-h))^2+(fifth(2)-c(2))^2 = (((1+t)*h)-(-h))^2+((t/2)-(-(1+t)/2))^2
+    geometry::main::distance_sq(c,fifth) = (fifth(1)-c(1))^2+(fifth(2)-c(2))^2 = (((1+t)*h)-(-h))^2+((t/2)-(-(1+t)/2))^2 = ((1+t)*h+h)^2+(t/2+(1+t)/2)^2 = 3+t
+    release thm geometry::main::distance_sq_coordinate_formula(d,fifth)
+    fifth(1)-d(1) = ((1+t)*h)-(h)
+    fifth(2)-d(2) = (t/2)-(-(1+t)/2)
+    (fifth(1)-d(1))^2+(fifth(2)-d(2))^2 = (((1+t)*h)-(h))^2+(fifth(2)-d(2))^2 = (((1+t)*h)-(h))^2+((t/2)-(-(1+t)/2))^2
+    geometry::main::distance_sq(d,fifth) = (fifth(1)-d(1))^2+(fifth(2)-d(2))^2 = (((1+t)*h)-(h))^2+((t/2)-(-(1+t)/2))^2 = ((1+t)*h-h)^2+(t/2+(1+t)/2)^2 = 2-t
+    release thm geometry::main::distance_sq_coordinate_formula(d,a)
+    a(1)-d(1) = (0)-(h)
+    a(2)-d(2) = (1)-(-(1+t)/2)
+    (a(1)-d(1))^2+(a(2)-d(2))^2 = ((0)-(h))^2+(a(2)-d(2))^2 = ((0)-(h))^2+((1)-(-(1+t)/2))^2
+    geometry::main::distance_sq(d,a) = (a(1)-d(1))^2+(a(2)-d(2))^2 = ((0)-(h))^2+((1)-(-(1+t)/2))^2 = h^2+(1+(1+t)/2)^2 = 3+t
+    release thm geometry::main::distance_sq_coordinate_formula(fifth,a)
+    a(1)-fifth(1) = (0)-((1+t)*h)
+    a(2)-fifth(2) = (1)-(t/2)
+    (a(1)-fifth(1))^2+(a(2)-fifth(2))^2 = ((0)-((1+t)*h))^2+(a(2)-fifth(2))^2 = ((0)-((1+t)*h))^2+((1)-(t/2))^2
+    geometry::main::distance_sq(fifth,a) = (a(1)-fifth(1))^2+(a(2)-fifth(2))^2 = ((0)-((1+t)*h))^2+((1)-(t/2))^2 = ((1+t)*h)^2+(t/2-1)^2 = 2-t
+    release thm geometry::main::distance_sq_coordinate_formula(fifth,b)
+    b(1)-fifth(1) = (-(1+t)*h)-((1+t)*h)
+    b(2)-fifth(2) = (t/2)-(t/2)
+    (b(1)-fifth(1))^2+(b(2)-fifth(2))^2 = ((-(1+t)*h)-((1+t)*h))^2+(b(2)-fifth(2))^2 = ((-(1+t)*h)-((1+t)*h))^2+((t/2)-(t/2))^2
+    geometry::main::distance_sq(fifth,b) = (b(1)-fifth(1))^2+(b(2)-fifth(2))^2 = ((-(1+t)*h)-((1+t)*h))^2+((t/2)-(t/2))^2 = 4*((1+t)*h)^2 = 3+t
+
+thm strict_half_plane_segments_have_no_extra_intersection:
+    ? forall a,b,c,d cart(R,R):
+        a != b
+        c != d
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+        =>:
+            $entry::segments_meet_only_at_common_endpoints(a,b,c,d)
+    claim:
+        ? forall p cart(R,R):
+            $entry::is_on_segment(p,a,b)
+            $entry::is_on_segment(p,c,d)
+            p != a
+            =>:
+                p = b
+        by contra:
+            ? p = b
+            p != b
+            release thm strict_half_plane_excludes_segment_intersection(a,b,c,d,p)
+            impossible $entry::is_on_segment(p,a,b)
+    claim:
+        ? forall p cart(R,R):
+            $entry::is_on_segment(p,a,b)
+            $entry::is_on_segment(p,c,d)
+            p != c
+            =>:
+                p = d
+        by contra:
+            ? p = d
+            p != d
+            release thm strict_half_plane_excludes_segment_intersection(a,b,c,d,p)
+            impossible $entry::is_on_segment(p,a,b)
+    by def $entry::segments_meet_only_at_common_endpoints(a,b,c,d)
+
+
+thm integer_index_below_five_cases:
+    ? forall k Z:
+        0 <= k
+        k < 5
+        =>:
+            k = 0 or k = 1 or k = 2 or k = 3 or k = 4
+    by contra:
+        ? k = 0 or k = 1 or k = 2 or k = 3 or k = 4
+        k != 0
+        k != 1
+        k != 2
+        k != 3
+        k != 4
+        by contra:
+            ? k > 0
+            k <= 0
+            k = 0
+            impossible k != 0
+        k >= 1
+        by contra:
+            ? k > 1
+            k <= 1
+            k = 1
+            impossible k != 1
+        k >= 2
+        by contra:
+            ? k > 2
+            k <= 2
+            k = 2
+            impossible k != 2
+        k >= 3
+        by contra:
+            ? k > 3
+            k <= 3
+            k = 3
+            impossible k != 3
+        k >= 4
+        k <= 4
+        k = 4
+        impossible k != 4
+
+
+thm five_vertex_conditions_give_simple_cycle:
+    ? forall vertices fn(k Z) cart(R,R):
+        vertices(5) = vertices(0)
+        vertices(0) != vertices(1)
+        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(1),vertices(2))
+        vertices(0) != vertices(2)
+        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(2),vertices(3))
+        vertices(0) != vertices(3)
+        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(3),vertices(4))
+        vertices(0) != vertices(4)
+        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(4),vertices(5))
+        vertices(1) != vertices(2)
+        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(2),vertices(3))
+        vertices(1) != vertices(3)
+        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(3),vertices(4))
+        vertices(1) != vertices(4)
+        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(4),vertices(5))
+        vertices(2) != vertices(3)
+        $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(3),vertices(4))
+        vertices(2) != vertices(4)
+        $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(4),vertices(5))
+        vertices(3) != vertices(4)
+        $entry::segments_meet_only_at_common_endpoints(vertices(3),vertices(4),vertices(4),vertices(5))
+        =>:
+            $entry::is_simple_polygonal_cycle(5,vertices)
+    release thm working::common_endpoint_condition_symmetric(vertices(0),vertices(1),vertices(1),vertices(2))
+    release thm working::common_endpoint_condition_symmetric(vertices(0),vertices(1),vertices(2),vertices(3))
+    release thm working::common_endpoint_condition_symmetric(vertices(0),vertices(1),vertices(3),vertices(4))
+    release thm working::common_endpoint_condition_symmetric(vertices(0),vertices(1),vertices(4),vertices(5))
+    release thm working::common_endpoint_condition_symmetric(vertices(1),vertices(2),vertices(2),vertices(3))
+    release thm working::common_endpoint_condition_symmetric(vertices(1),vertices(2),vertices(3),vertices(4))
+    release thm working::common_endpoint_condition_symmetric(vertices(1),vertices(2),vertices(4),vertices(5))
+    release thm working::common_endpoint_condition_symmetric(vertices(2),vertices(3),vertices(3),vertices(4))
+    release thm working::common_endpoint_condition_symmetric(vertices(2),vertices(3),vertices(4),vertices(5))
+    release thm working::common_endpoint_condition_symmetric(vertices(3),vertices(4),vertices(4),vertices(5))
+    claim:
+        ? forall k Z:
+            0 <= k
+            k < 5
+            =>:
+                vertices(k) != vertices(k+1)
+        release thm integer_index_below_five_cases(k)
+        by cases:
+            ? vertices(k) != vertices(k+1)
+            case k = 0:
+                k+1 = 1
+                vertices(k) = vertices(0)
+                vertices(k+1) = vertices(1)
+                vertices(0) != vertices(1)
+                vertices(k) != vertices(k+1)
+            case k = 1:
+                k+1 = 2
+                vertices(k) = vertices(1)
+                vertices(k+1) = vertices(2)
+                vertices(1) != vertices(2)
+                vertices(k) != vertices(k+1)
+            case k = 2:
+                k+1 = 3
+                vertices(k) = vertices(2)
+                vertices(k+1) = vertices(3)
+                vertices(2) != vertices(3)
+                vertices(k) != vertices(k+1)
+            case k = 3:
+                k+1 = 4
+                vertices(k) = vertices(3)
+                vertices(k+1) = vertices(4)
+                vertices(3) != vertices(4)
+                vertices(k) != vertices(k+1)
+            case k = 4:
+                k+1 = 5
+                vertices(k) = vertices(4)
+                vertices(k+1) = vertices(5)
+                vertices(4) != vertices(5)
+                vertices(k) != vertices(k+1)
+    claim:
+        ? forall left_index,right_index Z:
+            0 <= left_index
+            left_index < right_index
+            right_index < 5
+            =>:
+                vertices(left_index) != vertices(right_index)
+        left_index < 5
+        0 <= right_index
+        release thm integer_index_below_five_cases(left_index)
+        release thm integer_index_below_five_cases(right_index)
+        by cases:
+            ? vertices(left_index) != vertices(right_index)
+            case left_index = 0:
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 0:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 1:
+                        vertices(left_index) = vertices(0)
+                        vertices(right_index) = vertices(1)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 2:
+                        vertices(left_index) = vertices(0)
+                        vertices(right_index) = vertices(2)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 3:
+                        vertices(left_index) = vertices(0)
+                        vertices(right_index) = vertices(3)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 4:
+                        vertices(left_index) = vertices(0)
+                        vertices(right_index) = vertices(4)
+                        vertices(left_index) != vertices(right_index)
+            case left_index = 1:
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 0:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 1:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 2:
+                        vertices(left_index) = vertices(1)
+                        vertices(right_index) = vertices(2)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 3:
+                        vertices(left_index) = vertices(1)
+                        vertices(right_index) = vertices(3)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 4:
+                        vertices(left_index) = vertices(1)
+                        vertices(right_index) = vertices(4)
+                        vertices(left_index) != vertices(right_index)
+            case left_index = 2:
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 0:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 1:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 2:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 3:
+                        vertices(left_index) = vertices(2)
+                        vertices(right_index) = vertices(3)
+                        vertices(left_index) != vertices(right_index)
+                    case right_index = 4:
+                        vertices(left_index) = vertices(2)
+                        vertices(right_index) = vertices(4)
+                        vertices(left_index) != vertices(right_index)
+            case left_index = 3:
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 0:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 1:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 2:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 3:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 4:
+                        vertices(left_index) = vertices(3)
+                        vertices(right_index) = vertices(4)
+                        vertices(left_index) != vertices(right_index)
+            case left_index = 4:
+                by cases:
+                    ? vertices(left_index) != vertices(right_index)
+                    case right_index = 0:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 1:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 2:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 3:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+                    case right_index = 4:
+                        by contra:
+                            ? vertices(left_index) != vertices(right_index)
+                            vertices(left_index) = vertices(right_index)
+                            left_index >= right_index
+                            impossible left_index < right_index
+    claim:
+        ? forall left_index,right_index Z:
+            0 <= left_index
+            left_index < 5
+            0 <= right_index
+            right_index < 5
+            left_index != right_index
+            =>:
+                $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+        release thm integer_index_below_five_cases(left_index)
+        release thm integer_index_below_five_cases(right_index)
+        by cases:
+            ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 0:
+                left_index+1 = 1
+                by cases:
+                    ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        by contra:
+                            ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            not $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            left_index = right_index
+                            impossible left_index != right_index
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(0)
+                        vertices(left_index+1) = vertices(1)
+                        vertices(right_index) = vertices(1)
+                        vertices(right_index+1) = vertices(2)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(1),vertices(2))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(0)
+                        vertices(left_index+1) = vertices(1)
+                        vertices(right_index) = vertices(2)
+                        vertices(right_index+1) = vertices(3)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(2),vertices(3))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 3:
+                        right_index+1 = 4
+                        vertices(left_index) = vertices(0)
+                        vertices(left_index+1) = vertices(1)
+                        vertices(right_index) = vertices(3)
+                        vertices(right_index+1) = vertices(4)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(3),vertices(4))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 4:
+                        right_index+1 = 5
+                        vertices(left_index) = vertices(0)
+                        vertices(left_index+1) = vertices(1)
+                        vertices(right_index) = vertices(4)
+                        vertices(right_index+1) = vertices(5)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(4),vertices(5))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 1:
+                left_index+1 = 2
+                by cases:
+                    ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        right_index+1 = 1
+                        vertices(left_index) = vertices(1)
+                        vertices(left_index+1) = vertices(2)
+                        vertices(right_index) = vertices(0)
+                        vertices(right_index+1) = vertices(1)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(0),vertices(1))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 1:
+                        by contra:
+                            ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            not $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            left_index = right_index
+                            impossible left_index != right_index
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(1)
+                        vertices(left_index+1) = vertices(2)
+                        vertices(right_index) = vertices(2)
+                        vertices(right_index+1) = vertices(3)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(2),vertices(3))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 3:
+                        right_index+1 = 4
+                        vertices(left_index) = vertices(1)
+                        vertices(left_index+1) = vertices(2)
+                        vertices(right_index) = vertices(3)
+                        vertices(right_index+1) = vertices(4)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(3),vertices(4))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 4:
+                        right_index+1 = 5
+                        vertices(left_index) = vertices(1)
+                        vertices(left_index+1) = vertices(2)
+                        vertices(right_index) = vertices(4)
+                        vertices(right_index+1) = vertices(5)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(4),vertices(5))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 2:
+                left_index+1 = 3
+                by cases:
+                    ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        right_index+1 = 1
+                        vertices(left_index) = vertices(2)
+                        vertices(left_index+1) = vertices(3)
+                        vertices(right_index) = vertices(0)
+                        vertices(right_index+1) = vertices(1)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(0),vertices(1))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(2)
+                        vertices(left_index+1) = vertices(3)
+                        vertices(right_index) = vertices(1)
+                        vertices(right_index+1) = vertices(2)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(1),vertices(2))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 2:
+                        by contra:
+                            ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            not $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            left_index = right_index
+                            impossible left_index != right_index
+                    case right_index = 3:
+                        right_index+1 = 4
+                        vertices(left_index) = vertices(2)
+                        vertices(left_index+1) = vertices(3)
+                        vertices(right_index) = vertices(3)
+                        vertices(right_index+1) = vertices(4)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(3),vertices(4))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 4:
+                        right_index+1 = 5
+                        vertices(left_index) = vertices(2)
+                        vertices(left_index+1) = vertices(3)
+                        vertices(right_index) = vertices(4)
+                        vertices(right_index+1) = vertices(5)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(4),vertices(5))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 3:
+                left_index+1 = 4
+                by cases:
+                    ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        right_index+1 = 1
+                        vertices(left_index) = vertices(3)
+                        vertices(left_index+1) = vertices(4)
+                        vertices(right_index) = vertices(0)
+                        vertices(right_index+1) = vertices(1)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(3),vertices(4),vertices(0),vertices(1))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(3)
+                        vertices(left_index+1) = vertices(4)
+                        vertices(right_index) = vertices(1)
+                        vertices(right_index+1) = vertices(2)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(3),vertices(4),vertices(1),vertices(2))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(3)
+                        vertices(left_index+1) = vertices(4)
+                        vertices(right_index) = vertices(2)
+                        vertices(right_index+1) = vertices(3)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(3),vertices(4),vertices(2),vertices(3))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 3:
+                        by contra:
+                            ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            not $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            left_index = right_index
+                            impossible left_index != right_index
+                    case right_index = 4:
+                        right_index+1 = 5
+                        vertices(left_index) = vertices(3)
+                        vertices(left_index+1) = vertices(4)
+                        vertices(right_index) = vertices(4)
+                        vertices(right_index+1) = vertices(5)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(3),vertices(4),vertices(4),vertices(5))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+            case left_index = 4:
+                left_index+1 = 5
+                by cases:
+                    ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 0:
+                        right_index+1 = 1
+                        vertices(left_index) = vertices(4)
+                        vertices(left_index+1) = vertices(5)
+                        vertices(right_index) = vertices(0)
+                        vertices(right_index+1) = vertices(1)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(4),vertices(5),vertices(0),vertices(1))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 1:
+                        right_index+1 = 2
+                        vertices(left_index) = vertices(4)
+                        vertices(left_index+1) = vertices(5)
+                        vertices(right_index) = vertices(1)
+                        vertices(right_index+1) = vertices(2)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(4),vertices(5),vertices(1),vertices(2))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 2:
+                        right_index+1 = 3
+                        vertices(left_index) = vertices(4)
+                        vertices(left_index+1) = vertices(5)
+                        vertices(right_index) = vertices(2)
+                        vertices(right_index+1) = vertices(3)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(4),vertices(5),vertices(2),vertices(3))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 3:
+                        right_index+1 = 4
+                        vertices(left_index) = vertices(4)
+                        vertices(left_index+1) = vertices(5)
+                        vertices(right_index) = vertices(3)
+                        vertices(right_index+1) = vertices(4)
+                        $entry::segments_meet_only_at_common_endpoints(vertices(4),vertices(5),vertices(3),vertices(4))
+                        $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                    case right_index = 4:
+                        by contra:
+                            ? $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            not $entry::segments_meet_only_at_common_endpoints(vertices(left_index),vertices(left_index+1),vertices(right_index),vertices(right_index+1))
+                            left_index = right_index
+                            impossible left_index != right_index
+    by def $entry::is_simple_polygonal_cycle(5,vertices)
+
+
+thm sss_dot_equal:
+    ? forall p, q, r, u, v, w cart(R, R):
+        geometry::main::distance_sq(p, q) = geometry::main::distance_sq(u, v)
+        geometry::main::distance_sq(q, r) = geometry::main::distance_sq(v, w)
+        geometry::main::distance_sq(p, r) = geometry::main::distance_sq(u, w)
+        =>:
+            geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r)) = geometry::main::dot(geometry::main::vec(v, u), geometry::main::vec(v, w))
+    release thm geometry::main::dot_from_cosine_law(p,q,r)
+    release thm geometry::main::dot_from_cosine_law(u,v,w)
+    geometry::main::distance_sq(p,q)+geometry::main::distance_sq(q,r) = geometry::main::distance_sq(u,v)+geometry::main::distance_sq(v,w)
+    geometry::main::distance_sq(p,q)+geometry::main::distance_sq(q,r)-geometry::main::distance_sq(p,r) = geometry::main::distance_sq(u,v)+geometry::main::distance_sq(v,w)-geometry::main::distance_sq(u,w)
+    geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r)) = (geometry::main::distance_sq(p,q)+geometry::main::distance_sq(q,r)-geometry::main::distance_sq(p,r))/2 = (geometry::main::distance_sq(u,v)+geometry::main::distance_sq(v,w)-geometry::main::distance_sq(u,w))/2 = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w))
+
+
+thm angle_congruence_from_equal_sides_and_dot:
+    ? forall aa, bb, cc, dd, ff, gg cart(R, R):
+        bb != aa
+        cc != aa
+        ff != dd
+        gg != dd
+        geometry::main::distance_sq(aa, bb) = geometry::main::distance_sq(dd, ff)
+        geometry::main::distance_sq(aa, cc) = geometry::main::distance_sq(dd, gg)
+        geometry::main::dot(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) = geometry::main::dot(geometry::main::vec(dd, ff), geometry::main::vec(dd, gg))
+        =>:
+            $geometry::main::are_angles_congruent(bb, aa, cc, ff, dd, gg)
+    release thm geometry::main::distance_sq_positive_of_ne(aa, bb)
+    release thm geometry::main::distance_sq_positive_of_ne(aa, cc)
+    geometry::main::distance_sq(aa, bb) $in R+
+    geometry::main::distance_sq(aa, cc) $in R+
+    geometry::main::distance_sq(aa, bb) * geometry::main::distance_sq(aa, cc) $in R+
+    geometry::main::angle_cos_den(bb, aa, cc) = geometry::main::distance_sq(aa, bb) * geometry::main::distance_sq(aa, cc) > 0
+    geometry::main::angle_cos_den(ff, dd, gg) = geometry::main::distance_sq(dd, ff) * geometry::main::distance_sq(dd, gg) = geometry::main::distance_sq(aa, bb) * geometry::main::distance_sq(aa, cc) = geometry::main::angle_cos_den(bb, aa, cc) > 0
+    geometry::main::angle_cos_num(bb, aa, cc) = geometry::main::dot(geometry::main::vec(aa, bb), geometry::main::vec(aa, cc)) = geometry::main::dot(geometry::main::vec(dd, ff), geometry::main::vec(dd, gg)) = geometry::main::angle_cos_num(ff, dd, gg)
+    geometry::main::angle_cos_num(bb, aa, cc)^2 * geometry::main::angle_cos_den(ff, dd, gg) = geometry::main::angle_cos_num(ff, dd, gg)^2 * geometry::main::angle_cos_den(ff, dd, gg) = geometry::main::angle_cos_num(ff, dd, gg)^2 * geometry::main::angle_cos_den(bb, aa, cc)
+    geometry::main::angle_cos_num(bb, aa, cc) * geometry::main::angle_cos_num(ff, dd, gg) = geometry::main::angle_cos_num(bb, aa, cc) * geometry::main::angle_cos_num(bb, aa, cc) = geometry::main::angle_cos_num(bb, aa, cc)^2 >= 0
+    by def $geometry::main::are_angles_congruent(bb, aa, cc, ff, dd, gg)
+
+
+thm five_vertex_function_exists:
+    ? forall a,b,c,d,fifth cart(R,R):
+        exist vertices fn(k Z) cart(R,R) st {vertices(0) = a, vertices(1) = b, vertices(2) = c, vertices(3) = d, vertices(4) = fifth, vertices(5) = a}
+    have fn fourth_choice(k Z) cart(R,R) by cases:
+        case k = 4: fifth
+        case k != 4: a
+    have fn third_choice(k Z) cart(R,R) by cases:
+        case k = 3: d
+        case k != 3: fourth_choice(k)
+    have fn second_choice(k Z) cart(R,R) by cases:
+        case k = 2: c
+        case k != 2: third_choice(k)
+    have fn vertices(k Z) cart(R,R) by cases:
+        case k = 1: b
+        case k != 1: second_choice(k)
+    vertices(0) = second_choice(0) = third_choice(0) = fourth_choice(0) = a
+    vertices(1) = b
+    vertices(2) = second_choice(2) = c
+    vertices(3) = second_choice(3) = third_choice(3) = d
+    vertices(4) = second_choice(4) = third_choice(4) = fourth_choice(4) = fifth
+    vertices(5) = second_choice(5) = third_choice(5) = fourth_choice(5) = a
+    witness exist cycle fn(k Z) cart(R,R) st {cycle(0) = a, cycle(1) = b, cycle(2) = c, cycle(3) = d, cycle(4) = fifth, cycle(5) = a} from vertices
+
+
+have fn scale_and_translate_point(p,center cart(R,R),scale R+) cart(R,R) = (center(1)+scale*p(1),center(2)+scale*p(2))
+
+
+thm scale_and_translate_coordinate_differences:
+    ? forall p,q,center cart(R,R), scale R+:
+        scale_and_translate_point(p,center,scale)(1)-scale_and_translate_point(q,center,scale)(1) = scale*(p(1)-q(1))
+        scale_and_translate_point(p,center,scale)(2)-scale_and_translate_point(q,center,scale)(2) = scale*(p(2)-q(2))
+    scale_and_translate_point(p,center,scale)(1) = center(1)+scale*p(1)
+    scale_and_translate_point(p,center,scale)(2) = center(2)+scale*p(2)
+    scale_and_translate_point(q,center,scale)(1) = center(1)+scale*q(1)
+    scale_and_translate_point(q,center,scale)(2) = center(2)+scale*q(2)
+    scale_and_translate_point(p,center,scale)(1)-scale_and_translate_point(q,center,scale)(1) = (center(1)+scale*p(1))-(center(1)+scale*q(1)) = scale*(p(1)-q(1))
+    scale_and_translate_point(p,center,scale)(2)-scale_and_translate_point(q,center,scale)(2) = (center(2)+scale*p(2))-(center(2)+scale*q(2)) = scale*(p(2)-q(2))
+
+
+thm scale_and_translate_squared_distance:
+    ? forall p,q,center cart(R,R), scale R+:
+        geometry::main::distance_sq(scale_and_translate_point(p,center,scale),scale_and_translate_point(q,center,scale)) = scale^2*geometry::main::distance_sq(p,q)
+    release thm scale_and_translate_coordinate_differences(q,p,center,scale)
+    release thm similar_triangles_ratio(p,p,q,scale_and_translate_point(p,center,scale),scale_and_translate_point(p,center,scale),scale_and_translate_point(q,center,scale),scale)
+
+
+thm scale_and_translate_signed_determinant:
+    ? forall p,q,r,center cart(R,R), scale R+:
+        geometry::main::det(geometry::main::vec(scale_and_translate_point(p,center,scale),scale_and_translate_point(q,center,scale)),geometry::main::vec(scale_and_translate_point(p,center,scale),scale_and_translate_point(r,center,scale))) = scale^2*geometry::main::det(geometry::main::vec(p,q),geometry::main::vec(p,r))
+    have first cart(R,R) = scale_and_translate_point(p,center,scale)
+    have second cart(R,R) = scale_and_translate_point(q,center,scale)
+    have third cart(R,R) = scale_and_translate_point(r,center,scale)
+    release thm scale_and_translate_coordinate_differences(q,p,center,scale)
+    release thm scale_and_translate_coordinate_differences(r,p,center,scale)
+    second(1)-first(1) = scale_and_translate_point(q,center,scale)(1)-scale_and_translate_point(p,center,scale)(1) = scale*(q(1)-p(1))
+    second(2)-first(2) = scale_and_translate_point(q,center,scale)(2)-scale_and_translate_point(p,center,scale)(2) = scale*(q(2)-p(2))
+    third(1)-first(1) = scale_and_translate_point(r,center,scale)(1)-scale_and_translate_point(p,center,scale)(1) = scale*(r(1)-p(1))
+    third(2)-first(2) = scale_and_translate_point(r,center,scale)(2)-scale_and_translate_point(p,center,scale)(2) = scale*(r(2)-p(2))
+    release thm similar_triangles_det(q,p,r,second,first,third,scale)
+    release thm geometry::main::collinear_det_expand(p,q,r)
+    release thm geometry::main::collinear_det_expand(first,second,third)
+    geometry::main::det(geometry::main::vec(first,second),geometry::main::vec(first,third)) = (second(1)-first(1))*(third(2)-first(2))-(second(2)-first(2))*(third(1)-first(1)) = scale^2*((q(1)-p(1))*(r(2)-p(2))-(q(2)-p(2))*(r(1)-p(1))) = scale^2*geometry::main::det(geometry::main::vec(p,q),geometry::main::vec(p,r))
+
+
+thm scale_and_translate_unit_circle_point:
+    ? forall p,center cart(R,R), radius R+:
+        p $in geometry::main::circle((0,0),1)
+        =>:
+            scale_and_translate_point(p,center,radius) $in geometry::main::circle(center,radius)
+    have origin cart(R,R) = (0,0)
+    origin(1) = 0
+    origin(2) = 0
+    geometry::main::circle(origin,1) = geometry::main::circle((0,0),1)
+    p $in geometry::main::circle((0,0),1)
+    p $in geometry::main::circle(origin,1)
+    have image cart(R,R) = scale_and_translate_point(p,center,radius)
+    image(1) = scale_and_translate_point(p,center,radius)(1) = center(1)+radius*p(1) = center(1)+(radius/1)*(p(1)-0) = center(1)+(radius/1)*(p(1)-origin(1))
+    image(2) = scale_and_translate_point(p,center,radius)(2) = center(2)+radius*p(2) = center(2)+(radius/1)*(p(2)-0) = center(2)+(radius/1)*(p(2)-origin(2))
+    release thm rescale_circle_point(origin,center,p,image,1,radius)
+
+
+thm five_positive_side_vertices_give_simple_cycle:
+    ? forall a,b,c,d,fifth cart(R,R), vertices fn(k Z) cart(R,R):
+        vertices(0) = a
+        vertices(1) = b
+        vertices(2) = c
+        vertices(3) = d
+        vertices(4) = fifth
+        vertices(5) = a
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+        geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) > 0
+        geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) > 0
+        geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) > 0
+        geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) > 0
+        geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) > 0
+        geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) > 0
+        geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) > 0
+        geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) > 0
+        geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) > 0
+        geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) > 0
+        geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) > 0
+        geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) > 0
+        =>:
+            $entry::is_simple_polygonal_cycle(5,vertices)
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm working::proper_triangle_consecutive_segments_common_endpoint(a,b,c)
+    by def $geometry::main::is_triangle(b,c,d)
+    release thm geometry_lemmas::triangle_vertices_distinct(b,c,d)
+    release thm working::proper_triangle_consecutive_segments_common_endpoint(b,c,d)
+    by def $geometry::main::is_triangle(c,d,fifth)
+    release thm geometry_lemmas::triangle_vertices_distinct(c,d,fifth)
+    release thm working::proper_triangle_consecutive_segments_common_endpoint(c,d,fifth)
+    by def $geometry::main::is_triangle(d,fifth,a)
+    release thm geometry_lemmas::triangle_vertices_distinct(d,fifth,a)
+    release thm working::proper_triangle_consecutive_segments_common_endpoint(d,fifth,a)
+    by def $geometry::main::is_triangle(fifth,a,b)
+    release thm geometry_lemmas::triangle_vertices_distinct(fifth,a,b)
+    release thm working::proper_triangle_consecutive_segments_common_endpoint(fifth,a,b)
+    release thm working::common_endpoint_condition_symmetric(fifth,a,a,b)
+    a != b
+    c != d
+    release thm strict_half_plane_segments_have_no_extra_intersection(a,b,c,d)
+    a != b
+    d != fifth
+    release thm strict_half_plane_segments_have_no_extra_intersection(a,b,d,fifth)
+    b != c
+    d != fifth
+    release thm strict_half_plane_segments_have_no_extra_intersection(b,c,d,fifth)
+    b != c
+    fifth != a
+    release thm strict_half_plane_segments_have_no_extra_intersection(b,c,fifth,a)
+    c != d
+    fifth != a
+    release thm strict_half_plane_segments_have_no_extra_intersection(c,d,fifth,a)
+    vertices(5) = a = vertices(0)
+    vertices(0) != vertices(1)
+    $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(1),vertices(2))
+    vertices(0) != vertices(2)
+    $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(2),vertices(3))
+    vertices(0) != vertices(3)
+    $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(3),vertices(4))
+    vertices(0) != vertices(4)
+    $entry::segments_meet_only_at_common_endpoints(vertices(0),vertices(1),vertices(4),vertices(5))
+    vertices(1) != vertices(2)
+    $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(2),vertices(3))
+    vertices(1) != vertices(3)
+    $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(3),vertices(4))
+    vertices(1) != vertices(4)
+    $entry::segments_meet_only_at_common_endpoints(vertices(1),vertices(2),vertices(4),vertices(5))
+    vertices(2) != vertices(3)
+    $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(3),vertices(4))
+    vertices(2) != vertices(4)
+    $entry::segments_meet_only_at_common_endpoints(vertices(2),vertices(3),vertices(4),vertices(5))
+    vertices(3) != vertices(4)
+    $entry::segments_meet_only_at_common_endpoints(vertices(3),vertices(4),vertices(4),vertices(5))
+    release thm five_vertex_conditions_give_simple_cycle(vertices)
+
+
+thm book04_proposition_11:
+    ? forall center cart(R,R), radius R+:
+        exist vertices fn(k Z) cart(R,R), side_sq R+ st {$working::polygon_inscribed_in_circle(5,vertices,center,radius), geometry::main::distance_sq(vertices(0),vertices(1)) = side_sq, geometry::main::distance_sq(vertices(1),vertices(2)) = side_sq, geometry::main::distance_sq(vertices(2),vertices(3)) = side_sq, geometry::main::distance_sq(vertices(3),vertices(4)) = side_sq, geometry::main::distance_sq(vertices(4),vertices(0)) = side_sq, $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(0),vertices(1),vertices(2)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(1),vertices(2),vertices(3)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),vertices(4)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(3),vertices(4),vertices(0)), geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(3))) > 0}
+    release thm golden_cut_parameter_exists
+    obtain t from exist t R+ st {t < 1, t^2 = 1-t}
+    release thm golden_triangle_positive_height(t)
+    obtain h from exist h R+ st {h^2 = 1-((1+t)/2)^2}
+    (1+t)^2 = 1+2*t+t^2 = 1+2*t+(1-t) = 2+t
+    h^2 = 1-((1+t)/2)^2 = 1-(1+t)^2/4 = 1-(2+t)/4 = (2-t)/4
+    2-t > 2-1 = 1 > 0
+    3+t > 0
+    radius^2 > 0
+    radius^2*(2-t) > 0
+    radius^2*(3+t) > 0
+    have side_sq R+ = radius^2*(2-t)
+    have diagonal_sq R+ = radius^2*(3+t)
+    have a cart(R,R) = (0,1)
+    have b cart(R,R) = (-(1+t)*h,t/2)
+    have c cart(R,R) = (-h,-(1+t)/2)
+    have d cart(R,R) = (h,-(1+t)/2)
+    have fifth cart(R,R) = ((1+t)*h,t/2)
+    release thm golden_pentagon_metric_certificate(t,h,a,b,c,d,fifth)
+    release thm golden_pentagon_strict_side_orientation(t,h,a,b,c,d,fifth)
+    have first_vertex cart(R,R) = scale_and_translate_point(a,center,radius)
+    have second_vertex cart(R,R) = scale_and_translate_point(b,center,radius)
+    have third_vertex cart(R,R) = scale_and_translate_point(c,center,radius)
+    have fourth_vertex cart(R,R) = scale_and_translate_point(d,center,radius)
+    have fifth_vertex cart(R,R) = scale_and_translate_point(fifth,center,radius)
+    geometry::main::circle((0,0),1) = {p cart(R,R): geometry::main::distance_sq((0,0),p) = 1*1}
+    geometry::main::distance_sq((0,0),a) = 1 = 1*1
+    a $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(a,center,radius)
+    first_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),b) = 1 = 1*1
+    b $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(b,center,radius)
+    second_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),c) = 1 = 1*1
+    c $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(c,center,radius)
+    third_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),d) = 1 = 1*1
+    d $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(d,center,radius)
+    fourth_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),fifth) = 1 = 1*1
+    fifth $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(fifth,center,radius)
+    fifth_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq(a,b) = 2-t
+    release thm scale_and_translate_squared_distance(a,b,center,radius)
+    geometry::main::distance_sq(first_vertex,second_vertex) = geometry::main::distance_sq(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)) = radius^2*geometry::main::distance_sq(a,b) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(first_vertex,second_vertex)
+    geometry::main::distance_sq(second_vertex,first_vertex) = geometry::main::distance_sq(first_vertex,second_vertex) = side_sq
+    geometry::main::distance_sq(a,c) = 3+t
+    release thm scale_and_translate_squared_distance(a,c,center,radius)
+    geometry::main::distance_sq(first_vertex,third_vertex) = geometry::main::distance_sq(scale_and_translate_point(a,center,radius),scale_and_translate_point(c,center,radius)) = radius^2*geometry::main::distance_sq(a,c) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(first_vertex,third_vertex)
+    geometry::main::distance_sq(third_vertex,first_vertex) = geometry::main::distance_sq(first_vertex,third_vertex) = diagonal_sq
+    geometry::main::distance_sq(b,c) = 2-t
+    release thm scale_and_translate_squared_distance(b,c,center,radius)
+    geometry::main::distance_sq(second_vertex,third_vertex) = geometry::main::distance_sq(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)) = radius^2*geometry::main::distance_sq(b,c) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(second_vertex,third_vertex)
+    geometry::main::distance_sq(third_vertex,second_vertex) = geometry::main::distance_sq(second_vertex,third_vertex) = side_sq
+    geometry::main::distance_sq(b,d) = 3+t
+    release thm scale_and_translate_squared_distance(b,d,center,radius)
+    geometry::main::distance_sq(second_vertex,fourth_vertex) = geometry::main::distance_sq(scale_and_translate_point(b,center,radius),scale_and_translate_point(d,center,radius)) = radius^2*geometry::main::distance_sq(b,d) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(second_vertex,fourth_vertex)
+    geometry::main::distance_sq(fourth_vertex,second_vertex) = geometry::main::distance_sq(second_vertex,fourth_vertex) = diagonal_sq
+    geometry::main::distance_sq(c,d) = 2-t
+    release thm scale_and_translate_squared_distance(c,d,center,radius)
+    geometry::main::distance_sq(third_vertex,fourth_vertex) = geometry::main::distance_sq(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)) = radius^2*geometry::main::distance_sq(c,d) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(third_vertex,fourth_vertex)
+    geometry::main::distance_sq(fourth_vertex,third_vertex) = geometry::main::distance_sq(third_vertex,fourth_vertex) = side_sq
+    geometry::main::distance_sq(c,fifth) = 3+t
+    release thm scale_and_translate_squared_distance(c,fifth,center,radius)
+    geometry::main::distance_sq(third_vertex,fifth_vertex) = geometry::main::distance_sq(scale_and_translate_point(c,center,radius),scale_and_translate_point(fifth,center,radius)) = radius^2*geometry::main::distance_sq(c,fifth) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(third_vertex,fifth_vertex)
+    geometry::main::distance_sq(fifth_vertex,third_vertex) = geometry::main::distance_sq(third_vertex,fifth_vertex) = diagonal_sq
+    geometry::main::distance_sq(d,fifth) = 2-t
+    release thm scale_and_translate_squared_distance(d,fifth,center,radius)
+    geometry::main::distance_sq(fourth_vertex,fifth_vertex) = geometry::main::distance_sq(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)) = radius^2*geometry::main::distance_sq(d,fifth) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(fifth_vertex,fourth_vertex) = geometry::main::distance_sq(fourth_vertex,fifth_vertex) = side_sq
+    geometry::main::distance_sq(d,a) = 3+t
+    release thm scale_and_translate_squared_distance(d,a,center,radius)
+    geometry::main::distance_sq(fourth_vertex,first_vertex) = geometry::main::distance_sq(scale_and_translate_point(d,center,radius),scale_and_translate_point(a,center,radius)) = radius^2*geometry::main::distance_sq(d,a) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(fourth_vertex,first_vertex)
+    geometry::main::distance_sq(first_vertex,fourth_vertex) = geometry::main::distance_sq(fourth_vertex,first_vertex) = diagonal_sq
+    geometry::main::distance_sq(fifth,a) = 2-t
+    release thm scale_and_translate_squared_distance(fifth,a,center,radius)
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = geometry::main::distance_sq(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)) = radius^2*geometry::main::distance_sq(fifth,a) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(fifth_vertex,first_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq
+    geometry::main::distance_sq(fifth,b) = 3+t
+    release thm scale_and_translate_squared_distance(fifth,b,center,radius)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = geometry::main::distance_sq(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(b,center,radius)) = radius^2*geometry::main::distance_sq(fifth,b) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(fifth_vertex,second_vertex)
+    geometry::main::distance_sq(second_vertex,fifth_vertex) = geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+    release thm scale_and_translate_signed_determinant(a,b,c,center,radius)
+    geometry::main::vec(first_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::vec(first_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,third_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)),geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(c,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+    release thm scale_and_translate_signed_determinant(a,b,d,center,radius)
+    geometry::main::vec(first_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::vec(first_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fourth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)),geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(d,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+    release thm scale_and_translate_signed_determinant(a,b,fifth,center,radius)
+    geometry::main::vec(first_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::vec(first_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fifth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)),geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(fifth,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) > 0
+    release thm scale_and_translate_signed_determinant(b,c,d,center,radius)
+    geometry::main::vec(second_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::vec(second_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fourth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)),geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(d,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) > 0
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) > 0
+    release thm scale_and_translate_signed_determinant(b,c,fifth,center,radius)
+    geometry::main::vec(second_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::vec(second_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fifth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)),geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(fifth,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) > 0
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) > 0
+    release thm scale_and_translate_signed_determinant(b,c,a,center,radius)
+    geometry::main::vec(second_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::vec(second_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,first_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)),geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(a,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) > 0
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) > 0
+    release thm scale_and_translate_signed_determinant(c,d,fifth,center,radius)
+    geometry::main::vec(third_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::vec(third_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,fifth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)),geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(fifth,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) > 0
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) > 0
+    release thm scale_and_translate_signed_determinant(c,d,a,center,radius)
+    geometry::main::vec(third_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::vec(third_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,first_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)),geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(a,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) > 0
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) > 0
+    release thm scale_and_translate_signed_determinant(c,d,b,center,radius)
+    geometry::main::vec(third_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::vec(third_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,second_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)),geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(b,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) > 0
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) > 0
+    release thm scale_and_translate_signed_determinant(d,fifth,a,center,radius)
+    geometry::main::vec(fourth_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::vec(fourth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,first_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)),geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(a,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) > 0
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) > 0
+    release thm scale_and_translate_signed_determinant(d,fifth,b,center,radius)
+    geometry::main::vec(fourth_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::vec(fourth_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,second_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)),geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(b,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) > 0
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) > 0
+    release thm scale_and_translate_signed_determinant(d,fifth,c,center,radius)
+    geometry::main::vec(fourth_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::vec(fourth_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,third_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)),geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(c,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) > 0
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) > 0
+    release thm scale_and_translate_signed_determinant(fifth,a,b,center,radius)
+    geometry::main::vec(fifth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::vec(fifth_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,second_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)),geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(b,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) > 0
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) > 0
+    release thm scale_and_translate_signed_determinant(fifth,a,c,center,radius)
+    geometry::main::vec(fifth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::vec(fifth_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,third_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)),geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(c,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) > 0
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) > 0
+    release thm scale_and_translate_signed_determinant(fifth,a,d,center,radius)
+    geometry::main::vec(fifth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::vec(fifth_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,fourth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)),geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(d,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) > 0
+    by def $geometry::main::is_triangle(first_vertex,second_vertex,third_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(first_vertex,second_vertex,third_vertex)
+    by def $geometry::main::is_triangle(second_vertex,third_vertex,fourth_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(second_vertex,third_vertex,fourth_vertex)
+    by def $geometry::main::is_triangle(third_vertex,fourth_vertex,fifth_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(third_vertex,fourth_vertex,fifth_vertex)
+    by def $geometry::main::is_triangle(fourth_vertex,fifth_vertex,first_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(fourth_vertex,fifth_vertex,first_vertex)
+    by def $geometry::main::is_triangle(fifth_vertex,first_vertex,second_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(fifth_vertex,first_vertex,second_vertex)
+    first_vertex != second_vertex
+    third_vertex != second_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(first_vertex,second_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(second_vertex,third_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(first_vertex,third_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,first_vertex,second_vertex,third_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(second_vertex,first_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,second_vertex,first_vertex,third_vertex)
+    second_vertex != third_vertex
+    fourth_vertex != third_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(second_vertex,third_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(third_vertex,fourth_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(second_vertex,fourth_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,second_vertex,third_vertex,fourth_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(third_vertex,second_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,third_vertex,second_vertex,fourth_vertex)
+    third_vertex != fourth_vertex
+    fifth_vertex != fourth_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(third_vertex,fourth_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(third_vertex,fifth_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,third_vertex,fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(fourth_vertex,third_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,fourth_vertex,third_vertex,fifth_vertex)
+    fourth_vertex != fifth_vertex
+    first_vertex != fifth_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(fifth_vertex,first_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(fourth_vertex,first_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,fourth_vertex,fifth_vertex,first_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(fifth_vertex,fourth_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,fifth_vertex,fourth_vertex,first_vertex)
+    release thm five_vertex_function_exists(first_vertex,second_vertex,third_vertex,fourth_vertex,fifth_vertex)
+    obtain vertices from exist vertices fn(k Z) cart(R,R) st {vertices(0) = first_vertex, vertices(1) = second_vertex, vertices(2) = third_vertex, vertices(3) = fourth_vertex, vertices(4) = fifth_vertex, vertices(5) = first_vertex}
+    release thm five_positive_side_vertices_give_simple_cycle(first_vertex,second_vertex,third_vertex,fourth_vertex,fifth_vertex,vertices)
+    vertices(0) $in geometry::main::circle(center,radius)
+    vertices(1) $in geometry::main::circle(center,radius)
+    vertices(2) $in geometry::main::circle(center,radius)
+    vertices(3) $in geometry::main::circle(center,radius)
+    vertices(4) $in geometry::main::circle(center,radius)
+    claim:
+        ? forall k Z:
+            0 <= k
+            k < 5
+            =>:
+                vertices(k) $in geometry::main::circle(center,radius)
+        release thm integer_index_below_five_cases(k)
+        by cases:
+            ? vertices(k) $in geometry::main::circle(center,radius)
+            case k = 0:
+                vertices(k) = vertices(0)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 1:
+                vertices(k) = vertices(1)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 2:
+                vertices(k) = vertices(2)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 3:
+                vertices(k) = vertices(3)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 4:
+                vertices(k) = vertices(4)
+                vertices(k) $in geometry::main::circle(center,radius)
+    by def $working::polygon_inscribed_in_circle(5,vertices,center,radius)
+    geometry::main::distance_sq(vertices(0),vertices(1)) = side_sq
+    geometry::main::distance_sq(vertices(1),vertices(2)) = side_sq
+    geometry::main::distance_sq(vertices(2),vertices(3)) = side_sq
+    geometry::main::distance_sq(vertices(3),vertices(4)) = side_sq
+    geometry::main::distance_sq(vertices(4),vertices(0)) = side_sq
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(0),vertices(1),vertices(2))
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(1),vertices(2),vertices(3))
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),vertices(4))
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(3),vertices(4),vertices(0))
+    geometry::main::vec(vertices(0),vertices(1)) = geometry::main::vec(first_vertex,second_vertex)
+    geometry::main::vec(vertices(0),vertices(2)) = geometry::main::vec(first_vertex,third_vertex)
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) = geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,third_vertex)) > 0
+    geometry::main::vec(vertices(0),vertices(1)) = geometry::main::vec(first_vertex,second_vertex)
+    geometry::main::vec(vertices(0),vertices(3)) = geometry::main::vec(first_vertex,fourth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(3))) = geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fourth_vertex)) > 0
+    geometry::main::vec(vertices(0),vertices(1)) = geometry::main::vec(first_vertex,second_vertex)
+    geometry::main::vec(vertices(0),vertices(4)) = geometry::main::vec(first_vertex,fifth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(4))) = geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fifth_vertex)) > 0
+    geometry::main::vec(vertices(1),vertices(2)) = geometry::main::vec(second_vertex,third_vertex)
+    geometry::main::vec(vertices(1),vertices(3)) = geometry::main::vec(second_vertex,fourth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(3))) = geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fourth_vertex)) > 0
+    geometry::main::vec(vertices(1),vertices(2)) = geometry::main::vec(second_vertex,third_vertex)
+    geometry::main::vec(vertices(1),vertices(4)) = geometry::main::vec(second_vertex,fifth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(4))) = geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fifth_vertex)) > 0
+    geometry::main::vec(vertices(1),vertices(2)) = geometry::main::vec(second_vertex,third_vertex)
+    geometry::main::vec(vertices(1),vertices(0)) = geometry::main::vec(second_vertex,first_vertex)
+    geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(0))) = geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,first_vertex)) > 0
+    geometry::main::vec(vertices(2),vertices(3)) = geometry::main::vec(third_vertex,fourth_vertex)
+    geometry::main::vec(vertices(2),vertices(4)) = geometry::main::vec(third_vertex,fifth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(4))) = geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,fifth_vertex)) > 0
+    geometry::main::vec(vertices(2),vertices(3)) = geometry::main::vec(third_vertex,fourth_vertex)
+    geometry::main::vec(vertices(2),vertices(0)) = geometry::main::vec(third_vertex,first_vertex)
+    geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(0))) = geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,first_vertex)) > 0
+    geometry::main::vec(vertices(2),vertices(3)) = geometry::main::vec(third_vertex,fourth_vertex)
+    geometry::main::vec(vertices(2),vertices(1)) = geometry::main::vec(third_vertex,second_vertex)
+    geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(1))) = geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,second_vertex)) > 0
+    geometry::main::vec(vertices(3),vertices(4)) = geometry::main::vec(fourth_vertex,fifth_vertex)
+    geometry::main::vec(vertices(3),vertices(0)) = geometry::main::vec(fourth_vertex,first_vertex)
+    geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(0))) = geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,first_vertex)) > 0
+    geometry::main::vec(vertices(3),vertices(4)) = geometry::main::vec(fourth_vertex,fifth_vertex)
+    geometry::main::vec(vertices(3),vertices(1)) = geometry::main::vec(fourth_vertex,second_vertex)
+    geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(1))) = geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,second_vertex)) > 0
+    geometry::main::vec(vertices(3),vertices(4)) = geometry::main::vec(fourth_vertex,fifth_vertex)
+    geometry::main::vec(vertices(3),vertices(2)) = geometry::main::vec(fourth_vertex,third_vertex)
+    geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(2))) = geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,third_vertex)) > 0
+    geometry::main::vec(vertices(4),vertices(0)) = geometry::main::vec(fifth_vertex,first_vertex)
+    geometry::main::vec(vertices(4),vertices(1)) = geometry::main::vec(fifth_vertex,second_vertex)
+    geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(1))) = geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,second_vertex)) > 0
+    geometry::main::vec(vertices(4),vertices(0)) = geometry::main::vec(fifth_vertex,first_vertex)
+    geometry::main::vec(vertices(4),vertices(2)) = geometry::main::vec(fifth_vertex,third_vertex)
+    geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(2))) = geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,third_vertex)) > 0
+    geometry::main::vec(vertices(4),vertices(0)) = geometry::main::vec(fifth_vertex,first_vertex)
+    geometry::main::vec(vertices(4),vertices(3)) = geometry::main::vec(fifth_vertex,fourth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(3))) = geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,fourth_vertex)) > 0
+    witness exist cycle fn(k Z) cart(R,R), squared_side R+ st {$working::polygon_inscribed_in_circle(5,cycle,center,radius), geometry::main::distance_sq(cycle(0),cycle(1)) = squared_side, geometry::main::distance_sq(cycle(1),cycle(2)) = squared_side, geometry::main::distance_sq(cycle(2),cycle(3)) = squared_side, geometry::main::distance_sq(cycle(3),cycle(4)) = squared_side, geometry::main::distance_sq(cycle(4),cycle(0)) = squared_side, $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(0),cycle(1),cycle(2)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(1),cycle(2),cycle(3)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(2),cycle(3),cycle(4)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(3),cycle(4),cycle(0)), geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(3))) > 0, geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(3))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(3))) > 0} from vertices,side_sq
+
+
+thm golden_pentagon_outer_radius:
+    ? forall t, radius R+:
+        t < 1
+        t^2 = 1-t
+        =>:
+            exist outer_radius R+ st {outer_radius^2-outer_radius^2*(2-t)/4 = radius^2}
+    1+t > 0
+    (1+t)/2 > 0
+    have u R+ = (1+t)/2
+    u^2 = ((1+t)/2)^2 = (1+2*t+t^2)/4 = (1+2*t+(1-t))/4 = (1+2*t+1-t)/4 = (2+t)/4 = 1-(2-t)/4
+    radius/u > 0
+    have outer_radius R+ = radius/u
+    outer_radius^2-outer_radius^2*(2-t)/4 = outer_radius^2*(1-(2-t)/4) = outer_radius^2*u^2 = (radius/u)^2*u^2 = radius^2
+    witness exist outer R+ st {outer^2-outer^2*(2-t)/4 = radius^2} from outer_radius
+
+
+thm chord_midpoint_radius_identity:
+    ? forall o, a, b, m cart(R, R), radius R+:
+        a != b
+        $is_on_circle(a, o, radius)
+        $is_on_circle(b, o, radius)
+        m(1) = (a(1)+b(1))/2
+        m(2) = (a(2)+b(2))/2
+        =>:
+            geometry::main::distance_sq(o, m)+geometry::main::distance_sq(a, b)/4 = radius^2
+    by def $is_on_circle(a, o, radius)
+    by def $is_on_circle(b, o, radius)
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    release thm geometry::main::distance_sq_coordinate_formula(o, m)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    2*geometry::main::distance_sq(o, m)+geometry::main::distance_sq(a, b)/2 = 2*((m(1)-o(1))^2+(m(2)-o(2))^2)+((b(1)-a(1))^2+(b(2)-a(2))^2)/2 = 2*(((a(1)+b(1))/2-o(1))^2+((a(2)+b(2))/2-o(2))^2)+((b(1)-a(1))^2+(b(2)-a(2))^2)/2 = (a(1)-o(1))^2+(a(2)-o(2))^2+(b(1)-o(1))^2+(b(2)-o(2))^2 = ((a(1)-o(1))^2+(a(2)-o(2))^2)+((b(1)-o(1))^2+(b(2)-o(2))^2) = geometry::main::distance_sq(o, a)+geometry::main::distance_sq(o, b) = radius*radius+radius*radius = 2*radius^2
+    geometry::main::distance_sq(o, m)+geometry::main::distance_sq(a, b)/4 = (2*geometry::main::distance_sq(o, m)+geometry::main::distance_sq(a, b)/2)/2 = (2*radius^2)/2 = radius^2
+
+
+
+thm chord_midpoint_contact_geometry:
+    ? forall a,b,m,o cart(R,R):
+        a != b
+        geometry::main::distance_sq(o,a) = geometry::main::distance_sq(o,b)
+        m(1) = (a(1)+b(1))/2
+        m(2) = (a(2)+b(2))/2
+        =>:
+            $entry::is_on_segment(m,a,b)
+            m $in geometry::main::line_through_points(a,b)
+            geometry::main::dot(geometry::main::vec(o,m),geometry::main::vec(a,b)) = 0
+    m(1) = (a(1)+b(1))/2 = (1-1/2)*a(1)+(1/2)*b(1)
+    m(2) = (a(2)+b(2))/2 = (1-1/2)*a(2)+(1/2)*b(2)
+    witness exist t R st {0 <= t, t <= 1, m(1) = (1-t)*a(1)+t*b(1), m(2) = (1-t)*a(2)+t*b(2)} from 1/2
+    by def $entry::is_on_segment(m,a,b)
+    release thm geometry::main::collinear_det_expand(a,m,b)
+    geometry::main::det(geometry::main::vec(a,m),geometry::main::vec(a,b)) = (m(1)-a(1))*(b(2)-a(2))-(m(2)-a(2))*(b(1)-a(1)) = ((a(1)+b(1))/2-a(1))*(b(2)-a(2))-((a(2)+b(2))/2-a(2))*(b(1)-a(1)) = 0
+    release thm set_builder_member(m,{q cart(R,R): geometry::main::det(geometry::main::vec(a,q),geometry::main::vec(a,b)) = 0})
+    m $in geometry::main::line_through_points(a,b)
+    release thm geometry::main::distance_sq_coordinate_formula(o,a)
+    release thm geometry::main::distance_sq_coordinate_formula(o,b)
+    release thm geometry::main::perpendicular_dot_expand(o,m,a,b)
+    2*geometry::main::dot(geometry::main::vec(o,m),geometry::main::vec(a,b)) = 2*((m(1)-o(1))*(b(1)-a(1))+(m(2)-o(2))*(b(2)-a(2))) = 2*(((a(1)+b(1))/2-o(1))*(b(1)-a(1))+((a(2)+b(2))/2-o(2))*(b(2)-a(2))) = ((b(1)-o(1))^2+(b(2)-o(2))^2)-((a(1)-o(1))^2+(a(2)-o(2))^2) = geometry::main::distance_sq(o,b)-geometry::main::distance_sq(o,a) = 0
+    geometry::main::dot(geometry::main::vec(o,m),geometry::main::vec(a,b)) = (2*geometry::main::dot(geometry::main::vec(o,m),geometry::main::vec(a,b)))/2 = 0
+
+
+thm concentric_chord_midpoint_tangency:
+    ? forall o,a,b,m cart(R,R), outer_radius,radius R+:
+        a != b
+        $is_on_circle(a,o,outer_radius)
+        $is_on_circle(b,o,outer_radius)
+        m(1) = (a(1)+b(1))/2
+        m(2) = (a(2)+b(2))/2
+        outer_radius^2-geometry::main::distance_sq(a,b)/4 = radius^2
+        =>:
+            $entry::is_on_segment(m,a,b)
+            $is_tangent_line_at(m,a,b,o,radius)
+    by def $is_on_circle(a,o,outer_radius)
+    by def $is_on_circle(b,o,outer_radius)
+    geometry::main::distance_sq(o,a) = outer_radius*outer_radius = geometry::main::distance_sq(o,b)
+    release thm chord_midpoint_contact_geometry(a,b,m,o)
+    release thm chord_midpoint_radius_identity(o,a,b,m,outer_radius)
+    geometry::main::distance_sq(o,m) = (geometry::main::distance_sq(o,m)+geometry::main::distance_sq(a,b)/4)-geometry::main::distance_sq(a,b)/4 = outer_radius^2-geometry::main::distance_sq(a,b)/4 = radius^2 = radius*radius
+    by def $is_on_circle(m,o,radius)
+    release thm radius_perpendicular_at_line_point_gives_tangency(o,m,a,b,radius)
+
+
+thm five_vertex_centroid_strict_side:
+    ? forall a,b,c,d,fifth,o cart(R,R):
+        o(1) = (a(1)+b(1)+c(1)+d(1)+fifth(1))/5
+        o(2) = (a(2)+b(2)+c(2)+d(2)+fifth(2))/5
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+        geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+        =>:
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,o)) > 0
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,d)
+    release thm geometry::main::collinear_det_expand(a,b,fifth)
+    release thm geometry::main::collinear_det_expand(a,b,o)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) = ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) = ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))+((b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) = ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))+((b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)))+((b(1)-a(1))*(fifth(2)-a(2))-(b(2)-a(2))*(fifth(1)-a(1)))
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,o)) = ((b(1)-a(1))*(o(2)-a(2))-(b(2)-a(2))*(o(1)-a(1))) = (b(1)-a(1))*((a(2)+b(2)+c(2)+d(2)+fifth(2))/5-a(2))-(b(2)-a(2))*((a(1)+b(1)+c(1)+d(1)+fifth(1))/5-a(1)) = (((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))+((b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)))+((b(1)-a(1))*(fifth(2)-a(2))-(b(2)-a(2))*(fifth(1)-a(1))))/5 = (geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))+geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)))/5 > 0
+
+
+thm golden_pentagon_centroid_coordinates:
+    ? forall t,h R, a,b,c,d,fifth cart(R,R):
+        a = (0,1)
+        b = (-(1+t)*h,t/2)
+        c = (-h,-(1+t)/2)
+        d = (h,-(1+t)/2)
+        fifth = ((1+t)*h,t/2)
+        =>:
+            a(1)+b(1)+c(1)+d(1)+fifth(1) = 0
+            a(2)+b(2)+c(2)+d(2)+fifth(2) = 0
+    a(1) = 0
+    b(1) = (-(1+t)*h)
+    c(1) = (-h)
+    d(1) = h
+    fifth(1) = ((1+t)*h)
+    a(1)+b(1)+c(1)+d(1)+fifth(1) = 0+b(1)+c(1)+d(1)+fifth(1) = 0+(-(1+t)*h)+c(1)+d(1)+fifth(1) = 0+(-(1+t)*h)+(-h)+d(1)+fifth(1) = 0+(-(1+t)*h)+(-h)+h+fifth(1) = 0+(-(1+t)*h)+(-h)+h+((1+t)*h) = 0
+    a(2) = 1
+    b(2) = (t/2)
+    c(2) = (-(1+t)/2)
+    d(2) = (-(1+t)/2)
+    fifth(2) = (t/2)
+    a(2)+b(2)+c(2)+d(2)+fifth(2) = 1+b(2)+c(2)+d(2)+fifth(2) = 1+(t/2)+c(2)+d(2)+fifth(2) = 1+(t/2)+(-(1+t)/2)+d(2)+fifth(2) = 1+(t/2)+(-(1+t)/2)+(-(1+t)/2)+fifth(2) = 1+(t/2)+(-(1+t)/2)+(-(1+t)/2)+(t/2) = 0
+
+
+thm five_point_similarity_centroid:
+    ? forall center,a,b,c,d,fifth cart(R,R), scale R+, vertices fn(k Z) cart(R,R):
+        a(1)+b(1)+c(1)+d(1)+fifth(1) = 0
+        a(2)+b(2)+c(2)+d(2)+fifth(2) = 0
+        vertices(0) = scale_and_translate_point(a,center,scale)
+        vertices(1) = scale_and_translate_point(b,center,scale)
+        vertices(2) = scale_and_translate_point(c,center,scale)
+        vertices(3) = scale_and_translate_point(d,center,scale)
+        vertices(4) = scale_and_translate_point(fifth,center,scale)
+        =>:
+            center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5
+            center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5
+    have image0 cart(R,R) = scale_and_translate_point(a,center,scale)
+    vertices(0) = image0
+    have image1 cart(R,R) = scale_and_translate_point(b,center,scale)
+    vertices(1) = image1
+    have image2 cart(R,R) = scale_and_translate_point(c,center,scale)
+    vertices(2) = image2
+    have image3 cart(R,R) = scale_and_translate_point(d,center,scale)
+    vertices(3) = image3
+    have image4 cart(R,R) = scale_and_translate_point(fifth,center,scale)
+    vertices(4) = image4
+    image0(1) = scale_and_translate_point(a,center,scale)(1) = center(1)+scale*a(1)
+    vertices(0)(1) = image0(1) = center(1)+scale*a(1)
+    image1(1) = scale_and_translate_point(b,center,scale)(1) = center(1)+scale*b(1)
+    vertices(1)(1) = image1(1) = center(1)+scale*b(1)
+    image2(1) = scale_and_translate_point(c,center,scale)(1) = center(1)+scale*c(1)
+    vertices(2)(1) = image2(1) = center(1)+scale*c(1)
+    image3(1) = scale_and_translate_point(d,center,scale)(1) = center(1)+scale*d(1)
+    vertices(3)(1) = image3(1) = center(1)+scale*d(1)
+    image4(1) = scale_and_translate_point(fifth,center,scale)(1) = center(1)+scale*fifth(1)
+    vertices(4)(1) = image4(1) = center(1)+scale*fifth(1)
+    vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1) = (center(1)+scale*a(1))+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1) = (center(1)+scale*a(1))+(center(1)+scale*b(1))+vertices(2)(1)+vertices(3)(1)+vertices(4)(1) = (center(1)+scale*a(1))+(center(1)+scale*b(1))+(center(1)+scale*c(1))+vertices(3)(1)+vertices(4)(1) = (center(1)+scale*a(1))+(center(1)+scale*b(1))+(center(1)+scale*c(1))+(center(1)+scale*d(1))+vertices(4)(1) = (center(1)+scale*a(1))+(center(1)+scale*b(1))+(center(1)+scale*c(1))+(center(1)+scale*d(1))+(center(1)+scale*fifth(1)) = 5*center(1)+scale*(a(1)+b(1)+c(1)+d(1)+fifth(1)) = 5*center(1)+scale*0 = 5*center(1)
+    center(1) = (5*center(1))/5 = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5
+    image0(2) = scale_and_translate_point(a,center,scale)(2) = center(2)+scale*a(2)
+    vertices(0)(2) = image0(2) = center(2)+scale*a(2)
+    image1(2) = scale_and_translate_point(b,center,scale)(2) = center(2)+scale*b(2)
+    vertices(1)(2) = image1(2) = center(2)+scale*b(2)
+    image2(2) = scale_and_translate_point(c,center,scale)(2) = center(2)+scale*c(2)
+    vertices(2)(2) = image2(2) = center(2)+scale*c(2)
+    image3(2) = scale_and_translate_point(d,center,scale)(2) = center(2)+scale*d(2)
+    vertices(3)(2) = image3(2) = center(2)+scale*d(2)
+    image4(2) = scale_and_translate_point(fifth,center,scale)(2) = center(2)+scale*fifth(2)
+    vertices(4)(2) = image4(2) = center(2)+scale*fifth(2)
+    vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2) = (center(2)+scale*a(2))+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2) = (center(2)+scale*a(2))+(center(2)+scale*b(2))+vertices(2)(2)+vertices(3)(2)+vertices(4)(2) = (center(2)+scale*a(2))+(center(2)+scale*b(2))+(center(2)+scale*c(2))+vertices(3)(2)+vertices(4)(2) = (center(2)+scale*a(2))+(center(2)+scale*b(2))+(center(2)+scale*c(2))+(center(2)+scale*d(2))+vertices(4)(2) = (center(2)+scale*a(2))+(center(2)+scale*b(2))+(center(2)+scale*c(2))+(center(2)+scale*d(2))+(center(2)+scale*fifth(2)) = 5*center(2)+scale*(a(2)+b(2)+c(2)+d(2)+fifth(2)) = 5*center(2)+scale*0 = 5*center(2)
+    center(2) = (5*center(2))/5 = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5
+
+
+thm golden_pentagon_with_prescribed_radius_and_center:
+    ? forall center cart(R,R), radius, t R+:
+        t < 1
+        t^2 = 1-t
+        =>:
+            exist vertices fn(k Z) cart(R,R), side_sq R+ st {center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5, center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5, side_sq = radius^2*(2-t), $working::polygon_inscribed_in_circle(5,vertices,center,radius), geometry::main::distance_sq(vertices(0),vertices(1)) = side_sq, geometry::main::distance_sq(vertices(1),vertices(2)) = side_sq, geometry::main::distance_sq(vertices(2),vertices(3)) = side_sq, geometry::main::distance_sq(vertices(3),vertices(4)) = side_sq, geometry::main::distance_sq(vertices(4),vertices(0)) = side_sq, $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(0),vertices(1),vertices(2)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(1),vertices(2),vertices(3)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),vertices(4)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(3),vertices(4),vertices(0)), geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(3))) > 0}
+    release thm golden_triangle_positive_height(t)
+    obtain h from exist h R+ st {h^2 = 1-((1+t)/2)^2}
+    (1+t)^2 = 1+2*t+t^2 = 1+2*t+(1-t) = 2+t
+    h^2 = 1-((1+t)/2)^2 = 1-(1+t)^2/4 = 1-(2+t)/4 = (2-t)/4
+    2-t > 2-1 = 1 > 0
+    3+t > 0
+    radius^2 > 0
+    radius^2*(2-t) > 0
+    radius^2*(3+t) > 0
+    have side_sq R+ = radius^2*(2-t)
+    have diagonal_sq R+ = radius^2*(3+t)
+    have a cart(R,R) = (0,1)
+    have b cart(R,R) = (-(1+t)*h,t/2)
+    have c cart(R,R) = (-h,-(1+t)/2)
+    have d cart(R,R) = (h,-(1+t)/2)
+    have fifth cart(R,R) = ((1+t)*h,t/2)
+    release thm golden_pentagon_metric_certificate(t,h,a,b,c,d,fifth)
+    release thm golden_pentagon_strict_side_orientation(t,h,a,b,c,d,fifth)
+    have first_vertex cart(R,R) = scale_and_translate_point(a,center,radius)
+    have second_vertex cart(R,R) = scale_and_translate_point(b,center,radius)
+    have third_vertex cart(R,R) = scale_and_translate_point(c,center,radius)
+    have fourth_vertex cart(R,R) = scale_and_translate_point(d,center,radius)
+    have fifth_vertex cart(R,R) = scale_and_translate_point(fifth,center,radius)
+    geometry::main::circle((0,0),1) = {p cart(R,R): geometry::main::distance_sq((0,0),p) = 1*1}
+    geometry::main::distance_sq((0,0),a) = 1 = 1*1
+    a $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(a,center,radius)
+    first_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),b) = 1 = 1*1
+    b $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(b,center,radius)
+    second_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),c) = 1 = 1*1
+    c $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(c,center,radius)
+    third_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),d) = 1 = 1*1
+    d $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(d,center,radius)
+    fourth_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq((0,0),fifth) = 1 = 1*1
+    fifth $in geometry::main::circle((0,0),1)
+    release thm scale_and_translate_unit_circle_point(fifth,center,radius)
+    fifth_vertex $in geometry::main::circle(center,radius)
+    geometry::main::distance_sq(a,b) = 2-t
+    release thm scale_and_translate_squared_distance(a,b,center,radius)
+    geometry::main::distance_sq(first_vertex,second_vertex) = geometry::main::distance_sq(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)) = radius^2*geometry::main::distance_sq(a,b) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(first_vertex,second_vertex)
+    geometry::main::distance_sq(second_vertex,first_vertex) = geometry::main::distance_sq(first_vertex,second_vertex) = side_sq
+    geometry::main::distance_sq(a,c) = 3+t
+    release thm scale_and_translate_squared_distance(a,c,center,radius)
+    geometry::main::distance_sq(first_vertex,third_vertex) = geometry::main::distance_sq(scale_and_translate_point(a,center,radius),scale_and_translate_point(c,center,radius)) = radius^2*geometry::main::distance_sq(a,c) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(first_vertex,third_vertex)
+    geometry::main::distance_sq(third_vertex,first_vertex) = geometry::main::distance_sq(first_vertex,third_vertex) = diagonal_sq
+    geometry::main::distance_sq(b,c) = 2-t
+    release thm scale_and_translate_squared_distance(b,c,center,radius)
+    geometry::main::distance_sq(second_vertex,third_vertex) = geometry::main::distance_sq(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)) = radius^2*geometry::main::distance_sq(b,c) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(second_vertex,third_vertex)
+    geometry::main::distance_sq(third_vertex,second_vertex) = geometry::main::distance_sq(second_vertex,third_vertex) = side_sq
+    geometry::main::distance_sq(b,d) = 3+t
+    release thm scale_and_translate_squared_distance(b,d,center,radius)
+    geometry::main::distance_sq(second_vertex,fourth_vertex) = geometry::main::distance_sq(scale_and_translate_point(b,center,radius),scale_and_translate_point(d,center,radius)) = radius^2*geometry::main::distance_sq(b,d) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(second_vertex,fourth_vertex)
+    geometry::main::distance_sq(fourth_vertex,second_vertex) = geometry::main::distance_sq(second_vertex,fourth_vertex) = diagonal_sq
+    geometry::main::distance_sq(c,d) = 2-t
+    release thm scale_and_translate_squared_distance(c,d,center,radius)
+    geometry::main::distance_sq(third_vertex,fourth_vertex) = geometry::main::distance_sq(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)) = radius^2*geometry::main::distance_sq(c,d) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(third_vertex,fourth_vertex)
+    geometry::main::distance_sq(fourth_vertex,third_vertex) = geometry::main::distance_sq(third_vertex,fourth_vertex) = side_sq
+    geometry::main::distance_sq(c,fifth) = 3+t
+    release thm scale_and_translate_squared_distance(c,fifth,center,radius)
+    geometry::main::distance_sq(third_vertex,fifth_vertex) = geometry::main::distance_sq(scale_and_translate_point(c,center,radius),scale_and_translate_point(fifth,center,radius)) = radius^2*geometry::main::distance_sq(c,fifth) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(third_vertex,fifth_vertex)
+    geometry::main::distance_sq(fifth_vertex,third_vertex) = geometry::main::distance_sq(third_vertex,fifth_vertex) = diagonal_sq
+    geometry::main::distance_sq(d,fifth) = 2-t
+    release thm scale_and_translate_squared_distance(d,fifth,center,radius)
+    geometry::main::distance_sq(fourth_vertex,fifth_vertex) = geometry::main::distance_sq(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)) = radius^2*geometry::main::distance_sq(d,fifth) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(fifth_vertex,fourth_vertex) = geometry::main::distance_sq(fourth_vertex,fifth_vertex) = side_sq
+    geometry::main::distance_sq(d,a) = 3+t
+    release thm scale_and_translate_squared_distance(d,a,center,radius)
+    geometry::main::distance_sq(fourth_vertex,first_vertex) = geometry::main::distance_sq(scale_and_translate_point(d,center,radius),scale_and_translate_point(a,center,radius)) = radius^2*geometry::main::distance_sq(d,a) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(fourth_vertex,first_vertex)
+    geometry::main::distance_sq(first_vertex,fourth_vertex) = geometry::main::distance_sq(fourth_vertex,first_vertex) = diagonal_sq
+    geometry::main::distance_sq(fifth,a) = 2-t
+    release thm scale_and_translate_squared_distance(fifth,a,center,radius)
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = geometry::main::distance_sq(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)) = radius^2*geometry::main::distance_sq(fifth,a) = radius^2*(2-t) = side_sq
+    release thm geometry::main::distance_sq_symmetric(fifth_vertex,first_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq
+    geometry::main::distance_sq(fifth,b) = 3+t
+    release thm scale_and_translate_squared_distance(fifth,b,center,radius)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = geometry::main::distance_sq(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(b,center,radius)) = radius^2*geometry::main::distance_sq(fifth,b) = radius^2*(3+t) = diagonal_sq
+    release thm geometry::main::distance_sq_symmetric(fifth_vertex,second_vertex)
+    geometry::main::distance_sq(second_vertex,fifth_vertex) = geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+    release thm scale_and_translate_signed_determinant(a,b,c,center,radius)
+    geometry::main::vec(first_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::vec(first_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,third_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)),geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(c,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) > 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+    release thm scale_and_translate_signed_determinant(a,b,d,center,radius)
+    geometry::main::vec(first_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::vec(first_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fourth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)),geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(d,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) > 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+    release thm scale_and_translate_signed_determinant(a,b,fifth,center,radius)
+    geometry::main::vec(first_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::vec(first_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fifth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(b,center,radius)),geometry::main::vec(scale_and_translate_point(a,center,radius),scale_and_translate_point(fifth,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,fifth)) > 0
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) > 0
+    release thm scale_and_translate_signed_determinant(b,c,d,center,radius)
+    geometry::main::vec(second_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::vec(second_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fourth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)),geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(d,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,d)) > 0
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) > 0
+    release thm scale_and_translate_signed_determinant(b,c,fifth,center,radius)
+    geometry::main::vec(second_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::vec(second_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fifth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)),geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(fifth,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,fifth)) > 0
+    geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) > 0
+    release thm scale_and_translate_signed_determinant(b,c,a,center,radius)
+    geometry::main::vec(second_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::vec(second_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,first_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(c,center,radius)),geometry::main::vec(scale_and_translate_point(b,center,radius),scale_and_translate_point(a,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(b,c),geometry::main::vec(b,a)) > 0
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) > 0
+    release thm scale_and_translate_signed_determinant(c,d,fifth,center,radius)
+    geometry::main::vec(third_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::vec(third_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,fifth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)),geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(fifth,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,fifth)) > 0
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) > 0
+    release thm scale_and_translate_signed_determinant(c,d,a,center,radius)
+    geometry::main::vec(third_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::vec(third_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,first_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)),geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(a,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,a)) > 0
+    geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) > 0
+    release thm scale_and_translate_signed_determinant(c,d,b,center,radius)
+    geometry::main::vec(third_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::vec(third_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,second_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(d,center,radius)),geometry::main::vec(scale_and_translate_point(c,center,radius),scale_and_translate_point(b,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(c,d),geometry::main::vec(c,b)) > 0
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) > 0
+    release thm scale_and_translate_signed_determinant(d,fifth,a,center,radius)
+    geometry::main::vec(fourth_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::vec(fourth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,first_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)),geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(a,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,a)) > 0
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) > 0
+    release thm scale_and_translate_signed_determinant(d,fifth,b,center,radius)
+    geometry::main::vec(fourth_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::vec(fourth_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,second_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)),geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(b,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,b)) > 0
+    geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) > 0
+    release thm scale_and_translate_signed_determinant(d,fifth,c,center,radius)
+    geometry::main::vec(fourth_vertex,fifth_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius))
+    geometry::main::vec(fourth_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,third_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(fifth,center,radius)),geometry::main::vec(scale_and_translate_point(d,center,radius),scale_and_translate_point(c,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(d,fifth),geometry::main::vec(d,c)) > 0
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) > 0
+    release thm scale_and_translate_signed_determinant(fifth,a,b,center,radius)
+    geometry::main::vec(fifth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::vec(fifth_vertex,second_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(b,center,radius))
+    geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,second_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)),geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(b,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,b)) > 0
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) > 0
+    release thm scale_and_translate_signed_determinant(fifth,a,c,center,radius)
+    geometry::main::vec(fifth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::vec(fifth_vertex,third_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(c,center,radius))
+    geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,third_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)),geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(c,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,c)) > 0
+    geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) > 0
+    release thm scale_and_translate_signed_determinant(fifth,a,d,center,radius)
+    geometry::main::vec(fifth_vertex,first_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius))
+    geometry::main::vec(fifth_vertex,fourth_vertex) = geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(d,center,radius))
+    geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,fourth_vertex)) = geometry::main::det(geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(a,center,radius)),geometry::main::vec(scale_and_translate_point(fifth,center,radius),scale_and_translate_point(d,center,radius))) = radius^2*geometry::main::det(geometry::main::vec(fifth,a),geometry::main::vec(fifth,d)) > 0
+    by def $geometry::main::is_triangle(first_vertex,second_vertex,third_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(first_vertex,second_vertex,third_vertex)
+    by def $geometry::main::is_triangle(second_vertex,third_vertex,fourth_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(second_vertex,third_vertex,fourth_vertex)
+    by def $geometry::main::is_triangle(third_vertex,fourth_vertex,fifth_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(third_vertex,fourth_vertex,fifth_vertex)
+    by def $geometry::main::is_triangle(fourth_vertex,fifth_vertex,first_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(fourth_vertex,fifth_vertex,first_vertex)
+    by def $geometry::main::is_triangle(fifth_vertex,first_vertex,second_vertex)
+    release thm geometry_lemmas::triangle_vertices_distinct(fifth_vertex,first_vertex,second_vertex)
+    first_vertex != second_vertex
+    third_vertex != second_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(first_vertex,second_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(second_vertex,third_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(first_vertex,third_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,first_vertex,second_vertex,third_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(second_vertex,first_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,second_vertex,first_vertex,third_vertex)
+    second_vertex != third_vertex
+    fourth_vertex != third_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(second_vertex,third_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(third_vertex,fourth_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(second_vertex,fourth_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,second_vertex,third_vertex,fourth_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(third_vertex,second_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,third_vertex,second_vertex,fourth_vertex)
+    third_vertex != fourth_vertex
+    fifth_vertex != fourth_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(third_vertex,fourth_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(third_vertex,fifth_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,third_vertex,fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(fourth_vertex,third_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,fourth_vertex,third_vertex,fifth_vertex)
+    fourth_vertex != fifth_vertex
+    first_vertex != fifth_vertex
+    geometry::main::distance_sq(fifth_vertex,first_vertex) = side_sq = geometry::main::distance_sq(fourth_vertex,fifth_vertex)
+    geometry::main::distance_sq(first_vertex,second_vertex) = side_sq = geometry::main::distance_sq(fifth_vertex,first_vertex)
+    geometry::main::distance_sq(fifth_vertex,second_vertex) = diagonal_sq = geometry::main::distance_sq(fourth_vertex,first_vertex)
+    release thm sss_dot_equal(fifth_vertex,first_vertex,second_vertex,fourth_vertex,fifth_vertex,first_vertex)
+    geometry::main::distance_sq(first_vertex,fifth_vertex) = side_sq = geometry::main::distance_sq(fifth_vertex,fourth_vertex)
+    release thm angle_congruence_from_equal_sides_and_dot(first_vertex,fifth_vertex,second_vertex,fifth_vertex,fourth_vertex,first_vertex)
+    release thm five_vertex_function_exists(first_vertex,second_vertex,third_vertex,fourth_vertex,fifth_vertex)
+    obtain vertices from exist vertices fn(k Z) cart(R,R) st {vertices(0) = first_vertex, vertices(1) = second_vertex, vertices(2) = third_vertex, vertices(3) = fourth_vertex, vertices(4) = fifth_vertex, vertices(5) = first_vertex}
+    release thm five_positive_side_vertices_give_simple_cycle(first_vertex,second_vertex,third_vertex,fourth_vertex,fifth_vertex,vertices)
+    vertices(0) $in geometry::main::circle(center,radius)
+    vertices(1) $in geometry::main::circle(center,radius)
+    vertices(2) $in geometry::main::circle(center,radius)
+    vertices(3) $in geometry::main::circle(center,radius)
+    vertices(4) $in geometry::main::circle(center,radius)
+    claim:
+        ? forall k Z:
+            0 <= k
+            k < 5
+            =>:
+                vertices(k) $in geometry::main::circle(center,radius)
+        release thm integer_index_below_five_cases(k)
+        by cases:
+            ? vertices(k) $in geometry::main::circle(center,radius)
+            case k = 0:
+                vertices(k) = vertices(0)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 1:
+                vertices(k) = vertices(1)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 2:
+                vertices(k) = vertices(2)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 3:
+                vertices(k) = vertices(3)
+                vertices(k) $in geometry::main::circle(center,radius)
+            case k = 4:
+                vertices(k) = vertices(4)
+                vertices(k) $in geometry::main::circle(center,radius)
+    by def $working::polygon_inscribed_in_circle(5,vertices,center,radius)
+    geometry::main::distance_sq(vertices(0),vertices(1)) = side_sq
+    geometry::main::distance_sq(vertices(1),vertices(2)) = side_sq
+    geometry::main::distance_sq(vertices(2),vertices(3)) = side_sq
+    geometry::main::distance_sq(vertices(3),vertices(4)) = side_sq
+    geometry::main::distance_sq(vertices(4),vertices(0)) = side_sq
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(0),vertices(1),vertices(2))
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(1),vertices(2),vertices(3))
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),vertices(4))
+    $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(3),vertices(4),vertices(0))
+    geometry::main::vec(vertices(0),vertices(1)) = geometry::main::vec(first_vertex,second_vertex)
+    geometry::main::vec(vertices(0),vertices(2)) = geometry::main::vec(first_vertex,third_vertex)
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) = geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,third_vertex)) > 0
+    geometry::main::vec(vertices(0),vertices(1)) = geometry::main::vec(first_vertex,second_vertex)
+    geometry::main::vec(vertices(0),vertices(3)) = geometry::main::vec(first_vertex,fourth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(3))) = geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fourth_vertex)) > 0
+    geometry::main::vec(vertices(0),vertices(1)) = geometry::main::vec(first_vertex,second_vertex)
+    geometry::main::vec(vertices(0),vertices(4)) = geometry::main::vec(first_vertex,fifth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(4))) = geometry::main::det(geometry::main::vec(first_vertex,second_vertex),geometry::main::vec(first_vertex,fifth_vertex)) > 0
+    geometry::main::vec(vertices(1),vertices(2)) = geometry::main::vec(second_vertex,third_vertex)
+    geometry::main::vec(vertices(1),vertices(3)) = geometry::main::vec(second_vertex,fourth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(3))) = geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fourth_vertex)) > 0
+    geometry::main::vec(vertices(1),vertices(2)) = geometry::main::vec(second_vertex,third_vertex)
+    geometry::main::vec(vertices(1),vertices(4)) = geometry::main::vec(second_vertex,fifth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(4))) = geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,fifth_vertex)) > 0
+    geometry::main::vec(vertices(1),vertices(2)) = geometry::main::vec(second_vertex,third_vertex)
+    geometry::main::vec(vertices(1),vertices(0)) = geometry::main::vec(second_vertex,first_vertex)
+    geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(0))) = geometry::main::det(geometry::main::vec(second_vertex,third_vertex),geometry::main::vec(second_vertex,first_vertex)) > 0
+    geometry::main::vec(vertices(2),vertices(3)) = geometry::main::vec(third_vertex,fourth_vertex)
+    geometry::main::vec(vertices(2),vertices(4)) = geometry::main::vec(third_vertex,fifth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(4))) = geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,fifth_vertex)) > 0
+    geometry::main::vec(vertices(2),vertices(3)) = geometry::main::vec(third_vertex,fourth_vertex)
+    geometry::main::vec(vertices(2),vertices(0)) = geometry::main::vec(third_vertex,first_vertex)
+    geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(0))) = geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,first_vertex)) > 0
+    geometry::main::vec(vertices(2),vertices(3)) = geometry::main::vec(third_vertex,fourth_vertex)
+    geometry::main::vec(vertices(2),vertices(1)) = geometry::main::vec(third_vertex,second_vertex)
+    geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(1))) = geometry::main::det(geometry::main::vec(third_vertex,fourth_vertex),geometry::main::vec(third_vertex,second_vertex)) > 0
+    geometry::main::vec(vertices(3),vertices(4)) = geometry::main::vec(fourth_vertex,fifth_vertex)
+    geometry::main::vec(vertices(3),vertices(0)) = geometry::main::vec(fourth_vertex,first_vertex)
+    geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(0))) = geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,first_vertex)) > 0
+    geometry::main::vec(vertices(3),vertices(4)) = geometry::main::vec(fourth_vertex,fifth_vertex)
+    geometry::main::vec(vertices(3),vertices(1)) = geometry::main::vec(fourth_vertex,second_vertex)
+    geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(1))) = geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,second_vertex)) > 0
+    geometry::main::vec(vertices(3),vertices(4)) = geometry::main::vec(fourth_vertex,fifth_vertex)
+    geometry::main::vec(vertices(3),vertices(2)) = geometry::main::vec(fourth_vertex,third_vertex)
+    geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(2))) = geometry::main::det(geometry::main::vec(fourth_vertex,fifth_vertex),geometry::main::vec(fourth_vertex,third_vertex)) > 0
+    geometry::main::vec(vertices(4),vertices(0)) = geometry::main::vec(fifth_vertex,first_vertex)
+    geometry::main::vec(vertices(4),vertices(1)) = geometry::main::vec(fifth_vertex,second_vertex)
+    geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(1))) = geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,second_vertex)) > 0
+    geometry::main::vec(vertices(4),vertices(0)) = geometry::main::vec(fifth_vertex,first_vertex)
+    geometry::main::vec(vertices(4),vertices(2)) = geometry::main::vec(fifth_vertex,third_vertex)
+    geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(2))) = geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,third_vertex)) > 0
+    geometry::main::vec(vertices(4),vertices(0)) = geometry::main::vec(fifth_vertex,first_vertex)
+    geometry::main::vec(vertices(4),vertices(3)) = geometry::main::vec(fifth_vertex,fourth_vertex)
+    geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(3))) = geometry::main::det(geometry::main::vec(fifth_vertex,first_vertex),geometry::main::vec(fifth_vertex,fourth_vertex)) > 0
+    release thm golden_pentagon_centroid_coordinates(t,h,a,b,c,d,fifth)
+    vertices(0) = first_vertex = scale_and_translate_point(a,center,radius)
+    vertices(1) = second_vertex = scale_and_translate_point(b,center,radius)
+    vertices(2) = third_vertex = scale_and_translate_point(c,center,radius)
+    vertices(3) = fourth_vertex = scale_and_translate_point(d,center,radius)
+    vertices(4) = fifth_vertex = scale_and_translate_point(fifth,center,radius)
+    release thm five_point_similarity_centroid(center,a,b,c,d,fifth,radius,vertices)
+    witness exist cycle fn(k Z) cart(R,R), squared_side R+ st {center(1) = (cycle(0)(1)+cycle(1)(1)+cycle(2)(1)+cycle(3)(1)+cycle(4)(1))/5, center(2) = (cycle(0)(2)+cycle(1)(2)+cycle(2)(2)+cycle(3)(2)+cycle(4)(2))/5, squared_side = radius^2*(2-t), $working::polygon_inscribed_in_circle(5,cycle,center,radius), geometry::main::distance_sq(cycle(0),cycle(1)) = squared_side, geometry::main::distance_sq(cycle(1),cycle(2)) = squared_side, geometry::main::distance_sq(cycle(2),cycle(3)) = squared_side, geometry::main::distance_sq(cycle(3),cycle(4)) = squared_side, geometry::main::distance_sq(cycle(4),cycle(0)) = squared_side, $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(0),cycle(1),cycle(2)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(1),cycle(2),cycle(3)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(2),cycle(3),cycle(4)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(3),cycle(4),cycle(0)), geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(3))) > 0, geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(3))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(3))) > 0} from vertices,side_sq
+
+
+thm book04_proposition_12:
+    ? forall center cart(R,R), radius R+:
+        exist vertices fn(k Z) cart(R,R), side_sq R+, contact0,contact1,contact2,contact3,contact4 cart(R,R) st {$entry::is_simple_polygonal_cycle(5,vertices), geometry::main::distance_sq(vertices(0),vertices(1)) = side_sq, geometry::main::distance_sq(vertices(1),vertices(2)) = side_sq, geometry::main::distance_sq(vertices(2),vertices(3)) = side_sq, geometry::main::distance_sq(vertices(3),vertices(4)) = side_sq, geometry::main::distance_sq(vertices(4),vertices(0)) = side_sq, $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(0),vertices(1),vertices(2)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(1),vertices(2),vertices(3)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),vertices(4)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(3),vertices(4),vertices(0)), geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(3))) > 0, $entry::is_on_segment(contact0,vertices(0),vertices(1)), $is_tangent_line_at(contact0,vertices(0),vertices(1),center,radius), geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),center)) > 0, $entry::is_on_segment(contact1,vertices(1),vertices(2)), $is_tangent_line_at(contact1,vertices(1),vertices(2),center,radius), geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),center)) > 0, $entry::is_on_segment(contact2,vertices(2),vertices(3)), $is_tangent_line_at(contact2,vertices(2),vertices(3),center,radius), geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),center)) > 0, $entry::is_on_segment(contact3,vertices(3),vertices(4)), $is_tangent_line_at(contact3,vertices(3),vertices(4),center,radius), geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),center)) > 0, $entry::is_on_segment(contact4,vertices(4),vertices(0)), $is_tangent_line_at(contact4,vertices(4),vertices(0),center,radius), geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),center)) > 0}
+    release thm golden_cut_parameter_exists
+    obtain t from exist t R+ st {t < 1, t^2 = 1-t}
+    release thm golden_pentagon_outer_radius(t,radius)
+    obtain outer_radius from exist outer_radius R+ st {outer_radius^2-outer_radius^2*(2-t)/4 = radius^2}
+    release thm golden_pentagon_with_prescribed_radius_and_center(center,outer_radius,t)
+    obtain vertices,side_sq from exist vertices fn(k Z) cart(R,R), side_sq R+ st {center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5, center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5, side_sq = outer_radius^2*(2-t), $working::polygon_inscribed_in_circle(5,vertices,center,outer_radius), geometry::main::distance_sq(vertices(0),vertices(1)) = side_sq, geometry::main::distance_sq(vertices(1),vertices(2)) = side_sq, geometry::main::distance_sq(vertices(2),vertices(3)) = side_sq, geometry::main::distance_sq(vertices(3),vertices(4)) = side_sq, geometry::main::distance_sq(vertices(4),vertices(0)) = side_sq, $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(0),vertices(1),vertices(2)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(1),vertices(2),vertices(3)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),vertices(4)), $geometry::main::are_angles_congruent(vertices(4),vertices(0),vertices(1),vertices(3),vertices(4),vertices(0)), geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(0),vertices(1)),geometry::main::vec(vertices(0),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(3))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(1),vertices(2)),geometry::main::vec(vertices(1),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(4))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(2),vertices(3)),geometry::main::vec(vertices(2),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(0))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(3),vertices(4)),geometry::main::vec(vertices(3),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(1))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(2))) > 0, geometry::main::det(geometry::main::vec(vertices(4),vertices(0)),geometry::main::vec(vertices(4),vertices(3))) > 0}
+    by def $working::polygon_inscribed_in_circle(5,vertices,center,outer_radius)
+    $entry::is_simple_polygonal_cycle(5,vertices)
+    by def $entry::is_simple_polygonal_cycle(5,vertices)
+    geometry::main::circle(center,outer_radius) = {p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius}
+    vertices(0) $in geometry::main::circle(center,outer_radius)
+    vertices(0) $in {p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius}
+    release thm set_builder_member(vertices(0),{p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius})
+    by def $is_on_circle(vertices(0),center,outer_radius)
+    vertices(1) $in geometry::main::circle(center,outer_radius)
+    vertices(1) $in {p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius}
+    release thm set_builder_member(vertices(1),{p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius})
+    by def $is_on_circle(vertices(1),center,outer_radius)
+    vertices(2) $in geometry::main::circle(center,outer_radius)
+    vertices(2) $in {p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius}
+    release thm set_builder_member(vertices(2),{p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius})
+    by def $is_on_circle(vertices(2),center,outer_radius)
+    vertices(3) $in geometry::main::circle(center,outer_radius)
+    vertices(3) $in {p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius}
+    release thm set_builder_member(vertices(3),{p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius})
+    by def $is_on_circle(vertices(3),center,outer_radius)
+    vertices(4) $in geometry::main::circle(center,outer_radius)
+    vertices(4) $in {p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius}
+    release thm set_builder_member(vertices(4),{p cart(R,R): geometry::main::distance_sq(center,p) = outer_radius*outer_radius})
+    by def $is_on_circle(vertices(4),center,outer_radius)
+    vertices(0) != vertices(1)
+    have contact0 cart(R,R) = ((vertices(0)(1)+vertices(1)(1))/2,(vertices(0)(2)+vertices(1)(2))/2)
+    outer_radius^2-geometry::main::distance_sq(vertices(0),vertices(1))/4 = outer_radius^2-side_sq/4 = outer_radius^2-(outer_radius^2*(2-t))/4 = outer_radius^2-outer_radius^2*(2-t)/4 = radius^2
+    release thm concentric_chord_midpoint_tangency(center,vertices(0),vertices(1),contact0,outer_radius,radius)
+    release thm five_vertex_centroid_strict_side(vertices(0),vertices(1),vertices(2),vertices(3),vertices(4),center)
+    vertices(1) != vertices(2)
+    have contact1 cart(R,R) = ((vertices(1)(1)+vertices(2)(1))/2,(vertices(1)(2)+vertices(2)(2))/2)
+    outer_radius^2-geometry::main::distance_sq(vertices(1),vertices(2))/4 = outer_radius^2-side_sq/4 = outer_radius^2-(outer_radius^2*(2-t))/4 = outer_radius^2-outer_radius^2*(2-t)/4 = radius^2
+    release thm concentric_chord_midpoint_tangency(center,vertices(1),vertices(2),contact1,outer_radius,radius)
+    center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5 = (vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1)+vertices(0)(1))/5
+    center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5 = (vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2)+vertices(0)(2))/5
+    release thm five_vertex_centroid_strict_side(vertices(1),vertices(2),vertices(3),vertices(4),vertices(0),center)
+    vertices(2) != vertices(3)
+    have contact2 cart(R,R) = ((vertices(2)(1)+vertices(3)(1))/2,(vertices(2)(2)+vertices(3)(2))/2)
+    outer_radius^2-geometry::main::distance_sq(vertices(2),vertices(3))/4 = outer_radius^2-side_sq/4 = outer_radius^2-(outer_radius^2*(2-t))/4 = outer_radius^2-outer_radius^2*(2-t)/4 = radius^2
+    release thm concentric_chord_midpoint_tangency(center,vertices(2),vertices(3),contact2,outer_radius,radius)
+    center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5 = (vertices(2)(1)+vertices(3)(1)+vertices(4)(1)+vertices(0)(1)+vertices(1)(1))/5
+    center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5 = (vertices(2)(2)+vertices(3)(2)+vertices(4)(2)+vertices(0)(2)+vertices(1)(2))/5
+    release thm five_vertex_centroid_strict_side(vertices(2),vertices(3),vertices(4),vertices(0),vertices(1),center)
+    vertices(3) != vertices(4)
+    have contact3 cart(R,R) = ((vertices(3)(1)+vertices(4)(1))/2,(vertices(3)(2)+vertices(4)(2))/2)
+    outer_radius^2-geometry::main::distance_sq(vertices(3),vertices(4))/4 = outer_radius^2-side_sq/4 = outer_radius^2-(outer_radius^2*(2-t))/4 = outer_radius^2-outer_radius^2*(2-t)/4 = radius^2
+    release thm concentric_chord_midpoint_tangency(center,vertices(3),vertices(4),contact3,outer_radius,radius)
+    center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5 = (vertices(3)(1)+vertices(4)(1)+vertices(0)(1)+vertices(1)(1)+vertices(2)(1))/5
+    center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5 = (vertices(3)(2)+vertices(4)(2)+vertices(0)(2)+vertices(1)(2)+vertices(2)(2))/5
+    release thm five_vertex_centroid_strict_side(vertices(3),vertices(4),vertices(0),vertices(1),vertices(2),center)
+    vertices(4) != vertices(0)
+    have contact4 cart(R,R) = ((vertices(4)(1)+vertices(0)(1))/2,(vertices(4)(2)+vertices(0)(2))/2)
+    outer_radius^2-geometry::main::distance_sq(vertices(4),vertices(0))/4 = outer_radius^2-side_sq/4 = outer_radius^2-(outer_radius^2*(2-t))/4 = outer_radius^2-outer_radius^2*(2-t)/4 = radius^2
+    release thm concentric_chord_midpoint_tangency(center,vertices(4),vertices(0),contact4,outer_radius,radius)
+    center(1) = (vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1)+vertices(4)(1))/5 = (vertices(4)(1)+vertices(0)(1)+vertices(1)(1)+vertices(2)(1)+vertices(3)(1))/5
+    center(2) = (vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2)+vertices(4)(2))/5 = (vertices(4)(2)+vertices(0)(2)+vertices(1)(2)+vertices(2)(2)+vertices(3)(2))/5
+    release thm five_vertex_centroid_strict_side(vertices(4),vertices(0),vertices(1),vertices(2),vertices(3),center)
+    witness exist cycle fn(k Z) cart(R,R), squared_side R+, touch0,touch1,touch2,touch3,touch4 cart(R,R) st {$entry::is_simple_polygonal_cycle(5,cycle), geometry::main::distance_sq(cycle(0),cycle(1)) = squared_side, geometry::main::distance_sq(cycle(1),cycle(2)) = squared_side, geometry::main::distance_sq(cycle(2),cycle(3)) = squared_side, geometry::main::distance_sq(cycle(3),cycle(4)) = squared_side, geometry::main::distance_sq(cycle(4),cycle(0)) = squared_side, $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(0),cycle(1),cycle(2)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(1),cycle(2),cycle(3)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(2),cycle(3),cycle(4)), $geometry::main::are_angles_congruent(cycle(4),cycle(0),cycle(1),cycle(3),cycle(4),cycle(0)), geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(3))) > 0, geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(3))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(4))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(0))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(1))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(2))) > 0, geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),cycle(3))) > 0, $entry::is_on_segment(touch0,cycle(0),cycle(1)), $is_tangent_line_at(touch0,cycle(0),cycle(1),center,radius), geometry::main::det(geometry::main::vec(cycle(0),cycle(1)),geometry::main::vec(cycle(0),center)) > 0, $entry::is_on_segment(touch1,cycle(1),cycle(2)), $is_tangent_line_at(touch1,cycle(1),cycle(2),center,radius), geometry::main::det(geometry::main::vec(cycle(1),cycle(2)),geometry::main::vec(cycle(1),center)) > 0, $entry::is_on_segment(touch2,cycle(2),cycle(3)), $is_tangent_line_at(touch2,cycle(2),cycle(3),center,radius), geometry::main::det(geometry::main::vec(cycle(2),cycle(3)),geometry::main::vec(cycle(2),center)) > 0, $entry::is_on_segment(touch3,cycle(3),cycle(4)), $is_tangent_line_at(touch3,cycle(3),cycle(4),center,radius), geometry::main::det(geometry::main::vec(cycle(3),cycle(4)),geometry::main::vec(cycle(3),center)) > 0, $entry::is_on_segment(touch4,cycle(4),cycle(0)), $is_tangent_line_at(touch4,cycle(4),cycle(0),center,radius), geometry::main::det(geometry::main::vec(cycle(4),cycle(0)),geometry::main::vec(cycle(4),center)) > 0} from vertices,side_sq,contact0,contact1,contact2,contact3,contact4
+
+
+sketch:
+    release thm book04_proposition_12((2,-3),5)

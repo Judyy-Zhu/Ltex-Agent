@@ -1,0 +1,25 @@
+{
+  "source": {
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "book": 6,
+    "proposition": 4,
+    "lines": [
+      6844,
+      6886
+    ]
+  },
+  "scope": "Equiangular nondegenerate triangles have proportional corresponding actual positive side lengths. Neither the similar-triangle predicate nor squared distances alone may assume the intended side-ratio conclusion.",
+  "evidence": "geometry::main::are_triangles_similar is AAA only. Existing congruent_angle_det_square_ratio and triangle_det_squared_vertex follow from Gram identity and angle congruence. Existing similar_triangles_ratio is merely a given-coordinate-scale lemma and does not establish AAA similarity ratios.",
+  "proof_spine": [
+    "Use two equal angles to relate squared areas to the respective adjacent-side products.",
+    "Cancel a positive common squared-area/side factor to obtain the squared opposite-side ratio.",
+    "Repeat with the remaining angle pair to cover all three corresponding sides.",
+    "Convert equal squared products to equal products of positive segment lengths, then quotients and equimultiple comparisons."
+  ],
+  "non_goals": [
+    "No common scale or side proportionality added as an AAA premise",
+    "No kernel changes",
+    "No separate Book V magnitude model"
+  ],
+  "status": "Plan anchored; proof not yet submitted."
+}

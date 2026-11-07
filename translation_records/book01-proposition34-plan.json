@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-11T16:09:46.216141+00:00",
+  "source": {
+    "book_number": 1,
+    "proposition": 34,
+    "edition": "Fitzpatrick 2008",
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/34.txt"
+  },
+  "status": "Complete strict source/use/boundaries accepted, canonical saved; full first34 snapshot gate7283 pending",
+  "source_conclusions": [
+    "Opposite sides have equal lengths",
+    "Opposite angles are congruent",
+    "The indicated diagonal divides the parallelogram into equal triangles"
+  ],
+  "source_label_map": "For cyclic formal vertices A,B,C,D, source cyclic A,C,D,B maps source A->formal A, C->B, D->C, B->D. Source diagonal BC is formal diagonal DB, so compare triangles ABD and BCD.",
+  "existing_library_audit": {
+    "is_parallelogram": "Opposite-direction parallel predicate explicitly permits flat quadrilaterals; cannot serve as the proper source figure by itself.",
+    "triangle_area_det": "Only the determinant coordinate identity, not an unsigned-area definition or area measure.",
+    "square_orthogonal_parallel_quadrilateral_coordinates": "Requires orthogonal adjacent directions; cannot be cited for arbitrary parallelograms."
+  },
+  "proposed_interfaces": [
+    {
+      "kind": "prop",
+      "name": "proper_parallelogram",
+      "meaning": "Two actual opposite-line parallel relations in cyclic vertex order, preserving source proper/nonflat figure.",
+      "status": "Not implemented; first prove coordinate closure and source nondegeneracy bridge."
+    },
+    {
+      "kind": "prop",
+      "name": "has_triangle_area",
+      "meaning": "A proper triangle with a positive area value, twice that value equal to the positive square root of the determinant square.",
+      "status": "Ideal strict interface; existence and uniqueness must be proved before deriving any function by exist!."
+    }
+  ],
+  "proof_spine": [
+    "Use two direction determinant equations and nonzero transverse determinant to derive a+c=b+d coordinatewise.",
+    "Derive actual opposite side congruences and opposite angle congruences, preserving proper endpoints.",
+    "Prove determinants of triangles ABD and BCD are equal and nonzero.",
+    "Construct a common positive unsigned area value and certify both triangles; do not substitute squared distance or signed determinant alone for the source bisecting conclusion."
+  ],
+  "acceptance_pending": [
+    "whole first34 strict cold gate"
+  ],
+  "trust_added": 0,
+  "core_changes": false,
+  "active_session_id": 8786,
+  "active_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "area_interfaces": {
+    "proper_parallelogram": "Session accepted",
+    "positive_unsigned_triangle_area_relation": "Session accepted",
+    "unique_area_existence": "Session accepted",
+    "triangle_area_guarded_function_by_exist_unique": "Session accepted",
+    "actual_345_reversed_orientation_area6": "Session accepted",
+    "parallelogram_area_relation_by_diagonal_sum": "Session accepted",
+    "generic_coordinate_closure2": "Session accepted"
+  },
+  "acceptance_probe_draft": "scripts/Euclid_Elements/.draft/authoring-angles/skew-parallelogram-all-conclusions-use1.lit"
+}

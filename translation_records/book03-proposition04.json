@@ -1,0 +1,20 @@
+{
+  "source": ".draft/books02-03/III04-crossing-chords1.lit",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pdf_zero_pages": [
+    72,
+    73
+  ],
+  "statement_form": "For transverse intersecting proper non-diameter chords, midpoint(m,a,b) implies not midpoint(m,c,d)",
+  "source_fidelity": "conditional form of not both midpoint; is_on_segment for both chords and nonzero direction determinant express actual crossing, excluding coincident supporting lines",
+  "proof_route": "III3 gives both chords perpendicular to center-to-intersection direction; their determinant must be zero, contradicting transverse crossing",
+  "status": "theorem accepted in8786",
+  "actual_use": "III04-crossing-use2 accepted: a(-5,0), b(-3,-4), c(-4,-3), d(-4,3), m(-4,-2), center(0,0), radius5",
+  "cold_status": "PASS",
+  "trust_added": 0,
+  "source_item": "III.4",
+  "cold_receipt": ".draft/III04-checkpoint/receipt.json",
+  "canonical_promotion": "complete; joint strict cold PASS",
+  "canonical": "textbook/book03-circles.lit",
+  "canonical_cold_receipt": ".draft/book03-first-six-checkpoint/receipt.json"
+}

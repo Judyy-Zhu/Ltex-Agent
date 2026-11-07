@@ -1,0 +1,21 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 19,
+    "mathematics": "Similar triangles are to one another in the duplicate ratio of the corresponding sides (area ratio = square of corresponding side ratio)."
+  },
+  "status": "core_and_scale_corollary_gate_passed",
+  "main_sha256": "9682badd0c74816cc9e182588e7739cea01226e18c469a2d4b12d000e59587a8",
+  "oneshot": {
+    "request": 11003,
+    "scale": 11016
+  },
+  "core_gate": {
+    "stmts": 27,
+    "accepted": 27
+  },
+  "trust_added": 0,
+  "scale_corollary": {
+    "request": 11016
+  }
+}

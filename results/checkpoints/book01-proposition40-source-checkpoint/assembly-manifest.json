@@ -1,0 +1,7 @@
+{
+  "status": "prepared only; consumers pending before gate launch",
+  "expected_statements": 13,
+  "main_sha256": "742b5fd61aac1a68907d695f3bd4e2584a42ded7a3b352cf48a7109e9f80a6a2",
+  "prerequisites": "I38 strict9 assembly plus accepted I39source2; canonical angle modules",
+  "trust_added": 0
+}

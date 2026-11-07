@@ -1,0 +1,31 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 11,
+    "mathematics": "Find a third proportional UV to AB and CD so AB:CD=CD:UV."
+  },
+  "status": "independent_strict_gate_passed_with_positive_consumer",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "main_sha256": "3e07d8b7dfc3de06e74a3cbf81351dc57db77982c74ba931602317ca98aa3826",
+  "main_with_consumer_sha256": "7dab74e91c7e86801067fd4d8f8743af56cb2ff3f0118125392b3abcaa0e6593",
+  "core_gate": {
+    "stmts": 33,
+    "accepted": 33
+  },
+  "with_consumer_gate": {
+    "stmts": 34,
+    "accepted": 34
+  },
+  "accepted_source": {
+    "request": 9502
+  },
+  "positive_consumer": {
+    "request": 9504
+  },
+  "failed_attempts": [
+    9501,
+    9503
+  ],
+  "trust_added": 0,
+  "canonical_completion_increment": 0
+}

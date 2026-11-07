@@ -1,0 +1,19 @@
+{
+  "concept": "unique point of a positive-radius circle on a proper ray from its center",
+  "form": "have fn",
+  "name": "circle_point_on_center_ray",
+  "carrier": "o,p,result cart(R,R); radius R+",
+  "guard": "distance_sq(o,p)>0 and sqrt(distance_sq(o,p))!=0",
+  "formula": "o + radius/sqrt(distance_sq(o,p))*(p-o)",
+  "existing_surface": "geometry distance and affine-distance facts; no existing center-ray circle-point constructor found",
+  "rejected_name": "nearest_circle_point would name the later extremum before establishing it",
+  "downstream_uses": [
+    "III7 radial minimum/maximum construction",
+    "III8 radial minimum/maximum construction"
+  ],
+  "probe": "O=(1,2),P=(4,6), radius10 -> (7,10)",
+  "status": "guarded function2, root-nonzero equivalence and generic center-ray metric certificate1 Session accepted; opposite endpoint certificate2 running; global extrema unproved",
+  "trust_added": 0,
+  "guard_equivalence": "Second guard is operationally explicit but mathematically redundant: circle_axis_root_nonzero proves it for every positive squared distance (Session accepted). No additional geometric cases are excluded.",
+  "failure_evidence": "proof_journals/books02-03/circle-center-ray-point1-failure.json"
+}

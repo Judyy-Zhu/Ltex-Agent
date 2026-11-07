@@ -1,0 +1,33 @@
+{
+  "id": "I.2",
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 2,
+    "pdf_pages": [
+      8,
+      9
+    ],
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "problem": "From any given starting point, construct a nonzero segment equal to a given nonzero segment, including when the starting point coincides with an input endpoint.",
+  "proof_idea": "Choose the endpoint by adding the positive square root of the input squared length to the starting point's first coordinate. Verify its distance, distinctness and membership in the circle with that center and radius. Euclid instead uses an equilateral triangle, extensions, circles and subtraction of equal segments; that original proof is recorded but not yet replayed.",
+  "litex_code": "thm proposition_2:\n    ? forall a, b, c cart(R, R):\n        b != c\n        =>:\n            exist d cart(R, R) st {a != d, $geometry::main::are_segments_congruent(a, d, b, c)}\n    release thm geometry::main::distance_sq_positive_of_ne(b, c)\n    have radius R+ = sqrt(geometry::main::distance_sq(b, c))\n    sqrt(geometry::main::distance_sq(b, c))^2 = geometry::main::distance_sq(b, c)\n    radius^2 = sqrt(geometry::main::distance_sq(b, c))^2 = geometry::main::distance_sq(b, c)\n    have endpoint cart(R, R) = (a(1) + radius, a(2))\n    endpoint(1) = a(1) + radius\n    endpoint(2) = a(2)\n    release thm geometry::main::distance_sq_coordinate_formula(a, endpoint)\n    geometry::main::distance_sq(a, endpoint) = (endpoint(1) - a(1))^2 + (endpoint(2) - a(2))^2 = ((a(1) + radius) - a(1))^2 + (a(2) - a(2))^2 = radius^2 = geometry::main::distance_sq(b, c)\n    by contra:\n        ? a != endpoint\n        a = endpoint\n        a(1) = endpoint(1)\n        a(1) = endpoint(1) = a(1) + radius\n        radius = (a(1) + radius) - a(1) = endpoint(1) - a(1) = a(1) - a(1) = 0\n        impossible radius > 0\n    by def $geometry::main::are_segments_congruent(a, endpoint, b, c)\n    release obj def geometry::main::circle\n    geometry::main::distance_sq(a, endpoint) = radius * radius\n    endpoint $in geometry::main::circle(a, radius)\n    witness exist d cart(R, R) st {a != d, $geometry::main::are_segments_congruent(a, d, b, c)} from endpoint\n",
+  "comments": {
+    "status": "checkable: clean registered strict file gate passed",
+    "context": "complete existing analytic geometry library",
+    "trust_added": 0,
+    "source_route_difference": "Analytic construction verifies the geometric output; operational straightedge/compass program semantics and original collapsed-compass sequence are not encoded by this statement.",
+    "draft_path": "../.draft/experiment/I2-full-candidate.lit",
+    "canonical_path": "../textbook/book01-constructions.lit",
+    "gate": {
+      "command": "target/release/litex -lang en -strict -f scripts/Euclid_Elements/textbook/book01-constructions.lit",
+      "exit_code": 0,
+      "success": true,
+      "session_error": null,
+      "receipt": "../.draft/experiment/book01-first-three-clean.json",
+      "binary_start_hash": "not captured; concurrent binary update disclosed in experiment protocol"
+    }
+  }
+}

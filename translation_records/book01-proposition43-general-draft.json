@@ -1,0 +1,26 @@
+{
+  "source": "Euclid Elements I.43, Fitzpatrick revised 2008, PDF pages 41–42 (zero-based), https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "status": "draft verified in persistent selected-dependency context; not canonical promotion",
+  "statement_file": "scripts/Euclid_Elements/.draft/resume-2026-10-17/proposition43-general-candidate3.lit",
+  "statement_sha256": "54be5c097cd84b5e637a79d4d5431565f3904b51af1d75db2aa468f1ad645ddf",
+  "figure": "Outer A-B-C-D; inner A-E-K-H; complements E-B-F-K and H-K-G-D. E is collinear with AB, H with AD, K with AC. Actual complements carry positive areas.",
+  "source_correspondence": "The original internal diagram satisfies all these premises. The theorem is stronger: no interior ordering assumption is needed for the determinant identity once the actual proper parallelograms and three incidence equations are given. This does not replace the source complements by arbitrary equal scalars.",
+  "proof_spine": [
+    "Proper parallelogram closure derives C=B+D-A and K=E+H-A.",
+    "Three incidence determinants imply (B-E) cross (K-E) = (K-H) cross (D-H).",
+    "Each actual complement area equals the square root of its determinant squared; equal determinants give equal positive areas."
+  ],
+  "trust": "No new axiom, assume, abstract_prop, parser/kernel edit, or numerical tolerance introduced.",
+  "evidence": {
+    "coordinate_closure": "session-persistent/results/0003.json",
+    "area_determinant": "session-persistent/results/0005.json",
+    "scalar_identity": "session-persistent/results/0006.json",
+    "general_theorem": "session-persistent/results/0008.json",
+    "nonvacuity": "session-persistent/results/0009.json: accepted actual oblique diagram",
+    "negative": "session-persistent/results/0010.json: rejects exact diagonal incidence det(AC,AK)=0; all proper figures and positive areas constructed beforehand",
+    "clean_gate": "I43-general-checkpoint/receipt.json: PASS25 native0, stable source hashes"
+  },
+  "remaining": [
+    "complete original module/import gate and source-level integration"
+  ]
+}

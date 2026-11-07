@@ -1,0 +1,23 @@
+{
+  "source": "III.3",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pdf_zero_based_page": 71,
+  "forward": {
+    "source": ".draft/books02-03/III03-forward1.lit",
+    "status": "session accepted"
+  },
+  "converse": {
+    "source": ".draft/books02-03/III03-converse1.lit",
+    "status": "session accepted"
+  },
+  "source_conditions": "a!=b, positive-radius circle endpoints, center not collinear with chord; m is midpoint in forward and chord intersection in converse",
+  "line_representation": "m,o determine the line through the circle center and chord intersection; non-diameter condition prevents their coincidence",
+  "actual_use": "III03-chord-use1 accepted",
+  "cold_status": "PASS",
+  "trust_added": 0,
+  "cold_checkpoint": ".draft/III03-checkpoint",
+  "diameter_boundary": "rejected at not is_collinear(a,b,o), session_error null",
+  "cold_receipt": ".draft/III03-checkpoint/receipt.json",
+  "canonical_promotion": "complete, joint strict cold PASS",
+  "canonical_cold_receipt": ".draft/book03-first-three-checkpoint/receipt.json"
+}

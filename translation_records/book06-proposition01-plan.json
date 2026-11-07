@@ -1,0 +1,18 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_lines": [
+    6682,
+    6740
+  ],
+  "source": "VI.Def3 and VI.1",
+  "scope": "Both triangles and parallelograms of equal perpendicular height; no shared-side restriction.",
+  "derivation": [
+    "Perpendicular foot and Gram identity imply determinant squared = base squared times altitude squared.",
+    "Unsigned triangle area and positive lengths imply 2*area=base*height.",
+    "Equal positive heights cancel to give equal area/base quotients.",
+    "Transport to the existing equimultiple ratio interface; parallelogram area is twice its diagonal triangle area."
+  ],
+  "boundary": "Height is independently defined by perpendicular feet, never area/base. Numeric positive-real measures only. No standalone Book V extension.",
+  "author_session": "book01-original-session, retained native34674",
+  "status": "First geometric prerequisite prepared; source proposition not yet complete."
+}

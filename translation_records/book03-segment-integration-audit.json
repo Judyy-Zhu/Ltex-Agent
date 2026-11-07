@@ -1,0 +1,11 @@
+{
+  "reviewed_at": "2026-10-13T03:36:42.050382+00:00",
+  "receipt": ".draft/book03-segment-integration-checkpoint/receipt.json",
+  "native_success": true,
+  "statement_count": 154,
+  "stable_inputs_rechecked": true,
+  "proof_liveness_audit": "pending",
+  "promotion": "pending; canonical counts unchanged",
+  "canonical_numbered_count": 52,
+  "trust_added": 0
+}

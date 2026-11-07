@@ -1,0 +1,18 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "book": 4,
+  "proposition": 7,
+  "source_lines": [
+    4816,
+    4860
+  ],
+  "statement": "Construct a square circumscribed about the given positive-radius circle.",
+  "formal_proof_route": "Axis-aligned corners at center plus/minus radius; four diameter endpoints are midpoints of the finite sides, with perpendicular radii giving tangent certificates.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition7-candidate1.lit",
+  "status": "General theorem and concrete caller accepted in strict Session; boundary control rejected as intended; grouped gate/integration pending",
+  "interface": "Existential square vertices and four finite-side tangent contacts, proper-parallelogram witness, and given center as diagonal midpoint. No new predicate wrapper.",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "positive_consumer": "book04-construction-session-v5/results/2001.json",
+  "negative_control": "book04-construction-session-v5/results/2002.json"
+}

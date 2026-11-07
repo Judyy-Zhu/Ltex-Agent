@@ -1,0 +1,32 @@
+{
+  "book": 4,
+  "proposition": 10,
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_lines": [
+    4937,
+    4988
+  ],
+  "required_statement": "There exists a proper isosceles triangle whose two base angle measures are each twice its apex angle measure.",
+  "proof_spine": [
+    "Reuse golden-cut parameter t>0, t<1, t^2=1-t from II.11.",
+    "Construct A=(0,0), B=(1,0), D=((1+t)/2,sqrt(1-((1+t)/2)^2)); positive height gives a proper triangle.",
+    "Squared side lengths are AB^2=AD^2=1 and BD^2=t^2.",
+    "Compute apex cosine (1+t)/2 and both base cosines t/2 using existing angle interfaces.",
+    "Golden quadratic identity gives cos(2*apex)=t/2; principal ranges establish the actual doubled angle measures."
+  ],
+  "semantic_boundary": "An equal-sided metric certificate or cosine equality alone is not IV.10 completion; actual angle measure doubling and triangle nondegeneracy are required.",
+  "current": "Full-geometry original Session9066\u20139077 accepted repaired metric, complete theorem, and consumer. Combined IV8\u2013IV10 strict checkpoint69887 running; canonical integration remains pending.",
+  "canonical_increment": 0,
+  "accepted_sources": [
+    "golden-triangle-height-candidate1.lit",
+    "golden-cut-parameter-candidate2.lit",
+    "golden-triangle-metric-candidate4.lit",
+    "golden-triangle-construction-candidate1.lit"
+  ],
+  "statement_candidate": ".draft/resume-2026-10-17/book04-proposition10-candidate1.lit",
+  "definition": ".draft/resume-2026-10-17/golden-triangle-definition.lit",
+  "angle_semantics": "Principal arccosine of the ordinary normalized dot product; both base angles explicitly equal twice the apex angle, with nondegeneracy and equal sides retained.",
+  "trust_count": 0,
+  "clean_checkpoint": ".draft/resume-2026-10-17/book04-golden-triangle-checkpoint/receipt.json",
+  "full_context_driver": 56131
+}

@@ -1,0 +1,20 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 17,
+    "mathematics": "Three proportional segments \u2194 rectangle of extremes equals square on the mean."
+  },
+  "status": "both_directions_independent_gate_passed",
+  "main_sha256": "7e88fb7c872a6380bc18fc515f20d47acca2ee6cdaf30000901f792342d3a18e",
+  "forward": {
+    "request": 10011
+  },
+  "converse": {
+    "request": 10013
+  },
+  "core_gate": {
+    "stmts": 38,
+    "accepted": 38
+  },
+  "trust_added": 0
+}

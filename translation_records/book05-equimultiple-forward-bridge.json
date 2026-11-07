@@ -1,0 +1,22 @@
+{
+  "source": "Fitzpatrick revised2008, BookV Definition5, PDF page129 zero-based, lines5329–5334",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "scope": "Numerical forward bridge only, NOT completed source definition",
+  "model": "a,b,c,d arbitrary positive real values, m,n positive integers; irrational ratios included",
+  "verified": "a*d=b*c transports each of <,=,> from m*a vs n*b to m*c vs n*d",
+  "proof": "Positive common scale c/a; c=scale*a and d=scale*b; multiplication preserves order",
+  "receipt": ".draft/resume-2026-10-17/book05-numerical/checkpoint/receipt.json",
+  "positive": "sqrt2:1 and 2sqrt2:2 with m=n=1",
+  "negatives": [
+    "wrong-cross-product rejects2*1=1*1",
+    "zero-magnitude rejects0 inR+"
+  ],
+  "not_established": [
+    "same-kind quantity domain and typed bridges for lengths/areas/angles/arcs",
+    "BookV source propositions or foundation completion"
+  ],
+  "trust_added": 0,
+  "session": 74020,
+  "parse_repair": "Initial nested-forall conclusion unsupported and terminated35198; separated three universally quantified implication lemmas passed syntax and semantic checks.",
+  "followup_equivalence": "book05-equimultiple-equivalence.json: numerical reverse implication now strict PASS11; historical forward receipt remains unchanged."
+}

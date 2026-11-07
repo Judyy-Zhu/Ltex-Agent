@@ -1,0 +1,28 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 8,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "lines": [
+      7061,
+      7111
+    ]
+  },
+  "scope": "In a proper right triangle ABC with right angle A, the perpendicular foot D on BC gives similarity of the whole triangle and each of ABD/ADC, and similarity of the two parts. Include the altitude mean-proportional corollary.",
+  "dependencies": [
+    "Existing I12 perpendicular construction and proper-line predicate",
+    "Prove the foot lies strictly inside the hypotenuse; do not assume this as an extra source hypothesis",
+    "Reuse proper_triangle_angle_sum and two_equal_angles_give_equiangular_triangles, then VI4 actual positive-length ratios",
+    "Retain nondegeneracy and verify all three correspondences; derive AD^2=BD*DC in actual lengths for the corollary"
+  ],
+  "non_goals": [
+    "Do not restrict to an axis-aligned or isosceles right triangle",
+    "Do not silently replace an arbitrary perpendicular foot by only one prechosen coordinate example",
+    "No trust or kernel edits"
+  ],
+  "status": "VI.8 core Session-accepted: foot interior, foot right angles, three AAA, mean-proportional (sq and lengths). Strict gate/canonical remain.",
+  "accepted_prerequisite": 9204,
+  "accepted_geometric_foot_interior": 9212,
+  "accepted_right_angles_congruent": 9213,
+  "evidence": "translation_records/book06-proposition08-foot-interior-draft.json"
+}

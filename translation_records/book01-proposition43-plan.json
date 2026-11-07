@@ -1,0 +1,30 @@
+{
+  "source": "Fitzpatrick Elements I.43, PDF zero-based pages41–42, lines1629–1660",
+  "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "problem": "The actual complementary parallelograms about a diagonal have equal areas.",
+  "proof_idea": "With u=AB,v=AD and K=A+t(u+v), the two complementary determinants both equal t(1-t)det(u,v). Positivity and triangle-area existence turn this into a common positive parallelogram area.",
+  "route_difference": "Analytic area computation instead of subtracting equal triangles from the two diagonal halves.",
+  "status": "determinant lemma Session accepted; complete parameter-form theorem prepared only; not canonical",
+  "files": [
+    "I43-complement-determinants-candidate2.lit",
+    "proposition43-parameter-candidate1.lit"
+  ],
+  "requirements_before_source_completion": [
+    "Verify parameter-form theorem in actual area context",
+    "Prove every proper cyclic parallelogram admits c=b+d-a (reuse/factor I34 local helper)",
+    "Prove the grid describes the original diagonal/parallel intersections and every source configuration is represented",
+    "Explicit existence for any 0<t<1; four proper subparallelograms and side placement",
+    "Translated oblique and reversed orientation consumers; t=0 or1 and collinear-base rejection",
+    "Clean strict source checkpoint and source/liveness audit"
+  ],
+  "new_trust": 0,
+  "parser_event": "candidate1 used reserved identifier e and terminated diagnostic Session1100; candidate2 renames it edge; retained Session35198 accepts the corrected lemma",
+  "determinant_checkpoint": ".draft/resume-2026-10-17/I43-determinant-checkpoint/receipt.json",
+  "determinant_status": "current strict gate exit0/run_result success/session_terminated false/termination null; 8 declarations",
+  "parameter_parser": "artifact success; verified:false",
+  "parameter_checkpoint": {
+    "receipt": ".draft/resume-2026-10-17/I43-parameter-checkpoint/receipt.json",
+    "status": "PASS14, stable inputs; actual parallelogram areas and oblique/reversed consumers",
+    "source_completion": "still pending grid correspondence and complete source scope"
+  }
+}

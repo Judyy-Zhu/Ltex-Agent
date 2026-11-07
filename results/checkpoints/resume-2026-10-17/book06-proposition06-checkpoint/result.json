@@ -1,0 +1,383 @@
+{
+  "kind": "run",
+  "run_result": "success",
+  "target": "file",
+  "path": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition06-checkpoint/main.lit",
+  "detail": "normal",
+  "language": "en",
+  "statement_results": [
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::vec",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::vec $in fn (A, B cart(R, R)) cart(R, R)",
+        "m0::f0::vec = fn (A, B cart(R, R)) cart(R, R){((B(1) - A(1)), (B(2) - A(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::dot",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::dot $in fn (u, v cart(R, R)) R",
+        "m0::f0::dot = fn (u, v cart(R, R)) R{((u(1) * v(1)) + (u(2) * v(2)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::det",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::det $in fn (u, v cart(R, R)) R",
+        "m0::f0::det = fn (u, v cart(R, R)) R{((u(1) * v(2)) - (u(2) * v(1)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::distance_sq",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::distance_sq $in fn (a, b cart(R, R)) R",
+        "m0::f0::distance_sq = fn (a, b cart(R, R)) R{m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, b))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::line_through_points",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::line_through_points $in fn (a, b cart(R, R): a != b) power_set(cart(R, R))",
+        "m0::f0::line_through_points = fn (a, b cart(R, R): a != b) power_set(cart(R, R)){{p cart(R, R): m0::f0::det(m0::f0::vec(a, p), m0::f0::vec(a, b)) = 0}}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f1::segment_length",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f1::segment_length $in fn (a, b cart(R, R): a != b) R+",
+        "f1::segment_length = fn (a, b cart(R, R): a != b) R+{sqrt (m0::f0::distance_sq(a, b))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_num",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_num $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_num = fn (p, q, r cart(R, R): p != q, r != q) R{m0::f0::dot(m0::f0::vec(q, p), m0::f0::vec(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def m0::f0::angle_cos_den",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "m0::f0::angle_cos_den $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "m0::f0::angle_cos_den = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "release obj def f0::angle_cosine",
+      "proof_method": {
+        "type": "release",
+        "rule_name": "Release object def",
+        "message": "Release an object definition"
+      },
+      "stores": [
+        "f0::angle_cosine $in fn (p, q, r cart(R, R): p != q, r != q) R",
+        "f0::angle_cosine = fn (p, q, r cart(R, R): p != q, r != q) R{(m0::f0::angle_cos_num(p, q, r) / sqrt (m0::f0::angle_cos_den(p, q, r)))}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "prop have_equal_equimultiple_comparisons(a, b, c, d R+):\n    forall m, n N+:\n        =>:\n            (m * a) < (n * b)\n        <=>:\n            (m * c) < (n * d)\n    forall m, n N+:\n        =>:\n            (m * a) = (n * b)\n        <=>:\n            (m * c) = (n * d)\n    forall m, n N+:\n        =>:\n            (m * a) > (n * b)\n        <=>:\n            (m * c) > (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define prop",
+        "message": "Define a predicate"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_less_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) < (n * b)\n        =>:\n            (m * c) < (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) < (scale * (n * b))\n    (m * c) < (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) < (n * b)\n    =>:\n        (m * c) < (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_equal_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) = (n * b)\n        =>:\n            (m * c) = (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) = (scale * (n * b))\n    (m * c) = (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) = (n * b)\n    =>:\n        (m * c) = (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_greater_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) > (n * b)\n        =>:\n            (m * c) > (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) > (scale * (n * b))\n    (m * c) > (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) > (n * b)\n    =>:\n        (m * c) > (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_implies_equal_equimultiple_comparisons:\n    ? forall a, b, c, d R+:\n        (a * d) = (b * c)\n        =>:\n            $f4::have_equal_equimultiple_comparisons(a, b, c, d)\n    (c * b) = (b * c) = (a * d) = (d * a)\n    claim:\n        ? forall m, n N+:\n            (m * a) < (n * b)\n            =>:\n                (m * c) < (n * d)\n        release thm cross_product_preserves_less_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) < (n * d)\n            =>:\n                (m * a) < (n * b)\n        release thm cross_product_preserves_less_equimultiples(c, d, a, b, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * a) = (n * b)\n            =>:\n                (m * c) = (n * d)\n        release thm cross_product_preserves_equal_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) = (n * d)\n            =>:\n                (m * a) = (n * b)\n        release thm cross_product_preserves_equal_equimultiples(c, d, a, b, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * a) > (n * b)\n            =>:\n                (m * c) > (n * d)\n        release thm cross_product_preserves_greater_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) > (n * d)\n            =>:\n                (m * a) > (n * b)\n        release thm cross_product_preserves_greater_equimultiples(c, d, a, b, m, n)\n    by def $f4::have_equal_equimultiple_comparisons(a, b, c, d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a * d) = (b * c)\n    =>:\n        $f4::have_equal_equimultiple_comparisons(a, b, c, d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm positive_rational_separation:\n    ? forall x, y R+:\n        x < y\n        =>:\n            exist numerator, denominator N+ st {x < (numerator / denominator), (numerator / denominator) < y}\n    release thm rational_between_reals(x, y)\n    obtain middle from exist q Q st {x < q and q < y}\n    release thm rational_has_unique_reduced_fraction(middle)\n    obtain numerator, denominator from exist! p Z, d N+ st {middle = (p / d), gcd(p, d) = 1}\n    middle > x > 0\n    denominator $in R+\n    (middle * denominator) > 0\n    numerator = ((numerator / denominator) * denominator) = (middle * denominator) > 0\n    numerator $in N+\n    x < middle = (numerator / denominator) < y\n    witness exist n, m N+ st {x < (n / m), (n / m) < y} from numerator, denominator",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall x, y R+:\n    x < y\n    =>:\n        exist numerator, denominator N+ st {x < (numerator / denominator), (numerator / denominator) < y}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm strict_cross_product_has_separating_equimultiples:\n    ? forall a, b, c, d R+:\n        (a * d) < (b * c)\n        =>:\n            exist m, n N+ st {(m * a) < (n * b), (m * c) > (n * d)}\n    (b * d) > 0\n    ((a * d) / (b * d)) < ((b * c) / (b * d))\n    (a / b) = ((a * d) / (b * d)) < ((b * c) / (b * d)) = (c / d)\n    (a / b) > 0\n    (c / d) > 0\n    release thm positive_rational_separation((a / b), (c / d))\n    obtain n, m from exist numerator, denominator N+ st {(a / b) < (numerator / denominator), (numerator / denominator) < (c / d)}\n    m $in R+\n    n $in R+\n    (m * (a / b)) < (m * (n / m))\n    ((m * (a / b)) * b) < ((m * (n / m)) * b)\n    (m * a) = ((m * (a / b)) * b) < ((m * (n / m)) * b) = (n * b)\n    (m * (n / m)) < (m * (c / d))\n    ((m * (n / m)) * d) < ((m * (c / d)) * d)\n    (n * d) = ((m * (n / m)) * d) < ((m * (c / d)) * d) = (m * c)\n    witness exist first, second N+ st {(first * a) < (second * b), (first * c) > (second * d)} from m, n",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a * d) < (b * c)\n    =>:\n        exist m, n N+ st {(m * a) < (n * b), (m * c) > (n * d)}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_equimultiple_comparisons_imply_cross_product:\n    ? forall a, b, c, d R+:\n        $f4::have_equal_equimultiple_comparisons(a, b, c, d)\n        =>:\n            (a * d) = (b * c)\n    by def $f4::have_equal_equimultiple_comparisons(a, b, c, d)\n    by contra:\n        ? (a * d) >= (b * c)\n        (a * d) < (b * c)\n        release thm strict_cross_product_has_separating_equimultiples(a, b, c, d)\n        obtain m, n from exist m, n N+ st {(m * a) < (n * b), (m * c) > (n * d)}\n        (m * c) < (n * d)\n        impossible (m * c) > (n * d)\n    by contra:\n        ? (a * d) <= (b * c)\n        (a * d) > (b * c)\n        (c * b) = (b * c) < (a * d) = (d * a)\n        release thm strict_cross_product_has_separating_equimultiples(c, d, a, b)\n        obtain m, n from exist m, n N+ st {(m * c) < (n * d), (m * a) > (n * b)}\n        (m * a) < (n * b)\n        impossible (m * a) > (n * b)\n    (a * d) = (b * c)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    $f4::have_equal_equimultiple_comparisons(a, b, c, d)\n    =>:\n        (a * d) = (b * c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_equimultiple_comparisons_give_equal_quotients:\n    ? forall a, b, c, d R+:\n        $f4::have_equal_equimultiple_comparisons(a, b, c, d)\n        =>:\n            (a / b) = (c / d)\n    release thm equal_equimultiple_comparisons_imply_cross_product(a, b, c, d)\n    (b * d) > 0\n    (a / b) = ((a * d) / (b * d)) = ((b * c) / (b * d)) = (c / d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    $f4::have_equal_equimultiple_comparisons(a, b, c, d)\n    =>:\n        (a / b) = (c / d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_positive_quotients_imply_cross_product:\n    ? forall a, b, c, d R+:\n        (a / b) = (c / d)\n        =>:\n            (a * d) = (b * c)\n    ((a / b) * (b * d)) = ((c / d) * (b * d))\n    (a * d) = ((a / b) * (b * d)) = ((c / d) * (b * d)) = (b * c)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a / b) = (c / d)\n    =>:\n        (a * d) = (b * c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "claim:\n    ? forall a, b cart(R, R):\n        a != b\n        =>:\n            f1::segment_length(a, b) $in R+\n            f1::segment_length(a, b) > 0\n            f1::segment_length(a, b) != 0\n    release thm m0::f0::distance_sq_positive_of_ne(a, b)\n    m0::f0::distance_sq(a, b) >= 0\n    sqrt (m0::f0::distance_sq(a, b)) > 0\n    f1::segment_length(a, b) = sqrt (m0::f0::distance_sq(a, b)) > 0\n    f1::segment_length(a, b) $in R+\n    f1::segment_length(a, b) != 0",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Claim",
+        "message": "Prove a claim block and store its conclusions"
+      },
+      "stores": [
+        "forall a, b cart(R, R):\n    a != b\n    =>:\n        f1::segment_length(a, b) $in R+\n        f1::segment_length(a, b) > 0\n        f1::segment_length(a, b) != 0"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proportional_squared_sides_give_equal_angle:\n    ? forall p, q, r, u, v, w cart(R, R), scale R+:\n        p != q\n        r != q\n        u != v\n        w != v\n        m0::f0::distance_sq(v, u) = ((scale ^ 2) * m0::f0::distance_sq(q, p))\n        m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(q, r))\n        m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(p, r))\n        =>:\n            $m0::f0::are_angles_congruent(p, q, r, u, v, w)\n    release thm m0::f0::dot_from_cosine_law(p, q, r)\n    release thm m0::f0::dot_from_cosine_law(u, v, w)\n    release thm m0::f0::distance_sq_symmetric(p, q)\n    release thm m0::f0::distance_sq_symmetric(u, v)\n    have x R = m0::f0::distance_sq(q, p)\n    have y R = m0::f0::distance_sq(q, r)\n    have z R = m0::f0::distance_sq(p, r)\n    m0::f0::distance_sq(p, q) = m0::f0::distance_sq(q, p) = x\n    m0::f0::distance_sq(u, v) = m0::f0::distance_sq(v, u) = ((scale ^ 2) * m0::f0::distance_sq(q, p)) = ((scale ^ 2) * x)\n    m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(q, r)) = ((scale ^ 2) * y)\n    m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(p, r)) = ((scale ^ 2) * z)\n    m0::f0::distance_sq(u, v) = ((scale ^ 2) * x)\n    m0::f0::distance_sq(v, w) = ((scale ^ 2) * y)\n    m0::f0::distance_sq(u, w) = ((scale ^ 2) * z)\n    have xx R = m0::f0::distance_sq(u, v)\n    xx = m0::f0::distance_sq(u, v) = ((scale ^ 2) * x)\n    have yy R = m0::f0::distance_sq(v, w)\n    yy = m0::f0::distance_sq(v, w) = ((scale ^ 2) * y)\n    have zz R = m0::f0::distance_sq(u, w)\n    zz = m0::f0::distance_sq(u, w) = ((scale ^ 2) * z)\n    have n R = m0::f0::angle_cos_num(p, q, r)\n    n = m0::f0::angle_cos_num(p, q, r) = m0::f0::dot(m0::f0::vec(q, p), m0::f0::vec(q, r)) = (((m0::f0::distance_sq(p, q) + m0::f0::distance_sq(q, r)) - m0::f0::distance_sq(p, r)) / 2) = (((x + y) - z) / 2)\n    m0::f0::angle_cos_num(u, v, w) = m0::f0::dot(m0::f0::vec(v, u), m0::f0::vec(v, w)) = (((m0::f0::distance_sq(u, v) + m0::f0::distance_sq(v, w)) - m0::f0::distance_sq(u, w)) / 2) = (((xx + yy) - zz) / 2) = (((((scale ^ 2) * x) + ((scale ^ 2) * y)) - ((scale ^ 2) * z)) / 2) = ((scale ^ 2) * (((x + y) - z) / 2)) = ((scale ^ 2) * n)\n    release thm f0::angle_den_positive(p, q, r)\n    release thm f0::angle_den_positive(u, v, w)\n    have den R+ = m0::f0::angle_cos_den(p, q, r)\n    den = m0::f0::angle_cos_den(p, q, r) = (m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r)) = (x * y)\n    m0::f0::distance_sq(v, u) = m0::f0::distance_sq(u, v) = xx\n    m0::f0::angle_cos_den(u, v, w) = (m0::f0::distance_sq(v, u) * m0::f0::distance_sq(v, w)) = (xx * yy) = (((scale ^ 2) * x) * ((scale ^ 2) * y)) = ((scale ^ 4) * (x * y)) = ((scale ^ 4) * den)\n    ((m0::f0::angle_cos_num(p, q, r) ^ 2) * m0::f0::angle_cos_den(u, v, w)) = ((n ^ 2) * ((scale ^ 4) * den)) = ((((scale ^ 2) * n) ^ 2) * den) = ((m0::f0::angle_cos_num(u, v, w) ^ 2) * m0::f0::angle_cos_den(p, q, r))\n    (n ^ 2) >= 0\n    (scale ^ 2) > 0\n    ((scale ^ 2) * (n ^ 2)) >= 0\n    (m0::f0::angle_cos_num(p, q, r) * m0::f0::angle_cos_num(u, v, w)) = (n * ((scale ^ 2) * n)) = ((scale ^ 2) * (n ^ 2)) >= 0\n    by def $m0::f0::are_angles_congruent(p, q, r, u, v, w)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall p, q, r, u, v, w cart(R, R), scale R+:\n    p != q\n    r != q\n    u != v\n    w != v\n    m0::f0::distance_sq(v, u) = ((scale ^ 2) * m0::f0::distance_sq(q, p))\n    m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(q, r))\n    m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(p, r))\n    =>:\n        $m0::f0::are_angles_congruent(p, q, r, u, v, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proportional_squared_sides_give_equiangular_triangles:\n    ? forall a, b, c, u, v, w cart(R, R), scale R+:\n        $m0::f0::is_triangle(a, b, c)\n        $m0::f0::is_triangle(u, v, w)\n        m0::f0::distance_sq(u, v) = ((scale ^ 2) * m0::f0::distance_sq(a, b))\n        m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(a, c))\n        m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(b, c))\n        =>:\n            $m0::f0::are_triangles_similar(a, b, c, u, v, w)\n    release thm f2::triangle_vertices_distinct(a, b, c)\n    release thm f2::triangle_vertices_distinct(u, v, w)\n    release thm m0::f0::distance_sq_symmetric(a, b)\n    release thm m0::f0::distance_sq_symmetric(a, c)\n    release thm m0::f0::distance_sq_symmetric(b, c)\n    release thm m0::f0::distance_sq_symmetric(u, v)\n    release thm m0::f0::distance_sq_symmetric(u, w)\n    release thm m0::f0::distance_sq_symmetric(v, w)\n    release thm proportional_squared_sides_give_equal_angle(b, a, c, v, u, w, scale)\n    release thm proportional_squared_sides_give_equal_angle(a, b, c, u, v, w, scale)\n    release thm proportional_squared_sides_give_equal_angle(a, c, b, u, w, v, scale)\n    by def $m0::f0::are_triangles_similar(a, b, c, u, v, w)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, u, v, w cart(R, R), scale R+:\n    $m0::f0::is_triangle(a, b, c)\n    $m0::f0::is_triangle(u, v, w)\n    m0::f0::distance_sq(u, v) = ((scale ^ 2) * m0::f0::distance_sq(a, b))\n    m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(a, c))\n    m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(b, c))\n    =>:\n        $m0::f0::are_triangles_similar(a, b, c, u, v, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_included_angle_determines_scaled_third_side:\n    ? forall a, b, c, u, v, w cart(R, R), scale R+:\n        a != b\n        a != c\n        u != v\n        u != w\n        $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n        m0::f0::distance_sq(u, v) = ((scale ^ 2) * m0::f0::distance_sq(a, b))\n        m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(a, c))\n        =>:\n            m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(b, c))\n    have x R = m0::f0::distance_sq(a, b)\n    have y R = m0::f0::distance_sq(a, c)\n    have xx R = m0::f0::distance_sq(u, v)\n    have yy R = m0::f0::distance_sq(u, w)\n    xx = m0::f0::distance_sq(u, v) = ((scale ^ 2) * m0::f0::distance_sq(a, b)) = ((scale ^ 2) * x)\n    yy = m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(a, c)) = ((scale ^ 2) * y)\n    release thm f0::angle_den_positive(b, a, c)\n    have den R+ = m0::f0::angle_cos_den(b, a, c)\n    den = m0::f0::angle_cos_den(b, a, c) = (m0::f0::distance_sq(a, b) * m0::f0::distance_sq(a, c)) = (x * y)\n    m0::f0::angle_cos_den(v, u, w) = (m0::f0::distance_sq(u, v) * m0::f0::distance_sq(u, w)) = (xx * yy) = (((scale ^ 2) * x) * ((scale ^ 2) * y)) = ((scale ^ 4) * (x * y)) = ((scale ^ 4) * den)\n    have n R = m0::f0::angle_cos_num(b, a, c)\n    have m R = m0::f0::angle_cos_num(v, u, w)\n    by def $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n    ((n ^ 2) * ((scale ^ 4) * den)) = ((m0::f0::angle_cos_num(b, a, c) ^ 2) * m0::f0::angle_cos_den(v, u, w)) = ((m0::f0::angle_cos_num(v, u, w) ^ 2) * m0::f0::angle_cos_den(b, a, c)) = ((m ^ 2) * den)\n    (((scale ^ 2) * n) ^ 2) = (((n ^ 2) * ((scale ^ 4) * den)) / den) = (((m ^ 2) * den) / den) = (m ^ 2)\n    (n * m) = (m0::f0::angle_cos_num(b, a, c) * m0::f0::angle_cos_num(v, u, w)) >= 0\n    (scale ^ 2) > 0\n    (((scale ^ 2) * n) * m) = ((scale ^ 2) * (n * m)) >= 0\n    release thm f1::same_square_and_sign_gives_equality(((scale ^ 2) * n), m)\n    release thm m0::f0::dot_from_cosine_law(b, a, c)\n    release thm m0::f0::dot_from_cosine_law(v, u, w)\n    release thm m0::f0::distance_sq_symmetric(b, a)\n    release thm m0::f0::distance_sq_symmetric(v, u)\n    have z R = m0::f0::distance_sq(b, c)\n    have zz R = m0::f0::distance_sq(v, w)\n    m0::f0::distance_sq(b, a) = m0::f0::distance_sq(a, b) = x\n    m0::f0::distance_sq(v, u) = m0::f0::distance_sq(u, v) = xx\n    n = m0::f0::angle_cos_num(b, a, c) = m0::f0::dot(m0::f0::vec(a, b), m0::f0::vec(a, c)) = (((m0::f0::distance_sq(b, a) + m0::f0::distance_sq(a, c)) - m0::f0::distance_sq(b, c)) / 2) = (((x + y) - z) / 2)\n    m = m0::f0::angle_cos_num(v, u, w) = m0::f0::dot(m0::f0::vec(u, v), m0::f0::vec(u, w)) = (((m0::f0::distance_sq(v, u) + m0::f0::distance_sq(u, w)) - m0::f0::distance_sq(v, w)) / 2) = (((xx + yy) - zz) / 2)\n    (2 * m) = (2 * (((xx + yy) - zz) / 2)) = ((xx + yy) - zz)\n    zz = ((xx + yy) - ((xx + yy) - zz)) = ((xx + yy) - (2 * m)) = ((((scale ^ 2) * x) + ((scale ^ 2) * y)) - (2 * ((scale ^ 2) * n))) = ((scale ^ 2) * ((x + y) - (2 * n))) = ((scale ^ 2) * ((x + y) - (2 * (((x + y) - z) / 2)))) = ((scale ^ 2) * z)\n    m0::f0::distance_sq(v, w) = zz = ((scale ^ 2) * z) = ((scale ^ 2) * m0::f0::distance_sq(b, c))",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, u, v, w cart(R, R), scale R+:\n    a != b\n    a != c\n    u != v\n    u != w\n    $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n    m0::f0::distance_sq(u, v) = ((scale ^ 2) * m0::f0::distance_sq(a, b))\n    m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(a, c))\n    =>:\n        m0::f0::distance_sq(v, w) = ((scale ^ 2) * m0::f0::distance_sq(b, c))"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition_06_quotients:\n    ? forall a, b, c, u, v, w cart(R, R):\n        $m0::f0::is_triangle(a, b, c)\n        $m0::f0::is_triangle(u, v, w)\n        a != b\n        a != c\n        b != c\n        u != v\n        u != w\n        v != w\n        $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n        (f1::segment_length(a, b) / f1::segment_length(a, c)) = (f1::segment_length(u, v) / f1::segment_length(u, w))\n        =>:\n            $m0::f0::are_triangles_similar(a, b, c, u, v, w)\n    have ab R+ = f1::segment_length(a, b)\n    have ac R+ = f1::segment_length(a, c)\n    have uv R+ = f1::segment_length(u, v)\n    have uw R+ = f1::segment_length(u, w)\n    (ab / ac) = (f1::segment_length(a, b) / f1::segment_length(a, c)) = (f1::segment_length(u, v) / f1::segment_length(u, w)) = (uv / uw)\n    release thm equal_positive_quotients_imply_cross_product(ab, ac, uv, uw)\n    have scale R+ = (uv / ab)\n    uv = ((uv / ab) * ab) = (scale * ab)\n    uw = ((ab * uw) / ab) = ((ac * uv) / ab) = ((uv / ab) * ac) = (scale * ac)\n    release thm f1::segment_length_square_is_squared_distance(a, b)\n    release thm f1::segment_length_square_is_squared_distance(a, c)\n    release thm f1::segment_length_square_is_squared_distance(u, v)\n    release thm f1::segment_length_square_is_squared_distance(u, w)\n    (ab ^ 2) = (f1::segment_length(a, b) ^ 2) = m0::f0::distance_sq(a, b)\n    (ac ^ 2) = (f1::segment_length(a, c) ^ 2) = m0::f0::distance_sq(a, c)\n    (uv ^ 2) = (f1::segment_length(u, v) ^ 2) = m0::f0::distance_sq(u, v)\n    (uw ^ 2) = (f1::segment_length(u, w) ^ 2) = m0::f0::distance_sq(u, w)\n    m0::f0::distance_sq(u, v) = (uv ^ 2) = ((scale * ab) ^ 2) = ((scale ^ 2) * (ab ^ 2)) = ((scale ^ 2) * m0::f0::distance_sq(a, b))\n    m0::f0::distance_sq(u, w) = (uw ^ 2) = ((scale * ac) ^ 2) = ((scale ^ 2) * (ac ^ 2)) = ((scale ^ 2) * m0::f0::distance_sq(a, c))\n    release thm equal_included_angle_determines_scaled_third_side(a, b, c, u, v, w, scale)\n    release thm proportional_squared_sides_give_equiangular_triangles(a, b, c, u, v, w, scale)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, u, v, w cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    $m0::f0::is_triangle(u, v, w)\n    a != b\n    a != c\n    b != c\n    u != v\n    u != w\n    v != w\n    $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n    (f1::segment_length(a, b) / f1::segment_length(a, c)) = (f1::segment_length(u, v) / f1::segment_length(u, w))\n    =>:\n        $m0::f0::are_triangles_similar(a, b, c, u, v, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition_06_equimultiples:\n    ? forall a, b, c, u, v, w cart(R, R):\n        $m0::f0::is_triangle(a, b, c)\n        $m0::f0::is_triangle(u, v, w)\n        a != b\n        a != c\n        b != c\n        u != v\n        u != w\n        v != w\n        $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n        $f4::have_equal_equimultiple_comparisons(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))\n        =>:\n            $m0::f0::are_triangles_similar(a, b, c, u, v, w)\n    release thm equal_equimultiple_comparisons_give_equal_quotients(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))\n    release thm book06_proposition_06_quotients(a, b, c, u, v, w)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, u, v, w cart(R, R):\n    $m0::f0::is_triangle(a, b, c)\n    $m0::f0::is_triangle(u, v, w)\n    a != b\n    a != c\n    b != c\n    u != v\n    u != w\n    v != w\n    $m0::f0::are_angles_congruent(b, a, c, v, u, w)\n    $f4::have_equal_equimultiple_comparisons(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))\n    =>:\n        $m0::f0::are_triangles_similar(a, b, c, u, v, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm uniform_scale_preserves_angle:\n    ? forall p, q, r, u, v, w cart(R, R), k R+:\n        p != q\n        r != q\n        u != v\n        w != v\n        (u(1) - v(1)) = (k * (p(1) - q(1)))\n        (u(2) - v(2)) = (k * (p(2) - q(2)))\n        (w(1) - v(1)) = (k * (r(1) - q(1)))\n        (w(2) - v(2)) = (k * (r(2) - q(2)))\n        =>:\n            $m0::f0::are_angles_congruent(p, q, r, u, v, w)\n    release thm m0::f0::similar_triangles_ratio(p, q, q, u, v, v, k)\n    release thm m0::f0::similar_triangles_ratio(r, q, q, w, v, v, k)\n    release thm m0::f0::distance_sq_symmetric(p, q)\n    release thm m0::f0::distance_sq_symmetric(u, v)\n    release thm m0::f0::distance_sq_symmetric(r, q)\n    release thm m0::f0::distance_sq_symmetric(w, v)\n    m0::f0::distance_sq(v, u) = m0::f0::distance_sq(u, v) = ((k ^ 2) * m0::f0::distance_sq(p, q)) = ((k ^ 2) * m0::f0::distance_sq(q, p))\n    m0::f0::distance_sq(v, w) = m0::f0::distance_sq(w, v) = ((k ^ 2) * m0::f0::distance_sq(r, q)) = ((k ^ 2) * m0::f0::distance_sq(q, r))\n    release thm m0::f0::similar_triangles_dot(p, q, r, u, v, w, k)\n    have n R = m0::f0::angle_cos_num(p, q, r)\n    release thm f0::angle_den_positive(p, q, r)\n    have d R+ = m0::f0::angle_cos_den(p, q, r)\n    m0::f0::angle_cos_num(p, q, r) = m0::f0::dot(m0::f0::vec(q, p), m0::f0::vec(q, r)) = (((p(1) - q(1)) * (r(1) - q(1))) + ((p(2) - q(2)) * (r(2) - q(2))))\n    m0::f0::angle_cos_num(u, v, w) = m0::f0::dot(m0::f0::vec(v, u), m0::f0::vec(v, w)) = (((u(1) - v(1)) * (w(1) - v(1))) + ((u(2) - v(2)) * (w(2) - v(2)))) = ((k ^ 2) * (((p(1) - q(1)) * (r(1) - q(1))) + ((p(2) - q(2)) * (r(2) - q(2))))) = ((k ^ 2) * n)\n    d = m0::f0::angle_cos_den(p, q, r) = (m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r))\n    m0::f0::angle_cos_den(u, v, w) = (m0::f0::distance_sq(v, u) * m0::f0::distance_sq(v, w)) = (((k ^ 2) * m0::f0::distance_sq(q, p)) * ((k ^ 2) * m0::f0::distance_sq(q, r))) = ((k ^ 4) * (m0::f0::distance_sq(q, p) * m0::f0::distance_sq(q, r))) = ((k ^ 4) * d)\n    release thm f0::angle_den_positive(p, q, r)\n    release thm f0::angle_den_positive(u, v, w)\n    ((m0::f0::angle_cos_num(p, q, r) ^ 2) * m0::f0::angle_cos_den(u, v, w)) = ((n ^ 2) * ((k ^ 4) * d)) = ((((k ^ 2) * n) ^ 2) * d) = ((m0::f0::angle_cos_num(u, v, w) ^ 2) * m0::f0::angle_cos_den(p, q, r))\n    (n ^ 2) >= 0\n    (m0::f0::angle_cos_num(p, q, r) * m0::f0::angle_cos_num(u, v, w)) = (n * ((k ^ 2) * n)) = ((k ^ 2) * (n ^ 2)) >= 0\n    by def $m0::f0::are_angles_congruent(p, q, r, u, v, w)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall p, q, r, u, v, w cart(R, R), k R+:\n    p != q\n    r != q\n    u != v\n    w != v\n    (u(1) - v(1)) = (k * (p(1) - q(1)))\n    (u(2) - v(2)) = (k * (p(2) - q(2)))\n    (w(1) - v(1)) = (k * (r(1) - q(1)))\n    (w(2) - v(2)) = (k * (r(2) - q(2)))\n    =>:\n        $m0::f0::are_angles_congruent(p, q, r, u, v, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm uniform_scale_preserves_triangle:\n    ? forall p, q, r, u, v, w cart(R, R), k R+:\n        $m0::f0::is_triangle(q, p, r)\n        (u(1) - v(1)) = (k * (p(1) - q(1)))\n        (u(2) - v(2)) = (k * (p(2) - q(2)))\n        (w(1) - v(1)) = (k * (r(1) - q(1)))\n        (w(2) - v(2)) = (k * (r(2) - q(2)))\n        =>:\n            $m0::f0::is_triangle(v, u, w)\n    by def $m0::f0::is_triangle(q, p, r)\n    release thm m0::f0::collinear_det_expand(q, p, r)\n    release thm m0::f0::collinear_det_expand(v, u, w)\n    release thm m0::f0::similar_triangles_det(p, q, r, u, v, w, k)\n    have source_det R = m0::f0::det(m0::f0::vec(q, p), m0::f0::vec(q, r))\n    source_det != 0\n    m0::f0::det(m0::f0::vec(v, u), m0::f0::vec(v, w)) = (((u(1) - v(1)) * (w(2) - v(2))) - ((u(2) - v(2)) * (w(1) - v(1)))) = ((k ^ 2) * (((p(1) - q(1)) * (r(2) - q(2))) - ((p(2) - q(2)) * (r(1) - q(1))))) = ((k ^ 2) * source_det)\n    (k ^ 2) != 0\n    ((k ^ 2) * source_det) != 0\n    by def $m0::f0::is_triangle(v, u, w)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall p, q, r, u, v, w cart(R, R), k R+:\n    $m0::f0::is_triangle(q, p, r)\n    (u(1) - v(1)) = (k * (p(1) - q(1)))\n    (u(2) - v(2)) = (k * (p(2) - q(2)))\n    (w(1) - v(1)) = (k * (r(1) - q(1)))\n    (w(2) - v(2)) = (k * (r(2) - q(2)))\n    =>:\n        $m0::f0::is_triangle(v, u, w)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book06_proposition06_scaled_consumer:\n    ? forall a, b, c cart(R, R), scale R+:\n        $m0::f0::is_triangle(a, b, c)\n        a != b\n        a != c\n        b != c\n        =>:\n            exist u, v, w cart(R, R) st {u != v, u != w, v != w, u(1) = (scale * a(1)), u(2) = (scale * a(2)), v(1) = (scale * b(1)), v(2) = (scale * b(2)), w(1) = (scale * c(1)), w(2) = (scale * c(2)), $m0::f0::are_triangles_similar(a, b, c, u, v, w), $f4::have_equal_equimultiple_comparisons(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))}\n    release thm f2::triangle_vertices_distinct(a, b, c)\n    have u cart(R, R) = ((scale * a(1)), (scale * a(2)))\n    u(1) = (scale * a(1))\n    u(2) = (scale * a(2))\n    have v cart(R, R) = ((scale * b(1)), (scale * b(2)))\n    v(1) = (scale * b(1))\n    v(2) = (scale * b(2))\n    have w cart(R, R) = ((scale * c(1)), (scale * c(2)))\n    w(1) = (scale * c(1))\n    w(2) = (scale * c(2))\n    (u(1) - v(1)) = ((scale * a(1)) - (scale * b(1))) = (scale * (a(1) - b(1)))\n    (u(2) - v(2)) = ((scale * a(2)) - (scale * b(2))) = (scale * (a(2) - b(2)))\n    (u(1) - w(1)) = ((scale * a(1)) - (scale * c(1))) = (scale * (a(1) - c(1)))\n    (u(2) - w(2)) = ((scale * a(2)) - (scale * c(2))) = (scale * (a(2) - c(2)))\n    (v(1) - u(1)) = ((scale * b(1)) - (scale * a(1))) = (scale * (b(1) - a(1)))\n    (v(2) - u(2)) = ((scale * b(2)) - (scale * a(2))) = (scale * (b(2) - a(2)))\n    (v(1) - w(1)) = ((scale * b(1)) - (scale * c(1))) = (scale * (b(1) - c(1)))\n    (v(2) - w(2)) = ((scale * b(2)) - (scale * c(2))) = (scale * (b(2) - c(2)))\n    (w(1) - u(1)) = ((scale * c(1)) - (scale * a(1))) = (scale * (c(1) - a(1)))\n    (w(2) - u(2)) = ((scale * c(2)) - (scale * a(2))) = (scale * (c(2) - a(2)))\n    (w(1) - v(1)) = ((scale * c(1)) - (scale * b(1))) = (scale * (c(1) - b(1)))\n    (w(2) - v(2)) = ((scale * c(2)) - (scale * b(2))) = (scale * (c(2) - b(2)))\n    release thm uniform_scale_preserves_triangle(b, a, c, v, u, w, scale)\n    release thm f2::triangle_vertices_distinct(u, v, w)\n    release thm uniform_scale_preserves_angle(b, a, c, v, u, w, scale)\n    release thm m0::f0::similar_triangles_ratio(a, b, b, u, v, v, scale)\n    release thm m0::f0::similar_triangles_ratio(a, c, c, u, w, w, scale)\n    have ab R+ = f1::segment_length(a, b)\n    release thm f1::segment_length_square_is_squared_distance(a, b)\n    (ab ^ 2) = (f1::segment_length(a, b) ^ 2) = m0::f0::distance_sq(a, b)\n    have ac R+ = f1::segment_length(a, c)\n    release thm f1::segment_length_square_is_squared_distance(a, c)\n    (ac ^ 2) = (f1::segment_length(a, c) ^ 2) = m0::f0::distance_sq(a, c)\n    have uv R+ = f1::segment_length(u, v)\n    release thm f1::segment_length_square_is_squared_distance(u, v)\n    (uv ^ 2) = (f1::segment_length(u, v) ^ 2) = m0::f0::distance_sq(u, v)\n    have uw R+ = f1::segment_length(u, w)\n    release thm f1::segment_length_square_is_squared_distance(u, w)\n    (uw ^ 2) = (f1::segment_length(u, w) ^ 2) = m0::f0::distance_sq(u, w)\n    (uv ^ 2) = m0::f0::distance_sq(u, v) = ((scale ^ 2) * m0::f0::distance_sq(a, b)) = ((scale ^ 2) * (ab ^ 2)) = ((scale * ab) ^ 2)\n    (uv * (scale * ab)) > 0\n    release thm f1::same_square_and_sign_gives_equality(uv, (scale * ab))\n    (uw ^ 2) = m0::f0::distance_sq(u, w) = ((scale ^ 2) * m0::f0::distance_sq(a, c)) = ((scale ^ 2) * (ac ^ 2)) = ((scale * ac) ^ 2)\n    (uw * (scale * ac)) > 0\n    release thm f1::same_square_and_sign_gives_equality(uw, (scale * ac))\n    (f1::segment_length(a, b) / f1::segment_length(a, c)) = (ab / ac) = ((scale * ab) / (scale * ac)) = (uv / uw) = (f1::segment_length(u, v) / f1::segment_length(u, w))\n    release thm equal_positive_quotients_imply_cross_product(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))\n    release thm cross_product_implies_equal_equimultiple_comparisons(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))\n    release thm book06_proposition_06_equimultiples(a, b, c, u, v, w)\n    witness exist aa, bb, cc cart(R, R) st {aa != bb, aa != cc, bb != cc, aa(1) = (scale * a(1)), aa(2) = (scale * a(2)), bb(1) = (scale * b(1)), bb(2) = (scale * b(2)), cc(1) = (scale * c(1)), cc(2) = (scale * c(2)), $m0::f0::are_triangles_similar(a, b, c, aa, bb, cc), $f4::have_equal_equimultiple_comparisons(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(aa, bb), f1::segment_length(aa, cc))} from u, v, w",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c cart(R, R), scale R+:\n    $m0::f0::is_triangle(a, b, c)\n    a != b\n    a != c\n    b != c\n    =>:\n        exist u, v, w cart(R, R) st {u != v, u != w, v != w, u(1) = (scale * a(1)), u(2) = (scale * a(2)), v(1) = (scale * b(1)), v(2) = (scale * b(2)), w(1) = (scale * c(1)), w(2) = (scale * c(2)), $m0::f0::are_triangles_similar(a, b, c, u, v, w), $f4::have_equal_equimultiple_comparisons(f1::segment_length(a, b), f1::segment_length(a, c), f1::segment_length(u, v), f1::segment_length(u, w))}"
+      ],
+      "infers": []
+    }
+  ],
+  "session_terminated": false,
+  "termination": null
+}

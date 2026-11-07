@@ -1,0 +1,28 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 23,
+    "mathematics": "Equiangular parallelograms: area1*side2_ab*side2_ad = area2*side1_ab*side1_ad (compounded side ratio as length cross-product)."
+  },
+  "status": "cross_quotients_scale_gate_passed",
+  "main_sha256": "69e51b947fbd11581b17980460db7534fcf4fe3951de9778fde7cd167ab27b24",
+  "oneshot": {
+    "request": 13003,
+    "candidate": "vi23-equiangular-parallelograms-ratio-candidate3.lit"
+  },
+  "core_gate": {
+    "stmts": 35,
+    "accepted": 35
+  },
+  "packaging": "length_cross_product",
+  "trust_added": 0,
+  "quotients": {
+    "request": 13012
+  },
+  "cross": {
+    "request": 13003
+  },
+  "scale": {
+    "request": 13021
+  }
+}

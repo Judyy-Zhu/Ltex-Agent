@@ -1,0 +1,233 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+
+release obj def geometry::main::distance_sq
+release obj def geometry::main::dot
+release obj def area::triangle_area
+
+
+# Shared by I36 and I38: equal nonzero parallel bases give equal unsigned area factors.
+thm equal_parallel_base_determinants_squared:
+    ? forall u1, u2, v1, v2, w1, w2 R:
+        u1^2+u2^2 > 0
+        u1^2+u2^2 = v1^2+v2^2
+        u1*v2-u2*v1 = 0
+        =>:
+            (u1*w2-u2*w1)^2 = (v1*w2-v2*w1)^2
+    have n R+ = u1^2+u2^2
+    have cross R = u1*v2-u2*v1
+    have first_det R = u1*w2-u2*w1
+    have second_det R = v1*w2-v2*w1
+    cross = 0
+    n = v1^2+v2^2
+    first_det^2 = (u1*w2-u2*w1)^2
+    second_det^2 = (v1*w2-v2*w1)^2
+    n*first_det^2 = n*(u1*w2-u2*w1)^2
+    n*(u1*w2-u2*w1)^2 = (v1^2+v2^2)*(u1*w2-u2*w1)^2
+    n*second_det^2 = n*(v1*w2-v2*w1)^2
+    n*(v1*w2-v2*w1)^2 = (u1^2+u2^2)*(v1*w2-v2*w1)^2
+    n*(second_det^2-first_det^2) = n*second_det^2-n*first_det^2 = (u1^2+u2^2)*(v1*w2-v2*w1)^2-(v1^2+v2^2)*(u1*w2-u2*w1)^2 = (u1*v2-u2*v1)*((u1*v2-u2*v1)*(w1^2+w2^2)-2*(u1*w2-u2*w1)*(v1*w1+v2*w2)) = cross*(cross*(w1^2+w2^2)-2*first_det*(v1*w1+v2*w2)) = 0*(0*(w1^2+w2^2)-2*first_det*(v1*w1+v2*w2)) = 0
+    n != 0
+    second_det^2-first_det^2 = (n*(second_det^2-first_det^2))/n = 0/n = 0
+    second_det^2 = (second_det^2-first_det^2)+first_det^2 = 0+first_det^2 = first_det^2
+
+
+# I.38: proper triangles on equal bases in the same lower line, with apices in one parallel.
+thm proposition_38:
+    ? forall a, b, c, d, f, g cart(R, R):
+        $geometry::main::is_triangle(b, c, a)
+        $geometry::main::is_triangle(f, g, d)
+        $geometry::main::are_segments_congruent(b, c, f, g)
+        geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, f)) = 0
+        geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, g)) = 0
+        geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+        =>:
+            exist common R+ st {$area::has_triangle_area(b, c, a, common), $area::has_triangle_area(f, g, d, common)}
+    release thm geometry_lemmas::triangle_vertices_distinct(b, c, a)
+    by def $geometry::main::are_segments_congruent(b, c, f, g)
+    have u cart(R, R) = geometry::main::vec(b, c)
+    have v cart(R, R) = geometry::main::vec(f, g)
+    have height cart(R, R) = geometry::main::vec(b, a)
+    have lower_shift cart(R, R) = geometry::main::vec(b, f)
+    have upper_shift cart(R, R) = geometry::main::vec(a, d)
+    release thm geometry::main::distance_sq_positive_of_ne(b, c)
+    release thm geometry::main::vec_dot_self_is_distance(b, c)
+    release thm geometry::main::vec_dot_self_is_distance(f, g)
+    release thm geometry::main::dot_coordinate_formula(u, u)
+    release thm geometry::main::dot_coordinate_formula(v, v)
+    u(1)^2+u(2)^2 = u(1)*u(1)+u(2)*u(2) = geometry::main::dot(u, u) = geometry::main::distance_sq(b, c) > 0
+    v(1)^2+v(2)^2 = v(1)*v(1)+v(2)*v(2) = geometry::main::dot(v, v) = geometry::main::distance_sq(f, g) = geometry::main::distance_sq(b, c) = u(1)^2+u(2)^2
+    release thm geometry::main::vec_coordinate_formula(b, c)
+    release thm geometry::main::vec_coordinate_formula(f, g)
+    release thm geometry::main::vec_coordinate_formula(b, f)
+    release thm geometry::main::vec_coordinate_formula(b, g)
+    release thm geometry::main::vec_coordinate_formula(b, a)
+    release thm geometry::main::vec_coordinate_formula(a, d)
+    release thm geometry::main::vec_coordinate_formula(f, d)
+    release thm geometry::main::det_coordinate_formula(u, lower_shift)
+    u(1)*lower_shift(2)-u(2)*lower_shift(1) = geometry::main::det(u, lower_shift) = 0
+    release thm geometry::main::det_coordinate_formula(u, upper_shift)
+    u(1)*upper_shift(2)-u(2)*upper_shift(1) = geometry::main::det(u, upper_shift) = 0
+    v(1) = g(1)-f(1) = (g(1)-b(1))-(f(1)-b(1))
+    v(2) = g(2)-f(2) = (g(2)-b(2))-(f(2)-b(2))
+    release thm geometry::main::det_coordinate_formula(u, geometry::main::vec(b, g))
+    release thm geometry::main::det_coordinate_formula(u, v)
+    geometry::main::vec(b, g)(1) = g(1)-b(1)
+    geometry::main::vec(b, g)(2) = g(2)-b(2)
+    lower_shift(1) = f(1)-b(1)
+    lower_shift(2) = f(2)-b(2)
+    geometry::main::det(u, geometry::main::vec(b, g)) = u(1)*geometry::main::vec(b, g)(2)-u(2)*geometry::main::vec(b, g)(1) = u(1)*(g(2)-b(2))-u(2)*(g(1)-b(1))
+    geometry::main::det(u, lower_shift) = u(1)*lower_shift(2)-u(2)*lower_shift(1) = u(1)*(f(2)-b(2))-u(2)*(f(1)-b(1))
+    geometry::main::det(u, geometry::main::vec(b, g)) = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, g)) = 0
+    u(1)*v(2)-u(2)*v(1) = u(1)*((g(2)-b(2))-(f(2)-b(2)))-u(2)*((g(1)-b(1))-(f(1)-b(1))) = (u(1)*(g(2)-b(2))-u(2)*(g(1)-b(1)))-(u(1)*(f(2)-b(2))-u(2)*(f(1)-b(1))) = geometry::main::det(u, geometry::main::vec(b, g))-geometry::main::det(u, lower_shift) = 0-0 = 0
+    release thm equal_parallel_base_determinants_squared(u(1), u(2), v(1), v(2), lower_shift(1), lower_shift(2))
+    (u(1)*lower_shift(2)-u(2)*lower_shift(1))^2 = 0^2 = 0
+    (v(1)*lower_shift(2)-v(2)*lower_shift(1))^2 = (u(1)*lower_shift(2)-u(2)*lower_shift(1))^2 = 0
+    by contra:
+        ? v(1)*lower_shift(2)-v(2)*lower_shift(1) = 0
+        v(1)*lower_shift(2)-v(2)*lower_shift(1) != 0
+        (v(1)*lower_shift(2)-v(2)*lower_shift(1))^2 > 0
+        impossible (v(1)*lower_shift(2)-v(2)*lower_shift(1))^2 = 0
+    release thm equal_parallel_base_determinants_squared(u(1), u(2), v(1), v(2), upper_shift(1), upper_shift(2))
+    (u(1)*upper_shift(2)-u(2)*upper_shift(1))^2 = 0^2 = 0
+    (v(1)*upper_shift(2)-v(2)*upper_shift(1))^2 = (u(1)*upper_shift(2)-u(2)*upper_shift(1))^2 = 0
+    by contra:
+        ? v(1)*upper_shift(2)-v(2)*upper_shift(1) = 0
+        v(1)*upper_shift(2)-v(2)*upper_shift(1) != 0
+        (v(1)*upper_shift(2)-v(2)*upper_shift(1))^2 > 0
+        impossible (v(1)*upper_shift(2)-v(2)*upper_shift(1))^2 = 0
+    release thm equal_parallel_base_determinants_squared(u(1), u(2), v(1), v(2), height(1), height(2))
+    release thm geometry::main::det_coordinate_formula(u, height)
+    release thm geometry::main::det_coordinate_formula(v, height)
+    geometry::main::det(v, height)^2 = (v(1)*height(2)-v(2)*height(1))^2 = (u(1)*height(2)-u(2)*height(1))^2 = geometry::main::det(u, height)^2
+    height(1) = a(1)-b(1)
+    height(2) = a(2)-b(2)
+    upper_shift(1) = d(1)-a(1)
+    upper_shift(2) = d(2)-a(2)
+    geometry::main::vec(f, d)(1) = d(1)-f(1)
+    geometry::main::vec(f, d)(2) = d(2)-f(2)
+    d(1)-f(1) = (a(1)-b(1))+(d(1)-a(1))-(f(1)-b(1)) = height(1)+upper_shift(1)-lower_shift(1)
+    d(2)-f(2) = (a(2)-b(2))+(d(2)-a(2))-(f(2)-b(2)) = height(2)+upper_shift(2)-lower_shift(2)
+    release thm geometry::main::det_coordinate_formula(v, geometry::main::vec(f, d))
+    geometry::main::det(v, geometry::main::vec(f, d)) = v(1)*(d(2)-f(2))-v(2)*(d(1)-f(1)) = v(1)*(height(2)+upper_shift(2)-lower_shift(2))-v(2)*(height(1)+upper_shift(1)-lower_shift(1)) = (v(1)*height(2)-v(2)*height(1))+(v(1)*upper_shift(2)-v(2)*upper_shift(1))-(v(1)*lower_shift(2)-v(2)*lower_shift(1)) = (v(1)*height(2)-v(2)*height(1))+0-0 = geometry::main::det(v, height)
+    geometry::main::det(v, geometry::main::vec(f, d))^2 = geometry::main::det(v, height)^2 = geometry::main::det(u, height)^2
+    have common R+ = area::triangle_area(b, c, a)
+    $area::has_triangle_area(b, c, a, common)
+    by def $area::has_triangle_area(b, c, a, common)
+    geometry::main::det(u, height) = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))
+    geometry::main::det(u, height)^2 = geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2
+    geometry::main::det(v, geometry::main::vec(f, d)) = geometry::main::det(geometry::main::vec(f, g), geometry::main::vec(f, d))
+    geometry::main::det(v, geometry::main::vec(f, d))^2 = geometry::main::det(geometry::main::vec(f, g), geometry::main::vec(f, d))^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2) = sqrt(geometry::main::det(u, height)^2)
+    2*common = sqrt(geometry::main::det(u, height)^2) = sqrt(geometry::main::det(v, geometry::main::vec(f, d))^2)
+    2*common = sqrt(geometry::main::det(v, geometry::main::vec(f, d))^2) = sqrt(geometry::main::det(geometry::main::vec(f, g), geometry::main::vec(f, d))^2)
+    by def $area::has_triangle_area(f, g, d, common)
+    witness exist result R+ st {$area::has_triangle_area(b, c, a, result), $area::has_triangle_area(f, g, d, result)} from common
+
+
+sketch:
+    have a cart(R, R) = (0, 2)
+    a(1) = 0
+    a(2) = 2
+    have b cart(R, R) = (0, 0)
+    b(1) = 0
+    b(2) = 0
+    have c cart(R, R) = (3, 0)
+    c(1) = 3
+    c(2) = 0
+    have d cart(R, R) = (5, 2)
+    d(1) = 5
+    d(2) = 2
+    have f cart(R, R) = (5, 0)
+    f(1) = 5
+    f(2) = 0
+    have g cart(R, R) = (8, 0)
+    g(1) = 8
+    g(2) = 0
+    release thm geometry::main::collinear_det_expand(b, c, a)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = 6 != 0
+    by def $geometry::main::is_triangle(b, c, a)
+    release thm geometry::main::collinear_det_expand(f, g, d)
+    geometry::main::det(geometry::main::vec(f, g), geometry::main::vec(f, d)) = (g(1)-f(1))*(d(2)-f(2))-(g(2)-f(2))*(d(1)-f(1)) = 6 != 0
+    by def $geometry::main::is_triangle(f, g, d)
+    release thm geometry::main::distance_sq_coordinate_formula(b, c)
+    geometry::main::distance_sq(b, c) = (c(1)-b(1))^2+(c(2)-b(2))^2 = 9
+    release thm geometry::main::distance_sq_coordinate_formula(f, g)
+    geometry::main::distance_sq(f, g) = (g(1)-f(1))^2+(g(2)-f(2))^2 = 9
+    by def $geometry::main::are_segments_congruent(b, c, f, g)
+    geometry::main::vec(b, c)(1) = c(1)-b(1) = 3
+    geometry::main::vec(b, c)(2) = c(2)-b(2) = 0
+    geometry::main::vec(b, f)(1) = f(1)-b(1) = 5
+    geometry::main::vec(b, f)(2) = f(2)-b(2) = 0
+    geometry::main::vec(b, g)(1) = g(1)-b(1) = 8
+    geometry::main::vec(b, g)(2) = g(2)-b(2) = 0
+    geometry::main::vec(a, d)(1) = d(1)-a(1) = 5
+    geometry::main::vec(a, d)(2) = d(2)-a(2) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(b, f))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, f)) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(b, g))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, g)) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(a, d))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+    release thm proposition_38(a, b, c, d, f, g)
+    obtain common from exist result R+ st {$area::has_triangle_area(b, c, a, result), $area::has_triangle_area(f, g, d, result)}
+    by def $area::has_triangle_area(b, c, a, common)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2 = 6^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2) = sqrt(6^2) = |6| = 6
+    common = (2*common)/2 = 6/2 = 3
+    $area::has_triangle_area(b, c, a, 3)
+    $area::has_triangle_area(f, g, d, 3)
+
+
+sketch:
+    have a cart(R, R) = (0, 2)
+    a(1) = 0
+    a(2) = 2
+    have b cart(R, R) = (0, 0)
+    b(1) = 0
+    b(2) = 0
+    have c cart(R, R) = (3, 0)
+    c(1) = 3
+    c(2) = 0
+    have d cart(R, R) = (5, 2)
+    d(1) = 5
+    d(2) = 2
+    have f cart(R, R) = (8, 0)
+    f(1) = 8
+    f(2) = 0
+    have g cart(R, R) = (5, 0)
+    g(1) = 5
+    g(2) = 0
+    release thm geometry::main::collinear_det_expand(b, c, a)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a)) = (c(1)-b(1))*(a(2)-b(2))-(c(2)-b(2))*(a(1)-b(1)) = 6 != 0
+    by def $geometry::main::is_triangle(b, c, a)
+    release thm geometry::main::collinear_det_expand(f, g, d)
+    geometry::main::det(geometry::main::vec(f, g), geometry::main::vec(f, d)) = (g(1)-f(1))*(d(2)-f(2))-(g(2)-f(2))*(d(1)-f(1)) = -6 != 0
+    by def $geometry::main::is_triangle(f, g, d)
+    release thm geometry::main::distance_sq_coordinate_formula(b, c)
+    geometry::main::distance_sq(b, c) = (c(1)-b(1))^2+(c(2)-b(2))^2 = 9
+    release thm geometry::main::distance_sq_coordinate_formula(f, g)
+    geometry::main::distance_sq(f, g) = (g(1)-f(1))^2+(g(2)-f(2))^2 = 9
+    by def $geometry::main::are_segments_congruent(b, c, f, g)
+    geometry::main::vec(b, c)(1) = c(1)-b(1) = 3
+    geometry::main::vec(b, c)(2) = c(2)-b(2) = 0
+    geometry::main::vec(b, f)(1) = f(1)-b(1) = 8
+    geometry::main::vec(b, f)(2) = f(2)-b(2) = 0
+    geometry::main::vec(b, g)(1) = g(1)-b(1) = 5
+    geometry::main::vec(b, g)(2) = g(2)-b(2) = 0
+    geometry::main::vec(a, d)(1) = d(1)-a(1) = 5
+    geometry::main::vec(a, d)(2) = d(2)-a(2) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(b, f))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, f)) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(b, g))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, g)) = 0
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(b, c), geometry::main::vec(a, d))
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(a, d)) = 0
+    release thm proposition_38(a, b, c, d, f, g)
+    obtain common from exist result R+ st {$area::has_triangle_area(b, c, a, result), $area::has_triangle_area(f, g, d, result)}
+    by def $area::has_triangle_area(b, c, a, common)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2 = 6^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, a))^2) = sqrt(6^2) = |6| = 6
+    common = (2*common)/2 = 6/2 = 3
+    $area::has_triangle_area(b, c, a, 3)
+    $area::has_triangle_area(f, g, d, 3)

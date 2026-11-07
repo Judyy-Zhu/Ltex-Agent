@@ -1,0 +1,141 @@
+{
+  "status": "prepared only; native gate not launched; remaining internal/locality audit",
+  "base": ".draft/book03-through26-factored-candidate",
+  "base_sha256": "f5ae0b1fd8e90e799c9ca4c274090de740ee40fe03a4b38fde82f7c818dc8163",
+  "source_sha256": "913ddd0e3b8a554d4365ff10c3d3ceab85fc1efd38ae37eebabcb96bbc5b6a2e",
+  "replacements": [
+    {
+      "name": "plane_rigid_motion_transports_chosen_arc",
+      "accepted_source": ".draft/book03-proposition26-liveness/arc-transport-candidate3.lit",
+      "accepted_sha256": "5c38057fa07c5b8d46d1d42b1f53168ba09b27e2a9e5dfb0db143dd09ddc2a4a",
+      "removed_lines": 7,
+      "statement_unchanged": true
+    },
+    {
+      "name": "proposition_26_inscribed",
+      "accepted_source": ".draft/book03-proposition26-liveness/proposition26-inscribed-candidate2.lit",
+      "accepted_sha256": "7c85cb67e0157dfa9e156463166e14f653058a8ce52408cce7c321d9f9f61935",
+      "removed_lines": 7,
+      "statement_unchanged": true
+    },
+    {
+      "name": "proposition_25_auxiliary_triangle",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_auxiliary_triangle-candidate2.lit",
+      "accepted_sha256": "4105932897b826bd3a11ab681194dbb1e041967973e6452c3ee831d56ad67c5f",
+      "removed_lines": 6,
+      "statement_unchanged": true
+    },
+    {
+      "name": "noncollinear_ray_angle_strict",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/noncollinear_ray_angle_strict-candidate2.lit",
+      "accepted_sha256": "ee60b91a2d92e7774b2ba859eff76027574b98a4aed3742dc5d7ae26066c93ee",
+      "removed_lines": 2,
+      "statement_unchanged": true
+    },
+    {
+      "name": "chord_center_principal_angle",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/chord_center_principal_angle-candidate1.lit",
+      "accepted_sha256": "053bc7903d18097cafd7713433d7b375ddbef8325de9962709383a6835940559",
+      "removed_lines": 1,
+      "statement_unchanged": true
+    },
+    {
+      "name": "selected_arc_minor_by_center_side",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/selected_arc_minor_by_center_side-candidate1.lit",
+      "accepted_sha256": "e4f072570cbaa58b5d09e90e9f074db9eae67dc4603fda86f4828495a8809b2c",
+      "removed_lines": 2,
+      "statement_unchanged": true
+    },
+    {
+      "name": "selected_arc_major_by_center_side",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/selected_arc_major_by_center_side-candidate2.lit",
+      "accepted_sha256": "7a80efb221c5723d8e5d55271db782e303b5d221c3552caaffc5e41949d199b8",
+      "removed_lines": 2,
+      "statement_unchanged": true
+    },
+    {
+      "name": "selected_arc_semicircle_by_midpoint",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/selected_arc_semicircle_by_midpoint-candidate2.lit",
+      "accepted_sha256": "53b6114b4358a57f9f5111ed61dd89e20e294212a51565ff476756cca016a060",
+      "removed_lines": 2,
+      "statement_unchanged": true
+    },
+    {
+      "name": "circle_boundary_noncentral",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/circle_boundary_noncentral-candidate1.lit",
+      "accepted_sha256": "4ce7e8229ca6e9dd5c1691f4f8181119286a3344462e6bbe832e8443ebe066ab",
+      "removed_lines": 5,
+      "statement_unchanged": true
+    },
+    {
+      "name": "proposition_25_source_configuration",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_source_configuration-candidate1.lit",
+      "accepted_sha256": "bb50597fb57b20a9c8545d7cade53b6ebceb0a1a2918954c438f5084f43a1ab2",
+      "removed_lines": 3,
+      "statement_unchanged": true
+    },
+    {
+      "name": "equidistant_midpoint_perpendicular",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/equidistant_midpoint_perpendicular-candidate2.lit",
+      "accepted_sha256": "4d9247ca107e7aec05c79a173f779c55e8a2633667d8de29e59abbb3d7fdde3f",
+      "removed_lines": 3,
+      "statement_unchanged": true
+    },
+    {
+      "name": "proposition_25_circle_completion",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_circle_completion-candidate1.lit",
+      "accepted_sha256": "70a7adbe9f2312289a37264fd9860b9f66d12825b13c486fc704c5eb74116d81",
+      "removed_lines": 4,
+      "statement_unchanged": true,
+      "namespace_mapping": "root center constructor and recovery theorem -> canonical circle_center module; comparison records exact matching source"
+    },
+    {
+      "name": "proposition_25_recovers_original_circle",
+      "accepted_source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_recovers_original_circle-candidate1.lit",
+      "accepted_sha256": "2f5ec9ce1fe3291838dab208a20c1ae839b593151adc0be80285eb01ea1a1fab",
+      "removed_lines": 2,
+      "statement_unchanged": true,
+      "namespace_mapping": "root center constructor and recovery theorem -> canonical circle_center module; comparison records exact matching source"
+    }
+  ],
+  "canonical_changed": false,
+  "trust_added": 0,
+  "localizations": [
+    {
+      "helper": "noncollinear_ray_angle_strict",
+      "owner": "chord_center_principal_angle",
+      "source": ".draft/book03-proposition26-liveness/iii25-helper-audit/chord_center_principal_angle-local-helper.lit",
+      "scope_probe": "warm PASS52918 only; independent integrated gate pending",
+      "global_definition_removed": true
+    },
+    {
+      "helper": "circle_boundary_noncentral",
+      "owner": "proposition_25_source_configuration",
+      "source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_source_configuration-local-helper.lit",
+      "scope_probe": "warm PASS52918 only; independent integrated gate pending",
+      "global_definition_removed": true
+    },
+    {
+      "helper": "equidistant_midpoint_perpendicular",
+      "owner": "proposition_25_perpendicular_configuration",
+      "source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_perpendicular_configuration-inlined.lit",
+      "scope_probe": "warm PASS52918 only; independent integrated gate pending",
+      "global_definition_removed": true
+    },
+    {
+      "helper": "selected_arc_point_equidistant",
+      "owner": "proposition_25_auxiliary_triangle",
+      "source": ".draft/book03-proposition26-liveness/iii25-helper-audit/proposition_25_auxiliary_triangle-inlined.lit",
+      "scope_probe": "warm PASS52918 only; independent integrated gate pending",
+      "global_definition_removed": true
+    }
+  ],
+  "expected_main_statement_count": 184,
+  "integration_dependency_repair": {
+    "source": ".draft/circle-circle-contact-authoring/book03-proposition20-semicircle-use1.lit",
+    "reason": "Native188 failed sole missing prerequisite of III24 semicircle consumer; prerequisite independently passed in source85 checkpoint",
+    "sha256": "3d7f8d4382229614518ec5feabcf92132c3009ef125a8eca61cd0dc5a3f32185"
+  },
+  "current_source_sha256": "27746179723d6c44025ddd39ccf915f393cc86a517ebd1c7fd22ab00243639d9",
+  "current_expected_statement_count": 185
+}

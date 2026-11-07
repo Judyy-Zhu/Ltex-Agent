@@ -1,0 +1,700 @@
+release obj def geometry::main::vec
+release obj def geometry::main::det
+release obj def geometry::main::dot
+release obj def geometry::main::distance_sq
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+release obj def angles::angle_cosine
+release obj def area::triangle_area
+
+thm affine_parallelogram_witness:
+    ? forall a, b, c, d cart(R, R):
+        $geometry::main::is_triangle(a, b, d)
+        c(1) = b(1)+d(1)-a(1)
+        c(2) = b(2)+d(2)-a(2)
+        =>:
+            $area::is_proper_parallelogram(a, b, c, d)
+    by def $geometry::main::is_triangle(a, b, d)
+    release thm geometry_lemmas::triangle_vertices_distinct(a, b, d)
+    release thm geometry::main::collinear_det_expand(a, b, d)
+    by contra:
+        ? d != c
+        d = c
+        c(1) = d(1)
+        c(2) = d(2)
+        b(1) = (b(1)+d(1)-a(1))-d(1)+a(1) = c(1)-d(1)+a(1) = d(1)-d(1)+a(1) = a(1)
+        b(2) = (b(2)+d(2)-a(2))-d(2)+a(2) = c(2)-d(2)+a(2) = d(2)-d(2)+a(2) = a(2)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = (a(1)-a(1))*(d(2)-a(2))-(a(2)-a(2))*(d(1)-a(1)) = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) != 0
+    by contra:
+        ? b != c
+        b = c
+        c(1) = b(1)
+        c(2) = b(2)
+        d(1) = (b(1)+d(1)-a(1))-b(1)+a(1) = c(1)-b(1)+a(1) = b(1)-b(1)+a(1) = a(1)
+        d(2) = (b(2)+d(2)-a(2))-b(2)+a(2) = c(2)-b(2)+a(2) = b(2)-b(2)+a(2) = a(2)
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = (b(1)-a(1))*(a(2)-a(2))-(b(2)-a(2))*(a(1)-a(1)) = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) != 0
+    c(1)-d(1) = (b(1)+d(1)-a(1))-d(1) = b(1)-a(1)
+    c(1)-b(1) = (b(1)+d(1)-a(1))-b(1) = d(1)-a(1)
+    c(2)-d(2) = (b(2)+d(2)-a(2))-d(2) = b(2)-a(2)
+    c(2)-b(2) = (b(2)+d(2)-a(2))-b(2) = d(2)-a(2)
+    release thm geometry::main::vec_coordinate_formula(a, b)
+    geometry::main::vec(a, b)(1) = b(1)-a(1)
+    geometry::main::vec(a, b)(2) = b(2)-a(2)
+    release thm geometry::main::vec_coordinate_formula(a, d)
+    geometry::main::vec(a, d)(1) = d(1)-a(1)
+    geometry::main::vec(a, d)(2) = d(2)-a(2)
+    release thm geometry::main::vec_coordinate_formula(d, c)
+    geometry::main::vec(d, c)(1) = c(1)-d(1)
+    geometry::main::vec(d, c)(2) = c(2)-d(2)
+    release thm geometry::main::vec_coordinate_formula(b, c)
+    geometry::main::vec(b, c)(1) = c(1)-b(1)
+    geometry::main::vec(b, c)(2) = c(2)-b(2)
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, b), geometry::main::vec(d, c))
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(d, c)) = (b(1)-a(1))*(c(2)-d(2))-(b(2)-a(2))*(c(1)-d(1)) = (b(1)-a(1))*(b(2)-a(2))-(b(2)-a(2))*(b(1)-a(1)) = 0
+    by def $geometry::main::is_parallel(a, b, d, c)
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(a, d), geometry::main::vec(b, c))
+    geometry::main::det(geometry::main::vec(a, d), geometry::main::vec(b, c)) = (d(1)-a(1))*(c(2)-b(2))-(d(2)-a(2))*(c(1)-b(1)) = (d(1)-a(1))*(d(2)-a(2))-(d(2)-a(2))*(d(1)-a(1)) = 0
+    by def $geometry::main::is_parallel(a, d, b, c)
+    release thm geometry::main::collinear_det_expand(a, b, d)
+    release thm geometry::main::collinear_det_expand(a, d, b)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(a, d), geometry::main::vec(a, b))
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, d), geometry::main::vec(a, b)) != 0
+        geometry::main::det(geometry::main::vec(a, d), geometry::main::vec(a, b)) = 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = -(-geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))) = -geometry::main::det(geometry::main::vec(a, d), geometry::main::vec(a, b)) = -0 = 0
+        impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) != 0
+    by def $parallel::are_parallel_lines(a, b, d, c)
+    by def $parallel::are_parallel_lines(a, d, b, c)
+    by def $area::is_proper_parallelogram(a, b, c, d)
+
+
+thm affine_parallelogram_area:
+    ? forall a, b, c, d cart(R, R):
+        $geometry::main::is_triangle(a, b, d)
+        c(1) = b(1)+d(1)-a(1)
+        c(2) = b(2)+d(2)-a(2)
+        =>:
+            exist common R+ st {$area::has_triangle_area(a, b, d, common), $area::has_parallelogram_area(a, b, c, d, 2*common)}
+    release thm affine_parallelogram_witness(a, b, c, d)
+    by def $geometry::main::is_triangle(a, b, d)
+    release thm geometry::main::collinear_det_expand(a, b, d)
+    release thm geometry::main::collinear_det_expand(b, c, d)
+    c(1)-b(1) = (b(1)+d(1)-a(1))-b(1) = d(1)-a(1)
+    c(2)-b(2) = (b(2)+d(2)-a(2))-b(2) = d(2)-a(2)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d)) = (c(1)-b(1))*(d(2)-b(2))-(c(2)-b(2))*(d(1)-b(1)) = (d(1)-a(1))*(d(2)-b(2))-(d(2)-a(2))*(d(1)-b(1)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) != 0
+    by def $geometry::main::is_triangle(b, c, d)
+    have common R+ = area::triangle_area(a, b, d)
+    $area::has_triangle_area(a, b, d, common)
+    by def $area::has_triangle_area(a, b, d, common)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2) = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2)
+    by def $area::has_triangle_area(b, c, d, common)
+    witness exist first, second R+ st {$area::has_triangle_area(a, b, d, first), $area::has_triangle_area(b, c, d, second), 2*common = first+second} from common, common
+    by def $area::has_parallelogram_area(a, b, c, d, 2*common)
+    witness exist half R+ st {$area::has_triangle_area(a, b, d, half), $area::has_parallelogram_area(a, b, c, d, 2*half)} from common
+
+
+
+
+thm proposition_42:
+    ? forall a, b, c, p, q, r cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        $geometry::main::is_triangle(q, p, r)
+        =>:
+            exist third, fourth cart(R, R), common R+ st {$area::has_triangle_area(a, b, c, common), $area::has_parallelogram_area(q, p, third, fourth, common), $geometry::main::are_angles_congruent(p, q, fourth, p, q, r)}
+    by def $geometry::main::is_triangle(q, p, r)
+    release thm geometry_lemmas::triangle_vertices_distinct(q, p, r)
+    have common R+ = area::triangle_area(a, b, c)
+    $area::has_triangle_area(a, b, c, common)
+    have determinant R = geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    determinant != 0
+    determinant^2 > 0
+    sqrt(determinant^2) > 0
+    have root R+ = sqrt(determinant^2)
+    root != 0
+    have scale R+ = common/root
+    scale != 0
+    have fourth cart(R, R) = (q(1)+scale*(r(1)-q(1)), q(2)+scale*(r(2)-q(2)))
+    fourth(1) = q(1)+scale*(r(1)-q(1))
+    fourth(2) = q(2)+scale*(r(2)-q(2))
+    fourth(1)-q(1) = (q(1)+scale*(r(1)-q(1)))-q(1) = scale*(r(1)-q(1))
+    fourth(2)-q(2) = (q(2)+scale*(r(2)-q(2)))-q(2) = scale*(r(2)-q(2))
+    have third cart(R, R) = (p(1)+fourth(1)-q(1), p(2)+fourth(2)-q(2))
+    third(1) = p(1)+fourth(1)-q(1)
+    third(2) = p(2)+fourth(2)-q(2)
+    release thm geometry::main::collinear_det_expand(q, p, r)
+    release thm geometry::main::collinear_det_expand(q, p, fourth)
+    geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, fourth)) = (p(1)-q(1))*(fourth(2)-q(2))-(p(2)-q(2))*(fourth(1)-q(1)) = (p(1)-q(1))*(scale*(r(2)-q(2)))-(p(2)-q(2))*(scale*(r(1)-q(1))) = scale*((p(1)-q(1))*(r(2)-q(2))-(p(2)-q(2))*(r(1)-q(1))) = scale*geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r)) = scale*determinant
+    by contra:
+        ? geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, fourth)) != 0
+        geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, fourth)) = 0
+        scale*determinant = geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, fourth)) = 0
+        determinant = (scale*determinant)/scale = 0/scale = 0
+        impossible determinant != 0
+    by def $geometry::main::is_triangle(q, p, fourth)
+    release thm geometry_lemmas::triangle_vertices_distinct(q, p, fourth)
+    release thm affine_parallelogram_area(q, p, third, fourth)
+    obtain half from exist value R+ st {$area::has_triangle_area(q, p, fourth, value), $area::has_parallelogram_area(q, p, third, fourth, 2*value)}
+    by def $area::has_triangle_area(q, p, fourth, half)
+    geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, fourth))^2 = (scale*determinant)^2 = scale^2*determinant^2
+    scale^2 >= 0
+    determinant^2 >= 0
+    sqrt(scale^2*determinant^2) = sqrt(scale^2)*sqrt(determinant^2)
+    sqrt(scale^2) = |scale| = scale
+    2*half = sqrt(geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, fourth))^2) = sqrt(scale^2*determinant^2) = sqrt(scale^2)*sqrt(determinant^2) = scale*root = (common/root)*root = common
+    $area::has_parallelogram_area(q, p, third, fourth, common)
+    release thm angle_measure::positive_ray_scale_preserves_cosine(p, q, r, fourth, scale)
+    release thm angle_measure::equal_cosines_imply_angle_relation(p, q, fourth, p, q, r)
+    witness exist third_point, fourth_point cart(R, R), value R+ st {$area::has_triangle_area(a, b, c, value), $area::has_parallelogram_area(q, p, third_point, fourth_point, value), $geometry::main::are_angles_congruent(p, q, fourth_point, p, q, r)} from third, fourth, common
+
+
+thm proposition_23:
+    ? forall a, b, d, c, e1 cart(R, R):
+        a != b
+        $geometry::main::is_triangle(c, d, e1)
+        =>:
+            exist g cart(R, R) st {$geometry::main::is_triangle(a, b, g), $geometry::main::are_angles_congruent(b, a, g, d, c, e1)}
+    release thm geometry_lemmas::triangle_vertices_distinct(c, d, e1)
+    release thm geometry::main::distance_sq_positive_of_ne(c, d)
+    release thm geometry::main::distance_sq_positive_of_ne(c, e1)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    have k R+ = geometry::main::distance_sq(c, d)
+    have v R+ = geometry::main::distance_sq(c, e1)
+    have h R+ = geometry::main::distance_sq(a, b)
+    have ux R = d(1) - c(1)
+    have uy R = d(2) - c(2)
+    have vx R = e1(1) - c(1)
+    have vy R = e1(2) - c(2)
+    have wx R = b(1) - a(1)
+    have wy R = b(2) - a(2)
+    have n R = ux * vx + uy * vy
+    have z R = ux * vy - uy * vx
+    release thm geometry::main::distance_sq_coordinate_formula(c, d)
+    release thm geometry::main::distance_sq_coordinate_formula(c, e1)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    k = ux^2 + uy^2
+    v = vx^2 + vy^2
+    h = wx^2 + wy^2
+    n^2 + z^2 = (ux * vx + uy * vy)^2 + (ux * vy - uy * vx)^2 = (ux^2 + uy^2) * (vx^2 + vy^2) = k * v
+    release thm geometry::main::collinear_det_expand(c, d, e1)
+    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, e1)) = ux * vy - uy * vx = z
+    z != 0
+    have gx R = (n * wx - z * wy) / k
+    have gy R = (n * wy + z * wx) / k
+    have g cart(R, R) = (a(1) + gx, a(2) + gy)
+    g(1) - a(1) = gx
+    g(2) - a(2) = gy
+    release thm geometry::main::collinear_det_expand(a, b, g)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, g)) = wx * gy - wy * gx = wx * ((n * wy + z * wx) / k) - wy * ((n * wx - z * wy) / k) = z * (wx^2 + wy^2) / k = z * h / k
+    by contra:
+        ? z * h / k != 0
+        z * h / k = 0
+        z = (z * h / k) * (k / h) = 0 * (k / h) = 0
+        impossible z != 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, g)) != 0
+    by def $geometry::main::is_triangle(a, b, g)
+    release thm geometry_lemmas::triangle_vertices_distinct(a, b, g)
+    release thm geometry::main::distance_sq_coordinate_formula(a, g)
+    geometry::main::distance_sq(a, g) = gx^2 + gy^2 = ((n * wx - z * wy) / k)^2 + ((n * wy + z * wx) / k)^2 = (n^2 + z^2) * (wx^2 + wy^2) / k^2 = (k * v) * h / k^2 = v * h / k
+    release thm geometry::main::perpendicular_dot_expand(a, b, a, g)
+    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, g)) = wx * gx + wy * gy = wx * ((n * wx - z * wy) / k) + wy * ((n * wy + z * wx) / k) = n * (wx^2 + wy^2) / k = n * h / k
+    release thm geometry::main::perpendicular_dot_expand(c, d, c, e1)
+    geometry::main::dot(geometry::main::vec(c, d), geometry::main::vec(c, e1)) = ux * vx + uy * vy = n
+    geometry::main::angle_cos_num(b, a, g) = n * h / k
+    geometry::main::angle_cos_num(d, c, e1) = n
+    v * h > 0
+    h / k > 0
+    (v * h) * (h / k) > 0
+    v * h^2 / k = (v * h) * (h / k) > 0
+    geometry::main::angle_cos_den(b, a, g) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, g) = h * (v * h / k) = v * h^2 / k
+    geometry::main::angle_cos_den(b, a, g) > 0
+    geometry::main::angle_cos_den(d, c, e1) = k * v > 0
+    geometry::main::angle_cos_num(b, a, g)^2 * geometry::main::angle_cos_den(d, c, e1) = (n * h / k)^2 * (k * v) = n^2 * (v * h^2 / k) = geometry::main::angle_cos_num(d, c, e1)^2 * geometry::main::angle_cos_den(b, a, g)
+    geometry::main::angle_cos_num(b, a, g) * geometry::main::angle_cos_num(d, c, e1) = (n * h / k) * n = n^2 * (h / k) >= 0
+    by def $geometry::main::are_angles_congruent(b, a, g, d, c, e1)
+    witness exist gg cart(R, R) st {$geometry::main::is_triangle(a, b, gg), $geometry::main::are_angles_congruent(b, a, gg, d, c, e1)} from g
+
+
+# Book I.24: for two triangles with equal adjacent sides, the greater
+# included angle faces the greater base. Euclid copies the angle with I.23,
+# then uses SAS and I.19; here principal cosine order and the cosine law
+# give the same strict base-length comparison directly.
+
+
+# I.44: a prescribed base and angle, with the area of a given triangle.
+thm proposition_44:
+    ? forall a, b, c, base_start, base_end, p, q, r cart(R, R):
+        $geometry::main::is_triangle(a, b, c)
+        base_start != base_end
+        $geometry::main::is_triangle(q, p, r)
+        =>:
+            exist third, fourth cart(R, R), common R+ st {$area::has_triangle_area(a, b, c, common), $area::has_parallelogram_area(base_start, base_end, third, fourth, common), $geometry::main::are_angles_congruent(base_end, base_start, fourth, p, q, r)}
+    release thm proposition_23(base_start, base_end, p, q, r)
+    obtain ray_point from exist g cart(R, R) st {$geometry::main::is_triangle(base_start, base_end, g), $geometry::main::are_angles_congruent(base_end, base_start, g, p, q, r)}
+    release thm proposition_42(a, b, c, base_end, base_start, ray_point)
+    obtain third, fourth, common from exist x, y cart(R, R), value R+ st {$area::has_triangle_area(a, b, c, value), $area::has_parallelogram_area(base_start, base_end, x, y, value), $geometry::main::are_angles_congruent(base_end, base_start, y, base_end, base_start, ray_point)}
+    by def $geometry::main::are_angles_congruent(base_end, base_start, fourth, base_end, base_start, ray_point)
+    by def $geometry::main::are_angles_congruent(base_end, base_start, ray_point, p, q, r)
+    release thm angle_measure::angle_relation_implies_equal_cosine(base_end, base_start, fourth, base_end, base_start, ray_point)
+    release thm angle_measure::angle_relation_implies_equal_cosine(base_end, base_start, ray_point, p, q, r)
+    angles::angle_cosine(base_end, base_start, fourth) = angles::angle_cosine(base_end, base_start, ray_point) = angles::angle_cosine(p, q, r)
+    release thm angle_measure::equal_cosines_imply_angle_relation(base_end, base_start, fourth, p, q, r)
+    witness exist x, y cart(R, R), value R+ st {$area::has_triangle_area(a, b, c, value), $area::has_parallelogram_area(base_start, base_end, x, y, value), $geometry::main::are_angles_congruent(base_end, base_start, y, p, q, r)} from third, fourth, common
+
+
+thm diagonal_complement_determinants:
+    ? forall a, b, d, edge, h, k cart(R, R), t R:
+        edge(1) = a(1)+t*(b(1)-a(1))
+        edge(2) = a(2)+t*(b(2)-a(2))
+        h(1) = a(1)+t*(d(1)-a(1))
+        h(2) = a(2)+t*(d(2)-a(2))
+        k(1) = a(1)+t*(b(1)-a(1))+t*(d(1)-a(1))
+        k(2) = a(2)+t*(b(2)-a(2))+t*(d(2)-a(2))
+        =>:
+            geometry::main::det(geometry::main::vec(edge, b), geometry::main::vec(edge, k)) = t*(1-t)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))
+            geometry::main::det(geometry::main::vec(h, k), geometry::main::vec(h, d)) = t*(1-t)*geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))
+    release thm geometry::main::collinear_det_expand(a,b,d)
+    release thm geometry::main::collinear_det_expand(edge,b,k)
+    release thm geometry::main::collinear_det_expand(h,k,d)
+    b(1)-edge(1) = b(1)-(a(1)+t*(b(1)-a(1))) = (1-t)*(b(1)-a(1))
+    k(1)-edge(1) = (a(1)+t*(b(1)-a(1))+t*(d(1)-a(1)))-(a(1)+t*(b(1)-a(1))) = t*(d(1)-a(1))
+    k(1)-h(1) = (a(1)+t*(b(1)-a(1))+t*(d(1)-a(1)))-(a(1)+t*(d(1)-a(1))) = t*(b(1)-a(1))
+    d(1)-h(1) = d(1)-(a(1)+t*(d(1)-a(1))) = (1-t)*(d(1)-a(1))
+    b(2)-edge(2) = b(2)-(a(2)+t*(b(2)-a(2))) = (1-t)*(b(2)-a(2))
+    k(2)-edge(2) = (a(2)+t*(b(2)-a(2))+t*(d(2)-a(2)))-(a(2)+t*(b(2)-a(2))) = t*(d(2)-a(2))
+    k(2)-h(2) = (a(2)+t*(b(2)-a(2))+t*(d(2)-a(2)))-(a(2)+t*(d(2)-a(2))) = t*(b(2)-a(2))
+    d(2)-h(2) = d(2)-(a(2)+t*(d(2)-a(2))) = (1-t)*(d(2)-a(2))
+    geometry::main::det(geometry::main::vec(edge,b),geometry::main::vec(edge,k)) = (b(1)-edge(1))*(k(2)-edge(2))-(b(2)-edge(2))*(k(1)-edge(1)) = ((1-t)*(b(1)-a(1)))*(t*(d(2)-a(2)))-((1-t)*(b(2)-a(2)))*(t*(d(1)-a(1))) = t*(1-t)*((b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1))) = t*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))
+    geometry::main::det(geometry::main::vec(h,k),geometry::main::vec(h,d)) = (k(1)-h(1))*(d(2)-h(2))-(k(2)-h(2))*(d(1)-h(1)) = (t*(b(1)-a(1)))*((1-t)*(d(2)-a(2)))-(t*(b(2)-a(2)))*((1-t)*(d(1)-a(1))) = t*(1-t)*((b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1))) = t*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))
+
+
+# I.43 analytic parameter form; source-configuration coverage and consumers pending.
+# edge on AB, h on AD, k on AC; far_b on BC, far_d on DC.
+thm proposition_43_parameter_form:
+    ? forall a, b, d, edge, h, k, far_b, far_d cart(R, R), t R:
+        $geometry::main::is_triangle(a, b, d)
+        t > 0
+        t < 1
+        edge(1) = a(1)+t*(b(1)-a(1))
+        h(1) = a(1)+t*(d(1)-a(1))
+        k(1) = a(1)+t*(b(1)-a(1))+t*(d(1)-a(1))
+        far_b(1) = b(1)+t*(d(1)-a(1))
+        far_d(1) = d(1)+t*(b(1)-a(1))
+        edge(2) = a(2)+t*(b(2)-a(2))
+        h(2) = a(2)+t*(d(2)-a(2))
+        k(2) = a(2)+t*(b(2)-a(2))+t*(d(2)-a(2))
+        far_b(2) = b(2)+t*(d(2)-a(2))
+        far_d(2) = d(2)+t*(b(2)-a(2))
+        =>:
+            exist common R+ st {$area::has_parallelogram_area(edge,b,far_b,k,common), $area::has_parallelogram_area(h,k,far_d,d,common)}
+    release thm diagonal_complement_determinants(a,b,d,edge,h,k,t)
+    by def $geometry::main::is_triangle(a,b,d)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) != 0
+    1-t > 0
+    t*(1-t) > 0
+    t*(1-t) != 0
+    t*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) != 0
+    geometry::main::det(geometry::main::vec(edge,b),geometry::main::vec(edge,k)) != 0
+    geometry::main::det(geometry::main::vec(h,k),geometry::main::vec(h,d)) != 0
+    by def $geometry::main::is_triangle(edge,b,k)
+    by def $geometry::main::is_triangle(h,k,d)
+    far_b(1) = b(1)+t*(d(1)-a(1)) = b(1)+(a(1)+t*(b(1)-a(1))+t*(d(1)-a(1)))-(a(1)+t*(b(1)-a(1))) = b(1)+k(1)-edge(1)
+    far_d(1) = d(1)+t*(b(1)-a(1)) = (a(1)+t*(b(1)-a(1))+t*(d(1)-a(1)))+d(1)-(a(1)+t*(d(1)-a(1))) = k(1)+d(1)-h(1)
+    far_b(2) = b(2)+t*(d(2)-a(2)) = b(2)+(a(2)+t*(b(2)-a(2))+t*(d(2)-a(2)))-(a(2)+t*(b(2)-a(2))) = b(2)+k(2)-edge(2)
+    far_d(2) = d(2)+t*(b(2)-a(2)) = (a(2)+t*(b(2)-a(2))+t*(d(2)-a(2)))+d(2)-(a(2)+t*(d(2)-a(2))) = k(2)+d(2)-h(2)
+    release thm affine_parallelogram_area(edge,b,far_b,k)
+    obtain first from exist first R+ st {$area::has_triangle_area(edge,b,k,first), $area::has_parallelogram_area(edge,b,far_b,k,2*first)}
+    release thm affine_parallelogram_area(h,k,far_d,d)
+    obtain second from exist second R+ st {$area::has_triangle_area(h,k,d,second), $area::has_parallelogram_area(h,k,far_d,d,2*second)}
+    by def $area::has_triangle_area(edge,b,k,first)
+    by def $area::has_triangle_area(h,k,d,second)
+    geometry::main::det(geometry::main::vec(edge,b),geometry::main::vec(edge,k)) = t*(1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = geometry::main::det(geometry::main::vec(h,k),geometry::main::vec(h,d))
+    geometry::main::det(geometry::main::vec(edge,b),geometry::main::vec(edge,k))^2 = geometry::main::det(geometry::main::vec(h,k),geometry::main::vec(h,d))^2
+    2*first = sqrt(geometry::main::det(geometry::main::vec(edge,b),geometry::main::vec(edge,k))^2) = sqrt(geometry::main::det(geometry::main::vec(h,k),geometry::main::vec(h,d))^2) = 2*second
+    $area::has_parallelogram_area(h,k,far_d,d,2*first)
+    witness exist common R+ st {$area::has_parallelogram_area(edge,b,far_b,k,common), $area::has_parallelogram_area(h,k,far_d,d,common)} from 2*first
+
+
+# I.46: rotate the prescribed edge by a quarter-turn and complete its parallelogram.
+thm proposition_46:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            exist c, d cart(R, R) st {$geometry::main::is_square(a, b, c, d), $area::is_proper_parallelogram(a, b, c, d)}
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm geometry::main::distance_sq_coordinate_formula(a, b)
+    dx^2+dy^2 = (b(1)-a(1))^2+(b(2)-a(2))^2 = geometry::main::distance_sq(a, b) > 0
+    have d cart(R, R) = (a(1)-dy, a(2)+dx)
+    d(1) = a(1)-dy
+    d(2) = a(2)+dx
+    d(1)-a(1) = (a(1)-dy)-a(1) = -dy
+    d(2)-a(2) = (a(2)+dx)-a(2) = dx
+    have c cart(R, R) = (b(1)-dy, b(2)+dx)
+    c(1) = b(1)-dy
+    c(2) = b(2)+dx
+    c(1) = b(1)-dy = b(1)+(a(1)-dy)-a(1) = b(1)+d(1)-a(1)
+    c(2) = b(2)+dx = b(2)+(a(2)+dx)-a(2) = b(2)+d(2)-a(2)
+    c(1)-b(1) = (b(1)-dy)-b(1) = -dy
+    c(2)-b(2) = (b(2)+dx)-b(2) = dx
+    release thm geometry::main::collinear_det_expand(a, b, d)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = dx*dx-dy*(-dy) = dx^2+dy^2 > 0
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) != 0
+    by def $geometry::main::is_triangle(a, b, d)
+    release thm geometry_lemmas::triangle_vertices_distinct(a, b, d)
+    release thm affine_parallelogram_witness(a, b, c, d)
+    by def $area::is_proper_parallelogram(a, b, c, d)
+    $parallel::are_parallel_lines(a, b, d, c)
+    by def $parallel::are_parallel_lines(a, b, d, c)
+    $parallel::are_parallel_lines(a, d, b, c)
+    by def $parallel::are_parallel_lines(a, d, b, c)
+    by def $geometry::main::is_parallelogram(a, b, c, d)
+    release thm geometry::main::perpendicular_dot_expand(a, d, a, b)
+    geometry::main::dot(geometry::main::vec(a, d), geometry::main::vec(a, b)) = (d(1)-a(1))*(b(1)-a(1))+(d(2)-a(2))*(b(2)-a(2)) = (-dy)*dx+dx*dy = 0
+    by def $geometry::main::is_right_angle(d, a, b)
+    by def $geometry::main::is_rectangle(a, b, c, d)
+    release thm geometry::main::distance_sq_coordinate_formula(b, c)
+    geometry::main::distance_sq(b, c) = (c(1)-b(1))^2+(c(2)-b(2))^2 = (-dy)^2+dx^2 = dx^2+dy^2 = geometry::main::distance_sq(a, b)
+    by def $geometry::main::are_segments_congruent(a, b, b, c)
+    by def $geometry::main::is_square(a, b, c, d)
+    witness exist third, fourth cart(R, R) st {$geometry::main::is_square(a, b, third, fourth), $area::is_proper_parallelogram(a, b, third, fourth)} from c, d
+
+
+# The area of an actual square is the squared length of its prescribed first edge.
+thm square_area_is_squared_side:
+    ? forall a, b, c, d cart(R, R), total R+:
+        $geometry::main::is_square(a, b, c, d)
+        $area::has_parallelogram_area(a, b, c, d, total)
+        =>:
+            total = geometry::main::distance_sq(a, b)
+    by def $geometry::main::is_square(a, b, c, d)
+    $geometry::main::is_rectangle(a, b, c, d)
+    $geometry::main::is_parallelogram(a, b, c, d)
+    by def $geometry::main::is_rectangle(a, b, c, d)
+    by def $geometry::main::is_parallelogram(a, b, c, d)
+    $geometry::main::is_parallel(a, b, d, c)
+    by def $geometry::main::is_parallel(a, b, d, c)
+    $geometry::main::is_parallel(a, d, b, c)
+    by def $geometry::main::is_parallel(a, d, b, c)
+    $geometry::main::is_right_angle(d, a, b)
+    by def $geometry::main::is_right_angle(d, a, b)
+    $geometry::main::are_segments_congruent(a, b, b, c)
+    by def $geometry::main::are_segments_congruent(a, b, b, c)
+    release thm geometry::main::square_orthogonal_parallel_quadrilateral_coordinates(a, b, c, d)
+    d(1) = a(1)+c(1)-b(1)
+    c(1) = b(1)+(a(1)+c(1)-b(1))-a(1) = b(1)+d(1)-a(1)
+    d(2) = a(2)+c(2)-b(2)
+    c(2) = b(2)+(a(2)+c(2)-b(2))-a(2) = b(2)+d(2)-a(2)
+    release thm geometry::main::parallelogram_sides(a, b, c, d)
+    geometry::main::distance_sq(a, d) = geometry::main::distance_sq(b, c) = geometry::main::distance_sq(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    have side_square R+ = geometry::main::distance_sq(a, b)
+    have u cart(R, R) = geometry::main::vec(a, b)
+    have v cart(R, R) = geometry::main::vec(a, d)
+    release thm geometry::main::dot_symmetric(u, v)
+    geometry::main::dot(u, v) = geometry::main::dot(v, u) = 0
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, d)
+    geometry::main::dot(u, u) = side_square
+    geometry::main::dot(v, v) = side_square
+    release thm geometry::main::dot_squared_plus_det_squared(u, v)
+    geometry::main::det(u, v)^2 = geometry::main::dot(u, v)^2+geometry::main::det(u, v)^2 = geometry::main::dot(u, u)*geometry::main::dot(v, v) = side_square*side_square = side_square^2
+    geometry::main::det(u, v)^2 = side_square^2
+    geometry::main::det(u, v)^2 >= 0
+    side_square^2 >= 0
+    sqrt(geometry::main::det(u, v)^2) = sqrt(side_square^2) = |side_square| = side_square
+    by def $area::has_parallelogram_area(a, b, c, d, total)
+    obtain first, second from exist x, y R+ st {$area::has_triangle_area(a, b, d, x), $area::has_triangle_area(b, c, d, y), total = x+y}
+    by def $area::has_triangle_area(a, b, d, first)
+    by def $area::has_triangle_area(b, c, d, second)
+    release thm geometry::main::collinear_det_expand(a, b, d)
+    release thm geometry::main::collinear_det_expand(b, c, d)
+    c(1)-b(1) = (b(1)+d(1)-a(1))-b(1) = d(1)-a(1)
+    c(2)-b(2) = (b(2)+d(2)-a(2))-b(2) = d(2)-a(2)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d)) = (c(1)-b(1))*(d(2)-b(2))-(c(2)-b(2))*(d(1)-b(1)) = (d(1)-a(1))*(d(2)-b(2))-(d(2)-a(2))*(d(1)-b(1)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = geometry::main::det(u, v)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d)) = geometry::main::det(u, v)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2 = geometry::main::det(u, v)^2
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2 >= 0
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d)) = geometry::main::det(u, v)
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2 = geometry::main::det(u, v)^2
+    geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2 >= 0
+    2*first = sqrt(geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, d))^2) = sqrt(geometry::main::det(u, v)^2) = side_square
+    2*second = sqrt(geometry::main::det(geometry::main::vec(b, c), geometry::main::vec(b, d))^2) = sqrt(geometry::main::det(u, v)^2) = side_square
+    total = first+second = (2*first+2*second)/2 = (side_square+side_square)/2 = side_square = geometry::main::distance_sq(a, b)
+
+
+# I.47: actual squares on all three sides.
+thm proposition_47:
+    ? forall a, b, c, ab_c, ab_d, bc_c, bc_d, ac_c, ac_d cart(R, R), first, second, opposite R+:
+        $geometry::main::is_triangle(a, b, c)
+        $geometry::main::is_right_angle(a, b, c)
+        $geometry::main::is_square(a, b, ab_c, ab_d)
+        $area::has_parallelogram_area(a, b, ab_c, ab_d, first)
+        $geometry::main::is_square(b, c, bc_c, bc_d)
+        $area::has_parallelogram_area(b, c, bc_c, bc_d, second)
+        $geometry::main::is_square(a, c, ac_c, ac_d)
+        $area::has_parallelogram_area(a, c, ac_c, ac_d, opposite)
+        =>:
+            opposite = first+second
+    release thm square_area_is_squared_side(a, b, ab_c, ab_d, first)
+    release thm square_area_is_squared_side(b, c, bc_c, bc_d, second)
+    release thm square_area_is_squared_side(a, c, ac_c, ac_d, opposite)
+    by def $geometry::main::is_right_angle(a, b, c)
+    release thm geometry::main::pythagorean_theorem(a, b, c)
+    opposite = geometry::main::distance_sq(a, c) = geometry::main::distance_sq(a, b)+geometry::main::distance_sq(b, c) = first+second
+
+
+# I.48: actual squares on all three sides.
+thm proposition_48:
+    ? forall a, b, c, ab_c, ab_d, bc_c, bc_d, ac_c, ac_d cart(R, R), first, second, opposite R+:
+        $geometry::main::is_triangle(a, b, c)
+        $geometry::main::is_square(a, b, ab_c, ab_d)
+        $area::has_parallelogram_area(a, b, ab_c, ab_d, first)
+        $geometry::main::is_square(b, c, bc_c, bc_d)
+        $area::has_parallelogram_area(b, c, bc_c, bc_d, second)
+        $geometry::main::is_square(a, c, ac_c, ac_d)
+        $area::has_parallelogram_area(a, c, ac_c, ac_d, opposite)
+        opposite = first+second
+        =>:
+            $geometry::main::is_right_angle(a, b, c)
+    release thm square_area_is_squared_side(a, b, ab_c, ab_d, first)
+    release thm square_area_is_squared_side(b, c, bc_c, bc_d, second)
+    release thm square_area_is_squared_side(a, c, ac_c, ac_d, opposite)
+    release thm geometry_lemmas::triangle_vertices_distinct(a, b, c)
+    release thm geometry::main::dot_from_cosine_law(a, b, c)
+    geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, c)) = (geometry::main::distance_sq(a, b)+geometry::main::distance_sq(b, c)-geometry::main::distance_sq(a, c))/2 = (first+second-opposite)/2 = (opposite-opposite)/2 = 0
+    by def $geometry::main::is_right_angle(a, b, c)
+
+
+thm proper_square_area_exists:
+    ? forall a, b, c, d cart(R, R):
+        $geometry::main::is_square(a,b,c,d)
+        $area::is_proper_parallelogram(a,b,c,d)
+        =>:
+            exist total R+ st {$area::has_parallelogram_area(a,b,c,d,total)}
+    $geometry::main::is_rectangle(a,b,c,d)
+    $geometry::main::is_parallelogram(a,b,c,d)
+    $geometry::main::is_right_angle(d,a,b)
+    $parallel::are_parallel_lines(a,b,d,c)
+    $parallel::are_parallel_lines(a,d,b,c)
+    $geometry::main::is_parallel(a,b,d,c)
+    $geometry::main::is_parallel(a,d,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) != 0
+    by def $geometry::main::is_triangle(a,b,d)
+    release thm geometry::main::square_orthogonal_parallel_quadrilateral_coordinates(a,b,c,d)
+    d(1) = a(1)+c(1)-b(1)
+    d(2) = a(2)+c(2)-b(2)
+    c(1) = b(1)+(a(1)+c(1)-b(1))-a(1) = b(1)+d(1)-a(1)
+    c(2) = b(2)+(a(2)+c(2)-b(2))-a(2) = b(2)+d(2)-a(2)
+    release thm affine_parallelogram_area(a,b,c,d)
+    obtain half from exist half R+ st {$area::has_triangle_area(a,b,d,half), $area::has_parallelogram_area(a,b,c,d,2*half)}
+    witness exist total R+ st {$area::has_parallelogram_area(a,b,c,d,total)} from 2*half
+
+
+thm strict_edge_cut_gives_two_triangles:
+    ? forall a,b,c,d cart(R,R), t R:
+        $geometry::main::is_triangle(a,b,c)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        =>:
+            $geometry::main::is_triangle(a,b,d)
+            $geometry::main::is_triangle(a,d,c)
+            geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = t*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+            geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c)) = (1-t)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    by def $geometry::main::is_triangle(a,b,c)
+    have dx R = b(1)-a(1)
+    have dy R = b(2)-a(2)
+    have ex R = c(1)-a(1)
+    have ey R = c(2)-a(2)
+    d(1)-a(1) = ((1-t)*b(1)+t*c(1))-a(1) = (1-t)*(b(1)-a(1))+t*(c(1)-a(1)) = (1-t)*dx+t*ex
+    d(2)-a(2) = ((1-t)*b(2)+t*c(2))-a(2) = (1-t)*(b(2)-a(2))+t*(c(2)-a(2)) = (1-t)*dy+t*ey
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,d)
+    release thm geometry::main::collinear_det_expand(a,d,c)
+    have cross R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    cross = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = dx*ey-dy*ex
+    cross != 0
+    t != 0
+    1-t > 0
+    1-t != 0
+    t*cross != 0
+    (1-t)*cross != 0
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = dx*((1-t)*dy+t*ey)-dy*((1-t)*dx+t*ex) = t*(dx*ey-dy*ex) = t*cross != 0
+    geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c)) = (d(1)-a(1))*(c(2)-a(2))-(d(2)-a(2))*(c(1)-a(1)) = ((1-t)*dx+t*ex)*ey-((1-t)*dy+t*ey)*ex = (1-t)*(dx*ey-dy*ex) = (1-t)*cross != 0
+    by def $geometry::main::is_triangle(a,b,d)
+    by def $geometry::main::is_triangle(a,d,c)
+
+
+thm scalar_unsigned_split_content:
+    ? forall cross,t R:
+        0 < t
+        t < 1
+        =>:
+            sqrt((t*cross)^2)+sqrt(((1-t)*cross)^2) = sqrt(cross^2)
+    t != 0
+    t*t > 0
+    t^2 = t*t > 0
+    1-t > 0
+    1-t != 0
+    (1-t)*(1-t) > 0
+    (1-t)^2 = (1-t)*(1-t) > 0
+    cross^2 >= 0
+    (t*cross)^2 = t^2*cross^2
+    ((1-t)*cross)^2 = (1-t)^2*cross^2
+    sqrt((t*cross)^2) = sqrt(t^2*cross^2) = sqrt(t^2)*sqrt(cross^2) = |t|*sqrt(cross^2) = t*sqrt(cross^2)
+    sqrt(((1-t)*cross)^2) = sqrt((1-t)^2*cross^2) = sqrt((1-t)^2)*sqrt(cross^2) = |1-t|*sqrt(cross^2) = (1-t)*sqrt(cross^2)
+    sqrt((t*cross)^2)+sqrt(((1-t)*cross)^2) = t*sqrt(cross^2)+(1-t)*sqrt(cross^2) = sqrt(cross^2)
+
+
+thm strict_edge_cut_actual_triangle_areas_add:
+    ? forall a,b,c,d cart(R,R), t R, total,left_area,right_area R+:
+        $area::has_triangle_area(a,b,c,total)
+        $area::has_triangle_area(a,b,d,left_area)
+        $area::has_triangle_area(a,d,c,right_area)
+        0 < t
+        t < 1
+        d(1) = (1-t)*b(1)+t*c(1)
+        d(2) = (1-t)*b(2)+t*c(2)
+        =>:
+            total = left_area+right_area
+    by def $area::has_triangle_area(a,b,c,total)
+    by def $area::has_triangle_area(a,b,d,left_area)
+    by def $area::has_triangle_area(a,d,c,right_area)
+    $geometry::main::is_triangle(a,b,c)
+    release thm strict_edge_cut_gives_two_triangles(a,b,c,d,t)
+    have cross R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))
+    have left R = geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))
+    have right R = geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))
+    left = t*cross
+    right = (1-t)*cross
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = cross^2
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2 = left^2
+    geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2 = right^2
+    left^2 = (t*cross)^2
+    right^2 = ((1-t)*cross)^2
+    2*total = sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2) = sqrt(cross^2)
+    2*left_area = sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2) = sqrt(left^2) = sqrt((t*cross)^2)
+    2*right_area = sqrt(geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2) = sqrt(right^2) = sqrt(((1-t)*cross)^2)
+    release thm scalar_unsigned_split_content(cross,t)
+    2*left_area+2*right_area = sqrt((t*cross)^2)+sqrt(((1-t)*cross)^2) = sqrt(cross^2) = 2*total
+    2*(left_area+right_area) = 2*left_area+2*right_area = 2*total
+    left_area+right_area = (2*(left_area+right_area))/2 = (2*total)/2 = total
+
+
+# Construction helper only; not the source theorem II.14 about a given polygon.
+thm square_with_prescribed_positive_area:
+    ? forall target R+:
+        exist a,b,c,d cart(R,R) st {$geometry::main::is_square(a,b,c,d), $area::has_parallelogram_area(a,b,c,d,target)}
+    have side R+ = sqrt(target)
+    side != 0
+    have a cart(R,R) = (0,0)
+    have b cart(R,R) = (side,0)
+    a(1) = 0
+    a(2) = 0
+    b(1) = side
+    b(2) = 0
+    by contra:
+        ? a != b
+        a = b
+        side = b(1) = a(1) = 0
+        impossible side != 0
+    release thm entry::proposition_46(a,b)
+    obtain c,d from exist c,d cart(R,R) st {$geometry::main::is_square(a,b,c,d), $area::is_proper_parallelogram(a,b,c,d)}
+    release thm entry::proper_square_area_exists(a,b,c,d)
+    obtain measured from exist measured R+ st {$area::has_parallelogram_area(a,b,c,d,measured)}
+    release thm entry::square_area_is_squared_side(a,b,c,d,measured)
+    release thm geometry::main::distance_sq_coordinate_formula(a,b)
+    geometry::main::distance_sq(a,b) = (b(1)-a(1))^2+(b(2)-a(2))^2 = (side-0)^2+(0-0)^2 = side^2 = sqrt(target)^2 = target
+    measured = geometry::main::distance_sq(a,b) = target
+    $area::has_parallelogram_area(a,b,c,d,target)
+    witness exist p,q,r,s cart(R,R) st {$geometry::main::is_square(p,q,r,s), $area::has_parallelogram_area(p,q,r,s,target)} from a,b,c,d
+
+
+# Construction helper for I.45; a scalar area is not a substitute for the given polygon.
+thm parallelogram_with_prescribed_area_and_angle:
+    ? forall p,q,r cart(R,R), target R+:
+        $geometry::main::is_triangle(q,p,r)
+        =>:
+            exist u,v cart(R,R) st {$area::has_parallelogram_area(q,p,u,v,target), $geometry::main::are_angles_congruent(p,q,v,p,q,r)}
+    have a cart(R,R) = (0,0)
+    have b cart(R,R) = (2*target,0)
+    have c cart(R,R) = (0,1)
+    a(1) = 0
+    a(2) = 0
+    b(1) = 2*target
+    b(2) = 0
+    c(1) = 0
+    c(2) = 1
+    2*target > 0
+    2*target != 0
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = (2*target-0)*(1-0)-(0-0)*(0-0) = 2*target != 0
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm entry::proposition_42(a,b,c,p,q,r)
+    obtain third,fourth,common from exist third,fourth cart(R,R), common R+ st {$area::has_triangle_area(a,b,c,common), $area::has_parallelogram_area(q,p,third,fourth,common), $geometry::main::are_angles_congruent(p,q,fourth,p,q,r)}
+    by def $area::has_triangle_area(a,b,c,common)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = (2*target)^2
+    2*common = sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2) = sqrt((2*target)^2) = |2*target| = 2*target
+    common = (2*common)/2 = (2*target)/2 = target
+    $area::has_parallelogram_area(q,p,third,fourth,target)
+    witness exist u,v cart(R,R) st {$area::has_parallelogram_area(q,p,u,v,target), $geometry::main::are_angles_congruent(p,q,v,p,q,r)} from third,fourth
+
+
+sketch:
+    have a cart(R,R) = (0,0)
+    have b cart(R,R) = (3,0)
+    have c cart(R,R) = (0,3)
+    a(1) = 0
+    a(2) = 0
+    b(1) = 3
+    b(2) = 0
+    c(1) = 0
+    c(2) = 3
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = (3-0)*(3-0)-(0-0)*(0-0) = 9 != 0
+    by def $geometry::main::is_triangle(a,b,c)
+    have d cart(R,R) = (2,1)
+    d(1) = 2 = (1-1/3)*b(1)+(1/3)*c(1)
+    d(2) = 1 = (1-1/3)*b(2)+(1/3)*c(2)
+    release thm strict_edge_cut_gives_two_triangles(a,b,c,d,1/3)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = (1/3)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (1/3)*9 = 3
+    geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c)) = (1-1/3)*geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (1-1/3)*9 = 6
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2 = 9^2
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2 = 3^2
+    geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2 = 6^2
+    sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c))^2) = sqrt(9^2) = 9 = 2*(9/2)
+    sqrt(geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d))^2) = sqrt(3^2) = 3 = 2*(3/2)
+    sqrt(geometry::main::det(geometry::main::vec(a,d),geometry::main::vec(a,c))^2) = sqrt(6^2) = 6 = 2*3
+    by def $area::has_triangle_area(a,b,c,9/2)
+    by def $area::has_triangle_area(a,b,d,3/2)
+    by def $area::has_triangle_area(a,d,c,3)
+    release thm strict_edge_cut_actual_triangle_areas_add(a,b,c,d,1/3,9/2,3/2,3)
+    release thm square_with_prescribed_positive_area(7/3)
+
+
+sketch:
+    have q cart(R,R) = (0,0)
+    have p cart(R,R) = (4,0)
+    have r cart(R,R) = (-1,2)
+    q(1) = 0
+    q(2) = 0
+    p(1) = 4
+    p(2) = 0
+    r(1) = -1
+    r(2) = 2
+    release thm geometry::main::collinear_det_expand(q,p,r)
+    geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r)) = (p(1)-q(1))*(r(2)-q(2))-(p(2)-q(2))*(r(1)-q(1)) = (4-0)*(2-0)-(0-0)*(-1-0) = 8 != 0
+    by def $geometry::main::is_triangle(q,p,r)
+    release thm parallelogram_with_prescribed_area_and_angle(p,q,r,7/3)
+    have other cart(R,R) = (1,2)
+    other(1) = 1
+    other(2) = 2
+    release thm geometry::main::collinear_det_expand(q,p,other)
+    geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,other)) = (p(1)-q(1))*(other(2)-q(2))-(p(2)-q(2))*(other(1)-q(1)) = (4-0)*(2-0)-(0-0)*(1-0) = 8 != 0
+    by def $geometry::main::is_triangle(q,p,other)
+    release thm parallelogram_with_prescribed_area_and_angle(p,q,other,7/3)

@@ -1,0 +1,29 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    95,
+    96
+  ],
+  "source_lines": [
+    3956,
+    3998
+  ],
+  "scope": "III28 equal chords in equal circles cut congruent corresponding minor and major arcs; include diameter/semicircle boundary",
+  "source_dependencies": [
+    "I8",
+    "III26"
+  ],
+  "proof_spine": [
+    "Equal radii and chord squared distances give equal central-angle cosine numerator/denominator (analytic form of I8).",
+    "Equal principal central angles give equal selected spans for corresponding minor or major branches.",
+    "III26 equal selected spans supplies actual rigid-motion congruence of arc point sets."
+  ],
+  "interface": "Preserve existing is_plane_rigid_motion_between_regions over chosen_circle_arc point sets, not scalar equality as definition of congruent arcs.",
+  "III27_status": "Still incomplete; no changed or weakened arc-congruence premise. III28 does not require III27.",
+  "status": "Source minor/major branches and three consumers PASS independent strict91",
+  "verification_session": 52918,
+  "counted": false,
+  "remaining": [
+    "canonical integration and source/liveness audit"
+  ]
+}

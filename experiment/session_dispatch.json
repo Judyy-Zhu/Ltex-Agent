@@ -1,0 +1,10 @@
+{
+  "session_id": 95113,
+  "dispatch_at": "2026-10-11T02:36:40.657Z",
+  "tool_call_id": "call_cdEQ0J7wG0QnPO0bl6J3MjHB",
+  "command": "target/release/litex -lang en -strict -f scripts/Euclid_Elements/textbook/foundation.lit -session",
+  "timing_provenance": "rollout dispatch timestamp; includes dispatch latency, not CPU time",
+  "ready_observed_at": "2026-10-11T02:44:00+00:00",
+  "elapsed_to_ready_observation_seconds": 439.343,
+  "initial_registered_prefix_succeeded": true
+}

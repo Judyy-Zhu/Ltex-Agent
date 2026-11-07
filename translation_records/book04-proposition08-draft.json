@@ -1,0 +1,24 @@
+{
+  "book": 4,
+  "proposition": 8,
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_lines": [
+    4862,
+    4900
+  ],
+  "statement": "Construct an inscribed circle in any given square, with tangency contacts on all four finite sides.",
+  "proof_spine": "Diagonal midpoint; side midpoints; equal radial distances and perpendicular radii; reuse radius-perpendicular tangency certificate.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition8-candidate6.lit",
+  "status": "Strict original Session9056 accepted; rotated-square consumer9061 accepted; collapsed-square negative9062 rejected.",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "clean_checkpoint": ".draft/resume-2026-10-17/book04-square-circles-checkpoint/receipt.json",
+  "clean_checkpoint_status": "Failed: saved context omitted circle object definition release. Retained Session acceptance remains; independent file validation pending repaired combined gate.",
+  "session_receipts": [
+    ".draft/resume-2026-10-17/book01-original-session/results/9056.json",
+    ".draft/resume-2026-10-17/book01-original-session/results/9061.json",
+    ".draft/resume-2026-10-17/book01-original-session/results/9062.json"
+  ],
+  "replacement_clean_checkpoint": ".draft/resume-2026-10-17/book04-IV8-IV10-repaired-checkpoint/receipt.json",
+  "replacement_clean_status": "running handle69887; includes explicit circle definition release"
+}

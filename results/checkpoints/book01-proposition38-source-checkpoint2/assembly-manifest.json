@@ -1,0 +1,5 @@
+{
+  "expected_statements": 9,
+  "changes": "Restore distance_sq and dot releases used by source proof and consumers; same releases as area author prefix",
+  "sha256": "b8040c4beafff32175d1d5f3b63cdeb7a55f2c417f9c1a456e4ee86f644a4651"
+}

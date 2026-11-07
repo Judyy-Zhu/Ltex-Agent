@@ -1,0 +1,1127 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+
+release obj def angles::angle_cosine
+
+
+thm absolute_value_lower_bound:
+    ? forall n R:
+        -|n| <= n
+    by cases:
+        ? -|n| <= n
+        case n >= 0:
+            |n| = n
+            -n = 0 - n <= 0 - 0 = 0 <= n
+            -|n| = -n <= n
+        case n < 0:
+            |n| = -n
+            -|n| = -(-n) = n
+
+thm unit_ratio_from_square_bound:
+    ? forall n R, den R+:
+        n^2 <= den
+        =>:
+            (-1) <= n / sqrt(den)
+            n / sqrt(den) <= 1
+    have d R+ = sqrt(den)
+    sqrt(n^2) = |n|
+    |n| = sqrt(n^2) <= sqrt(den) = d
+    release thm absolute_value_lower_bound(n)
+    by cases:
+        ? n <= |n|
+        case n >= 0:
+            |n| = n
+            n = |n|
+        case n < 0:
+            |n| = -n
+            -n = 0 - n >= 0 - 0 = 0
+            n <= 0 <= -n = |n|
+    -d <= -|n| <= n
+    n <= |n| <= d
+    n / d >= (-d) / d = -1
+    n / d <= d / d = 1
+    n / sqrt(den) = n / d
+    (-1) <= n / sqrt(den)
+    n / sqrt(den) <= 1
+
+
+thm angle_cosine_bounded:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            (-1) <= angles::angle_cosine(p, q, r)
+            angles::angle_cosine(p, q, r) <= 1
+    release thm angles::angle_den_positive(p, q, r)
+    have n R = geometry::main::angle_cos_num(p, q, r)
+    have den R+ = geometry::main::angle_cos_den(p, q, r)
+    have delta R = geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    release thm geometry::main::vec_dot_self_is_distance(q, p)
+    release thm geometry::main::vec_dot_self_is_distance(q, r)
+    n = geometry::main::angle_cos_num(p, q, r) = geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r))^2 = n^2
+    geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))^2 = delta^2
+    den = geometry::main::angle_cos_den(p, q, r) = geometry::main::distance_sq(q, p) * geometry::main::distance_sq(q, r) = geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, p)) * geometry::main::dot(geometry::main::vec(q, r), geometry::main::vec(q, r)) = geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r))^2 + geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))^2 = n^2 + delta^2
+    delta^2 >= 0
+    n^2 <= n^2 + delta^2 = den
+    release thm unit_ratio_from_square_bound(n, den)
+    angles::angle_cosine(p, q, r) = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r)) = n / sqrt(den)
+    (-1) <= angles::angle_cosine(p, q, r)
+    angles::angle_cosine(p, q, r) <= 1
+
+
+have fn ray_angle(p, q, r cart(R, R): p != q, r != q) R = arccos(angles::angle_cosine(p, q, r))
+
+
+thm ray_angle_range:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            0 <= ray_angle(p, q, r)
+            ray_angle(p, q, r) <= pi
+    ray_angle(p, q, r) = arccos(angles::angle_cosine(p, q, r))
+    0 <= arccos(angles::angle_cosine(p, q, r)) <= pi
+
+
+thm opposite_cosines_give_supplementary_angles:
+    ? forall p, q, r, u, v, w cart(R, R):
+        p != q
+        r != q
+        u != v
+        w != v
+        angles::angle_cosine(u, v, w) = -angles::angle_cosine(p, q, r)
+        =>:
+            ray_angle(p, q, r) + ray_angle(u, v, w) = pi
+    release thm angle_cosine_bounded(p, q, r)
+    release thm angle_cosine_bounded(u, v, w)
+    release thm angles::arccos_opposite_values_sum(angles::angle_cosine(p, q, r), angles::angle_cosine(u, v, w))
+    ray_angle(p, q, r) = arccos(angles::angle_cosine(p, q, r))
+    ray_angle(u, v, w) = arccos(angles::angle_cosine(u, v, w))
+    ray_angle(p, q, r) + ray_angle(u, v, w) = arccos(angles::angle_cosine(p, q, r)) + arccos(angles::angle_cosine(u, v, w)) = pi
+
+thm right_angle_has_measure_half_pi:
+    ? forall p, q, r cart(R, R):
+        $geometry::main::is_right_angle(p, q, r)
+        =>:
+            ray_angle(p, q, r) = pi / 2
+    by def $geometry::main::is_right_angle(p, q, r)
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_root_den_nonzero(p, q, r)
+    geometry::main::angle_cos_num(p, q, r) = geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r)) = 0
+    angles::angle_cosine(p, q, r) = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r)) = 0 / sqrt(geometry::main::angle_cos_den(p, q, r)) = 0
+    ray_angle(p, q, r) = arccos(angles::angle_cosine(p, q, r)) = arccos(0) = pi / 2
+
+thm scaled_positive_root_domain:
+    ? forall k, norm R+:
+        sqrt(k^2 * norm) != 0
+        0 <= k^2 * norm
+    k^2 > 0
+    k^2 * norm > 0
+    sqrt(k^2 * norm) > 0
+    sqrt(k^2 * norm) != 0
+    0 <= k^2 * norm
+
+thm opposite_scaled_cosine_cross_products:
+    ? forall x R, norm, t, s R+:
+        (-t * x) * sqrt(s^2 * norm) = -(s * x) * sqrt(t^2 * norm)
+    have d R+ = sqrt(norm)
+    t^2 > 0
+    s^2 > 0
+    sqrt(t^2 * norm) = sqrt(t^2) * sqrt(norm) = |t| * d = t * d
+    sqrt(s^2 * norm) = sqrt(s^2) * sqrt(norm) = |s| * d = s * d
+    (-t * x) * sqrt(s^2 * norm) = (-t * x) * (s * d) = -(s * x) * (t * d) = -(s * x) * sqrt(t^2 * norm)
+
+thm ray_angle_cosine:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            cos(ray_angle(p, q, r)) = angles::angle_cosine(p, q, r)
+    release thm angle_cosine_bounded(p, q, r)
+    cos(ray_angle(p, q, r)) = cos(arccos(angles::angle_cosine(p, q, r))) = angles::angle_cosine(p, q, r)
+
+thm measure_half_pi_is_right_angle:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        ray_angle(p, q, r) = pi / 2
+        =>:
+            $geometry::main::is_right_angle(p, q, r)
+    release thm ray_angle_cosine(p, q, r)
+    angles::angle_cosine(p, q, r) = cos(ray_angle(p, q, r)) = cos(pi / 2) = 0
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_root_den_nonzero(p, q, r)
+    have n R = geometry::main::angle_cos_num(p, q, r)
+    release thm angles::angle_den_positive(p, q, r)
+    geometry::main::angle_cos_den(p, q, r) > 0
+    sqrt(geometry::main::angle_cos_den(p, q, r)) > 0
+    have d R+ = sqrt(geometry::main::angle_cos_den(p, q, r))
+    n / d = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r)) = angles::angle_cosine(p, q, r) = 0
+    n = (n / d) * d = 0 * d = 0
+    geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r)) = geometry::main::angle_cos_num(p, q, r) = n = 0
+    by def $geometry::main::is_right_angle(p, q, r)
+
+thm same_square_and_sign_gives_equality:
+    ? forall x, y R:
+        x^2 = y^2
+        x * y >= 0
+        =>:
+            x = y
+    by contra:
+        ? x = y
+        x != y
+        x - y != 0
+        (x - y) * (x + y) = x^2 - y^2 = 0
+        x + y = 0 / (x - y) = 0
+        y = -x
+        x * y = x * (-x) = -(x^2)
+        x^2 = -(-(x^2)) = -(x * y) <= 0
+        x^2 >= 0
+        x^2 = 0
+        x = 0
+        y = -x = 0
+        x = y
+        impossible x != y
+
+thm angle_relation_implies_equal_cosine:
+    ? forall p, q, r, a, b, c cart(R, R):
+        $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+        =>:
+            angles::angle_cosine(p, q, r) = angles::angle_cosine(a, b, c)
+    by def $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_root_den_nonzero(p, q, r)
+    release thm angles::angle_den_nonnegative(a, b, c)
+    release thm angles::angle_root_den_nonzero(a, b, c)
+    have n R = geometry::main::angle_cos_num(p, q, r)
+    have m R = geometry::main::angle_cos_num(a, b, c)
+    have den_1 R+ = geometry::main::angle_cos_den(p, q, r)
+    have den_2 R+ = geometry::main::angle_cos_den(a, b, c)
+    have u R+ = sqrt(den_1)
+    have v R+ = sqrt(den_2)
+    u^2 = sqrt(den_1)^2 = den_1
+    v^2 = sqrt(den_2)^2 = den_2
+    n^2 * den_2 = geometry::main::angle_cos_num(p, q, r)^2 * geometry::main::angle_cos_den(a, b, c) = geometry::main::angle_cos_num(a, b, c)^2 * geometry::main::angle_cos_den(p, q, r) = m^2 * den_1
+    (n / u)^2 = n^2 / u^2 = n^2 / den_1 = (n^2 * den_2) / (den_1 * den_2) = (m^2 * den_1) / (den_1 * den_2) = m^2 / den_2 = m^2 / v^2 = (m / v)^2
+    n * m = geometry::main::angle_cos_num(p, q, r) * geometry::main::angle_cos_num(a, b, c) >= 0
+    (n / u) * (m / v) = (n * m) / (u * v) >= 0 / (u * v) = 0
+    by thm same_square_and_sign_gives_equality(n / u, m / v) => n / u = m / v
+    angles::angle_cosine(p, q, r) = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r)) = n / u
+    angles::angle_cosine(a, b, c) = geometry::main::angle_cos_num(a, b, c) / sqrt(geometry::main::angle_cos_den(a, b, c)) = m / v
+    angles::angle_cosine(p, q, r) = n / u = m / v = angles::angle_cosine(a, b, c)
+
+thm angle_relation_implies_equal_measure:
+    ? forall p, q, r, a, b, c cart(R, R):
+        $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+        =>:
+            ray_angle(p, q, r) = ray_angle(a, b, c)
+    release thm angle_relation_implies_equal_cosine(p, q, r, a, b, c)
+    release thm angle_cosine_bounded(p, q, r)
+    release thm angle_cosine_bounded(a, b, c)
+    ray_angle(p, q, r) = arccos(angles::angle_cosine(p, q, r)) = arccos(angles::angle_cosine(a, b, c)) = ray_angle(a, b, c)
+
+thm planar_gram_coordinate_identities:
+    ? forall u1, u2, v1, v2, w1, w2 R:
+        (u1 * v1 + u2 * v2) * (u1 * w1 + u2 * w2) + (u1 * v2 - u2 * v1) * (u1 * w2 - u2 * w1) = (u1^2 + u2^2) * (v1 * w1 + v2 * w2)
+        (u1 * v1 + u2 * v2) * (u1 * w2 - u2 * w1) - (u1 * w1 + u2 * w2) * (u1 * v2 - u2 * v1) = (u1^2 + u2^2) * (v1 * w2 - v2 * w1)
+
+thm supplementary_measures_imply_opposite_cosines:
+    ? forall p, q, r, a, b, c cart(R, R):
+        p != q
+        r != q
+        a != b
+        c != b
+        ray_angle(p, q, r) + ray_angle(a, b, c) = pi
+        =>:
+            angles::angle_cosine(a, b, c) = -angles::angle_cosine(p, q, r)
+    release thm ray_angle_cosine(p, q, r)
+    release thm ray_angle_cosine(a, b, c)
+    ray_angle(a, b, c) = (ray_angle(p, q, r) + ray_angle(a, b, c)) - ray_angle(p, q, r) = pi - ray_angle(p, q, r)
+    ray_angle(a,b,c) = pi-ray_angle(p,q,r)
+    cos(pi) = -1
+    sin(pi) = 0
+    cos(pi-ray_angle(p,q,r)) = cos(pi)*cos(ray_angle(p,q,r))+sin(pi)*sin(ray_angle(p,q,r)) = (-1)*cos(ray_angle(p,q,r))+0*sin(ray_angle(p,q,r)) = -cos(ray_angle(p,q,r))
+    angles::angle_cosine(a, b, c) = cos(ray_angle(a, b, c)) = cos(pi - ray_angle(p, q, r)) = -cos(ray_angle(p, q, r)) = -angles::angle_cosine(p, q, r)
+
+
+
+thm opposite_normalized_projections:
+    ? forall n, m, delta_1, delta_2 R, den_1, den_2 R+:
+        n / sqrt(den_1) = -(m / sqrt(den_2))
+        n^2 + delta_1^2 = den_1
+        m^2 + delta_2^2 = den_2
+        delta_1 * delta_2 < 0
+        =>:
+            n * delta_2 - m * delta_1 = 0
+            n * m + delta_1 * delta_2 < 0
+    have u R+ = sqrt(den_1)
+    have v R+ = sqrt(den_2)
+    u^2 = sqrt(den_1)^2 = den_1
+    v^2 = sqrt(den_2)^2 = den_2
+    n / u = n / sqrt(den_1) = -(m / sqrt(den_2)) = -(m / v)
+    n^2 / den_1 = n^2 / u^2 = (n / u)^2 = (-(m / v))^2 = (m / v)^2 = m^2 / v^2 = m^2 / den_2
+    n^2 * den_2 = (n^2 / den_1) * (den_1 * den_2) = (m^2 / den_2) * (den_1 * den_2) = m^2 * den_1
+    delta_1^2 * den_2 = (den_1 - n^2) * den_2 = den_1 * den_2 - n^2 * den_2 = den_1 * den_2 - m^2 * den_1 = (den_2 - m^2) * den_1 = delta_2^2 * den_1
+    delta_1^2 / den_1 = (delta_1^2 * den_2) / (den_1 * den_2) = (delta_2^2 * den_1) / (den_1 * den_2) = delta_2^2 / den_2
+    (delta_1 / u)^2 = delta_1^2 / u^2 = delta_1^2 / den_1 = delta_2^2 / den_2 = delta_2^2 / v^2 = (delta_2 / v)^2 = (-(delta_2 / v))^2
+    (delta_1 / u) * (-(delta_2 / v)) = -(delta_1 * delta_2) / (u * v) > 0 / (u * v) = 0
+    (delta_1 / u) * (-(delta_2 / v)) >= 0
+    by thm same_square_and_sign_gives_equality(delta_1 / u, -(delta_2 / v)) => delta_1 / u = -(delta_2 / v)
+    (n * delta_2 - m * delta_1) / (u * v) = (n / u) * (delta_2 / v) - (m / v) * (delta_1 / u) = (-(m / v)) * (delta_2 / v) - (m / v) * (-(delta_2 / v)) = 0
+    n * delta_2 - m * delta_1 = ((n * delta_2 - m * delta_1) / (u * v)) * (u * v) = 0 * (u * v) = 0
+    (m / v)^2 >= 0
+    -((m / v)^2) = 0 - (m / v)^2 <= 0 - 0 = 0
+    (n * m) / (u * v) = (n / u) * (m / v) = (-(m / v)) * (m / v) = -((m / v)^2) <= 0
+    u*v > 0
+    u*v >= 0
+    n * m = ((n * m) / (u * v)) * (u * v) <= 0 * (u * v) = 0
+    n * m + delta_1 * delta_2 <= 0 + delta_1 * delta_2 = delta_1 * delta_2 < 0
+
+
+
+thm segment_membership_reverses_endpoints:
+    ? forall p, a, b cart(R, R):
+        $geometry::main::is_on_segment(p, a, b)
+        =>:
+            $geometry::main::is_on_segment(p, b, a)
+    by def $geometry::main::is_on_segment(p, a, b)
+    obtain t from exist k R st {0 <= k, k <= 1, p(1) = (1 - k) * a(1) + k * b(1), p(2) = (1 - k) * a(2) + k * b(2)}
+    have s R = 1 - t
+    t = 1 - (1 - t) = 1 - s
+    1 - t >= 1 - 1 = 0
+    1 - t <= 1 - 0 = 1
+    s = 1 - t >= 0
+    s = 1 - t <= 1
+    p(1) = (1 - t) * a(1) + t * b(1) = s * a(1) + t * b(1) = s * a(1) + (1 - s) * b(1) = (1 - s) * b(1) + s * a(1)
+    p(2) = (1 - t) * a(2) + t * b(2) = s * a(2) + t * b(2) = s * a(2) + (1 - s) * b(2) = (1 - s) * b(2) + s * a(2)
+    witness exist k R st {0 <= k, k <= 1, p(1) = (1 - k) * b(1) + k * a(1), p(2) = (1 - k) * b(2) + k * a(2)} from s
+    by def $geometry::main::is_on_segment(p, b, a)
+
+thm cosine_strictly_decreasing_on_principal_range:
+    ? forall x, y R:
+        0 <= x
+        x < y
+        y <= pi
+        =>:
+            cos(x) > cos(y)
+    have h R = (x + y) / 2
+    have k R = (y - x) / 2
+    y > x >= 0
+    x + y >= y > 0
+    h = (x + y) / 2 > 0 / 2 = 0
+    x < y <= pi
+    x + y < pi + pi
+    h = (x + y) / 2 < (pi + pi) / 2 = pi
+    y - x > 0
+    k = (y - x) / 2 > 0 / 2 = 0
+    y - x <= pi - 0 = pi
+    pi > 0
+    pi / 2 < pi
+    k = (y - x) / 2 <= pi / 2 < pi
+    sin(h) > 0
+    sin(k) > 0
+    sin(h) * sin(k) > 0
+    2 * (sin(h) * sin(k)) > 0
+    2 * sin(h) * sin(k) = 2 * (sin(h) * sin(k)) > 0
+    x = (x + y) / 2 - (y - x) / 2 = h - k
+    y = (x + y) / 2 + (y - x) / 2 = h + k
+    cos(x) = cos(h - k) = cos(h) * cos(k) + sin(h) * sin(k)
+    cos(y) = cos(h + k) = cos(h) * cos(k) - sin(h) * sin(k)
+    cos(x) - cos(y) = (cos(h) * cos(k) + sin(h) * sin(k)) - (cos(h) * cos(k) - sin(h) * sin(k)) = 2 * sin(h) * sin(k) > 0
+    cos(x) = (cos(x) - cos(y)) + cos(y) > 0 + cos(y) = cos(y)
+
+thm cosine_weakly_decreasing_on_principal_range:
+    ? forall x, y R:
+        0 <= x
+        x <= y
+        y <= pi
+        =>:
+            cos(x) >= cos(y)
+    by cases:
+        ? cos(x) >= cos(y)
+        case x < y:
+            release thm cosine_strictly_decreasing_on_principal_range(x, y)
+            cos(x) >= cos(y)
+        case x >= y:
+            x = y
+            cos(x) = cos(y)
+            cos(x) >= cos(y)
+
+thm arccos_strictly_decreasing:
+    ? forall x, y R:
+        (-1) <= x
+        x <= 1
+        (-1) <= y
+        y <= 1
+        x < y
+        =>:
+            arccos(x) > arccos(y)
+    by contra:
+        ? arccos(x) > arccos(y)
+        arccos(x) <= arccos(y)
+        0 <= arccos(x) <= pi
+        0 <= arccos(y) <= pi
+        release thm cosine_weakly_decreasing_on_principal_range(arccos(x), arccos(y))
+        x = cos(arccos(x)) >= cos(arccos(y)) = y
+        impossible x < y
+
+thm strict_square_bound_implies_upper_root_product:
+    ? forall n R, x, z R+:
+        n^2 < x * z
+        =>:
+            n < sqrt(x) * sqrt(z)
+    by contra:
+        ? n < sqrt(x) * sqrt(z)
+        n >= sqrt(x) * sqrt(z)
+        sqrt(x) > 0
+        sqrt(z) > 0
+        sqrt(x) * sqrt(z) > 0
+        0 <= sqrt(x) * sqrt(z)
+        n >= 0
+        n^2 >= (sqrt(x) * sqrt(z))^2
+        (sqrt(x) * sqrt(z))^2 = sqrt(x)^2 * sqrt(z)^2 = x * z
+        n^2 >= x * z
+        impossible n^2 < x * z
+
+thm strict_reverse_bound_cosine_numerator_positive:
+    ? forall a, b, c R+:
+        b^2 > (a - c)^2
+        =>:
+            a * (b^2 + c^2 - a^2) + c * (a^2 + b^2 - c^2) > 0
+    a + c > a + 0 = a > 0
+    b^2 - (a - c)^2 > 0
+    (a + c) * (b^2 - (a - c)^2) > 0
+    a * (b^2 + c^2 - a^2) + c * (a^2 + b^2 - c^2) = (a + c) * (b^2 - (a - c)^2) > 0
+
+thm strict_gram_cosine_numerator_positive:
+    ? forall x, y, z R+, n R:
+        2 * n = x + z - y
+        n^2 < x * z
+        =>:
+            sqrt(z) * (x + y - z) + sqrt(x) * (z + y - x) > 0
+    release thm strict_square_bound_implies_upper_root_product(n, x, z)
+    2 * n < 2 * (sqrt(x) * sqrt(z))
+    sqrt(x)^2 = x
+    sqrt(y)^2 = y
+    sqrt(z)^2 = z
+    y = (x + z) - ((x + z) - y) = x + z - 2 * n > x + z - 2 * (sqrt(x) * sqrt(z)) = sqrt(x)^2 + sqrt(z)^2 - 2 * sqrt(x) * sqrt(z) = (sqrt(z) - sqrt(x))^2
+    have a R+ = sqrt(z)
+    have b R+ = sqrt(y)
+    have c R+ = sqrt(x)
+    a^2 = sqrt(z)^2 = z
+    b^2 = sqrt(y)^2 = y
+    c^2 = sqrt(x)^2 = x
+    b^2 = y > (sqrt(z) - sqrt(x))^2 = (a - c)^2
+    release thm strict_reverse_bound_cosine_numerator_positive(a, b, c)
+    sqrt(z) * (x + y - z) + sqrt(x) * (z + y - x) = a * (c^2 + b^2 - a^2) + c * (a^2 + b^2 - c^2) = a * (b^2 + c^2 - a^2) + c * (a^2 + b^2 - c^2) > 0
+
+thm two_internal_triangle_cosines_sum_positive:
+    ? forall a, b, c cart(R, R):
+        a != b
+        a != c
+        b != c
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            angles::angle_cosine(b, a, c) + angles::angle_cosine(a, c, b) > 0
+    by def $geometry::main::is_triangle(a, b, c)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    release thm geometry::main::triangle_det_squared_vertex(a, b, c)
+    geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, c)
+    release thm geometry::main::distance_sq_positive_of_ne(b, c)
+    release thm geometry::main::distance_sq_symmetric(a, b)
+    release thm geometry::main::distance_sq_symmetric(a, c)
+    release thm geometry::main::distance_sq_symmetric(b, c)
+    have x R+ = geometry::main::distance_sq(a, b)
+    have y R+ = geometry::main::distance_sq(a, c)
+    have z R+ = geometry::main::distance_sq(b, c)
+    have n R = geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, c))
+    have delta R = geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))
+    release thm geometry::main::twice_dot_from_distances_direct(a, b, c)
+    2 * n = 2 * geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, c)) = geometry::main::distance_sq(a, b) + geometry::main::distance_sq(b, c) - geometry::main::distance_sq(a, c) = x + z - y
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(b, a), geometry::main::vec(b, c))
+    release thm geometry::main::vec_dot_self_is_distance(b, a)
+    release thm geometry::main::vec_dot_self_is_distance(b, c)
+    n^2 + delta^2 = geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 + geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 = geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, a)) * geometry::main::dot(geometry::main::vec(b, c), geometry::main::vec(b, c)) = geometry::main::distance_sq(b, a) * geometry::main::distance_sq(b, c) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(b, c) = x * z
+    delta^2 = geometry::main::det(geometry::main::vec(b, a), geometry::main::vec(b, c))^2 > 0
+    n^2 < n^2 + delta^2 = x * z
+    release thm strict_gram_cosine_numerator_positive(x, y, z, n)
+    have alpha R+ = sqrt(x)
+    have beta R+ = sqrt(y)
+    have gamma R+ = sqrt(z)
+    alpha * beta > 0
+    (alpha * beta) * gamma > 0
+    2 * ((alpha * beta) * gamma) > 0
+    have common R+ = 2 * ((alpha * beta) * gamma)
+    sqrt(x * y) = sqrt(x) * sqrt(y) = alpha * beta
+    sqrt(y * z) = sqrt(y) * sqrt(z) = beta * gamma
+    release thm geometry::main::twice_dot_from_distances_direct(b, a, c)
+    release thm geometry::main::twice_dot_from_distances_direct(a, c, b)
+    geometry::main::angle_cos_num(b, a, c) = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c)) = (geometry::main::distance_sq(b, a) + geometry::main::distance_sq(a, c) - geometry::main::distance_sq(b, c)) / 2 = (x + y - z) / 2
+    geometry::main::angle_cos_num(a, c, b) = geometry::main::dot(geometry::main::vec(c, a), geometry::main::vec(c, b)) = (geometry::main::distance_sq(a, c) + geometry::main::distance_sq(c, b) - geometry::main::distance_sq(a, b)) / 2 = (y + z - x) / 2 = (z + y - x) / 2
+    geometry::main::angle_cos_den(b, a, c) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, c) = x * y
+    geometry::main::angle_cos_den(a, c, b) = geometry::main::distance_sq(c, a) * geometry::main::distance_sq(c, b) = geometry::main::distance_sq(a, c) * geometry::main::distance_sq(b, c) = y * z
+    release thm angles::angle_den_nonnegative(b, a, c)
+    release thm angles::angle_root_den_nonzero(b, a, c)
+    release thm angles::angle_den_nonnegative(a, c, b)
+    release thm angles::angle_root_den_nonzero(a, c, b)
+    angles::angle_cosine(b, a, c) = geometry::main::angle_cos_num(b, a, c) / sqrt(geometry::main::angle_cos_den(b, a, c)) = ((x + y - z) / 2) / sqrt(x * y) = ((x + y - z) / 2) / (alpha * beta)
+    angles::angle_cosine(a, c, b) = geometry::main::angle_cos_num(a, c, b) / sqrt(geometry::main::angle_cos_den(a, c, b)) = ((z + y - x) / 2) / sqrt(y * z) = ((z + y - x) / 2) / (beta * gamma)
+    gamma * (x + y - z) + alpha * (z + y - x) = sqrt(z) * (x + y - z) + sqrt(x) * (z + y - x) > 0
+    angles::angle_cosine(b, a, c) = ((x+y-z)/2)/(alpha*beta)
+    angles::angle_cosine(a, c, b) = ((z+y-x)/2)/(beta*gamma)
+    angles::angle_cosine(b, a, c) + angles::angle_cosine(a, c, b) = ((x + y - z) / 2) / (alpha * beta) + ((z + y - x) / 2) / (beta * gamma) = (gamma * (x + y - z) + alpha * (z + y - x)) / (2 * ((alpha * beta) * gamma)) = (gamma * (x + y - z) + alpha * (z + y - x)) / common > 0 / common = 0
+
+
+thm negative_ray_scale_changes_cosine_sign:
+    ? forall a, q, b, d cart(R, R), k R+:
+        a != q
+        b != q
+        d != q
+        d(1) - q(1) = -k * (b(1) - q(1))
+        d(2) - q(2) = -k * (b(2) - q(2))
+        =>:
+            angles::angle_cosine(a, q, d) = -angles::angle_cosine(a, q, b)
+    release thm angles::angle_den_positive(a, q, b)
+    have den R+ = geometry::main::angle_cos_den(a, q, b)
+    have n R = geometry::main::angle_cos_num(a, q, b)
+    have root R+ = sqrt(den)
+    d(1) = (d(1) - q(1)) + q(1) = -k * (b(1) - q(1)) + q(1) = q(1) + (-k) * (b(1) - q(1))
+    d(2) = (d(2) - q(2)) + q(2) = -k * (b(2) - q(2)) + q(2) = q(2) + (-k) * (b(2) - q(2))
+    release thm geometry::main::affine_distance_from_parameter(q, b, d, -k)
+    release thm geometry::main::distance_sq_symmetric(q, d)
+    geometry::main::distance_sq(q, d) = geometry::main::distance_sq(d, q) = (-k)^2 * geometry::main::distance_sq(q, b) = k^2 * geometry::main::distance_sq(q, b)
+    geometry::main::angle_cos_num(a, q, b) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = (a(1) - q(1)) * (b(1) - q(1)) + (a(2) - q(2)) * (b(2) - q(2))
+    geometry::main::angle_cos_num(a, q, d) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, d)) = (a(1) - q(1)) * (d(1) - q(1)) + (a(2) - q(2)) * (d(2) - q(2)) = (a(1) - q(1)) * (-k * (b(1) - q(1))) + (a(2) - q(2)) * (-k * (b(2) - q(2))) = -k * ((a(1) - q(1)) * (b(1) - q(1)) + (a(2) - q(2)) * (b(2) - q(2))) = -k * geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = -k * geometry::main::angle_cos_num(a, q, b) = -k * n
+    geometry::main::angle_cos_den(a, q, d) = geometry::main::distance_sq(q, a) * geometry::main::distance_sq(q, d) = geometry::main::distance_sq(q, a) * (k^2 * geometry::main::distance_sq(q, b)) = k^2 * (geometry::main::distance_sq(q, a) * geometry::main::distance_sq(q, b)) = k^2 * geometry::main::angle_cos_den(a, q, b) = k^2 * den
+    release thm angles::angle_den_nonnegative(a, q, b)
+    release thm angles::angle_root_den_nonzero(a, q, b)
+    release thm angles::angle_den_nonnegative(a, q, d)
+    release thm angles::angle_root_den_nonzero(a, q, d)
+    release thm scaled_positive_root_domain(k, den)
+    sqrt(geometry::main::angle_cos_den(a, q, d)) = sqrt(k^2 * den) = sqrt(k^2) * sqrt(den) = |k| * root = k * root
+    geometry::main::angle_cos_num(a, q, b) = n
+    sqrt(geometry::main::angle_cos_den(a, q, b)) = sqrt(den) = root
+    angles::angle_cosine(a, q, b) = geometry::main::angle_cos_num(a, q, b) / sqrt(geometry::main::angle_cos_den(a, q, b)) = n / root
+    angles::angle_cosine(a, q, d) = geometry::main::angle_cos_num(a, q, d) / sqrt(geometry::main::angle_cos_den(a, q, d)) = (-k * n) / (k * root) = -(n / root) = -angles::angle_cosine(a, q, b)
+
+thm angle_cosine_arms_symmetric:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            angles::angle_cosine(p, q, r) = angles::angle_cosine(r, q, p)
+    release thm geometry::main::dot_commutative(q, p, q, r)
+    geometry::main::angle_cos_num(p, q, r) = geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r)) = geometry::main::dot(geometry::main::vec(q, r), geometry::main::vec(q, p)) = geometry::main::angle_cos_num(r, q, p)
+    geometry::main::angle_cos_den(p, q, r) = geometry::main::distance_sq(q, p) * geometry::main::distance_sq(q, r) = geometry::main::distance_sq(q, r) * geometry::main::distance_sq(q, p) = geometry::main::angle_cos_den(r, q, p)
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_root_den_nonzero(p, q, r)
+    release thm angles::angle_den_nonnegative(r, q, p)
+    release thm angles::angle_root_den_nonzero(r, q, p)
+    angles::angle_cosine(p, q, r) = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r)) = geometry::main::angle_cos_num(r, q, p) / sqrt(geometry::main::angle_cos_den(r, q, p)) = angles::angle_cosine(r, q, p)
+
+thm strict_extension_endpoint_distinct:
+    ? forall b, c, d cart(R, R):
+        $geometry::main::is_on_extension(d, b, c)
+        =>:
+            d != c
+    by def $geometry::main::is_on_extension(d, b, c)
+    obtain t from exist coef R st {coef > 1, d(1) = (1 - coef) * b(1) + coef * c(1), d(2) = (1 - coef) * b(2) + coef * c(2)}
+    t - 1 > 0
+    t - 1 != 0
+    by contra:
+        ? d != c
+        d = c
+        d(1) = c(1)
+        d(2) = c(2)
+        (t - 1) * (c(1) - b(1)) = ((1 - t) * b(1) + t * c(1)) - c(1) = d(1) - c(1) = 0
+        (t - 1) * (c(2) - b(2)) = ((1 - t) * b(2) + t * c(2)) - c(2) = d(2) - c(2) = 0
+        c(1) - b(1) = 0 / (t - 1) = 0
+        c(2) - b(2) = 0 / (t - 1) = 0
+        c(1) = b(1)
+        c(2) = b(2)
+        c = (c(1), c(2)) = (b(1), b(2)) = b
+        impossible b != c
+
+thm positive_cosine_sum_implies_angle_sum_below_pi:
+    ? forall x, y R:
+        (-1) <= x
+        x <= 1
+        (-1) <= y
+        y <= 1
+        x + y > 0
+        =>:
+            arccos(x) + arccos(y) < pi
+    -y = 0 - y >= 0 - 1 = -1
+    -y = 0 - y <= 0 - (-1) = 1
+    x = (x + y) - y > 0 - y = -y
+    release thm arccos_strictly_decreasing(-y, x)
+    release thm angles::arccos_opposite_values_sum(y, -y)
+    arccos(x) + arccos(y) < arccos(-y) + arccos(y) = arccos(y) + arccos(-y) = pi
+
+thm positive_square_roots_strictly_ordered:
+    ? forall x, y R+:
+        x < y
+        =>:
+            sqrt(x) < sqrt(y)
+    by contra:
+        ? sqrt(x) < sqrt(y)
+        sqrt(x) >= sqrt(y)
+        sqrt(y) > 0
+        sqrt(y) >= 0
+        sqrt(x) >= 0
+        sqrt(x)^2 >= sqrt(y)^2
+        x = sqrt(x)^2 >= sqrt(y)^2 = y
+        impossible x < y
+
+thm greater_side_cosine_difference_numerator_positive:
+    ? forall x, y, z R+, n R:
+        x < y
+        2 * n = x + y - z
+        n^2 < x * y
+        =>:
+            sqrt(x) * (y + z - x) - sqrt(y) * (x + z - y) > 0
+    release thm positive_square_roots_strictly_ordered(x, y)
+    (-n)^2 = n^2 < x * y
+    release thm strict_square_bound_implies_upper_root_product(-n, x, y)
+    sqrt(x)^2 = x
+    sqrt(y)^2 = y
+    2 * (-n) < 2 * (sqrt(x) * sqrt(y))
+    z = (x + y) - ((x + y) - z) = x + y - 2 * n = x + y + 2 * (-n) < x + y + 2 * (sqrt(x) * sqrt(y)) = sqrt(x)^2 + sqrt(y)^2 + 2 * sqrt(x) * sqrt(y) = (sqrt(x) + sqrt(y))^2
+    sqrt(y) - sqrt(x) > 0
+    (sqrt(x) + sqrt(y))^2 - z > 0
+    (sqrt(y) - sqrt(x)) * ((sqrt(x) + sqrt(y))^2 - z) > 0
+    sqrt(x) * (y + z - x) - sqrt(y) * (x + z - y) = sqrt(x) * (sqrt(y)^2 + z - sqrt(x)^2) - sqrt(y) * (sqrt(x)^2 + z - sqrt(y)^2) = (sqrt(y) - sqrt(x)) * ((sqrt(x) + sqrt(y))^2 - z) > 0
+
+thm greater_side_has_smaller_opposite_cosine:
+    ? forall a, b, c cart(R, R):
+        a != b
+        a != c
+        b != c
+        $geometry::main::is_triangle(a, b, c)
+        geometry::main::distance_sq(a, c) > geometry::main::distance_sq(a, b)
+        =>:
+            angles::angle_cosine(a, b, c) < angles::angle_cosine(a, c, b)
+    by def $geometry::main::is_triangle(a, b, c)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, c)
+    release thm geometry::main::distance_sq_positive_of_ne(b, c)
+    release thm geometry::main::distance_sq_symmetric(a, b)
+    release thm geometry::main::distance_sq_symmetric(a, c)
+    release thm geometry::main::distance_sq_symmetric(b, c)
+    have x R+ = geometry::main::distance_sq(a, b)
+    have y R+ = geometry::main::distance_sq(a, c)
+    have z R+ = geometry::main::distance_sq(b, c)
+    x = geometry::main::distance_sq(a, b) < geometry::main::distance_sq(a, c) = y
+    have n R = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    have delta R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    release thm geometry::main::twice_dot_from_distances_direct(b, a, c)
+    2 * n = 2 * geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c)) = geometry::main::distance_sq(b, a) + geometry::main::distance_sq(a, c) - geometry::main::distance_sq(b, c) = x + y - z
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, c)
+    n^2 + delta^2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 + geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b)) * geometry::main::dot(geometry::main::vec(a, c), geometry::main::vec(a, c)) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, c) = x * y
+    delta^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    n^2 < n^2 + delta^2 = x * y
+    release thm greater_side_cosine_difference_numerator_positive(x, y, z, n)
+    have alpha R+ = sqrt(x)
+    have beta R+ = sqrt(y)
+    have gamma R+ = sqrt(z)
+    alpha * beta > 0
+    (alpha * beta) * gamma > 0
+    2 * ((alpha * beta) * gamma) > 0
+    have common R+ = 2 * ((alpha * beta) * gamma)
+    sqrt(x * z) = sqrt(x) * sqrt(z) = alpha * gamma
+    sqrt(y * z) = sqrt(y) * sqrt(z) = beta * gamma
+    release thm geometry::main::twice_dot_from_distances_direct(a, b, c)
+    release thm geometry::main::twice_dot_from_distances_direct(a, c, b)
+    geometry::main::angle_cos_num(a, b, c) = geometry::main::dot(geometry::main::vec(b, a), geometry::main::vec(b, c)) = (geometry::main::distance_sq(a, b) + geometry::main::distance_sq(b, c) - geometry::main::distance_sq(a, c)) / 2 = (x + z - y) / 2
+    geometry::main::angle_cos_num(a, c, b) = geometry::main::dot(geometry::main::vec(c, a), geometry::main::vec(c, b)) = (geometry::main::distance_sq(a, c) + geometry::main::distance_sq(c, b) - geometry::main::distance_sq(a, b)) / 2 = (y + z - x) / 2
+    geometry::main::angle_cos_den(a, b, c) = geometry::main::distance_sq(b, a) * geometry::main::distance_sq(b, c) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(b, c) = x * z
+    geometry::main::angle_cos_den(a, c, b) = geometry::main::distance_sq(c, a) * geometry::main::distance_sq(c, b) = geometry::main::distance_sq(a, c) * geometry::main::distance_sq(b, c) = y * z
+    release thm angles::angle_den_nonnegative(a, b, c)
+    release thm angles::angle_root_den_nonzero(a, b, c)
+    release thm angles::angle_den_nonnegative(a, c, b)
+    release thm angles::angle_root_den_nonzero(a, c, b)
+    angles::angle_cosine(a, b, c) = geometry::main::angle_cos_num(a, b, c) / sqrt(geometry::main::angle_cos_den(a, b, c)) = ((x + z - y) / 2) / sqrt(x * z) = ((x + z - y) / 2) / (alpha * gamma)
+    angles::angle_cosine(a, c, b) = geometry::main::angle_cos_num(a, c, b) / sqrt(geometry::main::angle_cos_den(a, c, b)) = ((y + z - x) / 2) / sqrt(y * z) = ((y + z - x) / 2) / (beta * gamma)
+    alpha * (y + z - x) - beta * (x + z - y) = sqrt(x) * (y + z - x) - sqrt(y) * (x + z - y) > 0
+    angles::angle_cosine(a, c, b) = ((y+z-x)/2)/(beta*gamma)
+    angles::angle_cosine(a, b, c) = ((x+z-y)/2)/(alpha*gamma)
+    angles::angle_cosine(a, c, b) - angles::angle_cosine(a, b, c) = ((y + z - x) / 2) / (beta * gamma) - ((x + z - y) / 2) / (alpha * gamma) = (alpha * (y + z - x) - beta * (x + z - y)) / (2 * ((alpha * beta) * gamma)) = (alpha * (y + z - x) - beta * (x + z - y)) / common > 0 / common = 0
+    angles::angle_cosine(a, c, b) = (angles::angle_cosine(a, c, b) - angles::angle_cosine(a, b, c)) + angles::angle_cosine(a, b, c) > 0 + angles::angle_cosine(a, b, c) = angles::angle_cosine(a, b, c)
+
+
+thm squared_distance_is_nonnegative:
+    ? forall a, b cart(R, R):
+        0 <= geometry::main::distance_sq(a, b)
+    release thm geometry::main::distance_sq_nonnegative(a, b)
+
+thm distinct_endpoint_distance_root_positive:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            sqrt(geometry::main::distance_sq(a, b)) > 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    geometry::main::distance_sq(a, b) > 0
+    sqrt(geometry::main::distance_sq(a, b)) > 0
+
+thm distinct_endpoint_distance_root_positive_member:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            sqrt(geometry::main::distance_sq(a, b)) $in R+
+    release thm distinct_endpoint_distance_root_positive(a, b)
+    sqrt(geometry::main::distance_sq(a, b)) > 0
+    sqrt(geometry::main::distance_sq(a, b)) $in R+
+
+have fn segment_length(a, b cart(R, R): a != b) R+ = sqrt(geometry::main::distance_sq(a, b))
+
+thm strict_gram_implies_length_sum_bound:
+    ? forall x, y, z R+, n R:
+        2 * n = x + y - z
+        n^2 < x * y
+        =>:
+            sqrt(x) + sqrt(y) > sqrt(z)
+    (-n)^2 = n^2 < x * y
+    release thm strict_square_bound_implies_upper_root_product(-n, x, y)
+    sqrt(x)^2 = x
+    sqrt(y)^2 = y
+    2 * (-n) < 2 * (sqrt(x) * sqrt(y))
+    z = (x + y) - ((x + y) - z) = x + y - 2 * n = x + y + 2 * (-n) < x + y + 2 * (sqrt(x) * sqrt(y)) = sqrt(x)^2 + sqrt(y)^2 + 2 * sqrt(x) * sqrt(y) = (sqrt(x) + sqrt(y))^2
+    by contra:
+        ? sqrt(x) + sqrt(y) > sqrt(z)
+        sqrt(x) + sqrt(y) <= sqrt(z)
+        sqrt(x) > 0
+        sqrt(y) > 0
+        sqrt(x) + sqrt(y) > sqrt(x) + 0 = sqrt(x) > 0
+        0 <= sqrt(x) + sqrt(y)
+        0 <= sqrt(z)
+        (sqrt(x) + sqrt(y))^2 <= sqrt(z)^2 = z
+        impossible (sqrt(x) + sqrt(y))^2 > z
+
+thm adjacent_triangle_lengths_exceed_opposite:
+    ? forall a, b, c cart(R, R):
+        a != b
+        a != c
+        b != c
+        $geometry::main::is_triangle(a, b, c)
+        =>:
+            segment_length(a, b) + segment_length(a, c) > segment_length(b, c)
+    by def $geometry::main::is_triangle(a, b, c)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, c)
+    release thm geometry::main::distance_sq_positive_of_ne(b, c)
+    release thm geometry::main::distance_sq_symmetric(a, b)
+    have x R+ = geometry::main::distance_sq(a, b)
+    have y R+ = geometry::main::distance_sq(a, c)
+    have z R+ = geometry::main::distance_sq(b, c)
+    have n R = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    have delta R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    release thm geometry::main::twice_dot_from_distances_direct(b, a, c)
+    2 * n = 2 * geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c)) = geometry::main::distance_sq(b, a) + geometry::main::distance_sq(a, c) - geometry::main::distance_sq(b, c) = x + y - z
+    release thm geometry::main::dot_squared_plus_det_squared(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    release thm geometry::main::vec_dot_self_is_distance(a, b)
+    release thm geometry::main::vec_dot_self_is_distance(a, c)
+    n^2 + delta^2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 + geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 = geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, b)) * geometry::main::dot(geometry::main::vec(a, c), geometry::main::vec(a, c)) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, c) = x * y
+    delta^2 = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))^2 > 0
+    n^2 < n^2 + delta^2 = x * y
+    release thm strict_gram_implies_length_sum_bound(x, y, z, n)
+    segment_length(a, b) + segment_length(a, c) = sqrt(geometry::main::distance_sq(a, b)) + sqrt(geometry::main::distance_sq(a, c)) = sqrt(x) + sqrt(y) > sqrt(z) = sqrt(geometry::main::distance_sq(b, c)) = segment_length(b, c)
+
+thm segment_length_is_symmetric:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            segment_length(a, b) = segment_length(b, a)
+    release thm geometry::main::distance_sq_symmetric(a, b)
+    segment_length(a, b) = sqrt(geometry::main::distance_sq(a, b)) = sqrt(geometry::main::distance_sq(b, a)) = segment_length(b, a)
+
+thm cyclic_triangle_determinant:
+    ? forall a, b, c cart(R, R):
+        geometry::main::det(geometry::main::vec(c, a), geometry::main::vec(c, b)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    release thm geometry::main::collinear_det_expand(c, a, b)
+    release thm geometry::main::collinear_det_expand(a, b, c)
+    geometry::main::det(geometry::main::vec(c, a), geometry::main::vec(c, b)) = (a(1) - c(1)) * (b(2) - c(2)) - (a(2) - c(2)) * (b(1) - c(1)) = (b(1) - a(1)) * (c(2) - a(2)) - (b(2) - a(2)) * (c(1) - a(1)) = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))
+
+# Open triangle interior in the real plane, with genuine nondegenerate carriers.
+prop strictly_inside_triangle(p, a, b, c cart(R, R)):
+    a != b
+    a != c
+    b != c
+    $geometry::main::is_triangle(a, b, c)
+    p != a
+    p != b
+    p != c
+    exist u, v R+ st {u + v < 1, p(1) = (1 - u - v) * a(1) + u * b(1) + v * c(1), p(2) = (1 - u - v) * a(2) + u * b(2) + v * c(2)}
+
+thm positive_ray_scale_scales_length:
+    ? forall a, b, p cart(R, R), t R+:
+        a != b
+        a != p
+        p(1) = a(1) + t * (b(1) - a(1))
+        p(2) = a(2) + t * (b(2) - a(2))
+        =>:
+            segment_length(a, p) = t * segment_length(a, b)
+    release thm geometry::main::distance_sq_positive_of_ne(a, b)
+    have base R+ = geometry::main::distance_sq(a, b)
+    release thm geometry::main::affine_distance_from_parameter(a, b, p, t)
+    release thm geometry::main::distance_sq_symmetric(a, p)
+    geometry::main::distance_sq(a, p) = geometry::main::distance_sq(p, a) = t^2 * geometry::main::distance_sq(a, b) = t^2 * base
+    t^2 > 0
+    t^2 * base > 0
+    0 <= t^2 * base
+    sqrt(geometry::main::distance_sq(a, b)) = sqrt(base)
+    segment_length(a, p) = sqrt(geometry::main::distance_sq(a, p)) = sqrt(t^2 * base) = sqrt(t^2) * sqrt(base) = |t| * sqrt(base) = t * sqrt(base) = t * sqrt(geometry::main::distance_sq(a, b)) = t * segment_length(a, b)
+
+thm strict_segment_length_addition:
+    ? forall a, b, p cart(R, R), t R+:
+        a != b
+        a != p
+        p != b
+        t < 1
+        p(1) = a(1) + t * (b(1) - a(1))
+        p(2) = a(2) + t * (b(2) - a(2))
+        =>:
+            segment_length(a, p) + segment_length(p, b) = segment_length(a, b)
+    release thm positive_ray_scale_scales_length(a, b, p, t)
+    have s R+ = 1 - t
+    p(1) = a(1) + t * (b(1) - a(1)) = b(1) + (1 - t) * (a(1) - b(1)) = b(1) + s * (a(1) - b(1))
+    p(2) = a(2) + t * (b(2) - a(2)) = b(2) + (1 - t) * (a(2) - b(2)) = b(2) + s * (a(2) - b(2))
+    release thm positive_ray_scale_scales_length(b, a, p, s)
+    release thm segment_length_is_symmetric(a, b)
+    release thm segment_length_is_symmetric(p, b)
+    segment_length(p, b) = segment_length(b, p) = s * segment_length(b, a) = s * segment_length(a, b) = (1 - t) * segment_length(a, b)
+    segment_length(a, p) + segment_length(p, b) = t * segment_length(a, b) + (1 - t) * segment_length(a, b) = segment_length(a, b)
+
+thm positive_ray_scale_preserves_cosine:
+    ? forall a, q, b, d cart(R, R), k R+:
+        a != q
+        b != q
+        d != q
+        d(1) - q(1) = k * (b(1) - q(1))
+        d(2) - q(2) = k * (b(2) - q(2))
+        =>:
+            angles::angle_cosine(a, q, d) = angles::angle_cosine(a, q, b)
+    release thm angles::angle_den_positive(a, q, b)
+    have den R+ = geometry::main::angle_cos_den(a, q, b)
+    have n R = geometry::main::angle_cos_num(a, q, b)
+    have root R+ = sqrt(den)
+    d(1) = (d(1) - q(1)) + q(1) = k * (b(1) - q(1)) + q(1) = q(1) + k * (b(1) - q(1))
+    d(2) = (d(2) - q(2)) + q(2) = k * (b(2) - q(2)) + q(2) = q(2) + k * (b(2) - q(2))
+    release thm geometry::main::affine_distance_from_parameter(q, b, d, k)
+    release thm geometry::main::distance_sq_symmetric(q, d)
+    geometry::main::distance_sq(q, d) = geometry::main::distance_sq(d, q) = k^2 * geometry::main::distance_sq(q, b)
+    geometry::main::angle_cos_num(a, q, b) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = (a(1) - q(1)) * (b(1) - q(1)) + (a(2) - q(2)) * (b(2) - q(2))
+    geometry::main::angle_cos_num(a, q, d) = geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, d)) = (a(1) - q(1)) * (d(1) - q(1)) + (a(2) - q(2)) * (d(2) - q(2)) = (a(1) - q(1)) * (k * (b(1) - q(1))) + (a(2) - q(2)) * (k * (b(2) - q(2))) = k * ((a(1) - q(1)) * (b(1) - q(1)) + (a(2) - q(2)) * (b(2) - q(2))) = k * geometry::main::dot(geometry::main::vec(q, a), geometry::main::vec(q, b)) = k * geometry::main::angle_cos_num(a, q, b) = k * n
+    geometry::main::angle_cos_den(a, q, d) = geometry::main::distance_sq(q, a) * geometry::main::distance_sq(q, d) = geometry::main::distance_sq(q, a) * (k^2 * geometry::main::distance_sq(q, b)) = k^2 * (geometry::main::distance_sq(q, a) * geometry::main::distance_sq(q, b)) = k^2 * geometry::main::angle_cos_den(a, q, b) = k^2 * den
+    release thm angles::angle_den_nonnegative(a, q, b)
+    release thm angles::angle_root_den_nonzero(a, q, b)
+    release thm angles::angle_den_nonnegative(a, q, d)
+    release thm angles::angle_root_den_nonzero(a, q, d)
+    release thm scaled_positive_root_domain(k, den)
+    sqrt(geometry::main::angle_cos_den(a, q, d)) = sqrt(k^2 * den) = sqrt(k^2) * sqrt(den) = |k| * root = k * root
+    geometry::main::angle_cos_num(a, q, b) = n
+    sqrt(geometry::main::angle_cos_den(a, q, b)) = sqrt(den) = root
+    angles::angle_cosine(a, q, b) = geometry::main::angle_cos_num(a, q, b) / sqrt(geometry::main::angle_cos_den(a, q, b)) = n / root
+    angles::angle_cosine(a, q, d) = geometry::main::angle_cos_num(a, q, d) / sqrt(geometry::main::angle_cos_den(a, q, d)) = (k * n) / (k * root) = n / root = angles::angle_cosine(a, q, b)
+
+thm positive_ray_scale_preserves_angle:
+    ? forall a, q, b, d cart(R, R), k R+:
+        a != q
+        b != q
+        d != q
+        d(1) - q(1) = k * (b(1) - q(1))
+        d(2) - q(2) = k * (b(2) - q(2))
+        =>:
+            ray_angle(a, q, d) = ray_angle(a, q, b)
+    release thm positive_ray_scale_preserves_cosine(a, q, b, d, k)
+    release thm angle_cosine_bounded(a, q, d)
+    release thm angle_cosine_bounded(a, q, b)
+    ray_angle(a, q, d) = arccos(angles::angle_cosine(a, q, d)) = arccos(angles::angle_cosine(a, q, b)) = ray_angle(a, q, b)
+
+thm ray_angle_arms_symmetric:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            ray_angle(p, q, r) = ray_angle(r, q, p)
+    release thm angle_cosine_arms_symmetric(p, q, r)
+    release thm angle_cosine_bounded(p, q, r)
+    release thm angle_cosine_bounded(r, q, p)
+    ray_angle(p, q, r) = arccos(angles::angle_cosine(p, q, r)) = arccos(angles::angle_cosine(r, q, p)) = ray_angle(r, q, p)
+
+thm affine_point_determinant_linearity:
+    ? forall o, h, x, y, z cart(R, R), t R:
+        z(1) = (1 - t) * x(1) + t * y(1)
+        z(2) = (1 - t) * x(2) + t * y(2)
+        =>:
+            geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, z)) = (1 - t) * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, x)) + t * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, y))
+    z(1) - o(1) = ((1 - t) * x(1) + t * y(1)) - o(1) = (1 - t) * (x(1) - o(1)) + t * (y(1) - o(1))
+    z(2) - o(2) = ((1 - t) * x(2) + t * y(2)) - o(2) = (1 - t) * (x(2) - o(2)) + t * (y(2) - o(2))
+    release thm geometry::main::collinear_det_expand(o, h, z)
+    release thm geometry::main::collinear_det_expand(o, h, x)
+    release thm geometry::main::collinear_det_expand(o, h, y)
+    geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, z)) = (h(1) - o(1)) * (z(2) - o(2)) - (h(2) - o(2)) * (z(1) - o(1)) = (h(1) - o(1)) * ((1 - t) * (x(2) - o(2)) + t * (y(2) - o(2))) - (h(2) - o(2)) * ((1 - t) * (x(1) - o(1)) + t * (y(1) - o(1))) = (1 - t) * ((h(1) - o(1)) * (x(2) - o(2)) - (h(2) - o(2)) * (x(1) - o(1))) + t * ((h(1) - o(1)) * (y(2) - o(2)) - (h(2) - o(2)) * (y(1) - o(1))) = (1 - t) * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, x)) + t * geometry::main::det(geometry::main::vec(o, h), geometry::main::vec(o, y))
+
+thm strict_barycentric_side_intersection:
+    ? forall a, b, c, d cart(R, R), u, v R+:
+        u + v < 1
+        d(1) = (1 - u - v) * a(1) + u * b(1) + v * c(1)
+        d(2) = (1 - u - v) * a(2) + u * b(2) + v * c(2)
+        =>:
+            exist auxiliary cart(R, R), ratio, weight R+ st {ratio < 1, weight < 1, auxiliary(1) = a(1) + ratio * (c(1) - a(1)), auxiliary(2) = a(2) + ratio * (c(2) - a(2)), d(1) = b(1) + weight * (auxiliary(1) - b(1)), d(2) = b(2) + weight * (auxiliary(2) - b(2))}
+    u = u + 0 < u + v < 1
+    have rho R+ = 1 - u
+    rho = 1 - u < 1 - 0 = 1
+    v = (u + v) - u < 1 - u = rho
+    have t R+ = v / rho
+    t = v / rho < rho / rho = 1
+    t * rho = (v / rho) * rho = v
+    rho * t = t * rho = v
+    1 - rho = 1 - (1 - u) = u
+    have auxiliary cart(R, R) = ((1 - t) * a(1) + t * c(1), (1 - t) * a(2) + t * c(2))
+    auxiliary(1) = (1 - t) * a(1) + t * c(1) = a(1) + t * (c(1) - a(1))
+    auxiliary(2) = (1 - t) * a(2) + t * c(2) = a(2) + t * (c(2) - a(2))
+    rho * auxiliary(1) = rho * ((1 - t) * a(1) + t * c(1)) = (rho - rho * t) * a(1) + (rho * t) * c(1) = (rho - v) * a(1) + v * c(1)
+    rho * auxiliary(2) = rho * ((1 - t) * a(2) + t * c(2)) = (rho - rho * t) * a(2) + (rho * t) * c(2) = (rho - v) * a(2) + v * c(2)
+    d(1) = (1 - u - v) * a(1) + u * b(1) + v * c(1) = (rho - v) * a(1) + u * b(1) + v * c(1) = ((rho - v) * a(1) + v * c(1)) + u * b(1) = rho * auxiliary(1) + u * b(1) = rho * auxiliary(1) + (1 - rho) * b(1) = b(1) + rho * (auxiliary(1) - b(1))
+    d(2) = (1 - u - v) * a(2) + u * b(2) + v * c(2) = (rho - v) * a(2) + u * b(2) + v * c(2) = ((rho - v) * a(2) + v * c(2)) + u * b(2) = rho * auxiliary(2) + u * b(2) = rho * auxiliary(2) + (1 - rho) * b(2) = b(2) + rho * (auxiliary(2) - b(2))
+    witness exist middle cart(R, R), ratio, weight R+ st {ratio < 1, weight < 1, middle(1) = a(1) + ratio * (c(1) - a(1)), middle(2) = a(2) + ratio * (c(2) - a(2)), d(1) = b(1) + weight * (middle(1) - b(1)), d(2) = b(2) + weight * (middle(2) - b(2))} from auxiliary, t, rho
+
+thm side_intersection_triangles_nondegenerate:
+    ? forall a, b, c, auxiliary, d cart(R, R), t, r R+:
+        $geometry::main::is_triangle(a, b, c)
+        t < 1
+        r < 1
+        auxiliary(1) = a(1) + t * (c(1) - a(1))
+        auxiliary(2) = a(2) + t * (c(2) - a(2))
+        d(1) = b(1) + r * (auxiliary(1) - b(1))
+        d(2) = b(2) + r * (auxiliary(2) - b(2))
+        =>:
+            $geometry::main::is_triangle(a, b, auxiliary)
+            $geometry::main::is_triangle(c, auxiliary, d)
+    by def $geometry::main::is_triangle(a, b, c)
+    have delta R = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))
+    delta = geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0
+    auxiliary(1) = a(1) + t * (c(1) - a(1)) = (1 - t) * a(1) + t * c(1)
+    auxiliary(2) = a(2) + t * (c(2) - a(2)) = (1 - t) * a(2) + t * c(2)
+    release thm geometry::main::collinear_det_expand(a, b, a)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, a)) = (b(1) - a(1)) * (a(2) - a(2)) - (b(2) - a(2)) * (a(1) - a(1)) = 0
+    release thm affine_point_determinant_linearity(a, b, a, c, auxiliary, t)
+    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, auxiliary)) = (1 - t) * geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, a)) + t * geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = (1 - t) * 0 + t * geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = t * geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = t * delta
+    by contra:
+        ? geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, auxiliary)) != 0
+        geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, auxiliary)) = 0
+        t * delta = 0
+        delta = 0 / t = 0
+        impossible delta != 0
+    by def $geometry::main::is_triangle(a, b, auxiliary)
+    release thm cyclic_triangle_determinant(a, b, c)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(c, b), geometry::main::vec(c, a))
+    geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, a)) = -geometry::main::det(geometry::main::vec(c, a), geometry::main::vec(c, b)) = -geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -delta
+    release thm geometry::main::collinear_det_expand(c, b, c)
+    geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, c)) = (b(1) - c(1)) * (c(2) - c(2)) - (b(2) - c(2)) * (c(1) - c(1)) = 0
+    release thm affine_point_determinant_linearity(c, b, a, c, auxiliary, t)
+    geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, auxiliary)) = (1 - t) * geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, a)) + t * geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, c)) = (1 - t) * geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, a)) + t * 0 = (1 - t) * geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, a)) = (1 - t) * (-delta) = -((1 - t) * delta)
+    release thm geometry::main::det_antisymmetric(geometry::main::vec(c, auxiliary), geometry::main::vec(c, b))
+    geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, b)) = -geometry::main::det(geometry::main::vec(c, b), geometry::main::vec(c, auxiliary)) = -(-((1 - t) * delta)) = (1 - t) * delta
+    geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, auxiliary)) = geometry::main::vec(c, auxiliary)(1) * geometry::main::vec(c, auxiliary)(2) - geometry::main::vec(c, auxiliary)(2) * geometry::main::vec(c, auxiliary)(1) = 0
+    d(1) = b(1) + r * (auxiliary(1) - b(1)) = (1 - r) * b(1) + r * auxiliary(1)
+    d(2) = b(2) + r * (auxiliary(2) - b(2)) = (1 - r) * b(2) + r * auxiliary(2)
+    release thm affine_point_determinant_linearity(c, auxiliary, b, auxiliary, d, r)
+    geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, d)) = (1 - r) * geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, b)) + r * geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, auxiliary)) = (1 - r) * geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, b)) + r * 0 = (1 - r) * geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, b)) = (1 - r) * ((1 - t) * delta) = ((1 - r) * (1 - t)) * delta
+    1 - r > 0
+    1 - t > 0
+    (1 - r) * (1 - t) > 0
+    have factor R+ = (1 - r) * (1 - t)
+    geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, d)) = ((1 - r) * (1 - t)) * delta = factor * delta
+    by contra:
+        ? geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, d)) != 0
+        geometry::main::det(geometry::main::vec(c, auxiliary), geometry::main::vec(c, d)) = 0
+        factor * delta = 0
+        delta = 0 / factor = 0
+        impossible delta != 0
+    by def $geometry::main::is_triangle(c, auxiliary, d)
+
+
+# Three prescribed positive sides admit a genuine triangle exactly on the strict
+# triangle-inequality domain. The positive discriminant supplies an upper apex;
+# the distance laws certify both circles in Euclid I.22.
+release obj def geometry::main::circle
+
+thm strict_three_side_discriminant_positive:
+    ? forall r, s, t R+:
+        r + s > t
+        r + t > s
+        s + t > r
+        =>:
+            4 * r^2 * s^2 - (r^2 + s^2 - t^2)^2 > 0
+    r + s + t > 0
+    r + s - t > 0
+    r + t - s > 0
+    s + t - r > 0
+    have f1 R+ = r + s + t
+    have f2 R+ = r + s - t
+    have f3 R+ = r + t - s
+    have f4 R+ = s + t - r
+    f1 * f2 > 0
+    f3 * f4 > 0
+    (f1 * f2) * (f3 * f4) > 0
+    4 * r^2 * s^2 - (r^2 + s^2 - t^2)^2 = ((r + s + t) * (r + s - t)) * ((r + t - s) * (s + t - r)) = (f1 * f2) * (f3 * f4) > 0
+
+thm strict_three_side_height_square_positive:
+    ? forall r, s, t R+:
+        r + s > t
+        r + t > s
+        s + t > r
+        =>:
+            s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2 > 0
+    release thm strict_three_side_discriminant_positive(r, s, t)
+    r^2 > 0
+    4 * r^2 > 0
+    have den R+ = 4 * r^2
+    s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2 = (4 * r^2 * s^2 - (r^2 + s^2 - t^2)^2) / (4 * r^2) = (4 * r^2 * s^2 - (r^2 + s^2 - t^2)^2) / den > 0 / den = 0
+
+thm strict_three_side_height_square_nonnegative:
+    ? forall r, s, t R+:
+        r + s > t
+        r + t > s
+        s + t > r
+        =>:
+            0 <= s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2
+    release thm strict_three_side_height_square_positive(r, s, t)
+    0 <= s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2
+
+thm three_side_apex_coordinate_pair_member:
+    ? forall r, s, t R+:
+        r + s > t
+        r + t > s
+        s + t > r
+        =>:
+            ((r^2 + s^2 - t^2) / (2 * r), sqrt(s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2)) $in cart(R, R)
+    have x R = (r^2 + s^2 - t^2) / (2 * r)
+    have h R = sqrt(s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2)
+    (x, h) $in cart(R, R)
+    ((r^2 + s^2 - t^2) / (2 * r), sqrt(s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2)) = (x, h)
+    ((r^2 + s^2 - t^2) / (2 * r), sqrt(s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2)) $in cart(R, R)
+
+have fn three_side_apex(r, s, t R+: r + s > t, r + t > s, s + t > r) cart(R, R) = ((r^2 + s^2 - t^2) / (2 * r), sqrt(s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2))
+
+thm three_side_apex_metric_certificate:
+    ? forall r, s, t R+:
+        r + s > t
+        r + t > s
+        s + t > r
+        =>:
+            three_side_apex(r, s, t)(2) > 0
+            geometry::main::distance_sq((0, 0), three_side_apex(r, s, t)) = s^2
+            geometry::main::distance_sq((r, 0), three_side_apex(r, s, t)) = t^2
+            geometry::main::det(geometry::main::vec((0, 0), (r, 0)), geometry::main::vec((0, 0), three_side_apex(r, s, t))) > 0
+    release thm strict_three_side_height_square_positive(r, s, t)
+    have x R = (r^2 + s^2 - t^2) / (2 * r)
+    s^2 - x^2 = s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2 > 0
+    have height_sq R+ = s^2 - x^2
+    have h R+ = sqrt(height_sq)
+    h^2 = sqrt(height_sq)^2 = height_sq = s^2 - x^2
+    2 * r * x = (2 * r) * ((r^2 + s^2 - t^2) / (2 * r)) = r^2 + s^2 - t^2
+    have origin cart(R, R) = (0, 0)
+    have base cart(R, R) = (r, 0)
+    have apex cart(R, R) = three_side_apex(r, s, t)
+    origin(1) = 0
+    origin(2) = 0
+    base(1) = r
+    base(2) = 0
+    apex(1) = (r^2 + s^2 - t^2) / (2 * r) = x
+    apex(2) = sqrt(s^2 - ((r^2 + s^2 - t^2) / (2 * r))^2) = sqrt(s^2 - x^2) = sqrt(height_sq) = h
+    three_side_apex(r, s, t)(2) = apex(2) = h > 0
+    release thm geometry::main::distance_sq_coordinate_formula(origin, apex)
+    geometry::main::distance_sq(origin, apex) = (apex(1) - origin(1))^2 + (apex(2) - origin(2))^2 = (x - 0)^2 + (h - 0)^2 = x^2 + h^2 = x^2 + (s^2 - x^2) = s^2
+    geometry::main::distance_sq((0, 0), three_side_apex(r, s, t)) = geometry::main::distance_sq(origin, apex) = s^2
+    release thm geometry::main::distance_sq_coordinate_formula(base, apex)
+    geometry::main::distance_sq(base, apex) = (apex(1) - base(1))^2 + (apex(2) - base(2))^2 = (x - r)^2 + (h - 0)^2 = x^2 - 2 * r * x + r^2 + h^2 = x^2 - 2 * r * x + r^2 + (s^2 - x^2) = r^2 + s^2 - 2 * r * x = r^2 + s^2 - (r^2 + s^2 - t^2) = t^2
+    geometry::main::distance_sq((r, 0), three_side_apex(r, s, t)) = geometry::main::distance_sq(base, apex) = t^2
+    geometry::main::det(geometry::main::vec(origin, base), geometry::main::vec(origin, apex)) = (base(1) - origin(1)) * (apex(2) - origin(2)) - (base(2) - origin(2)) * (apex(1) - origin(1)) = (r - 0) * (h - 0) - (0 - 0) * (x - 0) = r * h > 0
+    geometry::main::det(geometry::main::vec((0, 0), (r, 0)), geometry::main::vec((0, 0), three_side_apex(r, s, t))) = geometry::main::det(geometry::main::vec(origin, base), geometry::main::vec(origin, apex)) > 0
+
+thm three_positive_sides_triangle_witness:
+    ? forall r, s, t R+:
+        r + s > t
+        r + t > s
+        s + t > r
+        =>:
+            exist a, b, c cart(R, R) st {$geometry::main::is_triangle(a, b, c), geometry::main::distance_sq(a, b) = r^2, geometry::main::distance_sq(a, c) = s^2, geometry::main::distance_sq(b, c) = t^2, c $in geometry::main::circle(a, s), c $in geometry::main::circle(b, t)}
+    have origin cart(R, R) = (0, 0)
+    have base cart(R, R) = (r, 0)
+    have apex cart(R, R) = three_side_apex(r, s, t)
+    origin(1) = 0
+    origin(2) = 0
+    base(1) = r
+    base(2) = 0
+    release thm three_side_apex_metric_certificate(r, s, t)
+    geometry::main::distance_sq(origin, apex) = geometry::main::distance_sq((0, 0), three_side_apex(r, s, t)) = s^2
+    geometry::main::distance_sq(base, apex) = geometry::main::distance_sq((r, 0), three_side_apex(r, s, t)) = t^2
+    geometry::main::det(geometry::main::vec(origin, base), geometry::main::vec(origin, apex)) = geometry::main::det(geometry::main::vec((0, 0), (r, 0)), geometry::main::vec((0, 0), three_side_apex(r, s, t))) > 0
+    geometry::main::det(geometry::main::vec(origin, base), geometry::main::vec(origin, apex)) != 0
+    by def $geometry::main::is_triangle(origin, base, apex)
+    release thm geometry::main::distance_sq_coordinate_formula(origin, base)
+    geometry::main::distance_sq(origin, base) = (base(1) - origin(1))^2 + (base(2) - origin(2))^2 = (r - 0)^2 + (0 - 0)^2 = r^2
+    geometry::main::distance_sq(origin, apex) = s^2 = s * s
+    geometry::main::distance_sq(base, apex) = t^2 = t * t
+    apex $in geometry::main::circle(origin, s)
+    apex $in geometry::main::circle(base, t)
+    witness exist a, b, c cart(R, R) st {$geometry::main::is_triangle(a, b, c), geometry::main::distance_sq(a, b) = r^2, geometry::main::distance_sq(a, c) = s^2, geometry::main::distance_sq(b, c) = t^2, c $in geometry::main::circle(a, s), c $in geometry::main::circle(b, t)} from origin, base, apex
+
+thm segment_length_square_is_squared_distance:
+    ? forall a, b cart(R, R):
+        a != b
+        =>:
+            segment_length(a, b)^2 = geometry::main::distance_sq(a, b)
+    segment_length(a, b) = sqrt(geometry::main::distance_sq(a, b))
+    release thm squared_distance_is_nonnegative(a, b)
+    sqrt(geometry::main::distance_sq(a, b))^2 = geometry::main::distance_sq(a, b)
+    segment_length(a, b)^2 = sqrt(geometry::main::distance_sq(a, b))^2 = geometry::main::distance_sq(a, b)
+
+
+# Equal normalized cosines identify undirected proper ray angles.
+# This is the reverse bridge to the existing geometry congruence relation.
+thm equal_cosines_imply_angle_relation:
+    ? forall p, q, r, a, b, c cart(R, R):
+        p != q
+        r != q
+        a != b
+        c != b
+        angles::angle_cosine(p, q, r) = angles::angle_cosine(a, b, c)
+        =>:
+            $geometry::main::are_angles_congruent(p, q, r, a, b, c)
+    release thm angles::angle_den_positive(p, q, r)
+    release thm angles::angle_den_positive(a, b, c)
+    release thm angles::angle_den_nonnegative(p, q, r)
+    release thm angles::angle_den_nonnegative(a, b, c)
+    have left R+ = sqrt(geometry::main::angle_cos_den(p, q, r))
+    have right R+ = sqrt(geometry::main::angle_cos_den(a, b, c))
+    left^2 = sqrt(geometry::main::angle_cos_den(p, q, r))^2 = geometry::main::angle_cos_den(p, q, r)
+    right^2 = sqrt(geometry::main::angle_cos_den(a, b, c))^2 = geometry::main::angle_cos_den(a, b, c)
+    have cosine R = angles::angle_cosine(p, q, r)
+    have n R = geometry::main::angle_cos_num(p, q, r)
+    have m R = geometry::main::angle_cos_num(a, b, c)
+    cosine = angles::angle_cosine(p, q, r) = n/left
+    cosine = angles::angle_cosine(a, b, c) = m/right
+    n = (n/left)*left = cosine*left
+    m = (m/right)*right = cosine*right
+    n^2*right^2 = (cosine*left)^2*right^2 = cosine^2*left^2*right^2 = (cosine*right)^2*left^2 = m^2*left^2
+    geometry::main::angle_cos_num(p, q, r)^2*geometry::main::angle_cos_den(a, b, c) = n^2*right^2 = m^2*left^2 = geometry::main::angle_cos_num(a, b, c)^2*geometry::main::angle_cos_den(p, q, r)
+    cosine^2 >= 0
+    left*right > 0
+    (cosine^2)*(left*right) >= 0
+    geometry::main::angle_cos_num(p, q, r)*geometry::main::angle_cos_num(a, b, c) = n*m = (cosine*left)*(cosine*right) = (cosine^2)*(left*right) >= 0
+    by def $geometry::main::are_angles_congruent(p, q, r, a, b, c)

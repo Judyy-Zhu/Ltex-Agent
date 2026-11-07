@@ -1,0 +1,23 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 19,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/19.txt"
+  },
+  "problem": "In any nondegenerate triangle a greater angle is subtended by the greater side.",
+  "proof_idea": {
+    "original": "If the opposite side were equal or smaller, the isosceles base-angle theorem or I.18 would contradict the greater angle.",
+    "analytic": "Same source dichotomy: equal squared sides give equal angle measures via verified isosceles dot/congruence interfaces; smaller side invokes I.18 with swapped vertices."
+  },
+  "litex_code": "# Book I.19: a greater triangle angle has the greater opposite side.\nthm proposition_19:\n    ? forall a, b, c cart(R, R):\n        a != b\n        a != c\n        b != c\n        $geometry::main::is_triangle(a, b, c)\n        ray_angle(a, b, c) > ray_angle(a, c, b)\n        =>:\n            geometry::main::distance_sq(a, c) > geometry::main::distance_sq(a, b)\n    by contra:\n        ? geometry::main::distance_sq(a, c) > geometry::main::distance_sq(a, b)\n        geometry::main::distance_sq(a, c) <= geometry::main::distance_sq(a, b)\n        by cases:\n            ? ray_angle(a, b, c) <= ray_angle(a, c, b)\n            case geometry::main::distance_sq(a, c) = geometry::main::distance_sq(a, b):\n                geometry::main::distance_sq(a, b) = geometry::main::distance_sq(a, c)\n                release thm geometry::main::distance_sq_symmetric(a, b)\n                release thm geometry::main::distance_sq_symmetric(a, c)\n                release thm geometry::main::distance_sq_symmetric(b, c)\n                geometry::main::distance_sq(b, a) = geometry::main::distance_sq(a, b) = geometry::main::distance_sq(a, c) = geometry::main::distance_sq(c, a)\n                release thm geometry::main::isosceles_base_dot(a, b, c)\n                release thm accepted::angle_congruence_from_equal_sides_and_dot(b, a, c, c, a, b)\n                by thm angle_relation_implies_equal_measure(a, b, c, a, c, b) => ray_angle(a, b, c) = ray_angle(a, c, b)\n                ray_angle(a, b, c) <= ray_angle(a, c, b)\n            case geometry::main::distance_sq(a, c) < geometry::main::distance_sq(a, b):\n                by def $geometry::main::is_triangle(a, b, c)\n                release thm geometry::main::det_antisymmetric(geometry::main::vec(a, c), geometry::main::vec(a, b))\n                by contra:\n                    ? geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) != 0\n                    geometry::main::det(geometry::main::vec(a, c), geometry::main::vec(a, b)) = 0\n                    -geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = 0\n                    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) = -(-geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c))) = -0 = 0\n                    impossible geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, c)) != 0\n                by def $geometry::main::is_triangle(a, c, b)\n                release thm proposition_18(a, c, b)\n                ray_angle(a, b, c) < ray_angle(a, c, b)\n                ray_angle(a, b, c) <= ray_angle(a, c, b)\n        impossible ray_angle(a, b, c) > ray_angle(a, c, b)\n",
+  "comments": {
+    "status": "canonical strict first-twenty file gate passed",
+    "trust_added": 0,
+    "side_quantity": "Positive segment-length order and squared-distance order are equivalent."
+  },
+  "canonical_source": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+  "file_gate_receipt": "scripts/Euclid_Elements/.draft/first-twenty-checkpoint/receipt.json"
+}

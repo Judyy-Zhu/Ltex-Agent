@@ -1,0 +1,20 @@
+{
+  "change": "Proof-only explicit right-angle instance and direct determinant-square equality/definedness facts. Theorem signatures and geometric meaning unchanged.",
+  "canonical": "scripts/Euclid_Elements/textbook/rectangle-interface.lit",
+  "before_sha256": "75f9cb9c5eb080d3f555308be33542cd8518c4a2b4a5934daf7f65a258db5af8",
+  "after_sha256": "a5d6b53cf8002c035a0e61b0f99ea356a7b2c4a21392e816215764d5e340d5af",
+  "backup": "scripts/Euclid_Elements/.draft/resume-2026-10-17/rectangle-before-integration-repair.lit",
+  "strict_session": "book02-integration-repair-session",
+  "accepted_requests": [
+    "0004",
+    "0005"
+  ],
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "independent_canonical_gate": {
+    "status": "passed",
+    "receipt": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book02-canonical-prefix-integration-v2/receipt.json",
+    "strict": true,
+    "statement_count": 114,
+    "hashes_stable": true
+  }
+}

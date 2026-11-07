@@ -1,0 +1,90 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    92,
+    93
+  ],
+  "source_goal": "Similar circular segments on equal chords are congruent as filled plane regions.",
+  "interface_plan": "Construct a Euclidean plane motion with optional reflection, unit rotation and translation, taking endpoints and selected chord side to the target endpoints and side. Verify distance preservation and two-sided inverse before set transport.",
+  "forward_spine": [
+    "Equal nonzero chord lengths provide unit rotation coefficients; choose orientation from the product of the two side signs.",
+    "The plane motion preserves distances, circles, ray angles and selected-side incidence; inverse gives onto region transport.",
+    "The transported source segment and target segment have the same chord and side and accept equal angles. Apply III23 to identify their regions.",
+    "Conclude the original regions are congruent via the explicit invertible distance-preserving map, not merely equal in scalar area."
+  ],
+  "existing_interfaces": [
+    "geometry::main::rotation_preserves_distance",
+    "geometry::main::distance_sq_translate",
+    "geometry::main::rotation_preserves_dot",
+    "geometry::main::rotation_preserves_det"
+  ],
+  "tracer": "With translation(3,4), co0,si1, point(1,2) maps to(1,5) for orientation1 and(5,5) for orientation-1; pairwise distances and inverse must verify.",
+  "status": "Independent source strict gate PASS65 with native exit0, no session_error and stable hashes; proof audit and canonical promotion pending.",
+  "trust_added": 0,
+  "counted": false,
+  "accepted": [
+    "plane-rigid-motion-definition1.lit",
+    "plane-rigid-motion-distance2.lit",
+    "plane-rigid-motion-inverse-definition1.lit",
+    "plane-rigid-motion-inverse-laws2.lit"
+  ],
+  "pending": null,
+  "failures": [
+    "proof_journals/books02-03/plane-rigid-motion-distance1-rejection.json",
+    "proof_journals/books02-03/plane-rigid-motion-inverse-laws1-rejection.json"
+  ],
+  "scalar_cold_gate": {
+    "receipt": ".draft/equal-chord-motion-scalar-checkpoint/receipt.json",
+    "scope_audit": ".draft/equal-chord-motion-scalar-checkpoint/scope-audit.json",
+    "success": true,
+    "statement_count": 1
+  },
+  "prepared_not_verified": [
+    "plane-rigid-motion-determinant1.lit",
+    "plane-rigid-motion-dot1.lit",
+    "plane-rigid-motion-injective1.lit",
+    "equal-chords-plane-rigid-motion1.lit"
+  ],
+  "accepted_in_recovery_session": [
+    "plane-rigid-motion-use2.lit",
+    "plane-rigid-motion-determinant3.lit",
+    "plane-rigid-motion-dot2.lit",
+    "plane-rigid-motion-injective1.lit",
+    "plane-rigid-motion-circle1.lit",
+    "plane-rigid-motion-regions-definition1.lit",
+    "plane-rigid-motion-regions-onto1.lit"
+  ],
+  "motion_cold_gate": {
+    "session": 79744,
+    "directory": ".draft/plane-rigid-motion-full-checkpoint",
+    "status": "PASS",
+    "statement_count": 19,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "source_draft": ".draft/circle-circle-contact-authoring/book03-proposition24-2.lit",
+  "accepted_region_transport": {
+    "source": ".draft/circle-motion-authoring/plane-rigid-motion-segment4.lit",
+    "sha256": "61e2b7cfd67d7c7cccaa3e4fc2bd3f5a240eb956de6cb45f03c0444975f1f684",
+    "result": "success and following prompt consumed",
+    "cold_gate": "PASS in independent source gate65"
+  },
+  "source_session_acceptance": {
+    "source": ".draft/circle-motion-authoring/book03-proposition24-2.lit",
+    "sha256": "6a578ad5313afe2ec79ecbb56533816379de36b0cf5abf497dc275cf1ca082e9",
+    "result": "success and following prompt consumed"
+  },
+  "consumer_session_acceptance": {
+    "source": ".draft/circle-motion-authoring/book03-proposition24-semicircle-use1.lit",
+    "result": "success and following prompt consumed"
+  },
+  "independent_source_gate": {
+    "session": 42805,
+    "directory": ".draft/book03-proposition24-checkpoint",
+    "status": "PASS",
+    "statement_count": 65,
+    "native_exit_code": 0,
+    "stable_hashes": true,
+    "receipt": ".draft/book03-proposition24-checkpoint/receipt.json"
+  }
+}

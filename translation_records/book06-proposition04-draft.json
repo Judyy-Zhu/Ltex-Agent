@@ -1,0 +1,23 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 4,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf"
+  },
+  "status": "strict_checked_draft",
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition04-checkpoint",
+  "statement_count": 24,
+  "hashes_stable": true,
+  "accepted_statements": [
+    9164,
+    9167
+  ],
+  "positive_scaled_construction_consumer": 9169,
+  "negative_zero_scale": 9170,
+  "negative_obligation": "0 $in R+",
+  "mathematics": "AAA-only similarity of nondegenerate triangles implies three corresponding actual positive side-length ratios and their integer-equimultiple comparisons. Squared distances are intermediate, not the final ratio.",
+  "domain_note": "Pairwise distinct vertices are explicit in length-ratio signatures and independently derived from proper triangles in the consumer.",
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical module integration."
+}

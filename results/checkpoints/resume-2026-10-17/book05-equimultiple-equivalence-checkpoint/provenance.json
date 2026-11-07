@@ -1,0 +1,15 @@
+{
+  "sources": [
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-numerical/checkpoint/main.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/positive-rational-separation-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/unequal-ratios-equimultiple-separation-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/real-equimultiple-comparisons-definition.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-comparisons-imply-cross-product-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/cross-product-implies-equimultiple-comparisons-candidate1.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-ratio-quotient-consumer.lit",
+    "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/equimultiple-irrational-positive.lit"
+  ],
+  "adaptation": "Only forward:: namespace removed when co-locating established forward lemmas. No mathematical premises or conclusions changed.",
+  "source_item": "Book V Definition5 numerical equivalence only",
+  "canonical_increment": 0
+}

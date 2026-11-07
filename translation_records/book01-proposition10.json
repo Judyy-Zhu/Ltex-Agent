@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 10,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/10.txt"
+  },
+  "problem": "Given a finite nonzero segment AB, construct a distinct interior point M with AM = MB.",
+  "proof_idea": {
+    "original": "The source constructs an equilateral triangle on AB and bisects its apex angle using I.9, then uses congruence.",
+    "analytic": "Use the coordinate average M=(A+B)/2. Verify the affine segment parameter 1/2, equal squared distances, and positivity to exclude endpoint coincidence."
+  },
+  "litex_code": "thm proposition_10:\n    ? forall a, b cart(R, R):\n        a != b\n        =>:\n            exist m cart(R, R) st {a != m, m != b, $geometry::main::is_on_segment(m, a, b), $geometry::main::are_segments_congruent(a, m, m, b)}\n    have middle cart(R, R) = ((a(1) + b(1)) / 2, (a(2) + b(2)) / 2)\n    middle(1) = (a(1) + b(1)) / 2\n    middle(2) = (a(2) + b(2)) / 2\n    by def $geometry::main::is_midpoint(middle, a, b)\n    middle(1) = (a(1) + b(1)) / 2 = a(1) / 2 + b(1) / 2 = (1 / 2) * a(1) + (1 / 2) * b(1) = (1 - 1 / 2) * a(1) + (1 / 2) * b(1)\n    middle(2) = (a(2) + b(2)) / 2 = a(2) / 2 + b(2) / 2 = (1 / 2) * a(2) + (1 / 2) * b(2) = (1 - 1 / 2) * a(2) + (1 / 2) * b(2)\n    witness exist t R st {0 <= t, t <= 1, middle(1) = (1 - t) * a(1) + t * b(1), middle(2) = (1 - t) * a(2) + t * b(2)} from 1 / 2\n    by def $geometry::main::is_on_segment(middle, a, b)\n    release thm geometry::main::midpoint_equidistant(a, b, middle)\n    release thm geometry::main::midpoint_half_distance(a, b, middle)\n    release thm geometry::main::distance_sq_symmetric(b, middle)\n    geometry::main::distance_sq(a, middle) = geometry::main::distance_sq(b, middle) = geometry::main::distance_sq(middle, b)\n    release thm geometry::main::distance_sq_positive_of_ne(a, b)\n    geometry::main::distance_sq(a, middle) = geometry::main::distance_sq(a, b) / 4 > 0\n    geometry::main::distance_sq(middle, b) > 0\n    by contra:\n        ? a != middle\n        a = middle\n        middle(1) = a(1)\n        middle(2) = a(2)\n        release thm geometry::main::distance_sq_coordinate_formula(a, middle)\n        middle(1) - a(1) = 0\n        middle(2) - a(2) = 0\n        geometry::main::distance_sq(a, middle) = (middle(1) - a(1))^2 + (middle(2) - a(2))^2 = 0^2 + 0^2 = 0\n        impossible geometry::main::distance_sq(a, middle) > 0\n    by contra:\n        ? middle != b\n        middle = b\n        b(1) = middle(1)\n        b(2) = middle(2)\n        release thm geometry::main::distance_sq_coordinate_formula(middle, b)\n        b(1) - middle(1) = 0\n        b(2) - middle(2) = 0\n        geometry::main::distance_sq(middle, b) = (b(1) - middle(1))^2 + (b(2) - middle(2))^2 = 0^2 + 0^2 = 0\n        impossible geometry::main::distance_sq(middle, b) > 0\n    by def $geometry::main::are_segments_congruent(a, middle, middle, b)\n    witness exist m cart(R, R) st {a != m, m != b, $geometry::main::is_on_segment(m, a, b), $geometry::main::are_segments_congruent(a, m, m, b)} from middle\n",
+  "comments": {
+    "status": "checkable; canonical first-ten strict full-original-library gate passed",
+    "trust_added": 0,
+    "canonical_proposition_count_effect": 0,
+    "draft_path": ".draft/experiment/I10-candidate1.lit",
+    "source_route_difference": "A direct analytic witness is verified as an intended proof route; the original compass/straightedge operational sequence is not encoded by this draft.",
+    "canonical_path": "../textbook/book01-constructions.lit",
+    "canonical_receipt": "../.draft/first-ten-checkpoint/receipt.json"
+  }
+}

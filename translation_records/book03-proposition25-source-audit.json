@@ -1,0 +1,86 @@
+{
+  "reviewed_at": "2026-10-13T05:03:03.134801+00:00",
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "pages_zero_based": [
+    93,
+    94
+  ],
+  "source_label_mapping": {
+    "A": "a",
+    "C": "b",
+    "B": "p",
+    "D": "m",
+    "E": "recovered circle center"
+  },
+  "requirements": [
+    {
+      "requirement": "complete original circle from given arc/chord",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition25-construction3.lit",
+      "sha256": "61e31ff6407d0350dd74cf601fe00352cebc427114367e765601af584080cc9a",
+      "evidence": "PASS21 construction gate; center computed from three boundary points; supporting circle existentially hidden in input predicate"
+    },
+    {
+      "requirement": "identify original center and radius",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition25-recovery2.lit",
+      "sha256": "c5d53b903973c4c9099566e2d9f5ae809a054cace2518afbfbb109d0f7f27b20",
+      "evidence": "PASS21 construction gate"
+    },
+    {
+      "requirement": "construct midpoint and strict arc point; prove nondegenerate triangle",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition25-auxiliary-triangle2.lit",
+      "sha256": "391717d3d5a5779976066342c79a4d890e22209016de49c6e62ffc907fbe8c7b",
+      "evidence": "PASS14 auxiliary gate"
+    },
+    {
+      "requirement": "larger source angle: center outside and selected arc angle in (0,pi)",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition25-minor-segment1.lit",
+      "sha256": "97a27a95a543210b60eaef9fc0d5d4bb48ae46d4d2322e013930ca8db562604c",
+      "evidence": "Session accepted; joint gate88025 pending"
+    },
+    {
+      "requirement": "equal source angles: center at midpoint and selected arc angle pi",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition25-semicircle-segment1.lit",
+      "sha256": "06706978f9420efe90264bcf963656f54862851ce505a9cdf264451c3c24f1bd",
+      "evidence": "Session accepted; joint gate88025 pending"
+    },
+    {
+      "requirement": "smaller source angle: center in segment and selected arc angle in (pi,2pi)",
+      "source": "scripts/Euclid_Elements/.draft/circle-motion-authoring/book03-proposition25-major-segment1.lit",
+      "sha256": "672fbe3ec04f6d15875bd7cf7d92e3b76d86a6af50e08e5fffce34d85fc63ddf",
+      "evidence": "Session accepted; joint gate88025 pending"
+    }
+  ],
+  "proof_route_difference": "Existing analytic circumcenter formula and uniqueness replace Euclid angle-copy construction; this is an existential formal construction, not a claim of an extracted ruler-and-compass program. The auxiliary point is chosen via the hidden supporting-circle witness and verified to belong to the supplied arc.",
+  "strict_domains": "Proper chord, positive radius and side signs retained. Auxiliary theorem proves triangle vertex inequalities. circle_boundary_noncentral1 and source_configuration1 now Session-accepted and explicitly derive both central-angle guards from positive-radius incidence; independent verification pending.",
+  "center_line_clause": "source_configuration1 now exports is_affine_combination(o,m,p), with m != p, from the accepted height formula. Session success; independent verification pending.",
+  "source_semantics_review": "Core goal and all three angle-case directions match source; final acceptance pending exported linkage and joint receipts.",
+  "proof_liveness_review": {
+    "independent_namespace": "Joint checkpoint imports geometry and exports only angle libraries before its own main; no imported III25 statements. Identical declaration deduplication recorded in assembly-manifest.json.",
+    "remaining": [
+      "Audit all final exports and dependencies, including circle endpoint distinctness and center-line clause.",
+      "Confirm joint gate88025 and arc gate84538 native results and current input hashes.",
+      "Independently verify rotated semicircle and stronger concrete geometry consumer accepted after joint launch.",
+      "Final source/proof audit and canonical integration; do not count from Session success."
+    ],
+    "active_probe_manifest": ".draft/book03-proposition25-liveness/manifest.json",
+    "current_status": "Warm whole-chain probes show minor/major explicit arc-result calls may be bypassable after center-location proof. Empty minor proof and omission of location fail. Independent exact-prefix session46253 loading; no shortening accepted into production or frozen gates yet."
+  },
+  "trust_added": 0,
+  "counted": false,
+  "perpendicular_clause": "equidistant-midpoint-perpendicular2 and proposition25-perpendicular-configuration1 Session-accepted; latter explicitly exports midpoint, perpendicular, center collinearity, triangle guards and central-angle guards. New source gate74689 pending.",
+  "source_gate": {
+    "session": 74689,
+    "expected_statements": 52,
+    "status": "PASS",
+    "statement_count": 52,
+    "native_exit_code": 0,
+    "stable_hashes": true
+  },
+  "canonical_candidate": {
+    "path": ".draft/book03-through25-canonical-candidate/book03-circles.lit",
+    "status": "Native gate FAIL177; only III24 semicircle consumer missing-helper lookup, 176 statements PASS; stable hashes. Candidate preserved; repair in separate through26 candidate.",
+    "namespace_reuse": "Canonical circle_center, book01 and geometry_lemmas dependencies replace copied replay declarations; declaration collisions checked for identical source",
+    "promotion": "not performed",
+    "receipt": ".draft/book03-through25-canonical-candidate/receipt.json"
+  }
+}

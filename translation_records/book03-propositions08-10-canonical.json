@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-12T07:28:35.319756+00:00",
+  "source_numbers": [
+    8,
+    9,
+    10
+  ],
+  "receipt": ".draft/book03-first-ten-checkpoint/receipt.json",
+  "canonical": "textbook/book03-circles.lit",
+  "sha256_before": "c5a66899f84b210f075659f00d449252f4e72916cfc28c418e5a58547b95abea",
+  "sha256_after": "acbde7100836c69bcab882064d3f02407a45e7ad088a4e646d2a4711f871e2e6",
+  "copy_matches_checked_candidate": true,
+  "numbered_count_after": 44,
+  "trust_added": 0,
+  "geometry_changed": false,
+  "source_clause_audit": {
+    "base": ".draft/book03-first-seven-checkpoint/book03-circles.lit",
+    "accepted_new_sources": [
+      "circle-ray-other-definition1.lit",
+      "circle-ray-other-certificate2.lit",
+      "circle-ray-branch-order2.lit",
+      "circle-ray-far-branch-order1.lit",
+      "circle-ray-tangent-fixed1.lit",
+      "circle-ray-parameter-unique1.lit",
+      "circle-ray-other-point-unique1.lit",
+      "circle-near-branch-characterization3.lit",
+      "circle-far-branch-characterization3.lit",
+      "external-near-on-center-segment2.lit",
+      "../circle-angle-authoring/external-far-angle-order3.lit",
+      "../circle-angle-authoring/external-near-angle-order3.lit",
+      "book03-proposition09-1.lit",
+      "book03-proposition10-compact2.lit"
+    ],
+    "renames": {
+      "circle_near_branch_orders_every_ray_intersection": "proposition_08_near_branch",
+      "circle_far_branch_orders_every_ray_intersection": "proposition_08_far_branch",
+      "external_radial_near_point_on_center_segment": "proposition_08_near_on_center_segment",
+      "external_far_circle_angular_distance_order": "proposition_08_far_angular_order",
+      "external_near_circle_angular_distance_order": "proposition_08_near_angular_order",
+      "circle_equal_distance_partner_is_unique": "proposition_07_equal_partner_unique",
+      "book03_proposition09": "proposition_09",
+      "book03_proposition10_compact": "proposition_10"
+    },
+    "III8_source_clauses": {
+      "near_far_meaning": [
+        "proposition_08_near_branch",
+        "proposition_08_far_branch",
+        "circle_ray_other_point_is_unique"
+      ],
+      "greatest_far": [
+        "proposition_07_maximum",
+        "proposition_07_greatest_passes_center"
+      ],
+      "least_near": [
+        "proposition_07_minimum",
+        "proposition_08_near_on_center_segment"
+      ],
+      "far_angle_order": "proposition_08_far_angular_order",
+      "near_angle_order": "proposition_08_near_angular_order",
+      "equal_pair": [
+        "proposition_07_equal_partner",
+        "proposition_07_equal_partner_unique"
+      ]
+    },
+    "III9_source_difference": "Analytic equal-partner proof is stronger: no pre-assumed interiority required",
+    "III10_source_domain": "Distinct circumference sets, two given distinct intersections and any third common point; no transversal assumption",
+    "status": "running strict gate50633; not yet canonical or counted",
+    "next": "Inspect receipt strictly. On PASS source-audit and copy book03-circles.lit to canonical, preserving checked byte identity; then count44. Do not copy main.lit consumers into canonical.",
+    "actual_uses": [
+      ".draft/books02-03/book03-proposition09-use1.lit",
+      ".draft/books02-03/book03-proposition10-use2.lit",
+      ".draft/circle-angle-authoring/external-angle-tangent-use2.lit"
+    ],
+    "tested_target": "main.lit",
+    "canonical_candidate": "book03-circles.lit",
+    "prefix_check": "main.lit begins byte-for-byte with book03-circles.lit; strict gate checks the full prefix followed by concrete consumers"
+  }
+}

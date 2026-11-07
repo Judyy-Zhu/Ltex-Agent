@@ -1,0 +1,336 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+release obj def geometry::main::circle
+
+sketch:
+    have a cart(R,R) = (1,2)
+    have b cart(R,R) = (5,2)
+    have c cart(R,R) = (1,5)
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (5-1)*(5-2)-(2-2)*(1-1) = 12
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm working::book04_proposition_5(a,b,c)
+    obtain o,radius from exist o cart(R,R), radius R+ st {a $in geometry::main::circle(o,radius), b $in geometry::main::circle(o,radius), c $in geometry::main::circle(o,radius)}
+    radius > 0
+    a $in geometry::main::circle(o,radius)
+    b $in geometry::main::circle(o,radius)
+    c $in geometry::main::circle(o,radius)
+
+thm dot_coordinate_formula:
+    ? forall u, v cart(R, R):
+        geometry::main::dot(u, v) = u(1) * v(1) + u(2) * v(2)
+
+thm similar_triangles_ratio:
+    ? forall p, q, r, u, v, w cart(R, R), k R:
+        u(1) - v(1) = k * (p(1) - q(1))
+        u(2) - v(2) = k * (p(2) - q(2))
+        w(1) - v(1) = k * (r(1) - q(1))
+        w(2) - v(2) = k * (r(2) - q(2))
+        =>:
+            geometry::main::distance_sq(u, w) = k^2 * geometry::main::distance_sq(p, r)
+    release thm geometry::main::distance_sq_coordinate_formula(u, w)
+    release thm geometry::main::distance_sq_coordinate_formula(p, r)
+    w(1) - u(1) = (w(1) - v(1)) - (u(1) - v(1))
+    (w(1) - v(1)) - (u(1) - v(1)) = k * (r(1) - q(1)) - k * (p(1) - q(1))
+    k * (r(1) - q(1)) - k * (p(1) - q(1)) = k * (r(1) - p(1))
+    w(1) - u(1) = k * (r(1) - p(1))
+    w(2) - u(2) = (w(2) - v(2)) - (u(2) - v(2))
+    (w(2) - v(2)) - (u(2) - v(2)) = k * (r(2) - q(2)) - k * (p(2) - q(2))
+    k * (r(2) - q(2)) - k * (p(2) - q(2)) = k * (r(2) - p(2))
+    w(2) - u(2) = k * (r(2) - p(2))
+    (w(1) - u(1))^2 = (k * (r(1) - p(1)))^2 = k^2 * (r(1) - p(1))^2
+    (w(2) - u(2))^2 = (k * (r(2) - p(2)))^2 = k^2 * (r(2) - p(2))^2
+    (w(1) - u(1))^2 + (w(2) - u(2))^2 = k^2 * (r(1) - p(1))^2 + k^2 * (r(2) - p(2))^2
+    k^2 * (r(1) - p(1))^2 + k^2 * (r(2) - p(2))^2 = k^2 * ((r(1) - p(1))^2 + (r(2) - p(2))^2)
+    geometry::main::distance_sq(u, w) = (w(1) - u(1))^2 + (w(2) - u(2))^2 = k^2 * ((r(1) - p(1))^2 + (r(2) - p(2))^2) = k^2 * geometry::main::distance_sq(p, r)
+
+thm similar_triangles_dot:
+    ? forall p, q, r, u, v, w cart(R, R), k R:
+        u(1) - v(1) = k * (p(1) - q(1))
+        u(2) - v(2) = k * (p(2) - q(2))
+        w(1) - v(1) = k * (r(1) - q(1))
+        w(2) - v(2) = k * (r(2) - q(2))
+        =>:
+            (u(1) - v(1)) * (w(1) - v(1)) + (u(2) - v(2)) * (w(2) - v(2)) = k^2 * ((p(1) - q(1)) * (r(1) - q(1)) + (p(2) - q(2)) * (r(2) - q(2)))
+    release thm geometry::main::vec_coordinate_formula(v, u)
+    release thm geometry::main::vec_coordinate_formula(v, w)
+    release thm geometry::main::vec_coordinate_formula(q, p)
+    release thm geometry::main::vec_coordinate_formula(q, r)
+    release thm dot_coordinate_formula(geometry::main::vec(v, u), geometry::main::vec(v, w))
+    release thm dot_coordinate_formula(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    (u(1) - v(1)) * (w(1) - v(1)) = (k * (p(1) - q(1))) * (k * (r(1) - q(1)))
+    (k * (p(1) - q(1))) * (k * (r(1) - q(1))) = k^2 * ((p(1) - q(1)) * (r(1) - q(1)))
+    (u(1) - v(1)) * (w(1) - v(1)) = k^2 * ((p(1) - q(1)) * (r(1) - q(1)))
+    (u(2) - v(2)) * (w(2) - v(2)) = (k * (p(2) - q(2))) * (k * (r(2) - q(2)))
+    (k * (p(2) - q(2))) * (k * (r(2) - q(2))) = k^2 * ((p(2) - q(2)) * (r(2) - q(2)))
+    (u(2) - v(2)) * (w(2) - v(2)) = k^2 * ((p(2) - q(2)) * (r(2) - q(2)))
+    (u(1) - v(1)) * (w(1) - v(1)) + (u(2) - v(2)) * (w(2) - v(2)) = k^2 * ((p(1) - q(1)) * (r(1) - q(1))) + k^2 * ((p(2) - q(2)) * (r(2) - q(2)))
+    k^2 * ((p(1) - q(1)) * (r(1) - q(1))) + k^2 * ((p(2) - q(2)) * (r(2) - q(2))) = k^2 * ((p(1) - q(1)) * (r(1) - q(1)) + (p(2) - q(2)) * (r(2) - q(2)))
+    geometry::main::dot(geometry::main::vec(v, u), geometry::main::vec(v, w)) = (u(1) - v(1)) * (w(1) - v(1)) + (u(2) - v(2)) * (w(2) - v(2))
+    (u(1) - v(1)) * (w(1) - v(1)) + (u(2) - v(2)) * (w(2) - v(2)) = k^2 * ((p(1) - q(1)) * (r(1) - q(1)) + (p(2) - q(2)) * (r(2) - q(2)))
+    geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r)) = (p(1) - q(1)) * (r(1) - q(1)) + (p(2) - q(2)) * (r(2) - q(2))
+    k^2 * ((p(1) - q(1)) * (r(1) - q(1)) + (p(2) - q(2)) * (r(2) - q(2))) = k^2 * geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    geometry::main::dot(geometry::main::vec(v, u), geometry::main::vec(v, w)) = k^2 * geometry::main::dot(geometry::main::vec(q, p), geometry::main::vec(q, r))
+
+thm similar_triangles_det:
+    ? forall p, q, r, u, v, w cart(R, R), k R:
+        u(1) - v(1) = k * (p(1) - q(1))
+        u(2) - v(2) = k * (p(2) - q(2))
+        w(1) - v(1) = k * (r(1) - q(1))
+        w(2) - v(2) = k * (r(2) - q(2))
+        =>:
+            (u(1) - v(1)) * (w(2) - v(2)) - (u(2) - v(2)) * (w(1) - v(1)) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1)))
+    release thm geometry::main::vec_coordinate_formula(v, u)
+    release thm geometry::main::vec_coordinate_formula(v, w)
+    release thm geometry::main::vec_coordinate_formula(q, p)
+    release thm geometry::main::vec_coordinate_formula(q, r)
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(v, u), geometry::main::vec(v, w))
+    release thm geometry::main::det_coordinate_formula(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    (u(1) - v(1)) * (w(2) - v(2)) = (k * (p(1) - q(1))) * (k * (r(2) - q(2)))
+    (k * (p(1) - q(1))) * (k * (r(2) - q(2))) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)))
+    (u(1) - v(1)) * (w(2) - v(2)) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)))
+    (u(2) - v(2)) * (w(1) - v(1)) = (k * (p(2) - q(2))) * (k * (r(1) - q(1)))
+    (k * (p(2) - q(2))) * (k * (r(1) - q(1))) = k^2 * ((p(2) - q(2)) * (r(1) - q(1)))
+    (u(2) - v(2)) * (w(1) - v(1)) = k^2 * ((p(2) - q(2)) * (r(1) - q(1)))
+    (u(1) - v(1)) * (w(2) - v(2)) - (u(2) - v(2)) * (w(1) - v(1)) = k^2 * ((p(1) - q(1)) * (r(2) - q(2))) - k^2 * ((p(2) - q(2)) * (r(1) - q(1)))
+    k^2 * ((p(1) - q(1)) * (r(2) - q(2))) - k^2 * ((p(2) - q(2)) * (r(1) - q(1))) = k^2 * ((p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1)))
+    geometry::main::det(geometry::main::vec(v, u), geometry::main::vec(v, w)) = (u(1) - v(1)) * (w(2) - v(2)) - (u(2) - v(2)) * (w(1) - v(1))
+    geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r)) = (p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1))
+    k^2 * ((p(1) - q(1)) * (r(2) - q(2)) - (p(2) - q(2)) * (r(1) - q(1))) = k^2 * geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))
+    geometry::main::det(geometry::main::vec(v, u), geometry::main::vec(v, w)) = k^2 * geometry::main::det(geometry::main::vec(q, p), geometry::main::vec(q, r))
+
+thm uniform_scale_preserves_angle:
+    ? forall p,q,r,u,v,w cart(R,R), k R+:
+        p != q
+        r != q
+        u != v
+        w != v
+        u(1)-v(1) = k*(p(1)-q(1))
+        u(2)-v(2) = k*(p(2)-q(2))
+        w(1)-v(1) = k*(r(1)-q(1))
+        w(2)-v(2) = k*(r(2)-q(2))
+        =>:
+            $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+    release thm similar_triangles_ratio(p,q,q,u,v,v,k)
+    release thm similar_triangles_ratio(r,q,q,w,v,v,k)
+    release thm geometry::main::distance_sq_symmetric(p,q)
+    release thm geometry::main::distance_sq_symmetric(u,v)
+    release thm geometry::main::distance_sq_symmetric(r,q)
+    release thm geometry::main::distance_sq_symmetric(w,v)
+    geometry::main::distance_sq(v,u) = geometry::main::distance_sq(u,v) = k^2*geometry::main::distance_sq(p,q) = k^2*geometry::main::distance_sq(q,p)
+    geometry::main::distance_sq(v,w) = geometry::main::distance_sq(w,v) = k^2*geometry::main::distance_sq(r,q) = k^2*geometry::main::distance_sq(q,r)
+    release thm similar_triangles_dot(p,q,r,u,v,w,k)
+    have n R = geometry::main::angle_cos_num(p,q,r)
+    release thm angles::angle_den_positive(p,q,r)
+    have d R+ = geometry::main::angle_cos_den(p,q,r)
+    geometry::main::angle_cos_num(p,q,r) = geometry::main::dot(geometry::main::vec(q,p),geometry::main::vec(q,r)) = (p(1)-q(1))*(r(1)-q(1))+(p(2)-q(2))*(r(2)-q(2))
+    geometry::main::angle_cos_num(u,v,w) = geometry::main::dot(geometry::main::vec(v,u),geometry::main::vec(v,w)) = (u(1)-v(1))*(w(1)-v(1))+(u(2)-v(2))*(w(2)-v(2)) = k^2*((p(1)-q(1))*(r(1)-q(1))+(p(2)-q(2))*(r(2)-q(2))) = k^2*n
+    d = geometry::main::angle_cos_den(p,q,r) = geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r)
+    geometry::main::angle_cos_den(u,v,w) = geometry::main::distance_sq(v,u)*geometry::main::distance_sq(v,w) = (k^2*geometry::main::distance_sq(q,p))*(k^2*geometry::main::distance_sq(q,r)) = k^4*(geometry::main::distance_sq(q,p)*geometry::main::distance_sq(q,r)) = k^4*d
+    release thm angles::angle_den_positive(p,q,r)
+    release thm angles::angle_den_positive(u,v,w)
+    geometry::main::angle_cos_num(p,q,r)^2*geometry::main::angle_cos_den(u,v,w) = n^2*(k^4*d) = (k^2*n)^2*d = geometry::main::angle_cos_num(u,v,w)^2*geometry::main::angle_cos_den(p,q,r)
+    n^2 >= 0
+    geometry::main::angle_cos_num(p,q,r)*geometry::main::angle_cos_num(u,v,w) = n*(k^2*n) = k^2*n^2 >= 0
+    by def $geometry::main::are_angles_congruent(p,q,r,u,v,w)
+
+# A positive similarity sends a circumference point to the prescribed circle.
+thm rescale_circle_point:
+    ? forall source,target,p,image cart(R,R), old_radius,new_radius R+:
+        p $in geometry::main::circle(source,old_radius)
+        image(1) = target(1)+(new_radius/old_radius)*(p(1)-source(1))
+        image(2) = target(2)+(new_radius/old_radius)*(p(2)-source(2))
+        =>:
+            image $in geometry::main::circle(target,new_radius)
+    geometry::main::circle(source,old_radius) = {q cart(R,R): geometry::main::distance_sq(source,q) = old_radius*old_radius}
+    p $in geometry::main::circle(source,old_radius)
+    p $in {q cart(R,R): geometry::main::distance_sq(source,q) = old_radius*old_radius}
+    release thm set_builder_member(p,{q cart(R,R): geometry::main::distance_sq(source,q) = old_radius*old_radius})
+    have k R+ = new_radius/old_radius
+    image(1) = target(1)+(new_radius/old_radius)*(p(1)-source(1)) = target(1)+k*(p(1)-source(1))
+    image(1)-target(1) = (target(1)+k*(p(1)-source(1)))-target(1) = k*(p(1)-source(1))
+    image(2) = target(2)+(new_radius/old_radius)*(p(2)-source(2)) = target(2)+k*(p(2)-source(2))
+    image(2)-target(2) = (target(2)+k*(p(2)-source(2)))-target(2) = k*(p(2)-source(2))
+    release thm similar_triangles_ratio(p,source,source,image,target,target,k)
+    release thm geometry::main::distance_sq_symmetric(p,source)
+    release thm geometry::main::distance_sq_symmetric(image,target)
+    geometry::main::distance_sq(source,p) = old_radius*old_radius
+    geometry::main::distance_sq(target,image) = geometry::main::distance_sq(image,target) = k^2*geometry::main::distance_sq(p,source) = k^2*geometry::main::distance_sq(source,p) = k^2*(old_radius*old_radius) = (new_radius/old_radius)^2*old_radius^2 = new_radius^2 = new_radius*new_radius
+    geometry::main::circle(target,new_radius) = {q cart(R,R): geometry::main::distance_sq(target,q) = new_radius*new_radius}
+    image $in geometry::main::circle(target,new_radius)
+
+thm uniform_scale_preserves_triangle:
+    ? forall p,q,r,u,v,w cart(R,R), k R+:
+        $geometry::main::is_triangle(q,p,r)
+        u(1)-v(1) = k*(p(1)-q(1))
+        u(2)-v(2) = k*(p(2)-q(2))
+        w(1)-v(1) = k*(r(1)-q(1))
+        w(2)-v(2) = k*(r(2)-q(2))
+        =>:
+            $geometry::main::is_triangle(v,u,w)
+    by def $geometry::main::is_triangle(q,p,r)
+    release thm geometry::main::collinear_det_expand(q,p,r)
+    release thm geometry::main::collinear_det_expand(v,u,w)
+    release thm similar_triangles_det(p,q,r,u,v,w,k)
+    have source_det R = geometry::main::det(geometry::main::vec(q,p),geometry::main::vec(q,r))
+    source_det != 0
+    geometry::main::det(geometry::main::vec(v,u),geometry::main::vec(v,w)) = (u(1)-v(1))*(w(2)-v(2))-(u(2)-v(2))*(w(1)-v(1)) = k^2*((p(1)-q(1))*(r(2)-q(2))-(p(2)-q(2))*(r(1)-q(1))) = k^2*source_det
+    k^2 != 0
+    k^2*source_det != 0
+    by def $geometry::main::is_triangle(v,u,w)
+
+# Euclid IV.2: inscribe a triangle equiangular with a given proper triangle.
+# Construct its circumcircle, then apply a positive similarity to the given circle.
+thm book04_proposition_2:
+    ? forall a,b,c,center cart(R,R), radius R+:
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist first_vertex,second_vertex,third_vertex cart(R,R) st {$geometry::main::is_triangle(first_vertex,second_vertex,third_vertex), first_vertex $in geometry::main::circle(center,radius), second_vertex $in geometry::main::circle(center,radius), third_vertex $in geometry::main::circle(center,radius), $geometry::main::are_angles_congruent(b,a,c,second_vertex,first_vertex,third_vertex), $geometry::main::are_angles_congruent(a,b,c,first_vertex,second_vertex,third_vertex), $geometry::main::are_angles_congruent(a,c,b,first_vertex,third_vertex,second_vertex)}
+    release thm working::book04_proposition_5(a,b,c)
+    obtain source,old_radius from exist source cart(R,R), old_radius R+ st {a $in geometry::main::circle(source,old_radius), b $in geometry::main::circle(source,old_radius), c $in geometry::main::circle(source,old_radius)}
+    have k R+ = radius/old_radius
+    have first_vertex cart(R,R) = (center(1)+k*(a(1)-source(1)),center(2)+k*(a(2)-source(2)))
+    first_vertex(1) = center(1)+k*(a(1)-source(1)) = center(1)+(radius/old_radius)*(a(1)-source(1))
+    first_vertex(2) = center(2)+k*(a(2)-source(2)) = center(2)+(radius/old_radius)*(a(2)-source(2))
+    release thm rescale_circle_point(source,center,a,first_vertex,old_radius,radius)
+    have second_vertex cart(R,R) = (center(1)+k*(b(1)-source(1)),center(2)+k*(b(2)-source(2)))
+    second_vertex(1) = center(1)+k*(b(1)-source(1)) = center(1)+(radius/old_radius)*(b(1)-source(1))
+    second_vertex(2) = center(2)+k*(b(2)-source(2)) = center(2)+(radius/old_radius)*(b(2)-source(2))
+    release thm rescale_circle_point(source,center,b,second_vertex,old_radius,radius)
+    have third_vertex cart(R,R) = (center(1)+k*(c(1)-source(1)),center(2)+k*(c(2)-source(2)))
+    third_vertex(1) = center(1)+k*(c(1)-source(1)) = center(1)+(radius/old_radius)*(c(1)-source(1))
+    third_vertex(2) = center(2)+k*(c(2)-source(2)) = center(2)+(radius/old_radius)*(c(2)-source(2))
+    release thm rescale_circle_point(source,center,c,third_vertex,old_radius,radius)
+    first_vertex(1)-second_vertex(1) = (center(1)+k*(a(1)-source(1)))-(center(1)+k*(b(1)-source(1))) = k*(a(1)-b(1))
+    first_vertex(2)-second_vertex(2) = (center(2)+k*(a(2)-source(2)))-(center(2)+k*(b(2)-source(2))) = k*(a(2)-b(2))
+    first_vertex(1)-third_vertex(1) = (center(1)+k*(a(1)-source(1)))-(center(1)+k*(c(1)-source(1))) = k*(a(1)-c(1))
+    first_vertex(2)-third_vertex(2) = (center(2)+k*(a(2)-source(2)))-(center(2)+k*(c(2)-source(2))) = k*(a(2)-c(2))
+    second_vertex(1)-first_vertex(1) = (center(1)+k*(b(1)-source(1)))-(center(1)+k*(a(1)-source(1))) = k*(b(1)-a(1))
+    second_vertex(2)-first_vertex(2) = (center(2)+k*(b(2)-source(2)))-(center(2)+k*(a(2)-source(2))) = k*(b(2)-a(2))
+    second_vertex(1)-third_vertex(1) = (center(1)+k*(b(1)-source(1)))-(center(1)+k*(c(1)-source(1))) = k*(b(1)-c(1))
+    second_vertex(2)-third_vertex(2) = (center(2)+k*(b(2)-source(2)))-(center(2)+k*(c(2)-source(2))) = k*(b(2)-c(2))
+    third_vertex(1)-first_vertex(1) = (center(1)+k*(c(1)-source(1)))-(center(1)+k*(a(1)-source(1))) = k*(c(1)-a(1))
+    third_vertex(2)-first_vertex(2) = (center(2)+k*(c(2)-source(2)))-(center(2)+k*(a(2)-source(2))) = k*(c(2)-a(2))
+    third_vertex(1)-second_vertex(1) = (center(1)+k*(c(1)-source(1)))-(center(1)+k*(b(1)-source(1))) = k*(c(1)-b(1))
+    third_vertex(2)-second_vertex(2) = (center(2)+k*(c(2)-source(2)))-(center(2)+k*(b(2)-source(2))) = k*(c(2)-b(2))
+    release thm uniform_scale_preserves_triangle(b,a,c,second_vertex,first_vertex,third_vertex,k)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,c)
+    release thm geometry_lemmas::triangle_vertices_distinct(first_vertex,second_vertex,third_vertex)
+    release thm uniform_scale_preserves_angle(b,a,c,second_vertex,first_vertex,third_vertex,k)
+    release thm uniform_scale_preserves_angle(a,b,c,first_vertex,second_vertex,third_vertex,k)
+    release thm uniform_scale_preserves_angle(a,c,b,first_vertex,third_vertex,second_vertex,k)
+    witness exist first,second,third cart(R,R) st {$geometry::main::is_triangle(first,second,third), first $in geometry::main::circle(center,radius), second $in geometry::main::circle(center,radius), third $in geometry::main::circle(center,radius), $geometry::main::are_angles_congruent(b,a,c,second,first,third), $geometry::main::are_angles_congruent(a,b,c,first,second,third), $geometry::main::are_angles_congruent(a,c,b,first,third,second)} from first_vertex,second_vertex,third_vertex
+
+sketch:
+    have a cart(R,R) = (0,0)
+    have b cart(R,R) = (3,0)
+    have c cart(R,R) = (1,2)
+    have center cart(R,R) = (5,-3)
+    have radius R+ = 2
+    a(1) = 0
+    a(2) = 0
+    b(1) = 3
+    b(2) = 0
+    c(1) = 1
+    c(2) = 2
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = (3-0)*(2-0)-(0-0)*(1-0) = 6
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm book04_proposition_2(a,b,c,center,radius)
+    obtain first_vertex,second_vertex,third_vertex from exist first_vertex,second_vertex,third_vertex cart(R,R) st {$geometry::main::is_triangle(first_vertex,second_vertex,third_vertex), first_vertex $in geometry::main::circle(center,radius), second_vertex $in geometry::main::circle(center,radius), third_vertex $in geometry::main::circle(center,radius), $geometry::main::are_angles_congruent(b,a,c,second_vertex,first_vertex,third_vertex), $geometry::main::are_angles_congruent(a,b,c,first_vertex,second_vertex,third_vertex), $geometry::main::are_angles_congruent(a,c,b,first_vertex,third_vertex,second_vertex)}
+    $geometry::main::is_triangle(first_vertex,second_vertex,third_vertex)
+    first_vertex $in geometry::main::circle(center,radius)
+    second_vertex $in geometry::main::circle(center,radius)
+    third_vertex $in geometry::main::circle(center,radius)
+
+# Euclid IV.6: the endpoints of perpendicular diameters form an inscribed square.
+thm book04_proposition_6:
+    ? forall center cart(R,R), radius R+:
+        exist a,b,c,d cart(R,R) st {$geometry::main::is_square(a,b,c,d), $area::is_proper_parallelogram(a,b,c,d), a $in geometry::main::circle(center,radius), b $in geometry::main::circle(center,radius), c $in geometry::main::circle(center,radius), d $in geometry::main::circle(center,radius)}
+    have a cart(R,R) = (center(1)+radius,center(2))
+    a(1) = center(1)+radius
+    a(2) = center(2)
+    have b cart(R,R) = (center(1),center(2)+radius)
+    b(1) = center(1)
+    b(2) = center(2)+radius
+    have c cart(R,R) = (center(1)-radius,center(2))
+    c(1) = center(1)-radius
+    c(2) = center(2)
+    have d cart(R,R) = (center(1),center(2)-radius)
+    d(1) = center(1)
+    d(2) = center(2)-radius
+    b(1)-a(1) = (center(1))-(center(1)+radius) = -radius
+    b(2)-a(2) = (center(2)+radius)-(center(2)) = radius
+    d(1)-a(1) = (center(1))-(center(1)+radius) = -radius
+    d(2)-a(2) = (center(2)-radius)-(center(2)) = -radius
+    c(1)-b(1) = (center(1)-radius)-(center(1)) = -radius
+    c(2)-b(2) = (center(2))-(center(2)+radius) = -radius
+    release thm geometry::main::collinear_det_expand(a,b,d)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,d)) = (b(1)-a(1))*(d(2)-a(2))-(b(2)-a(2))*(d(1)-a(1)) = (-radius)*(-radius)-radius*(-radius) = 2*radius^2 > 0
+    by def $geometry::main::is_triangle(a,b,d)
+    release thm geometry_lemmas::triangle_vertices_distinct(a,b,d)
+    c(1) = center(1)-radius = center(1)+center(1)-(center(1)+radius) = b(1)+d(1)-a(1)
+    c(2) = center(2) = (center(2)+radius)+(center(2)-radius)-center(2) = b(2)+d(2)-a(2)
+    release thm working::affine_parallelogram_witness(a,b,c,d)
+    by def $area::is_proper_parallelogram(a,b,c,d)
+    $parallel::are_parallel_lines(a,b,d,c)
+    by def $parallel::are_parallel_lines(a,b,d,c)
+    $parallel::are_parallel_lines(a,d,b,c)
+    by def $parallel::are_parallel_lines(a,d,b,c)
+    by def $geometry::main::is_parallelogram(a,b,c,d)
+    release thm geometry::main::perpendicular_dot_expand(a,d,a,b)
+    geometry::main::dot(geometry::main::vec(a,d),geometry::main::vec(a,b)) = (d(1)-a(1))*(b(1)-a(1))+(d(2)-a(2))*(b(2)-a(2)) = (-radius)*(-radius)+(-radius)*radius = 0
+    by def $geometry::main::is_right_angle(d,a,b)
+    by def $geometry::main::is_rectangle(a,b,c,d)
+    release thm geometry::main::distance_sq_coordinate_formula(a,b)
+    release thm geometry::main::distance_sq_coordinate_formula(b,c)
+    geometry::main::distance_sq(a,b) = (b(1)-a(1))^2+(b(2)-a(2))^2 = (-radius)^2+radius^2 = 2*radius^2
+    geometry::main::distance_sq(b,c) = (c(1)-b(1))^2+(c(2)-b(2))^2 = (-radius)^2+(-radius)^2 = 2*radius^2
+    by def $geometry::main::are_segments_congruent(a,b,b,c)
+    by def $geometry::main::is_square(a,b,c,d)
+    geometry::main::circle(center,radius) = {p cart(R,R): geometry::main::distance_sq(center,p) = radius*radius}
+    a(1)-center(1) = (center(1)+radius)-center(1) = radius
+    (a(1)-center(1))^2 = (radius)^2
+    a(2)-center(2) = (center(2))-center(2) = 0
+    (a(2)-center(2))^2 = (0)^2
+    release thm geometry::main::distance_sq_coordinate_formula(center,a)
+    geometry::main::distance_sq(center,a) = (a(1)-center(1))^2+(a(2)-center(2))^2 = (radius)^2+(0)^2 = radius*radius
+    a $in geometry::main::circle(center,radius)
+    b(1)-center(1) = (center(1))-center(1) = 0
+    (b(1)-center(1))^2 = (0)^2
+    b(2)-center(2) = (center(2)+radius)-center(2) = radius
+    (b(2)-center(2))^2 = (radius)^2
+    release thm geometry::main::distance_sq_coordinate_formula(center,b)
+    geometry::main::distance_sq(center,b) = (b(1)-center(1))^2+(b(2)-center(2))^2 = (0)^2+(radius)^2 = radius*radius
+    b $in geometry::main::circle(center,radius)
+    c(1)-center(1) = (center(1)-radius)-center(1) = -radius
+    (c(1)-center(1))^2 = (-radius)^2
+    c(2)-center(2) = (center(2))-center(2) = 0
+    (c(2)-center(2))^2 = (0)^2
+    release thm geometry::main::distance_sq_coordinate_formula(center,c)
+    geometry::main::distance_sq(center,c) = (c(1)-center(1))^2+(c(2)-center(2))^2 = (-radius)^2+(0)^2 = radius*radius
+    c $in geometry::main::circle(center,radius)
+    d(1)-center(1) = (center(1))-center(1) = 0
+    (d(1)-center(1))^2 = (0)^2
+    d(2)-center(2) = (center(2)-radius)-center(2) = -radius
+    (d(2)-center(2))^2 = (-radius)^2
+    release thm geometry::main::distance_sq_coordinate_formula(center,d)
+    geometry::main::distance_sq(center,d) = (d(1)-center(1))^2+(d(2)-center(2))^2 = (0)^2+(-radius)^2 = radius*radius
+    d $in geometry::main::circle(center,radius)
+    witness exist first,second,third,fourth cart(R,R) st {$geometry::main::is_square(first,second,third,fourth), $area::is_proper_parallelogram(first,second,third,fourth), first $in geometry::main::circle(center,radius), second $in geometry::main::circle(center,radius), third $in geometry::main::circle(center,radius), fourth $in geometry::main::circle(center,radius)} from a,b,c,d
+
+sketch:
+    have center cart(R,R) = (7,-2)
+    have radius R+ = 5
+    release thm book04_proposition_6(center,radius)
+    obtain a,b,c,d from exist a,b,c,d cart(R,R) st {$geometry::main::is_square(a,b,c,d), $area::is_proper_parallelogram(a,b,c,d), a $in geometry::main::circle(center,radius), b $in geometry::main::circle(center,radius), c $in geometry::main::circle(center,radius), d $in geometry::main::circle(center,radius)}
+    $geometry::main::is_square(a,b,c,d)
+    $area::is_proper_parallelogram(a,b,c,d)
+    a $in geometry::main::circle(center,radius)
+    b $in geometry::main::circle(center,radius)
+    c $in geometry::main::circle(center,radius)
+    d $in geometry::main::circle(center,radius)

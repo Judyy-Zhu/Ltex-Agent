@@ -1,0 +1,25 @@
+{
+  "meaning": "Other intersection on a ray from an external point, given one circle intersection; tangent point is fixed",
+  "carrier": "o,p,q and result cart(R,R); radius R+",
+  "form": "have fn",
+  "name": "other_circle_intersection_on_ray",
+  "domain": [
+    "external p: distance_sq(o,p)>radius^2",
+    "q on positive-radius circumference",
+    "nonzero ray: distance_sq(p,q)>0"
+  ],
+  "formula": "p + ((distance_sq(o,p)-radius^2)/distance_sq(p,q))*(q-p)",
+  "why_function": "Later branch ordering uses the constructed point; a proposition alone does not supply it",
+  "nearest_existing_surface": "affine_combination_distance_sq, no ray-circle other-intersection function found",
+  "consumers": [
+    "III8 near/far branch characterization",
+    "later secant-circle constructions"
+  ],
+  "probes": [
+    "O=(0,0),P=(5,0),r=3,Q=(3,0) -> (-3,0)",
+    "reverse far endpoint returns near endpoint",
+    "tangent Q=(9/5,12/5) is fixed"
+  ],
+  "proof_status": "constructor, general circle/forward-ray certificate and near/far/tangent uses warm accepted; independent strict gate launching",
+  "trust_added": 0
+}

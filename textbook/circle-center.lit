@@ -1,0 +1,143 @@
+# Book III center reconstruction from three noncollinear circumference points.
+# Source III.1 still needs the circle-as-set selection/construction bridge.
+release obj def geometry::main::distance_sq
+
+# III.1 construction ingredient: recover a candidate center solely from three noncollinear points.
+# The input contains no pre-supplied center or radius.
+have fn center_from_three_points(a, b, c cart(R, R): ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))) != 0) cart(R, R) = (a(1)+(((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2, a(2)+((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2)
+
+# Solving the two perpendicular-bisector equations; reusable III.1 calculation.
+thm recover_center_coordinates_from_linear_equations:
+    ? forall x1, y1, x2, y2, s1, s2, delta, x, y R:
+        delta = x1*y2-y1*x2
+        delta != 0
+        2*(x*x1+y*y1) = s1
+        2*(x*x2+y*y2) = s2
+        =>:
+            x = (s1*y2-y1*s2)/(2*delta)
+            y = (x1*s2-s1*x2)/(2*delta)
+    2*delta != 0
+    s1*y2 = (2*(x*x1+y*y1))*y2
+    y1*s2 = y1*(2*(x*x2+y*y2))
+    s1*y2-y1*s2 = (2*(x*x1+y*y1))*y2-y1*(2*(x*x2+y*y2)) = 2*x*(x1*y2-y1*x2) = 2*x*delta
+    x1*s2 = x1*(2*(x*x2+y*y2))
+    s1*x2 = (2*(x*x1+y*y1))*x2
+    x1*s2-s1*x2 = x1*(2*(x*x2+y*y2))-(2*(x*x1+y*y1))*x2 = 2*y*(x1*y2-y1*x2) = 2*y*delta
+    x = (2*x*delta)/(2*delta) = (s1*y2-y1*s2)/(2*delta)
+    y = (2*y*delta)/(2*delta) = (x1*s2-s1*x2)/(2*delta)
+
+# The perpendicular-bisector linear equation follows from equal squared distances.
+thm equal_distances_give_center_equation:
+    ? forall a, b, o cart(R, R):
+        geometry::main::distance_sq(o, a) = geometry::main::distance_sq(o, b)
+        =>:
+            2*((o(1)-a(1))*(b(1)-a(1))+(o(2)-a(2))*(b(2)-a(2))) = (b(1)-a(1))^2+(b(2)-a(2))^2
+    release thm geometry::main::distance_sq_coordinate_formula(o, a)
+    release thm geometry::main::distance_sq_coordinate_formula(o, b)
+    (o(1)-a(1))^2+(o(2)-a(2))^2 = (a(1)-o(1))^2+(a(2)-o(2))^2 = geometry::main::distance_sq(o, a)
+    (o(1)-b(1))^2+(o(2)-b(2))^2 = (b(1)-o(1))^2+(b(2)-o(2))^2 = geometry::main::distance_sq(o, b)
+    (o(1)-a(1))^2+(o(2)-a(2))^2-((o(1)-b(1))^2+(o(2)-b(2))^2) = geometry::main::distance_sq(o, a)-geometry::main::distance_sq(o, b) = 0
+    (o(1)-a(1))^2+(o(2)-a(2))^2-(o(1)-b(1))^2-(o(2)-b(2))^2 = 0
+    release thm geometry::main::equidistant_dot_half(a, b, o)
+    2*((o(1)-a(1))*(b(1)-a(1))+(o(2)-a(2))*(b(2)-a(2))) = (2*(o(1)-a(1))*(b(1)-a(1))+2*(o(2)-a(2))*(b(2)-a(2))-(b(1)-a(1))^2-(b(2)-a(2))^2)+((b(1)-a(1))^2+(b(2)-a(2))^2) = 0+((b(1)-a(1))^2+(b(2)-a(2))^2) = (b(1)-a(1))^2+(b(2)-a(2))^2
+
+# III.1 ingredient: the explicit Cramer construction is equidistant from the input points.
+thm constructed_center_is_equidistant:
+    ? forall a, b, c, o cart(R, R):
+        (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0
+        o = center_from_three_points(a, b, c)
+        =>:
+            geometry::main::distance_sq(o, b) = geometry::main::distance_sq(o, a)
+            geometry::main::distance_sq(o, c) = geometry::main::distance_sq(o, a)
+    have x1 R = b(1)-a(1)
+    have y1 R = b(2)-a(2)
+    have x2 R = c(1)-a(1)
+    have y2 R = c(2)-a(2)
+    have s1 R = x1^2+y1^2
+    have s2 R = x2^2+y2^2
+    have delta R = x1*y2-y1*x2
+    delta = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))
+    delta != 0
+    2*delta != 0
+    have ux R = (s1*y2-y1*s2)/(2*delta)
+    have uy R = (x1*s2-s1*x2)/(2*delta)
+    release thm geometry::main::cramer_first_circle_equation(x1, y1, x2, y2, s1, s2, delta)
+    release thm geometry::main::cramer_second_circle_equation(x1, y1, x2, y2, s1, s2, delta)
+    s1 = (b(1)-a(1))^2+(b(2)-a(2))^2
+    s2 = (c(1)-a(1))^2+(c(2)-a(2))^2
+    release thm geometry::main::div_mul_cancel_probe((s1*y2-y1*s2), 2*delta)
+    ux*(2*delta) = ((s1*y2-y1*s2)/(2*delta))*(2*delta) = (s1*y2-y1*s2)
+    release thm geometry::main::div_mul_cancel_probe((s1*y2-y1*s2), delta)
+    (2*ux)*delta = ux*(2*delta) = (s1*y2-y1*s2) = ((s1*y2-y1*s2)/delta)*delta
+    release thm geometry::main::divide_both_sides(2*ux, (s1*y2-y1*s2)/delta, delta)
+    2*ux = (s1*y2-y1*s2)/delta
+    ux = (2*ux)/2 = ((s1*y2-y1*s2)/delta)/2
+    release thm geometry::main::div_mul_cancel_probe((x1*s2-s1*x2), 2*delta)
+    uy*(2*delta) = ((x1*s2-s1*x2)/(2*delta))*(2*delta) = (x1*s2-s1*x2)
+    release thm geometry::main::div_mul_cancel_probe((x1*s2-s1*x2), delta)
+    (2*uy)*delta = uy*(2*delta) = (x1*s2-s1*x2) = ((x1*s2-s1*x2)/delta)*delta
+    release thm geometry::main::divide_both_sides(2*uy, (x1*s2-s1*x2)/delta, delta)
+    2*uy = (x1*s2-s1*x2)/delta
+    uy = (2*uy)/2 = ((x1*s2-s1*x2)/delta)/2
+    o = center_from_three_points(a, b, c) = (a(1)+(((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2, a(2)+((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2)
+    s1*y2 = ((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))
+    y1*s2 = (b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2)
+    s1*y2-y1*s2 = (((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))
+    x1*s2 = (b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)
+    s1*x2 = ((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1))
+    x1*s2-s1*x2 = ((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))
+    (s1*y2-y1*s2)/delta = (((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))
+    (x1*s2-s1*x2)/delta = ((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))
+    ux = ((s1*y2-y1*s2)/delta)/2 = ((((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))))/2
+    uy = ((x1*s2-s1*x2)/delta)/2 = (((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))))/2
+    o(1) = a(1)+(((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2 = a(1)+ux
+    o(2) = a(2)+((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2 = a(2)+uy
+    release thm tuple_equal_from_coordinates(o, (a(1)+ux, a(2)+uy))
+    o = (a(1)+ux, a(2)+uy)
+    release thm geometry::main::translated_circle_equation_gives_distance(a, b, o, ux, uy, x1, y1)
+    release thm geometry::main::translated_circle_equation_gives_distance(a, c, o, ux, uy, x2, y2)
+
+# Three noncollinear points have at most one equidistant center.
+thm equidistant_center_is_unique:
+    ? forall a, b, c, o, p cart(R, R):
+        ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))) != 0
+        geometry::main::distance_sq(o, a) = geometry::main::distance_sq(o, b)
+        geometry::main::distance_sq(o, a) = geometry::main::distance_sq(o, c)
+        geometry::main::distance_sq(p, a) = geometry::main::distance_sq(p, b)
+        geometry::main::distance_sq(p, a) = geometry::main::distance_sq(p, c)
+        =>:
+            o = p
+    release thm equal_distances_give_center_equation(a, b, o)
+    release thm equal_distances_give_center_equation(a, c, o)
+    release thm equal_distances_give_center_equation(a, b, p)
+    release thm equal_distances_give_center_equation(a, c, p)
+    release thm recover_center_coordinates_from_linear_equations((b(1)-a(1)), (b(2)-a(2)), (c(1)-a(1)), (c(2)-a(2)), ((b(1)-a(1))^2+(b(2)-a(2))^2), ((c(1)-a(1))^2+(c(2)-a(2))^2), ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))), o(1)-a(1), o(2)-a(2))
+    release thm recover_center_coordinates_from_linear_equations((b(1)-a(1)), (b(2)-a(2)), (c(1)-a(1)), (c(2)-a(2)), ((b(1)-a(1))^2+(b(2)-a(2))^2), ((c(1)-a(1))^2+(c(2)-a(2))^2), ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))), p(1)-a(1), p(2)-a(2))
+    o(1)-a(1) = (((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/(2*((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))) = p(1)-a(1)
+    o(2)-a(2) = ((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/(2*((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))) = p(2)-a(2)
+    o(1) = (o(1)-a(1))+a(1) = (p(1)-a(1))+a(1) = p(1)
+    o(2) = (o(2)-a(2))+a(2) = (p(2)-a(2))+a(2) = p(2)
+    release thm tuple_equal_from_coordinates(o, (o(1), o(2)))
+    release thm tuple_equal_from_coordinates(p, (p(1), p(2)))
+    o = (o(1), o(2)) = (p(1), p(2)) = p
+
+# III.1 recovery ingredient: three noncollinear circumference points determine the original circle center.
+thm recover_circle_center_from_three_points:
+    ? forall a, b, c, o cart(R, R), radius R+:
+        (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0
+        $geometry::main::is_on_circle(a, o, radius)
+        $geometry::main::is_on_circle(b, o, radius)
+        $geometry::main::is_on_circle(c, o, radius)
+        =>:
+            center_from_three_points(a, b, c) = o
+    have q cart(R, R) = center_from_three_points(a, b, c)
+    release thm constructed_center_is_equidistant(a, b, c, q)
+    by def $geometry::main::is_on_circle(a, o, radius)
+    by def $geometry::main::is_on_circle(b, o, radius)
+    by def $geometry::main::is_on_circle(c, o, radius)
+    geometry::main::distance_sq(o, a) = radius*radius = geometry::main::distance_sq(o, b)
+    geometry::main::distance_sq(o, a) = radius*radius = geometry::main::distance_sq(o, c)
+    geometry::main::distance_sq(q, a) = geometry::main::distance_sq(q, b)
+    geometry::main::distance_sq(q, a) = geometry::main::distance_sq(q, c)
+    release thm equidistant_center_is_unique(a, b, c, q, o)
+    center_from_three_points(a, b, c) = q = o

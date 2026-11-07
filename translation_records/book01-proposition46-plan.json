@@ -1,0 +1,31 @@
+{
+  "source": "Fitzpatrick revised2008 Euclid I.46, PDF zero-based44–45, lines1768–1800",
+  "problem": "Construct a square on any prescribed nonzero segment.",
+  "proof_idea": "Quarter-turn the displacement AB to get AD of equal length and perpendicular to AB; affine completion gives C and a proper parallelogram. Fold the existing rectangle and square definitions.",
+  "litex_code": "scripts/Euclid_Elements/.draft/resume-2026-10-17/proposition46-candidate1.lit",
+  "comments": {
+    "status": "prepared only, unverified",
+    "carrier_audit": "Points cart(R,R); a!=b excludes zero edge; proper-parallelogram conclusion explicitly excludes flat quadrilaterals. Existing geometry::main::is_square reused, no parallel definition introduced.",
+    "route_difference": "Coordinate rotation replaces synthetic I11/I3/I31 steps, with the same specified edge and square conclusion.",
+    "dependencies": [
+      "affine_parallelogram_witness (accepted historically; current recovery pending)",
+      "existing metric and dot-coordinate lemmas"
+    ],
+    "required_checks": [
+      "strict file",
+      "translated oblique base",
+      "reversed base",
+      "zero edge rejected",
+      "derive all four right angles and four equal sides from the chosen existing square interface for source audit"
+    ],
+    "counted": false,
+    "trust_added": 0
+  },
+  "current_evidence": {
+    "session": 27671,
+    "status": "accepted; focused clean checkpoint PASS18",
+    "receipt": ".draft/resume-2026-10-17/I42-44-46-source-checkpoint/receipt.json",
+    "canonical_promotion": "pending full original dependency checks and source audit",
+    "I44_consumers": null
+  }
+}

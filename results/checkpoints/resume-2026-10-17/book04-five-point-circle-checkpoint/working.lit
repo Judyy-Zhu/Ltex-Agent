@@ -1,0 +1,252 @@
+release obj def geometry::main::vec
+
+
+
+release obj def geometry::main::det
+
+
+
+release obj def geometry::main::dot
+
+
+
+
+release obj def geometry::main::distance_sq
+
+
+
+
+release obj def area::triangle_area
+
+
+
+
+release obj def geometry::main::angle_cos_num
+
+
+
+release obj def geometry::main::angle_cos_den
+
+
+
+release obj def angles::angle_cosine
+
+
+
+release obj def geometry::main::circle
+
+# Euclid IV.Def3 and IV.Def6 describe the same incidence relation in opposite directions.
+# Finite simple polygon boundary and positive circle radius are part of its domain.
+
+
+thm divide_both_sides:
+    ? forall a, b, c R:
+        a * c = b * c
+        c != 0
+        =>:
+            a = b
+    a = (a * c) / c = (b * c) / c = b
+
+
+
+thm div_mul_cancel_probe:
+    ? forall a, b R:
+        b != 0
+        =>:
+            (a / b) * b = a
+
+
+
+thm cramer_first_circle_equation:
+    ? forall x1, y1, x2, y2, s1, s2, delta R:
+        delta = x1 * y2 - y1 * x2
+        delta != 0
+        =>:
+            2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x1 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y1) = s1
+    2 * delta != 0
+    release thm div_mul_cancel_probe(s1 * y2 - y1 * s2, 2 * delta)
+    release thm div_mul_cancel_probe(x1 * s2 - s1 * x2, 2 * delta)
+    (2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x1 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y1)) * delta = (((s1 * y2 - y1 * s2) / (2 * delta)) * (2 * delta)) * x1 + (((x1 * s2 - s1 * x2) / (2 * delta)) * (2 * delta)) * y1
+    (((s1 * y2 - y1 * s2) / (2 * delta)) * (2 * delta)) * x1 + (((x1 * s2 - s1 * x2) / (2 * delta)) * (2 * delta)) * y1 = (s1 * y2 - y1 * s2) * x1 + (x1 * s2 - s1 * x2) * y1
+    (s1 * y2 - y1 * s2) * x1 + (x1 * s2 - s1 * x2) * y1 = s1 * (x1 * y2 - y1 * x2)
+    s1 * (x1 * y2 - y1 * x2) = s1 * delta
+    2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x1 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y1) * delta = s1 * delta
+    release thm divide_both_sides(2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x1 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y1), s1, delta)
+
+
+
+thm cramer_second_circle_equation:
+    ? forall x1, y1, x2, y2, s1, s2, delta R:
+        delta = x1 * y2 - y1 * x2
+        delta != 0
+        =>:
+            2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x2 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y2) = s2
+    2 * delta != 0
+    release thm div_mul_cancel_probe(s1 * y2 - y1 * s2, 2 * delta)
+    release thm div_mul_cancel_probe(x1 * s2 - s1 * x2, 2 * delta)
+    (2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x2 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y2)) * delta = (((s1 * y2 - y1 * s2) / (2 * delta)) * (2 * delta)) * x2 + (((x1 * s2 - s1 * x2) / (2 * delta)) * (2 * delta)) * y2
+    (((s1 * y2 - y1 * s2) / (2 * delta)) * (2 * delta)) * x2 + (((x1 * s2 - s1 * x2) / (2 * delta)) * (2 * delta)) * y2 = (s1 * y2 - y1 * s2) * x2 + (x1 * s2 - s1 * x2) * y2
+    (s1 * y2 - y1 * s2) * x2 + (x1 * s2 - s1 * x2) * y2 = s2 * (x1 * y2 - y1 * x2)
+    s2 * (x1 * y2 - y1 * x2) = s2 * delta
+    2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x2 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y2) * delta = s2 * delta
+    release thm divide_both_sides(2 * (((s1 * y2 - y1 * s2) / (2 * delta)) * x2 + ((x1 * s2 - s1 * x2) / (2 * delta)) * y2), s2, delta)
+
+
+
+thm circle_equation_gives_equal_distance:
+    ? forall ux, uy, x, y R:
+        2 * (ux * x + uy * y) = x^2 + y^2
+        =>:
+            (ux - x)^2 + (uy - y)^2 = ux^2 + uy^2
+    (ux - x)^2 + (uy - y)^2 = ux^2 + uy^2 - 2 * (ux * x + uy * y) + (x^2 + y^2) = ux^2 + uy^2 - (x^2 + y^2) + (x^2 + y^2) = ux^2 + uy^2
+
+
+
+thm translated_difference_square:
+    ? forall p, d, u, x R:
+        x = p - d
+        =>:
+            (p - (d + u))^2 = (u - x)^2
+    p - (d + u) = (p - d) - u = x - u
+    (p - (d + u))^2 = (x - u)^2 = (u - x)^2
+
+
+
+thm center_offset_square:
+    ? forall d, u R:
+        (d - (d + u))^2 = u^2
+
+
+
+thm translated_circle_equation_gives_distance:
+    ? forall d, p, o cart(R, R), ux, uy, x, y R:
+        o = (d(1) + ux, d(2) + uy)
+        x = p(1) - d(1)
+        y = p(2) - d(2)
+        2 * (ux * x + uy * y) = x^2 + y^2
+        =>:
+            geometry::main::distance_sq(o, p) = geometry::main::distance_sq(o, d)
+    o(1) = d(1)+ux
+    o(2) = d(2)+uy
+    release thm circle_equation_gives_equal_distance(ux, uy, x, y)
+    release thm translated_difference_square(p(1), d(1), ux, x)
+    release thm translated_difference_square(p(2), d(2), uy, y)
+    release thm center_offset_square(d(1), ux)
+    release thm center_offset_square(d(2), uy)
+    release thm geometry::main::distance_sq_coordinate_formula(o, p)
+    release thm geometry::main::distance_sq_coordinate_formula(o, d)
+    geometry::main::distance_sq(o, p) = (p(1) - o(1))^2 + (p(2) - o(2))^2
+    (p(1) - o(1))^2 + (p(2) - o(2))^2 = (p(1) - (d(1) + ux))^2 + (p(2) - (d(2) + uy))^2
+    (p(1) - (d(1) + ux))^2 + (p(2) - (d(2) + uy))^2 = (ux - x)^2 + (uy - y)^2
+    (ux - x)^2 + (uy - y)^2 = ux^2 + uy^2
+    ux^2 + uy^2 = (d(1) - (d(1) + ux))^2 + (d(2) - (d(2) + uy))^2
+    (d(1) - (d(1) + ux))^2 + (d(2) - (d(2) + uy))^2 = (d(1) - o(1))^2 + (d(2) - o(2))^2
+    (d(1) - o(1))^2 + (d(2) - o(2))^2 = geometry::main::distance_sq(o, d)
+
+
+
+have fn center_from_three_points(a, b, c cart(R, R): ((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))) != 0) cart(R, R) = (a(1)+(((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2, a(2)+((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2)
+
+
+
+thm constructed_center_is_equidistant:
+    ? forall a, b, c, o cart(R, R):
+        (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0
+        o = center_from_three_points(a, b, c)
+        =>:
+            geometry::main::distance_sq(o, b) = geometry::main::distance_sq(o, a)
+            geometry::main::distance_sq(o, c) = geometry::main::distance_sq(o, a)
+    have x1 R = b(1)-a(1)
+    have y1 R = b(2)-a(2)
+    have x2 R = c(1)-a(1)
+    have y2 R = c(2)-a(2)
+    have s1 R = x1^2+y1^2
+    have s2 R = x2^2+y2^2
+    have delta R = x1*y2-y1*x2
+    delta = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))
+    delta != 0
+    2*delta != 0
+    have ux R = (s1*y2-y1*s2)/(2*delta)
+    have uy R = (x1*s2-s1*x2)/(2*delta)
+    release thm cramer_first_circle_equation(x1, y1, x2, y2, s1, s2, delta)
+    release thm cramer_second_circle_equation(x1, y1, x2, y2, s1, s2, delta)
+    s1 = (b(1)-a(1))^2+(b(2)-a(2))^2
+    s2 = (c(1)-a(1))^2+(c(2)-a(2))^2
+    release thm div_mul_cancel_probe((s1*y2-y1*s2), 2*delta)
+    ux*(2*delta) = ((s1*y2-y1*s2)/(2*delta))*(2*delta) = (s1*y2-y1*s2)
+    release thm div_mul_cancel_probe((s1*y2-y1*s2), delta)
+    (2*ux)*delta = ux*(2*delta) = (s1*y2-y1*s2) = ((s1*y2-y1*s2)/delta)*delta
+    release thm divide_both_sides(2*ux, (s1*y2-y1*s2)/delta, delta)
+    2*ux = (s1*y2-y1*s2)/delta
+    ux = (2*ux)/2 = ((s1*y2-y1*s2)/delta)/2
+    release thm div_mul_cancel_probe((x1*s2-s1*x2), 2*delta)
+    uy*(2*delta) = ((x1*s2-s1*x2)/(2*delta))*(2*delta) = (x1*s2-s1*x2)
+    release thm div_mul_cancel_probe((x1*s2-s1*x2), delta)
+    (2*uy)*delta = uy*(2*delta) = (x1*s2-s1*x2) = ((x1*s2-s1*x2)/delta)*delta
+    release thm divide_both_sides(2*uy, (x1*s2-s1*x2)/delta, delta)
+    2*uy = (x1*s2-s1*x2)/delta
+    uy = (2*uy)/2 = ((x1*s2-s1*x2)/delta)/2
+    o = center_from_three_points(a, b, c) = (a(1)+(((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2, a(2)+((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2)
+    s1*y2 = ((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))
+    y1*s2 = (b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2)
+    s1*y2-y1*s2 = (((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))
+    x1*s2 = (b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)
+    s1*x2 = ((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1))
+    x1*s2-s1*x2 = ((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))
+    (s1*y2-y1*s2)/delta = (((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))
+    (x1*s2-s1*x2)/delta = ((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))
+    ux = ((s1*y2-y1*s2)/delta)/2 = ((((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))))/2
+    uy = ((x1*s2-s1*x2)/delta)/2 = (((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))))/2
+    o(1) = a(1)+(((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(2)-a(2))-(b(2)-a(2))*((c(1)-a(1))^2+(c(2)-a(2))^2))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2 = a(1)+ux
+    o(2) = a(2)+((b(1)-a(1))*((c(1)-a(1))^2+(c(2)-a(2))^2)-((b(1)-a(1))^2+(b(2)-a(2))^2)*(c(1)-a(1)))/((b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)))/2 = a(2)+uy
+    release thm tuple_equal_from_coordinates(o, (a(1)+ux, a(2)+uy))
+    o = (a(1)+ux, a(2)+uy)
+    release thm translated_circle_equation_gives_distance(a, b, o, ux, uy, x1, y1)
+    release thm translated_circle_equation_gives_distance(a, c, o, ux, uy, x2, y2)
+
+# Euclid IV.5: construct a positive-radius circle through a proper triangle.
+
+
+thm book04_proposition_5:
+    ? forall a,b,c cart(R,R):
+        $geometry::main::is_triangle(a,b,c)
+        =>:
+            exist o cart(R,R), radius R+ st {a $in geometry::main::circle(o,radius), b $in geometry::main::circle(o,radius), c $in geometry::main::circle(o,radius)}
+    by def $geometry::main::is_triangle(a,b,c)
+    release thm geometry::main::collinear_det_expand(a,b,c)
+    geometry::main::det(geometry::main::vec(a,b),geometry::main::vec(a,c)) = (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1))
+    (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0
+    have o cart(R,R) = center_from_three_points(a,b,c)
+    release thm constructed_center_is_equidistant(a,b,c,o)
+    by contra:
+        ? a != b
+        a = b
+        b(1)-a(1) = 0
+        b(2)-a(2) = 0
+        (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) = 0
+        impossible (b(1)-a(1))*(c(2)-a(2))-(b(2)-a(2))*(c(1)-a(1)) != 0
+    by contra:
+        ? o != a
+        o = a
+        release thm geometry::main::distance_sq_coordinate_formula(o,a)
+        a(1)-o(1) = 0
+        a(2)-o(2) = 0
+        (a(1)-o(1))^2 = 0^2 = 0
+        (a(2)-o(2))^2 = 0^2 = 0
+        geometry::main::distance_sq(o,a) = (a(1)-o(1))^2+(a(2)-o(2))^2 = 0+0 = 0
+        geometry::main::distance_sq(o,b) = 0
+        geometry::main::distance_sq(a,b) = geometry::main::distance_sq(o,b) = 0
+        release thm geometry::main::distance_sq_positive_of_ne(a,b)
+        impossible geometry::main::distance_sq(a,b) > 0
+    release thm geometry::main::distance_sq_positive_of_ne(o,a)
+    have radius_sq R+ = geometry::main::distance_sq(o,a)
+    have radius R+ = sqrt(radius_sq)
+    radius*radius = radius^2 = sqrt(radius_sq)^2 = radius_sq
+    geometry::main::distance_sq(o,a) = radius*radius
+    geometry::main::distance_sq(o,b) = geometry::main::distance_sq(o,a) = radius*radius
+    geometry::main::distance_sq(o,c) = geometry::main::distance_sq(o,a) = radius*radius
+    geometry::main::circle(o,radius) = {p cart(R,R): geometry::main::distance_sq(o,p) = radius*radius}
+    a $in geometry::main::circle(o,radius)
+    b $in geometry::main::circle(o,radius)
+    c $in geometry::main::circle(o,radius)
+    witness exist center cart(R,R), r R+ st {a $in geometry::main::circle(center,r), b $in geometry::main::circle(center,r), c $in geometry::main::circle(center,r)} from o,radius

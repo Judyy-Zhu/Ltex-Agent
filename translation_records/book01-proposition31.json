@@ -1,0 +1,25 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 31,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/31.txt"
+  },
+  "problem": "Through a given point outside a proper straight line, construct an actual distinct parallel line.",
+  "proof_idea": {
+    "original": "Copy an angle through the given point and use I.27 to establish parallelism.",
+    "analytic": "Translate the given line direction to the point: d=p+(b-a). Its nonzero direction proves p!=d; the outside-line premise forces nonzero transverse separation."
+  },
+  "litex_code": "# Book I.31: through a point outside a given proper straight line, draw\n# a distinct parallel line. The source copies an angle and applies I.27;\n# here the translated endpoint gives an actual direction-preserving witness.\n# Outside-line placement is explicit because Definition 23 excludes coincidence.\nthm proposition_31:\n    ? forall a, b, p cart(R, R):\n        a != b\n        not p $in geometry::main::line_through_points(a, b)\n        =>:\n            exist d cart(R, R) st {$parallel::are_parallel_lines(p, d, a, b)}\n    have d cart(R, R) = (p(1)+b(1)-a(1), p(2)+b(2)-a(2))\n    d(1) = p(1)+b(1)-a(1)\n    d(2) = p(2)+b(2)-a(2)\n    d(1)-p(1) = (p(1)+b(1)-a(1))-p(1) = b(1)-a(1)\n    d(2)-p(2) = (p(2)+b(2)-a(2))-p(2) = b(2)-a(2)\n    by contra:\n        ? p != d\n        p = d\n        d(1) = p(1)\n        d(2) = p(2)\n        b(1)-a(1) = d(1)-p(1) = 0\n        b(2)-a(2) = d(2)-p(2) = 0\n        b(1) = a(1)\n        b(2) = a(2)\n        b = (b(1),b(2)) = (a(1),a(2)) = a\n        impossible a != b\n    release thm geometry::main::vec_coordinate_formula(p, d)\n    release thm geometry::main::vec_coordinate_formula(a, b)\n    geometry::main::vec(p, d)(1) = d(1)-p(1) = b(1)-a(1) = geometry::main::vec(a, b)(1)\n    geometry::main::vec(p, d)(2) = d(2)-p(2) = b(2)-a(2) = geometry::main::vec(a, b)(2)\n    release thm geometry::main::det_coordinate_formula(geometry::main::vec(p, d), geometry::main::vec(a, b))\n    geometry::main::det(geometry::main::vec(p, d), geometry::main::vec(a, b)) = geometry::main::vec(a, b)(1)*geometry::main::vec(a, b)(2)-geometry::main::vec(a, b)(2)*geometry::main::vec(a, b)(1) = 0\n    by def $geometry::main::is_parallel(p, d, a, b)\n    by contra:\n        ? geometry::main::det(geometry::main::vec(p, d), geometry::main::vec(p, a)) != 0\n        geometry::main::det(geometry::main::vec(p, d), geometry::main::vec(p, a)) = 0\n        release thm geometry::main::collinear_det_expand(p, d, a)\n        release thm geometry::main::collinear_det_expand(a, p, b)\n        geometry::main::det(geometry::main::vec(p, d), geometry::main::vec(p, a)) = (d(1)-p(1))*(a(2)-p(2))-(d(2)-p(2))*(a(1)-p(1))\n        (d(1)-p(1))*(a(2)-p(2))-(d(2)-p(2))*(a(1)-p(1)) = (b(1)-a(1))*(a(2)-p(2))-(b(2)-a(2))*(a(1)-p(1)) = (p(1)-a(1))*(b(2)-a(2))-(p(2)-a(2))*(b(1)-a(1))\n        geometry::main::det(geometry::main::vec(a, p), geometry::main::vec(a, b)) = geometry::main::det(geometry::main::vec(p, d), geometry::main::vec(p, a)) = 0\n        p $in geometry::main::line_through_points(a, b)\n        impossible not p $in geometry::main::line_through_points(a, b)\n    by def $parallel::are_parallel_lines(p, d, a, b)\n    witness exist q cart(R, R) st {$parallel::are_parallel_lines(p, q, a, b)} from d\n",
+  "comments": {
+    "status": "Strict Session source/use and nearest mathematical boundary checks passed; saved canonical source, new full strict checkpoint pending",
+    "trust_added": 0,
+    "source_convention": "Printed wording does not explicitly say outside the given line. Under source Definition 23, a point on the line cannot lie on a distinct disjoint parallel line. Formalization records outside-line placement as the necessary source construction domain; it is not claimed to be an extra printed sentence.",
+    "canonical_path": "scripts/Euclid_Elements/textbook/book01-constructions.lit",
+    "cold_status": "Canonical complete first33 strict file PASS: exit0/run/success true/session_error null/stable hashes",
+    "cold_receipt": ".draft/first-thirty-three-canonical/receipt.json"
+  },
+  "accepted_session_id": 55623
+}

@@ -1,0 +1,22 @@
+{
+  "square-coordinate-frame.lit": "a30d14f4d88236f94e11364647e6ffdcedb2febdbd3a91efc68c4ca5670e35dd",
+  "incircle-dependency-is_on_circle.lit": "8095dd46976c9e8889d7ea18f98ffb6aeb28a6cf1d879b14539d519e64419aaa",
+  "book04-existing-tangent-definition.lit": "a3ebc4fc4fafba6b8bf69eb827b53692fdc0d36d8ab86ff9227162646f56358e",
+  "incircle-dependency-point_difference_norm_pos.lit": "c53092f243b5c25b04ba88614041d15dc2d6f9b1259ed81bb0c59667900b02a1",
+  "incircle-dependency-radial_perpendicular_distance_identity.lit": "bbe4cdecc56444a191ac4043d5afaed4158a94699ac2b0edcf404658d5fcdde9",
+  "radius-perpendicular-line-contact-candidate2.lit": "ee29bddbce259c4dc2fd257f716d3d746392956eb854771b891be0c98b818b78",
+  "book04-proposition8-candidate6.lit": "7230fd7203588e7573448f86c846d4dfa43f7b3d7110806ab0c4b000e657c6a7",
+  "book04-proposition9-candidate2.lit": "80e3db3e97b8db14e84ab804c5ad6b076b3392adf8424adcfa479e4b8192c321",
+  "golden-cut-parameter-candidate2.lit": "c476b600a55f217265699e57c90b7bab187f26ac9c6904ae25b959c179195e65",
+  "golden-triangle-height-candidate1.lit": "b4b2c37abd7ee543f78d71d2873186f586dd47270558bfa7a161420c156311b8",
+  "golden-triangle-metric-candidate5.lit": "4ad536778e9be32436cc825c214f4f78ee9315e7e3da0dbd50afcb5a9740aa97",
+  "golden-triangle-construction-candidate1.lit": "1087921a92eb262cc85246024e1ff137da3a738493a9ac59742c99a8eda8b590",
+  "iv10-dependency-cosine_strictly_decreasing_on_principal_range.lit": "28206a789a5760b76d43833d63c4d9543457ea289f64fcf3b6114815622cd80c",
+  "iv10-dependency-cosine_weakly_decreasing_on_principal_range.lit": "83f0db8f9a9033ef1f8aec7fef486ba40a3f02335a37fbf14656bbab43fab52e",
+  "iv10-dependency-arccos_strictly_decreasing.lit": "2a661e74b9c6fbb0e9596196bfee884c737949219b9ad463c162c0f2c6d048cf",
+  "golden-triangle-cosines-candidate4.lit": "1f47cda1da14f419541ff18f2a361471f2f1077a4b090a1573047ecae1031a37",
+  "golden-triangle-angle-selected-candidate4.lit": "422400f08de6709be2883fd0baa77923872c936a22e529625608f2266c8ac98a",
+  "golden-triangle-definition.lit": "b556976174b6d72569593d17f542f5fdebec2192cfc02536096b08e31302107a",
+  "book04-proposition10-candidate1.lit": "97b4610265c4ff7b97640db275956ba5bde4b32f1f3a43d1dd72b1d2b4fd3088",
+  "book04-proposition10-use1.lit": "64717ec14409c1129ad5f6061fe5ebf2994aec889fd48785c1cc63de732759fe"
+}

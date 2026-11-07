@@ -1,0 +1,27 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "book": 4,
+  "proposition": 6,
+  "source_lines": [
+    4783,
+    4815
+  ],
+  "proof_spine": "Choose four endpoints of perpendicular diameters. Use the existing proper affine parallelogram constructor, a zero dot product and equal side squares; prove all four distances to the given center equal radius squared.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition6-candidate2.lit",
+  "syntax_preview": ".draft/resume-2026-10-17/book04-proposition6-syntax.json",
+  "status": "Session accepted and grouped saved-source strict gate passed; canonical module integration and final proof audit pending",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "controls_pending": [
+    ".draft/resume-2026-10-17/book04-proposition6-use1.lit"
+  ],
+  "accepted_request": "book04-construction-session-v3/results/1103.json",
+  "positive_consumer": "book04-construction-session-v3/results/1012.json",
+  "grouped_gate": {
+    "receipt": ".draft/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+    "elapsed_seconds": 285.73385095596313,
+    "top_level_statement_count": 19,
+    "imports_hashed": true,
+    "hashes_stable": true
+  }
+}

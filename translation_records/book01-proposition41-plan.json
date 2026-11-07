@@ -1,0 +1,17 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf#page=41",
+  "source_lines": "1573\u20131594",
+  "proof_spine": [
+    "I34 cuts the actual parallelogram into two equal positive triangle areas",
+    "I37 identifies one half with the triangle on the same base between the same parallels",
+    "area uniqueness identifies the two half values, giving twice the triangle area"
+  ],
+  "route_difference": "Use diagonal DB rather than AC, matching existing I34 interface; geometric conclusion unchanged",
+  "dependencies": [
+    "I34 canonical",
+    "I37 source2 independently strict6 verified"
+  ],
+  "status": "source1 PASS9833; area6/area3 consumer pending; negative and independent checkpoint prepared",
+  "trust_added": 0,
+  "counted": false
+}

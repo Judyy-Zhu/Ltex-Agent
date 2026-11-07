@@ -1,0 +1,13 @@
+{
+  "status": "source6 and both concrete positives Session PASS; ready for strict gate",
+  "sources": [
+    "prefix.lit",
+    "proposition35-source.lit",
+    "equal-parallel-base-determinants-squared.lit",
+    "proposition36-shared-base-proof6.lit",
+    "I36-separated_equal_bases-use1.lit",
+    "I36-reversed_equal_base-use1.lit"
+  ],
+  "main_sha256": "1bdda9fec3192be8e441d38286066d00334639ccbdbcc4c43547814a8c72c2a1",
+  "expected_statements": 11
+}

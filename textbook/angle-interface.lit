@@ -1,0 +1,61 @@
+release obj def geometry::main::vec
+release obj def geometry::main::dot
+release obj def geometry::main::det
+release obj def geometry::main::distance_sq
+release obj def geometry::main::angle_cos_num
+release obj def geometry::main::angle_cos_den
+thm arccos_opposite_values_sum:
+    ? forall x, y R:
+        (-1) <= x
+        x <= 1
+        (-1) <= y
+        y <= 1
+        y = -x
+        =>:
+            arccos(x) + arccos(y) = pi
+    0 <= arccos(x) <= pi
+    have theta R = arccos(x)
+    theta = arccos(x) >= 0
+    theta = arccos(x) <= pi
+    pi - theta >= pi - pi = 0
+    pi - theta <= pi - 0 = pi
+    cos(pi - theta) = -cos(theta) = -cos(arccos(x)) = -x = y
+    arccos(y) = arccos(cos(pi - theta)) = pi - theta
+    arccos(x) + arccos(y) = theta + (pi - theta) = pi
+
+thm angle_den_positive:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            geometry::main::angle_cos_den(p, q, r) > 0
+    release thm geometry::main::distance_sq_positive_of_ne(q, p)
+    release thm geometry::main::distance_sq_positive_of_ne(q, r)
+    geometry::main::distance_sq(q, p) $in R+
+    geometry::main::distance_sq(q, r) $in R+
+    geometry::main::distance_sq(q, p) * geometry::main::distance_sq(q, r) $in R+
+    geometry::main::angle_cos_den(p, q, r) = geometry::main::distance_sq(q, p) * geometry::main::distance_sq(q, r) > 0
+
+thm angle_den_nonnegative:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            0 <= geometry::main::angle_cos_den(p, q, r)
+    release thm angle_den_positive(p, q, r)
+    geometry::main::angle_cos_den(p, q, r) > 0
+    0 <= geometry::main::angle_cos_den(p, q, r)
+
+thm angle_root_den_nonzero:
+    ? forall p, q, r cart(R, R):
+        p != q
+        r != q
+        =>:
+            sqrt(geometry::main::angle_cos_den(p, q, r)) != 0
+    release thm angle_den_positive(p, q, r)
+    geometry::main::angle_cos_den(p, q, r) > 0
+    sqrt(geometry::main::angle_cos_den(p, q, r)) > 0
+    sqrt(geometry::main::angle_cos_den(p, q, r)) != 0
+
+have fn angle_cosine(p, q, r cart(R, R): p != q, r != q) R = geometry::main::angle_cos_num(p, q, r) / sqrt(geometry::main::angle_cos_den(p, q, r))
+

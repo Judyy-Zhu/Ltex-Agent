@@ -1,0 +1,40 @@
+{
+  "source": "Book/texts/35.txt, Fitzpatrick2008 I.35",
+  "status": "Source theorem Session-accepted (journal I35-source1-accepted.json); actual consumers, boundaries, proof-liveness and independent canonical gate pending. Historical Session8786 is no longer available.",
+  "domain": "proper cyclic ABCD and EBCF with common BC, D,F on a common parallel to BC",
+  "same_parallel_interface": "det(BC,DF)=0 together with two proper quadrilaterals fixes the common upper supporting line, including D=F. Existing is_parallel requires distinct endpoints and is therefore unsuitable for D=F.",
+  "proof_spine": [
+    "Use I.34 common positive halves on BCD and BCF",
+    "Expand det(BC,BF)-det(BC,BD)=det(BC,DF)=0",
+    "Materialize equal determinant squares, identify positive triangle halves and whole area"
+  ],
+  "trust_added": 0,
+  "acceptance_pending": [
+    "unequal-shape sheared parallelograms same base/height",
+    "coincident upper endpoints allowed",
+    "different upper height rejected",
+    "flat quadrilateral rejected"
+  ],
+  "resume_evidence": {
+    "observed_session": 8786,
+    "tool_result": "Unknown process id 8786",
+    "restart_reason": "Missing historical process, not a normal proof failure",
+    "source": "scripts/Euclid_Elements/.draft/authoring-book01-34/proposition35-1.lit",
+    "source_sha256": "3cfadf781f043162dac67ce5ed592419c1c58d9ea5cc8d6d2fb020c6bd13e6d1",
+    "next": "Consume startup success/prompt, run I35 empty-proof control before replaying source, then area6 positive consumer and different-height/flat negative controls.",
+    "current_session": 9833,
+    "current_status": "Corrected area/I34 prefix loading, live9833 confirmed. Startup88678 exited1 after author omitted canonical release obj def area::triangle_area; failure receipt preserved. No I35 statement submitted."
+  },
+  "source_rechecked": {
+    "archive": "Book.zip",
+    "member": "Book/texts/35.txt",
+    "sha256": "7a3b6fa23cbe211f354e3b6f38fd56341ff4454d102f655d161d950ecbc6cd90",
+    "scope": "Same base BC, same bounding parallel lines; parallelograms equal in unsigned area. Archive proof prose abbreviated; coordinate proof route explicitly recorded."
+  },
+  "concrete_acceptance": {
+    "positive_area6": ".draft/book01-area-continuation/sheared-area-six-use.lit",
+    "different_upper_line_expected_rejection": ".draft/book01-area-continuation/different-upper-line-reject.lit",
+    "flat_expected_rejection": ".draft/book01-area-continuation/flat-parallelogram-reject.lit",
+    "status": "prepared, unverified"
+  }
+}

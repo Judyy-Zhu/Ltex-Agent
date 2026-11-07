@@ -1,0 +1,43 @@
+{
+  "command": [
+    "scripts/Euclid_Elements/.draft/pinned-release/target/release/litex",
+    "-lang",
+    "en",
+    "-strict",
+    "-f",
+    "scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/main.lit"
+  ],
+  "started_at": "2026-10-13T15:11:27.723886+00:00",
+  "sha256_before": {
+    "scripts/Euclid_Elements/.draft/pinned-release/target/release/litex": "0be34d26405f77ed7e01bb8b02f40813dc145acc274e3220c41276bc47d4a45f",
+    "scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/main.lit": "1bdda9fec3192be8e441d38286066d00334639ccbdbcc4c43547814a8c72c2a1",
+    "scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/litex.config": "62dd81d154d8d296d9c70c88d547fa1faac680ec4ba8c7b9b5758d507acf62f3",
+    "scripts/Euclid_Elements/textbook/geometry/litex.config": "7c8ed2665cc2ee29bff6b8509dbe8d4a6bea8badd4fe69d4d5ccf45a0d55e521",
+    "scripts/LitexGeo-AutoBuild/shenjiachen/\u65b0geo\u548cgeo_definitions/geo.lit": "7852ec523321ad82bee651a5d1b343933379e71fa2850e302266bbe54f7c8a7c",
+    "scripts/Euclid_Elements/textbook/book01-geometry-lemmas.lit": "77080050195038f34ce239bee3c80177e6556955c8dd255135bad7af0f68d529",
+    "scripts/Euclid_Elements/textbook/parallel-interface.lit": "343dfd72dd81cfbd382362fe7cfded115b4a7a3e36f971473d071a935a25b73b",
+    "scripts/Euclid_Elements/textbook/area-interface.lit": "6c9dd1e1cde2b10ca102439bb94139c0eba376093b66f9ef8cd2966209c0cd97"
+  },
+  "ended_at": "2026-10-13T15:53:06.582147+00:00",
+  "wall_seconds": 2498.842693040846,
+  "duration_clock": "Python time.monotonic (distinct from UTC timestamp difference)",
+  "exit_code": 0,
+  "kind": "run",
+  "success": true,
+  "session_error": null,
+  "statement_count": 11,
+  "sha256_after": {
+    "scripts/Euclid_Elements/.draft/pinned-release/target/release/litex": "0be34d26405f77ed7e01bb8b02f40813dc145acc274e3220c41276bc47d4a45f",
+    "scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/main.lit": "1bdda9fec3192be8e441d38286066d00334639ccbdbcc4c43547814a8c72c2a1",
+    "scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/litex.config": "62dd81d154d8d296d9c70c88d547fa1faac680ec4ba8c7b9b5758d507acf62f3",
+    "scripts/Euclid_Elements/textbook/geometry/litex.config": "7c8ed2665cc2ee29bff6b8509dbe8d4a6bea8badd4fe69d4d5ccf45a0d55e521",
+    "scripts/LitexGeo-AutoBuild/shenjiachen/\u65b0geo\u548cgeo_definitions/geo.lit": "7852ec523321ad82bee651a5d1b343933379e71fa2850e302266bbe54f7c8a7c",
+    "scripts/Euclid_Elements/textbook/book01-geometry-lemmas.lit": "77080050195038f34ce239bee3c80177e6556955c8dd255135bad7af0f68d529",
+    "scripts/Euclid_Elements/textbook/parallel-interface.lit": "343dfd72dd81cfbd382362fe7cfded115b4a7a3e36f971473d071a935a25b73b",
+    "scripts/Euclid_Elements/textbook/area-interface.lit": "6c9dd1e1cde2b10ca102439bb94139c0eba376093b66f9ef8cd2966209c0cd97"
+  },
+  "sources_and_binary_stable": true,
+  "log": "/Users/shenjiachen/\u4e3b\u8981\u6587\u4ef6\u5939/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/book01-proposition36-source-checkpoint/full-gate.json",
+  "purpose": "I36 source with I34/I35 and shared scalar prerequisites; separated/reversed equal-base consumers; no canonical promotion",
+  "epoch": 2
+}

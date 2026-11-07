@@ -1,0 +1,29 @@
+{
+  "source": {
+    "book": "Euclid Elements",
+    "edition": "Fitzpatrick 2008",
+    "book_number": 1,
+    "proposition": 23,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "printed_page": 25
+  },
+  "problem": "Copy a genuine rectilinear angle onto any given nonzero base ray at its starting point.",
+  "proof_idea": {
+    "original": "Choose points on the source arms, join them, construct an equal-sided triangle using I.22 on the given line, then identify its angle using I.8 (SSS).",
+    "analytic": "Use the dot product and signed determinant of the source arms, divided by the positive squared first-arm norm, to transform the second arm onto the target base frame. Its determinant stays nonzero; positive norm scaling preserves the signed cosine relation."
+  },
+  "litex_code": "# Book I.23: copy a genuine rectilinear angle onto a given nonzero base ray.\n# Euclid constructs an equal-sided triangle using I.22 and then invokes SSS.\n# Here a direct similarity sends the first source arm to the prescribed base;\n# its dot/norm laws prove equal angles without assuming a circle intersection.\nthm proposition_23:\n    ? forall a, b, d, c, e1 cart(R, R):\n        a != b\n        $geometry::main::is_triangle(c, d, e1)\n        =>:\n            exist g cart(R, R) st {$geometry::main::is_triangle(a, b, g), $geometry::main::are_angles_congruent(b, a, g, d, c, e1)}\n    release thm geometry_lemmas::triangle_vertices_distinct(c, d, e1)\n    release thm geometry::main::distance_sq_positive_of_ne(c, d)\n    release thm geometry::main::distance_sq_positive_of_ne(c, e1)\n    release thm geometry::main::distance_sq_positive_of_ne(a, b)\n    have k R+ = geometry::main::distance_sq(c, d)\n    have v R+ = geometry::main::distance_sq(c, e1)\n    have h R+ = geometry::main::distance_sq(a, b)\n    have ux R = d(1) - c(1)\n    have uy R = d(2) - c(2)\n    have vx R = e1(1) - c(1)\n    have vy R = e1(2) - c(2)\n    have wx R = b(1) - a(1)\n    have wy R = b(2) - a(2)\n    have n R = ux * vx + uy * vy\n    have z R = ux * vy - uy * vx\n    release thm geometry::main::distance_sq_coordinate_formula(c, d)\n    release thm geometry::main::distance_sq_coordinate_formula(c, e1)\n    release thm geometry::main::distance_sq_coordinate_formula(a, b)\n    k = ux^2 + uy^2\n    v = vx^2 + vy^2\n    h = wx^2 + wy^2\n    n^2 + z^2 = (ux * vx + uy * vy)^2 + (ux * vy - uy * vx)^2 = (ux^2 + uy^2) * (vx^2 + vy^2) = k * v\n    release thm geometry::main::collinear_det_expand(c, d, e1)\n    geometry::main::det(geometry::main::vec(c, d), geometry::main::vec(c, e1)) = ux * vy - uy * vx = z\n    z != 0\n    have gx R = (n * wx - z * wy) / k\n    have gy R = (n * wy + z * wx) / k\n    have g cart(R, R) = (a(1) + gx, a(2) + gy)\n    g(1) - a(1) = gx\n    g(2) - a(2) = gy\n    release thm geometry::main::collinear_det_expand(a, b, g)\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, g)) = wx * gy - wy * gx = wx * ((n * wy + z * wx) / k) - wy * ((n * wx - z * wy) / k) = z * (wx^2 + wy^2) / k = z * h / k\n    by contra:\n        ? z * h / k != 0\n        z * h / k = 0\n        z = (z * h / k) * (k / h) = 0 * (k / h) = 0\n        impossible z != 0\n    geometry::main::det(geometry::main::vec(a, b), geometry::main::vec(a, g)) != 0\n    by def $geometry::main::is_triangle(a, b, g)\n    release thm geometry_lemmas::triangle_vertices_distinct(a, b, g)\n    release thm geometry::main::distance_sq_coordinate_formula(a, g)\n    geometry::main::distance_sq(a, g) = gx^2 + gy^2 = ((n * wx - z * wy) / k)^2 + ((n * wy + z * wx) / k)^2 = (n^2 + z^2) * (wx^2 + wy^2) / k^2 = (k * v) * h / k^2 = v * h / k\n    release thm geometry::main::perpendicular_dot_expand(a, b, a, g)\n    geometry::main::dot(geometry::main::vec(a, b), geometry::main::vec(a, g)) = wx * gx + wy * gy = wx * ((n * wx - z * wy) / k) + wy * ((n * wy + z * wx) / k) = n * (wx^2 + wy^2) / k = n * h / k\n    release thm geometry::main::perpendicular_dot_expand(c, d, c, e1)\n    geometry::main::dot(geometry::main::vec(c, d), geometry::main::vec(c, e1)) = ux * vx + uy * vy = n\n    geometry::main::angle_cos_num(b, a, g) = n * h / k\n    geometry::main::angle_cos_num(d, c, e1) = n\n    v * h > 0\n    h / k > 0\n    (v * h) * (h / k) > 0\n    v * h^2 / k = (v * h) * (h / k) > 0\n    geometry::main::angle_cos_den(b, a, g) = geometry::main::distance_sq(a, b) * geometry::main::distance_sq(a, g) = h * (v * h / k) = v * h^2 / k\n    geometry::main::angle_cos_den(b, a, g) > 0\n    geometry::main::angle_cos_den(d, c, e1) = k * v > 0\n    geometry::main::angle_cos_num(b, a, g)^2 * geometry::main::angle_cos_den(d, c, e1) = (n * h / k)^2 * (k * v) = n^2 * (v * h^2 / k) = geometry::main::angle_cos_num(d, c, e1)^2 * geometry::main::angle_cos_den(b, a, g)\n    geometry::main::angle_cos_num(b, a, g) * geometry::main::angle_cos_num(d, c, e1) = (n * h / k) * n = n^2 * (h / k) >= 0\n    by def $geometry::main::are_angles_congruent(b, a, g, d, c, e1)\n    witness exist gg cart(R, R) st {$geometry::main::is_triangle(a, b, gg), $geometry::main::are_angles_congruent(b, a, gg, d, c, e1)} from g\n",
+  "comments": {
+    "status": "strict Session accepted; translated right-angle use passed and zero-base use rejected; canonical promotion waits for frozen I.22 gate",
+    "trust_added": 0,
+    "proper_domain": "Source noncollinearity is exactly the genuine rectilinear-angle condition; all source endpoints differ by a checked triangle theorem. Target base endpoints are explicitly distinct.",
+    "source_route_checked": false,
+    "probe_evidence": [
+      "proof_journals/library-replay/angle-copy-use2-accepted.json",
+      "proof_journals/library-replay/angle-copy-zero-base-control.json"
+    ],
+    "canonical_status": "strict cold first-twenty-six gate passed; exit 0, run success true, session_error null, stable hashes",
+    "canonical_receipt": ".draft/first-twenty-six-checkpoint/receipt.json"
+  },
+  "accepted_session_id": 55623
+}

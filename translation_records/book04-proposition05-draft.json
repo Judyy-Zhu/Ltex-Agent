@@ -1,0 +1,43 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "book": 4,
+  "proposition": 5,
+  "source_pages_zero_based": [
+    113,
+    114
+  ],
+  "source_lines": [
+    4712,
+    4782
+  ],
+  "statement": "For any nondegenerate triangle, construct a center and positive radius whose circle contains all three vertices.",
+  "proof_spine": "Reuse the Cramer circumcenter and its equidistance proof; exclude center=vertex using positive distance to another vertex; choose sqrt(distance_sq) as positive radius.",
+  "source_correspondence": "Analytic perpendicular-bisector solution; same construction conclusion as IV.5, independent of IV.2.",
+  "candidate": ".draft/resume-2026-10-17/book04-proposition5-candidate4.lit",
+  "accepted_request": "polygon-boundary-session/results/0073.json",
+  "status": "Session accepted and grouped saved-source strict gate passed; canonical module integration and final proof audit pending",
+  "trust_count": 0,
+  "canonical_increment": 0,
+  "dependencies_plan": ".draft/resume-2026-10-17/circumcenter-replay-plan.json",
+  "pending": [
+    "IV.2 consumer",
+    "grouped clean gate",
+    "module integration"
+  ],
+  "concrete_consumer": {
+    "request": "0074",
+    "path": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book04-proposition5-use1.lit",
+    "sha256": "c392c3ff30e2339ee6ac248793b15292bee2ea03665161612aa6d9255df0bb8a",
+    "alive": false,
+    "output": "0074.log",
+    "outcome": "rejected"
+  },
+  "grouped_gate": {
+    "receipt": ".draft/resume-2026-10-17/book04-constructions-checkpoint/receipt.json",
+    "elapsed_seconds": 285.73385095596313,
+    "top_level_statement_count": 19,
+    "imports_hashed": true,
+    "hashes_stable": true
+  }
+}

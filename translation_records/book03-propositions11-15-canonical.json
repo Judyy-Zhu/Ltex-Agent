@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-12T08:28:53.427355+00:00",
+  "source_numbers": [
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "foundation_items": [
+    "III.Def4",
+    "III.Def5"
+  ],
+  "receipt": ".draft/book03-first-fifteen-checkpoint/receipt.json",
+  "source_audit": "translation_records/book03-propositions11-15-integration-audit.json",
+  "canonical": "textbook/book03-circles.lit",
+  "sha256_before": "acbde7100836c69bcab882064d3f02407a45e7ad088a4e646d2a4711f871e2e6",
+  "sha256_after": "15e1a141eea94f66215bb3cb5fedc5f09a78f30aa9be4452d13cb6eb16dd4c11",
+  "copy_matches_checked_candidate": true,
+  "numbered_count_after": 49,
+  "foundations_count_after": 5,
+  "trust_added": 0,
+  "geometry_changed": false
+}

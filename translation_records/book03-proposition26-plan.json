@@ -1,0 +1,44 @@
+{
+  "source": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source_pages_zero_based": [
+    94,
+    95
+  ],
+  "scope": "III26 equal angles in equal circles intercept equal arcs, central and inscribed branches; III27 converse later",
+  "mathematical_interface": "Compare chosen arcs as point sets by an explicit invertible Euclidean plane motion, reusing is_plane_rigid_motion_between_regions on arbitrary point sets. Do not identify arc equality with a new scalar definition alone.",
+  "branch_semantics": "Inscribed vertex must be strictly opposite the selected intercepted arc. Central branch must specify the selected angular span (including principal/reflex choice); bare equality of principal ray angles cannot identify which complementary arc is intended.",
+  "forward_dependencies": [
+    "Prove an existing circle/chord/side-preserving rigid motion transports chosen_circle_arc point sets.",
+    "Equal intercepted angular spans in equal circles imply equal chord lengths, using cosine metric identities.",
+    "Reuse equal-chord motion construction and show it matches centers and selected sides.",
+    "Derive inscribed case from III20; expose the central case with explicit arc selection.",
+    "Check rotated/translated minor, major and semicircle consumers, then independent gates and source audit."
+  ],
+  "existing_anchors": [
+    "plane_rigid_motion_transports_circular_segment",
+    "is_plane_rigid_motion_between_regions",
+    "equal_chords_admit_plane_rigid_motion",
+    "proposition_20",
+    "chosen_circle_arc",
+    "chosen_arc_angle"
+  ],
+  "trust_added": 0,
+  "counted": false,
+  "status": "Independent strict PASS72/PASS83/PASS85, including all concrete consumers, with stable hashes. Shared identity, centered motion and III23/24 wrapper audit PASS with failing empty controls. Arc transport candidate3 audit pending. Full chapter177 failed only missing semicircle helper; repaired by local construction in unlaunched factored188.",
+  "central_branch_next": "Completed in Session: choose opposite-side strict arc points, apply III20 and the inscribed branch. Independent verification pending.",
+  "next_source_interface_boundary": {
+    "source": "III27 converse",
+    "current_public_witness": "is_plane_rigid_motion_between_regions on chosen arc point sets; center and endpoint mappings are constructed inside III26 but not exported by that existential conclusion.",
+    "required_before_III27": "Do not infer endpoint/center correspondence merely by unpacking the current weaker witness. Either prove recovery from arc-set congruence, or expose a source-faithful congruence interface for arcs with specified endpoints, prove its transport law, and update III26 to return that interface. This is future mathematical/interface work, not a verified equivalence or a kernel failure.",
+    "current_III26_status": "The present point-set congruence conclusion remains valid; this note does not invalidate PASS72/PASS83."
+  },
+  "future_III27_source_recheck": {
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "page_zero_based": 95,
+    "lines": "3919–3955",
+    "statement": "Equal arcs in equal circles imply equal central and inscribed angles.",
+    "source_proof": "Uses I.23 angle construction, III.26, impossibility of a proper arc part equal to the whole, then III.20.",
+    "existing_boundary": "The current point-set congruence witness does not export mapped centers/endpoints. Preserve source scope: a framed-motion auxiliary would not by itself complete III.27 without an established bridge from the chosen equal-arc notion.",
+    "status": "source and interface gap audited; no new definition or source theorem implemented"
+  }
+}

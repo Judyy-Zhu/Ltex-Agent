@@ -1,0 +1,38 @@
+{
+  "status": "forward source-derived plan; later drafts not proof completions",
+  "area_foundation": "positive sqrt(det^2)/2 for actual nondegenerate real-plane triangles; parallelogram content as diagonal triangle sum",
+  "dependencies": {
+    "I34": [
+      "strict proper parallelogram",
+      "coordinate closure",
+      "side/dot congruence",
+      "positive triangle-area existence/uniqueness"
+    ],
+    "I35": [
+      "I34",
+      "same-base determinant additivity"
+    ],
+    "I36": [
+      "I34",
+      "equal base lengths",
+      "common two supporting lines",
+      "parallel vector Gram identity"
+    ],
+    "I37": [
+      "triangle-area existence/uniqueness",
+      "same-base determinant additivity"
+    ],
+    "I38": [
+      "equal base lengths",
+      "common two supporting lines",
+      "parallel vector Gram identity"
+    ]
+  },
+  "semantic_boundaries": [
+    "same upper endpoints may coincide",
+    "flat triangles/quadrilaterals excluded by their definitions",
+    "positive unsigned area invariant under orientation reversal",
+    "equal areas do not imply same upper line without same-side hypothesis for later converses"
+  ],
+  "trust_added": 0
+}

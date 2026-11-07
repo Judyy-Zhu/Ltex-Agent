@@ -1,0 +1,27 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 14,
+    "mathematics": "Equal equiangular parallelograms \u2194 reciprocal adjacent sides (squared-length product form)."
+  },
+  "status": "both_directions_independent_gate_passed",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "main_sha256": "ea66fa3110adab05f9e45783d3fa62c4e07dc4744c5845b28528562ffab4d0fe",
+  "forward": {
+    "request": 9806
+  },
+  "converse": {
+    "request": 9807
+  },
+  "core_gate": {
+    "stmts": 31,
+    "accepted": 31
+  },
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": [
+    "positive/negative consumers",
+    "length (not squared) packaging",
+    "canonical promotion"
+  ]
+}

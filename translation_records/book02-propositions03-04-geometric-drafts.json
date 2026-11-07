@@ -1,0 +1,33 @@
+{
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "edition": "Fitzpatrick revised2008",
+  "status": "verified draft source statements; not canonical count",
+  "II3": {
+    "source_pages_zero_based": [
+      51
+    ],
+    "statement": "book02-proposition03-source-candidate1.lit accepted0032",
+    "construction": "book02-proposition03-construction-candidate1.lit accepted0033",
+    "consumers": "interior0034 and reversed0035 accepted; endpoint0036 rejects c!=a",
+    "meaning": "Actual rectangle on AB and CB equals actual rectangle on AC and CB plus actual square on CB; strict interior segment cut."
+  },
+  "II4": {
+    "source_pages_zero_based": [
+      51,
+      52,
+      53
+    ],
+    "statement": "book02-proposition04-source-candidate1.lit accepted0037",
+    "construction": "complete figures0039 accepted",
+    "meaning": "Actual square on AB equals actual squares on AC and CB plus twice actual rectangle with adjacent sides AC and CB; strict interior segment cut.",
+    "remaining": "clean combined gate31306 and full original integration",
+    "consumers": "interior0040 and reversed0041 accepted; endpoint0042 rejects c!=a"
+  },
+  "scope": "Areas are actual positive has_parallelogram_area values; squares and right-angle rectangles are explicit geometric figures. Local replay of original is_on_segment must be qualified during canonical integration.",
+  "trust": "No new trust or kernel changes.",
+  "remaining": [
+    "independent clean gates",
+    "full original-module integration",
+    "source audit and canonical promotion"
+  ]
+}

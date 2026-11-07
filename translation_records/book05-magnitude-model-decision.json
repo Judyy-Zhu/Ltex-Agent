@@ -1,0 +1,30 @@
+{
+  "status": "Closed: user removed standalone Book V from scope; no model choice required now.",
+  "request": "2026-10-18 async question",
+  "existing_evidence": "Geometry uses positive real length/area measures. Exact Eudoxus comparison and greater-ratio numerical bridges passed strict27.",
+  "option_measured": {
+    "outline": "A magnitude carries a kind tag and positive real value; ratio operands within each pair must share a kind. Two proportional ratios may belong to different kinds.",
+    "draft_interface_not_executed": "struct Magnitude<Kind set>:\n    value R+\n    kind_tag set\n    kind_tag = Kind\n\nprop have_same_ratio(K,L set,a,b &Magnitude<K>,c,d &Magnitude<L>):\n    $have_equal_equimultiple_comparisons(a.value,b.value,c.value,d.value)",
+    "requirements": [
+      "Same-kind addition and positive integer scaling.",
+      "Length constructor requires distinct endpoints; area constructor requires proper figure and positive area.",
+      "Zero input rejects; length/area mixed within one ratio rejects; length:length = area:area is allowed.",
+      "Prove invariance under independent positive unit rescaling of each kind.",
+      "Do not silently claim a general representation theorem for abstract magnitudes."
+    ]
+  },
+  "option_abstract": {
+    "outline": "Bundled same-kind magnitude domains with addition, order and Archimedean/comparability properties; prove the source propositions there and construct separate real-measure interpretations.",
+    "requirements": [
+      "Choose and state exact domain laws and trusted foundations explicitly.",
+      "Do not assert unproved representation of every abstract magnitude by a real value.",
+      "Retain exact integer-multiple definitions and typed geometric applications."
+    ]
+  },
+  "common_acceptance": [
+    "No user trust added to completed source items.",
+    "Preserve all source statements, clauses and corollaries.",
+    "Persistent Session use plus positive and nearest-boundary probes and clean module verification."
+  ],
+  "independent_work_continues": "IV12 and existing numerical layer"
+}

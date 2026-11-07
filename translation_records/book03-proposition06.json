@@ -1,0 +1,17 @@
+{
+  "source_item": "III.6",
+  "source_url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+  "source": ".draft/books02-03/III06-touching-circles-full1.lit",
+  "semantics": "positive-radius distinct circumference sets, exactly one common point, entire inner circumference contained in outer closed disk",
+  "session_status": "full touching-circle theorem accepted",
+  "actual_use": "III06-internal-full-use1 and III06-external-use1 accepted",
+  "cold_status": "PASS",
+  "trust_added": 0,
+  "cold_receipt": ".draft/III06-checkpoint/receipt.json",
+  "source_fidelity_correction": "PDF zero page74 lines2930\u20132932 states any touching circles; earlier internal-only version is a special case, not full III6",
+  "full_source": ".draft/books02-03/III06-touching-circles-full1.lit",
+  "external_use": "accepted",
+  "canonical_promotion": "complete; joint strict cold PASS",
+  "canonical": "textbook/book03-circles.lit",
+  "canonical_cold_receipt": ".draft/book03-first-six-checkpoint/receipt.json"
+}

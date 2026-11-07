@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-11T13:09:35.614336+00:00",
+  "source": {
+    "book_number": 1,
+    "proposition": 32,
+    "edition": "Fitzpatrick 2008",
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "archive_text_path": "Book/texts/32.txt"
+  },
+  "status": "Complete geometric source candidate5 strict Session accepted; actual geometric use, collinear/extension boundaries and canonical checkpoint pending",
+  "source_conclusions": [
+    "Exterior angle at a produced side equals sum of the two opposite internal angles",
+    "Three interior angles sum to two right angles (pi in the real model)"
+  ],
+  "analytic_proof_spine": [
+    "Proper noncollinear triangle supplies positive side squares and a positive Gram remainder.",
+    "Use law-of-cosines numerators at the two ends of a common side; the Gram remainder is identical at both ends.",
+    "Principal-angle positive sine equals positive square root of Gram remainder divided by angle denominator root.",
+    "Cosine addition and positive square-root product identity give cos(alpha+beta)=-cos(gamma).",
+    "I.17 bounds alpha+beta below pi; principal inverse cosine gives alpha+beta+gamma=pi.",
+    "Strict side extension gives supplementary interior/exterior angles; cancel gamma to obtain the first source conclusion."
+  ],
+  "acceptance": [
+    "Actual nondegenerate 3-4-5 triangle consumes both source conclusions",
+    "Collinear triangle and nonpositive extension parameter are rejected"
+  ],
+  "draft_preflight_passed": [
+    "principal-three-angle-sum1.lit",
+    "sine-positive-square1.lit",
+    "triangle-cosine-numerator1.lit"
+  ],
+  "drafts_session_pending": true,
+  "trust_added": 0,
+  "foundations_changed": false,
+  "scalar_cold_receipts": [
+    "scripts/Euclid_Elements/.draft/angle-scalar/book01-32-principal/receipt.json",
+    "scripts/Euclid_Elements/.draft/angle-scalar/book01-32-sine/receipt.json",
+    "scripts/Euclid_Elements/.draft/angle-scalar/book01-32-root-product/receipt.json"
+  ],
+  "scalar_cold_status": "Four scalar declarations passed independent strict gates: 2 principal/numerator, 1 positive sine certificate, 1 common-side root product; hashes stable. Complete combination remains under live Session iteration.",
+  "scalar_session_id": 6691,
+  "scalar_last_attempt": "candidate4 accepted in persistent scalar Session 6691; actual scalar use/cold accepted-source checkpoint and full geometric theorem pending",
+  "main_authoring_session_id": 55623,
+  "scalar_complete_cold_receipt": "scripts/Euclid_Elements/.draft/angle-scalar/book01-32-complete-spine/receipt.json",
+  "scalar_complete_cold_status": "2 target declarations, 8.490124749951065s, strict success with stable all-dependency hashes; actual 3-4-5 scalar use accepted",
+  "geometric_source_draft": "scripts/Euclid_Elements/.draft/authoring-angles/proposition32-1.lit",
+  "geometric_source_preflight": "Passed with explicit root ray_angle definition in preflight-only context; no Session submission yet",
+  "scalar_session_ready": true,
+  "scalar_negative_boundary": "Zero Gram rejected at argument_type index6, session_error null; actual geometric collinear triangle and extension boundary probes remain pending",
+  "focused_authoring_session_id": 38336,
+  "focused_bootstrap_status": "Restarting only at hard transport error boundary from previously accepted eight signatures+I.17 prefix; blank-free transfer preflight passed. No complete geometric I.32 source success yet.",
+  "localized_geometric_draft": "scripts/Euclid_Elements/.draft/authoring-book01-32/proposition32-local-named1.lit",
+  "locality_evidence": "Actual local named theorem use passed; helper outside enclosing scope rejected by lookup, no Session error",
+  "accepted_session_id": 89496,
+  "accepted_geometric_source": "scripts/Euclid_Elements/.draft/authoring-book01-32/proposition32-local-named-repl5.lit"
+}

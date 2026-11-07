@@ -1,0 +1,387 @@
+# Numerical sublemma for V.Def5; quantity kinds and reverse equivalence are not asserted here.
+thm cross_product_preserves_less_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a < n*b
+        =>:
+            m*c < n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) < scale*(n*b)
+    m*c < n*d
+
+# Numerical sublemma for V.Def5; quantity kinds and reverse equivalence are not asserted here.
+thm cross_product_preserves_equal_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a = n*b
+        =>:
+            m*c = n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) = scale*(n*b)
+    m*c = n*d
+
+# Numerical sublemma for V.Def5; quantity kinds and reverse equivalence are not asserted here.
+thm cross_product_preserves_greater_equimultiples:
+    ? forall a,b,c,d R+, m,n N+:
+        a*d = b*c
+        m*a > n*b
+        =>:
+            m*c > n*d
+    have scale R+ = c/a
+    scale > 0
+    c = (c/a)*a = scale*a
+    d = (a*d)/a = (b*c)/a = (c/a)*b = scale*b
+    m $in R+
+    n $in R+
+    m*c = m*(scale*a) = scale*(m*a)
+    n*d = n*(scale*b) = scale*(n*b)
+    scale*(m*a) > scale*(n*b)
+    m*c > n*d
+
+sketch:
+    sqrt(2) $in R+
+    sqrt(2)^2 = 2
+    by contra:
+        ? sqrt(2) > 1
+        sqrt(2) <= 1
+        sqrt(2)^2 <= 1^2
+        2 = sqrt(2)^2 <= 1^2 = 1
+        impossible 2 > 1
+    2*sqrt(2) $in R+
+    sqrt(2)*2 = 1*(2*sqrt(2))
+    1*sqrt(2) > 1*1
+    release thm cross_product_preserves_greater_equimultiples(sqrt(2),1,2*sqrt(2),2,1,1)
+    2*sqrt(2) > 2
+
+
+thm positive_rational_separation:
+    ? forall x,y R+:
+        x < y
+        =>:
+            exist numerator,denominator N+ st {x < numerator/denominator, numerator/denominator < y}
+    release thm rational_between_reals(x,y)
+    obtain middle from exist q Q st {x < q and q < y}
+    release thm rational_has_unique_reduced_fraction(middle)
+    obtain numerator,denominator from exist! p Z, d N+ st {middle = p/d, gcd(p,d) = 1}
+    middle > x > 0
+    denominator $in R+
+    middle*denominator > 0
+    numerator = (numerator/denominator)*denominator = middle*denominator > 0
+    numerator $in N+
+    x < middle = numerator/denominator < y
+    witness exist n,m N+ st {x < n/m, n/m < y} from numerator,denominator
+
+
+thm strict_cross_product_has_separating_equimultiples:
+    ? forall a,b,c,d R+:
+        a*d < b*c
+        =>:
+            exist m,n N+ st {m*a < n*b, m*c > n*d}
+    b*d > 0
+    (a*d)/(b*d) < (b*c)/(b*d)
+    a/b = (a*d)/(b*d) < (b*c)/(b*d) = c/d
+    a/b > 0
+    c/d > 0
+    release thm positive_rational_separation(a/b,c/d)
+    obtain n,m from exist numerator,denominator N+ st {a/b < numerator/denominator, numerator/denominator < c/d}
+    m $in R+
+    n $in R+
+    m*(a/b) < m*(n/m)
+    (m*(a/b))*b < (m*(n/m))*b
+    m*a = (m*(a/b))*b < (m*(n/m))*b = n*b
+    m*(n/m) < m*(c/d)
+    (m*(n/m))*d < (m*(c/d))*d
+    n*d = (m*(n/m))*d < (m*(c/d))*d = m*c
+    witness exist first,second N+ st {first*a < second*b, first*c > second*d} from m,n
+
+
+# Eudoxus comparisons for positive real measures; quantity kinds are supplied by geometric interfaces.
+prop have_equal_equimultiple_comparisons(a,b,c,d R+):
+    forall m,n N+:
+        =>:
+            m*a < n*b
+        <=>:
+            m*c < n*d
+    forall m,n N+:
+        =>:
+            m*a = n*b
+        <=>:
+            m*c = n*d
+    forall m,n N+:
+        =>:
+            m*a > n*b
+        <=>:
+            m*c > n*d
+
+
+thm equal_equimultiple_comparisons_imply_cross_product:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a*d = b*c
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+    by contra:
+        ? a*d >= b*c
+        a*d < b*c
+        release thm strict_cross_product_has_separating_equimultiples(a,b,c,d)
+        obtain m,n from exist m,n N+ st {m*a < n*b, m*c > n*d}
+        m*c < n*d
+        impossible m*c > n*d
+    by contra:
+        ? a*d <= b*c
+        a*d > b*c
+        c*b = b*c < a*d = d*a
+        release thm strict_cross_product_has_separating_equimultiples(c,d,a,b)
+        obtain m,n from exist m,n N+ st {m*c < n*d, m*a > n*b}
+        m*a < n*b
+        impossible m*a > n*b
+    a*d = b*c
+
+
+thm cross_product_implies_equal_equimultiple_comparisons:
+    ? forall a,b,c,d R+:
+        a*d = b*c
+        =>:
+            $have_equal_equimultiple_comparisons(a,b,c,d)
+    c*b = b*c = a*d = d*a
+    claim:
+        ? forall m,n N+:
+            m*a < n*b
+            =>:
+                m*c < n*d
+        release thm cross_product_preserves_less_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c < n*d
+            =>:
+                m*a < n*b
+        release thm cross_product_preserves_less_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a = n*b
+            =>:
+                m*c = n*d
+        release thm cross_product_preserves_equal_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c = n*d
+            =>:
+                m*a = n*b
+        release thm cross_product_preserves_equal_equimultiples(c,d,a,b,m,n)
+    claim:
+        ? forall m,n N+:
+            m*a > n*b
+            =>:
+                m*c > n*d
+        release thm cross_product_preserves_greater_equimultiples(a,b,c,d,m,n)
+    claim:
+        ? forall m,n N+:
+            m*c > n*d
+            =>:
+                m*a > n*b
+        release thm cross_product_preserves_greater_equimultiples(c,d,a,b,m,n)
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+
+
+thm equal_equimultiple_comparisons_give_equal_quotients:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            a/b = c/d
+    release thm equal_equimultiple_comparisons_imply_cross_product(a,b,c,d)
+    b*d > 0
+    a/b = (a*d)/(b*d) = (b*c)/(b*d) = c/d
+
+
+claim:
+    ? $have_equal_equimultiple_comparisons(sqrt(2),1,2*sqrt(2),2)
+    sqrt(2) $in R+
+    2*sqrt(2) > 0
+    sqrt(2)*2 = 1*(2*sqrt(2))
+    release thm cross_product_implies_equal_equimultiple_comparisons(sqrt(2),1,2*sqrt(2),2)
+
+
+
+# Book V Definition 7 on positive real measures.
+prop has_greater_equimultiple_ratio(a,b,c,d R+):
+    exist m,n N+ st {m*a > n*b, m*c <= n*d}
+
+
+thm greater_equimultiple_ratio_implies_strict_cross_product:
+    ? forall a,b,c,d R+:
+        $has_greater_equimultiple_ratio(a,b,c,d)
+        =>:
+            a*d > b*c
+    obtain m,n from $has_greater_equimultiple_ratio(a,b,c,d)
+    (m*a)*d > (n*b)*d
+    (m*c)*b <= (n*d)*b
+    m*(b*c) = (m*c)*b <= (n*d)*b = (n*b)*d < (m*a)*d = m*(a*d)
+    (m*(b*c))/m < (m*(a*d))/m
+    b*c = (m*(b*c))/m < (m*(a*d))/m = a*d
+
+
+thm strict_cross_product_implies_greater_equimultiple_ratio:
+    ? forall a,b,c,d R+:
+        a*d > b*c
+        =>:
+            $has_greater_equimultiple_ratio(a,b,c,d)
+    c*b = b*c < a*d = d*a
+    release thm strict_cross_product_has_separating_equimultiples(c,d,a,b)
+    obtain m,n from exist m,n N+ st {m*c < n*d, m*a > n*b}
+    m*c <= n*d
+    witness $has_greater_equimultiple_ratio(a,b,c,d) from m,n
+
+
+# Book V.13 for positive real measures, directly using equimultiple witnesses.
+thm proportion_transfers_greater_equimultiple_ratio:
+    ? forall a,b,c,d,fifth,sixth R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        $has_greater_equimultiple_ratio(c,d,fifth,sixth)
+        =>:
+            $has_greater_equimultiple_ratio(a,b,fifth,sixth)
+    by def $have_equal_equimultiple_comparisons(a,b,c,d)
+    obtain m,n from $has_greater_equimultiple_ratio(c,d,fifth,sixth)
+    m*a > n*b
+    witness $has_greater_equimultiple_ratio(a,b,fifth,sixth) from m,n
+
+
+claim:
+    ? $has_greater_equimultiple_ratio(2,1,1,1)
+    witness $has_greater_equimultiple_ratio(2,1,1,1) from 1,1
+
+
+# Book V Definition 4 numerical existence: each positive real measure can exceed the other by an integer multiple.
+thm positive_real_measures_are_comparable:
+    ? forall a,b R+:
+        exist m,n N+ st {m*a > b, n*b > a}
+    release thm real_archimedean_natural_upper_bound(b/a)
+    obtain m from exist m N+ st {b/a < m}
+    release thm real_archimedean_natural_upper_bound(a/b)
+    obtain n from exist n N+ st {a/b < n}
+    (b/a)*a < m*a
+    b = (b/a)*a < m*a
+    (a/b)*b < n*b
+    a = (a/b)*b < n*b
+    witness exist first,second N+ st {first*a > b, second*b > a} from m,n
+
+
+claim:
+    ? $has_greater_equimultiple_ratio(sqrt(2),1,1,1)
+    sqrt(2) $in R+
+    (sqrt(2))^2 = 2
+    by contra:
+        ? sqrt(2) > 1
+        sqrt(2) <= 1
+        (sqrt(2))^2 <= 1^2
+        2 <= 1
+        impossible 2 <= 1
+    sqrt(2)*1 > 1*1
+    release thm strict_cross_product_implies_greater_equimultiple_ratio(sqrt(2),1,1,1)
+
+
+claim:
+    ? $has_greater_equimultiple_ratio(2,1,1,1)
+    release thm cross_product_implies_equal_equimultiple_comparisons(2,1,4,2)
+    witness $has_greater_equimultiple_ratio(4,2,1,1) from 1,1
+    release thm proportion_transfers_greater_equimultiple_ratio(2,1,4,2,1,1)
+
+
+thm book05_proposition_7_real_measures:
+    ? forall a,b,c R+:
+        a = b
+        =>:
+            $have_equal_equimultiple_comparisons(a,c,b,c)
+            $have_equal_equimultiple_comparisons(c,a,c,b)
+    a*c = b*c = c*b
+    c*b = c*a = a*c
+    release thm cross_product_implies_equal_equimultiple_comparisons(a,c,b,c)
+    release thm cross_product_implies_equal_equimultiple_comparisons(c,a,c,b)
+
+
+thm book05_proposition_7_corollary_real_measures:
+    ? forall a,b,c,d R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        =>:
+            $have_equal_equimultiple_comparisons(b,a,d,c)
+    release thm equal_equimultiple_comparisons_imply_cross_product(a,b,c,d)
+    b*c = a*d
+    release thm cross_product_implies_equal_equimultiple_comparisons(b,a,d,c)
+
+
+thm book05_proposition_8_real_measures:
+    ? forall a,b,c R+:
+        a > b
+        =>:
+            $has_greater_equimultiple_ratio(a,c,b,c)
+            $has_greater_equimultiple_ratio(c,b,c,a)
+    a*c > b*c
+    a*c > c*b
+    c*a > b*c
+    release thm strict_cross_product_implies_greater_equimultiple_ratio(a,c,b,c)
+    release thm strict_cross_product_implies_greater_equimultiple_ratio(c,b,c,a)
+
+
+thm book05_proposition_9_antecedents_real_measures:
+    ? forall a,b,c R+:
+        $have_equal_equimultiple_comparisons(a,c,b,c)
+        =>:
+            a = b
+    release thm equal_equimultiple_comparisons_imply_cross_product(a,c,b,c)
+    a = (a*c)/c = (c*b)/c = b
+
+
+thm book05_proposition_9_consequents_real_measures:
+    ? forall a,b,c R+:
+        $have_equal_equimultiple_comparisons(c,a,c,b)
+        =>:
+            a = b
+    release thm equal_equimultiple_comparisons_imply_cross_product(c,a,c,b)
+    b = (c*b)/c = (a*c)/c = a
+
+
+thm book05_proposition_10_antecedents_real_measures:
+    ? forall a,b,c R+:
+        $has_greater_equimultiple_ratio(a,c,b,c)
+        =>:
+            a > b
+    release thm greater_equimultiple_ratio_implies_strict_cross_product(a,c,b,c)
+    (a*c)/c > (c*b)/c
+    a = (a*c)/c > (c*b)/c = b
+
+
+thm book05_proposition_10_consequents_real_measures:
+    ? forall a,b,c R+:
+        $has_greater_equimultiple_ratio(c,a,c,b)
+        =>:
+            a < b
+    release thm greater_equimultiple_ratio_implies_strict_cross_product(c,a,c,b)
+    (c*b)/c > (a*c)/c
+    b = (c*b)/c > (a*c)/c = a
+
+
+thm book05_proposition_11_real_measures:
+    ? forall a,b,c,d,fifth,sixth R+:
+        $have_equal_equimultiple_comparisons(a,b,c,d)
+        $have_equal_equimultiple_comparisons(c,d,fifth,sixth)
+        =>:
+            $have_equal_equimultiple_comparisons(a,b,fifth,sixth)
+    release thm equal_equimultiple_comparisons_give_equal_quotients(a,b,c,d)
+    release thm equal_equimultiple_comparisons_give_equal_quotients(c,d,fifth,sixth)
+    a/b = c/d = fifth/sixth
+    a*sixth = (a/b)*(b*sixth) = (fifth/sixth)*(b*sixth) = b*fifth
+    release thm cross_product_implies_equal_equimultiple_comparisons(a,b,fifth,sixth)
+

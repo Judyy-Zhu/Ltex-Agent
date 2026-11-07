@@ -1,0 +1,32 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 10,
+    "mathematics": "Cut an uncut segment similarly to a given cut segment (equal part ratios)."
+  },
+  "status": "independent_strict_gate_passed_with_positive_consumer",
+  "binary_sha256": "b74d9f0c7e11ae4cced38e5df23a7df8dce8d6a55f9bf7a6239a932cad55908b",
+  "main_sha256": "a35786642fef4a3e01b6b98de325175f3042096f4cf634c9abc3f06417936cdb",
+  "main_with_consumer_sha256": "544e468b2d782f5611066f5fb000115d9b6e7f9ef682a51a2302919658f2c1c9",
+  "core_gate": {
+    "stmts": 32,
+    "accepted": 32
+  },
+  "with_consumer_gate": {
+    "stmts": 33,
+    "accepted": 33
+  },
+  "accepted_source": {
+    "request": 9403
+  },
+  "positive_consumer": {
+    "request": 9405
+  },
+  "failed_attempts": [
+    9401,
+    9402,
+    9404
+  ],
+  "trust_added": 0,
+  "canonical_completion_increment": 0
+}

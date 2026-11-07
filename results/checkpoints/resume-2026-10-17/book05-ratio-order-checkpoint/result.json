@@ -1,0 +1,386 @@
+{
+  "kind": "run",
+  "run_result": "success",
+  "target": "file",
+  "path": "/Users/shenjiachen/主要文件夹/GeekGems/litex/golitex/scripts/Euclid_Elements/.draft/resume-2026-10-17/book05-ratio-order-checkpoint/main.lit",
+  "detail": "normal",
+  "language": "en",
+  "statement_results": [
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_less_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) < (n * b)\n        =>:\n            (m * c) < (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) < (scale * (n * b))\n    (m * c) < (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) < (n * b)\n    =>:\n        (m * c) < (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_equal_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) = (n * b)\n        =>:\n            (m * c) = (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) = (scale * (n * b))\n    (m * c) = (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) = (n * b)\n    =>:\n        (m * c) = (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_preserves_greater_equimultiples:\n    ? forall a, b, c, d R+, m, n N+:\n        (a * d) = (b * c)\n        (m * a) > (n * b)\n        =>:\n            (m * c) > (n * d)\n    have scale R+ = (c / a)\n    scale > 0\n    c = ((c / a) * a) = (scale * a)\n    d = ((a * d) / a) = ((b * c) / a) = ((c / a) * b) = (scale * b)\n    m $in R+\n    n $in R+\n    (m * c) = (m * (scale * a)) = (scale * (m * a))\n    (n * d) = (n * (scale * b)) = (scale * (n * b))\n    (scale * (m * a)) > (scale * (n * b))\n    (m * c) > (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+, m, n N+:\n    (a * d) = (b * c)\n    (m * a) > (n * b)\n    =>:\n        (m * c) > (n * d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "sketch:\n    sqrt (2) $in R+\n    (sqrt (2) ^ 2) = 2\n    by contra:\n        ? sqrt (2) > 1\n        sqrt (2) <= 1\n        (sqrt (2) ^ 2) <= (1 ^ 2)\n        2 = (sqrt (2) ^ 2) <= (1 ^ 2) = 1\n        impossible 2 > 1\n    (2 * sqrt (2)) $in R+\n    (sqrt (2) * 2) = (1 * (2 * sqrt (2)))\n    (1 * sqrt (2)) > (1 * 1)\n    release thm cross_product_preserves_greater_equimultiples(sqrt (2), 1, (2 * sqrt (2)), 2, 1, 1)\n    (2 * sqrt (2)) > 2",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Sketch",
+        "message": "Run a sketch proof block"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm positive_rational_separation:\n    ? forall x, y R+:\n        x < y\n        =>:\n            exist numerator, denominator N+ st {x < (numerator / denominator), (numerator / denominator) < y}\n    release thm rational_between_reals(x, y)\n    obtain middle from exist q Q st {x < q and q < y}\n    release thm rational_has_unique_reduced_fraction(middle)\n    obtain numerator, denominator from exist! p Z, d N+ st {middle = (p / d), gcd(p, d) = 1}\n    middle > x > 0\n    denominator $in R+\n    (middle * denominator) > 0\n    numerator = ((numerator / denominator) * denominator) = (middle * denominator) > 0\n    numerator $in N+\n    x < middle = (numerator / denominator) < y\n    witness exist n, m N+ st {x < (n / m), (n / m) < y} from numerator, denominator",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall x, y R+:\n    x < y\n    =>:\n        exist numerator, denominator N+ st {x < (numerator / denominator), (numerator / denominator) < y}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm strict_cross_product_has_separating_equimultiples:\n    ? forall a, b, c, d R+:\n        (a * d) < (b * c)\n        =>:\n            exist m, n N+ st {(m * a) < (n * b), (m * c) > (n * d)}\n    (b * d) > 0\n    ((a * d) / (b * d)) < ((b * c) / (b * d))\n    (a / b) = ((a * d) / (b * d)) < ((b * c) / (b * d)) = (c / d)\n    (a / b) > 0\n    (c / d) > 0\n    release thm positive_rational_separation((a / b), (c / d))\n    obtain n, m from exist numerator, denominator N+ st {(a / b) < (numerator / denominator), (numerator / denominator) < (c / d)}\n    m $in R+\n    n $in R+\n    (m * (a / b)) < (m * (n / m))\n    ((m * (a / b)) * b) < ((m * (n / m)) * b)\n    (m * a) = ((m * (a / b)) * b) < ((m * (n / m)) * b) = (n * b)\n    (m * (n / m)) < (m * (c / d))\n    ((m * (n / m)) * d) < ((m * (c / d)) * d)\n    (n * d) = ((m * (n / m)) * d) < ((m * (c / d)) * d) = (m * c)\n    witness exist first, second N+ st {(first * a) < (second * b), (first * c) > (second * d)} from m, n",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a * d) < (b * c)\n    =>:\n        exist m, n N+ st {(m * a) < (n * b), (m * c) > (n * d)}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "prop have_equal_equimultiple_comparisons(a, b, c, d R+):\n    forall m, n N+:\n        =>:\n            (m * a) < (n * b)\n        <=>:\n            (m * c) < (n * d)\n    forall m, n N+:\n        =>:\n            (m * a) = (n * b)\n        <=>:\n            (m * c) = (n * d)\n    forall m, n N+:\n        =>:\n            (m * a) > (n * b)\n        <=>:\n            (m * c) > (n * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define prop",
+        "message": "Define a predicate"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_equimultiple_comparisons_imply_cross_product:\n    ? forall a, b, c, d R+:\n        $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n        =>:\n            (a * d) = (b * c)\n    by def $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    by contra:\n        ? (a * d) >= (b * c)\n        (a * d) < (b * c)\n        release thm strict_cross_product_has_separating_equimultiples(a, b, c, d)\n        obtain m, n from exist m, n N+ st {(m * a) < (n * b), (m * c) > (n * d)}\n        (m * c) < (n * d)\n        impossible (m * c) > (n * d)\n    by contra:\n        ? (a * d) <= (b * c)\n        (a * d) > (b * c)\n        (c * b) = (b * c) < (a * d) = (d * a)\n        release thm strict_cross_product_has_separating_equimultiples(c, d, a, b)\n        obtain m, n from exist m, n N+ st {(m * c) < (n * d), (m * a) > (n * b)}\n        (m * a) < (n * b)\n        impossible (m * a) > (n * b)\n    (a * d) = (b * c)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    =>:\n        (a * d) = (b * c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm cross_product_implies_equal_equimultiple_comparisons:\n    ? forall a, b, c, d R+:\n        (a * d) = (b * c)\n        =>:\n            $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    (c * b) = (b * c) = (a * d) = (d * a)\n    claim:\n        ? forall m, n N+:\n            (m * a) < (n * b)\n            =>:\n                (m * c) < (n * d)\n        release thm cross_product_preserves_less_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) < (n * d)\n            =>:\n                (m * a) < (n * b)\n        release thm cross_product_preserves_less_equimultiples(c, d, a, b, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * a) = (n * b)\n            =>:\n                (m * c) = (n * d)\n        release thm cross_product_preserves_equal_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) = (n * d)\n            =>:\n                (m * a) = (n * b)\n        release thm cross_product_preserves_equal_equimultiples(c, d, a, b, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * a) > (n * b)\n            =>:\n                (m * c) > (n * d)\n        release thm cross_product_preserves_greater_equimultiples(a, b, c, d, m, n)\n    claim:\n        ? forall m, n N+:\n            (m * c) > (n * d)\n            =>:\n                (m * a) > (n * b)\n        release thm cross_product_preserves_greater_equimultiples(c, d, a, b, m, n)\n    by def $f0::have_equal_equimultiple_comparisons(a, b, c, d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a * d) = (b * c)\n    =>:\n        $f0::have_equal_equimultiple_comparisons(a, b, c, d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm equal_equimultiple_comparisons_give_equal_quotients:\n    ? forall a, b, c, d R+:\n        $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n        =>:\n            (a / b) = (c / d)\n    release thm equal_equimultiple_comparisons_imply_cross_product(a, b, c, d)\n    (b * d) > 0\n    (a / b) = ((a * d) / (b * d)) = ((b * c) / (b * d)) = (c / d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    =>:\n        (a / b) = (c / d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "claim:\n    ? $f0::have_equal_equimultiple_comparisons(sqrt (2), 1, (2 * sqrt (2)), 2)\n    sqrt (2) $in R+\n    (2 * sqrt (2)) > 0\n    (sqrt (2) * 2) = (1 * (2 * sqrt (2)))\n    release thm cross_product_implies_equal_equimultiple_comparisons(sqrt (2), 1, (2 * sqrt (2)), 2)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Claim",
+        "message": "Prove a claim block and store its conclusions"
+      },
+      "stores": [
+        "$f0::have_equal_equimultiple_comparisons(sqrt (2), 1, (2 * sqrt (2)), 2)"
+      ],
+      "infers": [
+        "sqrt (2) $in R+",
+        "1 $in R+",
+        "(2 * sqrt (2)) $in R+",
+        "2 $in R+",
+        "forall m, n N+:\n    (m * sqrt (2)) < (n * 1)\n    =>:\n        (m * (2 * sqrt (2))) < (n * 2)",
+        "forall m, n N+:\n    (m * (2 * sqrt (2))) < (n * 2)\n    =>:\n        (m * sqrt (2)) < (n * 1)",
+        "forall m, n N+:\n    (m * sqrt (2)) = (n * 1)\n    =>:\n        (m * (2 * sqrt (2))) = (n * 2)",
+        "forall m, n N+:\n    (m * (2 * sqrt (2))) = (n * 2)\n    =>:\n        (m * sqrt (2)) = (n * 1)",
+        "forall m, n N+:\n    (m * sqrt (2)) > (n * 1)\n    =>:\n        (m * (2 * sqrt (2))) > (n * 2)",
+        "forall m, n N+:\n    (m * (2 * sqrt (2))) > (n * 2)\n    =>:\n        (m * sqrt (2)) > (n * 1)"
+      ]
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "prop has_greater_equimultiple_ratio(a, b, c, d R+):\n    exist m, n N+ st {(m * a) > (n * b), (m * c) <= (n * d)}",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define prop",
+        "message": "Define a predicate"
+      },
+      "stores": [],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm greater_equimultiple_ratio_implies_strict_cross_product:\n    ? forall a, b, c, d R+:\n        $f0::has_greater_equimultiple_ratio(a, b, c, d)\n        =>:\n            (a * d) > (b * c)\n    obtain m, n from $f0::has_greater_equimultiple_ratio(a, b, c, d)\n    ((m * a) * d) > ((n * b) * d)\n    ((m * c) * b) <= ((n * d) * b)\n    (m * (b * c)) = ((m * c) * b) <= ((n * d) * b) = ((n * b) * d) < ((m * a) * d) = (m * (a * d))\n    ((m * (b * c)) / m) < ((m * (a * d)) / m)\n    (b * c) = ((m * (b * c)) / m) < ((m * (a * d)) / m) = (a * d)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    $f0::has_greater_equimultiple_ratio(a, b, c, d)\n    =>:\n        (a * d) > (b * c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm strict_cross_product_implies_greater_equimultiple_ratio:\n    ? forall a, b, c, d R+:\n        (a * d) > (b * c)\n        =>:\n            $f0::has_greater_equimultiple_ratio(a, b, c, d)\n    (c * b) = (b * c) < (a * d) = (d * a)\n    release thm strict_cross_product_has_separating_equimultiples(c, d, a, b)\n    obtain m, n from exist m, n N+ st {(m * c) < (n * d), (m * a) > (n * b)}\n    (m * c) <= (n * d)\n    witness $f0::has_greater_equimultiple_ratio(a, b, c, d) from m, n",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    (a * d) > (b * c)\n    =>:\n        $f0::has_greater_equimultiple_ratio(a, b, c, d)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm proportion_transfers_greater_equimultiple_ratio:\n    ? forall a, b, c, d, fifth, sixth R+:\n        $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n        $f0::has_greater_equimultiple_ratio(c, d, fifth, sixth)\n        =>:\n            $f0::has_greater_equimultiple_ratio(a, b, fifth, sixth)\n    by def $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    obtain m, n from $f0::has_greater_equimultiple_ratio(c, d, fifth, sixth)\n    (m * a) > (n * b)\n    witness $f0::has_greater_equimultiple_ratio(a, b, fifth, sixth) from m, n",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d, fifth, sixth R+:\n    $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    $f0::has_greater_equimultiple_ratio(c, d, fifth, sixth)\n    =>:\n        $f0::has_greater_equimultiple_ratio(a, b, fifth, sixth)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "claim:\n    ? $f0::has_greater_equimultiple_ratio(2, 1, 1, 1)\n    witness $f0::has_greater_equimultiple_ratio(2, 1, 1, 1) from 1, 1",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Claim",
+        "message": "Prove a claim block and store its conclusions"
+      },
+      "stores": [
+        "$f0::has_greater_equimultiple_ratio(2, 1, 1, 1)"
+      ],
+      "infers": [
+        "2 $in R+",
+        "1 $in R+",
+        "1 $in R+",
+        "1 $in R+",
+        "exist m, n N+ st {(m * 2) > (n * 1), (m * 1) <= (n * 1)}"
+      ]
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm positive_real_measures_are_comparable:\n    ? forall a, b R+:\n        exist m, n N+ st {(m * a) > b, (n * b) > a}\n    release thm real_archimedean_natural_upper_bound((b / a))\n    obtain m from exist m N+ st {(b / a) < m}\n    release thm real_archimedean_natural_upper_bound((a / b))\n    obtain n from exist n N+ st {(a / b) < n}\n    ((b / a) * a) < (m * a)\n    b = ((b / a) * a) < (m * a)\n    ((a / b) * b) < (n * b)\n    a = ((a / b) * b) < (n * b)\n    witness exist first, second N+ st {(first * a) > b, (second * b) > a} from m, n",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b R+:\n    exist m, n N+ st {(m * a) > b, (n * b) > a}"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "claim:\n    ? $f0::has_greater_equimultiple_ratio(sqrt (2), 1, 1, 1)\n    sqrt (2) $in R+\n    (sqrt (2) ^ 2) = 2\n    by contra:\n        ? sqrt (2) > 1\n        sqrt (2) <= 1\n        (sqrt (2) ^ 2) <= (1 ^ 2)\n        2 <= 1\n        impossible 2 <= 1\n    (sqrt (2) * 1) > (1 * 1)\n    release thm strict_cross_product_implies_greater_equimultiple_ratio(sqrt (2), 1, 1, 1)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Claim",
+        "message": "Prove a claim block and store its conclusions"
+      },
+      "stores": [
+        "$f0::has_greater_equimultiple_ratio(sqrt (2), 1, 1, 1)"
+      ],
+      "infers": [
+        "sqrt (2) $in R+",
+        "1 $in R+",
+        "1 $in R+",
+        "1 $in R+",
+        "exist m, n N+ st {(m * sqrt (2)) > (n * 1), (m * 1) <= (n * 1)}"
+      ]
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "claim:\n    ? $f0::has_greater_equimultiple_ratio(2, 1, 1, 1)\n    release thm cross_product_implies_equal_equimultiple_comparisons(2, 1, 4, 2)\n    witness $f0::has_greater_equimultiple_ratio(4, 2, 1, 1) from 1, 1\n    release thm proportion_transfers_greater_equimultiple_ratio(2, 1, 4, 2, 1, 1)",
+      "proof_method": {
+        "type": "proof_block",
+        "rule_name": "Claim",
+        "message": "Prove a claim block and store its conclusions"
+      },
+      "stores": [
+        "$f0::has_greater_equimultiple_ratio(2, 1, 1, 1)"
+      ],
+      "infers": [
+        "2 $in R+",
+        "1 $in R+",
+        "1 $in R+",
+        "1 $in R+",
+        "exist m, n N+ st {(m * 2) > (n * 1), (m * 1) <= (n * 1)}"
+      ]
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_7_real_measures:\n    ? forall a, b, c R+:\n        a = b\n        =>:\n            $f0::have_equal_equimultiple_comparisons(a, c, b, c)\n            $f0::have_equal_equimultiple_comparisons(c, a, c, b)\n    (a * c) = (b * c) = (c * b)\n    (c * b) = (c * a) = (a * c)\n    release thm cross_product_implies_equal_equimultiple_comparisons(a, c, b, c)\n    release thm cross_product_implies_equal_equimultiple_comparisons(c, a, c, b)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c R+:\n    a = b\n    =>:\n        $f0::have_equal_equimultiple_comparisons(a, c, b, c)\n        $f0::have_equal_equimultiple_comparisons(c, a, c, b)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_7_corollary_real_measures:\n    ? forall a, b, c, d R+:\n        $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n        =>:\n            $f0::have_equal_equimultiple_comparisons(b, a, d, c)\n    release thm equal_equimultiple_comparisons_imply_cross_product(a, b, c, d)\n    (b * c) = (a * d)\n    release thm cross_product_implies_equal_equimultiple_comparisons(b, a, d, c)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d R+:\n    $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    =>:\n        $f0::have_equal_equimultiple_comparisons(b, a, d, c)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_8_real_measures:\n    ? forall a, b, c R+:\n        a > b\n        =>:\n            $f0::has_greater_equimultiple_ratio(a, c, b, c)\n            $f0::has_greater_equimultiple_ratio(c, b, c, a)\n    (a * c) > (b * c)\n    (a * c) > (c * b)\n    (c * a) > (b * c)\n    release thm strict_cross_product_implies_greater_equimultiple_ratio(a, c, b, c)\n    release thm strict_cross_product_implies_greater_equimultiple_ratio(c, b, c, a)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c R+:\n    a > b\n    =>:\n        $f0::has_greater_equimultiple_ratio(a, c, b, c)\n        $f0::has_greater_equimultiple_ratio(c, b, c, a)"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_9_antecedents_real_measures:\n    ? forall a, b, c R+:\n        $f0::have_equal_equimultiple_comparisons(a, c, b, c)\n        =>:\n            a = b\n    release thm equal_equimultiple_comparisons_imply_cross_product(a, c, b, c)\n    a = ((a * c) / c) = ((c * b) / c) = b",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c R+:\n    $f0::have_equal_equimultiple_comparisons(a, c, b, c)\n    =>:\n        a = b"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_9_consequents_real_measures:\n    ? forall a, b, c R+:\n        $f0::have_equal_equimultiple_comparisons(c, a, c, b)\n        =>:\n            a = b\n    release thm equal_equimultiple_comparisons_imply_cross_product(c, a, c, b)\n    b = ((c * b) / c) = ((a * c) / c) = a",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c R+:\n    $f0::have_equal_equimultiple_comparisons(c, a, c, b)\n    =>:\n        a = b"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_10_antecedents_real_measures:\n    ? forall a, b, c R+:\n        $f0::has_greater_equimultiple_ratio(a, c, b, c)\n        =>:\n            a > b\n    release thm greater_equimultiple_ratio_implies_strict_cross_product(a, c, b, c)\n    ((a * c) / c) > ((c * b) / c)\n    a = ((a * c) / c) > ((c * b) / c) = b",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c R+:\n    $f0::has_greater_equimultiple_ratio(a, c, b, c)\n    =>:\n        a > b"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_10_consequents_real_measures:\n    ? forall a, b, c R+:\n        $f0::has_greater_equimultiple_ratio(c, a, c, b)\n        =>:\n            a < b\n    release thm greater_equimultiple_ratio_implies_strict_cross_product(c, a, c, b)\n    ((c * b) / c) > ((a * c) / c)\n    b = ((c * b) / c) > ((a * c) / c) = a",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c R+:\n    $f0::has_greater_equimultiple_ratio(c, a, c, b)\n    =>:\n        a < b"
+      ],
+      "infers": []
+    },
+    {
+      "statement_result": "accepted",
+      "statement": "thm book05_proposition_11_real_measures:\n    ? forall a, b, c, d, fifth, sixth R+:\n        $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n        $f0::have_equal_equimultiple_comparisons(c, d, fifth, sixth)\n        =>:\n            $f0::have_equal_equimultiple_comparisons(a, b, fifth, sixth)\n    release thm equal_equimultiple_comparisons_give_equal_quotients(a, b, c, d)\n    release thm equal_equimultiple_comparisons_give_equal_quotients(c, d, fifth, sixth)\n    (a / b) = (c / d) = (fifth / sixth)\n    (a * sixth) = ((a / b) * (b * sixth)) = ((fifth / sixth) * (b * sixth)) = (b * fifth)\n    release thm cross_product_implies_equal_equimultiple_comparisons(a, b, fifth, sixth)",
+      "proof_method": {
+        "type": "definition",
+        "rule_name": "Define theorem",
+        "message": "Record a theorem"
+      },
+      "stores": [
+        "forall a, b, c, d, fifth, sixth R+:\n    $f0::have_equal_equimultiple_comparisons(a, b, c, d)\n    $f0::have_equal_equimultiple_comparisons(c, d, fifth, sixth)\n    =>:\n        $f0::have_equal_equimultiple_comparisons(a, b, fifth, sixth)"
+      ],
+      "infers": []
+    }
+  ],
+  "session_terminated": false,
+  "termination": null
+}

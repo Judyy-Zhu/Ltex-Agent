@@ -1,0 +1,39 @@
+{
+  "source": {
+    "book": 6,
+    "proposition": 1,
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "lines": [
+      6684,
+      6740
+    ]
+  },
+  "status": "strict_checked_draft",
+  "mathematics": "Triangles and proper parallelograms with equal positive perpendicular heights have area ratios equal to their base-length ratios. Each quantity is linked to actual points/feet, positive lengths and unsigned areas.",
+  "ratio_interface": "have_equal_equimultiple_comparisons for positive real measures, using all three comparisons for all positive integer equimultiples.",
+  "author_session": {
+    "native_pid": 34674,
+    "handle": 49797,
+    "home": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book01-original-session"
+  },
+  "accepted_statement_requests": [
+    "9086",
+    "9089",
+    "9095",
+    "9096"
+  ],
+  "positive_consumer": {
+    "request": "9103",
+    "case": "bases3,5;height2;triangleareas3,5;parallelogramareas6,10;feet outside finite bases"
+  },
+  "negative_requests": [
+    "9104",
+    "9105"
+  ],
+  "checkpoint": "scripts/Euclid_Elements/.draft/resume-2026-10-17/book06-proposition01-checkpoint-v2",
+  "trust_added": 0,
+  "canonical_completion_increment": 0,
+  "remaining": "Canonical module integration remains pending. General height existence/uniqueness/function9106–9109 are Session accepted but outside this checkpoint.",
+  "statement_count": 29,
+  "hashes_stable": true
+}

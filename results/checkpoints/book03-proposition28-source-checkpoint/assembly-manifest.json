@@ -1,0 +1,16 @@
+{
+  "base": "scripts/Euclid_Elements/.draft/book03-proposition26-source-checkpoint/main.lit",
+  "base_statements": 85,
+  "new_statements": 6,
+  "expected_statements": 91,
+  "new_sources": [
+    "equal-chords-central5.lit",
+    "proposition28-minor1.lit",
+    "proposition28-major1.lit",
+    "rotated-minor-use1.lit",
+    "rotated-major-use1.lit",
+    "rotated-semicircle-use1.lit"
+  ],
+  "status": "all six new statements accepted independently in retained Session52918; fresh strict gate ready",
+  "source_sha256": "f85ab40bb324cc589a9cf0ccce614e38e474c830e2f11759cef5100fec4fc9f1"
+}
