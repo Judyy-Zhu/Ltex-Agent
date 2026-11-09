@@ -1,0 +1,223 @@
+{
+  "id": "aligned-core-v2-source-located-retrieval",
+  "status": "paired_structure_and_native_examples_checked",
+  "source_references": {
+    "lean-core.md": "bdc5a17901cc27b58a5aab1fd3f590da63b1b79ef1c49d30219f1436fa3cdbda",
+    "litex_short_guide.md": "b246d1f8c02049e51da09dcf702e0afa189f288bf89ab7687f7634d7e49e326e"
+  },
+  "runtime_core_files": {
+    "lean": "lean-aligned-core.md",
+    "litex": "litex-aligned-core.md"
+  },
+  "source_handling": "The user-specified Litex guide is preserved byte-for-byte. Both default core references are reorganized by this common curriculum; duplicate advice and instructions conflicting with experiment policy are excluded. The legacy raw references are not extra agent tool topics.",
+  "no_formal_euclid_answers": true,
+  "sections": [
+    {
+      "section": "s00",
+      "title": "Overview",
+      "lean_characters": 362,
+      "litex_characters": 362,
+      "lean_examples": 0,
+      "litex_examples": 0
+    },
+    {
+      "section": "s01",
+      "title": "01. Scope and source fidelity",
+      "lean_characters": 808,
+      "litex_characters": 805,
+      "lean_examples": 0,
+      "litex_examples": 0
+    },
+    {
+      "section": "s02",
+      "title": "02. Environment and library reuse",
+      "lean_characters": 790,
+      "litex_characters": 814,
+      "lean_examples": 0,
+      "litex_examples": 0
+    },
+    {
+      "section": "s03",
+      "title": "03. Names, parameters and block structure",
+      "lean_characters": 819,
+      "litex_characters": 814,
+      "lean_examples": 0,
+      "litex_examples": 0
+    },
+    {
+      "section": "s04",
+      "title": "04. Objects and explicit functions",
+      "lean_characters": 763,
+      "litex_characters": 788,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s05",
+      "title": "05. Predicates and conjunctions",
+      "lean_characters": 732,
+      "litex_characters": 774,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s06",
+      "title": "06. Sets and membership",
+      "lean_characters": 679,
+      "litex_characters": 715,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s07",
+      "title": "07. Universal statements and hypotheses",
+      "lean_characters": 702,
+      "litex_characters": 848,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s08",
+      "title": "08. Equivalence and negation",
+      "lean_characters": 802,
+      "litex_characters": 942,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s09",
+      "title": "09. Using assumptions and named theorems",
+      "lean_characters": 758,
+      "litex_characters": 828,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s10",
+      "title": "10. Definition expansion and equation chains",
+      "lean_characters": 756,
+      "litex_characters": 889,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s11",
+      "title": "11. Existential witnesses and their properties",
+      "lean_characters": 720,
+      "litex_characters": 813,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s12",
+      "title": "12. Cases and contradiction",
+      "lean_characters": 710,
+      "litex_characters": 912,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s13",
+      "title": "13. Coordinates and equality of paired objects",
+      "lean_characters": 719,
+      "litex_characters": 833,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s14",
+      "title": "14. Algebra, division and real roots",
+      "lean_characters": 875,
+      "litex_characters": 864,
+      "lean_examples": 1,
+      "litex_examples": 1
+    },
+    {
+      "section": "s15",
+      "title": "15. Diagnostics and repair",
+      "lean_characters": 834,
+      "litex_characters": 943,
+      "lean_examples": 0,
+      "litex_examples": 0
+    },
+    {
+      "section": "s16",
+      "title": "16. Submission, retrieval and session lifetime",
+      "lean_characters": 1142,
+      "litex_characters": 1145,
+      "lean_examples": 0,
+      "litex_examples": 0
+    },
+    {
+      "section": "s17",
+      "title": "17. Coverage boundaries and later books",
+      "lean_characters": 867,
+      "litex_characters": 867,
+      "lean_examples": 0,
+      "litex_examples": 0
+    }
+  ],
+  "source_mapping": {
+    "01": [
+      "shared experiment source-fidelity policy"
+    ],
+    "02": [
+      "frozen seed interface and actual predecessor-library contract"
+    ],
+    "03": [
+      "Litex Short Guide sections 2 and 7; Lean core types/functions"
+    ],
+    "04": [
+      "Litex Short Guide sections 1 and 2; Lean core functions"
+    ],
+    "05": [
+      "Litex Short Guide section 3; Lean core propositions"
+    ],
+    "06": [
+      "Litex Short Guide sections 2.1 and 3.2; Lean core sets"
+    ],
+    "07": [
+      "Litex Short Guide section 4; Lean core quantifiers"
+    ],
+    "08": [
+      "pinned Litex Manual universal equivalence and named-goal boundary; paired directional proofs"
+    ],
+    "09": [
+      "Litex Short Guide sections 4.1 and 9.5; Lean core named proofs"
+    ],
+    "10": [
+      "Litex Short Guide sections 5, 6 and 9.6; Lean core expansion/algebra"
+    ],
+    "11": [
+      "Litex Short Guide section 3.1 and checked generic witness examples"
+    ],
+    "12": [
+      "paired checked logic examples"
+    ],
+    "13": [
+      "Litex Short Guide sections 10 and 11; paired frozen coordinate seed"
+    ],
+    "14": [
+      "Litex Short Guide section 11; paired roots guides"
+    ],
+    "15": [
+      "actual native-feedback adapters and paired feedback guides"
+    ],
+    "16": [
+      "common compact tool protocol and indexed reference retrieval"
+    ],
+    "17": [
+      "paired domains guides and shared no-trust policy"
+    ]
+  },
+  "excluded_legacy_advice": [
+    {
+      "source": "Litex Short Guide section 9.4",
+      "reason": "Temporary axioms and proof debt conflict with the shared no-placeholder/no-unproved-axiom experiment policy."
+    },
+    {
+      "source": "repeated warnings and geometric illustration formulas throughout the legacy guides",
+      "reason": "Consolidated under one relevant chapter. New examples teach generic syntax without supplying formal Euclid answers or silently choosing source representations."
+    }
+  ]
+}

@@ -1,0 +1,644 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D003",
+  "language": "lean",
+  "contract": {
+    "schema_version": 1,
+    "task_id": "EUCLID.I.D003",
+    "kind": "definition",
+    "policy": "faithful_translation_v1",
+    "status": "draft_requires_interpretation_review",
+    "source": {
+      "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D003/EUCLID.I.D003.txt",
+      "sha256": "52f4fd4ca0a9b2c6ab983dd62458ac3c06f40bc1d0e4aeaac3cc1b820a042ab2",
+      "text": "3. And the extremities of a line are points.\n"
+    },
+    "source_claims": [
+      {
+        "id": "EUCLID.I.D003.line_extremities",
+        "source_quote": "the extremities of a line",
+        "requirement": "Bind the extremity relation to the represented line; unrelated point projections are insufficient."
+      },
+      {
+        "id": "EUCLID.I.D003.extremities_are_points",
+        "source_quote": "are points",
+        "requirement": "Ensure every represented extremity satisfies the approved point concept."
+      }
+    ],
+    "source_proof_steps": [],
+    "proof_route_required": false,
+    "interpretation_decisions": [
+      {
+        "id": "M1",
+        "question": "Which line objects have extremities in the adopted model?",
+        "status": "open",
+        "decision": null
+      },
+      {
+        "id": "M2",
+        "question": "Does the chosen representation preserve the source without asserting an unsupported number or existence of extremities?",
+        "status": "open",
+        "decision": null
+      }
+    ],
+    "review_failure_probes": [
+      "Do not require exactly two endpoints for all objects solely from this sentence."
+    ],
+    "formal_proof_answer_provided": false,
+    "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+    "approval": null
+  },
+  "contract_sha256": "ba39694988b7b1852aeef36655d5ddc201088bcbad583a322962ec8d7c606ddf",
+  "formal_sha256": "ba1956977df1718436681daf4726042b00cfb853054a7e89109b1f9a5f32d9cc",
+  "formal_source": "import Mathlib.Analysis.Real.Sqrt\nimport Mathlib.Tactic.Ring\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\nimport Mathlib.Tactic.Positivity\nimport Mathlib.Tactic.FieldSimp\n\n-- Fixed technical interfaces for the real coordinate plane.\nabbrev GeoPoint := ℝ × ℝ\n\ndef geo_point (x y : ℝ) : GeoPoint := (x, y)\n\ndef geo_x (p : GeoPoint) : ℝ := p.1\n\ndef geo_y (p : GeoPoint) : ℝ := p.2\n\n-- The vector directed from a to b is b - a.\ndef geo_vec (a b : GeoPoint) : GeoPoint :=\n  (b.1 - a.1, b.2 - a.2)\n\ndef geo_dot (u v : GeoPoint) : ℝ :=\n  u.1 * v.1 + u.2 * v.2\n\ndef geo_det (u v : GeoPoint) : ℝ :=\n  u.1 * v.2 - u.2 * v.1\n\n/-\nEuclid, Elements, Book I, definition 1 (source text, verbatim):\n\n  1. A point is that of which there is no part.\n\nFormalization strategy (modern analytic model, real coordinate plane):\n\nThe seed provides the carrier `GeoPoint = ℝ × ℝ` together with the coordinate\naccessors. Following the source we\n\n  * fix the carrier of \"points\" to be `GeoPoint` (definition `EuclidPoint`);\n  * introduce the relation `IsPartOf q p` (\"q is a part of p\"). In the\n    coordinate model a part of a point, if it existed, would itself be a\n    point (an entity of the same carrier) lying inside `p`. The source\n    asserts that a point has no part other than itself, i.e. it is\n    indivisible: every part of `p` coincides with `p`;\n  * record that asserted content as the checked proposition `point_has_no_part`.\n\nNo existence, uniqueness or reference-model theorems are added beyond the\natomicity that the source definition itself asserts.\n-/\n\n-- The carrier of points in the coordinate model.\nabbrev EuclidPoint := GeoPoint\n\n-- `q` is a part of `p`: a sub-entity of the same carrier contained in `p`.\n-- The source defines a point by the absence of any such proper part; the\n-- reflexive reading below is forced because the only self-contained\n-- sub-entities of a coordinate pair are its sub-pairs.\ndef IsPartOf (q p : EuclidPoint) : Prop := q = p\n\n-- The defining property asserted by the source: a point has no part\n-- distinct from itself (it is indivisible / atomic).\ndef HasNoPart (p : EuclidPoint) : Prop := ∀ q : EuclidPoint, IsPartOf q p → q = p\n\n-- Checked content of the source definition: every part of a point is the\n-- point itself, so a point has no proper part.\ntheorem point_has_no_part (p : EuclidPoint) : HasNoPart p := by\n  intro q hq\n  exact hq\n\n/-\nEuclid, Elements, Book I, definition 2 (source text, verbatim):\n\n  2. And a line is a length without breadth.\n\nFormalization strategy (modern analytic model, real coordinate plane):\n\nThe seed provides the carrier `GeoPoint = ℝ × ℝ` together with the coordinate\naccessors, and the predecessor `EUCLID.I.D001` fixes the carrier of points as\n`EuclidPoint := GeoPoint`. Following the source we model a *line* as a\ngeometric entity that carries a *length* and a *breadth*, subject to the\ndefining condition that it has a length (it is extended) and has no breadth\n(its breadth is `0`).\n\n  * `GeoLine` is a record bundling a length and a breadth, both real numbers.\n    A `GeoLine` therefore is a \"length together with a breadth\"; the source\n    definition picks out those whose breadth is zero.\n  * `GeoLine.length` and `GeoLine.breadth` expose the two measures.\n  * `IsLine l` is the defining predicate asserted by the source: `l` is a\n    length without breadth, i.e. it has positive length and zero breadth.\n  * `line_length_positive` and `line_breadth_zero` record the two conjuncts\n    of the source definition: a line has length and has no breadth.\n\nNo existence, uniqueness or reference-model theorems are added beyond the\ncontent asserted by the source definition itself.\n-/\n\n-- A line, in the analytic reading of the source, is an entity carrying a\n-- length and a breadth (both real measures of extent).\nstructure GeoLine where\n  length : ℝ\n  breadth : ℝ\n\n-- The defining property asserted by the source: a line is a length (it is\n-- extended, i.e. its length is positive) without breadth (its breadth is 0).\ndef IsLine (l : GeoLine) : Prop := 0 < l.length ∧ l.breadth = 0\n\n-- Checked content of the source definition, first conjunct: a line has a\n-- length.\ntheorem line_length_positive (l : GeoLine) (hl : IsLine l) : 0 < l.length :=\n  hl.1\n\n-- Checked content of the source definition, second conjunct: a line is\n-- without breadth.\ntheorem line_breadth_zero (l : GeoLine) (hl : IsLine l) : l.breadth = 0 :=\n  hl.2\n\n/-\nEuclid, Elements, Book I, definition 3 (source text, verbatim):\n\n  3. And the extremities of a line are points.\n\nFormalization strategy (modern analytic model, real coordinate plane):\n\nThe seed provides the carrier `GeoPoint = ℝ × ℝ` with its coordinate accessors,\ndefinition 1 (`EUCLID.I.D001`) fixes the carrier of *points* as\n`EuclidPoint := GeoPoint`, and definition 2 (`EUCLID.I.D002`) provides `GeoLine`\n(a length without breadth).\n\nThe source asserts a relation between lines and points: the *extremities* (the\ntwo ends) of a line are points. Following that content we\n\n  * introduce `GeoLineWithEnds`, bundling a `GeoLine` together with its two\n    extremities; the field types record the source claim that each extremity is\n    an entity of the point carrier `EuclidPoint` (hence a point);\n  * introduce the relation `IsExtremityOf p s` (\"`p` is an extremity of the\n    line-with-extremities `s`\"), read as the unordered pair of the two ends;\n  * introduce `IsPoint p`, the property of being a point of the plane, i.e. a\n    coordinate pair of the carrier `GeoPoint`;\n  * record the asserted content as the checked proposition\n    `extremity_is_point` (both extremities of a line are points) together with\n    the derived statement that any extremity is a point.\n\nNo existence, uniqueness or reference-model theorems are added beyond the\ncontent asserted by the source definition itself.\n-/\n\n-- A line together with its two extremities. The field types encode the source\n-- assertion that the extremities of a line are points: both ends inhabit the\n-- point carrier `EuclidPoint` (= `GeoPoint`).\nstructure GeoLineWithEnds where\n  line : GeoLine\n  first : EuclidPoint\n  second : EuclidPoint\n\n-- `p` is an extremity of the line-with-extremities `s`: it is one of the two\n-- ends of the line.\ndef IsExtremityOf (p : EuclidPoint) (s : GeoLineWithEnds) : Prop :=\n  p = s.first ∨ p = s.second\n\n-- `p` is a point of the plane: an ordered pair of real coordinates, i.e. an\n-- element of the carrier `GeoPoint = ℝ × ℝ`.\ndef IsPoint (p : EuclidPoint) : Prop :=\n  ∃ x y : ℝ, p = geo_point x y\n\n-- Every element of the point carrier is a point of the plane.\ntheorem isPoint_of (p : EuclidPoint) : IsPoint p := by\n  obtain ⟨x, y⟩ := p\n  exact ⟨x, y, rfl⟩\n\n-- Checked content of the source definition: the extremities of a line are\n-- points.\ntheorem extremity_is_point (s : GeoLineWithEnds) :\n    IsPoint s.first ∧ IsPoint s.second :=\n  ⟨isPoint_of s.first, isPoint_of s.second⟩\n\n-- Any entity that is an extremity of a line is a point.\ntheorem extremity_of_is_point (p : EuclidPoint) (s : GeoLineWithEnds)\n    (h : IsExtremityOf p s) : IsPoint p := by\n  rcases h with h | h\n  · rw [h]\n    exact isPoint_of s.first\n  · rw [h]\n    exact isPoint_of s.second\n",
+  "native_declarations": {
+    "GeoLineWithEnds.first": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.first",
+      "type": "GeoLineWithEnds -> EuclidPoint"
+    },
+    "GeoLineWithEnds.ctorIdx": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.ctorIdx",
+      "type": "GeoLineWithEnds -> Nat"
+    },
+    "GeoLineWithEnds.noConfusionType": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.noConfusionType",
+      "type": "Sort.{u} -> GeoLineWithEnds -> GeoLineWithEnds -> Sort.{u}"
+    },
+    "extremity_of_is_point": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "extremity_of_is_point",
+      "type": "forall (p : EuclidPoint) (s : GeoLineWithEnds), (IsExtremityOf p s) -> (IsPoint p)"
+    },
+    "GeoLineWithEnds.mk.inj": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.mk.inj",
+      "type": "forall {line : GeoLine} {first : EuclidPoint} {second : EuclidPoint} {line_1 : GeoLine} {first_1 : EuclidPoint} {second_1 : EuclidPoint}, (Eq.{1} GeoLineWithEnds (GeoLineWithEnds.mk line first second) (GeoLineWithEnds.mk line_1 first_1 second_1)) -> (And (Eq.{1} GeoLine line line_1) (And (Eq.{1} EuclidPoint first first_1) (Eq.{1} EuclidPoint second second_1)))"
+    },
+    "GeoLineWithEnds.mk": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.mk",
+      "type": "GeoLine -> EuclidPoint -> EuclidPoint -> GeoLineWithEnds"
+    },
+    "isPoint_of": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "isPoint_of",
+      "type": "forall (p : EuclidPoint), IsPoint p"
+    },
+    "GeoLineWithEnds.rec": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.rec",
+      "type": "forall {motive : GeoLineWithEnds -> Sort.{u}}, (forall (line : GeoLine) (first : EuclidPoint) (second : EuclidPoint), motive (GeoLineWithEnds.mk line first second)) -> (forall (t : GeoLineWithEnds), motive t)"
+    },
+    "IsExtremityOf": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "IsExtremityOf",
+      "type": "EuclidPoint -> GeoLineWithEnds -> Prop"
+    },
+    "GeoLineWithEnds.second": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.second",
+      "type": "GeoLineWithEnds -> EuclidPoint"
+    },
+    "GeoLineWithEnds.mk.injEq": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.mk.injEq",
+      "type": "forall (line : GeoLine) (first : EuclidPoint) (second : EuclidPoint) (line_1 : GeoLine) (first_1 : EuclidPoint) (second_1 : EuclidPoint), Eq.{1} Prop (Eq.{1} GeoLineWithEnds (GeoLineWithEnds.mk line first second) (GeoLineWithEnds.mk line_1 first_1 second_1)) (And (Eq.{1} GeoLine line line_1) (And (Eq.{1} EuclidPoint first first_1) (Eq.{1} EuclidPoint second second_1)))"
+    },
+    "GeoLineWithEnds.noConfusion": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.noConfusion",
+      "type": "forall {P : Sort.{u}} {t : GeoLineWithEnds} {t' : GeoLineWithEnds}, (Eq.{1} GeoLineWithEnds t t') -> (GeoLineWithEnds.noConfusionType.{u} P t t')"
+    },
+    "GeoLineWithEnds.mk.sizeOf_spec": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.mk.sizeOf_spec",
+      "type": "forall (line : GeoLine) (first : EuclidPoint) (second : EuclidPoint), Eq.{1} Nat (SizeOf.sizeOf.{1} GeoLineWithEnds GeoLineWithEnds._sizeOf_inst (GeoLineWithEnds.mk line first second)) (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (instHAdd.{0} Nat instAddNat) (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (instHAdd.{0} Nat instAddNat) (HAdd.hAdd.{0, 0, 0} Nat Nat Nat (instHAdd.{0} Nat instAddNat) (OfNat.ofNat.{0} Nat 1 (instOfNatNat 1)) (SizeOf.sizeOf.{1} GeoLine GeoLine._sizeOf_inst line)) (SizeOf.sizeOf.{1} EuclidPoint (Prod._sizeOf_inst.{0, 0} Real Real Real._sizeOf_inst Real._sizeOf_inst) first)) (SizeOf.sizeOf.{1} EuclidPoint (Prod._sizeOf_inst.{0, 0} Real Real Real._sizeOf_inst Real._sizeOf_inst) second))"
+    },
+    "GeoLineWithEnds.recOn": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.recOn",
+      "type": "forall {motive : GeoLineWithEnds -> Sort.{u}} (t : GeoLineWithEnds), (forall (line : GeoLine) (first : EuclidPoint) (second : EuclidPoint), motive (GeoLineWithEnds.mk line first second)) -> (motive t)"
+    },
+    "IsPoint": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "IsPoint",
+      "type": "EuclidPoint -> Prop"
+    },
+    "GeoLineWithEnds": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds",
+      "type": "Type"
+    },
+    "GeoLineWithEnds.line": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.line",
+      "type": "GeoLineWithEnds -> GeoLine"
+    },
+    "GeoLineWithEnds.casesOn": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.casesOn",
+      "type": "forall {motive : GeoLineWithEnds -> Sort.{u}} (t : GeoLineWithEnds), (forall (line : GeoLine) (first : EuclidPoint) (second : EuclidPoint), motive (GeoLineWithEnds.mk line first second)) -> (motive t)"
+    },
+    "extremity_is_point": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "extremity_is_point",
+      "type": "forall (s : GeoLineWithEnds), And (IsPoint (GeoLineWithEnds.first s)) (IsPoint (GeoLineWithEnds.second s))"
+    },
+    "GeoLineWithEnds.mk.noConfusion": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "GeoLineWithEnds.mk.noConfusion",
+      "type": "forall {P : Sort.{u}} {line : GeoLine} {first : EuclidPoint} {second : EuclidPoint} {line' : GeoLine} {first' : EuclidPoint} {second' : EuclidPoint}, (Eq.{1} GeoLineWithEnds (GeoLineWithEnds.mk line first second) (GeoLineWithEnds.mk line' first' second')) -> ((Eq.{1} GeoLine line line') -> (Eq.{1} EuclidPoint first first') -> (Eq.{1} EuclidPoint second second') -> P) -> P"
+    }
+  },
+  "kernel_status": "pass",
+  "source_original_text": "3. And the extremities of a line are points.\n",
+  "prior_original_context": {
+    "EUCLID.I.D001.txt": "1. A point is that of which there is no part.\n",
+    "EUCLID.I.D002.txt": "2. And a line is a length without breadth.\n"
+  },
+  "target_seen_by_solver": {
+    "task_id": "EUCLID.I.D003",
+    "status": "source_specification_automatic_machine_acceptance",
+    "instruction_language": "en",
+    "title": "Book I, definition 3",
+    "success_policy": {
+      "criterion": "machine_verification",
+      "semantic_review_required": false,
+      "semantic_annotations_affect_primary_score": false,
+      "accuracy_definition": "machine-verified propositions divided by registered propositions"
+    },
+    "book": 1,
+    "kind": "definition",
+    "source_order": 3,
+    "source": {
+      "source_id": "fitzpatrick-2008",
+      "sha256": "3d6304d80810393f987a9f700e8d86c85f64a4763e38b1814502b7b94dfadbfa",
+      "start": {
+        "pdf_page": 6,
+        "y_from_top_pt": 159.988
+      },
+      "end_exclusive": {
+        "pdf_page": 6,
+        "y_from_top_pt": 171.988
+      },
+      "column": "english_right",
+      "coordinate_system": "PDF points from top; pages are one-based"
+    },
+    "instruction": "Formalize the source concepts as checked definitions with explicit domains and representations. Prove only mathematical claims explicitly asserted by the source or required for well-definedness; do not add unrequested semantic-bridge theorems. Use the original text located by source_span as the specification; a title or historical completion label is not a substitute. A definition task can finish with checked definitions alone. For total definitions, native checking of domains and types establishes formation/well-definedness. Do not add existence, universal-characterization, or reference-model-validity theorems unless the current source explicitly asserts them or a partial operation/subtype constructor requires their proofs.",
+    "acceptance": [
+      "Provide the complete source formalization. The controller generates interface metadata and unreviewed clause associations, independently verifies the final file and saves submission automatically.",
+      "Saved files pass complete verification in a fresh process using the pinned verifier.",
+      "No direct or transitive unproved dependencies beyond the approved foundation.",
+      "A partial conclusion does not count as a complete task success."
+    ],
+    "required_clauses": [
+      {
+        "clause_id": "source_content",
+        "requirement": "Provide the definitions in the source and any explicitly asserted mathematical claims. Do not invent additional semantic-bridge theorems."
+      },
+      {
+        "clause_id": "encoding",
+        "requirement": "State domains, quantifiers, nondegeneracy and the meaning of every new representation; check well-definedness and explain the source correspondence."
+      }
+    ],
+    "foundation_policy": "Modern analytic model. Source postulates/common notions are modeled and proved, not introduced as new unchecked axioms. Build missing domains, including 3D, as checked definitions. Do not assume failed predecessors.",
+    "dependencies": {
+      "reviewed_task_ids": [],
+      "status": "not_yet_reviewed",
+      "policy": "Source order is navigation, not a claim that adjacent numbers are logical dependencies. Do not assume missing predecessor results without proving them."
+    },
+    "primary_denominator": false,
+    "semantic_audit": "Optional post-run annotation, never a prerequisite for automatic task success or publication. Clause labels are a coverage checklist, not a pre-reviewed formal target."
+  },
+  "foundation_seen_by_solver": {
+    "status": "approved_for_development_only_transitive_foundation_audit_pending",
+    "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+    "language": "lean",
+    "geometry_definitions_preloaded": false,
+    "approved_geometry_symbols": [],
+    "approved_seed_symbols": [
+      "GeoPoint",
+      "geo_point",
+      "geo_x",
+      "geo_y",
+      "geo_vec",
+      "geo_dot",
+      "geo_det"
+    ],
+    "seed": {
+      "id": "real-plane-algebra-v1",
+      "input_path": "seed.lean",
+      "sha256": "3e26a24f3be13f1d112ddf62dccd330c3cb77f27e1f6fafdc6dc5e14788a4439",
+      "interface_input_path": "seed-interface.json",
+      "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+      "kind": "technical_plane_algebra",
+      "proposition_proofs_provided": false,
+      "agent_tasks_credited": []
+    },
+    "allowed_imports": [
+      "Mathlib.Analysis.Real.Sqrt",
+      "Mathlib.Tactic.Ring",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Positivity",
+      "Mathlib.Tactic.FieldSimp"
+    ],
+    "coordinate_equality_rule": "Prod.ext",
+    "point_carrier": "ℝ × ℝ",
+    "standard_logical_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+  },
+  "native_dependency_manifest": {
+    "status": "approved_for_development_only_transitive_foundation_audit_pending",
+    "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+    "language": "lean",
+    "geometry_definitions_preloaded": false,
+    "approved_geometry_symbols": [],
+    "approved_seed_symbols": [
+      "GeoPoint",
+      "geo_point",
+      "geo_x",
+      "geo_y",
+      "geo_vec",
+      "geo_dot",
+      "geo_det"
+    ],
+    "seed": {
+      "id": "real-plane-algebra-v1",
+      "input_path": "seed.lean",
+      "sha256": "3e26a24f3be13f1d112ddf62dccd330c3cb77f27e1f6fafdc6dc5e14788a4439",
+      "interface_input_path": "seed-interface.json",
+      "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+      "kind": "technical_plane_algebra",
+      "proposition_proofs_provided": false,
+      "agent_tasks_credited": []
+    },
+    "allowed_imports": [
+      "Mathlib.Analysis.Real.Sqrt",
+      "Mathlib.Tactic.Ring",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Positivity",
+      "Mathlib.Tactic.FieldSimp"
+    ],
+    "coordinate_equality_rule": "Prod.ext",
+    "point_carrier": "ℝ × ℝ",
+    "standard_logical_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+  },
+  "current_candidate_sources": {
+    "candidate.lean": "/-\nEuclid, Elements, Book I, definition 3 (source text, verbatim):\n\n  3. And the extremities of a line are points.\n\nFormalization strategy (modern analytic model, real coordinate plane):\n\nThe seed provides the carrier `GeoPoint = ℝ × ℝ` with its coordinate accessors,\ndefinition 1 (`EUCLID.I.D001`) fixes the carrier of *points* as\n`EuclidPoint := GeoPoint`, and definition 2 (`EUCLID.I.D002`) provides `GeoLine`\n(a length without breadth).\n\nThe source asserts a relation between lines and points: the *extremities* (the\ntwo ends) of a line are points. Following that content we\n\n  * introduce `GeoLineWithEnds`, bundling a `GeoLine` together with its two\n    extremities; the field types record the source claim that each extremity is\n    an entity of the point carrier `EuclidPoint` (hence a point);\n  * introduce the relation `IsExtremityOf p s` (\"`p` is an extremity of the\n    line-with-extremities `s`\"), read as the unordered pair of the two ends;\n  * introduce `IsPoint p`, the property of being a point of the plane, i.e. a\n    coordinate pair of the carrier `GeoPoint`;\n  * record the asserted content as the checked proposition\n    `extremity_is_point` (both extremities of a line are points) together with\n    the derived statement that any extremity is a point.\n\nNo existence, uniqueness or reference-model theorems are added beyond the\ncontent asserted by the source definition itself.\n-/\n\n-- A line together with its two extremities. The field types encode the source\n-- assertion that the extremities of a line are points: both ends inhabit the\n-- point carrier `EuclidPoint` (= `GeoPoint`).\nstructure GeoLineWithEnds where\n  line : GeoLine\n  first : EuclidPoint\n  second : EuclidPoint\n\n-- `p` is an extremity of the line-with-extremities `s`: it is one of the two\n-- ends of the line.\ndef IsExtremityOf (p : EuclidPoint) (s : GeoLineWithEnds) : Prop :=\n  p = s.first ∨ p = s.second\n\n-- `p` is a point of the plane: an ordered pair of real coordinates, i.e. an\n-- element of the carrier `GeoPoint = ℝ × ℝ`.\ndef IsPoint (p : EuclidPoint) : Prop :=\n  ∃ x y : ℝ, p = geo_point x y\n\n-- Every element of the point carrier is a point of the plane.\ntheorem isPoint_of (p : EuclidPoint) : IsPoint p := by\n  obtain ⟨x, y⟩ := p\n  exact ⟨x, y, rfl⟩\n\n-- Checked content of the source definition: the extremities of a line are\n-- points.\ntheorem extremity_is_point (s : GeoLineWithEnds) :\n    IsPoint s.first ∧ IsPoint s.second :=\n  ⟨isPoint_of s.first, isPoint_of s.second⟩\n\n-- Any entity that is an extremity of a line is a point.\ntheorem extremity_of_is_point (p : EuclidPoint) (s : GeoLineWithEnds)\n    (h : IsExtremityOf p s) : IsPoint p := by\n  rcases h with h | h\n  · rw [h]\n    exact isPoint_of s.first\n  · rw [h]\n    exact isPoint_of s.second\n"
+  },
+  "machine_evidence": {
+    "final_receipt": {
+      "receipt_id": "check-0002",
+      "mode": "final",
+      "source_hashes": {
+        "candidate.lean": "d2d2a02101dfd9955fd392f8bd6f563c20c2fe07de12b8a565b067bf6cf4653e",
+        "final.lean": "ba1956977df1718436681daf4726042b00cfb853054a7e89109b1f9a5f32d9cc",
+        "interfaces.json": "598436a128b2ff324af31c1bfaf39d619602be642c40cb6e7724be27e571c228"
+      },
+      "dependency_manifest": {
+        "status": "approved_for_development_only_transitive_foundation_audit_pending",
+        "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+        "language": "lean",
+        "geometry_definitions_preloaded": false,
+        "approved_geometry_symbols": [],
+        "approved_seed_symbols": [
+          "GeoPoint",
+          "geo_point",
+          "geo_x",
+          "geo_y",
+          "geo_vec",
+          "geo_dot",
+          "geo_det"
+        ],
+        "seed": {
+          "id": "real-plane-algebra-v1",
+          "input_path": "seed.lean",
+          "sha256": "3e26a24f3be13f1d112ddf62dccd330c3cb77f27e1f6fafdc6dc5e14788a4439",
+          "interface_input_path": "seed-interface.json",
+          "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+          "kind": "technical_plane_algebra",
+          "proposition_proofs_provided": false,
+          "agent_tasks_credited": []
+        },
+        "allowed_imports": [
+          "Mathlib.Analysis.Real.Sqrt",
+          "Mathlib.Tactic.Ring",
+          "Mathlib.Tactic.Linarith",
+          "Mathlib.Tactic.NormNum",
+          "Mathlib.Tactic.Positivity",
+          "Mathlib.Tactic.FieldSimp"
+        ],
+        "coordinate_equality_rule": "Prod.ext",
+        "point_carrier": "ℝ × ℝ",
+        "standard_logical_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+      },
+      "entry": "final.lean",
+      "scope": "fresh_final_file",
+      "passed": true,
+      "native_process_seconds": 8.367900707991794,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "session": {
+        "session_id": "1157369e68574c9984542028a39221da",
+        "session_pid": 38151,
+        "session_alive": true,
+        "lean_environment": 2,
+        "accepted_blocks": 1,
+        "starts": 1,
+        "restarts": 0
+      },
+      "seconds": 8.373945333994925,
+      "task_rounds": {
+        "limit": 5,
+        "used": 1,
+        "remaining": 4,
+        "total_used": 1,
+        "exhausted": false,
+        "transport_only_exhausted": false,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "d2d2a02101dfd9955fd392f8bd6f563c20c2fe07de12b8a565b067bf6cf4653e",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "history": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "d2d2a02101dfd9955fd392f8bd6f563c20c2fe07de12b8a565b067bf6cf4653e",
+            "passed": true,
+            "reason": null
+          }
+        ]
+      }
+    },
+    "submission_gate": {
+      "passed": true,
+      "symbols": [
+        "GeoLineWithEnds",
+        "GeoLineWithEnds.casesOn",
+        "GeoLineWithEnds.ctorIdx",
+        "GeoLineWithEnds.first",
+        "GeoLineWithEnds.line",
+        "GeoLineWithEnds.mk",
+        "GeoLineWithEnds.mk.inj",
+        "GeoLineWithEnds.mk.injEq",
+        "GeoLineWithEnds.mk.noConfusion",
+        "GeoLineWithEnds.mk.sizeOf_spec",
+        "GeoLineWithEnds.noConfusion",
+        "GeoLineWithEnds.noConfusionType",
+        "GeoLineWithEnds.rec",
+        "GeoLineWithEnds.recOn",
+        "GeoLineWithEnds.second",
+        "IsExtremityOf",
+        "IsPoint",
+        "extremity_is_point",
+        "extremity_of_is_point",
+        "isPoint_of"
+      ],
+      "source_hashes": {
+        "candidate.lean": "d2d2a02101dfd9955fd392f8bd6f563c20c2fe07de12b8a565b067bf6cf4653e",
+        "final.lean": "ba1956977df1718436681daf4726042b00cfb853054a7e89109b1f9a5f32d9cc",
+        "interfaces.json": "598436a128b2ff324af31c1bfaf39d619602be642c40cb6e7724be27e571c228"
+      },
+      "final_receipt_id": "check-0002",
+      "origin": "reuse_native_acceptance_and_independent_final_receipt",
+      "seconds": 0.2903496249928139,
+      "declaration_axioms": {
+        "GeoLineWithEnds.first": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.ctorIdx": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.noConfusionType": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extremity_of_is_point": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.mk.inj": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.mk": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "isPoint_of": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.rec": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "IsExtremityOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.second": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.mk.injEq": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.noConfusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.mk.sizeOf_spec": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.recOn": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "IsPoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.line": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.casesOn": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "extremity_is_point": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "GeoLineWithEnds.mk.noConfusion": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "unapproved_axioms": [],
+      "missing_declarations": []
+    },
+    "saved_work_hashes": {
+      "final.lean": "ba1956977df1718436681daf4726042b00cfb853054a7e89109b1f9a5f32d9cc",
+      "interfaces.json": "598436a128b2ff324af31c1bfaf39d619602be642c40cb6e7724be27e571c228",
+      "candidate.lean": "d2d2a02101dfd9955fd392f8bd6f563c20c2fe07de12b8a565b067bf6cf4653e"
+    }
+  },
+  "policy": {
+    "id": "faithful_translation_v1",
+    "selected_by_user": "2026-11-09",
+    "criterion": "complete mathematical meaning plus source-proof-step correspondence; model-specific refinements explicitly labeled",
+    "kernel_score": "preserved separately; no pending semantic annotation blocks kernel acceptance or existing publication",
+    "translation_score": "independent assessment, bound to exact source, contract and formal artifact; kernel acceptance and automatic clause mappings are not semantic evidence",
+    "definition_tasks": "review concepts, domains, constraints and representations; no invented existence/characterization obligation",
+    "proof_tasks": "review statement and assumption fidelity, each source proof step, dependencies and any declared model refinement",
+    "alternative_proof": "record goal fidelity separately; do not label a different proof route a faithful translation under this strict policy",
+    "unknown": "unreviewed/uncertain is unknown; report review coverage and bounds rather than fabricate a final accuracy",
+    "contract_freezing": "resolve interpretation decisions and approve the common contract before a prospective comparison",
+    "timing": "independent semantic-review time and token usage are separate from solver and kernel time",
+    "judge_independence": "evaluate each language against source and common contract, without seeing the other language output or the desired speed comparison"
+  },
+  "evidence_scope": "Complete formal module includes technical seed, prior library and current task. Native names/types are navigation, not semantic certificates."
+}

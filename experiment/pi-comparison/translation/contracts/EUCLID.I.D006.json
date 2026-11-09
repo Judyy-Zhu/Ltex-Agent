@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D006",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D006/EUCLID.I.D006.txt",
+    "sha256": "95282d8718e7584e4c8c87470814bc25a401b45be38bc1c3cb6206af279df5e1",
+    "text": "6. And the extremities of a surface are lines.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D006.surface_extremities",
+      "source_quote": "the extremities of a surface",
+      "requirement": "Bind extremities/boundary components to the represented surface."
+    },
+    {
+      "id": "EUCLID.I.D006.boundary_lines",
+      "source_quote": "are lines",
+      "requirement": "Ensure those components are lines in the approved definition-2 sense."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "What constitutes a surface extremity/boundary in the adopted representation?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How are closed surfaces or non-polygonal boundaries treated?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "Do not infer exactly four straight boundary segments for every surface from this sentence."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}

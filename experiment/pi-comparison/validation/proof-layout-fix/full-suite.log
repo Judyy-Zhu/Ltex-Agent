@@ -1,0 +1,343 @@
+test_self_contained_bundle_detection_and_explicit_overrides (test_paths.PortablePathsControls.test_self_contained_bundle_detection_and_explicit_overrides) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.123s
+
+OK
+OFFLINE_RESULT={"module": "test_paths", "passed": true, "tests_run": 1, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_all_644_task_specs_records_and_prompt_pairs_are_english (test_english_inputs.EnglishInputControls.test_all_644_task_specs_records_and_prompt_pairs_are_english) ... ok
+test_all_agent_guides_seeds_and_prepared_inputs_are_english (test_english_inputs.EnglishInputControls.test_all_agent_guides_seeds_and_prepared_inputs_are_english) ... ok
+test_non_english_tool_content_is_rejected_without_kernel_or_api_calls (test_english_inputs.EnglishInputControls.test_non_english_tool_content_is_rejected_without_kernel_or_api_calls) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.874s
+
+OK
+OFFLINE_RESULT={"module": "test_english_inputs", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+{"source_packs_prepared": 25, "total": 58}
+{"source_packs_prepared": 50, "total": 58}
+test_all_task_types_receive_paired_text_and_no_images (test_text_inputs.TextInputControls.test_all_task_types_receive_paired_text_and_no_images) ... ok
+test_old_cache_conversion_copies_only_verified_text (test_text_inputs.TextInputControls.test_old_cache_conversion_copies_only_verified_text) ... ok
+test_tools_refuse_even_mistakenly_mounted_images_in_both_languages (test_text_inputs.TextInputControls.test_tools_refuse_even_mistakenly_mounted_images_in_both_languages) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.922s
+
+OK
+OFFLINE_RESULT={"module": "test_text_inputs", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_parallel_workers_overlap_isolate_and_make_no_model_calls (test_parallel.ParallelControls.test_actual_parallel_workers_overlap_isolate_and_make_no_model_calls) ... {"execution": "parallel", "finished": {"lean": 0, "litex": 0}, "wall_seconds": 1.04, "finished_task_verifier_seconds": {"lean": 0, "litex": 0}, "finished_task_startup_excluded_seconds": {"lean": 0, "litex": 0}, "finished_task_warm_kernel_seconds": {"lean": 0, "litex": 0}}
+{"execution": "parallel", "finished": {"lean": 0, "litex": 1}, "wall_seconds": 6.32, "finished_task_verifier_seconds": {"lean": 0, "litex": 0.409545}, "finished_task_startup_excluded_seconds": {"lean": 0, "litex": null}, "finished_task_warm_kernel_seconds": {"lean": 0, "litex": 0.002682}}
+{"execution": "parallel", "finished": {"lean": 0, "litex": 2}, "wall_seconds": 10.41, "finished_task_verifier_seconds": {"lean": 0, "litex": 0.779429}, "finished_task_startup_excluded_seconds": {"lean": 0, "litex": null}, "finished_task_warm_kernel_seconds": {"lean": 0, "litex": 0.005067}}
+{"execution": "parallel", "finished": {"lean": 1, "litex": 2}, "wall_seconds": 31.72, "finished_task_verifier_seconds": {"lean": 26.432279, "litex": 0.779429}, "finished_task_startup_excluded_seconds": {"lean": null, "litex": null}, "finished_task_warm_kernel_seconds": {"lean": 0.009012, "litex": 0.005067}}
+ok
+test_parallel_global_deadline_leaves_unattempted_propositions_registered (test_parallel.ParallelControls.test_parallel_global_deadline_leaves_unattempted_propositions_registered) ... ok
+test_parallel_reports_wall_time_without_adding_overlapping_workers (test_parallel.ParallelControls.test_parallel_reports_wall_time_without_adding_overlapping_workers) ... ok
+test_parallel_stop_and_resume_retains_interrupted_attempts (test_parallel.ParallelControls.test_parallel_stop_and_resume_retains_interrupted_attempts) ... ok
+test_private_distinct_credential_bindings_without_exposing_keys (test_parallel.ParallelControls.test_private_distinct_credential_bindings_without_exposing_keys) ... ok
+test_worker_contracts_partition_source_order_and_protect_bindings (test_parallel.ParallelControls.test_worker_contracts_partition_source_order_and_protect_bindings) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 67.019s
+
+OK
+OFFLINE_RESULT={"module": "test_parallel", "passed": true, "tests_run": 6, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_frozen_plan_environment_and_budget_rejection (test_batch.BatchControls.test_frozen_plan_environment_and_budget_rejection) ... ok
+test_full_catalog_selection_and_registered_denominators (test_batch.BatchControls.test_full_catalog_selection_and_registered_denominators) ... ok
+test_gate_rejects_nonexistent_declaration_and_accepts_3d_definition (test_batch.BatchControls.test_gate_rejects_nonexistent_declaration_and_accepts_3d_definition) ... ok
+test_interruption_is_recorded_without_automatic_retry (test_batch.BatchControls.test_interruption_is_recorded_without_automatic_retry) ... {"slot": 2, "total": 2, "task": "EUCLID.I.D001", "language": "litex", "published": false}
+ok
+test_optional_review_never_blocks_machine_pass_score_or_paired_comparison (test_batch.BatchControls.test_optional_review_never_blocks_machine_pass_score_or_paired_comparison) ... ok
+test_owned_process_cleanup_and_pid_reuse_protection (test_batch.BatchControls.test_owned_process_cleanup_and_pid_reuse_protection) ... ok
+test_paired_multi_page_sources_and_generic_contract (test_batch.BatchControls.test_paired_multi_page_sources_and_generic_contract) ... ok
+test_real_kernel_publication_rollback_resume_and_review (test_batch.BatchControls.test_real_kernel_publication_rollback_resume_and_review) ... {"slot": 1, "total": 6, "task": "EUCLID.I.D001", "language": "lean", "published": true}
+{"slot": 2, "total": 6, "task": "EUCLID.I.D001", "language": "litex", "published": true}
+{"slot": 3, "total": 6, "task": "EUCLID.I.D002", "language": "lean", "published": true}
+{"slot": 4, "total": 6, "task": "EUCLID.I.D002", "language": "litex", "published": false}
+{"slot": 5, "total": 6, "task": "EUCLID.I.D003", "language": "litex", "published": true}
+{"slot": 6, "total": 6, "task": "EUCLID.I.D003", "language": "lean", "published": true}
+ok
+test_report_preserves_unknown_usage_and_unattempted_denominator (test_batch.BatchControls.test_report_preserves_unknown_usage_and_unattempted_denominator) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 111.737s
+
+OK
+OFFLINE_RESULT={"module": "test_batch", "passed": true, "tests_run": 9, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_false_orientation_is_rejected_by_actual_compilers (test_seeds.SeedControls.test_false_orientation_is_rejected_by_actual_compilers) ... ok
+test_final_seed_prefix_is_protected (test_seeds.SeedControls.test_final_seed_prefix_is_protected) ... ok
+test_known_values_orientation_and_restart_reload (test_seeds.SeedControls.test_known_values_orientation_and_restart_reload) ... ok
+test_paired_interface_and_frozen_input_partition (test_seeds.SeedControls.test_paired_interface_and_frozen_input_partition) ... ok
+test_seed_copy_tampering_blocks_even_before_kernel_start (test_seeds.SeedControls.test_seed_copy_tampering_blocks_even_before_kernel_start) ... ok
+test_universal_interface_properties_in_both_native_sessions (test_seeds.SeedControls.test_universal_interface_properties_in_both_native_sessions) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 48.886s
+
+OK
+OFFLINE_RESULT={"module": "test_seeds", "passed": true, "tests_run": 6, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_edit_invalidates_dependents_in_both_languages (test_native_sessions.NativeSessionControls.test_edit_invalidates_dependents_in_both_languages) ... ok
+test_lean_env_rollback_namespaces_and_restart (test_native_sessions.NativeSessionControls.test_lean_env_rollback_namespaces_and_restart) ... ok
+test_litex_comment_frames_do_not_shift_native_responses (test_native_sessions.NativeSessionControls.test_litex_comment_frames_do_not_shift_native_responses) ... ok
+test_litex_frame_split_comments_and_nested_block (test_native_sessions.NativeSessionControls.test_litex_frame_split_comments_and_nested_block) ... ok
+test_litex_soft_failure_parse_recovery_partial_prefix_and_replay (test_native_sessions.NativeSessionControls.test_litex_soft_failure_parse_recovery_partial_prefix_and_replay) ... ok
+test_persistent_tool_broker_preserves_session_and_final_is_independent (test_native_sessions.NativeSessionControls.test_persistent_tool_broker_preserves_session_and_final_is_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 56.262s
+
+OK
+OFFLINE_RESULT={"module": "test_native_sessions", "passed": true, "tests_run": 6, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_input_timeout_is_bounded_and_process_can_be_closed (test_session_failures.SessionFailureControls.test_input_timeout_is_bounded_and_process_can_be_closed) ... ok
+test_json_reader_handles_braces_inside_strings (test_session_failures.SessionFailureControls.test_json_reader_handles_braces_inside_strings) ... ok
+test_replay_failure_blocks_continuation (test_session_failures.SessionFailureControls.test_replay_failure_blocks_continuation) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.353s
+
+OK
+OFFLINE_RESULT={"module": "test_session_failures", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_lean_and_transport_errors_keep_own_formats (test_verifier_feedback.NativeFeedbackControls.test_lean_and_transport_errors_keep_own_formats) ... ok
+test_matches_legacy_formatter_on_actual_success_and_failure (test_verifier_feedback.NativeFeedbackControls.test_matches_legacy_formatter_on_actual_success_and_failure) ... ok
+test_preserves_proof_traces_without_slicing_json (test_verifier_feedback.NativeFeedbackControls.test_preserves_proof_traces_without_slicing_json) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
+OFFLINE_RESULT={"module": "test_verifier_feedback", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_batch_report_exports_main_and_auxiliary_items (test_item_tracking.ItemTrackingControls.test_batch_report_exports_main_and_auxiliary_items) ... ok
+test_protocol_failure_preparation_failure_and_pending_are_distinct (test_item_tracking.ItemTrackingControls.test_protocol_failure_preparation_failure_and_pending_are_distinct) ... ok
+test_real_definition_and_proof_repairs_keep_ids_across_restart_and_move (test_item_tracking.ItemTrackingControls.test_real_definition_and_proof_repairs_keep_ids_across_restart_and_move) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 37.117s
+
+OK
+OFFLINE_RESULT={"module": "test_item_tracking", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_boundaries_and_trust (test_runtime.RuntimeControls.test_boundaries_and_trust) ... ok
+test_interrupted_provider_log_preserves_prior_known_usage (test_runtime.RuntimeControls.test_interrupted_provider_log_preserves_prior_known_usage) ... ok
+test_real_compilers_receipts_and_stale_edits (test_runtime.RuntimeControls.test_real_compilers_receipts_and_stale_edits) ... ok
+test_roots_guide_examples (test_runtime.RuntimeControls.test_roots_guide_examples) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 36.694s
+
+OK
+OFFLINE_RESULT={"module": "test_runtime", "passed": true, "tests_run": 4, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_both_languages_through_real_pi_tools_without_model_calls (test_pi_transport.PiTransportControls.test_both_languages_through_real_pi_tools_without_model_calls) ... ok
+test_single_task_runner_lifecycle_offline (test_pi_transport.PiTransportControls.test_single_task_runner_lifecycle_offline) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 44.124s
+
+OK
+OFFLINE_RESULT={"module": "test_pi_transport", "passed": true, "tests_run": 2, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_pi_runner_finalizes_fifth_success_or_stops_at_fifth_failure_without_api (test_task_rounds.WholeTaskRoundControls.test_actual_pi_runner_finalizes_fifth_success_or_stops_at_fifth_failure_without_api) ... ok
+test_exact_guide_is_frozen_and_delivered_and_definitions_do_not_gain_extra_theorems (test_task_rounds.WholeTaskRoundControls.test_exact_guide_is_frozen_and_delivered_and_definitions_do_not_gain_extra_theorems) ... ok
+test_five_whole_candidates_no_clock_partial_prefix_is_not_complete_and_sixth_is_blocked (test_task_rounds.WholeTaskRoundControls.test_five_whole_candidates_no_clock_partial_prefix_is_not_complete_and_sixth_is_blocked) ... ok
+test_generation_without_submission_uses_the_same_five_rounds (test_task_rounds.WholeTaskRoundControls.test_generation_without_submission_uses_the_same_five_rounds) ... ok
+test_parallel_plan_has_five_shared_rounds_and_no_hidden_clock_or_checker_cap (test_task_rounds.WholeTaskRoundControls.test_parallel_plan_has_five_shared_rounds_and_no_hidden_clock_or_checker_cap) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 45.868s
+
+OK
+OFFLINE_RESULT={"module": "test_task_rounds", "passed": true, "tests_run": 5, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_batch_resume_runs_the_same_current_task_before_advancing (test_checkpointing.CheckpointControls.test_batch_resume_runs_the_same_current_task_before_advancing) ... {"slot": 1, "total": 2, "task": "EUCLID.I.D001", "language": "lean", "published": false}
+{"slot": 2, "total": 2, "task": "EUCLID.I.D001", "language": "litex", "published": false}
+ok
+test_completed_tool_operation_is_not_reexecuted_after_host_restart (test_checkpointing.CheckpointControls.test_completed_tool_operation_is_not_reexecuted_after_host_restart) ... ok
+test_crash_after_reserving_attempt_before_check_counter_is_committed (test_checkpointing.CheckpointControls.test_crash_after_reserving_attempt_before_check_counter_is_committed) ... ok
+test_five_api_errors_checkpoint_same_task_then_explicit_resume_keeps_history_and_usage (test_checkpointing.CheckpointControls.test_five_api_errors_checkpoint_same_task_then_explicit_resume_keeps_history_and_usage) ... ok
+test_initial_network_errors_then_kernel_success_still_pass_within_five_total_attempts (test_checkpointing.CheckpointControls.test_initial_network_errors_then_kernel_success_still_pass_within_five_total_attempts) ... ok
+test_interrupted_fifth_local_verification_reuses_reserved_round_and_receipt (test_checkpointing.CheckpointControls.test_interrupted_fifth_local_verification_reuses_reserved_round_and_receipt) ... ok
+test_manual_interruption_in_network_wait_resumes_saved_conversation_and_remaining_attempts (test_checkpointing.CheckpointControls.test_manual_interruption_in_network_wait_resumes_saved_conversation_and_remaining_attempts) ... ok
+test_saved_complete_submission_recovers_without_model_but_tampering_is_rejected (test_checkpointing.CheckpointControls.test_saved_complete_submission_recovers_without_model_but_tampering_is_rejected) ... ok
+test_transport_classification_and_torn_log_record_are_not_fabricated_usage (test_checkpointing.CheckpointControls.test_transport_classification_and_torn_log_record_are_not_fabricated_usage) ... ok
+test_unknown_inflight_request_is_counted_once_and_only_all_api_windows_reopen (test_checkpointing.CheckpointControls.test_unknown_inflight_request_is_counted_once_and_only_all_api_windows_reopen) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 167.066s
+
+OK
+OFFLINE_RESULT={"module": "test_checkpointing", "passed": true, "tests_run": 10, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_pi_stops_after_kernel_pass_before_any_followup_model_request (test_auto_finalize.AutomaticCompletionControls.test_actual_pi_stops_after_kernel_pass_before_any_followup_model_request) ... ok
+test_both_languages_receive_primary_txt_seed_and_field_guide_upfront (test_auto_finalize.AutomaticCompletionControls.test_both_languages_receive_primary_txt_seed_and_field_guide_upfront) ... ok
+test_failed_candidate_never_generates_a_completion_or_publishes_partial_litex_prefix (test_auto_finalize.AutomaticCompletionControls.test_failed_candidate_never_generates_a_completion_or_publishes_partial_litex_prefix) ... ok
+test_fifth_attempt_native_pass_auto_saves_without_encoding_metadata_or_extra_kernel_gate (test_auto_finalize.AutomaticCompletionControls.test_fifth_attempt_native_pass_auto_saves_without_encoding_metadata_or_extra_kernel_gate) ... ok
+test_independent_final_failure_cannot_be_reported_as_task_success (test_auto_finalize.AutomaticCompletionControls.test_independent_final_failure_cannot_be_reported_as_task_success) ... ok
+test_interrupted_local_finalization_recovers_same_candidate_without_another_round (test_auto_finalize.AutomaticCompletionControls.test_interrupted_local_finalization_recovers_same_candidate_without_another_round) ... ok
+test_real_pi_compaction_is_local_preserves_original_text_and_makes_no_summary_request (test_auto_finalize.AutomaticCompletionControls.test_real_pi_compaction_is_local_preserves_original_text_and_makes_no_summary_request) ... ok
+test_unnamed_accepted_fact_returns_repair_feedback_instead_of_sticking_in_local_recovery (test_auto_finalize.AutomaticCompletionControls.test_unnamed_accepted_fact_returns_repair_feedback_instead_of_sticking_in_local_recovery) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 88.959s
+
+OK
+OFFLINE_RESULT={"module": "test_auto_finalize", "passed": true, "tests_run": 8, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_read_history_and_retrieved_signatures_survive_without_changing_work_hashes (test_context_tools.ContextToolControls.test_read_history_and_retrieved_signatures_survive_without_changing_work_hashes) ... ok
+test_real_symbol_lookup_returns_source_native_signature_and_seed_not_false_missing (test_context_tools.ContextToolControls.test_real_symbol_lookup_returns_source_native_signature_and_seed_not_false_missing) ... ok
+test_wrong_input_path_explains_work_file_tool_instead_of_sending_agent_to_missing_input (test_context_tools.ContextToolControls.test_wrong_input_path_explains_work_file_tool_instead_of_sending_agent_to_missing_input) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.131s
+
+OK
+OFFLINE_RESULT={"module": "test_context_tools", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_pi_needs_two_model_messages_for_bad_and_good_complete_candidates (test_compact_protocol.CompactProtocolControls.test_actual_pi_needs_two_model_messages_for_bad_and_good_complete_candidates) ... ok
+test_failed_receipt_before_result_commit_is_restored_without_a_second_check (test_compact_protocol.CompactProtocolControls.test_failed_receipt_before_result_commit_is_restored_without_a_second_check) ... ok
+test_real_operation_cards_fifth_success_and_duplicate_operation_use_one_round (test_compact_protocol.CompactProtocolControls.test_real_operation_cards_fifth_success_and_duplicate_operation_use_one_round) ... ok
+test_restart_after_save_before_check_reuses_pending_atomic_transaction (test_compact_protocol.CompactProtocolControls.test_restart_after_save_before_check_reuses_pending_atomic_transaction) ... ok
+test_section_lookup_preserves_reference_and_ignores_headings_inside_code (test_compact_protocol.CompactProtocolControls.test_section_lookup_preserves_reference_and_ignores_headings_inside_code) ... ok
+test_short_profile_keeps_full_original_primary_text_and_intact_on_demand_guide (test_compact_protocol.CompactProtocolControls.test_short_profile_keeps_full_original_primary_text_and_intact_on_demand_guide) ... {"source_packs_prepared": 25, "total": 34}
+{"source_packs_prepared": 25, "total": 34}
+ok
+test_stale_failed_finalization_marker_does_not_hide_new_accepted_candidate_after_crash (test_compact_protocol.CompactProtocolControls.test_stale_failed_finalization_marker_does_not_hide_new_accepted_candidate_after_crash) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 66.413s
+
+OK
+OFFLINE_RESULT={"module": "test_compact_protocol", "passed": true, "tests_run": 7, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_paired_replay_keeps_warmups_and_never_uses_session_acceptance_cache (test_replay_benchmark.ReplayBenchmarkControls.test_actual_paired_replay_keeps_warmups_and_never_uses_session_acceptance_cache) ... {"task_id": "TOOL.SMOKE", "language": "litex", "warmup": true, "passed": true, "warm_candidate_seconds": 0.00032300001475960016, "fresh_file_seconds": 0.06036891700932756}
+{"task_id": "TOOL.SMOKE", "language": "lean", "warmup": true, "passed": true, "warm_candidate_seconds": 0.005736582970712334, "fresh_file_seconds": 9.115214582998306}
+{"task_id": "TOOL.SMOKE", "language": "litex", "warmup": false, "passed": true, "warm_candidate_seconds": 0.0005044579738751054, "fresh_file_seconds": 0.0652335420018062}
+{"task_id": "TOOL.SMOKE", "language": "lean", "warmup": false, "passed": true, "warm_candidate_seconds": 0.007517291989643127, "fresh_file_seconds": 9.18434191599954}
+ok
+test_phase_accounting_includes_startup_request_failures_and_keeps_other_cost (test_replay_benchmark.ReplayBenchmarkControls.test_phase_accounting_includes_startup_request_failures_and_keeps_other_cost) ... ok
+test_replay_summary_does_not_discard_failed_measured_samples (test_replay_benchmark.ReplayBenchmarkControls.test_replay_summary_does_not_discard_failed_measured_samples) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 58.715s
+
+OK
+OFFLINE_RESULT={"module": "test_replay_benchmark", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_real_pi_lookup_limit_forces_candidate_and_preserves_native_feedback (test_lookup_budget.LookupBudgetControls.test_real_pi_lookup_limit_forces_candidate_and_preserves_native_feedback) ... ok
+test_retrieval_batches_complete_sections_and_keeps_full_reference_available (test_lookup_budget.LookupBudgetControls.test_retrieval_batches_complete_sections_and_keeps_full_reference_available) ... ok
+test_violations_charge_once_and_never_create_sixth_attempt (test_lookup_budget.LookupBudgetControls.test_violations_charge_once_and_never_create_sixth_attempt) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 23.818s
+
+OK
+OFFLINE_RESULT={"module": "test_lookup_budget", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_every_example_in_the_new_core_passes_both_real_kernels_and_final_gate (test_aligned_guides.AlignedGuideControls.test_every_example_in_the_new_core_passes_both_real_kernels_and_final_gate) ... ok
+test_frozen_core_retrieval_uses_same_ids_and_does_not_mount_legacy_reference (test_aligned_guides.AlignedGuideControls.test_frozen_core_retrieval_uses_same_ids_and_does_not_mount_legacy_reference) ... ok
+test_same_chapter_ids_topics_example_categories_and_bounded_size_difference (test_aligned_guides.AlignedGuideControls.test_same_chapter_ids_topics_example_categories_and_bounded_size_difference) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 20.588s
+
+OK
+OFFLINE_RESULT={"module": "test_aligned_guides", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_accepted_prefix_survives_multiline_parse_error_and_corrected_suffix (test_repl_framing.LitexReplFramingControls.test_accepted_prefix_survives_multiline_parse_error_and_corrected_suffix) ... ok
+test_native_boundary_model_distinguishes_colon_blocks_from_multiline_functions (test_repl_framing.LitexReplFramingControls.test_native_boundary_model_distinguishes_colon_blocks_from_multiline_functions) ... ok
+test_repeated_parse_errors_then_corrected_candidate_have_no_stale_diagnostics (test_repl_framing.LitexReplFramingControls.test_repeated_parse_errors_then_corrected_candidate_have_no_stale_diagnostics) ... ok
+test_successful_first_turn_cannot_silently_hide_unchecked_remainder (test_repl_framing.LitexReplFramingControls.test_successful_first_turn_cannot_silently_hide_unchecked_remainder) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.418s
+
+OK
+OFFLINE_RESULT={"module": "test_repl_framing", "passed": true, "tests_run": 4, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_error_receives_matching_checked_repair_without_changing_native_json (test_direct_protocol.DirectProtocolControls.test_actual_error_receives_matching_checked_repair_without_changing_native_json) ... ok
+test_all_litex_procedures_then_lean_counterparts_pass_real_final_gates (test_direct_protocol.DirectProtocolControls.test_all_litex_procedures_then_lean_counterparts_pass_real_final_gates) ... ok
+test_comment_display_preserves_strings_and_nested_comments (test_direct_protocol.DirectProtocolControls.test_comment_display_preserves_strings_and_nested_comments) ... ok
+test_direct_prompt_preserves_entire_original_proof_and_provides_operations_upfront (test_direct_protocol.DirectProtocolControls.test_direct_prompt_preserves_entire_original_proof_and_provides_operations_upfront) ... {"source_packs_prepared": 25, "total": 34}
+ok
+test_lean_error_messages_are_routed_and_replay_is_ignored (test_direct_protocol.DirectProtocolControls.test_lean_error_messages_are_routed_and_replay_is_ignored) ... ok
+test_library_display_does_not_change_verifier_source_and_large_library_allows_lookup (test_direct_protocol.DirectProtocolControls.test_library_display_does_not_change_verifier_source_and_large_library_allows_lookup) ... ok
+test_parse_message_overrides_misleading_identifiers_and_domains (test_direct_protocol.DirectProtocolControls.test_parse_message_overrides_misleading_identifiers_and_domains) ... ok
+test_quantifier_composition_has_priority_over_unrelated_layout_examples (test_direct_protocol.DirectProtocolControls.test_quantifier_composition_has_priority_over_unrelated_layout_examples) ... ok
+test_real_pi_needs_one_successful_generation_or_two_for_failure_and_repair (test_direct_protocol.DirectProtocolControls.test_real_pi_needs_one_successful_generation_or_two_for_failure_and_repair) ... ok
+test_source_names_do_not_select_proof_patterns_and_preview_is_bounded (test_direct_protocol.DirectProtocolControls.test_source_names_do_not_select_proof_patterns_and_preview_is_bounded) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 25.161s
+
+OK
+OFFLINE_RESULT={"module": "test_direct_protocol", "passed": true, "tests_run": 10, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_actual_pi_records_both_initializations_and_retains_final_verification (test_final_timing.IndependentFinalTimingControls.test_actual_pi_records_both_initializations_and_retains_final_verification) ... ok
+test_final_does_not_inherit_an_unrecorded_helper_from_the_candidate_session (test_final_timing.IndependentFinalTimingControls.test_final_does_not_inherit_an_unrecorded_helper_from_the_candidate_session) ... ok
+test_interrupted_final_startup_never_produces_an_invented_adjusted_time (test_final_timing.IndependentFinalTimingControls.test_interrupted_final_startup_never_produces_an_invented_adjusted_time) ... ok
+test_language_report_subtracts_initializations_from_worker_wall_time (test_final_timing.IndependentFinalTimingControls.test_language_report_subtracts_initializations_from_worker_wall_time) ... ok
+test_real_fresh_final_sessions_preserve_complete_code_and_both_final_gates (test_final_timing.IndependentFinalTimingControls.test_real_fresh_final_sessions_preserve_complete_code_and_both_final_gates) ... ok
+test_subtraction_keeps_actual_final_verification_and_legacy_is_unknown (test_final_timing.IndependentFinalTimingControls.test_subtraction_keeps_actual_final_verification_and_legacy_is_unknown) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 65.044s
+
+OK
+OFFLINE_RESULT={"module": "test_final_timing", "passed": true, "tests_run": 6, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_formation_and_dependent_argument_errors_preserve_conditions (test_generic_language.GenericLanguageControls.test_formation_and_dependent_argument_errors_preserve_conditions) ... ok
+test_lean_doc_comment_placement_is_fixed_without_changing_mathematics (test_generic_language.GenericLanguageControls.test_lean_doc_comment_placement_is_fixed_without_changing_mathematics) ... ok
+test_native_lean_membership_type_error_has_a_source_line_and_set_reference (test_generic_language.GenericLanguageControls.test_native_lean_membership_type_error_has_a_source_line_and_set_reference) ... ok
+test_native_membership_error_is_located_before_the_surrounding_quantifier (test_generic_language.GenericLanguageControls.test_native_membership_error_is_located_before_the_surrounding_quantifier) ... ok
+test_native_set_builder_error_selects_binder_syntax_not_a_missing_helper (test_generic_language.GenericLanguageControls.test_native_set_builder_error_selects_binder_syntax_not_a_missing_helper) ... ok
+test_paired_curriculum_is_present_upfront_and_passes_independent_final_checks (test_generic_language.GenericLanguageControls.test_paired_curriculum_is_present_upfront_and_passes_independent_final_checks) ... ok
+test_parenthesized_logical_fact_gets_a_logical_pattern_before_existential_advice (test_generic_language.GenericLanguageControls.test_parenthesized_logical_fact_gets_a_logical_pattern_before_existential_advice) ... ok
+test_precise_location_overrides_unrelated_lines_and_quoted_examples (test_generic_language.GenericLanguageControls.test_precise_location_overrides_unrelated_lines_and_quoted_examples) ... ok
+test_reserved_quantifier_in_an_invalid_expression_is_not_a_missing_library_name (test_generic_language.GenericLanguageControls.test_reserved_quantifier_in_an_invalid_expression_is_not_a_missing_library_name) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 62.597s
+
+OK
+OFFLINE_RESULT={"module": "test_generic_language", "passed": true, "tests_run": 9, "failures": 0, "errors": 0, "skipped": 0}
+
+
+test_extra_token_is_classified_from_the_error_line_not_an_outer_signature (test_proof_layout_repair.ProofLayoutRepairControls.test_extra_token_is_classified_from_the_error_line_not_an_outer_signature) ... ok
+test_real_cases_colon_error_preserves_header_commas_and_repairs_to_a_checked_proof (test_proof_layout_repair.ProofLayoutRepairControls.test_real_cases_colon_error_preserves_header_commas_and_repairs_to_a_checked_proof) ... ok
+test_real_impossible_scope_and_missing_clause_use_contradiction_reference (test_proof_layout_repair.ProofLayoutRepairControls.test_real_impossible_scope_and_missing_clause_use_contradiction_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.393s
+
+OK
+OFFLINE_RESULT={"module": "test_proof_layout_repair", "passed": true, "tests_run": 3, "failures": 0, "errors": 0, "skipped": 0}

@@ -1,0 +1,29 @@
+{
+  "status": "design_preview",
+  "ready_to_run": false,
+  "task_id": "EUCLID.I.P001",
+  "language": "lean",
+  "shared_task": "task.json",
+  "shared_system": "../../common-system.txt",
+  "language_card": "../../lean-card.txt",
+  "submission_schema": "../../submission.schema.json",
+  "tool_contract": "../../tool-contract.json",
+  "provider": "paratera",
+  "model": "DeepSeek-V4.1-Flash",
+  "development_budget": {
+    "deadline_seconds": 1200,
+    "max_check_calls": 60
+  },
+  "source_proof_visible": true,
+  "library_state": "this run's independently accumulated library only",
+  "missing_before_execution": [
+    "approved and tested mathematical foundation",
+    "frozen full language-guide pack",
+    "registered restricted Pi tools",
+    "bounded source material",
+    "actual request usage collector",
+    "reviewed task specification and frozen model parameters"
+  ],
+  "language_core": "../../guides/lean-core.md",
+  "shared_curriculum": "../../guides/curriculum.json"
+}

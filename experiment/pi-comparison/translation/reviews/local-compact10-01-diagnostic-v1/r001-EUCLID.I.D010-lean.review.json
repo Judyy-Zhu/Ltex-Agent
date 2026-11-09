@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "packet_sha256": "036dfdaaf0de858ca16cc58dc6da0b1a6189d40a169bdd48c7b6dc57c1ad8fa9",
+  "task_id": "EUCLID.I.D010",
+  "language": "lean",
+  "formal_sha256": "31d066ef5e0390a8cc8c2fcb0e0d112dc45fd92fb993d18f721e0dcadace7dfc",
+  "contract_sha256": "e2735668b32a02fbd369593587c11869946e88168c62e6dca20cc72fa4e1f4dd",
+  "reviewer": {
+    "kind": "",
+    "identity": "",
+    "model": null
+  },
+  "claims": [
+    {
+      "id": "EUCLID.I.D010.configuration",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D010.adjacency",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D010.equal_adjacent",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D010.both_right",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D010.perpendicular_roles",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    }
+  ],
+  "dimensions": {
+    "meaning_and_representation": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    "domains_and_conditions": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    "assumption_boundary": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    }
+  },
+  "proof_route": {
+    "status": "not_applicable",
+    "reason": ""
+  },
+  "model_refinements": [],
+  "review_seconds": null,
+  "provider_usage": null,
+  "note": "Evidence binding is mechanical; semantic judgments must come from an independent reviewer."
+}

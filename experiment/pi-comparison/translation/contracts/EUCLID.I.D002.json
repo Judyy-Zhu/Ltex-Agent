@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D002",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D002/EUCLID.I.D002.txt",
+    "sha256": "612caaf537314d4fc078182f01a144af03109fffa532c6e1456871a7298da1ae",
+    "text": "2. And a line is a length without breadth.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D002.line",
+      "source_quote": "a line",
+      "requirement": "Introduce a line concept with a stated carrier/representation."
+    },
+    {
+      "id": "EUCLID.I.D002.length",
+      "source_quote": "a length",
+      "requirement": "Account for the length/extent content of the definition."
+    },
+    {
+      "id": "EUCLID.I.D002.no_breadth",
+      "source_quote": "without breadth",
+      "requirement": "Account for the absence of breadth, with a consistent geometric meaning."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "Does line mean a finite extent, a general line/curve, or another approved object?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How are length and breadth represented without silently restricting every line to a straight line?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "Do not silently add straightness or finite/positive length assumptions absent from an approved interpretation."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}

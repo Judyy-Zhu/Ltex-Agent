@@ -1,0 +1,77 @@
+{
+  "status": "collector_and_judge_contract_not_measured_results",
+  "agent_can_write_measurements": false,
+  "per_task_fields": {
+    "run_id": "controller-assigned unique run ID",
+    "task_id": "source catalog ID",
+    "language": "lean or litex",
+    "source_contract_hash": "frozen input identity",
+    "foundation_hash": "own-language audited mathematical baseline",
+    "skills_hash": "own-language frozen teaching pack",
+    "source_files_hashes": "submitted artifacts bound to final receipt",
+    "machine_check": "passed after complete final/submission gates, failed, or unattempted; controller only",
+    "semantic_check": "optional passed/failed/pending annotation; never gates machine success or the primary score",
+    "assumption_check": "mandatory automatic trust/axiom gate; optional broader mathematical review is separate",
+    "final_score": "1 for machine-passed tasks, 0 for finished machine failures, null for unattempted tasks; semantic annotations do not affect it",
+    "terminal_reason": "completed, verification_failed, timeout, dependency_blocked, environment_error or not_attempted; optional semantic mismatch is an annotation, not an automatic terminal failure",
+    "task_elapsed_seconds": "monotonic elapsed including setup in task, tool calls, retries, restart and final check",
+    "checker_seconds": "separate diagnostic; do not sum overlapping durations into wall time",
+    "request_attempt_ids": "one ID for each actual model request including retries and compaction",
+    "usage_summary": "normalized totals, known subtotal and missing-request coverage per field",
+    "check_calls": "actual verifier invocations including failure",
+    "restarts": "actual controlled recovery events",
+    "task_attempt_count": "Cumulative task attempts including earlier all-API windows; never reset historical counts.",
+    "task_retry_count": "max(0, task_attempt_count - 1); helpers do not get additional allowances.",
+    "attempt_window_used": "Attempts used in current window, at most five; includes network/API failures.",
+    "resume_count": "Number of current-task controller restarts.",
+    "network_retry_count": "Cumulative connection resends, separately audited.",
+    "network_wait_seconds": "Actual active time waiting for a connection retry; included in task elapsed, also exposed separately."
+  },
+  "usage_collection": {
+    "primary": "final raw API usage per unique request attempt when available",
+    "fallback": "final Pi usage with established observation provenance",
+    "never_sum": [
+      "streaming cumulative usage frames",
+      "raw and Pi views of the same request",
+      "reasoning again on top of output",
+      "cached input again on top of raw prompt_tokens"
+    ],
+    "include": [
+      "model requests for task work",
+      "failures with reported usage",
+      "actual retries",
+      "context compaction",
+      "guide and source inputs",
+      "tool results included in subsequent prompts"
+    ],
+    "missing_usage": "null plus known subtotal and coverage; never silently zero",
+    "tool_nested_models": "disallowed in the initial solver treatment",
+    "context_compaction_policy": "same trigger and model on both sides; record events and usage",
+    "cache_policy": "record hits and randomize pair order; do not claim remote cold-cache control"
+  },
+  "run_summary": {
+    "correct_rate": "primary operational accuracy: machine-passed propositions / preregistered scope N (48 for Book I, 465 for full run)",
+    "pending_audits": "optional annotations only; never suppress the primary score or prevent publication",
+    "total_build_seconds": "sum actual active serial task work plus required integration; preparation and human audit listed separately",
+    "total_build_tokens": "all model work in run, including foundation and helper tasks, failures and recovery",
+    "tokens_per_correct": "total_build_tokens / machine_passed_proposition_count when usage is complete and the count is positive; otherwise null",
+    "joint_success_comparison": "paired time/token ratios on mutually machine-passed propositions, with subset size disclosed",
+    "coverage_curves": "correct coverage vs cumulative active wall seconds, and vs cumulative reported tokens if accounting complete",
+    "repeat_unit": "independent library-building run, not individual dependent theorem",
+    "semantic_accuracy": "optional separate source-fidelity score, unavailable without semantic reviews; not the primary accuracy"
+  },
+  "success_policy": {
+    "criterion": "machine_verification",
+    "semantic_review_required": false,
+    "semantic_annotations_affect_primary_score": false,
+    "accuracy_definition": "machine-verified propositions divided by registered propositions"
+  },
+  "limits": {
+    "max_task_rounds": 5,
+    "task_seconds": null,
+    "run_seconds": null,
+    "check_timeout": null,
+    "max_check_calls": null,
+    "round_definition": "Five total attempts per task window: complete code candidate, generation failure or network/API failure. Final verification/publication excluded after whole candidate acceptance. All-API exhausted windows checkpoint the same task for explicit restart with full history retained."
+  }
+}

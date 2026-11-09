@@ -1,0 +1,52 @@
+{
+  "version": "direct-procedures-v3",
+  "language": "lean",
+  "scope": "Generic teaching patterns, not preloaded declarations or Euclid answers. Adapt fresh names and preserve the actual task target.",
+  "patterns": [
+    {
+      "id": "function_layout",
+      "instruction": "Use an explicit definition and unfold it before polynomial reasoning.",
+      "code": "def fast_shift (x : ℝ) : ℝ := x + 1\ntheorem fast_expand (x : ℝ) : fast_shift x - 1 = x := by\n  unfold fast_shift\n  ring\n"
+    },
+    {
+      "id": "exist_elimination",
+      "instruction": "Use rcases to introduce a witness and its property from a known existential.",
+      "code": "theorem fast_extract (t : ℝ) (h : ∃ x : ℝ, x = t) : ∃ y : ℝ, y = t := by\n  rcases h with ⟨u, hu⟩\n  exact ⟨u, hu⟩\n"
+    },
+    {
+      "id": "not_exist",
+      "instruction": "Introduce the assumed existential, extract its witness and derive a contradiction from equality and inequality.",
+      "code": "theorem fast_not_exist (t : ℝ) : ¬ ∃ x : ℝ, x = t ∧ x ≠ t := by\n  intro h\n  rcases h with ⟨u, heq, hne⟩\n  exact hne heq\n"
+    },
+    {
+      "id": "coordinate_equality",
+      "instruction": "Use Prod.ext after establishing both coordinate equalities.",
+      "code": "theorem fast_tuple_equal (p q : GeoPoint) (hx : p.1 = q.1) (hy : p.2 = q.2) : p = q := by\n  exact Prod.ext hx hy\n"
+    },
+    {
+      "id": "predicate_definition",
+      "instruction": "A mathematical predicate is a definition returning Prop. Apply it using its explicit argument list.",
+      "code": "def fast_is_fixed (x : ℝ) : Prop := x = 3\n"
+    },
+    {
+      "id": "quantifier_composition",
+      "instruction": "Build the same quantified condition from named inner predicates. Each helper keeps all free parameters explicit. This defines an exists/forall/exists condition; it does not prove existence. Keep quantifier order and witness dependencies unchanged.",
+      "code": "def fast_next (x y : ℝ) : Prop := y = x + 1\ndef fast_has_next (x : ℝ) : Prop := ∃ y : ℝ, fast_next x y\ndef fast_next_after (t : ℝ) : Prop :=\n  ∀ x : ℝ, x ≥ t → fast_has_next x\ndef fast_next_family (b : ℝ) : Prop :=\n  ∃ t : ℝ, t = b ∧ fast_next_after t\n"
+    },
+    {
+      "id": "sets_membership",
+      "instruction": "Set comprehensions use {x : T | condition}; membership facts use x ∈ S with S : Set T. A universal inclusion is not equality of sets.",
+      "code": "def fast_level (t : ℝ) : Set ℝ := {z : ℝ | z = t}\ndef fast_contains (S : Set ℝ) (z : ℝ) : Prop := z ∈ S\ndef fast_included (A B : Set ℝ) : Prop := ∀ z : ℝ, z ∈ A → z ∈ B\ntheorem fast_level_member (t : ℝ) : t ∈ fast_level t := by\n  change t = t\n  rfl\n"
+    },
+    {
+      "id": "parameter_constraints",
+      "instruction": "A restricted interface may take a proof argument hx : x ≠ 0; supply it when calling the function. Inspect actual function types. Noncomputable marks computation status, not an unfinished proof. Never remove domain conditions to silence type errors.",
+      "code": "noncomputable def fast_recip (x : ℝ) (_hx : x ≠ 0) : ℝ := 1 / x\ntheorem fast_recip_cancel (x : ℝ) (hx : x ≠ 0) : fast_recip x hx * x = 1 := by\n  unfold fast_recip\n  field_simp\n"
+    },
+    {
+      "id": "logical_composition",
+      "instruction": "A predicate can name a disjunction; ∧ and ∨ retain distinct scopes. Explicit logical parentheses are supported. Preserve the same conjunction and disjunction as the mathematical source.",
+      "code": "def fast_some_nonzero (a b : ℝ) : Prop := a ≠ 0 ∨ b ≠ 0\ndef fast_admissible_pair (a b : ℝ) : Prop := a + b = 1 ∧ fast_some_nonzero a b\n"
+    }
+  ]
+}

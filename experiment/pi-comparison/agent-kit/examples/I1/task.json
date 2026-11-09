@@ -1,0 +1,89 @@
+{
+  "task_id": "EUCLID.I.P001",
+  "status": "development_math_contract_with_automatic_machine_acceptance",
+  "track": "source_to_library",
+  "language_neutral": true,
+  "title": "Construct an equilateral triangle on an arbitrary nondegenerate segment",
+  "model": "real-coordinate Euclidean plane; analytic construction with source-property certificates",
+  "variables": [
+    {
+      "names": [
+        "A",
+        "B"
+      ],
+      "domain": "arbitrary points in the Euclidean plane"
+    }
+  ],
+  "premises": [
+    {
+      "clause_id": "H1",
+      "statement": "A ≠ B"
+    }
+  ],
+  "required_conclusions": [
+    {
+      "clause_id": "C1",
+      "statement": "For every A and B satisfying H1, there exists a point C in the plane."
+    },
+    {
+      "clause_id": "C2",
+      "statement": "The lengths of AB, AC and BC are equal."
+    },
+    {
+      "clause_id": "C3",
+      "statement": "A, B and C are noncollinear and form a nondegenerate triangle."
+    },
+    {
+      "clause_id": "C4",
+      "statement": "C lies on the circle with center A and radius AB."
+    },
+    {
+      "clause_id": "C5",
+      "statement": "C lies on the circle with center B and radius BA."
+    }
+  ],
+  "construction_requirements": [
+    "Define and identify the two prescribed circles.",
+    "Construct a witness and prove its specified properties.",
+    "Explain the correspondence between the analytic proof and the source circle-intersection construction."
+  ],
+  "permitted_presentations": [
+    "Squared distance may be used if its correspondence to equal lengths is justified.",
+    "A witness on either side of AB is allowed; uniqueness is not required."
+  ],
+  "forbidden_weakening": [
+    "Proving only a fixed numerical segment.",
+    "Allowing a degenerate triangle.",
+    "Assuming a circle intersection exists without proof.",
+    "Adding premises absent from the source to avoid the target."
+  ],
+  "source": {
+    "catalog_id": "EUCLID.I.P001",
+    "source_id": "fitzpatrick-2008",
+    "sha256": "3d6304d80810393f987a9f700e8d86c85f64a4763e38b1814502b7b94dfadbfa",
+    "pdf_page_one_based": 8,
+    "y_start_pt": 143.985,
+    "y_end_exclusive_pt": 605.221,
+    "original_proof_visible": true,
+    "related_definition_source_ids": [
+      "EUCLID.I.D015",
+      "EUCLID.I.D016",
+      "EUCLID.I.D020"
+    ],
+    "delivery_requirement": "Package the same bounded source text and needed definition texts for both languages. This experiment provides no images."
+  },
+  "required_outputs": [
+    "source files",
+    "interfaces.json",
+    "clause-to-declaration mapping",
+    "dependency and assumption lists",
+    "final receipt_id"
+  ],
+  "ground_truth_formal_proof_supplied": false,
+  "success_policy": {
+    "criterion": "machine_verification",
+    "semantic_review_required": false,
+    "semantic_annotations_affect_primary_score": false,
+    "accuracy_definition": "machine-verified propositions divided by registered propositions"
+  }
+}

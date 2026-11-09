@@ -1,0 +1,52 @@
+{
+  "version": "direct-procedures-v3",
+  "language": "litex",
+  "scope": "Generic teaching patterns, not preloaded declarations or Euclid answers. Adapt fresh names and preserve the actual task target.",
+  "patterns": [
+    {
+      "id": "function_layout",
+      "instruction": "Keep explicit function bodies on the same physical line as =; expose the expansion before algebra.",
+      "code": "have fn fast_shift(x R) R = x + 1\nthm fast_expand:\n    ? forall x R:\n        fast_shift(x) - 1 = x\n    fast_shift(x) = x + 1\n    fast_shift(x) - 1 = (x + 1) - 1 = x\n"
+    },
+    {
+      "id": "exist_elimination",
+      "instruction": "Use obtain to introduce a fresh witness from a known existential. Its body must use st { ... } and occupy a complete fact.",
+      "code": "thm fast_extract:\n    ? forall t R:\n        exist x R st {x = t}\n        =>:\n            exist y R st {y = t}\n    obtain u from exist x R st {x = t}\n    witness exist y R st {y = t} from u\n"
+    },
+    {
+      "id": "not_exist",
+      "instruction": "Prove a negated existential by contradiction, obtain its assumed witness, then exhibit the actual contradiction.",
+      "code": "thm fast_not_exist:\n    ? forall t R:\n        not exist x R st {x = t and x != t}\n    by contra:\n        ? not exist x R st {x = t and x != t}\n        obtain u from exist x R st {x = t and x != t}\n        impossible u != t\n"
+    },
+    {
+      "id": "coordinate_equality",
+      "instruction": "For this two-coordinate case, explicitly reconstruct both pairs, equate their literal coordinate pairs, then conclude p=q. These facts are checked directly; no guessed theorem command is needed.",
+      "code": "thm fast_tuple_equal:\n    ? forall p, q GeoPoint:\n        p(1) = q(1)\n        p(2) = q(2)\n        =>:\n            p = q\n    p = (p(1), p(2))\n    q = (q(1), q(2))\n    (p(1), p(2)) = (q(1), q(2))\n    p = q\n"
+    },
+    {
+      "id": "predicate_definition",
+      "instruction": "A mathematical predicate is declared with prop, not a function returning the Lean-style Prop type. Apply it with a leading $.",
+      "code": "prop fast_is_fixed(x R):\n    x = 3\n"
+    },
+    {
+      "id": "quantifier_composition",
+      "instruction": "Build a quantified condition from named inner predicates. Each helper keeps all free parameters explicit. This defines an exists/forall/exists condition without unsupported anonymous quantifier nesting; it does not prove existence. Keep quantifier order and witness dependencies unchanged.",
+      "code": "prop fast_next(x, y R):\n    y = x + 1\nprop fast_has_next(x R):\n    exist y R st {$fast_next(x, y)}\nprop fast_next_after(t R):\n    forall x R:\n        x >= t\n        =>:\n            $fast_has_next(x)\nprop fast_next_family(b R):\n    exist t R st {t = b and $fast_next_after(t)}\n"
+    },
+    {
+      "id": "sets_membership",
+      "instruction": "Set comprehensions use {x T: condition}; membership facts use x $in S. Use power_set(T) for a set of T-elements. A universal inclusion is not equality of sets.",
+      "code": "have fn fast_level(t R) power_set(R) = {z R: z = t}\nprop fast_contains(S power_set(R), z R):\n    z $in S\nprop fast_included(A, B power_set(R)):\n    forall z R:\n        z $in A\n        =>:\n            z $in B\nthm fast_level_member:\n    ? forall t R:\n        t $in fast_level(t)\n    fast_level(t) = {z R: z = t}\n    t $in fast_level(t)\n"
+    },
+    {
+      "id": "parameter_constraints",
+      "instruction": "A restricted function parameter uses (x R: x != 0). Establish that condition before calling it. This syntax is not a prop-parameter template. Never remove domain conditions to silence well-definedness errors.",
+      "code": "have fn fast_recip(x R: x != 0) R = 1 / x\nthm fast_recip_cancel:\n    ? forall x R:\n        x != 0\n        =>:\n            fast_recip(x) * x = 1\n    fast_recip(x) = 1 / x\n    (1 / x) * x = 1\n    fast_recip(x) * x = 1\n"
+    },
+    {
+      "id": "logical_composition",
+      "instruction": "A predicate can name a disjunction. Separate facts in a prop body form conjunction. Use named logical predicates when nested fact expressions are not accepted as parenthesized objects.",
+      "code": "prop fast_some_nonzero(a, b R):\n    a != 0 or b != 0\nprop fast_admissible_pair(a, b R):\n    a + b = 1\n    $fast_some_nonzero(a, b)\n"
+    }
+  ]
+}

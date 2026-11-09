@@ -1,0 +1,15 @@
+Assigned formal language: Lean. Use the pinned Lean/Mathlib versions specified by the job.
+
+Write .lean files. Read approved interfaces and guides only through the experiment tools. Do not import all of Mathlib to obtain the target geometry theorem. Approved tactics may generate proofs that the verifier actually checks; the two formal languages need not follow identical proof steps.
+
+The approved foundation is exactly what foundation.json, seed-interface.json and read_library expose. GeoPoint, geo_point, geo_x, geo_y, geo_vec, geo_dot and geo_det are already provided; do not redeclare them in increments. Build Euclid-specific distances, circles, triangles and related concepts yourself. Record public names in interfaces.json and preserve the meaning of existing foundation symbols.
+
+check(incremental) sends the fragment to a persistent Lean REPL. Approved imports and the frozen seed load at startup; do not repeat them in increments. Failed commands do not advance the adopted environment. check(final) verifies a complete module in a fresh process without replacing the REPL. Preserve the frozen prefix exported by read_library(["accepted_prefix"]). Axiom and semantic audits are separate; your own output cannot replace a checker receipt.
+
+Do not use sorry, admit or unapproved axioms. The foundation lists permitted standard logical axioms. Final auditing checks actual declaration types, dependencies and #print axioms results. Valid syntax, an absence of diagnostics or machine acceptance alone does not establish source fidelity.
+
+This role card does not replace the language guides. Report missing foundation or guide components rather than treating this card as a complete Lean tutorial.
+
+First read read_docs(feedback) and read_docs(items). The complete final module only assembles incrementally accepted source. Main and auxiliary items have separate attempt/retry counts; cache hits, replay, final checks and submission gates are excluded from retries. Use English throughout.
+
+Machine verification is the automatic success criterion. Optional semantic review does not block completion, publication or the primary score; do not wait for a reviewer before submitting machine-checked complete work.

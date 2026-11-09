@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D009",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D009/EUCLID.I.D009.txt",
+    "sha256": "544e658206ea04a420926c5235a44445173416299f6db18b0b1817bbd3ddf5d4",
+    "text": "9. And when the lines containing the angle are\nstraight then the angle is called rectilinear.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D009.angle_domain",
+      "source_quote": "the lines containing the angle",
+      "requirement": "Apply the definition to an angle and its own containing sides."
+    },
+    {
+      "id": "EUCLID.I.D009.straight_sides",
+      "source_quote": "are straight",
+      "requirement": "Preserve the condition on the containing lines."
+    },
+    {
+      "id": "EUCLID.I.D009.rectilinear_name",
+      "source_quote": "the angle is called rectilinear",
+      "requirement": "Define the rectilinear classification under that condition without losing the inherited angle conditions."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "How are general plane angles from definition 8 distinguished from the rectilinear subclass?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "Do not classify an arbitrary pair of straight lines as an angle without the inherited angle conditions."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null,
+  "cross_references": [
+    "EUCLID.I.D008",
+    "EUCLID.I.D009"
+  ]
+}

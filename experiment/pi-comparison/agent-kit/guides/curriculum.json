@@ -1,0 +1,125 @@
+{
+  "status": "matched_capability_curriculum_draft",
+  "coverage_claim": "Core examples tested separately; full curriculum is not yet certified for Euclid I.1 or all 13 books.",
+  "delivery_policy": {
+    "initial": "same common rules, own-language core and same topic index at the start of each task conversation",
+    "on_demand": "read_docs may open only frozen, answer-free approved topic pages",
+    "proof_examples": "small paired language examples; no full tested Euclid proposition or decisive target-specific helper proof",
+    "length": "match teaching goals and reference access, not forced byte or token equality",
+    "accounting": "all core, reference retrieval and repeated context counted in actual request usage"
+  },
+  "cores": {
+    "lean": "lean-core.md",
+    "litex": "litex-core.md"
+  },
+  "units": [
+    {
+      "id": "U01",
+      "goal": "types and tuple coordinates",
+      "lean": "real types, products and projections",
+      "litex": "carriers, cart and one-based coordinates",
+      "example": "training_pair"
+    },
+    {
+      "id": "U02",
+      "goal": "functions and guarded domains",
+      "lean": "def, type annotations, proof parameters",
+      "litex": "have fn, return carriers, parameter guards",
+      "example": "training_shift; guards require further tests"
+    },
+    {
+      "id": "U03",
+      "goal": "predicates and geometric conditions",
+      "lean": "Prop-valued definitions and logical connectives",
+      "litex": "prop and dollar-prefixed use",
+      "example": "training_fixed"
+    },
+    {
+      "id": "U04",
+      "goal": "universal conditional theorems",
+      "lean": "theorem, binders, hypotheses and by",
+      "litex": "thm, question goal and premise/conclusion separator",
+      "example": "training_condition"
+    },
+    {
+      "id": "U05",
+      "goal": "definition unfolding and algebra",
+      "lean": "rfl, unfold, rw, simp and approved algebra tactics",
+      "litex": "explicit facts, expansion, equation chains and approved native inference",
+      "example": "training_unfold; solver-specific shapes need further tests"
+    },
+    {
+      "id": "U06",
+      "goal": "existential witnesses",
+      "lean": "witness plus proof term or tactics",
+      "litex": "exist and witness with checked constraints",
+      "example": "training_witness"
+    },
+    {
+      "id": "U07",
+      "goal": "cases, contradiction and induction",
+      "lean": "own-language standard proof constructs",
+      "litex": "own-language supported proof constructs",
+      "status": "operational workflow and in-budget native gate implemented; generic language coverage remains subject to pilot",
+      "pages": {
+        "lean": "lean-workflow.md",
+        "litex": "litex-workflow.md"
+      }
+    },
+    {
+      "id": "U08",
+      "goal": "theorem reuse, scope and modules",
+      "lean": "exact/apply/have, namespaces and approved imports",
+      "litex": "native theorem references and approved module interfaces; new foundation releases forbidden",
+      "status": "operational workflow and in-budget native gate implemented; generic language coverage remains subject to pilot",
+      "pages": {
+        "lean": "lean-workflow.md",
+        "litex": "litex-workflow.md"
+      }
+    },
+    {
+      "id": "U09",
+      "goal": "nondegeneracy, division and roots",
+      "lean": "derive guards and apply approved real interfaces",
+      "litex": "derive well-definedness and use approved real interfaces",
+      "pages": {
+        "lean": "lean-roots.md",
+        "litex": "litex-roots.md"
+      },
+      "status": "paired square-root and square-zero examples tested; broader guards and nondegeneracy coverage pending"
+    },
+    {
+      "id": "U10",
+      "goal": "incremental errors and state recovery",
+      "lean": "REPL environment, rollback and source resynchronization",
+      "litex": "Session journal, statement outcomes and source resynchronization",
+      "status": "operational workflow and in-budget native gate implemented; generic language coverage remains subject to pilot",
+      "pages": {
+        "lean": "lean-workflow.md",
+        "litex": "litex-workflow.md"
+      }
+    },
+    {
+      "id": "U11",
+      "goal": "independent final verification and assumptions",
+      "lean": "actual target, saved file and transitive axioms",
+      "litex": "actual target, saved module and strict plus foundation audit",
+      "status": "operational workflow and in-budget native gate implemented; generic language coverage remains subject to pilot",
+      "pages": {
+        "lean": "lean-workflow.md",
+        "litex": "litex-workflow.md"
+      }
+    },
+    {
+      "id": "U12",
+      "goal": "later-book mathematical representations",
+      "lean": "ratios, integers, commensurability, 3D and volume interfaces",
+      "litex": "equivalent mathematical interfaces in native forms",
+      "status": "paired representation requirements provided; later-domain definitions and proofs remain agent work",
+      "pages": {
+        "lean": "lean-domains.md",
+        "litex": "litex-domains.md"
+      }
+    }
+  ]
+}

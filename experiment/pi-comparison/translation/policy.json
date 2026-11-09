@@ -1,0 +1,14 @@
+{
+  "id": "faithful_translation_v1",
+  "selected_by_user": "2026-11-09",
+  "criterion": "complete mathematical meaning plus source-proof-step correspondence; model-specific refinements explicitly labeled",
+  "kernel_score": "preserved separately; no pending semantic annotation blocks kernel acceptance or existing publication",
+  "translation_score": "independent assessment, bound to exact source, contract and formal artifact; kernel acceptance and automatic clause mappings are not semantic evidence",
+  "definition_tasks": "review concepts, domains, constraints and representations; no invented existence/characterization obligation",
+  "proof_tasks": "review statement and assumption fidelity, each source proof step, dependencies and any declared model refinement",
+  "alternative_proof": "record goal fidelity separately; do not label a different proof route a faithful translation under this strict policy",
+  "unknown": "unreviewed/uncertain is unknown; report review coverage and bounds rather than fabricate a final accuracy",
+  "contract_freezing": "resolve interpretation decisions and approve the common contract before a prospective comparison",
+  "timing": "independent semantic-review time and token usage are separate from solver and kernel time",
+  "judge_independence": "evaluate each language against source and common contract, without seeing the other language output or the desired speed comparison"
+}

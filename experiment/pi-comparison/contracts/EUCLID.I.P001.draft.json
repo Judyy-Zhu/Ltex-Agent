@@ -1,0 +1,17 @@
+{
+  "task_id": "EUCLID.I.P001",
+  "status": "draft_requires_source_and_model_review",
+  "source_task": "../../../tasks/propositions.jsonl#EUCLID.I.P001",
+  "track": "source_to_library",
+  "formal_statement_provided_to_agent": false,
+  "model": "real_coordinate_euclidean_plane",
+  "variables": [{"names": ["A", "B"], "domain": "arbitrary_plane_points"}],
+  "premises": ["A and B are distinct endpoints of the prescribed finite straight segment"],
+  "required_conclusions": ["There exists a point C in the plane", "AB, AC and BC have equal lengths", "A, B and C are noncollinear", "C lies on the circle centered at A with radius AB", "C lies on the circle centered at B with radius BA"],
+  "construction_record": ["Identify the two prescribed circles and their intersection witness", "Prove the stated witness properties in the chosen model", "Record the relation between the checked construction and the source construction route"],
+  "permitted_presentations": ["Squared-distance equalities with explicitly justified equivalence to equal lengths", "Either side of AB may supply the witness; no unique orientation required"],
+  "forbidden_weakening": ["Only one fixed numerical segment", "Coincident endpoints as the only case", "A degenerate collinear triangle", "Equal sides asserted without proof", "Assuming the circle intersection instead of justifying it in the approved analytic model"],
+  "not_required": ["Uniqueness of C"],
+  "review_required": ["Confirm complete source interpretation including implicit nondegeneracy", "Approve minimal shared primitives and the analytic construction policy", "Confirm both language outputs against this same mathematical contract"],
+  "benchmark_result": {"lean": "not_started", "litex": "not_started"}
+}

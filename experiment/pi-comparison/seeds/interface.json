@@ -1,0 +1,19 @@
+{
+  "seed_id": "real-plane-algebra-v1",
+  "status": "technical_seed_for_development",
+  "mathematical_model": "Real coordinate pairs; the same carrier represents points and free coordinate vectors.",
+  "exports": [
+    {"name": "GeoPoint", "kind": "carrier", "meaning": "R squared, ordered pairs of real numbers"},
+    {"name": "geo_point", "kind": "function", "arguments": ["x: real", "y: real"], "result": "GeoPoint", "meaning": "the pair (x,y)"},
+    {"name": "geo_x", "kind": "function", "arguments": ["p: GeoPoint"], "result": "real", "meaning": "first coordinate of p"},
+    {"name": "geo_y", "kind": "function", "arguments": ["p: GeoPoint"], "result": "real", "meaning": "second coordinate of p"},
+    {"name": "geo_vec", "kind": "function", "arguments": ["a: GeoPoint", "b: GeoPoint"], "result": "GeoPoint", "meaning": "b minus a, coordinatewise; directed from a to b"},
+    {"name": "geo_dot", "kind": "function", "arguments": ["u: GeoPoint", "v: GeoPoint"], "result": "real", "meaning": "x(u)*x(v) + y(u)*y(v)"},
+    {"name": "geo_det", "kind": "function", "arguments": ["u: GeoPoint", "v: GeoPoint"], "result": "real", "meaning": "x(u)*y(v) - y(u)*x(v), with the ordered arguments fixing its sign"}
+  ],
+  "euclid_specific_definitions_provided": [],
+  "proposition_proofs_provided": [],
+  "agent_tasks_completed_by_seed": [],
+  "excluded_from_seed": ["distance and squared distance", "circles", "collinearity", "triangles", "congruence", "similarity", "midpoints", "circle intersections", "Euclid propositions"],
+  "accounting": "Seed preparation is setup. Native seed loading and reloading belong to measured task time. Seed source is controller-provided, not credited as agent-built definitions. Actual model input usage includes any seed retrieval."
+}

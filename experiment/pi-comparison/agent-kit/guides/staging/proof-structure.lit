@@ -1,0 +1,55 @@
+# Generic proof-language examples; no Euclid proposition proof.
+"""
+Line comments use #. A block comment delimiter occupies its own line.
+Keep explicit function bodies on the same logical line as the equals sign.
+"""
+prop training_positive(x R):
+    x > 0
+
+thm training_fold:
+    ? forall x R:
+        x > 0
+        =>:
+            $training_positive(x)
+    by def $training_positive(x)
+
+thm training_branch:
+    ? forall x R:
+        x = 0 or x = 1
+        =>:
+            x * (x - 1) = 0
+    by cases:
+        ? x * (x - 1) = 0
+        case x = 0:
+            x * (x - 1) = 0
+        case x = 1:
+            x * (x - 1) = 0
+
+thm training_square_nonnegative:
+    ? forall x R:
+        x^2 >= 0
+    by contra:
+        ? x^2 >= 0
+        impossible not x^2 >= 0
+
+thm training_compound_witness:
+    ? forall x R:
+        exist y R st {y = x + 1 and y - x = 1}
+    witness exist y R st {y = x + 1 and y - x = 1} from x + 1:
+        (x + 1) - x = 1
+
+thm training_root_bridge:
+    ? forall u, v R:
+        u >= 0
+        v >= 0
+        u = v
+        =>:
+            sqrt(u) = sqrt(v)
+    sqrt(u) = sqrt(v)
+
+thm training_add_zero:
+    ? forall x R:
+        x + 0 = x
+    x + 0 = x
+
+by thm training_add_zero(6) => 6 + 0 = 6

@@ -1,0 +1,15 @@
+Assigned formal language: Litex. Use the pinned binary and the tested CLI contract specified by the job.
+
+Write .lit files. Read approved interfaces and guides only through the experiment tools. Do not load a historical complete geometry library to obtain target results. Ordinary failures retain the accepted context in the same Session; repair the failing statement. The adapter records hard-error recovery and replay.
+
+The approved foundation is exactly what foundation.json, seed-interface.json and read_library expose. GeoPoint, geo_point, geo_x, geo_y, geo_vec, geo_dot and geo_det are already provided; do not redeclare them in increments. Build Euclid-specific distances, circles, triangles and related concepts yourself. Record public names in interfaces.json and preserve the meaning of existing foundation symbols.
+
+check(incremental) sends the fragment to the same active Litex Session, whose frozen seed is already loaded. Use one complete top-level block per tracked fragment, with a stable item_id and item_kind; repairs keep the ID. Read every complete native JSON response and its session-control fields. Do not assume a failed multi-block command rolled back every earlier accepted block. check(final) verifies the complete file in a fresh process and preserves the writing Session. Preserve the frozen prefix exported by read_library(["accepted_prefix"]). Assumption and semantic audits remain separate; your own output cannot replace a checker receipt.
+
+Do not use trust, unapproved axioms, or convert a failed thm into an axiom. Use only tested protocols; do not copy historical try: wrappers or obsolete flags. Valid syntax or machine acceptance alone does not establish source fidelity.
+
+This role card does not replace the language guides. Report missing foundation or guide components rather than treating this card as a complete Litex tutorial.
+
+First read read_docs(feedback) and read_docs(items). The complete final module only assembles incrementally accepted source. Main and auxiliary items have separate attempt/retry counts; cache hits, replay, final checks and submission gates are excluded from retries. Use English throughout.
+
+Machine verification is the automatic success criterion. Optional semantic review does not block completion, publication or the primary score; do not wait for a reviewer before submitting machine-checked complete work.

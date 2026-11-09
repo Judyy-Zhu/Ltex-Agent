@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D005",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D005/EUCLID.I.D005.txt",
+    "sha256": "73703abf0685dbdeff86948e64e35bf7423c08a41c4fa98448cdf7100e10424e",
+    "text": "5. And a surface is that which has length and breadth\nonly.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D005.surface",
+      "source_quote": "a surface",
+      "requirement": "Introduce the surface concept with its representation."
+    },
+    {
+      "id": "EUCLID.I.D005.length_breadth",
+      "source_quote": "length and breadth",
+      "requirement": "Represent both extent dimensions."
+    },
+    {
+      "id": "EUCLID.I.D005.only_two_extents",
+      "source_quote": "only",
+      "requirement": "Account for the only qualification; do not silently add thickness or assume all surfaces are plane surfaces."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "How are surface and ambient dimension modeled, including the later solid-geometry books?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How is general surface distinguished from plane surface introduced in definition 7?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "A coordinate pair alone does not explain the surface concept or its extent conditions."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}

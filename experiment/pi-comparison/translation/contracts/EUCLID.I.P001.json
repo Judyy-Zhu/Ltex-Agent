@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.P001",
+  "kind": "proposition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.P001/EUCLID.I.P001.txt",
+    "sha256": "989425ff5e6ed59a46b76aed1ca74a2fc2ae586ef837622f295119b5a9052d91",
+    "text": "Proposition 1\nTo construct an equilateral triangle on a given finite\nstraight-line.\nC\nD A B E\nLet AB be the given finite straight-line.\nSo it is required to construct an equilateral triangle on\nthe straight-line AB.\nLet the circle BCD with center A and radius AB have\nbeen drawn [Post. 3], and again let the circle ACE with\ncenter B and radius BA have been drawn [Post. 3]. And\nlet the straight-lines CA and CB have been joined from\nthe point C, where the circles cut one another, to the\npoints A and B (respectively) [Post. 1].\nAnd since the point A is the center of the circle CDB,\nAC is equal to AB [Def. 1.15]. Again, since the point\nB is the center of the circle CAE, BC is equal to BA\n[Def. 1.15]. But CA was also shown (to be) equal to AB.\nThus, CA and CB are each equal to AB. But things equal\nto the same thing are also equal to one another [C.N. 1].\nThus, CA is also equal to CB. Thus, the three (straight-\nlines) CA, AB, and BC are equal to one another.\nThus, the triangle ABC is equilateral, and has been\nconstructed on the given finite straight-line AB. (Which\nis) the very thing it was required to do.\na þ\n†\n† The assumption that the circles do indeed cut one another should be counted as an additional postulate. There is also an implicit assumption\nthat two straight-lines cannot share a common segment.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.P001.target",
+      "source_quote": "To construct an equilateral triangle on a given finite straight-line.",
+      "requirement": "Preserve the prescribed segment, generality and complete equilateral-triangle conclusion."
+    },
+    {
+      "id": "EUCLID.I.P001.sides",
+      "source_quote": "the three (straight-lines) CA, AB, and BC are equal to one another.",
+      "requirement": "All three required sides must be proved equal, with meaningful geometric definitions."
+    },
+    {
+      "id": "EUCLID.I.P001.construction",
+      "source_quote": "has been constructed on the given finite straight-line AB.",
+      "requirement": "Bind the constructed triangle to the original segment rather than a fixed numerical example."
+    },
+    {
+      "id": "EUCLID.I.P001.nondegenerate",
+      "source_quote": "equilateral triangle",
+      "requirement": "Under the proposed analytic interpretation, the witness must form a nondegenerate triangle on arbitrary A != B. Explicitly review this model interpretation; never credit coincident points as a triangle."
+    },
+    {
+      "id": "EUCLID.I.P001.circle_incidence",
+      "source_quote": "the point C, where the circles cut one another",
+      "requirement": "The chosen witness C must satisfy both prescribed circle-incidence properties, not only a numerical side-equality example."
+    }
+  ],
+  "source_proof_steps": [
+    {
+      "id": "EUCLID.I.P001.step.circles",
+      "source_quote": "Let the circle BCD with center A and radius AB have been drawn",
+      "requirement": "Identify the prescribed circle centered at A and the prescribed circle centered at B with their stated radii; preserve their roles."
+    },
+    {
+      "id": "EUCLID.I.P001.step.intersection",
+      "source_quote": "the point C, where the circles cut one another",
+      "requirement": "Use a common intersection point C as the construction witness, with a stated assumption/model justification for its availability."
+    },
+    {
+      "id": "EUCLID.I.P001.step.joining",
+      "source_quote": "let the straight-lines CA and CB have been joined",
+      "requirement": "Account for the two required joins from C to A and B."
+    },
+    {
+      "id": "EUCLID.I.P001.step.radii",
+      "source_quote": "AC is equal to AB",
+      "requirement": "Derive AC=AB and BC=BA from the two center/radius relations, corresponding to the cited circle definition."
+    },
+    {
+      "id": "EUCLID.I.P001.step.equal_things",
+      "source_quote": "things equal to the same thing are also equal to one another",
+      "requirement": "Map the transitive equality/common-notion step establishing the remaining side equality."
+    },
+    {
+      "id": "EUCLID.I.P001.step.conclusion",
+      "source_quote": "the triangle ABC is equilateral",
+      "requirement": "Conclude the requested construction from the established properties."
+    }
+  ],
+  "proof_route_required": true,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "Approve the arbitrary nondegenerate analytic segment model and its explicit noncollinearity/triangle interpretation.",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How is the source circle-intersection assumption repaired or justified in the chosen model, without disguising that added work as an original proof step?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M3",
+      "question": "How does the chosen model account for the editorial observation about straight-lines sharing a segment, where used?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "permitted_model_refinements": [
+    {
+      "id": "circle_intersection_gap",
+      "source_quote": "The assumption that the circles do indeed cut one another should be counted as an additional postulate.",
+      "requirement": "In the approved analytic model, separately justify the intersection/witness and nondegeneracy. Label this as model refinement; do not claim the source supplied its proof or silently assume it."
+    }
+  ],
+  "review_failure_probes": [
+    "A completely different proof may establish the target yet fail strict source-route fidelity.",
+    "Do not silently turn a source assumption or editorial footnote into a proved original step."
+  ],
+  "formal_proof_answer_provided": false,
+  "approval": null,
+  "existing_target_reference": {
+    "path": "agent-kit/examples/I1/task.json",
+    "sha256": "08b3e25936710e04ad57668ff81ccbba8941ca7842b2188229dbb9be3b4448af",
+    "role": "Retain all existing variables, H1, conclusions C1-C5 and construction requirements. This development target is additional context, not independently approved ground truth."
+  },
+  "source_annotations": [
+    {
+      "role": "editorial_note_not_original_proof_step",
+      "source_quote": "The assumption that the circles do indeed cut one another should be counted as an additional postulate. There is also an implicit assumption that two straight-lines cannot share a common segment.",
+      "review_instruction": "Keep these two editorial observations separate from the original proof. Identify how the chosen model justifies any part actually used; do not silently import a new unapproved assumption."
+    }
+  ]
+}

@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D004",
+  "language": "litex",
+  "contract": {
+    "schema_version": 1,
+    "task_id": "EUCLID.I.D004",
+    "kind": "definition",
+    "policy": "faithful_translation_v1",
+    "status": "draft_requires_interpretation_review",
+    "source": {
+      "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D004/EUCLID.I.D004.txt",
+      "sha256": "3b30efe90c4dc78987489f8b005aa7a48e3cd47b9b338bb1231c377882f9d816",
+      "text": "4. A straight-line is (any) one which lies evenly with\npoints on itself.\n"
+    },
+    "source_claims": [
+      {
+        "id": "EUCLID.I.D004.straight_is_line",
+        "source_quote": "A straight-line",
+        "requirement": "Relate the straight-line concept to the approved general line concept."
+      },
+      {
+        "id": "EUCLID.I.D004.evenness",
+        "source_quote": "lies evenly with points on itself",
+        "requirement": "Give a meaningful representation of evenness involving points on that same line."
+      }
+    ],
+    "source_proof_steps": [],
+    "proof_route_required": false,
+    "interpretation_decisions": [
+      {
+        "id": "M1",
+        "question": "What exact analytic relation interprets lies evenly?",
+        "status": "open",
+        "decision": null
+      },
+      {
+        "id": "M2",
+        "question": "How will straight and non-straight line representations be distinguished?",
+        "status": "open",
+        "decision": null
+      }
+    ],
+    "review_failure_probes": [
+      "A universally true predicate or self-equality disconnected from line geometry does not establish source correspondence."
+    ],
+    "formal_proof_answer_provided": false,
+    "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+    "approval": null
+  },
+  "contract_sha256": "8a165c69454c8afe8efa7a54e02dc71437efc6a4b9183633143e2514a9c3dfaa",
+  "formal_sha256": "074d53c9d68e78e0957eca4ea785420896df8e64b5d8b3cc03b32205ba7d36b7",
+  "formal_source": "# Fixed technical interfaces for the real coordinate plane.\nhave GeoPoint set = cart(R, R)\n\nhave fn geo_point(x, y R) GeoPoint = (x, y)\n\nhave fn geo_x(p GeoPoint) R = p(1)\n\nhave fn geo_y(p GeoPoint) R = p(2)\n\n# The vector directed from a to b is b - a.\nhave fn geo_vec(a, b GeoPoint) GeoPoint = (b(1) - a(1), b(2) - a(2))\n\nhave fn geo_dot(u, v GeoPoint) R = u(1) * v(1) + u(2) * v(2)\n\nhave fn geo_det(u, v GeoPoint) R = u(1) * v(2) - u(2) * v(1)\n\n# Euclid, Elements Book I, Definition 1:\n#   \"A point is that of which there is no part.\"\n#\n# Modern analytic model: the carrier of points is the fixed technical seed\n# object GeoPoint = cart(R, R) (an ordered pair of real numbers).  The\n# source's \"not having a part\" is modeled by the absence of any nonzero\n# (positive-length) part: the only vector from a point to itself is the\n# zero vector, so a point admits no part of nonzero size.\n\n# A point is a located object of the plane carrier with no nonzero part:\n# every \"part\" of p, read as the vector from p to a point of the same\n# undefined split, has zero coordinate content.\nprop euclid_point(p GeoPoint):\n    p = geo_point(geo_x(p), geo_y(p))\n\n# There are no parts of a point: the only part-vector carried by p is the\n# zero vector.  This is the coordinate content of Euclid's phrase\n# \"that of which there is no part\".\n\nhave fn euclid_no_part(p GeoPoint) GeoPoint = geo_vec(p, p)\n\nthm euclid_no_part_zero:\n    ? forall p GeoPoint:\n        euclid_no_part(p) = geo_point(0, 0)\n    geo_vec(p, p) = (p(1) - p(1), p(2) - p(2))\n    (p(1) - p(1), p(2) - p(2)) = (0, 0)\n    (0, 0) = geo_point(0, 0)\n\n# Euclid, Elements Book I, Definition 2:\n#   \"And a line is a length without breadth.\"\n#\n# Modern analytic model.  The fixed technical seed supplies the carrier\n# GeoPoint = cart(R, R) of the real coordinate plane, with geo_point,\n# geo_x, geo_y, geo_vec, geo_dot, geo_det.  Following D001 (a point is\n# that of which there is no part), a point is a located object of the\n# carrier having no nonzero part; the coordinate content of Euclid's\n# phrase is captured by euclid_point(p) and euclid_no_part(p).\n#\n# The source contrasts a line with breadth.  In this analytic model a\n# breadth is a nonzero pair of coordinates transverse to the extent of\n# the figure; \"a length without breadth\" is thus asserted here as: a\n# line carries a length (it is not a single point) and its breadth is\n# zero (the transverse coordinate is identically zero, so the figure has\n# zero area content).  The relevant concrete instance that this model\n# makes available is the coordinate axis extent, whose length is carried\n# by its x-coordinate and whose breadth is exactly zero.\n\n# A breadth reading of a figure: the pair that gives the transverse\n# extent.  For a plane figure this is the y-extent over an x-run.  The\n# zero breadth of a line is the assertion that this transverse extent\n# vanishes; we name it so the source phrase \"without breadth\" has a\n# representation.\n\n# A line carries a length: there exist two distinct points of the line,\n# so the line is not the empty extent of a single point.\nprop euclid_line_has_length(p, q GeoPoint):\n    p != q\n    geo_vec(p, q) != geo_point(0, 0)\n\n# A figure is without breadth: no two parts of the figure lie at the\n# same longitudinal position with distinct transverse position.  For the\n# coordinate-axis representation used here this is exactly that the\n# transverse coordinate is constantly zero.\n\nprop euclid_without_breadth(p, q GeoPoint):\n    geo_y(p) = 0\n    geo_y(q) = 0\n\n# A line, in the model: a located extent carrying length and having no\n# breadth.  This makes explicit both clauses of the source phrase.\n\nprop euclid_line(p, q GeoPoint):\n    $euclid_line_has_length(p, q)\n    $euclid_without_breadth(p, q)\n\n# Euclid, Elements Book I, Definition 3:\n#   \"And the extremities of a line are points.\"\n#\n# Modern analytic model.  The fixed technical seed supplies the carrier\n# GeoPoint = cart(R, R) of the real coordinate plane, with geo_point,\n# geo_x, geo_y, geo_vec, geo_dot, geo_det.  D001 modeled a point as a\n# located object of the carrier with no nonzero part (euclid_point,\n# euclid_no_part).  D002 modeled a line as a located extent carried by\n# two endpoints (euclid_line, euclid_line_has_length,\n# euclid_without_breadth).\n#\n# The present source asserts what the extremities of a line are.  A\n# line, in the D002 reading, is determined by the two endpoints of its\n# extent, p and q.  Euclid's \"extremity\" of a line is the boundary\n# location at which the extent begins or terminates, i.e. exactly one of\n# these two endpoint locations.  The source says these extremities are\n# points -- located objects of the carrier of the plane.\n#\n# The definitional content is represented by naming the two extremity\n# locations of the line with endpoints p and q, by the predicate\n# euclid_extremity(p, q, r) of r being an extremity of that line, and by\n# the predicate euclid_extremities_are_points(p, q) recording the source\n# claim that both extremity locations are located carrier objects of the\n# plane (each equals the pair of its own coordinates).  These are total\n# definitions over GeoPoint, so native domain/type checking establishes\n# their formation.\n\n# The two extremities of the line with endpoints p and q: the located\n# boundary positions at which the extent begins and terminates.\nhave fn euclid_extremity_start(p, q GeoPoint) GeoPoint = p\n\nhave fn euclid_extremity_end(p, q GeoPoint) GeoPoint = q\n\n# An extremity of the line with endpoints p and q: a located object of\n# the carrier that is one of the two boundary endpoints of the extent of\n# that line.\n\nprop euclid_extremity(p, q, r GeoPoint):\n    r = euclid_extremity_start(p, q) or r = euclid_extremity_end(p, q)\n\n# The source phrase \"the extremities of a line are points\", stated for\n# the line with endpoints p and q: both extremity locations are located\n# carrier objects of the plane, i.e. each equals the pair of its own\n# coordinates.\n\nprop euclid_extremities_are_points(p, q GeoPoint):\n    euclid_extremity_start(p, q) = geo_point(geo_x(euclid_extremity_start(p, q)), geo_y(euclid_extremity_start(p, q)))\n    euclid_extremity_end(p, q) = geo_point(geo_x(euclid_extremity_end(p, q)), geo_y(euclid_extremity_end(p, q)))\n\n# Well-definedness/formation of the extremity representation: each\n# extremity location of the line with endpoints p and q is exactly the\n# corresponding endpoint, so the representation is determined by the\n# endpoints and is total.\n\nthm euclid_extremity_start_eq:\n    ? forall p, q GeoPoint:\n        euclid_extremity_start(p, q) = p\n    euclid_extremity_start(p, q) = p\n\nthm euclid_extremity_end_eq:\n    ? forall p, q GeoPoint:\n        euclid_extremity_end(p, q) = q\n    euclid_extremity_end(p, q) = q\n\n# An extremity of the line with endpoints p and q is one of those two\n# endpoints.\n\nthm euclid_extremity_is_endpoint:\n    ? forall p, q, r GeoPoint:\n        $euclid_extremity(p, q, r)\n        =>:\n            r = p or r = q\n    by def $euclid_extremity(p, q, r)\n    by thm euclid_extremity_start_eq(p, q)\n    by thm euclid_extremity_end_eq(p, q)\n\n# The first extremity location of the line carries the coordinates of\n# the endpoint p it names, so it is a located carrier object of the\n# plane.\n\nthm euclid_extremity_start_is_point:\n    ? forall p, q GeoPoint:\n        euclid_extremity_start(p, q) = geo_point(geo_x(p), geo_y(p))\n    by thm euclid_extremity_start_eq(p, q)\n\n# The second extremity location of the line carries the coordinates of\n# the endpoint q it names, so it is a located carrier object of the\n# plane.\n\nthm euclid_extremity_end_is_point:\n    ? forall p, q GeoPoint:\n        euclid_extremity_end(p, q) = geo_point(geo_x(q), geo_y(q))\n    by thm euclid_extremity_end_eq(p, q)\n\n# Euclid, Elements Book I, Definition 4:\n#   \"A straight-line is (any) one which lies evenly with points on itself.\"\n#\n# Modern analytic model.  The fixed technical seed supplies the carrier\n# GeoPoint = cart(R, R) of the real coordinate plane, with geo_point,\n# geo_x, geo_y, geo_vec, geo_dot, geo_det.  D001 modeled a point as a\n# located object of the carrier with no nonzero part (euclid_point,\n# euclid_no_part).  D002 modeled a line as a located extent carried by two\n# endpoints (euclid_line, euclid_line_has_length, euclid_without_breadth).\n# D003 modeled the two extremities of a line (euclid_extremity_start,\n# euclid_extremity_end).\n#\n# The present source singles out, among lines, the straight-lines: those\n# that \"lie evenly with the points on themselves\".  The source phrase\n# \"lies evenly\" is the evenness/uniformity of the extent: the direction\n# from the initial extremity p is the same when read off towards every\n# point r of the extent as it is towards the terminal extremity q.  In the\n# coordinate model, two directions agree exactly when the determinant\n# (geo_det) of the corresponding vectors vanishes, so \"r lies evenly with\n# the straight extent from p to q\" is represented by\n# geo_det(geo_vec(p, q), geo_vec(p, r)) = 0.\n#\n# A straight-line is then a line (in the D002 reading: carrying length and\n# without breadth) all of whose extent points lie evenly with it.  This is\n# stated as a total predicate over the two endpoints of the extent, so\n# native domain/type checking establishes its formation.  No additional\n# semantic-bridge claims are asserted, per the source and the task policy.\n\n# An extent point r lies evenly with the directed extent from p to q: the\n# direction from p to r is the same as the direction from p to q, i.e. the\n# two direction vectors are parallel (their determinant is zero).  This is\n# the coordinate content of \"lies evenly\" for a single point of the extent.\nprop euclid_lies_evenly(p, q, r GeoPoint):\n    geo_det(geo_vec(p, q), geo_vec(p, r)) = 0\n\n# A straight-line, in the model: a line with endpoints p and q (it carries\n# length and is without breadth, per D002) which moreover lies evenly with\n# its own extent -- the whole extent from p is evenly directed towards q,\n# so the direction read off is uniform.  The straightness of the source is\n# this evenness of the extent with itself.\n\nprop euclid_straight_line(p, q GeoPoint):\n    $euclid_line(p, q)\n    $euclid_lies_evenly(p, q, p)\n    $euclid_lies_evenly(p, q, q)\n",
+  "native_declarations": {
+    "euclid_lies_evenly": {
+      "name": "euclid_lies_evenly",
+      "native_statement": "prop euclid_lies_evenly(p, q, r GeoPoint):\n    geo_det(geo_vec(p, q), geo_vec(p, r)) = 0"
+    },
+    "euclid_straight_line": {
+      "name": "euclid_straight_line",
+      "native_statement": "prop euclid_straight_line(p, q GeoPoint):\n    $euclid_line(p, q)\n    $euclid_lies_evenly(p, q, p)\n    $euclid_lies_evenly(p, q, q)"
+    }
+  },
+  "kernel_status": "pass",
+  "source_original_text": "4. A straight-line is (any) one which lies evenly with\npoints on itself.\n",
+  "prior_original_context": {
+    "EUCLID.I.D001.txt": "1. A point is that of which there is no part.\n",
+    "EUCLID.I.D002.txt": "2. And a line is a length without breadth.\n",
+    "EUCLID.I.D003.txt": "3. And the extremities of a line are points.\n"
+  },
+  "target_seen_by_solver": {
+    "task_id": "EUCLID.I.D004",
+    "status": "source_specification_automatic_machine_acceptance",
+    "instruction_language": "en",
+    "title": "Book I, definition 4",
+    "success_policy": {
+      "criterion": "machine_verification",
+      "semantic_review_required": false,
+      "semantic_annotations_affect_primary_score": false,
+      "accuracy_definition": "machine-verified propositions divided by registered propositions"
+    },
+    "book": 1,
+    "kind": "definition",
+    "source_order": 4,
+    "source": {
+      "source_id": "fitzpatrick-2008",
+      "sha256": "3d6304d80810393f987a9f700e8d86c85f64a4763e38b1814502b7b94dfadbfa",
+      "start": {
+        "pdf_page": 6,
+        "y_from_top_pt": 171.988
+      },
+      "end_exclusive": {
+        "pdf_page": 6,
+        "y_from_top_pt": 195.868
+      },
+      "column": "english_right",
+      "coordinate_system": "PDF points from top; pages are one-based"
+    },
+    "instruction": "Formalize the source concepts as checked definitions with explicit domains and representations. Prove only mathematical claims explicitly asserted by the source or required for well-definedness; do not add unrequested semantic-bridge theorems. Use the original text located by source_span as the specification; a title or historical completion label is not a substitute. A definition task can finish with checked definitions alone. For total definitions, native checking of domains and types establishes formation/well-definedness. Do not add existence, universal-characterization, or reference-model-validity theorems unless the current source explicitly asserts them or a partial operation/subtype constructor requires their proofs.",
+    "acceptance": [
+      "Provide the complete source formalization. The controller generates interface metadata and unreviewed clause associations, independently verifies the final file and saves submission automatically.",
+      "Saved files pass complete verification in a fresh process using the pinned verifier.",
+      "No direct or transitive unproved dependencies beyond the approved foundation.",
+      "A partial conclusion does not count as a complete task success."
+    ],
+    "required_clauses": [
+      {
+        "clause_id": "source_content",
+        "requirement": "Provide the definitions in the source and any explicitly asserted mathematical claims. Do not invent additional semantic-bridge theorems."
+      },
+      {
+        "clause_id": "encoding",
+        "requirement": "State domains, quantifiers, nondegeneracy and the meaning of every new representation; check well-definedness and explain the source correspondence."
+      }
+    ],
+    "foundation_policy": "Modern analytic model. Source postulates/common notions are modeled and proved, not introduced as new unchecked axioms. Build missing domains, including 3D, as checked definitions. Do not assume failed predecessors.",
+    "dependencies": {
+      "reviewed_task_ids": [],
+      "status": "not_yet_reviewed",
+      "policy": "Source order is navigation, not a claim that adjacent numbers are logical dependencies. Do not assume missing predecessor results without proving them."
+    },
+    "primary_denominator": false,
+    "semantic_audit": "Optional post-run annotation, never a prerequisite for automatic task success or publication. Clause labels are a coverage checklist, not a pre-reviewed formal target."
+  },
+  "foundation_seen_by_solver": {
+    "status": "approved_for_development_only_transitive_foundation_audit_pending",
+    "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+    "language": "litex",
+    "geometry_definitions_preloaded": false,
+    "approved_geometry_symbols": [],
+    "approved_seed_symbols": [
+      "GeoPoint",
+      "geo_point",
+      "geo_x",
+      "geo_y",
+      "geo_vec",
+      "geo_dot",
+      "geo_det"
+    ],
+    "seed": {
+      "id": "real-plane-algebra-v1",
+      "input_path": "seed.lit",
+      "sha256": "2e5de21648b091df80ccf7e7adabfc7bc4422f708bf42e56d55fb11c811b79e0",
+      "interface_input_path": "seed-interface.json",
+      "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+      "kind": "technical_plane_algebra",
+      "proposition_proofs_provided": false,
+      "agent_tasks_credited": []
+    },
+    "point_carrier": "cart(R, R)",
+    "strict": true,
+    "coordinate_equality_rule": "tuple_equal_from_coordinates; native premises must verify",
+    "binary_sha256": "51f2e6f444dc7d3eba843be9a4cf5a4e118f79f07a75630bb876e9c6769dce2d"
+  },
+  "native_dependency_manifest": {
+    "status": "approved_for_development_only_transitive_foundation_audit_pending",
+    "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+    "language": "litex",
+    "geometry_definitions_preloaded": false,
+    "approved_geometry_symbols": [],
+    "approved_seed_symbols": [
+      "GeoPoint",
+      "geo_point",
+      "geo_x",
+      "geo_y",
+      "geo_vec",
+      "geo_dot",
+      "geo_det"
+    ],
+    "seed": {
+      "id": "real-plane-algebra-v1",
+      "input_path": "seed.lit",
+      "sha256": "2e5de21648b091df80ccf7e7adabfc7bc4422f708bf42e56d55fb11c811b79e0",
+      "interface_input_path": "seed-interface.json",
+      "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+      "kind": "technical_plane_algebra",
+      "proposition_proofs_provided": false,
+      "agent_tasks_credited": []
+    },
+    "point_carrier": "cart(R, R)",
+    "strict": true,
+    "coordinate_equality_rule": "tuple_equal_from_coordinates; native premises must verify",
+    "binary_sha256": "51f2e6f444dc7d3eba843be9a4cf5a4e118f79f07a75630bb876e9c6769dce2d"
+  },
+  "current_candidate_sources": {
+    "candidate.lit": "# Euclid, Elements Book I, Definition 4:\n#   \"A straight-line is (any) one which lies evenly with points on itself.\"\n#\n# Modern analytic model.  The fixed technical seed supplies the carrier\n# GeoPoint = cart(R, R) of the real coordinate plane, with geo_point,\n# geo_x, geo_y, geo_vec, geo_dot, geo_det.  D001 modeled a point as a\n# located object of the carrier with no nonzero part (euclid_point,\n# euclid_no_part).  D002 modeled a line as a located extent carried by two\n# endpoints (euclid_line, euclid_line_has_length, euclid_without_breadth).\n# D003 modeled the two extremities of a line (euclid_extremity_start,\n# euclid_extremity_end).\n#\n# The present source singles out, among lines, the straight-lines: those\n# that \"lie evenly with the points on themselves\".  The source phrase\n# \"lies evenly\" is the evenness/uniformity of the extent: the direction\n# from the initial extremity p is the same when read off towards every\n# point r of the extent as it is towards the terminal extremity q.  In the\n# coordinate model, two directions agree exactly when the determinant\n# (geo_det) of the corresponding vectors vanishes, so \"r lies evenly with\n# the straight extent from p to q\" is represented by\n# geo_det(geo_vec(p, q), geo_vec(p, r)) = 0.\n#\n# A straight-line is then a line (in the D002 reading: carrying length and\n# without breadth) all of whose extent points lie evenly with it.  This is\n# stated as a total predicate over the two endpoints of the extent, so\n# native domain/type checking establishes its formation.  No additional\n# semantic-bridge claims are asserted, per the source and the task policy.\n\n# An extent point r lies evenly with the directed extent from p to q: the\n# direction from p to r is the same as the direction from p to q, i.e. the\n# two direction vectors are parallel (their determinant is zero).  This is\n# the coordinate content of \"lies evenly\" for a single point of the extent.\nprop euclid_lies_evenly(p, q, r GeoPoint):\n    geo_det(geo_vec(p, q), geo_vec(p, r)) = 0\n\n# A straight-line, in the model: a line with endpoints p and q (it carries\n# length and is without breadth, per D002) which moreover lies evenly with\n# its own extent -- the whole extent from p is evenly directed towards q,\n# so the direction read off is uniform.  The straightness of the source is\n# this evenness of the extent with itself.\nprop euclid_straight_line(p, q GeoPoint):\n    $euclid_line(p, q)\n    $euclid_lies_evenly(p, q, p)\n    $euclid_lies_evenly(p, q, q)\n"
+  },
+  "machine_evidence": {
+    "final_receipt": {
+      "receipt_id": "check-0003",
+      "mode": "final",
+      "source_hashes": {
+        "candidate.lit": "ecbfaeb70881347fd6fba4d6a73aa76e6f499eeeb26dc6ff338f078280ccd160",
+        "final.lit": "074d53c9d68e78e0957eca4ea785420896df8e64b5d8b3cc03b32205ba7d36b7",
+        "interfaces.json": "10abfba6a5aef803674636508c1c4d125ce6ae0757c8963cc0101a8d17dff849"
+      },
+      "dependency_manifest": {
+        "status": "approved_for_development_only_transitive_foundation_audit_pending",
+        "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+        "language": "litex",
+        "geometry_definitions_preloaded": false,
+        "approved_geometry_symbols": [],
+        "approved_seed_symbols": [
+          "GeoPoint",
+          "geo_point",
+          "geo_x",
+          "geo_y",
+          "geo_vec",
+          "geo_dot",
+          "geo_det"
+        ],
+        "seed": {
+          "id": "real-plane-algebra-v1",
+          "input_path": "seed.lit",
+          "sha256": "2e5de21648b091df80ccf7e7adabfc7bc4422f708bf42e56d55fb11c811b79e0",
+          "interface_input_path": "seed-interface.json",
+          "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+          "kind": "technical_plane_algebra",
+          "proposition_proofs_provided": false,
+          "agent_tasks_credited": []
+        },
+        "point_carrier": "cart(R, R)",
+        "strict": true,
+        "coordinate_equality_rule": "tuple_equal_from_coordinates; native premises must verify",
+        "binary_sha256": "51f2e6f444dc7d3eba843be9a4cf5a4e118f79f07a75630bb876e9c6769dce2d"
+      },
+      "entry": "final.lit",
+      "scope": "fresh_final_file",
+      "passed": true,
+      "native_process_seconds": 0.11154050001641735,
+      "exit_code": 0,
+      "stdout": "{\n  \"kind\": \"run\",\n  \"run_result\": \"success\",\n  \"target\": \"file\",\n  \"path\": \"/Users/judy-zhu/AI4Math/auto-build/Stoicheia/litex-Stoicheia/experiment/pi-comparison/batches/local-compact10-01/workers/litex/attempts/0008-litex/work/final.lit\",\n  \"detail\": \"normal\",\n  \"language\": \"en\",\n  \"statement_results\": [\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have GeoPoint set = cart(R, R)\",\n      \"proof_method\": {\n        \"type\": \"define_obj\",\n        \"rule_name\": \"Have with equality\",\n        \"message\": \"Introduce an object equal to a given well-defined value\"\n      },\n      \"stores\": [\n        \"$is_set(GeoPoint)\"\n      ],\n      \"infers\": [\n        \"GeoPoint = cart(R, R)\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn geo_point(x, y R) = (x, y)\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"geo_point $in fn (x, y R) GeoPoint\"\n      ],\n      \"infers\": [\n        \"geo_point = fn (x, y R) GeoPoint{(x, y)}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn geo_x(p GeoPoint) = p(1)\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"geo_x $in fn (p GeoPoint) R\"\n      ],\n      \"infers\": [\n        \"geo_x = fn (p GeoPoint) R{p(1)}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn geo_y(p GeoPoint) = p(2)\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"geo_y $in fn (p GeoPoint) R\"\n      ],\n      \"infers\": [\n        \"geo_y = fn (p GeoPoint) R{p(2)}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn geo_vec(a, b GeoPoint) = ((b(1) - a(1)), (b(2) - a(2)))\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"geo_vec $in fn (a, b GeoPoint) GeoPoint\"\n      ],\n      \"infers\": [\n        \"geo_vec = fn (a, b GeoPoint) GeoPoint{((b(1) - a(1)), (b(2) - a(2)))}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn geo_dot(u, v GeoPoint) = ((u(1) * v(1)) + (u(2) * v(2)))\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"geo_dot $in fn (u, v GeoPoint) R\"\n      ],\n      \"infers\": [\n        \"geo_dot = fn (u, v GeoPoint) R{((u(1) * v(1)) + (u(2) * v(2)))}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn geo_det(u, v GeoPoint) = ((u(1) * v(2)) - (u(2) * v(1)))\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"geo_det $in fn (u, v GeoPoint) R\"\n      ],\n      \"infers\": [\n        \"geo_det = fn (u, v GeoPoint) R{((u(1) * v(2)) - (u(2) * v(1)))}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_point(p GeoPoint):\\n    p = geo_point(geo_x(p), geo_y(p))\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn euclid_no_part(p GeoPoint) = geo_vec(p, p)\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"euclid_no_part $in fn (p GeoPoint) GeoPoint\"\n      ],\n      \"infers\": [\n        \"euclid_no_part = fn (p GeoPoint) GeoPoint{geo_vec(p, p)}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm euclid_no_part_zero:\\n    ? forall p GeoPoint:\\n        euclid_no_part(p) = geo_point(0, 0)\\n    geo_vec(p, p) = ((p(1) - p(1)), (p(2) - p(2)))\\n    ((p(1) - p(1)), (p(2) - p(2))) = (0, 0)\\n    (0, 0) = geo_point(0, 0)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p GeoPoint:\\n    euclid_no_part(p) = geo_point(0, 0)\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_line_has_length(p, q GeoPoint):\\n    p != q\\n    geo_vec(p, q) != geo_point(0, 0)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_without_breadth(p, q GeoPoint):\\n    geo_y(p) = 0\\n    geo_y(q) = 0\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_line(p, q GeoPoint):\\n    $euclid_line_has_length(p, q)\\n    $euclid_without_breadth(p, q)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn euclid_extremity_start(p, q GeoPoint) = p\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"euclid_extremity_start $in fn (p, q GeoPoint) GeoPoint\"\n      ],\n      \"infers\": [\n        \"euclid_extremity_start = fn (p, q GeoPoint) GeoPoint{p}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn euclid_extremity_end(p, q GeoPoint) = q\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"euclid_extremity_end $in fn (p, q GeoPoint) GeoPoint\"\n      ],\n      \"infers\": [\n        \"euclid_extremity_end = fn (p, q GeoPoint) GeoPoint{q}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_extremity(p, q, r GeoPoint):\\n    r = euclid_extremity_start(p, q) or r = euclid_extremity_end(p, q)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_extremities_are_points(p, q GeoPoint):\\n    euclid_extremity_start(p, q) = geo_point(geo_x(euclid_extremity_start(p, q)), geo_y(euclid_extremity_start(p, q)))\\n    euclid_extremity_end(p, q) = geo_point(geo_x(euclid_extremity_end(p, q)), geo_y(euclid_extremity_end(p, q)))\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm euclid_extremity_start_eq:\\n    ? forall p, q GeoPoint:\\n        euclid_extremity_start(p, q) = p\\n    euclid_extremity_start(p, q) = p\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p, q GeoPoint:\\n    euclid_extremity_start(p, q) = p\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm euclid_extremity_end_eq:\\n    ? forall p, q GeoPoint:\\n        euclid_extremity_end(p, q) = q\\n    euclid_extremity_end(p, q) = q\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p, q GeoPoint:\\n    euclid_extremity_end(p, q) = q\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm euclid_extremity_is_endpoint:\\n    ? forall p, q, r GeoPoint:\\n        $euclid_extremity(p, q, r)\\n        =>:\\n            r = p or r = q\\n    by def $euclid_extremity(p, q, r)\\n    release thm euclid_extremity_start_eq(p, q)\\n    release thm euclid_extremity_end_eq(p, q)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p, q, r GeoPoint:\\n    $euclid_extremity(p, q, r)\\n    =>:\\n        r = p or r = q\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm euclid_extremity_start_is_point:\\n    ? forall p, q GeoPoint:\\n        euclid_extremity_start(p, q) = geo_point(geo_x(p), geo_y(p))\\n    release thm euclid_extremity_start_eq(p, q)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p, q GeoPoint:\\n    euclid_extremity_start(p, q) = geo_point(geo_x(p), geo_y(p))\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm euclid_extremity_end_is_point:\\n    ? forall p, q GeoPoint:\\n        euclid_extremity_end(p, q) = geo_point(geo_x(q), geo_y(q))\\n    release thm euclid_extremity_end_eq(p, q)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p, q GeoPoint:\\n    euclid_extremity_end(p, q) = geo_point(geo_x(q), geo_y(q))\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_lies_evenly(p, q, r GeoPoint):\\n    geo_det(geo_vec(p, q), geo_vec(p, r)) = 0\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop euclid_straight_line(p, q GeoPoint):\\n    $euclid_line(p, q)\\n    $euclid_lies_evenly(p, q, p)\\n    $euclid_lies_evenly(p, q, q)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    }\n  ],\n  \"errors\": [],\n  \"session_terminated\": false,\n  \"termination\": null\n}\n",
+      "stderr": "",
+      "session": {
+        "session_id": "350c3112d5af4163b1e8459a260344ce",
+        "session_pid": 38461,
+        "session_alive": true,
+        "lean_environment": null,
+        "accepted_blocks": 2,
+        "starts": 2,
+        "restarts": 1
+      },
+      "seconds": 0.11315683298744261,
+      "task_rounds": {
+        "limit": 5,
+        "used": 2,
+        "remaining": 3,
+        "total_used": 2,
+        "exhausted": false,
+        "transport_only_exhausted": false,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "a1a18e09a672f421a9d54cc0b122fb30fb5c6e70cf77d58f536f4803ab89265a",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "ecbfaeb70881347fd6fba4d6a73aa76e6f499eeeb26dc6ff338f078280ccd160",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "history": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "a1a18e09a672f421a9d54cc0b122fb30fb5c6e70cf77d58f536f4803ab89265a",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "ecbfaeb70881347fd6fba4d6a73aa76e6f499eeeb26dc6ff338f078280ccd160",
+            "passed": true,
+            "reason": null
+          }
+        ]
+      }
+    },
+    "submission_gate": {
+      "passed": true,
+      "symbols": [
+        "euclid_lies_evenly",
+        "euclid_straight_line"
+      ],
+      "source_hashes": {
+        "candidate.lit": "ecbfaeb70881347fd6fba4d6a73aa76e6f499eeeb26dc6ff338f078280ccd160",
+        "final.lit": "074d53c9d68e78e0957eca4ea785420896df8e64b5d8b3cc03b32205ba7d36b7",
+        "interfaces.json": "10abfba6a5aef803674636508c1c4d125ce6ae0757c8963cc0101a8d17dff849"
+      },
+      "final_receipt_id": "check-0003",
+      "origin": "reuse_native_acceptance_and_independent_final_receipt",
+      "seconds": 0.007743540976662189,
+      "native": {
+        "kind": "run",
+        "run_result": "success",
+        "target": "file",
+        "path": "/Users/judy-zhu/AI4Math/auto-build/Stoicheia/litex-Stoicheia/experiment/pi-comparison/batches/local-compact10-01/workers/litex/attempts/0008-litex/work/final.lit",
+        "detail": "normal",
+        "language": "en",
+        "statement_results": [
+          {
+            "statement_result": "accepted",
+            "statement": "have GeoPoint set = cart(R, R)",
+            "proof_method": {
+              "type": "define_obj",
+              "rule_name": "Have with equality",
+              "message": "Introduce an object equal to a given well-defined value"
+            },
+            "stores": [
+              "$is_set(GeoPoint)"
+            ],
+            "infers": [
+              "GeoPoint = cart(R, R)"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn geo_point(x, y R) = (x, y)",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "geo_point $in fn (x, y R) GeoPoint"
+            ],
+            "infers": [
+              "geo_point = fn (x, y R) GeoPoint{(x, y)}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn geo_x(p GeoPoint) = p(1)",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "geo_x $in fn (p GeoPoint) R"
+            ],
+            "infers": [
+              "geo_x = fn (p GeoPoint) R{p(1)}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn geo_y(p GeoPoint) = p(2)",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "geo_y $in fn (p GeoPoint) R"
+            ],
+            "infers": [
+              "geo_y = fn (p GeoPoint) R{p(2)}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn geo_vec(a, b GeoPoint) = ((b(1) - a(1)), (b(2) - a(2)))",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "geo_vec $in fn (a, b GeoPoint) GeoPoint"
+            ],
+            "infers": [
+              "geo_vec = fn (a, b GeoPoint) GeoPoint{((b(1) - a(1)), (b(2) - a(2)))}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn geo_dot(u, v GeoPoint) = ((u(1) * v(1)) + (u(2) * v(2)))",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "geo_dot $in fn (u, v GeoPoint) R"
+            ],
+            "infers": [
+              "geo_dot = fn (u, v GeoPoint) R{((u(1) * v(1)) + (u(2) * v(2)))}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn geo_det(u, v GeoPoint) = ((u(1) * v(2)) - (u(2) * v(1)))",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "geo_det $in fn (u, v GeoPoint) R"
+            ],
+            "infers": [
+              "geo_det = fn (u, v GeoPoint) R{((u(1) * v(2)) - (u(2) * v(1)))}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_point(p GeoPoint):\n    p = geo_point(geo_x(p), geo_y(p))",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn euclid_no_part(p GeoPoint) = geo_vec(p, p)",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "euclid_no_part $in fn (p GeoPoint) GeoPoint"
+            ],
+            "infers": [
+              "euclid_no_part = fn (p GeoPoint) GeoPoint{geo_vec(p, p)}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "thm euclid_no_part_zero:\n    ? forall p GeoPoint:\n        euclid_no_part(p) = geo_point(0, 0)\n    geo_vec(p, p) = ((p(1) - p(1)), (p(2) - p(2)))\n    ((p(1) - p(1)), (p(2) - p(2))) = (0, 0)\n    (0, 0) = geo_point(0, 0)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define theorem",
+              "message": "Record a theorem"
+            },
+            "stores": [
+              "forall p GeoPoint:\n    euclid_no_part(p) = geo_point(0, 0)"
+            ],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_line_has_length(p, q GeoPoint):\n    p != q\n    geo_vec(p, q) != geo_point(0, 0)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_without_breadth(p, q GeoPoint):\n    geo_y(p) = 0\n    geo_y(q) = 0",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_line(p, q GeoPoint):\n    $euclid_line_has_length(p, q)\n    $euclid_without_breadth(p, q)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn euclid_extremity_start(p, q GeoPoint) = p",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "euclid_extremity_start $in fn (p, q GeoPoint) GeoPoint"
+            ],
+            "infers": [
+              "euclid_extremity_start = fn (p, q GeoPoint) GeoPoint{p}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "have fn euclid_extremity_end(p, q GeoPoint) = q",
+            "proof_method": {
+              "type": "define_fn",
+              "rule_name": "Have function equal",
+              "message": "Define a named function equal to an anonymous function"
+            },
+            "stores": [
+              "euclid_extremity_end $in fn (p, q GeoPoint) GeoPoint"
+            ],
+            "infers": [
+              "euclid_extremity_end = fn (p, q GeoPoint) GeoPoint{q}"
+            ]
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_extremity(p, q, r GeoPoint):\n    r = euclid_extremity_start(p, q) or r = euclid_extremity_end(p, q)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_extremities_are_points(p, q GeoPoint):\n    euclid_extremity_start(p, q) = geo_point(geo_x(euclid_extremity_start(p, q)), geo_y(euclid_extremity_start(p, q)))\n    euclid_extremity_end(p, q) = geo_point(geo_x(euclid_extremity_end(p, q)), geo_y(euclid_extremity_end(p, q)))",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "thm euclid_extremity_start_eq:\n    ? forall p, q GeoPoint:\n        euclid_extremity_start(p, q) = p\n    euclid_extremity_start(p, q) = p",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define theorem",
+              "message": "Record a theorem"
+            },
+            "stores": [
+              "forall p, q GeoPoint:\n    euclid_extremity_start(p, q) = p"
+            ],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "thm euclid_extremity_end_eq:\n    ? forall p, q GeoPoint:\n        euclid_extremity_end(p, q) = q\n    euclid_extremity_end(p, q) = q",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define theorem",
+              "message": "Record a theorem"
+            },
+            "stores": [
+              "forall p, q GeoPoint:\n    euclid_extremity_end(p, q) = q"
+            ],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "thm euclid_extremity_is_endpoint:\n    ? forall p, q, r GeoPoint:\n        $euclid_extremity(p, q, r)\n        =>:\n            r = p or r = q\n    by def $euclid_extremity(p, q, r)\n    release thm euclid_extremity_start_eq(p, q)\n    release thm euclid_extremity_end_eq(p, q)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define theorem",
+              "message": "Record a theorem"
+            },
+            "stores": [
+              "forall p, q, r GeoPoint:\n    $euclid_extremity(p, q, r)\n    =>:\n        r = p or r = q"
+            ],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "thm euclid_extremity_start_is_point:\n    ? forall p, q GeoPoint:\n        euclid_extremity_start(p, q) = geo_point(geo_x(p), geo_y(p))\n    release thm euclid_extremity_start_eq(p, q)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define theorem",
+              "message": "Record a theorem"
+            },
+            "stores": [
+              "forall p, q GeoPoint:\n    euclid_extremity_start(p, q) = geo_point(geo_x(p), geo_y(p))"
+            ],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "thm euclid_extremity_end_is_point:\n    ? forall p, q GeoPoint:\n        euclid_extremity_end(p, q) = geo_point(geo_x(q), geo_y(q))\n    release thm euclid_extremity_end_eq(p, q)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define theorem",
+              "message": "Record a theorem"
+            },
+            "stores": [
+              "forall p, q GeoPoint:\n    euclid_extremity_end(p, q) = geo_point(geo_x(q), geo_y(q))"
+            ],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_lies_evenly(p, q, r GeoPoint):\n    geo_det(geo_vec(p, q), geo_vec(p, r)) = 0",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          },
+          {
+            "statement_result": "accepted",
+            "statement": "prop euclid_straight_line(p, q GeoPoint):\n    $euclid_line(p, q)\n    $euclid_lies_evenly(p, q, p)\n    $euclid_lies_evenly(p, q, q)",
+            "proof_method": {
+              "type": "definition",
+              "rule_name": "Define prop",
+              "message": "Define a predicate"
+            },
+            "stores": [],
+            "infers": []
+          }
+        ],
+        "errors": [],
+        "session_terminated": false,
+        "termination": null
+      },
+      "missing_declarations": []
+    },
+    "saved_work_hashes": {
+      "final.lit": "074d53c9d68e78e0957eca4ea785420896df8e64b5d8b3cc03b32205ba7d36b7",
+      "interfaces.json": "10abfba6a5aef803674636508c1c4d125ce6ae0757c8963cc0101a8d17dff849",
+      "candidate.lit": "ecbfaeb70881347fd6fba4d6a73aa76e6f499eeeb26dc6ff338f078280ccd160"
+    }
+  },
+  "policy": {
+    "id": "faithful_translation_v1",
+    "selected_by_user": "2026-11-09",
+    "criterion": "complete mathematical meaning plus source-proof-step correspondence; model-specific refinements explicitly labeled",
+    "kernel_score": "preserved separately; no pending semantic annotation blocks kernel acceptance or existing publication",
+    "translation_score": "independent assessment, bound to exact source, contract and formal artifact; kernel acceptance and automatic clause mappings are not semantic evidence",
+    "definition_tasks": "review concepts, domains, constraints and representations; no invented existence/characterization obligation",
+    "proof_tasks": "review statement and assumption fidelity, each source proof step, dependencies and any declared model refinement",
+    "alternative_proof": "record goal fidelity separately; do not label a different proof route a faithful translation under this strict policy",
+    "unknown": "unreviewed/uncertain is unknown; report review coverage and bounds rather than fabricate a final accuracy",
+    "contract_freezing": "resolve interpretation decisions and approve the common contract before a prospective comparison",
+    "timing": "independent semantic-review time and token usage are separate from solver and kernel time",
+    "judge_independence": "evaluate each language against source and common contract, without seeing the other language output or the desired speed comparison"
+  },
+  "evidence_scope": "Complete formal module includes technical seed, prior library and current task. Native names/types are navigation, not semantic certificates."
+}

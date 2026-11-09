@@ -1,0 +1,26 @@
+have fn training_shift(x R) R = x + 2
+
+prop training_fixed(x R):
+    x = 7
+
+thm training_unfold:
+    ? forall x R:
+        training_shift(x) = x + 2
+    training_shift(x) = x + 2
+
+thm training_condition:
+    ? forall x R:
+        $training_fixed(x)
+        =>:
+            x = 7
+    x = 7
+
+thm training_witness:
+    ? forall x R:
+        exist y R st {y = training_shift(x)}
+    witness exist y R st {y = training_shift(x)} from training_shift(x)
+
+thm training_pair:
+    ? forall p cart(R, R):
+        (p(1), p(2)) = p
+    (p(1), p(2)) = p

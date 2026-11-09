@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D001",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D001/EUCLID.I.D001.txt",
+    "sha256": "20fd064a3383f42c3e823d0488b59896ba59fdf785e9c1b7ccdf3c36c53a08c5",
+    "text": "1. A point is that of which there is no part.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D001.point",
+      "source_quote": "A point",
+      "requirement": "Identify the concept introduced as point and give its domain and representation."
+    },
+    {
+      "id": "EUCLID.I.D001.partless",
+      "source_quote": "there is no part",
+      "requirement": "Represent the partlessness condition with an explicit meaning of part; a coordinate pair or a name alone is not evidence of that condition."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "What notion of part is adopted, and why does it faithfully model this source definition?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How is the coordinate carrier distinguished from the geometric concept of a point?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "Do not replace the source meaning by an unrelated displacement identity without a justified interpretation."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}

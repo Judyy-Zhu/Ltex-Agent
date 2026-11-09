@@ -1,0 +1,54 @@
+{
+  "scope": "static comparison of legacy task data and preparation references, not proof equivalence",
+  "task_pairs": [
+    {
+      "category": "definitions",
+      "litex_count": 39,
+      "lean_count": 39,
+      "same_id_order": true,
+      "differing_fields": [
+        [
+          "1.1",
+          "description"
+        ],
+        [
+          "1.2",
+          "description"
+        ],
+        [
+          "1.3",
+          "description"
+        ]
+      ]
+    },
+    {
+      "category": "theorems",
+      "litex_count": 165,
+      "lean_count": 165,
+      "same_id_order": true,
+      "differing_fields": []
+    }
+  ],
+  "sources": [
+    {
+      "path": "litex_auto_build_system/prompts/litex_short_guide.md",
+      "sha256": "b246d1f8c02049e51da09dcf702e0afa189f288bf89ab7687f7634d7e49e326e",
+      "lines": 806
+    },
+    {
+      "path": "lean_auto_build_system/prompts/lean_short_guide.md",
+      "sha256": "74d3d668f21a8afcfd68416c291b5d7563b73e6ca94fefbf31867e26d8ab98ac",
+      "lines": 514
+    },
+    {
+      "path": "litex_auto_build_system/scripts/litex_session.py",
+      "sha256": "75947b9c4aaf3ff844c9057b5767f294545880ec75c2dbb3e04b12149d0f33ab",
+      "lines": 575
+    },
+    {
+      "path": "lean_auto_build_system/scripts/lean_session.py",
+      "sha256": "f9aef015e115c908cb5dce672b7af75790be8860472acf0596269fdfdb7de32d",
+      "lines": 572
+    }
+  ]
+}

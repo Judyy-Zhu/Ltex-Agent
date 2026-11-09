@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "packet_sha256": "a3e0df4ff13291fc316115d888cb27919b2b28fc7423ba0f349971891fa648d4",
+  "task_id": "EUCLID.I.D008",
+  "language": "litex",
+  "formal_sha256": "38ec6c40bd18f4310e73bc26b1f3f564788ab621dc685b998b405b9848ac500b",
+  "contract_sha256": "d2b0174d95c47e078b9ad90e3f53f1113e558a3f68d641d6bb1f3a9399957ae7",
+  "reviewer": {
+    "kind": "",
+    "identity": "",
+    "model": null
+  },
+  "claims": [
+    {
+      "id": "EUCLID.I.D008.inclination",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D008.two_lines_in_plane",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D008.meeting",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D008.not_straight_together",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    }
+  ],
+  "dimensions": {
+    "meaning_and_representation": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    "domains_and_conditions": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    "assumption_boundary": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    }
+  },
+  "proof_route": {
+    "status": "not_applicable",
+    "reason": ""
+  },
+  "model_refinements": [],
+  "review_seconds": null,
+  "provider_usage": null,
+  "note": "Evidence binding is mechanical; semantic judgments must come from an independent reviewer."
+}

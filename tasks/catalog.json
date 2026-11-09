@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "created_date": "2026-11-08",
+  "scope": "Euclid Elements Books I–XIII",
+  "scope_supersedes_for_new_runs": "translation_records/geometry-only-scope-and-audit.json",
+  "historical_proofs_reclassified": false,
+  "source": {
+    "id": "fitzpatrick-2008",
+    "url": "https://farside.ph.utexas.edu/Books/Euclid/Elements.pdf",
+    "edition": "Richard Fitzpatrick, revised 2008; Heiberg Greek text",
+    "sha256": "3d6304d80810393f987a9f700e8d86c85f64a4763e38b1814502b7b94dfadbfa",
+    "bytes": 4905710,
+    "pdf_pages": 545,
+    "local_cache": "sources/elements-2008.pdf",
+    "text_policy": "Source text and diagrams are read from the cached PDF; modern translation is not reproduced in JSONL."
+  },
+  "counts": {
+    "definition": 130,
+    "postulate": 5,
+    "common_notion": 5,
+    "proposition": 465,
+    "corollary": 24,
+    "lemma": 15
+  },
+  "total_tasks": 644,
+  "primary_accuracy_denominator": 465,
+  "legacy_148_proposition_delta": 317,
+  "books": [
+    {
+      "book": 1,
+      "roman": "I",
+      "subject_zh": "平面几何基础",
+      "pdf_start_page": 5,
+      "pdf_end_page": 48,
+      "counts": {
+        "definition": 23,
+        "postulate": 5,
+        "common_notion": 5,
+        "proposition": 48
+      }
+    },
+    {
+      "book": 2,
+      "roman": "II",
+      "subject_zh": "几何代数",
+      "pdf_start_page": 49,
+      "pdf_end_page": 68,
+      "counts": {
+        "definition": 2,
+        "proposition": 14
+      }
+    },
+    {
+      "book": 3,
+      "roman": "III",
+      "subject_zh": "圆与切线",
+      "pdf_start_page": 69,
+      "pdf_end_page": 108,
+      "counts": {
+        "definition": 11,
+        "proposition": 37,
+        "corollary": 2
+      }
+    },
+    {
+      "book": 4,
+      "roman": "IV",
+      "subject_zh": "内接与外切构造",
+      "pdf_start_page": 109,
+      "pdf_end_page": 128,
+      "counts": {
+        "definition": 7,
+        "proposition": 16,
+        "corollary": 1
+      }
+    },
+    {
+      "book": 5,
+      "roman": "V",
+      "subject_zh": "量与比例",
+      "pdf_start_page": 129,
+      "pdf_end_page": 154,
+      "counts": {
+        "definition": 18,
+        "proposition": 25,
+        "corollary": 2
+      }
+    },
+    {
+      "book": 6,
+      "roman": "VI",
+      "subject_zh": "比例与相似",
+      "pdf_start_page": 155,
+      "pdf_end_page": 192,
+      "counts": {
+        "definition": 3,
+        "proposition": 33,
+        "corollary": 3
+      }
+    },
+    {
+      "book": 7,
+      "roman": "VII",
+      "subject_zh": "整数、整除与最大公约数",
+      "pdf_start_page": 193,
+      "pdf_end_page": 226,
+      "counts": {
+        "definition": 22,
+        "proposition": 39,
+        "corollary": 1
+      }
+    },
+    {
+      "book": 8,
+      "roman": "VIII",
+      "subject_zh": "连比例整数",
+      "pdf_start_page": 227,
+      "pdf_end_page": 252,
+      "counts": {
+        "proposition": 27,
+        "corollary": 1
+      }
+    },
+    {
+      "book": 9,
+      "roman": "IX",
+      "subject_zh": "数论与数列",
+      "pdf_start_page": 253,
+      "pdf_end_page": 280,
+      "counts": {
+        "proposition": 36,
+        "corollary": 1
+      }
+    },
+    {
+      "book": 10,
+      "roman": "X",
+      "subject_zh": "可通约量与无理量分类",
+      "pdf_start_page": 281,
+      "pdf_end_page": 422,
+      "counts": {
+        "definition": 16,
+        "proposition": 115,
+        "corollary": 6,
+        "lemma": 9
+      }
+    },
+    {
+      "book": 11,
+      "roman": "XI",
+      "subject_zh": "立体几何基础",
+      "pdf_start_page": 423,
+      "pdf_end_page": 470,
+      "counts": {
+        "definition": 28,
+        "proposition": 39,
+        "lemma": 1,
+        "corollary": 2
+      }
+    },
+    {
+      "book": 12,
+      "roman": "XII",
+      "subject_zh": "面积、体积与穷竭法",
+      "pdf_start_page": 471,
+      "pdf_end_page": 504,
+      "counts": {
+        "proposition": 18,
+        "lemma": 2,
+        "corollary": 3
+      }
+    },
+    {
+      "book": 13,
+      "roman": "XIII",
+      "subject_zh": "正多面体",
+      "pdf_start_page": 505,
+      "pdf_end_page": 538,
+      "counts": {
+        "proposition": 18,
+        "lemma": 3,
+        "corollary": 2
+      }
+    }
+  ],
+  "completeness": {
+    "numbered_propositions": "complete_contiguous_source_inventory",
+    "foundations": "individually_located_in_source",
+    "supplements": "explicit_lemma_and_corollary_headings_plus_unheaded_consequences_in_parent_span",
+    "source_supplement_semantic_split_review": "pending; a heading inventory alone is not an exhaustive clause audit",
+    "formal_statement_pairs": "not_yet_authored_or_reviewed",
+    "new_proofs": "none"
+  },
+  "run_policy": {
+    "source_proof_visibility": "original_source_statement_and_proof_visible_to_both_languages",
+    "historical_solutions_visible_to_agent": false,
+    "model": "freeze_before_run",
+    "skills": "freeze_before_run",
+    "strict_no_new_unproved_debt": true,
+    "definitions_and_supplements_reported_separately": true,
+    "do_not_treat_tasks_as_independent_trials": true
+  }
+}

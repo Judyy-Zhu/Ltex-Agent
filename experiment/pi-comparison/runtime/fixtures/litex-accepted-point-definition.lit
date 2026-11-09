@@ -1,0 +1,33 @@
+# EUCLID.I.D001 (Book I, Definition 1)
+# Source text: "1. A point is that of which there is no part."
+#
+# Encoding (analytic real coordinate plane model).
+# A point is represented by the seed carrier GeoPoint = cart(R, R), i.e. by its
+# coordinate pair (geo_x(p), geo_y(p)).
+#
+# "p has no part" is read as: p cannot be written as the coordinate average of
+# two points q, r that are both distinct from p.  (A "part" of p would be one of
+# two distinct points whose midpoint is p; p having no part means no such proper
+# division of p exists.)
+#
+# The negation over the existential is expressed as a universally quantified
+# implication whose consequent is impossible, so it is equivalent to the
+# non-existence of such q, r.
+
+# Coordinate distinctness of two points.
+prop geo_point_neq(a, b GeoPoint):
+    geo_x(a) != geo_x(b) or geo_y(a) != geo_y(b)
+
+# p is the coordinate-average (midpoint) of the two distinct points q and r.
+prop geo_is_split_of(p, q, r GeoPoint):
+    geo_x(q) != geo_x(p) or geo_y(q) != geo_y(p)
+    geo_x(r) != geo_x(p) or geo_y(r) != geo_y(p)
+    geo_x(p) = (geo_x(q) + geo_x(r)) / 2
+    geo_y(p) = (geo_y(q) + geo_y(r)) / 2
+
+# A point has no part: no two distinct points have p as their midpoint.
+prop geo_has_no_part(p GeoPoint):
+    forall q, r GeoPoint:
+        $geo_is_split_of(p, q, r)
+        =>:
+            geo_x(p) != geo_x(p)

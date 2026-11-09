@@ -1,0 +1,68 @@
+{
+  "status": "v15_current_task_checkpoints_five_total_attempts",
+  "shared_names_and_schemas_for_both_languages": true,
+  "tools": {
+    "read_input": {
+      "arguments": {
+        "path": "relative approved input path"
+      },
+      "returns": "approved UTF-8 text and source hash; images and binary inputs are forbidden"
+    },
+    "read_docs": {
+      "arguments": {
+        "topic": "approved curriculum unit or reference page ID"
+      },
+      "returns": "frozen own-language documentation and paired example references; no historical target answers"
+    },
+    "read_library": {
+      "arguments": {
+        "symbols": "entry:TASK_ID, index:OFFSET:LIMIT, file:RELATIVE_PATH, accepted_prefix, submission_gate, or receipt:check-NNNN or retry_stats"
+      },
+      "returns": "Own-language frozen library index (paged), requested increments and interfaces, current journal and requested receipts; no other language artifacts"
+    },
+    "write_source": {
+      "arguments": {
+        "path": "relative current-work path",
+        "content": "Complete new task candidate including helpers in whole_task mode; one logical fragment only for historical tracked_fragments jobs.",
+        "base": "optional none (default), library, or accepted; prepend immutable source locally",
+        "item_id": "Optional: controller automatically assigns TASK_ID:main in whole_task mode.",
+        "item_kind": "definition, proof, or Lean scope; metadata persists on repairs"
+      },
+      "returns": "content hash; protected paths rejected"
+    },
+    "check": {
+      "arguments": {
+        "path": "relative increment fragment for incremental; complete module entry for final",
+        "mode": "incremental or final"
+      },
+      "returns": "Common receipt and complete native feedback with task_rounds; one incremental whole-task submission uses a round, final checks do not."
+    },
+    "remaining_budget": {
+      "arguments": {},
+      "returns": "task_rounds current attempt window plus full history; candidates and network/API failures share five attempts; nullable time/check limits mean unlimited."
+    },
+    "submit": {
+      "arguments": {
+        "submission": "submission.schema.json object"
+      },
+      "returns": "received after in-budget declaration/axiom gate or rejected; source-fidelity review remains separate"
+    }
+  },
+  "adapter_invariants": [
+    "Tools enforce read/write boundaries; a prompt prohibition alone is insufficient.",
+    "Retain native language-specific diagnostics and state fields; common tool names do not imply identical native response schemas.",
+    "Ordinary failures retain native context; restarts replay every accepted source block and stop on any replay failure. No silent whole-file fallback.",
+    "Final checking uses a fresh process without replacing the persistent writing session. Session exit summaries are not per-candidate responses.",
+    "Final receipt binds the actual files, dependency manifests and verifier version; source edits invalidate it.",
+    "Agent has no ability to change verifier flags, the clock, usage records or evaluator decisions.",
+    "No external helper models in solver tools; any future nested model calls require explicit accounting and a separately frozen policy."
+  ],
+  "natural_language": "English for task instructions, tools, prompts, guides, comments and submissions",
+  "checkpoint_recovery": {
+    "same_task": true,
+    "persist_pi_session": true,
+    "all_five_api_failures": "stop and retain current task; explicit restart opens a new window, retaining full history",
+    "transport_failures_consume_task_attempts": true,
+    "duplicate_completed_tools": "restore saved result without repeating side effects"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D004",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D004/EUCLID.I.D004.txt",
+    "sha256": "3b30efe90c4dc78987489f8b005aa7a48e3cd47b9b338bb1231c377882f9d816",
+    "text": "4. A straight-line is (any) one which lies evenly with\npoints on itself.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D004.straight_is_line",
+      "source_quote": "A straight-line",
+      "requirement": "Relate the straight-line concept to the approved general line concept."
+    },
+    {
+      "id": "EUCLID.I.D004.evenness",
+      "source_quote": "lies evenly with points on itself",
+      "requirement": "Give a meaningful representation of evenness involving points on that same line."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "What exact analytic relation interprets lies evenly?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How will straight and non-straight line representations be distinguished?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "A universally true predicate or self-equality disconnected from line geometry does not establish source correspondence."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}

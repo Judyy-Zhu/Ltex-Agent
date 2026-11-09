@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_sha256": "137fa55a0f255c6ba5969e1232a6549e7b16f325b49d043283302634dd912fd0",
+  "task_id": "EUCLID.I.D009",
+  "language": "lean",
+  "formal_sha256": "9cb602f6cb8b53ffdbf296a55ea81714eb906311272f30fb9343445e0d302d39",
+  "contract_sha256": "d0650123a3cdfc6d0024ef1a732d94c9ea5062e10875c495641d862a95292046",
+  "reviewer": {
+    "kind": "",
+    "identity": "",
+    "model": null
+  },
+  "claims": [
+    {
+      "id": "EUCLID.I.D009.angle_domain",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D009.straight_sides",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    {
+      "id": "EUCLID.I.D009.rectilinear_name",
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    }
+  ],
+  "dimensions": {
+    "meaning_and_representation": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    "domains_and_conditions": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    },
+    "assumption_boundary": {
+      "status": "unreviewed",
+      "reason": "",
+      "evidence": []
+    }
+  },
+  "proof_route": {
+    "status": "not_applicable",
+    "reason": ""
+  },
+  "model_refinements": [],
+  "review_seconds": null,
+  "provider_usage": null,
+  "note": "Evidence binding is mechanical; semantic judgments must come from an independent reviewer."
+}

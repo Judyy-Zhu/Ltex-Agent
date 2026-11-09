@@ -1,0 +1,8 @@
+pdfplumber==0.11.9
+pdfminer.six==20251230
+pypdfium2==5.7.0
+Pillow==12.1.1
+cryptography==46.0.5
+charset-normalizer==3.4.4
+cffi==2.0.0
+pycparser==3.0

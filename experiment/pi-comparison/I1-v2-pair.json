@@ -1,0 +1,233 @@
+{
+  "observed_at": "2026-11-08T10:14:50.583668+00:00",
+  "task_id": "EUCLID.I.P001",
+  "formal_result": false,
+  "scope": "one development task pair; no statistical or language ranking claim",
+  "pair_checks": {
+    "same_common_inputs": true,
+    "same_model": true,
+    "same_pi_settings": true,
+    "same_runtime": true,
+    "same_pi_commit": true,
+    "same_tools": true,
+    "same_deadline": true
+  },
+  "languages": [
+    {
+      "run_id": "20261108T095210778342Z-lean-I1",
+      "language": "lean",
+      "controller_status": "settled",
+      "machine_checked_candidate": true,
+      "submission_received": true,
+      "elapsed_seconds": 255.29811133397743,
+      "setup_seconds": 1.222549457976129,
+      "check_calls": 4,
+      "tool_calls": {
+        "read_input": 13,
+        "read_docs": 3,
+        "read_library": 1,
+        "write_source": 6,
+        "check": 4,
+        "remaining_budget": 2,
+        "submit": 2
+      },
+      "request_attempts": 20,
+      "usage_observed_requests": 20,
+      "max_tokens_range": [
+        8192,
+        8192
+      ],
+      "compaction_count": 2,
+      "token_fields": {
+        "input_total": {
+          "value": 251724,
+          "known_subtotal": 251724,
+          "known_requests": 20,
+          "missing_requests": 0,
+          "coverage": 1.0
+        },
+        "input_uncached": {
+          "value": 70476,
+          "known_subtotal": 70476,
+          "known_requests": 20,
+          "missing_requests": 0,
+          "coverage": 1.0
+        },
+        "cache_read": {
+          "value": 181248,
+          "known_subtotal": 181248,
+          "known_requests": 20,
+          "missing_requests": 0,
+          "coverage": 1.0
+        },
+        "cache_write": {
+          "value": null,
+          "known_subtotal": 0,
+          "known_requests": 0,
+          "missing_requests": 20,
+          "coverage": 0.0
+        },
+        "output_total": {
+          "value": 22270,
+          "known_subtotal": 22270,
+          "known_requests": 20,
+          "missing_requests": 0,
+          "coverage": 1.0
+        },
+        "reasoning_subset": {
+          "value": 0,
+          "known_subtotal": 0,
+          "known_requests": 20,
+          "missing_requests": 0,
+          "coverage": 1.0
+        },
+        "token_total": {
+          "value": 273994,
+          "known_subtotal": 273994,
+          "known_requests": 20,
+          "missing_requests": 0,
+          "coverage": 1.0
+        }
+      },
+      "machine_audit_status": "pass",
+      "proof_assumption_status": "pass",
+      "postrun_audit_seconds": 18.27474154101219,
+      "semantic_status": "incomplete_encoding_certificate",
+      "semantic_review": {
+        "status": "incomplete_encoding_certificate",
+        "reviewer": "Codex source review, development only; no independent human adjudication",
+        "source_hashes": {
+          "EuclidIProp1.lean": "dd1c993567e91c3931906489c020339aa1963eaebe3b83fe04a86e159de87495",
+          "interfaces.json": "145f0f1df0d893a0061430d1a5eb518781d0e23cfb14793bfc1229afdbccc197"
+        },
+        "clauses": [
+          {
+            "id": "C1",
+            "status": "pass",
+            "evidence": "exists_equilateral_triangle quantifies arbitrary points a,b with a != b and constructs apex a b."
+          },
+          {
+            "id": "C2",
+            "status": "needs_formal_bridge",
+            "evidence": "Equilateral is defined using dist2 equalities. The explanation cites Real.sq_sqrt but the saved module has no length definition or explicit theorem converting Equilateral to three equal side lengths, as required by the task encoding clause."
+          },
+          {
+            "id": "C3",
+            "status": "pass",
+            "evidence": "apex_nonCollinear proves the coordinate determinant is nonzero from a != b; apex_ne_a and apex_ne_b are proved."
+          },
+          {
+            "id": "C4",
+            "status": "pass_in_squared_circle_model",
+            "evidence": "circleCenterA uses center a and radius sqrt(dist2 a b); apex_on_circleA proves membership using the nonnegative square-root identity."
+          },
+          {
+            "id": "C5",
+            "status": "pass_in_squared_circle_model",
+            "evidence": "circleCenterB uses center b and the same radius. dist2_comm identifies the source BA radius with AB; apex_on_circleB proves membership."
+          }
+        ],
+        "construction": "Analytic midpoint plus perpendicular offset, documented as a witness of both prescribed circles. No circle-intersection existence assumption added.",
+        "overall_task_acceptance": "not_complete_under_explicit_encoding_certificate_requirement",
+        "mathematical_statement_note": "The equal squared distances encode a mathematically correct equal-length statement. The finding is a missing required explicit certificate, not a counterexample to the construction.",
+        "formal_accuracy": null,
+        "foundation_equivalence": "pending"
+      },
+      "formal_accuracy": null
+    },
+    {
+      "run_id": "20261108T095657313116Z-litex-I1",
+      "language": "litex",
+      "controller_status": "deadline",
+      "machine_checked_candidate": false,
+      "submission_received": false,
+      "elapsed_seconds": 600.0060688340454,
+      "setup_seconds": 1.9088157499791123,
+      "check_calls": 22,
+      "tool_calls": {
+        "read_input": 12,
+        "read_docs": 4,
+        "read_library": 1,
+        "write_source": 22,
+        "check": 22,
+        "remaining_budget": 1,
+        "submit": 0
+      },
+      "request_attempts": 33,
+      "usage_observed_requests": 32,
+      "max_tokens_range": [
+        8192,
+        8192
+      ],
+      "compaction_count": 4,
+      "token_fields": {
+        "input_total": {
+          "value": null,
+          "known_subtotal": 435991,
+          "known_requests": 32,
+          "missing_requests": 1,
+          "coverage": 0.9696969696969697
+        },
+        "input_uncached": {
+          "value": null,
+          "known_subtotal": 135831,
+          "known_requests": 32,
+          "missing_requests": 1,
+          "coverage": 0.9696969696969697
+        },
+        "cache_read": {
+          "value": null,
+          "known_subtotal": 300160,
+          "known_requests": 32,
+          "missing_requests": 1,
+          "coverage": 0.9696969696969697
+        },
+        "cache_write": {
+          "value": null,
+          "known_subtotal": 0,
+          "known_requests": 0,
+          "missing_requests": 33,
+          "coverage": 0.0
+        },
+        "output_total": {
+          "value": null,
+          "known_subtotal": 26014,
+          "known_requests": 32,
+          "missing_requests": 1,
+          "coverage": 0.9696969696969697
+        },
+        "reasoning_subset": {
+          "value": null,
+          "known_subtotal": 0,
+          "known_requests": 32,
+          "missing_requests": 1,
+          "coverage": 0.9696969696969697
+        },
+        "token_total": {
+          "value": null,
+          "known_subtotal": 462005,
+          "known_requests": 32,
+          "missing_requests": 1,
+          "coverage": 0.9696969696969697
+        }
+      },
+      "machine_audit_status": "no_submission",
+      "proof_assumption_status": "not_audited",
+      "postrun_audit_seconds": 0.0006505410419777036,
+      "semantic_status": "not_completed",
+      "semantic_review": {
+        "status": "not_completed",
+        "reason": "The 600-second budget expired without a complete submission. Successful probe checks do not prove I.1.",
+        "formal_accuracy": null
+      },
+      "formal_accuracy": null
+    }
+  ],
+  "joint_success_time_ratio": null,
+  "interpretation": "A successful compile is a machine candidate. Complete task acceptance additionally requires source and encoding certificates. Unknown usage is not zero.",
+  "remaining_gates": [
+    "Complete I.1 with required explicit encoding bridges in both languages.",
+    "Expand/freeze paired language guides; current syntax/proof-structure examples are staged only.",
+    "Audit foundations; implement multi-task prefixes and rollback before a formal book run."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D008",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D008/EUCLID.I.D008.txt",
+    "sha256": "3933bb581ca9d502aecfa3936a8f8d4a52de3016f95de099780c1bbfba9e1626",
+    "text": "8. And a plane angle is the inclination of the lines to\none another, when two lines in a plane meet one another,\nand are not lying in a straight-line.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D008.inclination",
+      "source_quote": "the inclination of the lines to one another",
+      "requirement": "Represent the inclination/angle concept and justify the meaning of its encoding."
+    },
+    {
+      "id": "EUCLID.I.D008.two_lines_in_plane",
+      "source_quote": "two lines in a plane",
+      "requirement": "Preserve two participating lines and their common-plane condition, explicitly or by a justified ambient-model restriction."
+    },
+    {
+      "id": "EUCLID.I.D008.meeting",
+      "source_quote": "meet one another",
+      "requirement": "Bind the meeting condition to those same participating lines."
+    },
+    {
+      "id": "EUCLID.I.D008.not_straight_together",
+      "source_quote": "are not lying in a straight-line",
+      "requirement": "Preserve the joint not-in-a-straight-line condition; do not read it as requiring each side individually to be non-straight."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "Definition 9 separately introduces rectilinear angles: may definition 8 be restricted to straight constituent lines? Resolve before certification.",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "Is inclination represented as an angle object, an equivalence class, or a numeric quantity? State the intended invariances.",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M3",
+      "question": "If a raw determinant is used, is it only a non-collinearity test or claimed to measure inclination? Explain dependence on chosen points along the same sides.",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "A two-line structure without its required incidence/angle conditions is not automatically a source-faithful angle.",
+    "A predicate defined separately but never connected to the exported angle interface may leave source conditions unused."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null,
+  "cross_references": [
+    "EUCLID.I.D008",
+    "EUCLID.I.D009"
+  ]
+}

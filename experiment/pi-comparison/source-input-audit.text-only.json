@@ -1,0 +1,11 @@
+{
+  "scope": "All full-catalog task inputs and source-cache; no model calls or semantic correctness claim",
+  "passed": true,
+  "input_modality": "text_only",
+  "tasks": 644,
+  "text_only_tasks": 644,
+  "images_in_source_cache": 0,
+  "images_in_agent_inputs": 0,
+  "text_bytes_unchanged_from_previous_cache": true,
+  "model_calls": 0
+}

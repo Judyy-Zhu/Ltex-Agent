@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D003",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D003/EUCLID.I.D003.txt",
+    "sha256": "52f4fd4ca0a9b2c6ab983dd62458ac3c06f40bc1d0e4aeaac3cc1b820a042ab2",
+    "text": "3. And the extremities of a line are points.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D003.line_extremities",
+      "source_quote": "the extremities of a line",
+      "requirement": "Bind the extremity relation to the represented line; unrelated point projections are insufficient."
+    },
+    {
+      "id": "EUCLID.I.D003.extremities_are_points",
+      "source_quote": "are points",
+      "requirement": "Ensure every represented extremity satisfies the approved point concept."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "Which line objects have extremities in the adopted model?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "Does the chosen representation preserve the source without asserting an unsupported number or existence of extremities?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "Do not require exactly two endpoints for all objects solely from this sentence."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}

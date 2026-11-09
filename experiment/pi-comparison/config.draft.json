@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "status": "design_draft_not_a_pi_config",
+  "ready_to_run": false,
+  "scope": {
+    "catalog": "../../tasks/catalog.json",
+    "primary_track": "source_to_library",
+    "final_books": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "final_proposition_count": 465,
+    "development_proposition_ids": [
+      "EUCLID.I.P001",
+      "EUCLID.I.P002",
+      "EUCLID.I.P003",
+      "EUCLID.I.P004",
+      "EUCLID.I.P005",
+      "EUCLID.I.P006",
+      "EUCLID.I.P007",
+      "EUCLID.I.P008"
+    ],
+    "first_formal_slice": {
+      "book": 1,
+      "proposition_count": 48
+    },
+    "count_foundations_and_supplements_in_primary_denominator": false
+  },
+  "model": {
+    "provider": "paratera",
+    "id": "DeepSeek-V4.1-Flash",
+    "reasoning": null,
+    "temperature": null,
+    "source_input_mode": "text_only",
+    "base_url": "https://llmapi.paratera.com/v1",
+    "api_key_env": "PARATERA_API_KEY",
+    "api_compatibility": "api_and_real_pi_streamed_tool_smokes_passed",
+    "tested_thinking_mode": "disabled",
+    "formal_thinking_mode": null,
+    "probe_receipt": "provider-probe.json"
+  },
+  "pi": {
+    "candidate_checkout": "/Users/judy-zhu/AI4Math/auto-build/Stoicheia/pi",
+    "observed_commit": "d57c2d21916eaad1158031526ac6ec860eae5f14",
+    "observed_package_version": "1.5.0",
+    "binary": null,
+    "transport": "rpc",
+    "completion_event": "agent_settled",
+    "fresh_conversation_per_task": true,
+    "automatic_personal_resource_discovery": false,
+    "resource_isolation_verified": false,
+    "availability": "dependencies_installed_official_model_data_hydrated_source_cli_1.5.0_runs",
+    "source_entrypoint": "/Users/judy-zhu/AI4Math/auto-build/Stoicheia/pi/pi-test.sh"
+  },
+  "tools": {
+    "capabilities": [
+      "read_approved",
+      "edit_current_task",
+      "check_current_language",
+      "submit_candidate"
+    ],
+    "unrestricted_shell": false
+  },
+  "toolchains": {
+    "lean": {
+      "candidate_project": "/Users/judy-zhu/AI4Math/auto-build/Lean",
+      "declared_version": "4.35.0",
+      "declared_mathlib_revision": "v4.35.0",
+      "repl_compatibility_verified": true,
+      "foundation_manifest": null
+    },
+    "litex": {
+      "candidate_binary": "/Users/judy-zhu/AI4Math/auto-build/LitexGeo/golitex/target/release/litex",
+      "observed_sha256": "51f2e6f444dc7d3eba843be9a4cf5a4e118f79f07a75630bb876e9c6769dce2d",
+      "observed_cli_version": "1.1.2-beta",
+      "strict_session_contract_verified": true,
+      "foundation_manifest": null
+    }
+  },
+  "source": {
+    "show_original_proof_to_both": true,
+    "historical_formal_solutions_visible": false,
+    "identical_source_packaging": true,
+    "semantic_contracts_frozen": false
+  },
+  "skills": {
+    "lean_manifest": null,
+    "litex_manifest": null,
+    "freeze_hashes_before_formal_run": true,
+    "allow_trust_fallback": false
+  },
+  "development_budget": {
+    "task_deadline_seconds": null,
+    "max_check_calls": null,
+    "single_check_timeout_seconds": null,
+    "strict_total_output_token_cap": null,
+    "include_startup_replay_and_final_check": true,
+    "run_deadline_seconds": null,
+    "max_task_rounds": 5,
+    "round_definition": "Whole-task generation, native verification, feedback and repair; five total candidates, first included."
+  },
+  "formal_budget": {
+    "status": "calibrate_after_pilot",
+    "task_deadline_seconds": null,
+    "run_deadline_seconds": null,
+    "max_check_calls": null,
+    "single_check_timeout_seconds": null,
+    "max_task_rounds": 5,
+    "round_definition": "Whole-task generation, native verification, feedback and repair; five total candidates, first included."
+  },
+  "schedule": {
+    "parallel_tasks": 1,
+    "randomize_language_order_within_pair": true,
+    "random_seed": 20261108,
+    "initial_formal_paired_repetitions": 1,
+    "desired_independent_repetitions_after_cost_review": 3,
+    "inherit_previous_run_library": false
+  },
+  "candidate_policy": {
+    "publish_only_after_independent_machine_check": true,
+    "semantic_audit_after_run_without_feedback": false,
+    "rollback_failed_task_increment": true,
+    "permit_proven_missing_prerequisites_within_current_budget": true,
+    "postrun_repair_separate_from_primary_score": true,
+    "machine_gates_determine_primary_accuracy": true,
+    "semantic_review_required_for_success": false,
+    "compiler_acceptance_alone_sufficient": false
+  },
+  "metrics": {
+    "primary": [
+      "machine_verification_pass_rate",
+      "elapsed_time",
+      "tokens",
+      "per_item_retries"
+    ],
+    "secondary": [
+      "formalization_accuracy",
+      "machine_candidate_pass_rate",
+      "paired_time_on_joint_successes",
+      "tokens",
+      "checker_calls",
+      "restarts",
+      "infrastructure_failures",
+      "definition_and_helper_cost"
+    ],
+    "full_builds_are_repeat_units": true,
+    "infrastructure_failures_removed_from_primary": false,
+    "measurement_contract": "agent-kit/measurement-contract.json",
+    "usage_helper": "agent-kit/usage_accounting.py",
+    "agent_self_reports_are_measurements": false,
+    "optional": [
+      "semantic_accuracy",
+      "source_faithful_verified_coverage"
+    ]
+  },
+  "required_before_run": [
+    "prepare_pinned_runnable_pi",
+    "verify_streamed_tool_calls_in_pi",
+    "freeze_formal_thinking_mode",
+    "validate_geometry_source_input_fidelity",
+    "verify_pi_binary_and_tool_calls",
+    "freeze_shared_source_input_mode",
+    "audit_mathematical_contracts_for_selected_slice",
+    "audit_equivalent_foundation_and_transitive_imports",
+    "freeze_language_skill_manifests",
+    "implement_and_verify_workspace_isolation",
+    "smoke_test_both_verifier_adapters",
+    "implement_runner_and_metrics",
+    "freeze_formal_budget_after_pilot"
+  ],
+  "agent_inputs": {
+    "common_system": "agent-kit/common-system.txt",
+    "language_cards": {
+      "lean": "agent-kit/lean-card.txt",
+      "litex": "agent-kit/litex-card.txt"
+    },
+    "submission_schema": "agent-kit/submission.schema.json",
+    "tool_contract": "agent-kit/tool-contract.json",
+    "example_shared_task": "agent-kit/examples/I1/task.json",
+    "status": "new_restricted_runtime_and_paired_I1_development_runs_available_formal_freeze_pending",
+    "language_cores": {
+      "lean": "agent-kit/guides/lean-core.md",
+      "litex": "agent-kit/guides/litex_short_guide.md"
+    },
+    "shared_curriculum": "agent-kit/guides/curriculum.json",
+    "guide_smoke_receipt": "agent-kit/guides/smoke-receipt.json",
+    "reference_reuse_notes_supervisor_only": "REFERENCE_REUSE.md",
+    "full_guide_pack_ready": false,
+    "development_runtime": "runtime/README.md",
+    "whole_task_protocol": "agent-kit/whole-task-runtime.txt"
+  },
+  "initial_seed": {
+    "id": "real-plane-algebra-v1",
+    "status": "implemented_and_native_interface_tested_development_only",
+    "interface": "seeds/interface.json",
+    "sources": {
+      "lean": "seeds/plane.lean",
+      "litex": "seeds/plane.lit"
+    },
+    "guide": "seeds/README.md",
+    "frozen_copy_per_task": true,
+    "load_before_agent_journal": true,
+    "final_prefix_protected": true,
+    "agent_tasks_credited": [],
+    "historical_full_geometry_seed_loaded": false,
+    "transitive_foundation_audit": "pending"
+  },
+  "batch_runtime": {
+    "status": "full_catalog_execution_implemented_offline_verification_required",
+    "entry": "runtime/batch.py",
+    "instructions": "RUN_FULL.md",
+    "task_count": 644,
+    "proposition_count": 465,
+    "machine_acceptance_is_accuracy": true,
+    "semantic_review": "optional annotation only; pending/absent/fail never changes automatic passing or primary scoring",
+    "formal_ready": false,
+    "accuracy_definition": "machine-verified propositions divided by registered propositions",
+    "execution_readiness": "controlled by frozen batch plan and offline preflight; draft/audit readiness flags do not gate machine acceptance"
+  },
+  "automatic_success_policy": {
+    "criterion": "machine_verification",
+    "semantic_review_required": false,
+    "semantic_annotations_affect_primary_score": false,
+    "accuracy_definition": "machine-verified propositions divided by registered propositions"
+  },
+  "checkpoint_recovery": {
+    "enabled": true,
+    "max_total_attempts": 5,
+    "include_network_api_failures": true,
+    "on_all_api_errors": "checkpoint_same_task",
+    "explicit_restart": "fresh window; retain all earlier attempts and usage",
+    "session_persistence": "task-local pi-session.jsonl"
+  }
+}

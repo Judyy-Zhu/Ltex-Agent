@@ -1,5 +1,15 @@
 # Litex Stoicheia — Euclid's Elements
 
+## New full-book task scope
+
+The [language-neutral task catalog](tasks/README.md) now covers Books I–XIII for
+new Lean/Litex experiments: 465 numbered propositions, 130 definitions, five
+postulates, five common notions, 24 explicitly headed corollaries, and 15
+explicitly headed lemmas (644 source-addressed tasks). This expands the former
+148-proposition selection by 317 numbered propositions. The new task inventory
+does not change historical proof counts or claim new verification. The export
+and progress notes below retain their original historical scope.
+
 Existing results exported on 2026-11-07 from `../golitex/scripts/Euclid_Elements/`.
 The original workspace is preserved. This export does not complete any book,
 change a proof, or promote a checked draft into the canonical textbook.

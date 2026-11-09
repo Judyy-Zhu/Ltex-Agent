@@ -1,0 +1,15 @@
+# Fixed technical interfaces for the real coordinate plane.
+have GeoPoint set = cart(R, R)
+
+have fn geo_point(x, y R) GeoPoint = (x, y)
+
+have fn geo_x(p GeoPoint) R = p(1)
+
+have fn geo_y(p GeoPoint) R = p(2)
+
+# The vector directed from a to b is b - a.
+have fn geo_vec(a, b GeoPoint) GeoPoint = (b(1) - a(1), b(2) - a(2))
+
+have fn geo_dot(u, v GeoPoint) R = u(1) * v(1) + u(2) * v(2)
+
+have fn geo_det(u, v GeoPoint) R = u(1) * v(2) - u(2) * v(1)

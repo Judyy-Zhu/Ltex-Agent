@@ -1,0 +1,218 @@
+{
+  "batch": "/Users/judy-zhu/AI4Math/auto-build/Stoicheia/litex-Stoicheia/experiment/pi-comparison/batches/local-compact10-01",
+  "plan_sha256": "e41269212133a231f66f34858f018dda0a1d688b824051ff06f9b4697136c029",
+  "policy": {
+    "id": "faithful_translation_v1",
+    "selected_by_user": "2026-11-09",
+    "criterion": "complete mathematical meaning plus source-proof-step correspondence; model-specific refinements explicitly labeled",
+    "kernel_score": "preserved separately; no pending semantic annotation blocks kernel acceptance or existing publication",
+    "translation_score": "independent assessment, bound to exact source, contract and formal artifact; kernel acceptance and automatic clause mappings are not semantic evidence",
+    "definition_tasks": "review concepts, domains, constraints and representations; no invented existence/characterization obligation",
+    "proof_tasks": "review statement and assumption fidelity, each source proof step, dependencies and any declared model refinement",
+    "alternative_proof": "record goal fidelity separately; do not label a different proof route a faithful translation under this strict policy",
+    "unknown": "unreviewed/uncertain is unknown; report review coverage and bounds rather than fabricate a final accuracy",
+    "contract_freezing": "resolve interpretation decisions and approve the common contract before a prospective comparison",
+    "timing": "independent semantic-review time and token usage are separate from solver and kernel time",
+    "judge_independence": "evaluate each language against source and common contract, without seeing the other language output or the desired speed comparison"
+  },
+  "protocol_timing": "retrospective diagnostic; these drafts were not the original pilot acceptance gate",
+  "model_calls": 0,
+  "registered_batch_slots": 20,
+  "slots_without_contract": [],
+  "rows": [
+    {
+      "key": "r001:EUCLID.I.D001:lean",
+      "task_id": "EUCLID.I.D001",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D001-lean.packet.json",
+      "packet_sha256": "16fd2cab9e77f204b6dfa8ab7c781c52e4cdfc79de6b64992c247a655204e198",
+      "review": "r001-EUCLID.I.D001-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D001:litex",
+      "task_id": "EUCLID.I.D001",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D001-litex.packet.json",
+      "packet_sha256": "bc3ee05225759d2f19339c7e947b210b8790f64c3f4c92da9a3eb9c676142f7e",
+      "review": "r001-EUCLID.I.D001-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D002:lean",
+      "task_id": "EUCLID.I.D002",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D002-lean.packet.json",
+      "packet_sha256": "d2413627a7978c84673e7c441ef55b06e135b02cf8074571769710a51c530015",
+      "review": "r001-EUCLID.I.D002-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D002:litex",
+      "task_id": "EUCLID.I.D002",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D002-litex.packet.json",
+      "packet_sha256": "05f16e37964b80a1523d9b5e2c5ed7f4df6354760174db2d09a41a5fd6e10a7e",
+      "review": "r001-EUCLID.I.D002-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D003:litex",
+      "task_id": "EUCLID.I.D003",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D003-litex.packet.json",
+      "packet_sha256": "f4b950c0cdb4b4a765e2db0ff2b4153c479b1bf18e7982ee4988004bd5656bec",
+      "review": "r001-EUCLID.I.D003-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D003:lean",
+      "task_id": "EUCLID.I.D003",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D003-lean.packet.json",
+      "packet_sha256": "87b20c7d8b1f58ca2b4c5a05b1ad71008781dc0295ec65fcfdc78ff373cb5092",
+      "review": "r001-EUCLID.I.D003-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D004:lean",
+      "task_id": "EUCLID.I.D004",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D004-lean.packet.json",
+      "packet_sha256": "18aebe2eeb76eb568135eb7bf24032716e4baebc2c19f0ac4b159b7b7b1ea3df",
+      "review": "r001-EUCLID.I.D004-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D004:litex",
+      "task_id": "EUCLID.I.D004",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D004-litex.packet.json",
+      "packet_sha256": "300e8fff7866e858b9f1e17061ab0e868a14e07dfd1574d0daf58e2b9673af96",
+      "review": "r001-EUCLID.I.D004-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D005:lean",
+      "task_id": "EUCLID.I.D005",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D005-lean.packet.json",
+      "packet_sha256": "ad7a1169b1f6520b229fd6eadc92c7a108927f9273ae10ba233791850c155fef",
+      "review": "r001-EUCLID.I.D005-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D005:litex",
+      "task_id": "EUCLID.I.D005",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D005-litex.packet.json",
+      "packet_sha256": "b40c642143087d06813bc4148e8df812db4e138a9d871c8124050aef4791bd15",
+      "review": "r001-EUCLID.I.D005-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D006:litex",
+      "task_id": "EUCLID.I.D006",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D006-litex.packet.json",
+      "packet_sha256": "0e2260906339eceb85d2b281ab3b4841c0edb8360ac25e250bf6417ac79d0470",
+      "review": "r001-EUCLID.I.D006-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D006:lean",
+      "task_id": "EUCLID.I.D006",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D006-lean.packet.json",
+      "packet_sha256": "f9f19475435e9c6a829abdba6cce7b16997c844ca5b59ec9086b5472c7b527b4",
+      "review": "r001-EUCLID.I.D006-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D007:lean",
+      "task_id": "EUCLID.I.D007",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D007-lean.packet.json",
+      "packet_sha256": "608f8ab19f2c0d7e256a68ef67a1f6fe6dafdd541f27fefd7b98fd5310b85c6d",
+      "review": "r001-EUCLID.I.D007-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D007:litex",
+      "task_id": "EUCLID.I.D007",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D007-litex.packet.json",
+      "packet_sha256": "c35aaace2b376320f520ad131b5f9dc932cdb16bd1c6f22b951c07edb0626f74",
+      "review": "r001-EUCLID.I.D007-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D008:litex",
+      "task_id": "EUCLID.I.D008",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D008-litex.packet.json",
+      "packet_sha256": "a3e0df4ff13291fc316115d888cb27919b2b28fc7423ba0f349971891fa648d4",
+      "review": "r001-EUCLID.I.D008-litex.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D008:lean",
+      "task_id": "EUCLID.I.D008",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D008-lean.packet.json",
+      "packet_sha256": "01af411bc4603e14f0b8c92a5b5c15a57f97eb7f67d610b2cf50a027c3400b8a",
+      "review": "r001-EUCLID.I.D008-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D009:lean",
+      "task_id": "EUCLID.I.D009",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D009-lean.packet.json",
+      "packet_sha256": "137fa55a0f255c6ba5969e1232a6549e7b16f325b49d043283302634dd912fd0",
+      "review": "r001-EUCLID.I.D009-lean.review.json"
+    },
+    {
+      "key": "r001:EUCLID.I.D009:litex",
+      "task_id": "EUCLID.I.D009",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "unknown"
+    },
+    {
+      "key": "r001:EUCLID.I.D010:litex",
+      "task_id": "EUCLID.I.D010",
+      "language": "litex",
+      "repetition": 1,
+      "kernel_status": "unknown"
+    },
+    {
+      "key": "r001:EUCLID.I.D010:lean",
+      "task_id": "EUCLID.I.D010",
+      "language": "lean",
+      "repetition": 1,
+      "kernel_status": "pass",
+      "packet": "r001-EUCLID.I.D010-lean.packet.json",
+      "packet_sha256": "036dfdaaf0de858ca16cc58dc6da0b1a6189d40a169bdd48c7b6dc57c1ad8fa9",
+      "review": "r001-EUCLID.I.D010-lean.review.json"
+    }
+  ]
+}

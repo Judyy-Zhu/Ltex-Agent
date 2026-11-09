@@ -1,0 +1,24 @@
+{
+  "scope": "actual Pi extension transport; deterministic local fixtures; no model calls",
+  "checks": [
+    {
+      "passed": true,
+      "language": "lean",
+      "native_pid": 89348,
+      "final_passed": true,
+      "text_inputs_read": [],
+      "image_payload_guard": true,
+      "model_calls": 0
+    },
+    {
+      "passed": true,
+      "language": "litex",
+      "native_pid": 89532,
+      "final_passed": true,
+      "text_inputs_read": [],
+      "image_payload_guard": true,
+      "model_calls": 0
+    }
+  ],
+  "result": "passed"
+}

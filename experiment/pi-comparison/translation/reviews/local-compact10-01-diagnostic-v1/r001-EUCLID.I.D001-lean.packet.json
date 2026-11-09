@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D001",
+  "language": "lean",
+  "contract": {
+    "schema_version": 1,
+    "task_id": "EUCLID.I.D001",
+    "kind": "definition",
+    "policy": "faithful_translation_v1",
+    "status": "draft_requires_interpretation_review",
+    "source": {
+      "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D001/EUCLID.I.D001.txt",
+      "sha256": "20fd064a3383f42c3e823d0488b59896ba59fdf785e9c1b7ccdf3c36c53a08c5",
+      "text": "1. A point is that of which there is no part.\n"
+    },
+    "source_claims": [
+      {
+        "id": "EUCLID.I.D001.point",
+        "source_quote": "A point",
+        "requirement": "Identify the concept introduced as point and give its domain and representation."
+      },
+      {
+        "id": "EUCLID.I.D001.partless",
+        "source_quote": "there is no part",
+        "requirement": "Represent the partlessness condition with an explicit meaning of part; a coordinate pair or a name alone is not evidence of that condition."
+      }
+    ],
+    "source_proof_steps": [],
+    "proof_route_required": false,
+    "interpretation_decisions": [
+      {
+        "id": "M1",
+        "question": "What notion of part is adopted, and why does it faithfully model this source definition?",
+        "status": "open",
+        "decision": null
+      },
+      {
+        "id": "M2",
+        "question": "How is the coordinate carrier distinguished from the geometric concept of a point?",
+        "status": "open",
+        "decision": null
+      }
+    ],
+    "review_failure_probes": [
+      "Do not replace the source meaning by an unrelated displacement identity without a justified interpretation."
+    ],
+    "formal_proof_answer_provided": false,
+    "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+    "approval": null
+  },
+  "contract_sha256": "c13a96232484c4aa4cc9092e48e001a88ede7aecbfbf7f297b98c16ce9a77969",
+  "formal_sha256": "785871d3c1181a33357b4e9635f359803497685430c7c7e380be993f61899b01",
+  "formal_source": "import Mathlib.Analysis.Real.Sqrt\nimport Mathlib.Tactic.Ring\nimport Mathlib.Tactic.Linarith\nimport Mathlib.Tactic.NormNum\nimport Mathlib.Tactic.Positivity\nimport Mathlib.Tactic.FieldSimp\n\n-- Fixed technical interfaces for the real coordinate plane.\nabbrev GeoPoint := ℝ × ℝ\n\ndef geo_point (x y : ℝ) : GeoPoint := (x, y)\n\ndef geo_x (p : GeoPoint) : ℝ := p.1\n\ndef geo_y (p : GeoPoint) : ℝ := p.2\n\n-- The vector directed from a to b is b - a.\ndef geo_vec (a b : GeoPoint) : GeoPoint :=\n  (b.1 - a.1, b.2 - a.2)\n\ndef geo_dot (u v : GeoPoint) : ℝ :=\n  u.1 * v.1 + u.2 * v.2\n\ndef geo_det (u v : GeoPoint) : ℝ :=\n  u.1 * v.2 - u.2 * v.1\n\n/-\nEuclid, Elements, Book I, definition 1 (source text, verbatim):\n\n  1. A point is that of which there is no part.\n\nFormalization strategy (modern analytic model, real coordinate plane):\n\nThe seed provides the carrier `GeoPoint = ℝ × ℝ` together with the coordinate\naccessors. Following the source we\n\n  * fix the carrier of \"points\" to be `GeoPoint` (definition `EuclidPoint`);\n  * introduce the relation `IsPartOf q p` (\"q is a part of p\"). In the\n    coordinate model a part of a point, if it existed, would itself be a\n    point (an entity of the same carrier) lying inside `p`. The source\n    asserts that a point has no part other than itself, i.e. it is\n    indivisible: every part of `p` coincides with `p`;\n  * record that asserted content as the checked proposition `point_has_no_part`.\n\nNo existence, uniqueness or reference-model theorems are added beyond the\natomicity that the source definition itself asserts.\n-/\n\n-- The carrier of points in the coordinate model.\nabbrev EuclidPoint := GeoPoint\n\n-- `q` is a part of `p`: a sub-entity of the same carrier contained in `p`.\n-- The source defines a point by the absence of any such proper part; the\n-- reflexive reading below is forced because the only self-contained\n-- sub-entities of a coordinate pair are its sub-pairs.\ndef IsPartOf (q p : EuclidPoint) : Prop := q = p\n\n-- The defining property asserted by the source: a point has no part\n-- distinct from itself (it is indivisible / atomic).\ndef HasNoPart (p : EuclidPoint) : Prop := ∀ q : EuclidPoint, IsPartOf q p → q = p\n\n-- Checked content of the source definition: every part of a point is the\n-- point itself, so a point has no proper part.\ntheorem point_has_no_part (p : EuclidPoint) : HasNoPart p := by\n  intro q hq\n  exact hq\n",
+  "native_declarations": {
+    "IsPartOf": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "IsPartOf",
+      "type": "EuclidPoint -> EuclidPoint -> Prop"
+    },
+    "EuclidPoint": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "EuclidPoint",
+      "type": "Type"
+    },
+    "HasNoPart": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "HasNoPart",
+      "type": "EuclidPoint -> Prop"
+    },
+    "point_has_no_part": {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "name": "point_has_no_part",
+      "type": "forall (p : EuclidPoint), HasNoPart p"
+    }
+  },
+  "kernel_status": "pass",
+  "source_original_text": "1. A point is that of which there is no part.\n",
+  "prior_original_context": {},
+  "target_seen_by_solver": {
+    "task_id": "EUCLID.I.D001",
+    "status": "source_specification_automatic_machine_acceptance",
+    "instruction_language": "en",
+    "title": "Book I, definition 1",
+    "success_policy": {
+      "criterion": "machine_verification",
+      "semantic_review_required": false,
+      "semantic_annotations_affect_primary_score": false,
+      "accuracy_definition": "machine-verified propositions divided by registered propositions"
+    },
+    "book": 1,
+    "kind": "definition",
+    "source_order": 1,
+    "source": {
+      "source_id": "fitzpatrick-2008",
+      "sha256": "3d6304d80810393f987a9f700e8d86c85f64a4763e38b1814502b7b94dfadbfa",
+      "start": {
+        "pdf_page": 6,
+        "y_from_top_pt": 136.108
+      },
+      "end_exclusive": {
+        "pdf_page": 6,
+        "y_from_top_pt": 147.988
+      },
+      "column": "english_right",
+      "coordinate_system": "PDF points from top; pages are one-based"
+    },
+    "instruction": "Formalize the source concepts as checked definitions with explicit domains and representations. Prove only mathematical claims explicitly asserted by the source or required for well-definedness; do not add unrequested semantic-bridge theorems. Use the original text located by source_span as the specification; a title or historical completion label is not a substitute. A definition task can finish with checked definitions alone. For total definitions, native checking of domains and types establishes formation/well-definedness. Do not add existence, universal-characterization, or reference-model-validity theorems unless the current source explicitly asserts them or a partial operation/subtype constructor requires their proofs.",
+    "acceptance": [
+      "Provide the complete source formalization. The controller generates interface metadata and unreviewed clause associations, independently verifies the final file and saves submission automatically.",
+      "Saved files pass complete verification in a fresh process using the pinned verifier.",
+      "No direct or transitive unproved dependencies beyond the approved foundation.",
+      "A partial conclusion does not count as a complete task success."
+    ],
+    "required_clauses": [
+      {
+        "clause_id": "source_content",
+        "requirement": "Provide the definitions in the source and any explicitly asserted mathematical claims. Do not invent additional semantic-bridge theorems."
+      },
+      {
+        "clause_id": "encoding",
+        "requirement": "State domains, quantifiers, nondegeneracy and the meaning of every new representation; check well-definedness and explain the source correspondence."
+      }
+    ],
+    "foundation_policy": "Modern analytic model. Source postulates/common notions are modeled and proved, not introduced as new unchecked axioms. Build missing domains, including 3D, as checked definitions. Do not assume failed predecessors.",
+    "dependencies": {
+      "reviewed_task_ids": [],
+      "status": "not_yet_reviewed",
+      "policy": "Source order is navigation, not a claim that adjacent numbers are logical dependencies. Do not assume missing predecessor results without proving them."
+    },
+    "primary_denominator": false,
+    "semantic_audit": "Optional post-run annotation, never a prerequisite for automatic task success or publication. Clause labels are a coverage checklist, not a pre-reviewed formal target."
+  },
+  "foundation_seen_by_solver": {
+    "status": "approved_for_development_only_transitive_foundation_audit_pending",
+    "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+    "language": "lean",
+    "geometry_definitions_preloaded": false,
+    "approved_geometry_symbols": [],
+    "approved_seed_symbols": [
+      "GeoPoint",
+      "geo_point",
+      "geo_x",
+      "geo_y",
+      "geo_vec",
+      "geo_dot",
+      "geo_det"
+    ],
+    "seed": {
+      "id": "real-plane-algebra-v1",
+      "input_path": "seed.lean",
+      "sha256": "3e26a24f3be13f1d112ddf62dccd330c3cb77f27e1f6fafdc6dc5e14788a4439",
+      "interface_input_path": "seed-interface.json",
+      "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+      "kind": "technical_plane_algebra",
+      "proposition_proofs_provided": false,
+      "agent_tasks_credited": []
+    },
+    "allowed_imports": [
+      "Mathlib.Analysis.Real.Sqrt",
+      "Mathlib.Tactic.Ring",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Positivity",
+      "Mathlib.Tactic.FieldSimp"
+    ],
+    "coordinate_equality_rule": "Prod.ext",
+    "point_carrier": "ℝ × ℝ",
+    "standard_logical_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+  },
+  "native_dependency_manifest": {
+    "status": "approved_for_development_only_transitive_foundation_audit_pending",
+    "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+    "language": "lean",
+    "geometry_definitions_preloaded": false,
+    "approved_geometry_symbols": [],
+    "approved_seed_symbols": [
+      "GeoPoint",
+      "geo_point",
+      "geo_x",
+      "geo_y",
+      "geo_vec",
+      "geo_dot",
+      "geo_det"
+    ],
+    "seed": {
+      "id": "real-plane-algebra-v1",
+      "input_path": "seed.lean",
+      "sha256": "3e26a24f3be13f1d112ddf62dccd330c3cb77f27e1f6fafdc6dc5e14788a4439",
+      "interface_input_path": "seed-interface.json",
+      "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+      "kind": "technical_plane_algebra",
+      "proposition_proofs_provided": false,
+      "agent_tasks_credited": []
+    },
+    "allowed_imports": [
+      "Mathlib.Analysis.Real.Sqrt",
+      "Mathlib.Tactic.Ring",
+      "Mathlib.Tactic.Linarith",
+      "Mathlib.Tactic.NormNum",
+      "Mathlib.Tactic.Positivity",
+      "Mathlib.Tactic.FieldSimp"
+    ],
+    "coordinate_equality_rule": "Prod.ext",
+    "point_carrier": "ℝ × ℝ",
+    "standard_logical_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+  },
+  "current_candidate_sources": {
+    "candidate.lean": "/-\nEuclid, Elements, Book I, definition 1 (source text, verbatim):\n\n  1. A point is that of which there is no part.\n\nFormalization strategy (modern analytic model, real coordinate plane):\n\nThe seed provides the carrier `GeoPoint = ℝ × ℝ` together with the coordinate\naccessors. Following the source we\n\n  * fix the carrier of \"points\" to be `GeoPoint` (definition `EuclidPoint`);\n  * introduce the relation `IsPartOf q p` (\"q is a part of p\"). In the\n    coordinate model a part of a point, if it existed, would itself be a\n    point (an entity of the same carrier) lying inside `p`. The source\n    asserts that a point has no part other than itself, i.e. it is\n    indivisible: every part of `p` coincides with `p`;\n  * record that asserted content as the checked proposition `point_has_no_part`.\n\nNo existence, uniqueness or reference-model theorems are added beyond the\natomicity that the source definition itself asserts.\n-/\n\n-- The carrier of points in the coordinate model.\nabbrev EuclidPoint := GeoPoint\n\n-- `q` is a part of `p`: a sub-entity of the same carrier contained in `p`.\n-- The source defines a point by the absence of any such proper part; the\n-- reflexive reading below is forced because the only self-contained\n-- sub-entities of a coordinate pair are its sub-pairs.\ndef IsPartOf (q p : EuclidPoint) : Prop := q = p\n\n-- The defining property asserted by the source: a point has no part\n-- distinct from itself (it is indivisible / atomic).\ndef HasNoPart (p : EuclidPoint) : Prop := ∀ q : EuclidPoint, IsPartOf q p → q = p\n\n-- Checked content of the source definition: every part of a point is the\n-- point itself, so a point has no proper part.\ntheorem point_has_no_part (p : EuclidPoint) : HasNoPart p := by\n  intro q hq\n  exact hq\n"
+  },
+  "machine_evidence": {
+    "final_receipt": {
+      "receipt_id": "check-0002",
+      "mode": "final",
+      "source_hashes": {
+        "candidate.lean": "29f71e00c10fac50e1e365623d64d4253d21b47d6c18b7253f6e3acc688e0730",
+        "final.lean": "785871d3c1181a33357b4e9635f359803497685430c7c7e380be993f61899b01",
+        "interfaces.json": "ac7413168c7350433f4e8148ad69c96279e41d9e91df36b540b41e19a3af780e"
+      },
+      "dependency_manifest": {
+        "status": "approved_for_development_only_transitive_foundation_audit_pending",
+        "math_model": "real coordinate plane with a fixed technical plane-algebra seed; Euclid-specific geometry is agent-built",
+        "language": "lean",
+        "geometry_definitions_preloaded": false,
+        "approved_geometry_symbols": [],
+        "approved_seed_symbols": [
+          "GeoPoint",
+          "geo_point",
+          "geo_x",
+          "geo_y",
+          "geo_vec",
+          "geo_dot",
+          "geo_det"
+        ],
+        "seed": {
+          "id": "real-plane-algebra-v1",
+          "input_path": "seed.lean",
+          "sha256": "3e26a24f3be13f1d112ddf62dccd330c3cb77f27e1f6fafdc6dc5e14788a4439",
+          "interface_input_path": "seed-interface.json",
+          "interface_sha256": "6eaebad812be76241fb3781a0530499f465b32ee15a4599113430d4f64a41977",
+          "kind": "technical_plane_algebra",
+          "proposition_proofs_provided": false,
+          "agent_tasks_credited": []
+        },
+        "allowed_imports": [
+          "Mathlib.Analysis.Real.Sqrt",
+          "Mathlib.Tactic.Ring",
+          "Mathlib.Tactic.Linarith",
+          "Mathlib.Tactic.NormNum",
+          "Mathlib.Tactic.Positivity",
+          "Mathlib.Tactic.FieldSimp"
+        ],
+        "coordinate_equality_rule": "Prod.ext",
+        "point_carrier": "ℝ × ℝ",
+        "standard_logical_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679"
+      },
+      "entry": "final.lean",
+      "scope": "fresh_final_file",
+      "passed": true,
+      "native_process_seconds": 6.908505457977299,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "session": {
+        "session_id": "9a51745d4a7b48c8b0ce0e043e199dd0",
+        "session_pid": 37336,
+        "session_alive": true,
+        "lean_environment": 2,
+        "accepted_blocks": 1,
+        "starts": 1,
+        "restarts": 0
+      },
+      "seconds": 6.910625374992378,
+      "task_rounds": {
+        "limit": 5,
+        "used": 2,
+        "remaining": 3,
+        "total_used": 2,
+        "exhausted": false,
+        "transport_only_exhausted": false,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "transport",
+            "receipt_id": null,
+            "status": "failed",
+            "api_attempt_id": 1,
+            "passed": false,
+            "reason": "Request timed out.: Connect Timeout Error (attempted address: llmapi.paratera.com:443, timeout: 10000ms) (UND_ERR_CONNECT_TIMEOUT)"
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "29f71e00c10fac50e1e365623d64d4253d21b47d6c18b7253f6e3acc688e0730",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "history": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "transport",
+            "receipt_id": null,
+            "status": "failed",
+            "api_attempt_id": 1,
+            "passed": false,
+            "reason": "Request timed out.: Connect Timeout Error (attempted address: llmapi.paratera.com:443, timeout: 10000ms) (UND_ERR_CONNECT_TIMEOUT)"
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "29f71e00c10fac50e1e365623d64d4253d21b47d6c18b7253f6e3acc688e0730",
+            "passed": true,
+            "reason": null
+          }
+        ]
+      }
+    },
+    "submission_gate": {
+      "passed": true,
+      "symbols": [
+        "EuclidPoint",
+        "HasNoPart",
+        "IsPartOf",
+        "point_has_no_part"
+      ],
+      "source_hashes": {
+        "candidate.lean": "29f71e00c10fac50e1e365623d64d4253d21b47d6c18b7253f6e3acc688e0730",
+        "final.lean": "785871d3c1181a33357b4e9635f359803497685430c7c7e380be993f61899b01",
+        "interfaces.json": "ac7413168c7350433f4e8148ad69c96279e41d9e91df36b540b41e19a3af780e"
+      },
+      "final_receipt_id": "check-0002",
+      "origin": "reuse_native_acceptance_and_independent_final_receipt",
+      "seconds": 0.24918887502280995,
+      "declaration_axioms": {
+        "IsPartOf": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "EuclidPoint": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "HasNoPart": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "point_has_no_part": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ]
+      },
+      "unapproved_axioms": [],
+      "missing_declarations": []
+    },
+    "saved_work_hashes": {
+      "final.lean": "785871d3c1181a33357b4e9635f359803497685430c7c7e380be993f61899b01",
+      "interfaces.json": "ac7413168c7350433f4e8148ad69c96279e41d9e91df36b540b41e19a3af780e",
+      "candidate.lean": "29f71e00c10fac50e1e365623d64d4253d21b47d6c18b7253f6e3acc688e0730"
+    }
+  },
+  "policy": {
+    "id": "faithful_translation_v1",
+    "selected_by_user": "2026-11-09",
+    "criterion": "complete mathematical meaning plus source-proof-step correspondence; model-specific refinements explicitly labeled",
+    "kernel_score": "preserved separately; no pending semantic annotation blocks kernel acceptance or existing publication",
+    "translation_score": "independent assessment, bound to exact source, contract and formal artifact; kernel acceptance and automatic clause mappings are not semantic evidence",
+    "definition_tasks": "review concepts, domains, constraints and representations; no invented existence/characterization obligation",
+    "proof_tasks": "review statement and assumption fidelity, each source proof step, dependencies and any declared model refinement",
+    "alternative_proof": "record goal fidelity separately; do not label a different proof route a faithful translation under this strict policy",
+    "unknown": "unreviewed/uncertain is unknown; report review coverage and bounds rather than fabricate a final accuracy",
+    "contract_freezing": "resolve interpretation decisions and approve the common contract before a prospective comparison",
+    "timing": "independent semantic-review time and token usage are separate from solver and kernel time",
+    "judge_independence": "evaluate each language against source and common contract, without seeing the other language output or the desired speed comparison"
+  },
+  "evidence_scope": "Complete formal module includes technical seed, prior library and current task. Native names/types are navigation, not semantic certificates."
+}

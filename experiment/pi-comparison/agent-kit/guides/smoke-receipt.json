@@ -1,0 +1,77 @@
+{
+  "observed_at": "2026-11-08T06:49:09.706315+00:00",
+  "scope": "small guide examples only; no model or Euclid proof run",
+  "checks": [
+    {
+      "name": "lean_paired_basics",
+      "exit_code": 0,
+      "seconds": 12.608,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "litex_paired_basics",
+      "exit_code": 0,
+      "seconds": 0.038,
+      "stdout": "{\n  \"kind\": \"run\",\n  \"run_result\": \"success\",\n  \"target\": \"file\",\n  \"path\": \"/Users/judy-zhu/AI4Math/auto-build/Stoicheia/litex-Stoicheia/experiment/pi-comparison/agent-kit/guides/examples/basics.lit\",\n  \"detail\": \"normal\",\n  \"language\": \"en\",\n  \"statement_results\": [\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"have fn training_shift(x R) = (x + 2)\",\n      \"proof_method\": {\n        \"type\": \"define_fn\",\n        \"rule_name\": \"Have function equal\",\n        \"message\": \"Define a named function equal to an anonymous function\"\n      },\n      \"stores\": [\n        \"training_shift $in fn (x R) R\"\n      ],\n      \"infers\": [\n        \"training_shift = fn (x R) R{(x + 2)}\"\n      ]\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"prop training_fixed(x R):\\n    x = 7\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define prop\",\n        \"message\": \"Define a predicate\"\n      },\n      \"stores\": [],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm training_unfold:\\n    ? forall x R:\\n        training_shift(x) = (x + 2)\\n    training_shift(x) = (x + 2)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall x R:\\n    training_shift(x) = (x + 2)\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm training_condition:\\n    ? forall x R:\\n        $training_fixed(x)\\n        =>:\\n            x = 7\\n    x = 7\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall x R:\\n    $training_fixed(x)\\n    =>:\\n        x = 7\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm training_witness:\\n    ? forall x R:\\n        exist y R st {y = training_shift(x)}\\n    witness exist y R st {y = training_shift(x)} from training_shift(x)\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall x R:\\n    exist y R st {y = training_shift(x)}\"\n      ],\n      \"infers\": []\n    },\n    {\n      \"statement_result\": \"accepted\",\n      \"statement\": \"thm training_pair:\\n    ? forall p cart(R, R):\\n        (p(1), p(2)) = p\\n    (p(1), p(2)) = p\",\n      \"proof_method\": {\n        \"type\": \"definition\",\n        \"rule_name\": \"Define theorem\",\n        \"message\": \"Record a theorem\"\n      },\n      \"stores\": [\n        \"forall p cart(R, R):\\n    (p(1), p(2)) = p\"\n      ],\n      \"infers\": []\n    }\n  ],\n  \"errors\": [],\n  \"session_terminated\": false,\n  \"termination\": null\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "lean_false_rejected",
+      "exit_code": 1,
+      "seconds": 4.735,
+      "stdout": "/var/folders/ds/kp1x3g9s0z1ffwhqq40k6qw00000gn/T/euclid-guide-smoke-_ootxsr9/false.lean:1:49: error: Tactic `decide` proved that the proposition\n  2 + 2 = 5\nis false\n",
+      "stderr": ""
+    },
+    {
+      "name": "litex_false_rejected",
+      "exit_code": 1,
+      "seconds": 0.011,
+      "stdout": "{\n  \"kind\": \"run\",\n  \"run_result\": \"failure\",\n  \"target\": \"file\",\n  \"path\": \"/var/folders/ds/kp1x3g9s0z1ffwhqq40k6qw00000gn/T/euclid-guide-smoke-_ootxsr9/false.lit\",\n  \"detail\": \"normal\",\n  \"language\": \"en\",\n  \"statement_results\": [\n    {\n      \"statement_result\": \"rejected\",\n      \"statement\": \"(2 + 2) = 5\"\n    }\n  ],\n  \"errors\": [\n    {\n      \"statement_index\": 0,\n      \"statement\": \"(2 + 2) = 5\",\n      \"phase\": \"search_proof\",\n      \"message\": \"Could not prove the goal.\",\n      \"category\": \"proof_search\",\n      \"obligation\": \"(2 + 2) = 5\"\n    }\n  ],\n  \"session_terminated\": false,\n  \"termination\": null\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "lean_sorry_requires_extra_guard",
+      "exit_code": 0,
+      "seconds": 4.753,
+      "stdout": "/var/folders/ds/kp1x3g9s0z1ffwhqq40k6qw00000gn/T/euclid-guide-smoke-_ootxsr9/placeholder.lean:1:8: warning: declaration uses `sorry`\n'training_gap' depends on axioms: [sorryAx]\n",
+      "stderr": ""
+    },
+    {
+      "name": "litex_strict_axiom_rejected",
+      "exit_code": 1,
+      "seconds": 0.008,
+      "stdout": "{\n  \"kind\": \"run\",\n  \"run_result\": \"failure\",\n  \"target\": \"file\",\n  \"path\": \"/var/folders/ds/kp1x3g9s0z1ffwhqq40k6qw00000gn/T/euclid-guide-smoke-_ootxsr9/axiom.lit\",\n  \"detail\": \"normal\",\n  \"language\": \"en\",\n  \"statement_results\": [],\n  \"errors\": [],\n  \"session_terminated\": true,\n  \"termination\": {\n    \"phase\": \"launch\",\n    \"message\": \"launch_error: `axiom` is forbidden under Litex `-strict`\"\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "lean_version",
+      "exit_code": 0,
+      "seconds": 4.426,
+      "stdout": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)\n",
+      "stderr": ""
+    },
+    {
+      "name": "litex_version",
+      "exit_code": 0,
+      "seconds": 0.007,
+      "stdout": "Litex 1.1.2-beta\n",
+      "stderr": ""
+    }
+  ],
+  "versions": {
+    "lean": "Lean (version 4.35.0, arm64-apple-darwin24.6.0, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "litex": "Litex 1.1.2-beta"
+  },
+  "litex_sha256": "51f2e6f444dc7d3eba843be9a4cf5a4e118f79f07a75630bb876e9c6769dce2d",
+  "example_sha256": {
+    "basics.lean": "4027fbe97c11bac035a2ada669084dfde47a126c88246cee0e82031a79e7fdf7",
+    "basics.lit": "3c211dbe32cb27594f330bc66e1a3b65215f22bf792a9839a02c76ef731230f3"
+  },
+  "result": "passed",
+  "limitations": [
+    "Only basic tutorial constructs tested, not all guide claims.",
+    "No Lean REPL/Pi integration test in this receipt.",
+    "Compiler acceptance is not source-fidelity scoring."
+  ]
+}

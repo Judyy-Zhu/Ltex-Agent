@@ -1,0 +1,28 @@
+{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "paratera": {
+      "name": "Paratera",
+      "baseUrl": "https://llmapi.paratera.com/v1",
+      "api": "openai-completions",
+      "apiKey": "$PARATERA_API_KEY",
+      "authHeader": true,
+      "models": [
+        {
+          "id": "DeepSeek-V4.1-Flash",
+          "name": "DeepSeek-V4.1-Flash (compatibility smoke; thinking disabled)",
+          "reasoning": false,
+          "input": ["text", "image"],
+          "contextWindow": 8192,
+          "maxTokens": 256,
+          "samplingParams": {"thinking": {"type": "disabled"}},
+          "compat": {
+            "maxTokensField": "max_tokens",
+            "supportsUsageInStreaming": true,
+            "supportsDeveloperRole": false
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4372 @@
+{
+  "generated_at": "2026-11-09T17:23:00.600262+00:00",
+  "summary": {
+    "batch": "local-proofrepair10-01",
+    "status": "complete",
+    "formal_result": false,
+    "input_modality": "text_only",
+    "images_allowed": false,
+    "instruction_language": "en",
+    "success_policy": {
+      "criterion": "machine_verification",
+      "semantic_review_required": false,
+      "semantic_annotations_affect_primary_score": false,
+      "accuracy_definition": "machine-verified propositions divided by registered propositions"
+    },
+    "recovery_policy": {
+      "mode": "same_task_checkpoint",
+      "network_retry_initial_seconds": 5,
+      "network_retry_max_seconds": 60,
+      "network_max_attempts": 5,
+      "transport_retries_consume_proof_rounds": true,
+      "persist_pi_conversation": true,
+      "all_transport_failures": "checkpoint_current_task; explicit restart opens a fresh five-attempt window and retains full history",
+      "finalization_transport": "after an unchanged whole candidate passes, finalization connection retries are separate from candidate rounds"
+    },
+    "semantic_review_required_for_success": false,
+    "semantic_review_required_for_primary_score": false,
+    "execution": {
+      "mode": "parallel",
+      "max_workers": 2,
+      "resource_conditions": "shared_host_concurrent",
+      "coverage_clock": "language_worker_execution_seconds"
+    },
+    "credential_bindings": {
+      "lean": "primary",
+      "litex": "secondary"
+    },
+    "workers": {
+      "lean": {
+        "status": "complete",
+        "elapsed_execution_seconds": 344.62252808298217,
+        "initialization_seconds": 175.65533308597514,
+        "startup_excluded_seconds": 168.96719499700703,
+        "finished_attempts": 10,
+        "credential_alias": "primary",
+        "current_tasks": []
+      },
+      "litex": {
+        "status": "complete",
+        "elapsed_execution_seconds": 140.8650558749796,
+        "initialization_seconds": 2.9468932080781087,
+        "startup_excluded_seconds": 137.91816266690148,
+        "finished_attempts": 10,
+        "credential_alias": "secondary",
+        "current_tasks": []
+      }
+    },
+    "offline_fixture": false,
+    "tasks": 10,
+    "agent_attempts": 20,
+    "finished_attempts": 20,
+    "elapsed_execution_seconds": 345.2290486250422,
+    "language_startup_excluded_seconds": {
+      "litex": 137.91816266690148,
+      "lean": 168.96719499700703
+    },
+    "startup_excluded_time_definition": "Language worker wall time minus directly measured initialization/loading of candidate sessions and independent final sessions. Model/API, retries and both actual verification stages remain included. Unknown historical final startup is never estimated.",
+    "run_budget_seconds": null,
+    "groups": [
+      {
+        "repetition": 1,
+        "language": "lean",
+        "proposition_denominator": 0,
+        "tasks_total": 10,
+        "tasks_finished": 10,
+        "unattempted_tasks": 0,
+        "machine_propositions": 0,
+        "machine_pass_rate": null,
+        "passed_tasks": 10,
+        "task_pass_rate": 1.0,
+        "task_pass_rates_by_kind": {
+          "definition": 1.0
+        },
+        "reviewed_correct_propositions": 0,
+        "pending_proposition_reviews": 0,
+        "accuracy": null,
+        "accuracy_definition": "machine_verification_pass_rate",
+        "accuracy_is_final": true,
+        "semantic_accuracy": null,
+        "verified_coverage_lower_bound": null,
+        "machine_candidates_by_kind": {
+          "definition": 10
+        },
+        "solver_seconds": 337.6793898740434,
+        "known_solver_seconds": 337.6793898740434,
+        "startup_excluded_solver_seconds": 162.02405678806826,
+        "attempts_with_unknown_time": 0,
+        "setup_seconds": 0.3798773340531625,
+        "check_calls": 28,
+        "retry_count": 8,
+        "known_retry_count": 8,
+        "tasks_with_unknown_retry_counts": 0,
+        "known_checker_seconds": 180.77315504389117,
+        "verification_phases": {
+          "known_totals": {
+            "session_initialization_seconds": 91.57370395999169,
+            "incremental_candidate_seconds": 0.35438579379115254,
+            "replay_seconds": 0,
+            "independent_final_file_seconds": 86.30529150005896,
+            "declaration_gate_seconds": 2.4520502099767327,
+            "other_verifier_seconds": 0.08772358007263392
+          },
+          "tasks_with_phase_data": 10,
+          "tasks_missing_phase_data": 0,
+          "label": "Verifier phases only; end-to-end task wall time and provider token usage remain separate."
+        },
+        "tokens": {
+          "input_total": {
+            "value": 137347,
+            "known_subtotal": 137347,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "input_uncached": {
+            "value": 73987,
+            "known_subtotal": 73987,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "cache_read": {
+            "value": 63360,
+            "known_subtotal": 63360,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "missing_reported_requests": 18,
+            "incomplete_attempt_telemetry": 0
+          },
+          "output_total": {
+            "value": 8394,
+            "known_subtotal": 8394,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "token_total": {
+            "value": 145741,
+            "known_subtotal": 145741,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          }
+        },
+        "tokens_per_correct_proposition": null,
+        "tokens_per_machine_passed_proposition": null,
+        "primary_success_coverage_curve": [],
+        "reviewed_correct_coverage_curve": []
+      },
+      {
+        "repetition": 1,
+        "language": "litex",
+        "proposition_denominator": 0,
+        "tasks_total": 10,
+        "tasks_finished": 10,
+        "unattempted_tasks": 0,
+        "machine_propositions": 0,
+        "machine_pass_rate": null,
+        "passed_tasks": 10,
+        "task_pass_rate": 1.0,
+        "task_pass_rates_by_kind": {
+          "definition": 1.0
+        },
+        "reviewed_correct_propositions": 0,
+        "pending_proposition_reviews": 0,
+        "accuracy": null,
+        "accuracy_definition": "machine_verification_pass_rate",
+        "accuracy_is_final": true,
+        "semantic_accuracy": null,
+        "verified_coverage_lower_bound": null,
+        "machine_candidates_by_kind": {
+          "definition": 10
+        },
+        "solver_seconds": 133.4795220409287,
+        "known_solver_seconds": 133.4795220409287,
+        "startup_excluded_solver_seconds": 130.5326288328506,
+        "attempts_with_unknown_time": 0,
+        "setup_seconds": 0.5537655399530195,
+        "check_calls": 28,
+        "retry_count": 8,
+        "known_retry_count": 8,
+        "tasks_with_unknown_retry_counts": 0,
+        "known_checker_seconds": 3.381195334077347,
+        "verification_phases": {
+          "known_totals": {
+            "session_initialization_seconds": 1.863593043119181,
+            "incremental_candidate_seconds": 0.13640271307667717,
+            "replay_seconds": 0.00469579198397696,
+            "independent_final_file_seconds": 1.1831222918699495,
+            "declaration_gate_seconds": 0.08247733500320464,
+            "other_verifier_seconds": 0.1109041590243578
+          },
+          "tasks_with_phase_data": 10,
+          "tasks_missing_phase_data": 0,
+          "label": "Verifier phases only; end-to-end task wall time and provider token usage remain separate."
+        },
+        "tokens": {
+          "input_total": {
+            "value": 143404,
+            "known_subtotal": 143404,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "input_uncached": {
+            "value": 89388,
+            "known_subtotal": 89388,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "cache_read": {
+            "value": 54016,
+            "known_subtotal": 54016,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "missing_reported_requests": 18,
+            "incomplete_attempt_telemetry": 0
+          },
+          "output_total": {
+            "value": 6819,
+            "known_subtotal": 6819,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          },
+          "token_total": {
+            "value": 150223,
+            "known_subtotal": 150223,
+            "missing_reported_requests": 0,
+            "incomplete_attempt_telemetry": 0
+          }
+        },
+        "tokens_per_correct_proposition": null,
+        "tokens_per_machine_passed_proposition": null,
+        "primary_success_coverage_curve": [],
+        "reviewed_correct_coverage_curve": []
+      }
+    ],
+    "time_accounting": "Batch elapsed is measured parent wall time. Worker/task intervals may overlap; do not add them to obtain wall time.",
+    "joint_primary_successful_propositions": 0,
+    "joint_machine_passed_propositions": 0,
+    "joint_reviewed_correct_propositions": 0,
+    "interpretation": "Primary accuracy follows the frozen success policy. In machine-verification mode, semantic annotations never block passing, publication or primary scoring. Unattempted registered propositions remain in the denominator; unknown usage remains unknown. Semantic accuracy is a separate optional metric."
+  },
+  "rows": [
+    {
+      "key": "r001:EUCLID.I.D001:lean",
+      "number": 1,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D001",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 41.53584900003625,
+      "setup_seconds": 0.028147000004537404,
+      "check_calls": 5,
+      "telemetry_complete": true,
+      "checker_seconds": 19.768388041993603,
+      "verification_timing": {
+        "session_initialization_seconds": 11.68435049999971,
+        "incremental_candidate_seconds": 0.08803045988315716,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 7.692461792030372,
+        "declaration_gate_seconds": 0.2939650419866666,
+        "other_verifier_seconds": 0.009580248093698174,
+        "accounted_verifier_seconds": 19.768388041993603,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 7.428428374987561,
+        "independent_final_verification_seconds": 0.013789874967187643,
+        "total_initialization_seconds": 19.11277887498727,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 22.42307012504898,
+      "independent_final_initialization_seconds": 7.428428374987561,
+      "independent_final_verification_seconds": 0.013789874967187643,
+      "session_initialization_seconds": 11.68435049999971,
+      "warm_candidate_seconds": 0.08803045988315716,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 7.692461792030372,
+      "non_checker_seconds": 21.767632833041716,
+      "api_request_count": 4,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D001:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 4,
+            "retry_count": 3,
+            "known_attempt_count": 4,
+            "known_retry_count": 3,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 3,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 11.77941474999534,
+            "source_versions": 4,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 4,
+        "main_retry_count": 3,
+        "attempt_count": 4,
+        "retry_count": 3,
+        "known_retry_count": 3,
+        "definition_retry_count": 3,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "5e372d19b321cf7c76ef86afd47a61dbdfc6fc07eb07a411c493a8a9288b1aac",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "2f01398d0703509c2c7efff1ff43c0bfd56e6e670243b4093df68384c8ddb50c",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 3,
+            "window_round": 3,
+            "kind": "candidate",
+            "receipt_id": "check-0003",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "f35baa4159a513f65a2130eff5600f37bf23a7a6da6c3cdcf39a1e1c39714958",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 4,
+            "window_round": 4,
+            "kind": "candidate",
+            "receipt_id": "check-0004",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "244a5320091045fa170f3afd7041a9182b0759d6b002f88db483e61385cb38a4",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 4,
+      "attempt_window_used": 4,
+      "task_retry_count": 3,
+      "main_attempt_count": 4,
+      "main_retry_count": 3,
+      "attempt_count": 4,
+      "retry_count": 3,
+      "definition_retry_count": 3,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 4,
+        "fields": {
+          "input_total": {
+            "value": 34044,
+            "known_subtotal": 34044,
+            "known_requests": 4,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 13180,
+            "known_subtotal": 13180,
+            "known_requests": 4,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 20864,
+            "known_subtotal": 20864,
+            "known_requests": 4,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 4,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 1346,
+            "known_subtotal": 1346,
+            "known_requests": 4,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 4,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 35390,
+            "known_subtotal": 35390,
+            "known_requests": 4,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0001-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 3.0829687602818012e-06,
+      "execution_end_seconds": 42.25509874999989
+    },
+    {
+      "key": "r001:EUCLID.I.D001:litex",
+      "number": 2,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D001",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 10.56613708299119,
+      "setup_seconds": 0.0441805410082452,
+      "check_calls": 3,
+      "telemetry_complete": true,
+      "checker_seconds": 0.4409817499690689,
+      "verification_timing": {
+        "session_initialization_seconds": 0.1837878759833984,
+        "incremental_candidate_seconds": 0.0790103769977577,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.15222524997079745,
+        "declaration_gate_seconds": 0.010304666997399181,
+        "other_verifier_seconds": 0.015653580019716173,
+        "accounted_verifier_seconds": 0.4409817499690689,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.10237829200923443,
+        "independent_final_verification_seconds": 0.046132582996506244,
+        "total_initialization_seconds": 0.28616616799263284,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 10.279970914998557,
+      "independent_final_initialization_seconds": 0.10237829200923443,
+      "independent_final_verification_seconds": 0.046132582996506244,
+      "session_initialization_seconds": 0.1837878759833984,
+      "warm_candidate_seconds": 0.0790103769977577,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.15222524997079745,
+      "non_checker_seconds": 10.125280750042293,
+      "api_request_count": 2,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D001:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 2,
+            "retry_count": 1,
+            "known_attempt_count": 2,
+            "known_retry_count": 1,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 1,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.2759164169547148,
+            "source_versions": 2,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 2,
+        "main_retry_count": 1,
+        "attempt_count": 2,
+        "retry_count": 1,
+        "known_retry_count": 1,
+        "definition_retry_count": 1,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "14f713220c32ea26159f48d6459df473ee1d6de22e809e3ed140d7e678c5e299",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "b8945e443c887439e4da40b0db2cd9dc7f5bed10515c07851e150be162fb2778",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 2,
+      "attempt_window_used": 2,
+      "task_retry_count": 1,
+      "main_attempt_count": 2,
+      "main_retry_count": 1,
+      "attempt_count": 2,
+      "retry_count": 1,
+      "definition_retry_count": 1,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 2,
+        "fields": {
+          "input_total": {
+            "value": 13203,
+            "known_subtotal": 13203,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 9107,
+            "known_subtotal": 9107,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 4096,
+            "known_subtotal": 4096,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 2,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 418,
+            "known_subtotal": 418,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 13621,
+            "known_subtotal": 13621,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0002-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 4.166970029473305e-06,
+      "execution_end_seconds": 11.224626999988686
+    },
+    {
+      "key": "r001:EUCLID.I.D002:lean",
+      "number": 3,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D002",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 31.479130499996245,
+      "setup_seconds": 0.03980137500911951,
+      "check_calls": 3,
+      "telemetry_complete": true,
+      "checker_seconds": 16.647224624059163,
+      "verification_timing": {
+        "session_initialization_seconds": 8.114714208000805,
+        "incremental_candidate_seconds": 0.024781249987427145,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.289194416021928,
+        "declaration_gate_seconds": 0.21153583301929757,
+        "other_verifier_seconds": 0.006998917029704899,
+        "accounted_verifier_seconds": 16.647224624059163,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.066807667026296,
+        "independent_final_verification_seconds": 0.024876333016436547,
+        "total_initialization_seconds": 16.1815218750271,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 15.297608624969143,
+      "independent_final_initialization_seconds": 8.066807667026296,
+      "independent_final_verification_seconds": 0.024876333016436547,
+      "session_initialization_seconds": 8.114714208000805,
+      "warm_candidate_seconds": 0.024781249987427145,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.289194416021928,
+      "non_checker_seconds": 14.832011958933435,
+      "api_request_count": 2,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D002:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 2,
+            "retry_count": 1,
+            "known_attempt_count": 2,
+            "known_retry_count": 1,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 1,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 8.143269875028636,
+            "source_versions": 2,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 2,
+        "main_retry_count": 1,
+        "attempt_count": 2,
+        "retry_count": 1,
+        "known_retry_count": 1,
+        "definition_retry_count": 1,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "b28bd16b13ca508af308e78edf684d80e2224cfa1b12baa28155a19ad09e988a",
+            "passed": false,
+            "reason": "Unapproved placeholder, metaprogramming, command, or trust feature"
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "2af6eabb2bfe30e42a1d38fc5fa43fc4931aa96ade7ceb464d609166aa699b2a",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 2,
+      "attempt_window_used": 2,
+      "task_retry_count": 1,
+      "main_attempt_count": 2,
+      "main_retry_count": 1,
+      "attempt_count": 2,
+      "retry_count": 1,
+      "definition_retry_count": 1,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 2,
+        "fields": {
+          "input_total": {
+            "value": 12530,
+            "known_subtotal": 12530,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 8434,
+            "known_subtotal": 8434,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 4096,
+            "known_subtotal": 4096,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 2,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 1076,
+            "known_subtotal": 1076,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 13606,
+            "known_subtotal": 13606,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0003-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 42.277282333001494,
+      "execution_end_seconds": 74.4217306249775
+    },
+    {
+      "key": "r001:EUCLID.I.D002:litex",
+      "number": 4,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D002",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 23.13717933394946,
+      "setup_seconds": 0.0778395839734003,
+      "check_calls": 4,
+      "telemetry_complete": true,
+      "checker_seconds": 0.3931752919452265,
+      "verification_timing": {
+        "session_initialization_seconds": 0.25886904197977856,
+        "incremental_candidate_seconds": 0.007230126007925719,
+        "replay_seconds": 0.00469579198397696,
+        "independent_final_file_seconds": 0.0958152919774875,
+        "declaration_gate_seconds": 0.00989758298965171,
+        "other_verifier_seconds": 0.01666745700640604,
+        "accounted_verifier_seconds": 0.3931752919452265,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.08751500002108514,
+        "independent_final_verification_seconds": 0.004447874962352216,
+        "total_initialization_seconds": 0.3463840420008637,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 22.790795291948598,
+      "independent_final_initialization_seconds": 0.08751500002108514,
+      "independent_final_verification_seconds": 0.004447874962352216,
+      "session_initialization_seconds": 0.25886904197977856,
+      "warm_candidate_seconds": 0.007230126007925719,
+      "replay_seconds": 0.00469579198397696,
+      "fresh_file_seconds": 0.0958152919774875,
+      "non_checker_seconds": 22.744128999998793,
+      "api_request_count": 3,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D002:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 3,
+            "retry_count": 2,
+            "known_attempt_count": 3,
+            "known_retry_count": 2,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 2,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.2851925419527106,
+            "source_versions": 3,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 3,
+        "main_retry_count": 2,
+        "attempt_count": 3,
+        "retry_count": 2,
+        "known_retry_count": 2,
+        "definition_retry_count": 2,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "997f945066a1b69ef0db207fac6b5a97d22dbfe3a116c74a3d05896b372fbcc3",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "1252011b545062abe450eed5d5c904d651ae7f9920722562b167d907c24c6fce",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 3,
+            "window_round": 3,
+            "kind": "candidate",
+            "receipt_id": "check-0003",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "4d3f59e32f1faf985e27405e7d272cf0500fd45ec2d6431c37103bf746c89760",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 3,
+      "attempt_window_used": 3,
+      "task_retry_count": 2,
+      "main_attempt_count": 3,
+      "main_retry_count": 2,
+      "attempt_count": 3,
+      "retry_count": 2,
+      "definition_retry_count": 2,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 3,
+        "fields": {
+          "input_total": {
+            "value": 25598,
+            "known_subtotal": 25598,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 13182,
+            "known_subtotal": 13182,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 12416,
+            "known_subtotal": 12416,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 3,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 1044,
+            "known_subtotal": 1044,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 26642,
+            "known_subtotal": 26642,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0004-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 11.2363970829756,
+      "execution_end_seconds": 35.224819457973354
+    },
+    {
+      "key": "r001:EUCLID.I.D003:litex",
+      "number": 5,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D003",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 11.287912291008979,
+      "setup_seconds": 0.045593250019010156,
+      "check_calls": 3,
+      "telemetry_complete": true,
+      "checker_seconds": 0.31647608295315877,
+      "verification_timing": {
+        "session_initialization_seconds": 0.19748725008685142,
+        "incremental_candidate_seconds": 0.0070296660414896905,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.09191000001737848,
+        "declaration_gate_seconds": 0.008058000006712973,
+        "other_verifier_seconds": 0.011991166800726205,
+        "accounted_verifier_seconds": 0.31647608295315877,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.08785641699796543,
+        "independent_final_verification_seconds": 0.002679416968021542,
+        "total_initialization_seconds": 0.28534366708481684,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 11.002568623924162,
+      "independent_final_initialization_seconds": 0.08785641699796543,
+      "independent_final_verification_seconds": 0.002679416968021542,
+      "session_initialization_seconds": 0.19748725008685142,
+      "warm_candidate_seconds": 0.0070296660414896905,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.09191000001737848,
+      "non_checker_seconds": 10.971499625011347,
+      "api_request_count": 2,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D003:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 2,
+            "retry_count": 1,
+            "known_attempt_count": 2,
+            "known_retry_count": 1,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 1,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.21396399999503046,
+            "source_versions": 2,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 2,
+        "main_retry_count": 1,
+        "attempt_count": 2,
+        "retry_count": 1,
+        "known_retry_count": 1,
+        "definition_retry_count": 1,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "0f67594e7a26719388cfbdeb85edb7fdeed65cff296997b31a23c26105ff20f6",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "cb80ada48e19bbdc57bcb205b1b7e7bdee2afe6ed7532615a9073d86aa1d3533",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 2,
+      "attempt_window_used": 2,
+      "task_retry_count": 1,
+      "main_attempt_count": 2,
+      "main_retry_count": 1,
+      "attempt_count": 2,
+      "retry_count": 1,
+      "definition_retry_count": 1,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 2,
+        "fields": {
+          "input_total": {
+            "value": 14161,
+            "known_subtotal": 14161,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 10065,
+            "known_subtotal": 10065,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 4096,
+            "known_subtotal": 4096,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 2,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 698,
+            "known_subtotal": 698,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 14859,
+            "known_subtotal": 14859,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0005-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 35.24672970798565,
+      "execution_end_seconds": 47.3135363329784
+    },
+    {
+      "key": "r001:EUCLID.I.D003:lean",
+      "number": 6,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D003",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 60.06158158299513,
+      "setup_seconds": 0.03268854203633964,
+      "check_calls": 4,
+      "telemetry_complete": true,
+      "checker_seconds": 17.99226233398076,
+      "verification_timing": {
+        "session_initialization_seconds": 8.914926791971084,
+        "incremental_candidate_seconds": 0.0972329989890568,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.75660920899827,
+        "declaration_gate_seconds": 0.21294529200531542,
+        "other_verifier_seconds": 0.010548042017035186,
+        "accounted_verifier_seconds": 17.99226233398076,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.527388875023462,
+        "independent_final_verification_seconds": 0.015000374987721443,
+        "total_initialization_seconds": 17.442315666994546,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 42.619265916000586,
+      "independent_final_initialization_seconds": 8.527388875023462,
+      "independent_final_verification_seconds": 0.015000374987721443,
+      "session_initialization_seconds": 8.914926791971084,
+      "warm_candidate_seconds": 0.0972329989890568,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.75660920899827,
+      "non_checker_seconds": 42.069399833038915,
+      "api_request_count": 3,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D003:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 3,
+            "retry_count": 2,
+            "known_attempt_count": 3,
+            "known_retry_count": 2,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 2,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 9.018600458977744,
+            "source_versions": 3,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 3,
+        "main_retry_count": 2,
+        "attempt_count": 3,
+        "retry_count": 2,
+        "known_retry_count": 2,
+        "definition_retry_count": 2,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "881ce40f655bcfd818f33800711edc4f5876d9107c07005806d29dd59c78db24",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "579f2848557750cd1aa3322d5ee756b325deb6da5d958662f9f143ec46453b41",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 3,
+            "window_round": 3,
+            "kind": "candidate",
+            "receipt_id": "check-0003",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "441c700044dee8811ddc437b4aa1891ca3822271345bed007c2ec963dc8d75b5",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 3,
+      "attempt_window_used": 3,
+      "task_retry_count": 2,
+      "main_attempt_count": 3,
+      "main_retry_count": 2,
+      "attempt_count": 3,
+      "retry_count": 2,
+      "definition_retry_count": 2,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 3,
+        "fields": {
+          "input_total": {
+            "value": 24602,
+            "known_subtotal": 24602,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 13722,
+            "known_subtotal": 13722,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 10880,
+            "known_subtotal": 10880,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 3,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 2668,
+            "known_subtotal": 2668,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 27270,
+            "known_subtotal": 27270,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0006-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 74.43041420797817,
+      "execution_end_seconds": 135.0172127079568
+    },
+    {
+      "key": "r001:EUCLID.I.D004:lean",
+      "number": 7,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D004",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 24.263011750008445,
+      "setup_seconds": 0.03274829202564433,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 17.80267979099881,
+      "verification_timing": {
+        "session_initialization_seconds": 8.908004875003826,
+        "incremental_candidate_seconds": 0.016145459027029574,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.587000458035618,
+        "declaration_gate_seconds": 0.2821352090104483,
+        "other_verifier_seconds": 0.009393789921887219,
+        "accounted_verifier_seconds": 17.80267979099881,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.385392708994914,
+        "independent_final_verification_seconds": 0.011802374967373908,
+        "total_initialization_seconds": 17.29339758399874,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 6.9696141660097055,
+      "independent_final_initialization_seconds": 8.385392708994914,
+      "independent_final_verification_seconds": 0.011802374967373908,
+      "session_initialization_seconds": 8.908004875003826,
+      "warm_candidate_seconds": 0.016145459027029574,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.587000458035618,
+      "non_checker_seconds": 6.460391125001479,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D004:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 8.929201291000936,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "8ce1d7c80e595b179fd8df8f9ea66f9346f15f011a31c5f92f63ea2c49b5011a",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 5778,
+            "known_subtotal": 5778,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 3090,
+            "known_subtotal": 3090,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2688,
+            "known_subtotal": 2688,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 272,
+            "known_subtotal": 272,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 6050,
+            "known_subtotal": 6050,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0007-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 135.0275631250115,
+      "execution_end_seconds": 159.7998620409635
+    },
+    {
+      "key": "r001:EUCLID.I.D004:litex",
+      "number": 8,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D004",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 12.71426179097034,
+      "setup_seconds": 0.06500566599424928,
+      "check_calls": 3,
+      "telemetry_complete": true,
+      "checker_seconds": 0.31960441602859646,
+      "verification_timing": {
+        "session_initialization_seconds": 0.18011220800690353,
+        "incremental_candidate_seconds": 0.016953583050053567,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.10493333300109953,
+        "declaration_gate_seconds": 0.00733475002925843,
+        "other_verifier_seconds": 0.010270541941281408,
+        "accounted_verifier_seconds": 0.31960441602859646,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.08979595795972273,
+        "independent_final_verification_seconds": 0.013892917020712048,
+        "total_initialization_seconds": 0.26990816596662626,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 12.444353625003714,
+      "independent_final_initialization_seconds": 0.08979595795972273,
+      "independent_final_verification_seconds": 0.013892917020712048,
+      "session_initialization_seconds": 0.18011220800690353,
+      "warm_candidate_seconds": 0.016953583050053567,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.10493333300109953,
+      "non_checker_seconds": 12.394826374948025,
+      "api_request_count": 2,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D004:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 2,
+            "retry_count": 1,
+            "known_attempt_count": 2,
+            "known_retry_count": 1,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 1,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.20541424897965044,
+            "source_versions": 2,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 2,
+        "main_retry_count": 1,
+        "attempt_count": 2,
+        "retry_count": 1,
+        "known_retry_count": 1,
+        "definition_retry_count": 1,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "1d6343123e9abea2ab25a3fcbf106f55f959f20919b80e6fe03112fb0dfdc649",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "17b6673067a0d7f3509119948fbdfe70a6983d94b22aad6629523b63b0f5c09b",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 2,
+      "attempt_window_used": 2,
+      "task_retry_count": 1,
+      "main_attempt_count": 2,
+      "main_retry_count": 1,
+      "attempt_count": 2,
+      "retry_count": 1,
+      "definition_retry_count": 1,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 2,
+        "fields": {
+          "input_total": {
+            "value": 14886,
+            "known_subtotal": 14886,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 9894,
+            "known_subtotal": 9894,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 4992,
+            "known_subtotal": 4992,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 2,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 614,
+            "known_subtotal": 614,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 15500,
+            "known_subtotal": 15500,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0008-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 47.32344591699075,
+      "execution_end_seconds": 60.92189033300383
+    },
+    {
+      "key": "r001:EUCLID.I.D005:lean",
+      "number": 9,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D005",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 25.853346041054465,
+      "setup_seconds": 0.04224079201230779,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 18.266821124008857,
+      "verification_timing": {
+        "session_initialization_seconds": 9.050235792004969,
+        "incremental_candidate_seconds": 0.03601383394561708,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.888574874959886,
+        "declaration_gate_seconds": 0.2846680409857072,
+        "other_verifier_seconds": 0.007328582112677395,
+        "accounted_verifier_seconds": 18.266821124008857,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.622913165949285,
+        "independent_final_verification_seconds": 0.03836350003257394,
+        "total_initialization_seconds": 17.673148957954254,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 8.18019708310021,
+      "independent_final_initialization_seconds": 8.622913165949285,
+      "independent_final_verification_seconds": 0.03836350003257394,
+      "session_initialization_seconds": 9.050235792004969,
+      "warm_candidate_seconds": 0.03601383394561708,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.888574874959886,
+      "non_checker_seconds": 7.586674376041628,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D005:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 9.089343832980376,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "260eaf6adc7e1320ef29b9855864352f0f9a6baacc225fede591a76ddaedf295",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 5963,
+            "known_subtotal": 5963,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 3915,
+            "known_subtotal": 3915,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 464,
+            "known_subtotal": 464,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 6427,
+            "known_subtotal": 6427,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0009-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 159.8108690409572,
+      "execution_end_seconds": 186.40501683298498
+    },
+    {
+      "key": "r001:EUCLID.I.D005:litex",
+      "number": 10,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D005",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 21.91290020797169,
+      "setup_seconds": 0.053418499999679625,
+      "check_calls": 4,
+      "telemetry_complete": true,
+      "checker_seconds": 0.4789240410900675,
+      "verification_timing": {
+        "session_initialization_seconds": 0.324302499066107,
+        "incremental_candidate_seconds": 0.013898750999942422,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.11774387501645833,
+        "declaration_gate_seconds": 0.0069492500042542815,
+        "other_verifier_seconds": 0.016029666003305465,
+        "accounted_verifier_seconds": 0.4789240410900675,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.10973866598214954,
+        "independent_final_verification_seconds": 0.006649916002061218,
+        "total_initialization_seconds": 0.4340411650482565,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 21.478859042923432,
+      "independent_final_initialization_seconds": 0.10973866598214954,
+      "independent_final_verification_seconds": 0.006649916002061218,
+      "session_initialization_seconds": 0.324302499066107,
+      "warm_candidate_seconds": 0.013898750999942422,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.11774387501645833,
+      "non_checker_seconds": 21.434031374868937,
+      "api_request_count": 3,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D005:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 3,
+            "retry_count": 2,
+            "known_attempt_count": 3,
+            "known_retry_count": 2,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 2,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.352009249094408,
+            "source_versions": 3,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 3,
+        "main_retry_count": 2,
+        "attempt_count": 3,
+        "retry_count": 2,
+        "known_retry_count": 2,
+        "definition_retry_count": 2,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "52550f7325f3c6a18aa05db8981e8735a1accaaf7f4b9d591c86892fa4438926",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "48e9c2858a25a0cba14bdc54554e2f187c90cf96216e8afedda449e6f444c085",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 3,
+            "window_round": 3,
+            "kind": "candidate",
+            "receipt_id": "check-0003",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "ab7bebe26d084df9c78bfd0fe59247aeabe0f03408cf6bd62e4319b5feb8fe3e",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 3,
+      "attempt_window_used": 3,
+      "task_retry_count": 2,
+      "main_attempt_count": 3,
+      "main_retry_count": 2,
+      "attempt_count": 3,
+      "retry_count": 2,
+      "definition_retry_count": 2,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 3,
+        "fields": {
+          "input_total": {
+            "value": 28454,
+            "known_subtotal": 28454,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 15014,
+            "known_subtotal": 15014,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 13440,
+            "known_subtotal": 13440,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 3,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 1328,
+            "known_subtotal": 1328,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 29782,
+            "known_subtotal": 29782,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0010-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 60.93223683297401,
+      "execution_end_seconds": 83.46706591697875
+    },
+    {
+      "key": "r001:EUCLID.I.D006:litex",
+      "number": 11,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D006",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 6.504370667040348,
+      "setup_seconds": 0.058019124960992485,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 0.2349210839602165,
+      "verification_timing": {
+        "session_initialization_seconds": 0.10977516701677814,
+        "incremental_candidate_seconds": 0.0029343340429477394,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.1086702499887906,
+        "declaration_gate_seconds": 0.006951958988793194,
+        "other_verifier_seconds": 0.006589373922906816,
+        "accounted_verifier_seconds": 0.2349210839602165,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.10518391605000943,
+        "independent_final_verification_seconds": 0.0022875419817864895,
+        "total_initialization_seconds": 0.21495908306678757,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 6.2894115839735605,
+      "independent_final_initialization_seconds": 0.10518391605000943,
+      "independent_final_verification_seconds": 0.0022875419817864895,
+      "session_initialization_seconds": 0.10977516701677814,
+      "warm_candidate_seconds": 0.0029343340429477394,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.1086702499887906,
+      "non_checker_seconds": 6.269502249080688,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D006:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.11688262497773394,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "6a0aa06f5be0af51b7952beec268a18479cf30187f845bd94a6eb953059bcf87",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 6430,
+            "known_subtotal": 6430,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 4382,
+            "known_subtotal": 4382,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 359,
+            "known_subtotal": 359,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 6789,
+            "known_subtotal": 6789,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0011-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 83.4780822499888,
+      "execution_end_seconds": 90.93830837501446
+    },
+    {
+      "key": "r001:EUCLID.I.D006:lean",
+      "number": 12,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D006",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 31.8886404579971,
+      "setup_seconds": 0.04209254099987447,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 17.98704508395167,
+      "verification_timing": {
+        "session_initialization_seconds": 9.03554912499385,
+        "incremental_candidate_seconds": 0.010878999950364232,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.69747954205377,
+        "declaration_gate_seconds": 0.235490791965276,
+        "other_verifier_seconds": 0.007646624988410622,
+        "accounted_verifier_seconds": 17.98704508395167,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.538905582972802,
+        "independent_final_verification_seconds": 0.00986749998992309,
+        "total_initialization_seconds": 17.57445470796665,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 14.314185750030447,
+      "independent_final_initialization_seconds": 8.538905582972802,
+      "independent_final_verification_seconds": 0.00986749998992309,
+      "session_initialization_seconds": 9.03554912499385,
+      "warm_candidate_seconds": 0.010878999950364232,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.69747954205377,
+      "non_checker_seconds": 13.901679041038733,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D006:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 9.048960791958962,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "b8e873b20430d086bf6f8346e2849bd66108feb3c3389d66384a78c2b4eceea6",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 6346,
+            "known_subtotal": 6346,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 4298,
+            "known_subtotal": 4298,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 265,
+            "known_subtotal": 265,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 6611,
+            "known_subtotal": 6611,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0012-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 186.4188169160043,
+      "execution_end_seconds": 218.89852179097943
+    },
+    {
+      "key": "r001:EUCLID.I.D007:lean",
+      "number": 13,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D007",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 42.58419349999167,
+      "setup_seconds": 0.03774554200936109,
+      "check_calls": 4,
+      "telemetry_complete": true,
+      "checker_seconds": 18.8832952498924,
+      "verification_timing": {
+        "session_initialization_seconds": 9.039827500004321,
+        "incremental_candidate_seconds": 0.03642774996114895,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 9.577301000012085,
+        "declaration_gate_seconds": 0.2192876249901019,
+        "other_verifier_seconds": 0.010451374924741685,
+        "accounted_verifier_seconds": 18.8832952498924,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 9.325162958004512,
+        "independent_final_verification_seconds": 0.008883707982022315,
+        "total_initialization_seconds": 18.364990458008833,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 24.219203041982837,
+      "independent_final_initialization_seconds": 9.325162958004512,
+      "independent_final_verification_seconds": 0.008883707982022315,
+      "session_initialization_seconds": 9.039827500004321,
+      "warm_candidate_seconds": 0.03642774996114895,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 9.577301000012085,
+      "non_checker_seconds": 23.701051833108068,
+      "api_request_count": 3,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D007:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 3,
+            "retry_count": 2,
+            "known_attempt_count": 3,
+            "known_retry_count": 2,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 2,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 9.081928290892392,
+            "source_versions": 3,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 3,
+        "main_retry_count": 2,
+        "attempt_count": 3,
+        "retry_count": 2,
+        "known_retry_count": 2,
+        "definition_retry_count": 2,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "9f948a81fb77c0180833ccac885903906826117091fc4f5cb3d3d8befac7ae80",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "failed",
+            "path": "candidate.lean",
+            "source_sha256": "c55b7a411cb4020786bc6c1a07a058be1547869629dfd97c1844a8d59556a49d",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 3,
+            "window_round": 3,
+            "kind": "candidate",
+            "receipt_id": "check-0003",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "a4cf677851179fd9c5b9e8775d8d68dfcfbc5925ca8b26cefd798317c74151ce",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 3,
+      "attempt_window_used": 3,
+      "task_retry_count": 2,
+      "main_attempt_count": 3,
+      "main_retry_count": 2,
+      "attempt_count": 3,
+      "retry_count": 2,
+      "definition_retry_count": 2,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 3,
+        "fields": {
+          "input_total": {
+            "value": 27076,
+            "known_subtotal": 27076,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 13124,
+            "known_subtotal": 13124,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 13952,
+            "known_subtotal": 13952,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 3,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 997,
+            "known_subtotal": 997,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 28073,
+            "known_subtotal": 28073,
+            "known_requests": 3,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0013-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 218.9133203329984,
+      "execution_end_seconds": 262.28174016601406
+    },
+    {
+      "key": "r001:EUCLID.I.D007:litex",
+      "number": 14,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D007",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 11.601516208960675,
+      "setup_seconds": 0.05041108303703368,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 0.27044583298265934,
+      "verification_timing": {
+        "session_initialization_seconds": 0.12663274997612461,
+        "incremental_candidate_seconds": 0.0016817490104585886,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.12652083300054073,
+        "declaration_gate_seconds": 0.009061624994501472,
+        "other_verifier_seconds": 0.006548876001033932,
+        "accounted_verifier_seconds": 0.27044583298265934,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.12373524997383356,
+        "independent_final_verification_seconds": 0.0014249589876271784,
+        "total_initialization_seconds": 0.2503679999499582,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 11.351148209010717,
+      "independent_final_initialization_seconds": 0.12373524997383356,
+      "independent_final_verification_seconds": 0.0014249589876271784,
+      "session_initialization_seconds": 0.12663274997612461,
+      "warm_candidate_seconds": 0.0016817490104585886,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.12652083300054073,
+      "non_checker_seconds": 11.331152542028576,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D007:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.1324415830313228,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "e6279d24334aec95a4c6ef14819f63dca68a37bb80c820824fc8b779c1c67572",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 6784,
+            "known_subtotal": 6784,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 4736,
+            "known_subtotal": 4736,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 304,
+            "known_subtotal": 304,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 7088,
+            "known_subtotal": 7088,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0014-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 90.95082062500296,
+      "execution_end_seconds": 103.14055612497032
+    },
+    {
+      "key": "r001:EUCLID.I.D008:litex",
+      "number": 15,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D008",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 21.14192829199601,
+      "setup_seconds": 0.052931000012904406,
+      "check_calls": 3,
+      "telemetry_complete": true,
+      "checker_seconds": 0.36091275105718523,
+      "verification_timing": {
+        "session_initialization_seconds": 0.2211631250102073,
+        "incremental_candidate_seconds": 0.004921167972497642,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.11384941695723683,
+        "declaration_gate_seconds": 0.007338333991356194,
+        "other_verifier_seconds": 0.013640707125887275,
+        "accounted_verifier_seconds": 0.36091275105718523,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.10944908298552036,
+        "independent_final_verification_seconds": 0.003040208015590906,
+        "total_initialization_seconds": 0.33061220799572766,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 20.811316084000282,
+      "independent_final_initialization_seconds": 0.10944908298552036,
+      "independent_final_verification_seconds": 0.003040208015590906,
+      "session_initialization_seconds": 0.2211631250102073,
+      "warm_candidate_seconds": 0.004921167972497642,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.11384941695723683,
+      "non_checker_seconds": 20.781081957975402,
+      "api_request_count": 2,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D008:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 2,
+            "retry_count": 1,
+            "known_attempt_count": 2,
+            "known_retry_count": 1,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 1,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.23726191703462973,
+            "source_versions": 2,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 2,
+        "main_retry_count": 1,
+        "attempt_count": 2,
+        "retry_count": 1,
+        "known_retry_count": 1,
+        "definition_retry_count": 1,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "failed",
+            "path": "candidate.lit",
+            "source_sha256": "720f8e1010443841d89d2afa9559f91aa9334598e5cc59a97792162a19bf69ec",
+            "passed": false,
+            "reason": null
+          },
+          {
+            "round": 2,
+            "window_round": 2,
+            "kind": "candidate",
+            "receipt_id": "check-0002",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "10d347d4599c5e9363ecd095404cc970d7a993549d1553d2c56f5eda85c814c4",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 2,
+      "attempt_window_used": 2,
+      "task_retry_count": 1,
+      "main_attempt_count": 2,
+      "main_retry_count": 1,
+      "attempt_count": 2,
+      "retry_count": 1,
+      "definition_retry_count": 1,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 2,
+        "fields": {
+          "input_total": {
+            "value": 18118,
+            "known_subtotal": 18118,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 12230,
+            "known_subtotal": 12230,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 5888,
+            "known_subtotal": 5888,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 2,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 1468,
+            "known_subtotal": 1468,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 19586,
+            "known_subtotal": 19586,
+            "known_requests": 2,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0015-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 103.1538323329878,
+      "execution_end_seconds": 124.98946058301954
+    },
+    {
+      "key": "r001:EUCLID.I.D008:lean",
+      "number": 16,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D008",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 27.38278016698314,
+      "setup_seconds": 0.043163082969840616,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 17.877850667980965,
+      "verification_timing": {
+        "session_initialization_seconds": 9.400955541990697,
+        "incremental_candidate_seconds": 0.013107792008668184,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.24840983300237,
+        "declaration_gate_seconds": 0.2076120839919895,
+        "other_verifier_seconds": 0.0077654169872403145,
+        "accounted_verifier_seconds": 17.877850667980965,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.037757250014693,
+        "independent_final_verification_seconds": 0.013633041002321988,
+        "total_initialization_seconds": 17.43871279200539,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 9.944067374977749,
+      "independent_final_initialization_seconds": 8.037757250014693,
+      "independent_final_verification_seconds": 0.013633041002321988,
+      "session_initialization_seconds": 9.400955541990697,
+      "warm_candidate_seconds": 0.013107792008668184,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.24840983300237,
+      "non_checker_seconds": 9.504987124004401,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D008:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 9.416588250023779,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "0821fb298a052f06d7279d3977ff3894e1b35c7c3388c65b4230db405a33d169",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 6755,
+            "known_subtotal": 6755,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 4067,
+            "known_subtotal": 4067,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2688,
+            "known_subtotal": 2688,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 305,
+            "known_subtotal": 305,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 7060,
+            "known_subtotal": 7060,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0016-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 262.2988745829789,
+      "execution_end_seconds": 290.54748725000536
+    },
+    {
+      "key": "r001:EUCLID.I.D009:lean",
+      "number": 17,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D009",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 23.62306216696743,
+      "setup_seconds": 0.03917875001206994,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 17.565812875982374,
+      "verification_timing": {
+        "session_initialization_seconds": 8.640541042026598,
+        "incremental_candidate_seconds": 0.008280875044874847,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.649387707991991,
+        "declaration_gate_seconds": 0.25960262498119846,
+        "other_verifier_seconds": 0.008000625937711447,
+        "accounted_verifier_seconds": 17.565812875982374,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.415957833989523,
+        "independent_final_verification_seconds": 0.008088917005807161,
+        "total_initialization_seconds": 17.05649887601612,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 6.566563290951308,
+      "independent_final_initialization_seconds": 8.415957833989523,
+      "independent_final_verification_seconds": 0.008088917005807161,
+      "session_initialization_seconds": 8.640541042026598,
+      "warm_candidate_seconds": 0.008280875044874847,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.649387707991991,
+      "non_checker_seconds": 6.057321374013554,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D009:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 8.651391208986752,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "610a6999ade399e02cb6b0c94acb327ab63a614e40639917cd62001d0504cd7f",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 7022,
+            "known_subtotal": 7022,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 4974,
+            "known_subtotal": 4974,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 249,
+            "known_subtotal": 249,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 7271,
+            "known_subtotal": 7271,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0017-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 290.5635374999838,
+      "execution_end_seconds": 314.91801441600546
+    },
+    {
+      "key": "r001:EUCLID.I.D009:litex",
+      "number": 18,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D009",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 5.3513943330035545,
+      "setup_seconds": 0.05212545796530321,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 0.3041593750822358,
+      "verification_timing": {
+        "session_initialization_seconds": 0.14007108402438462,
+        "incremental_candidate_seconds": 0.0005529590416699648,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.14984554197872058,
+        "declaration_gate_seconds": 0.008491125016007572,
+        "other_verifier_seconds": 0.005198665021453053,
+        "accounted_verifier_seconds": 0.3041593750822358,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.1483692079782486,
+        "independent_final_verification_seconds": 0.00030025001615285873,
+        "total_initialization_seconds": 0.2884402920026332,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 5.062954041000921,
+      "independent_final_initialization_seconds": 0.1483692079782486,
+      "independent_final_verification_seconds": 0.00030025001615285873,
+      "session_initialization_seconds": 0.14007108402438462,
+      "warm_candidate_seconds": 0.0005529590416699648,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.14984554197872058,
+      "non_checker_seconds": 5.047342166944873,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D009:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.14342533302260563,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "d6766efb0ad1b06da0930e30fff18220c71dadd90b3e927e763ac0be4b4ba0ab",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 7794,
+            "known_subtotal": 7794,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 4850,
+            "known_subtotal": 4850,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2944,
+            "known_subtotal": 2944,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 116,
+            "known_subtotal": 116,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 7910,
+            "known_subtotal": 7910,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0018-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 125.0032094999915,
+      "execution_end_seconds": 130.88790324999718
+    },
+    {
+      "key": "r001:EUCLID.I.D010:litex",
+      "number": 19,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D010",
+      "kind": "definition",
+      "language": "litex",
+      "status": "finished",
+      "credential_alias": "secondary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 9.261921833036467,
+      "setup_seconds": 0.05424133298220113,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 0.2615947090089321,
+      "verification_timing": {
+        "session_initialization_seconds": 0.12139204196864739,
+        "incremental_candidate_seconds": 0.0021899999119341373,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 0.12160849996143952,
+        "declaration_gate_seconds": 0.008090041985269636,
+        "other_verifier_seconds": 0.00831412518164143,
+        "accounted_verifier_seconds": 0.2615947090089321,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 0.11927837500115857,
+        "independent_final_verification_seconds": 0.0010924580274149776,
+        "total_initialization_seconds": 0.24067041696980596,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 9.021251416066661,
+      "independent_final_initialization_seconds": 0.11927837500115857,
+      "independent_final_verification_seconds": 0.0010924580274149776,
+      "session_initialization_seconds": 0.12139204196864739,
+      "warm_candidate_seconds": 0.0021899999119341373,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 0.12160849996143952,
+      "non_checker_seconds": 9.000380458019208,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D010:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lit"
+            ],
+            "current_path": "candidate.lit",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 0.1290625419933349,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lit",
+            "source_sha256": "a15f7f00945f625159ee29369ad3565c900ce881df2105993d71760f96100d65",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 7976,
+            "known_subtotal": 7976,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 5928,
+            "known_subtotal": 5928,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 470,
+            "known_subtotal": 470,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 8446,
+            "known_subtotal": 8446,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/litex/attempts/0019-litex",
+      "infrastructure_error": null,
+      "execution_start_seconds": 130.90274345799116,
+      "execution_end_seconds": 140.84435349999694
+    },
+    {
+      "key": "r001:EUCLID.I.D010:lean",
+      "number": 20,
+      "repetition": 1,
+      "task_id": "EUCLID.I.D010",
+      "kind": "definition",
+      "language": "lean",
+      "status": "finished",
+      "credential_alias": "primary",
+      "controller_status": "settled",
+      "passed": true,
+      "machine_candidate": true,
+      "semantic_status": "pending",
+      "verified_correct": null,
+      "elapsed_seconds": 29.007794708013535,
+      "setup_seconds": 0.04207141697406769,
+      "check_calls": 2,
+      "telemetry_complete": true,
+      "checker_seconds": 17.981775251042563,
+      "verification_timing": {
+        "session_initialization_seconds": 8.78459858399583,
+        "incremental_candidate_seconds": 0.023486374993808568,
+        "replay_seconds": 0,
+        "independent_final_file_seconds": 8.918872666952666,
+        "declaration_gate_seconds": 0.24480766704073176,
+        "other_verifier_seconds": 0.01000995805952698,
+        "accounted_verifier_seconds": 17.981775251042563,
+        "unreceipted_native_seconds": 0,
+        "native_request_errors": 0,
+        "initialization_exclusion_complete": true,
+        "independent_final_initialization_seconds": 8.732914709020406,
+        "independent_final_verification_seconds": 0.024224082997534424,
+        "total_initialization_seconds": 17.517513293016236,
+        "note": "Wall-clock phases. Warm candidate timing is native Session/REPL request-response time after seed/library loading; replay and startup are separate. Fresh-file timing includes process startup/imports. These are not CPU-only times. Failures remain included. Native events left outside a completed receipt by interruption/recovery are retained as unreceipted_native_seconds; model/network/orchestration is separate. Split final initialization and verification are measured in a new independent native Session/REPL. These detail fields are subsets of independent_final_file_seconds, not additional phases. Only total_initialization_seconds is subtracted from end-to-end time; candidate and final verification remain included."
+      },
+      "startup_excluded_seconds": 11.490281414997298,
+      "independent_final_initialization_seconds": 8.732914709020406,
+      "independent_final_verification_seconds": 0.024224082997534424,
+      "session_initialization_seconds": 8.78459858399583,
+      "warm_candidate_seconds": 0.023486374993808568,
+      "replay_seconds": 0,
+      "fresh_file_seconds": 8.918872666952666,
+      "non_checker_seconds": 11.026270164991729,
+      "api_request_count": 1,
+      "resume_count": 0,
+      "connection_status": "settled",
+      "network_retry_count": 0,
+      "network_wait_seconds": 0,
+      "retry_statistics": {
+        "available": true,
+        "counts_complete": true,
+        "items": [
+          {
+            "item_id": "EUCLID.I.D010:main",
+            "item_kind": "definition",
+            "is_primary": true,
+            "paths": [
+              "candidate.lean"
+            ],
+            "current_path": "candidate.lean",
+            "attempt_count": 1,
+            "retry_count": 0,
+            "known_attempt_count": 1,
+            "known_retry_count": 0,
+            "pending_checks": 0,
+            "counts_complete": true,
+            "failed_candidate_count": 0,
+            "cached_checks": 0,
+            "preparation_failures": 0,
+            "check_seconds": 8.811895499995444,
+            "source_versions": 1,
+            "status": "accepted"
+          }
+        ],
+        "log_issues": [],
+        "main_attempt_count": 1,
+        "main_retry_count": 0,
+        "attempt_count": 1,
+        "retry_count": 0,
+        "known_retry_count": 0,
+        "definition_retry_count": 0,
+        "proof_retry_count": 0,
+        "pending_checks": 0,
+        "definition": "One candidate incremental check per stable logical item; retries=max(0, attempts-1). Scope, cached checks, replay, final and submission gates are excluded. Unknown interrupted counts remain null."
+      },
+      "task_rounds": {
+        "limit": 5,
+        "rounds": [
+          {
+            "round": 1,
+            "window_round": 1,
+            "kind": "candidate",
+            "receipt_id": "check-0001",
+            "status": "passed",
+            "path": "candidate.lean",
+            "source_sha256": "fa4a3772527c821581da85e8a460b1d0552dcc0f82e67d0ccc7044c6844e11f2",
+            "passed": true,
+            "reason": null
+          }
+        ],
+        "exhausted": false,
+        "transport_only_exhausted": false
+      },
+      "task_attempt_count": 1,
+      "attempt_window_used": 1,
+      "task_retry_count": 0,
+      "main_attempt_count": 1,
+      "main_retry_count": 0,
+      "attempt_count": 1,
+      "retry_count": 0,
+      "definition_retry_count": 0,
+      "proof_retry_count": 0,
+      "usage": {
+        "request_attempts": 1,
+        "fields": {
+          "input_total": {
+            "value": 7231,
+            "known_subtotal": 7231,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "input_uncached": {
+            "value": 5183,
+            "known_subtotal": 5183,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_read": {
+            "value": 2048,
+            "known_subtotal": 2048,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "cache_write": {
+            "value": null,
+            "known_subtotal": 0,
+            "known_requests": 0,
+            "missing_requests": 1,
+            "coverage": 0.0
+          },
+          "output_total": {
+            "value": 752,
+            "known_subtotal": 752,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "reasoning_subset": {
+            "value": 0,
+            "known_subtotal": 0,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          },
+          "token_total": {
+            "value": 7983,
+            "known_subtotal": 7983,
+            "known_requests": 1,
+            "missing_requests": 0,
+            "coverage": 1.0
+          }
+        }
+      },
+      "attempt": "workers/lean/attempts/0020-lean",
+      "infrastructure_error": null,
+      "execution_start_seconds": 314.9359525410109,
+      "execution_end_seconds": 344.603404583002
+    }
+  ],
+  "items": [
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D001",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0001-lean",
+      "item_id": "EUCLID.I.D001:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 4,
+      "retry_count": 3,
+      "known_attempt_count": 4,
+      "known_retry_count": 3,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 3,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 11.77941474999534,
+      "source_versions": 4,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D001",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0002-litex",
+      "item_id": "EUCLID.I.D001:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 2,
+      "retry_count": 1,
+      "known_attempt_count": 2,
+      "known_retry_count": 1,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 1,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.2759164169547148,
+      "source_versions": 2,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D002",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0003-lean",
+      "item_id": "EUCLID.I.D002:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 2,
+      "retry_count": 1,
+      "known_attempt_count": 2,
+      "known_retry_count": 1,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 1,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 8.143269875028636,
+      "source_versions": 2,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D002",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0004-litex",
+      "item_id": "EUCLID.I.D002:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 3,
+      "retry_count": 2,
+      "known_attempt_count": 3,
+      "known_retry_count": 2,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 2,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.2851925419527106,
+      "source_versions": 3,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D003",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0005-litex",
+      "item_id": "EUCLID.I.D003:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 2,
+      "retry_count": 1,
+      "known_attempt_count": 2,
+      "known_retry_count": 1,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 1,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.21396399999503046,
+      "source_versions": 2,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D003",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0006-lean",
+      "item_id": "EUCLID.I.D003:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 3,
+      "retry_count": 2,
+      "known_attempt_count": 3,
+      "known_retry_count": 2,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 2,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 9.018600458977744,
+      "source_versions": 3,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D004",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0007-lean",
+      "item_id": "EUCLID.I.D004:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 8.929201291000936,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D004",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0008-litex",
+      "item_id": "EUCLID.I.D004:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 2,
+      "retry_count": 1,
+      "known_attempt_count": 2,
+      "known_retry_count": 1,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 1,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.20541424897965044,
+      "source_versions": 2,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D005",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0009-lean",
+      "item_id": "EUCLID.I.D005:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 9.089343832980376,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D005",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0010-litex",
+      "item_id": "EUCLID.I.D005:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 3,
+      "retry_count": 2,
+      "known_attempt_count": 3,
+      "known_retry_count": 2,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 2,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.352009249094408,
+      "source_versions": 3,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D006",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0011-litex",
+      "item_id": "EUCLID.I.D006:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.11688262497773394,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D006",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0012-lean",
+      "item_id": "EUCLID.I.D006:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 9.048960791958962,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D007",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0013-lean",
+      "item_id": "EUCLID.I.D007:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 3,
+      "retry_count": 2,
+      "known_attempt_count": 3,
+      "known_retry_count": 2,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 2,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 9.081928290892392,
+      "source_versions": 3,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D007",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0014-litex",
+      "item_id": "EUCLID.I.D007:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.1324415830313228,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D008",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0015-litex",
+      "item_id": "EUCLID.I.D008:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 2,
+      "retry_count": 1,
+      "known_attempt_count": 2,
+      "known_retry_count": 1,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 1,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.23726191703462973,
+      "source_versions": 2,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D008",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0016-lean",
+      "item_id": "EUCLID.I.D008:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 9.416588250023779,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D009",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0017-lean",
+      "item_id": "EUCLID.I.D009:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 8.651391208986752,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D009",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0018-litex",
+      "item_id": "EUCLID.I.D009:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.14342533302260563,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D010",
+      "language": "litex",
+      "attempt": "workers/litex/attempts/0019-litex",
+      "item_id": "EUCLID.I.D010:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lit"
+      ],
+      "current_path": "candidate.lit",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 0.1290625419933349,
+      "source_versions": 1,
+      "status": "accepted"
+    },
+    {
+      "repetition": 1,
+      "task_id": "EUCLID.I.D010",
+      "language": "lean",
+      "attempt": "workers/lean/attempts/0020-lean",
+      "item_id": "EUCLID.I.D010:main",
+      "item_kind": "definition",
+      "is_primary": true,
+      "paths": [
+        "candidate.lean"
+      ],
+      "current_path": "candidate.lean",
+      "attempt_count": 1,
+      "retry_count": 0,
+      "known_attempt_count": 1,
+      "known_retry_count": 0,
+      "pending_checks": 0,
+      "counts_complete": true,
+      "failed_candidate_count": 0,
+      "cached_checks": 0,
+      "preparation_failures": 0,
+      "check_seconds": 8.811895499995444,
+      "source_versions": 1,
+      "status": "accepted"
+    }
+  ],
+  "joint_successes": [],
+  "joint_machine_successes": [],
+  "joint_semantically_reviewed_successes": []
+}

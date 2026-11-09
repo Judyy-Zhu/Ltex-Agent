@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "task_id": "EUCLID.I.D007",
+  "kind": "definition",
+  "policy": "faithful_translation_v1",
+  "status": "draft_requires_interpretation_review",
+  "source": {
+    "path": "batches/local-context-safe-01/source-cache/EUCLID.I.D007/EUCLID.I.D007.txt",
+    "sha256": "fc98371de250fe2c8063805acf7f84e8c55d507c43df1536c056a477326f7abb",
+    "text": "7. A plane surface is (any) one which lies evenly with\nthe straight-lines on itself.\n"
+  },
+  "source_claims": [
+    {
+      "id": "EUCLID.I.D007.plane_is_surface",
+      "source_quote": "A plane surface",
+      "requirement": "Relate plane surface to the approved surface concept."
+    },
+    {
+      "id": "EUCLID.I.D007.even_with_lines",
+      "source_quote": "lies evenly with the straight-lines on itself",
+      "requirement": "State a meaningful evenness relation for straight lines on this surface, with the correct domain restrictions."
+    }
+  ],
+  "source_proof_steps": [],
+  "proof_route_required": false,
+  "interpretation_decisions": [
+    {
+      "id": "M1",
+      "question": "What is the formal meaning of evenness between surface and contained straight lines?",
+      "status": "open",
+      "decision": null
+    },
+    {
+      "id": "M2",
+      "question": "How are the line-on-surface restriction and flatness distinguished from a tautology?",
+      "status": "open",
+      "decision": null
+    }
+  ],
+  "review_failure_probes": [
+    "Do not substitute arbitrary unrelated lines, or a reflexive equality having no surface/line content."
+  ],
+  "formal_proof_answer_provided": false,
+  "machine_pass_policy": "unchanged; this draft never overrides an existing kernel score",
+  "approval": null
+}
